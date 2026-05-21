@@ -5,8 +5,11 @@ export function PartnerGrid({ showPlaceholders = true }: { showPlaceholders?: bo
   return (
     <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
       {partners.map((p) => (
-        <div key={p} className="group rounded-2xl border border-border bg-white p-4 text-center shadow-sm transition hover:shadow-md">
-          <div className="flex h-20 items-center justify-center rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
+        <div
+          key={p}
+          className="group flex flex-col items-center rounded-3xl bg-white p-5 text-center shadow-sm ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-md"
+        >
+          <div className="flex h-20 w-full items-center justify-center rounded-2xl bg-gradient-to-br from-slate-50 to-slate-100 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400 ring-1 ring-slate-200/60">
             Logo
           </div>
           <div className="mt-3 text-sm font-semibold text-foreground">{p}</div>

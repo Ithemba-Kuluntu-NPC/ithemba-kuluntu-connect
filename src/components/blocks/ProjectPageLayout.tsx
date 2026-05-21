@@ -10,6 +10,15 @@ import { useLang } from "@/components/site/LanguageProvider";
 import type { Project } from "@/data/projects";
 import { ImpactCounters } from "./ImpactCounters";
 
+const toneMap: Record<string, "warm" | "blue" | "earth" | "sun" | "ocean" | "green"> = {
+  ecd: "sun",
+  pureflow: "ocean",
+  greenhouse: "green",
+  "food-security": "warm",
+  "pondo-dogs": "earth",
+  "disaster-relief": "blue",
+};
+
 export function ProjectPageLayout({
   project,
   why,
@@ -30,70 +39,118 @@ export function ProjectPageLayout({
   const { lang, t } = useLang();
   const lbl = (en: string, de: string) => (lang === "en" ? en : de);
   const Icon = (Icons as any)[project.icon] as LucideIcon;
+  const tone = toneMap[project.slug] ?? "warm";
 
   return (
     <>
-      <section
-        className="relative overflow-hidden py-14 md:py-20"
-        style={{ background: project.bg }}
-      >
-        <div className="absolute -left-20 -top-20 h-72 w-72 rounded-full" style={{ background: `${project.accent}30` }} />
-        <div className="absolute -bottom-24 -right-12 h-72 w-72 blob-2" style={{ background: `${project.accent}25` }} />
-        <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
-          <Link to="/projects" className="inline-flex items-center gap-1 text-sm font-medium text-foreground/70 hover:text-foreground">
+      {/* Hero — photo background with overlay */}
+      <section className="relative isolate overflow-hidden">
+        <div className="absolute inset-0 -z-10">
+          <PhotoPlaceholder
+            label={`${t(project.title)} hero`}
+            className="h-full w-full"
+            rounded="rounded-none"
+            tone={tone}
+            showLabel={false}
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
+          <div
+            className="absolute inset-0 mix-blend-multiply"
+            style={{ background: `linear-gradient(135deg, ${project.accent}66, transparent 60%)` }}
+          />
+        </div>
+
+        <div className="relative mx-auto max-w-7xl px-4 py-20 md:py-28 lg:px-8">
+          <Link to="/projects" className="inline-flex items-center gap-1 text-sm font-medium text-white/85 hover:text-white">
             <ArrowLeft className="h-4 w-4" /> {lbl("All projects", "Alle Projekte")}
           </Link>
-          <div className="mt-4 grid items-center gap-8 lg:grid-cols-2">
-            <div>
-              <div className="flex items-center gap-3">
-                <div className="flex h-14 w-14 items-center justify-center rounded-full shadow" style={{ background: project.accent }}>
-                  <Icon className="h-7 w-7 text-white" />
-                </div>
-                <div className="font-hand text-3xl" style={{ color: project.accent }}>{eyebrow ?? lbl("Project", "Projekt")}</div>
+
+          <div className="mt-6 max-w-3xl">
+            <div className="flex items-center gap-3">
+              <div className="flex h-14 w-14 items-center justify-center rounded-full shadow-lg ring-2 ring-white/30" style={{ background: project.accent }}>
+                <Icon className="h-7 w-7 text-white" />
               </div>
-              <h1 className="mt-3 font-display text-5xl font-bold leading-tight md:text-6xl" style={{ color: project.accent }}>
-                {t(project.title)}
-              </h1>
-              <p className="mt-4 max-w-xl text-lg text-foreground/80">{t(project.description)}</p>
-              <Placeholder text={`final ${project.slug} logo file`} />
-              <div className="mt-5 flex flex-wrap gap-2">
-                <Link to="/donate">
-                  <Button size="lg" className="rounded-full font-semibold" style={{ background: project.accent }}>
-                    <Heart className="mr-2 h-4 w-4 fill-current" /> {lbl("Donate Monthly to Support This Project", "Monatlich für dieses Projekt spenden")}
-                  </Button>
-                </Link>
-                <Link to="/donate">
-                  <Button size="lg" variant="outline" className="rounded-full">{lbl("Give Once", "Einmalig spenden")}</Button>
-                </Link>
+              <div className="hand-eyebrow-lg" style={{ color: "var(--ithemba-yellow)" }}>
+                {eyebrow ?? lbl("Project", "Projekt")}
               </div>
             </div>
-            <PhotoPlaceholder
-              label={`${t(project.title)} — hero photo`}
-              className="aspect-[4/3]"
-              gradient={`from-[${project.accent}] to-[var(--ithemba-blue)]`}
-            />
+
+            <h1
+              className="mt-3 font-display text-5xl font-extrabold leading-[1.02] text-white md:text-6xl"
+              style={{ textShadow: "0 2px 24px rgba(0,0,0,0.4)" }}
+            >
+              {t(project.title)}
+            </h1>
+            <p className="mt-5 max-w-xl text-lg text-white/90">{t(project.description)}</p>
+
+            <div className="mt-3 inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-[11px] font-medium uppercase tracking-wider text-white/80 backdrop-blur">
+              Logo placeholder · {project.slug}
+            </div>
+
+            <div className="mt-6 flex flex-wrap gap-2">
+              <Link to="/donate">
+                <Button size="lg" className="rounded-full bg-[var(--ithemba-yellow)] font-semibold text-[var(--ithemba-brown)] shadow-lg hover:bg-[var(--ithemba-yellow)]/95">
+                  <Heart className="mr-2 h-4 w-4 fill-current" /> {lbl("Donate Monthly to Support This Project", "Monatlich für dieses Projekt spenden")}
+                </Button>
+              </Link>
+              <Link to="/donate">
+                <Button size="lg" variant="outline" className="rounded-full border-white/40 bg-white/10 text-white hover:bg-white/20 hover:text-white">
+                  {lbl("Give Once", "Einmalig spenden")}
+                </Button>
+              </Link>
+            </div>
+            <div className="mt-3 inline-block">
+              <Placeholder text={`final ${project.slug} logo file`} />
+            </div>
           </div>
+        </div>
+        <svg className="block w-full" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden>
+          <path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="var(--background)" />
+        </svg>
+      </section>
+
+      {/* Why — editorial split */}
+      <section className="mx-auto grid max-w-7xl gap-10 px-4 py-20 md:grid-cols-2 lg:px-8">
+        <div className="relative">
+          <PhotoPlaceholder
+            label={`${t(project.title)} — why it matters`}
+            className="aspect-[4/5] w-full"
+            tone={tone}
+          />
+          <div
+            className="absolute -bottom-6 -right-6 hidden h-28 w-28 items-center justify-center rounded-full text-white shadow-xl md:flex"
+            style={{ background: project.accent }}
+          >
+            <Icon className="h-10 w-10" />
+          </div>
+        </div>
+        <div className="flex flex-col justify-center">
+          <div className="hand-eyebrow-lg" style={{ color: project.accent }}>
+            {lbl("Why", "Warum")}
+          </div>
+          <h2 className="-mt-2 font-display text-4xl font-bold text-[var(--ithemba-blue-dark)] md:text-5xl">
+            {lbl("it matters", "es zählt")}
+          </h2>
+          <p className="mt-5 text-lg leading-relaxed text-foreground/85">{t(why)}</p>
         </div>
       </section>
 
-      {/* Why */}
-      <section className="mx-auto max-w-4xl px-4 py-14 lg:px-8">
-        <div className="font-hand text-2xl" style={{ color: project.accent }}>{lbl("Why this matters", "Warum es zählt")}</div>
-        <h2 className="font-display text-3xl font-bold text-[var(--ithemba-blue-dark)] md:text-4xl">
-          {lbl("Why it matters", "Warum es zählt")}
-        </h2>
-        <p className="mt-4 text-lg text-foreground/85">{t(why)}</p>
-      </section>
-
       {/* What we do */}
-      <section className="bg-[var(--ithemba-cream)] py-14">
-        <div className="mx-auto max-w-5xl px-4 lg:px-8">
-          <h2 className="font-display text-3xl font-bold text-[var(--ithemba-blue-dark)] md:text-4xl">{t(what.title)}</h2>
-          <div className="mt-6 grid gap-3 sm:grid-cols-2">
+      <section className="relative overflow-hidden bg-[var(--ithemba-cream)] py-20">
+        <div className="pointer-events-none absolute -top-10 right-0 h-40 w-40 blob bg-[var(--ithemba-yellow)]/30" />
+        <div className="relative mx-auto max-w-5xl px-4 lg:px-8">
+          <div className="hand-eyebrow-lg">{lbl("What we", "Was wir")}</div>
+          <h2 className="-mt-2 font-display text-4xl font-bold text-[var(--ithemba-blue-dark)] md:text-5xl">
+            {t(what.title)}
+          </h2>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2">
             {what.items.map((it) => (
-              <div key={it.en} className="flex items-start gap-3 rounded-2xl bg-white p-4 shadow-sm">
-                <div className="mt-0.5 h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: project.accent }} />
-                <div className="text-sm font-medium">{t(it)}</div>
+              <div
+                key={it.en}
+                className="flex items-start gap-3 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-black/5"
+              >
+                <div className="mt-1 h-3 w-3 shrink-0 rounded-full" style={{ background: project.accent }} />
+                <div className="text-sm font-medium leading-relaxed">{t(it)}</div>
               </div>
             ))}
           </div>
@@ -101,9 +158,12 @@ export function ProjectPageLayout({
       </section>
 
       {/* Who it helps */}
-      <section className="mx-auto max-w-4xl px-4 py-14 lg:px-8">
-        <h2 className="font-display text-3xl font-bold text-[var(--ithemba-blue-dark)]">{lbl("Who it helps", "Wem es hilft")}</h2>
-        <p className="mt-4 text-foreground/85">{t(who)}</p>
+      <section className="mx-auto max-w-4xl px-4 py-20 lg:px-8">
+        <div className="hand-eyebrow-lg">{lbl("Who", "Wem")}</div>
+        <h2 className="-mt-2 font-display text-4xl font-bold text-[var(--ithemba-blue-dark)] md:text-5xl">
+          {lbl("it helps", "es hilft")}
+        </h2>
+        <p className="mt-5 text-lg leading-relaxed text-foreground/85">{t(who)}</p>
       </section>
 
       {/* Impact */}
@@ -112,15 +172,18 @@ export function ProjectPageLayout({
       )}
 
       {/* Gallery */}
-      <section className="mx-auto max-w-7xl px-4 py-14 lg:px-8">
-        <h2 className="font-display text-2xl font-bold text-[var(--ithemba-blue-dark)]">{lbl("Gallery", "Galerie")}</h2>
-        <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <section className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
+        <div className="hand-eyebrow">{lbl("Stories", "Geschichten")}</div>
+        <h2 className="-mt-2 font-display text-3xl font-bold text-[var(--ithemba-blue-dark)] md:text-4xl">
+          {lbl("Gallery", "Galerie")}
+        </h2>
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {[1, 2, 3, 4, 5, 6].map((i) => (
             <PhotoPlaceholder
               key={i}
               label={`${t(project.title)} — photo ${i}`}
               className="aspect-square"
-              gradient={`from-[${project.accent}] to-[var(--ithemba-blue)]`}
+              tone={tone}
             />
           ))}
         </div>
@@ -130,17 +193,28 @@ export function ProjectPageLayout({
         </div>
       </section>
 
-      {/* Donation */}
-      <section className="relative overflow-hidden bg-[var(--ithemba-cream)] py-16">
+      {/* Donation — photo-led */}
+      <section className="relative isolate overflow-hidden py-20">
+        <div className="absolute inset-0 -z-10">
+          <PhotoPlaceholder
+            label={`${t(project.title)} — donate`}
+            className="h-full w-full"
+            rounded="rounded-none"
+            tone={tone}
+            showLabel={false}
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[var(--ithemba-blue-deepest)]/90 via-[var(--ithemba-blue-dark)]/75 to-[var(--ithemba-blue-dark)]/40" />
+        </div>
         <div className="mx-auto grid max-w-7xl gap-10 px-4 md:grid-cols-2 lg:px-8">
-          <div>
-            <h2 className="font-display text-3xl font-bold text-[var(--ithemba-blue-dark)] md:text-4xl">
+          <div className="text-white">
+            <div className="hand-eyebrow-lg">{lbl("Give monthly", "Monatlich geben")}</div>
+            <h2 className="-mt-2 font-display text-4xl font-extrabold md:text-5xl">
               {lbl(`Support ${t(project.title)}`, `${t(project.title)} unterstützen`)}
             </h2>
-            <p className="mt-3 text-lg text-foreground/85">
+            <p className="mt-5 max-w-md text-lg text-white/90">
               {lbl("Your monthly gift sustains practical, locally-led delivery.", "Ihre monatliche Spende sichert praktische, lokal geführte Hilfe.")}
             </p>
-            <div className="mt-5">
+            <div className="mt-6">
               <ProjectDonationNotes />
             </div>
           </div>

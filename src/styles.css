@@ -44,11 +44,12 @@
   --color-ithemba-brown: var(--ithemba-brown);
   --color-ithemba-teal: var(--ithemba-teal);
   --color-ithemba-orange: var(--ithemba-orange);
+  --color-ithemba-green: var(--ithemba-green);
 }
 
 :root {
   --radius: 1rem;
-  --background: oklch(0.98 0.015 90);
+  --background: oklch(0.985 0.012 88);
   --foreground: oklch(0.2 0.04 260);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.2 0.04 260);
@@ -70,11 +71,23 @@
 
   --ithemba-blue: #1E40C8;
   --ithemba-blue-dark: #0F2A8C;
+  --ithemba-blue-deepest: #081A60;
   --ithemba-yellow: #FBBF24;
+  --ithemba-yellow-warm: #F59E0B;
   --ithemba-cream: #FBF6E9;
+  --ithemba-cream-warm: #F5EDD7;
   --ithemba-brown: #6B4423;
   --ithemba-teal: #14B8A6;
   --ithemba-orange: #F97316;
+  --ithemba-green: #16A34A;
+
+  --shadow-soft: 0 10px 40px -12px rgb(15 42 140 / 0.18);
+  --shadow-lifted: 0 24px 60px -20px rgb(15 42 140 / 0.25);
+}
+
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 @layer base {
@@ -83,38 +96,121 @@
     background: var(--background);
     color: var(--foreground);
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
+    font-weight: 700;
   }
-  .font-hand { font-family: var(--font-hand); }
+  h1 { line-height: 1.02; }
+  h2 { line-height: 1.08; }
+  p { line-height: 1.65; }
+  .font-hand { font-family: var(--font-hand); font-weight: 700; }
 }
 
 @layer utilities {
-  .blob {
-    border-radius: 64% 36% 55% 45% / 50% 60% 40% 50%;
-  }
-  .blob-2 {
-    border-radius: 40% 60% 65% 35% / 55% 45% 55% 45%;
-  }
+  /* organic blob shapes */
+  .blob { border-radius: 64% 36% 55% 45% / 50% 60% 40% 50%; }
+  .blob-2 { border-radius: 40% 60% 65% 35% / 55% 45% 55% 45%; }
+  .blob-3 { border-radius: 70% 30% 50% 50% / 40% 55% 45% 60%; }
+  .blob-4 { border-radius: 38% 62% 41% 59% / 64% 36% 64% 36%; }
+
+  /* hand drawn yellow underline */
   .underline-brush {
-    background-image: linear-gradient(transparent 60%, var(--ithemba-yellow) 60%, var(--ithemba-yellow) 90%, transparent 90%);
+    background-image: linear-gradient(transparent 62%, var(--ithemba-yellow) 62%, var(--ithemba-yellow) 88%, transparent 88%);
     background-size: 100% 100%;
     background-repeat: no-repeat;
   }
-  .scribble-underline {
-    position: relative;
-  }
+  .scribble-underline { position: relative; }
   .scribble-underline::after {
     content: "";
     position: absolute;
-    left: 0;
-    right: 30%;
-    bottom: -0.3em;
+    left: 0; right: 30%; bottom: -0.3em;
     height: 6px;
     background: var(--ithemba-yellow);
     border-radius: 4px;
     transform: rotate(-1deg);
+  }
+
+  /* paper grain — subtle SVG noise overlay */
+  .grain { position: relative; }
+  .grain::after {
+    content: "";
+    position: absolute; inset: 0;
+    pointer-events: none;
+    opacity: 0.06;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  /* glass card */
+  .glass {
+    background: rgb(255 255 255 / 0.78);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border: 1px solid rgb(255 255 255 / 0.6);
+  }
+  .glass-dark {
+    background: rgb(8 26 96 / 0.55);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border: 1px solid rgb(255 255 255 / 0.15);
+  }
+
+  /* soft sun glow */
+  .sun-glow {
+    background: radial-gradient(circle at 30% 30%, rgba(251,191,36,0.55), transparent 60%);
+  }
+
+  /* signature handwritten label */
+  .hand-eyebrow {
+    font-family: var(--font-hand);
+    color: var(--ithemba-yellow);
+    font-size: clamp(2rem, 3.4vw, 3.25rem);
+    line-height: 0.9;
+    letter-spacing: 0.01em;
+    display: inline-block;
+    transform: rotate(-2deg);
+  }
+  .hand-eyebrow-lg {
+    font-family: var(--font-hand);
+    color: var(--ithemba-yellow);
+    font-size: clamp(2.6rem, 5vw, 4.5rem);
+    line-height: 0.9;
+    transform: rotate(-3deg);
+    display: inline-block;
+  }
+
+  /* fluid impact number */
+  .impact-number {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1;
+    font-size: clamp(2rem, 4.5vw, 3.25rem);
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+
+  /* yellow dotted divider */
+  .dotted-divider {
+    background-image: radial-gradient(circle, var(--ithemba-yellow) 1.5px, transparent 1.5px);
+    background-size: 14px 14px;
+  }
+
+  /* wave divider */
+  .wave-top {
+    -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'><path d='M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z' fill='black'/></svg>") no-repeat center/100% 100%;
+            mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'><path d='M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z' fill='black'/></svg>") no-repeat center/100% 100%;
+  }
+
+  /* organic image mask shapes */
+  .mask-blob {
+    -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><path fill='black' d='M44,-66C56,-58,63,-43,69,-27C75,-11,80,5,76,19C72,33,59,45,45,55C31,65,16,73,-1,74C-18,75,-36,69,-50,58C-64,47,-74,31,-76,14C-78,-3,-72,-21,-62,-35C-52,-49,-38,-59,-23,-66C-8,-73,8,-77,22,-77C36,-77,32,-74,44,-66Z' transform='translate(100 100)'/></svg>");
+            mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><path fill='black' d='M44,-66C56,-58,63,-43,69,-27C75,-11,80,5,76,19C72,33,59,45,45,55C31,65,16,73,-1,74C-18,75,-36,69,-50,58C-64,47,-74,31,-76,14C-78,-3,-72,-21,-62,-35C-52,-49,-38,-59,-23,-66C-8,-73,8,-77,22,-77C36,-77,32,-74,44,-66Z' transform='translate(100 100)'/></svg>");
+    -webkit-mask-size: 100% 100%;
+            mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
   }
 }
