@@ -95,28 +95,51 @@ function Home() {
                 title: tr(t.belief.title).split(" ").slice(-1)[0],
                 text: tr(t.belief.text),
                 accent: "var(--ithemba-yellow)",
+                bubble: assets.photos.home.beliefBubble1,
+                bubbleLabel: "Belief — community moment",
+                tone: "warm" as const,
+                bubbleShape: "rounded-[55%_45%_55%_45%/55%_45%_55%_45%]",
               },
               {
                 eyebrow: lang === "en" ? "Our" : "Unsere",
                 title: tr(t.mission.title).split(" ").slice(-1)[0],
                 text: tr(t.mission.text),
                 accent: "var(--ithemba-teal)",
+                bubble: assets.photos.home.beliefBubble2,
+                bubbleLabel: "Mission — practical work",
+                tone: "ocean" as const,
+                bubbleShape: "rounded-[60%_40%_50%_50%/45%_55%_45%_55%]",
               },
               {
                 eyebrow: lang === "en" ? "Who we" : "Für wen wir",
                 title: tr(t.serve.title).split(" ").slice(-1)[0],
                 text: tr(t.serve.text),
                 accent: "var(--ithemba-orange)",
+                bubble: assets.photos.home.beliefBubble3,
+                bubbleLabel: "Who we serve — family",
+                tone: "sun" as const,
+                bubbleShape: "rounded-[45%_55%_60%_40%/55%_45%_60%_40%]",
               },
             ].map((c, i) => (
               <div
                 key={i}
-                className="group relative overflow-hidden rounded-[2rem] bg-white p-8 shadow-xl ring-1 ring-black/5 transition hover:-translate-y-1"
+                className="group relative overflow-visible rounded-[2rem] bg-white p-8 shadow-xl ring-1 ring-black/5 transition hover:-translate-y-1"
               >
                 <div
-                  className="absolute -right-6 -top-6 h-24 w-24 rounded-full opacity-25 blur-2xl transition group-hover:opacity-50"
+                  className="pointer-events-none absolute -right-6 -top-6 h-24 w-24 rounded-full opacity-25 blur-2xl transition group-hover:opacity-50"
                   style={{ background: c.accent }}
                 />
+                {/* organic bubble photo — small, supportive, never crowding the text */}
+                <div className="pointer-events-none absolute -top-8 right-4 hidden h-20 w-20 md:block lg:h-24 lg:w-24">
+                  <SmartImage
+                    src={c.bubble}
+                    label={c.bubbleLabel}
+                    tone={c.tone}
+                    rounded={c.bubbleShape}
+                    className="h-full w-full shadow-lg ring-4 ring-white"
+                    showMissingBadge={false}
+                  />
+                </div>
                 <div className="hand-eyebrow" style={{ color: c.accent }}>{c.eyebrow}</div>
                 <div className="-mt-2 font-display text-4xl font-bold text-[var(--ithemba-blue-dark)]">
                   {c.title.toLowerCase()}
