@@ -21,52 +21,125 @@ function Home() {
     <>
       <Hero />
 
-      <ImpactCounters items={impactCounters} title={lang === "en" ? "Our impact, in numbers" : "Unsere Wirkung in Zahlen"} />
+      <ImpactCounters
+        items={impactCounters}
+        title={lang === "en" ? "Our impact, in numbers" : "Unsere Wirkung in Zahlen"}
+      />
 
-      {/* Who we are */}
-      <section className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 md:grid-cols-2 lg:px-8">
-        <PhotoPlaceholder label="Women-led iThemba Kuluntu team — community photo" className="aspect-[4/5]" gradient="from-[var(--ithemba-blue-dark)] to-[var(--ithemba-blue)]" />
-        <div className="relative">
-          <div className="absolute -inset-6 -z-10 blob-2 bg-[var(--ithemba-cream)]" />
-          <div className="p-2 md:p-6">
-            <div className="font-hand text-3xl text-[var(--ithemba-yellow)]">{lang === "en" ? "Who" : "Wer"}</div>
-            <h2 className="font-display text-4xl font-bold text-[var(--ithemba-blue-dark)]">{lang === "en" ? "we are" : "wir sind"}</h2>
-            <div className="mt-3 h-1.5 w-32 rounded-full bg-[var(--ithemba-yellow)]" />
-            <p className="mt-5 text-lg text-foreground/85">{tr(t.home.whoWeAreText)}</p>
-            <p className="mt-3 text-foreground/75">{tr(t.home.whoWeAreSupport)}</p>
+      {/* Who we are — editorial split with layered photos */}
+      <section className="relative overflow-hidden py-20 md:py-28">
+        <div className="pointer-events-none absolute -left-20 top-20 h-72 w-72 blob bg-[var(--ithemba-yellow)]/15" />
+        <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 md:grid-cols-2 lg:px-8">
+          <div className="relative">
+            <PhotoPlaceholder
+              label="women-led iThemba team — community photo"
+              className="aspect-[4/5]"
+              tone="warm"
+            />
+            {/* overlapping smaller photo */}
+            <div className="absolute -bottom-8 -right-6 hidden w-44 sm:block">
+              <PhotoPlaceholder
+                label="children of Pondoland"
+                className="aspect-square"
+                tone="sun"
+                rounded="rounded-[40%_60%_55%_45%/55%_45%_60%_40%]"
+              />
+            </div>
+            {/* yellow blob accent */}
+            <div className="absolute -left-6 -top-6 h-20 w-20 blob bg-[var(--ithemba-yellow)] shadow-lg" aria-hidden />
+          </div>
+
+          <div className="relative">
+            <div className="hand-eyebrow-lg">{lang === "en" ? "Who" : "Wer"}</div>
+            <h2 className="-mt-2 font-display text-5xl font-bold text-[var(--ithemba-blue-dark)] md:text-6xl">
+              {lang === "en" ? "we are" : "wir sind"}
+            </h2>
+            <div className="mt-4 h-1.5 w-32 rounded-full bg-[var(--ithemba-yellow)]" />
+            <p className="mt-6 text-lg leading-relaxed text-foreground/85">{tr(t.home.whoWeAreText)}</p>
+            <p className="mt-4 leading-relaxed text-foreground/75">{tr(t.home.whoWeAreSupport)}</p>
             <Link to="/about">
-              <Button className="mt-6 rounded-full bg-[var(--ithemba-blue)] hover:bg-[var(--ithemba-blue-dark)]">{tr(t.cta.learnMore)}</Button>
+              <Button className="mt-7 rounded-full bg-[var(--ithemba-blue)] px-6 hover:bg-[var(--ithemba-blue-dark)]">
+                {tr(t.cta.learnMore)}
+              </Button>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Belief / Mission / Serve */}
-      <section className="mx-auto max-w-7xl px-4 py-10 lg:px-8">
-        <div className="grid gap-5 md:grid-cols-3">
-          {[
-            { eyebrow: lang === "en" ? "What we" : "Woran wir", title: tr(t.belief.title).split(" ").slice(-1)[0], text: tr(t.belief.text), bg: "var(--ithemba-cream)", accent: "var(--ithemba-blue)" },
-            { eyebrow: lang === "en" ? "Our" : "Unsere", title: tr(t.mission.title).split(" ").slice(-1)[0], text: tr(t.mission.text), bg: "var(--ithemba-yellow)", accent: "var(--ithemba-brown)" },
-            { eyebrow: lang === "en" ? "Who we" : "Für wen wir", title: tr(t.serve.title).split(" ").slice(-1)[0], text: tr(t.serve.text), bg: "var(--ithemba-teal)", accent: "white" },
-          ].map((c, i) => (
-            <div key={i} className="relative overflow-hidden rounded-[2.5rem] p-8 shadow-sm" style={{ background: c.bg, color: c.accent }}>
-              <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-white/20" />
-              <div className="font-hand text-2xl opacity-80">{c.eyebrow}</div>
-              <div className="font-display text-3xl font-bold">{c.title.toLowerCase()}</div>
-              <p className="mt-3 text-sm opacity-95">{c.text}</p>
-            </div>
-          ))}
+      {/* Belief / Mission / Serve — overlapping cards on a photo strip */}
+      <section className="relative isolate overflow-hidden">
+        <div className="absolute inset-0 -z-10">
+          <PhotoPlaceholder
+            label="Pondoland landscape and community"
+            className="h-full w-full"
+            rounded="rounded-none"
+            tone="earth"
+            showLabel={false}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[var(--ithemba-blue-deepest)]/80 via-[var(--ithemba-blue-dark)]/65 to-[var(--ithemba-blue-deepest)]/85" />
+        </div>
+        <div className="mx-auto max-w-7xl px-4 py-24 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center text-white">
+            <div className="hand-eyebrow !text-[var(--ithemba-yellow)]">{lang === "en" ? "What guides us" : "Was uns leitet"}</div>
+            <h2 className="mt-1 font-display text-3xl font-bold md:text-4xl">
+              {lang === "en" ? "A women-led story of practical hope" : "Eine von Frauen geführte Geschichte praktischer Hoffnung"}
+            </h2>
+          </div>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {[
+              {
+                eyebrow: lang === "en" ? "What we" : "Woran wir",
+                title: tr(t.belief.title).split(" ").slice(-1)[0],
+                text: tr(t.belief.text),
+                accent: "var(--ithemba-yellow)",
+              },
+              {
+                eyebrow: lang === "en" ? "Our" : "Unsere",
+                title: tr(t.mission.title).split(" ").slice(-1)[0],
+                text: tr(t.mission.text),
+                accent: "var(--ithemba-teal)",
+              },
+              {
+                eyebrow: lang === "en" ? "Who we" : "Für wen wir",
+                title: tr(t.serve.title).split(" ").slice(-1)[0],
+                text: tr(t.serve.text),
+                accent: "var(--ithemba-orange)",
+              },
+            ].map((c, i) => (
+              <div
+                key={i}
+                className="group relative overflow-hidden rounded-[2rem] bg-white p-8 shadow-xl ring-1 ring-black/5 transition hover:-translate-y-1"
+              >
+                <div
+                  className="absolute -right-6 -top-6 h-24 w-24 rounded-full opacity-25 blur-2xl transition group-hover:opacity-50"
+                  style={{ background: c.accent }}
+                />
+                <div className="hand-eyebrow" style={{ color: c.accent }}>{c.eyebrow}</div>
+                <div className="-mt-2 font-display text-4xl font-bold text-[var(--ithemba-blue-dark)]">
+                  {c.title.toLowerCase()}
+                </div>
+                <div className="mt-3 h-1 w-12 rounded-full" style={{ background: c.accent }} />
+                <p className="mt-5 leading-relaxed text-foreground/80">{c.text}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       <FocusAreas />
 
       {/* Projects */}
-      <section className="mx-auto max-w-7xl px-4 py-16 lg:px-8">
-        <div className="mb-10 flex flex-col items-start justify-between gap-3 md:flex-row md:items-end">
+      <section className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
+        <div className="mb-12 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
           <div>
-            <div className="font-hand text-2xl text-[var(--ithemba-yellow)]">{lang === "en" ? "Our" : "Unsere"}</div>
-            <h2 className="font-display text-4xl font-bold text-[var(--ithemba-blue-dark)]">{tr(t.home.ourProjects)}</h2>
+            <div className="hand-eyebrow-lg">{lang === "en" ? "Our" : "Unsere"}</div>
+            <h2 className="-mt-2 font-display text-5xl font-bold text-[var(--ithemba-blue-dark)]">{tr(t.home.ourProjects)}</h2>
+            <p className="mt-3 max-w-md text-foreground/70">
+              {lang === "en"
+                ? "Six interconnected programmes that strengthen rural families every day."
+                : "Sechs miteinander verbundene Programme, die ländliche Familien jeden Tag stärken."}
+            </p>
           </div>
           <Link to="/projects">
             <Button variant="outline" className="rounded-full">{lang === "en" ? "All projects" : "Alle Projekte"}</Button>
@@ -78,13 +151,14 @@ function Home() {
       </section>
 
       {/* Partners preview */}
-      <section className="bg-white py-16">
+      <section className="bg-[var(--ithemba-cream)] py-20">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="font-display text-3xl font-bold text-[var(--ithemba-blue-dark)] md:text-4xl">{tr(t.home.partnersTitle)}</h2>
+            <div className="hand-eyebrow">{lang === "en" ? "Partner" : "Partner"}</div>
+            <h2 className="-mt-1 font-display text-3xl font-bold text-[var(--ithemba-blue-dark)] md:text-4xl">{tr(t.home.partnersTitle)}</h2>
           </div>
           <div className="mt-10"><PartnerGrid /></div>
-          <div className="mt-8 text-center">
+          <div className="mt-10 text-center">
             <Link to="/partners">
               <Button size="lg" className="rounded-full bg-[var(--ithemba-blue)] hover:bg-[var(--ithemba-blue-dark)]">{tr(t.cta.partnerWithUs)}</Button>
             </Link>
@@ -92,20 +166,35 @@ function Home() {
         </div>
       </section>
 
-      {/* Donation block */}
-      <section id="donate" className="relative overflow-hidden bg-[var(--ithemba-cream)] py-16">
-        <div className="absolute -right-20 top-10 h-72 w-72 blob bg-[var(--ithemba-yellow)]/40" />
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 md:grid-cols-2 lg:px-8">
-          <div className="relative">
-            <div className="font-hand text-3xl text-[var(--ithemba-yellow)]">{lang === "en" ? "Give monthly" : "Monatlich geben"}</div>
-            <h2 className="mt-1 font-display text-4xl font-bold text-[var(--ithemba-blue-dark)] md:text-5xl">{tr(t.home.monthlyTitle)}</h2>
-            <p className="mt-4 text-lg text-foreground/85">{tr(t.home.monthlyText)}</p>
-            <ul className="mt-6 space-y-2 text-sm">
+      {/* Donation block — photo background + clean form card */}
+      <section id="donate" className="relative isolate overflow-hidden py-20 md:py-28">
+        <div className="absolute inset-0 -z-10">
+          <PhotoPlaceholder
+            label="children and community — donation hero"
+            className="h-full w-full"
+            rounded="rounded-none"
+            tone="sun"
+            showLabel={false}
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[var(--ithemba-blue-deepest)]/92 via-[var(--ithemba-blue-dark)]/80 to-[var(--ithemba-blue-dark)]/30" />
+        </div>
+
+        <div className="mx-auto grid max-w-7xl gap-12 px-4 md:grid-cols-[1.05fr_1fr] lg:px-8">
+          <div className="text-white">
+            <div className="hand-eyebrow-lg">{lang === "en" ? "Give monthly" : "Monatlich geben"}</div>
+            <h2 className="-mt-2 font-display text-4xl font-extrabold leading-tight md:text-6xl">
+              {tr(t.home.monthlyTitle)}
+            </h2>
+            <p className="mt-5 max-w-md text-lg text-white/90">{tr(t.home.monthlyText)}</p>
+            <ul className="mt-7 space-y-3">
               {(lang === "en"
                 ? ["Sustains safe water in households, schools and ECDs", "Keeps community kitchens and feeding moving", "Funds care for vulnerable children and animals", "Builds long-term, locally led delivery"]
                 : ["Sichert sauberes Wasser in Haushalten, Schulen und ECDs", "Hält Gemeinschaftsküchen und Verpflegung am Laufen", "Finanziert Versorgung für gefährdete Kinder und Tiere", "Baut langfristige, lokal geführte Hilfe auf"]
               ).map((line) => (
-                <li key={line} className="flex items-start gap-2"><Heart className="mt-1 h-4 w-4 shrink-0 fill-[var(--ithemba-yellow)] text-[var(--ithemba-yellow)]" /> {line}</li>
+                <li key={line} className="flex items-start gap-3 text-white/90">
+                  <Heart className="mt-1 h-4 w-4 shrink-0 fill-[var(--ithemba-yellow)] text-[var(--ithemba-yellow)]" />
+                  <span>{line}</span>
+                </li>
               ))}
             </ul>
           </div>
