@@ -9,38 +9,373 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TermsRouteImport } from './routes/terms'
+import { Route as PartnersRouteImport } from './routes/partners'
+import { Route as MissingInformationRouteImport } from './routes/missing-information'
+import { Route as MediaRouteImport } from './routes/media'
+import { Route as ImpressumRouteImport } from './routes/impressum'
+import { Route as ImpactRouteImport } from './routes/impact'
+import { Route as DonationTermsRouteImport } from './routes/donation-terms'
+import { Route as DonateRouteImport } from './routes/donate'
+import { Route as DatenschutzRouteImport } from './routes/datenschutz'
+import { Route as CookiePolicyRouteImport } from './routes/cookie-policy'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProjectsIndexRouteImport } from './routes/projects/index'
+import { Route as ProjectsPureflowRouteImport } from './routes/projects/pureflow'
+import { Route as ProjectsPondoDogsRouteImport } from './routes/projects/pondo-dogs'
+import { Route as ProjectsGreenhouseRouteImport } from './routes/projects/greenhouse'
+import { Route as ProjectsFoodSecurityRouteImport } from './routes/projects/food-security'
+import { Route as ProjectsEcdRouteImport } from './routes/projects/ecd'
+import { Route as ProjectsDisasterReliefRouteImport } from './routes/projects/disaster-relief'
 
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartnersRoute = PartnersRouteImport.update({
+  id: '/partners',
+  path: '/partners',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MissingInformationRoute = MissingInformationRouteImport.update({
+  id: '/missing-information',
+  path: '/missing-information',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MediaRoute = MediaRouteImport.update({
+  id: '/media',
+  path: '/media',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImpressumRoute = ImpressumRouteImport.update({
+  id: '/impressum',
+  path: '/impressum',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImpactRoute = ImpactRouteImport.update({
+  id: '/impact',
+  path: '/impact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DonationTermsRoute = DonationTermsRouteImport.update({
+  id: '/donation-terms',
+  path: '/donation-terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DonateRoute = DonateRouteImport.update({
+  id: '/donate',
+  path: '/donate',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DatenschutzRoute = DatenschutzRouteImport.update({
+  id: '/datenschutz',
+  path: '/datenschutz',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CookiePolicyRoute = CookiePolicyRouteImport.update({
+  id: '/cookie-policy',
+  path: '/cookie-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
+  id: '/projects/',
+  path: '/projects/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsPureflowRoute = ProjectsPureflowRouteImport.update({
+  id: '/projects/pureflow',
+  path: '/projects/pureflow',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsPondoDogsRoute = ProjectsPondoDogsRouteImport.update({
+  id: '/projects/pondo-dogs',
+  path: '/projects/pondo-dogs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsGreenhouseRoute = ProjectsGreenhouseRouteImport.update({
+  id: '/projects/greenhouse',
+  path: '/projects/greenhouse',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsFoodSecurityRoute = ProjectsFoodSecurityRouteImport.update({
+  id: '/projects/food-security',
+  path: '/projects/food-security',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsEcdRoute = ProjectsEcdRouteImport.update({
+  id: '/projects/ecd',
+  path: '/projects/ecd',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsDisasterReliefRoute = ProjectsDisasterReliefRouteImport.update({
+  id: '/projects/disaster-relief',
+  path: '/projects/disaster-relief',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/cookie-policy': typeof CookiePolicyRoute
+  '/datenschutz': typeof DatenschutzRoute
+  '/donate': typeof DonateRoute
+  '/donation-terms': typeof DonationTermsRoute
+  '/impact': typeof ImpactRoute
+  '/impressum': typeof ImpressumRoute
+  '/media': typeof MediaRoute
+  '/missing-information': typeof MissingInformationRoute
+  '/partners': typeof PartnersRoute
+  '/terms': typeof TermsRoute
+  '/projects/disaster-relief': typeof ProjectsDisasterReliefRoute
+  '/projects/ecd': typeof ProjectsEcdRoute
+  '/projects/food-security': typeof ProjectsFoodSecurityRoute
+  '/projects/greenhouse': typeof ProjectsGreenhouseRoute
+  '/projects/pondo-dogs': typeof ProjectsPondoDogsRoute
+  '/projects/pureflow': typeof ProjectsPureflowRoute
+  '/projects/': typeof ProjectsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/cookie-policy': typeof CookiePolicyRoute
+  '/datenschutz': typeof DatenschutzRoute
+  '/donate': typeof DonateRoute
+  '/donation-terms': typeof DonationTermsRoute
+  '/impact': typeof ImpactRoute
+  '/impressum': typeof ImpressumRoute
+  '/media': typeof MediaRoute
+  '/missing-information': typeof MissingInformationRoute
+  '/partners': typeof PartnersRoute
+  '/terms': typeof TermsRoute
+  '/projects/disaster-relief': typeof ProjectsDisasterReliefRoute
+  '/projects/ecd': typeof ProjectsEcdRoute
+  '/projects/food-security': typeof ProjectsFoodSecurityRoute
+  '/projects/greenhouse': typeof ProjectsGreenhouseRoute
+  '/projects/pondo-dogs': typeof ProjectsPondoDogsRoute
+  '/projects/pureflow': typeof ProjectsPureflowRoute
+  '/projects': typeof ProjectsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/cookie-policy': typeof CookiePolicyRoute
+  '/datenschutz': typeof DatenschutzRoute
+  '/donate': typeof DonateRoute
+  '/donation-terms': typeof DonationTermsRoute
+  '/impact': typeof ImpactRoute
+  '/impressum': typeof ImpressumRoute
+  '/media': typeof MediaRoute
+  '/missing-information': typeof MissingInformationRoute
+  '/partners': typeof PartnersRoute
+  '/terms': typeof TermsRoute
+  '/projects/disaster-relief': typeof ProjectsDisasterReliefRoute
+  '/projects/ecd': typeof ProjectsEcdRoute
+  '/projects/food-security': typeof ProjectsFoodSecurityRoute
+  '/projects/greenhouse': typeof ProjectsGreenhouseRoute
+  '/projects/pondo-dogs': typeof ProjectsPondoDogsRoute
+  '/projects/pureflow': typeof ProjectsPureflowRoute
+  '/projects/': typeof ProjectsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/cookie-policy'
+    | '/datenschutz'
+    | '/donate'
+    | '/donation-terms'
+    | '/impact'
+    | '/impressum'
+    | '/media'
+    | '/missing-information'
+    | '/partners'
+    | '/terms'
+    | '/projects/disaster-relief'
+    | '/projects/ecd'
+    | '/projects/food-security'
+    | '/projects/greenhouse'
+    | '/projects/pondo-dogs'
+    | '/projects/pureflow'
+    | '/projects/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/cookie-policy'
+    | '/datenschutz'
+    | '/donate'
+    | '/donation-terms'
+    | '/impact'
+    | '/impressum'
+    | '/media'
+    | '/missing-information'
+    | '/partners'
+    | '/terms'
+    | '/projects/disaster-relief'
+    | '/projects/ecd'
+    | '/projects/food-security'
+    | '/projects/greenhouse'
+    | '/projects/pondo-dogs'
+    | '/projects/pureflow'
+    | '/projects'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/cookie-policy'
+    | '/datenschutz'
+    | '/donate'
+    | '/donation-terms'
+    | '/impact'
+    | '/impressum'
+    | '/media'
+    | '/missing-information'
+    | '/partners'
+    | '/terms'
+    | '/projects/disaster-relief'
+    | '/projects/ecd'
+    | '/projects/food-security'
+    | '/projects/greenhouse'
+    | '/projects/pondo-dogs'
+    | '/projects/pureflow'
+    | '/projects/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  ContactRoute: typeof ContactRoute
+  CookiePolicyRoute: typeof CookiePolicyRoute
+  DatenschutzRoute: typeof DatenschutzRoute
+  DonateRoute: typeof DonateRoute
+  DonationTermsRoute: typeof DonationTermsRoute
+  ImpactRoute: typeof ImpactRoute
+  ImpressumRoute: typeof ImpressumRoute
+  MediaRoute: typeof MediaRoute
+  MissingInformationRoute: typeof MissingInformationRoute
+  PartnersRoute: typeof PartnersRoute
+  TermsRoute: typeof TermsRoute
+  ProjectsDisasterReliefRoute: typeof ProjectsDisasterReliefRoute
+  ProjectsEcdRoute: typeof ProjectsEcdRoute
+  ProjectsFoodSecurityRoute: typeof ProjectsFoodSecurityRoute
+  ProjectsGreenhouseRoute: typeof ProjectsGreenhouseRoute
+  ProjectsPondoDogsRoute: typeof ProjectsPondoDogsRoute
+  ProjectsPureflowRoute: typeof ProjectsPureflowRoute
+  ProjectsIndexRoute: typeof ProjectsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/partners': {
+      id: '/partners'
+      path: '/partners'
+      fullPath: '/partners'
+      preLoaderRoute: typeof PartnersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/missing-information': {
+      id: '/missing-information'
+      path: '/missing-information'
+      fullPath: '/missing-information'
+      preLoaderRoute: typeof MissingInformationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/media': {
+      id: '/media'
+      path: '/media'
+      fullPath: '/media'
+      preLoaderRoute: typeof MediaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/impressum': {
+      id: '/impressum'
+      path: '/impressum'
+      fullPath: '/impressum'
+      preLoaderRoute: typeof ImpressumRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/impact': {
+      id: '/impact'
+      path: '/impact'
+      fullPath: '/impact'
+      preLoaderRoute: typeof ImpactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/donation-terms': {
+      id: '/donation-terms'
+      path: '/donation-terms'
+      fullPath: '/donation-terms'
+      preLoaderRoute: typeof DonationTermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/donate': {
+      id: '/donate'
+      path: '/donate'
+      fullPath: '/donate'
+      preLoaderRoute: typeof DonateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/datenschutz': {
+      id: '/datenschutz'
+      path: '/datenschutz'
+      fullPath: '/datenschutz'
+      preLoaderRoute: typeof DatenschutzRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cookie-policy': {
+      id: '/cookie-policy'
+      path: '/cookie-policy'
+      fullPath: '/cookie-policy'
+      preLoaderRoute: typeof CookiePolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +383,79 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/projects/': {
+      id: '/projects/'
+      path: '/projects'
+      fullPath: '/projects/'
+      preLoaderRoute: typeof ProjectsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/pureflow': {
+      id: '/projects/pureflow'
+      path: '/projects/pureflow'
+      fullPath: '/projects/pureflow'
+      preLoaderRoute: typeof ProjectsPureflowRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/pondo-dogs': {
+      id: '/projects/pondo-dogs'
+      path: '/projects/pondo-dogs'
+      fullPath: '/projects/pondo-dogs'
+      preLoaderRoute: typeof ProjectsPondoDogsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/greenhouse': {
+      id: '/projects/greenhouse'
+      path: '/projects/greenhouse'
+      fullPath: '/projects/greenhouse'
+      preLoaderRoute: typeof ProjectsGreenhouseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/food-security': {
+      id: '/projects/food-security'
+      path: '/projects/food-security'
+      fullPath: '/projects/food-security'
+      preLoaderRoute: typeof ProjectsFoodSecurityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/ecd': {
+      id: '/projects/ecd'
+      path: '/projects/ecd'
+      fullPath: '/projects/ecd'
+      preLoaderRoute: typeof ProjectsEcdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/disaster-relief': {
+      id: '/projects/disaster-relief'
+      path: '/projects/disaster-relief'
+      fullPath: '/projects/disaster-relief'
+      preLoaderRoute: typeof ProjectsDisasterReliefRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  ContactRoute: ContactRoute,
+  CookiePolicyRoute: CookiePolicyRoute,
+  DatenschutzRoute: DatenschutzRoute,
+  DonateRoute: DonateRoute,
+  DonationTermsRoute: DonationTermsRoute,
+  ImpactRoute: ImpactRoute,
+  ImpressumRoute: ImpressumRoute,
+  MediaRoute: MediaRoute,
+  MissingInformationRoute: MissingInformationRoute,
+  PartnersRoute: PartnersRoute,
+  TermsRoute: TermsRoute,
+  ProjectsDisasterReliefRoute: ProjectsDisasterReliefRoute,
+  ProjectsEcdRoute: ProjectsEcdRoute,
+  ProjectsFoodSecurityRoute: ProjectsFoodSecurityRoute,
+  ProjectsGreenhouseRoute: ProjectsGreenhouseRoute,
+  ProjectsPondoDogsRoute: ProjectsPondoDogsRoute,
+  ProjectsPureflowRoute: ProjectsPureflowRoute,
+  ProjectsIndexRoute: ProjectsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
