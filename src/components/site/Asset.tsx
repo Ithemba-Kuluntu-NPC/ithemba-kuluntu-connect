@@ -85,7 +85,7 @@ export function SmartIcon({
   color?: string;
 }) {
   const [errored, setErrored] = useState(false);
-  const Fallback = (Icons as Record<string, Icons.LucideIcon>)[fallbackLucideName] ?? Icons.Heart;
+  const Fallback = ((Icons as unknown) as Record<string, Icons.LucideIcon>)[fallbackLucideName] ?? Icons.Heart;
 
   if (errored) {
     return (
