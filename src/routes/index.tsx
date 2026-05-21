@@ -12,6 +12,8 @@ import { t } from "@/data/content";
 import { useLang } from "@/components/site/LanguageProvider";
 import { Button } from "@/components/ui/button";
 import { Heart } from "lucide-react";
+import { SmartImage } from "@/components/site/Asset";
+import { assets } from "@/data/assets";
 
 export const Route = createFileRoute("/")({ component: Home });
 
