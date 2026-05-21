@@ -1,6 +1,7 @@
 import { focusAreas } from "@/data/projects";
 import { useLang } from "@/components/site/LanguageProvider";
-import * as Icons from "lucide-react";
+import { assets } from "@/data/assets";
+import { SmartIcon } from "@/components/site/Asset";
 
 const palette = [
   "var(--ithemba-blue)",
@@ -12,6 +13,18 @@ const palette = [
   "var(--ithemba-brown)",
 ];
 
+// Maps each focus area to its planned PNG icon (in assets manifest) and to
+// a Lucide fallback name to use until the PNG is uploaded.
+const iconMap: Record<string, { src: string; fallback: string }> = {
+  BookOpen: { src: assets.focusAreaIcons.education, fallback: "BookOpen" },
+  Droplet: { src: assets.focusAreaIcons["safe-water"], fallback: "Droplet" },
+  UtensilsCrossed: { src: assets.focusAreaIcons["food-security"], fallback: "UtensilsCrossed" },
+  Wrench: { src: assets.focusAreaIcons["skills-livelihoods"], fallback: "Wrench" },
+  HeartPulse: { src: assets.focusAreaIcons["community-health"], fallback: "HeartPulse" },
+  PawPrint: { src: assets.focusAreaIcons["animal-welfare"], fallback: "PawPrint" },
+  ShieldAlert: { src: assets.focusAreaIcons["disaster-relief"], fallback: "ShieldAlert" },
+};
+
 export function FocusAreas() {
   const { t, lang } = useLang();
   return (
@@ -22,21 +35,23 @@ export function FocusAreas() {
 
       <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <div className="hand-eyebrow-lg">{lang === "en" ? "Our" : "Unsere"}</div>
+          <div className="hand-eyebrow-lg">{lang === "en" ? "Our" : lang === "de" ? "Unsere" : "Onze"}</div>
           <h2 className="-mt-2 font-display text-4xl font-bold text-[var(--ithemba-blue-dark)] md:text-5xl">
-            {lang === "en" ? "focus areas" : "Schwerpunkte"}
+            {lang === "en" ? "focus areas" : lang === "de" ? "Schwerpunkte" : "focus areas"}
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-foreground/70">
             {lang === "en"
               ? "Seven interconnected ways we walk alongside rural communities in Pondoland."
-              : "Sieben miteinander verbundene Wege, wie wir ländliche Gemeinschaften in Pondoland begleiten."}
+              : lang === "de"
+              ? "Sieben miteinander verbundene Wege, wie wir ländliche Gemeinschaften in Pondoland begleiten."
+              : "Seven interconnected ways we walk alongside rural communities in Pondoland."}
           </p>
         </div>
 
         <div className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-4 lg:grid-cols-7">
           {focusAreas.map((f, i) => {
-            const Icon = (Icons as any)[f.icon] ?? Icons.Heart;
             const color = palette[i % palette.length];
+            const mapping = iconMap[f.icon] ?? { src: "", fallback: f.icon };
             return (
               <div key={f.icon} className="group flex flex-col items-center gap-3 text-center">
                 <div
@@ -47,7 +62,13 @@ export function FocusAreas() {
                     className="absolute inset-0 -z-10 blob opacity-15 transition group-hover:opacity-30"
                     style={{ background: color }}
                   />
-                  <Icon className="h-8 w-8" />
+                  <SmartIcon
+                    src={mapping.src}
+                    alt={t(f.label)}
+                    fallbackLucideName={mapping.fallback}
+                    className="h-9 w-9"
+                    color={color}
+                  />
                 </div>
                 <div className="text-sm font-semibold text-[var(--ithemba-blue-dark)]">
                   {t(f.label)}
