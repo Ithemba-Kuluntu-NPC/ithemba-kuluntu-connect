@@ -1,11 +1,14 @@
-export type Lang = "en" | "de";
+export type Lang = "en" | "de" | "nl";
+
+/** Translatable string: English required, German required for now,
+ *  Dutch optional (falls back to English via LanguageProvider). */
+export type TString = { en: string; de: string; nl?: string };
 
 export const t = {
   nav: {
     home: { en: "Home", de: "Start" },
     about: { en: "About", de: "Über uns" },
     projects: { en: "Projects", de: "Projekte" },
-    impact: { en: "Impact", de: "Wirkung" },
     media: { en: "Media", de: "Medien" },
     partners: { en: "Partners", de: "Partner" },
     donate: { en: "Donate", de: "Spenden" },
@@ -77,4 +80,5 @@ export const t = {
   },
 } as const;
 
-export const useTr = (lang: Lang) => (key: { en: string; de: string }) => key[lang];
+export const useTr = (lang: Lang) => (key: TString) =>
+  lang === "en" ? key.en : lang === "de" ? (key.de ?? key.en) : (key.nl ?? key.en);

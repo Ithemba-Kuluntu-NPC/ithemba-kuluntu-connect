@@ -4,6 +4,8 @@ import { Heart, ArrowRight, MapPin } from "lucide-react";
 import { useLang } from "@/components/site/LanguageProvider";
 import { t } from "@/data/content";
 import { PhotoPlaceholder } from "./PhotoPlaceholder";
+import { SmartLogo } from "@/components/site/Asset";
+import { assets } from "@/data/assets";
 
 export function Hero() {
   const { t: tr, lang } = useLang();
@@ -41,13 +43,24 @@ export function Hero() {
                 {tr(t.home.welcome)}
               </div>
               <h1 className="mt-1 font-display text-[clamp(2.5rem,7vw,4.75rem)] font-extrabold leading-[0.95] tracking-tight">
-                iThemba<br />
-                <span className="relative inline-block">
-                  Kuluntu
-                  <svg className="absolute -bottom-2 left-0 w-full" height="14" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden>
-                    <path d="M2,8 C50,2 120,14 198,6" stroke="var(--ithemba-yellow)" strokeWidth="4" strokeLinecap="round" fill="none" />
-                  </svg>
-                </span>
+                {/* When the white text-only logo is uploaded it replaces the
+                    typed wordmark. Until then the typed version stays. */}
+                <SmartLogo
+                  src={assets.logos.ithembaTextWhite}
+                  alt="iThemba Kuluntu"
+                  className="block h-auto w-full max-w-md"
+                  fallback={
+                    <>
+                      iThemba<br />
+                      <span className="relative inline-block">
+                        Kuluntu
+                        <svg className="absolute -bottom-2 left-0 w-full" height="14" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden>
+                          <path d="M2,8 C50,2 120,14 198,6" stroke="var(--ithemba-yellow)" strokeWidth="4" strokeLinecap="round" fill="none" />
+                        </svg>
+                      </span>
+                    </>
+                  }
+                />
               </h1>
               <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/95 md:text-xl">
                 {tr(t.home.heroTitle)}

@@ -6,6 +6,8 @@ import { useLang } from "@/components/site/LanguageProvider";
 import { t } from "@/data/content";
 import type { Project } from "@/data/projects";
 import { PhotoPlaceholder } from "./PhotoPlaceholder";
+import { SmartLogo } from "@/components/site/Asset";
+import { assets } from "@/data/assets";
 
 const toneMap: Record<string, "warm" | "blue" | "earth" | "sun" | "ocean" | "green"> = {
   ecd: "sun",
@@ -14,6 +16,14 @@ const toneMap: Record<string, "warm" | "blue" | "earth" | "sun" | "ocean" | "gre
   "food-security": "warm",
   "pondo-dogs": "earth",
   "disaster-relief": "blue",
+};
+
+// Per-project logo from the asset manifest. Projects without a dedicated
+// logo (greenhouse, food-security, disaster-relief) keep the placeholder pill.
+const projectLogo: Record<string, string | undefined> = {
+  ecd: assets.logos.no1Ecd,
+  pureflow: assets.logos.pureflowAmanzi,
+  "pondo-dogs": assets.logos.pondoDogs,
 };
 
 export function ProjectCard({ project }: { project: Project }) {
@@ -45,9 +55,24 @@ export function ProjectCard({ project }: { project: Project }) {
           <Icon className="h-5 w-5 text-white" />
         </div>
 
-        {/* logo placeholder pill */}
-        <div className="absolute right-4 top-4 rounded-full bg-white/90 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-wider text-foreground/70 backdrop-blur">
-          Logo · {project.slug}
+        {/* logo placeholder pill — replaced by real project logo when uploaded */}
+        <div className="absolute right-3 top-3 flex h-10 items-center gap-1 rounded-full bg-white/95 px-2 shadow-sm ring-1 ring-black/5 backdrop-blur">
+          {projectLogo[project.slug] ? (
+            <SmartLogo
+              src={projectLogo[project.slug]!}
+              alt={`${tr(project.title)} logo`}
+              className="h-8 w-auto max-w-[6rem] object-contain"
+              fallback={
+                <span className="px-1 text-[9px] font-semibold uppercase tracking-wider text-foreground/70">
+                  Logo · {project.slug}
+                </span>
+              }
+            />
+          ) : (
+            <span className="px-1 text-[9px] font-semibold uppercase tracking-wider text-foreground/70">
+              Logo · {project.slug}
+            </span>
+          )}
         </div>
 
         {/* tiny photo placeholder note */}

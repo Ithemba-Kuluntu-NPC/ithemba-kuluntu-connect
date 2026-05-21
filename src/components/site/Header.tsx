@@ -1,20 +1,24 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Menu, X, Heart, Globe } from "lucide-react";
+import { Menu, X, Heart } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useLang } from "./LanguageProvider";
 import { t } from "@/data/content";
+import type { Lang } from "@/data/content";
 import { Button } from "@/components/ui/button";
+import { SmartLogo } from "./Asset";
+import { assets } from "@/data/assets";
 
 const navItems = [
   { to: "/", key: t.nav.home },
   { to: "/about", key: t.nav.about },
   { to: "/projects", key: t.nav.projects },
-  { to: "/impact", key: t.nav.impact },
   { to: "/media", key: t.nav.media },
   { to: "/partners", key: t.nav.partners },
   { to: "/donate", key: t.nav.donate },
   { to: "/contact", key: t.nav.contact },
 ];
+
+const languages: Lang[] = ["en", "de", "nl"];
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -38,10 +42,17 @@ export function Header() {
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 lg:px-8">
-        <Link to="/" className="flex items-center gap-2.5">
-          <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[var(--ithemba-blue)] font-display text-lg font-bold text-white shadow-sm ring-2 ring-[var(--ithemba-yellow)]/40">
-            iK
-          </div>
+        <Link to="/" className="flex items-center gap-2.5" aria-label="iThemba Kuluntu — home">
+          <SmartLogo
+            src={assets.logos.ithembaRoundColor}
+            alt="iThemba Kuluntu"
+            className="h-11 w-11 rounded-full object-contain"
+            fallback={
+              <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[var(--ithemba-blue)] font-display text-lg font-bold text-white shadow-sm ring-2 ring-[var(--ithemba-yellow)]/40">
+                iK
+              </div>
+            }
+          />
           <div className="leading-tight">
             <div className="font-display text-base font-bold text-[var(--ithemba-blue-dark)]">iThemba Kuluntu</div>
             <div className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">Pondoland · Eastern Cape</div>
@@ -71,16 +82,26 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <button
-            onClick={() => setLang(lang === "en" ? "de" : "en")}
-            className="flex items-center gap-1.5 rounded-full border border-black/10 bg-white/70 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide hover:bg-white"
-            aria-label="Switch language"
+          <div
+            className="flex items-center gap-0.5 rounded-full border border-black/10 bg-white/70 p-0.5 text-[11px] font-semibold uppercase tracking-wide"
+            role="group"
+            aria-label="Language"
           >
-            <Globe className="h-3.5 w-3.5" />
-            <span className={lang === "en" ? "text-[var(--ithemba-blue-dark)]" : "text-muted-foreground"}>EN</span>
-            <span className="text-muted-foreground">|</span>
-            <span className={lang === "de" ? "text-[var(--ithemba-blue-dark)]" : "text-muted-foreground"}>DE</span>
-          </button>
+            {languages.map((code) => (
+              <button
+                key={code}
+                onClick={() => setLang(code)}
+                aria-pressed={lang === code}
+                className={`rounded-full px-2 py-1 transition-colors ${
+                  lang === code
+                    ? "bg-[var(--ithemba-blue)] text-white"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {code.toUpperCase()}
+              </button>
+            ))}
+          </div>
 
           <Link to="/donate" className="hidden md:block">
             <Button className="rounded-full bg-[var(--ithemba-yellow)] font-semibold text-[var(--ithemba-brown)] shadow-sm hover:bg-[var(--ithemba-yellow)]/95">
@@ -113,6 +134,22 @@ export function Header() {
                 {tr(item.key)}
               </Link>
             ))}
+            <div className="mt-3 flex items-center justify-center gap-1 rounded-full border border-black/10 bg-white p-1">
+              {languages.map((code) => (
+                <button
+                  key={code}
+                  onClick={() => setLang(code)}
+                  aria-pressed={lang === code}
+                  className={`flex-1 rounded-full px-3 py-2 text-sm font-semibold uppercase tracking-wide transition-colors ${
+                    lang === code
+                      ? "bg-[var(--ithemba-blue)] text-white"
+                      : "text-muted-foreground"
+                  }`}
+                >
+                  {code.toUpperCase()}
+                </button>
+              ))}
+            </div>
             <Link to="/donate" onClick={() => setOpen(false)} className="mt-2">
               <Button className="w-full rounded-full bg-[var(--ithemba-yellow)] font-semibold text-[var(--ithemba-brown)] hover:bg-[var(--ithemba-yellow)]/95">
                 <Heart className="mr-1.5 h-4 w-4 fill-current" /> {tr(t.cta.donateMonthly)}
