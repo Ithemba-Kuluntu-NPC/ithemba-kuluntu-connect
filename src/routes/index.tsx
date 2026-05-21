@@ -194,14 +194,38 @@ function Home() {
       {/* Donation block — photo background + clean form card */}
       <section id="donate" className="relative isolate overflow-hidden py-20 md:py-28">
         <div className="absolute inset-0 -z-10">
-          <PhotoPlaceholder
-            label="children and community — donation hero"
-            className="h-full w-full"
-            rounded="rounded-none"
+          {/* Real photo background when uploaded; otherwise tonal placeholder. */}
+          <SmartImage
+            src={assets.photos.home.donationBackground}
+            label="Donation background — community moment"
             tone="sun"
-            showLabel={false}
+            rounded="rounded-none"
+            className="h-full w-full"
+            showMissingBadge={false}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[var(--ithemba-blue-deepest)]/92 via-[var(--ithemba-blue-dark)]/80 to-[var(--ithemba-blue-dark)]/30" />
+        </div>
+
+        {/* small supporting bubble photos near the donation message */}
+        <div className="pointer-events-none absolute left-6 top-10 hidden h-24 w-24 lg:block xl:h-28 xl:w-28">
+          <SmartImage
+            src={assets.photos.home.donationBubble1}
+            label="Donation bubble — child"
+            tone="warm"
+            rounded="rounded-[55%_45%_60%_40%/55%_45%_60%_40%]"
+            className="h-full w-full shadow-2xl ring-4 ring-white/30"
+            showMissingBadge={false}
+          />
+        </div>
+        <div className="pointer-events-none absolute bottom-10 left-[42%] hidden h-20 w-20 lg:block xl:h-24 xl:w-24">
+          <SmartImage
+            src={assets.photos.home.donationBubble2}
+            label="Donation bubble — community"
+            tone="ocean"
+            rounded="rounded-[50%_50%_45%_55%/55%_45%_55%_45%]"
+            className="h-full w-full shadow-2xl ring-4 ring-white/30"
+            showMissingBadge={false}
+          />
         </div>
 
         <div className="mx-auto grid max-w-7xl gap-12 px-4 md:grid-cols-[1.05fr_1fr] lg:px-8">
