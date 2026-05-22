@@ -101,11 +101,7 @@ export function ProjectPageLayout({
                   alt={`${t(project.title)} logo`}
                   className="h-7 w-auto max-w-[8rem] object-contain"
                   showMissingBadge={false}
-                  fallback={
-                    <span className="text-[11px] font-semibold uppercase tracking-wider text-foreground/70">
-                      Logo · {project.slug}
-                    </span>
-                  }
+                  fallback={<span className="sr-only">{t(project.title)}</span>}
                 />
               </div>
             )}
