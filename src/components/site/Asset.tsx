@@ -99,7 +99,7 @@ export function SmartIcon({
     <img
       src={src}
       alt={alt}
-      className={`${className} object-contain p-1`}
+      className={`${className} object-contain`}
       onError={() => setErrored(true)}
     />
   );
