@@ -37,7 +37,8 @@ export function Footer() {
             <li>NPO: 300-700</li>
             <li>VAT: 4430318792</li>
             <li className="flex items-start gap-2 pt-1.5">
-              <MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0" /> Flat Rock Cottage, Cwebeni Beach, Port St Johns, Eastern Cape, South Africa, 5090
+              <MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0" />
+              <span>Flat Rock Cottage, Cwebeni Beach, Port St Johns, Eastern Cape, South Africa, 5090</span>
             </li>
             <li className="flex items-center gap-2"><Mail className="h-3.5 w-3.5" /><span>info@ithembakuluntu.org</span></li>
             <li className="flex items-center gap-2"><Phone className="h-3.5 w-3.5" /><span>+27 71 977 8063</span></li>
