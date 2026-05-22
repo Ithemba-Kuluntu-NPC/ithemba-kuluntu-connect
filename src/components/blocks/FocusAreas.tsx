@@ -55,7 +55,7 @@ export function FocusAreas() {
             return (
               <div key={f.icon} className="group flex flex-col items-center gap-3 text-center">
                 <div
-                  className="relative flex h-20 w-20 items-center justify-center rounded-full bg-white shadow-md ring-1 ring-black/5 transition group-hover:-translate-y-1 group-hover:shadow-lg"
+                  className="relative flex h-24 w-24 items-center justify-center rounded-full bg-white shadow-md ring-1 ring-black/5 transition group-hover:-translate-y-1 group-hover:shadow-lg md:h-28 md:w-28"
                   style={{ color }}
                 >
                   <div
@@ -66,7 +66,7 @@ export function FocusAreas() {
                     src={mapping.src}
                     alt={t(f.label)}
                     fallbackLucideName={mapping.fallback}
-                    className="h-9 w-9"
+                    className="h-16 w-16 md:h-20 md:w-20"
                     color={color}
                   />
                 </div>
