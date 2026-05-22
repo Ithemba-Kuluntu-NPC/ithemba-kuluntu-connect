@@ -22,14 +22,14 @@ import { Route as CookiePolicyRouteImport } from './routes/cookie-policy'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProjectsIndexRouteImport } from './routes/projects/index'
-import { Route as AboutIndexRouteImport } from './routes/about.index'
+import { Route as AboutIndexRouteImport } from './routes/about/index'
 import { Route as ProjectsPureflowRouteImport } from './routes/projects/pureflow'
 import { Route as ProjectsPondoDogsRouteImport } from './routes/projects/pondo-dogs'
 import { Route as ProjectsGreenhouseRouteImport } from './routes/projects/greenhouse'
 import { Route as ProjectsFoodSecurityRouteImport } from './routes/projects/food-security'
 import { Route as ProjectsEcdRouteImport } from './routes/projects/ecd'
 import { Route as ProjectsDisasterReliefRouteImport } from './routes/projects/disaster-relief'
-import { Route as AboutTeamRouteImport } from './routes/about.team'
+import { Route as AboutTeamRouteImport } from './routes/about/team'
 
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
@@ -132,9 +132,9 @@ const ProjectsDisasterReliefRoute = ProjectsDisasterReliefRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutTeamRoute = AboutTeamRouteImport.update({
-  id: '/team',
-  path: '/team',
-  getParentRoute: () => AboutRoute,
+  id: '/about/team',
+  path: '/about/team',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -292,6 +292,7 @@ export interface RootRouteChildren {
   MissingInformationRoute: typeof MissingInformationRoute
   PartnersRoute: typeof PartnersRoute
   TermsRoute: typeof TermsRoute
+  AboutTeamRoute: typeof AboutTeamRoute
   ProjectsDisasterReliefRoute: typeof ProjectsDisasterReliefRoute
   ProjectsEcdRoute: typeof ProjectsEcdRoute
   ProjectsFoodSecurityRoute: typeof ProjectsFoodSecurityRoute
@@ -446,10 +447,10 @@ declare module '@tanstack/react-router' {
     }
     '/about/team': {
       id: '/about/team'
-      path: '/team'
+      path: '/about/team'
       fullPath: '/about/team'
       preLoaderRoute: typeof AboutTeamRouteImport
-      parentRoute: typeof AboutRoute
+      parentRoute: typeof rootRouteImport
     }
   }
 }
@@ -467,6 +468,7 @@ const rootRouteChildren: RootRouteChildren = {
   MissingInformationRoute: MissingInformationRoute,
   PartnersRoute: PartnersRoute,
   TermsRoute: TermsRoute,
+  AboutTeamRoute: AboutTeamRoute,
   ProjectsDisasterReliefRoute: ProjectsDisasterReliefRoute,
   ProjectsEcdRoute: ProjectsEcdRoute,
   ProjectsFoodSecurityRoute: ProjectsFoodSecurityRoute,
