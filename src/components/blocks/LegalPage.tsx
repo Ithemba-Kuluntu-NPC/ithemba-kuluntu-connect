@@ -60,19 +60,17 @@ export function PageHeader({
   return (
     <section className="relative isolate overflow-hidden">
       <div className="absolute inset-0 -z-10">
-        <PhotoPlaceholder
+        <SmartImage
+          src={assets.photos.about.hero}
           label={photoLabel ?? `${title} — hero image`}
           className="h-full w-full"
           rounded="rounded-none"
           tone={tone}
-          showLabel={false}
+          showMissingBadge={false}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[var(--ithemba-blue-deepest)]/85 via-[var(--ithemba-blue-dark)]/55 to-[var(--ithemba-blue-dark)]/30" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
         <div className="absolute -top-20 right-0 h-72 w-72 sun-glow" />
-        <div className="absolute bottom-3 right-3 hidden rounded-full bg-black/35 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.14em] text-white/80 backdrop-blur sm:block">
-          Photo placeholder · {photoLabel ?? "hero image"}
-        </div>
       </div>
 
       <div className="relative mx-auto max-w-4xl px-4 py-20 text-center md:py-28 lg:px-8">
