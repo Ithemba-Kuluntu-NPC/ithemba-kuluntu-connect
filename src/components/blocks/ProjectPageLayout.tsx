@@ -9,6 +9,14 @@ import { Placeholder } from "@/components/site/MissingInfo";
 import { useLang } from "@/components/site/LanguageProvider";
 import type { Project } from "@/data/projects";
 import { ImpactCounters } from "./ImpactCounters";
+import { SmartImage, SmartLogo } from "@/components/site/Asset";
+import { assets, projectHeroPhoto } from "@/data/assets";
+
+const projectLogo: Record<string, string | undefined> = {
+  ecd: assets.logos.no1Ecd,
+  pureflow: assets.logos.pureflowAmanzi,
+  "pondo-dogs": assets.logos.pondoDogs,
+};
 
 const toneMap: Record<string, "warm" | "blue" | "earth" | "sun" | "ocean" | "green"> = {
   ecd: "sun",
@@ -40,18 +48,21 @@ export function ProjectPageLayout({
   const lbl = (en: string, de: string) => (lang === "en" ? en : de);
   const Icon = (Icons as any)[project.icon] as LucideIcon;
   const tone = toneMap[project.slug] ?? "warm";
+  const hero = projectHeroPhoto[project.slug];
+  const logoSrc = projectLogo[project.slug];
 
   return (
     <>
       {/* Hero — photo background with overlay */}
       <section className="relative isolate overflow-hidden">
         <div className="absolute inset-0 -z-10">
-          <PhotoPlaceholder
+          <SmartImage
+            src={hero}
             label={`${t(project.title)} hero`}
             className="h-full w-full"
             rounded="rounded-none"
             tone={tone}
-            showLabel={false}
+            showMissingBadge={false}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
           <div
@@ -83,9 +94,21 @@ export function ProjectPageLayout({
             </h1>
             <p className="mt-5 max-w-xl text-lg text-white/90">{t(project.description)}</p>
 
-            <div className="mt-3 inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-[11px] font-medium uppercase tracking-wider text-white/80 backdrop-blur">
-              Logo placeholder · {project.slug}
-            </div>
+            {logoSrc && (
+              <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-white/95 px-3 py-1.5 shadow-sm ring-1 ring-black/10">
+                <SmartLogo
+                  src={logoSrc}
+                  alt={`${t(project.title)} logo`}
+                  className="h-7 w-auto max-w-[8rem] object-contain"
+                  showMissingBadge={false}
+                  fallback={
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-foreground/70">
+                      Logo · {project.slug}
+                    </span>
+                  }
+                />
+              </div>
+            )}
 
             <div className="mt-6 flex flex-wrap gap-2">
               <Link to="/donate">
@@ -99,9 +122,6 @@ export function ProjectPageLayout({
                 </Button>
               </Link>
             </div>
-            <div className="mt-3 inline-block">
-              <Placeholder text={`final ${project.slug} logo file`} />
-            </div>
           </div>
         </div>
         <svg className="block w-full" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden>
@@ -112,10 +132,12 @@ export function ProjectPageLayout({
       {/* Why — editorial split */}
       <section className="mx-auto grid max-w-7xl gap-10 px-4 py-20 md:grid-cols-2 lg:px-8">
         <div className="relative">
-          <PhotoPlaceholder
+          <SmartImage
+            src={hero}
             label={`${t(project.title)} — why it matters`}
             className="aspect-[4/5] w-full"
             tone={tone}
+            showMissingBadge={false}
           />
           <div
             className="absolute -bottom-6 -right-6 hidden h-28 w-28 items-center justify-center rounded-full text-white shadow-xl md:flex"
@@ -196,12 +218,13 @@ export function ProjectPageLayout({
       {/* Donation — photo-led */}
       <section className="relative isolate overflow-hidden py-20">
         <div className="absolute inset-0 -z-10">
-          <PhotoPlaceholder
+          <SmartImage
+            src={hero}
             label={`${t(project.title)} — donate`}
             className="h-full w-full"
             rounded="rounded-none"
             tone={tone}
-            showLabel={false}
+            showMissingBadge={false}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[var(--ithemba-blue-deepest)]/90 via-[var(--ithemba-blue-dark)]/75 to-[var(--ithemba-blue-dark)]/40" />
         </div>

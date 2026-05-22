@@ -9,6 +9,12 @@
  *
  * IMPORTANT: do not invent files. Add a path here only when the file is
  * planned, even if it does not yet exist on disk.
+ *
+ * MOCKUP NOTE: Several photo files currently in /public/assets/photos/ are
+ * TEMPORARY AI-generated mockup images used for internal design preview only.
+ * They are NOT real iThemba Kuluntu photos. They must be replaced with
+ * approved real iThemba Kuluntu photography before launch. Do not use them as
+ * evidence of impact, real beneficiaries or real events.
  */
 
 const base = "/assets";
@@ -32,23 +38,21 @@ export const assets = {
   },
   photos: {
     home: {
+      // TEMP MOCKUP — replace with real photo before launch.
       hero: `${base}/photos/home/home-hero-community.jpg`,
       aboutTeam: `${base}/photos/home/home-about-team.jpg`,
       impact: `${base}/photos/home/home-impact-community.jpg`,
       donation: `${base}/photos/home/home-donation.jpg`,
-      beliefBubble1: `${base}/photos/home/home-belief-bubble-01.jpg`,
-      beliefBubble2: `${base}/photos/home/home-belief-bubble-02.jpg`,
-      beliefBubble3: `${base}/photos/home/home-belief-bubble-03.jpg`,
-      donationBubble1: `${base}/photos/home/home-donation-bubble-01.jpg`,
-      donationBubble2: `${base}/photos/home/home-donation-bubble-02.jpg`,
       donationBackground: `${base}/photos/home/home-donation-background.jpg`,
     },
     about: {
+      // TEMP MOCKUP — replace with real photo before launch.
       hero: `${base}/photos/about/about-hero-community.jpg`,
       team: `${base}/photos/about/about-team.jpg`,
       cwebeni: `${base}/photos/about/about-cwebeni.jpg`,
     },
     projects: {
+      // TEMP MOCKUPS — replace with real project photos before launch.
       ecdHero: `${base}/photos/projects/ecd-hero.jpg`,
       pureflowHero: `${base}/photos/projects/pureflow-hero.jpg`,
       greenhouseHero: `${base}/photos/projects/greenhouse-hero.jpg`,
@@ -98,3 +102,15 @@ export const assets = {
 /** Helper — format the standard "missing asset" message for a planned path. */
 export const missingAssetMessage = (path: string) =>
   `upload asset file at /public${path}`;
+
+/**
+ * Per-project hero photo lookup, for use in ProjectCard / ProjectPageLayout.
+ */
+export const projectHeroPhoto: Record<string, string> = {
+  ecd: assets.photos.projects.ecdHero,
+  pureflow: assets.photos.projects.pureflowHero,
+  greenhouse: assets.photos.projects.greenhouseHero,
+  "food-security": assets.photos.projects.foodSecurityHero,
+  "pondo-dogs": assets.photos.projects.pondoDogsHero,
+  "disaster-relief": assets.photos.projects.disasterReliefHero,
+};

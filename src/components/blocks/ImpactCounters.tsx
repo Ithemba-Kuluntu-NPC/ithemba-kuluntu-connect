@@ -1,7 +1,16 @@
 import { useEffect, useRef, useState } from "react";
+import * as Icons from "lucide-react";
 import { useLang } from "@/components/site/LanguageProvider";
 import { Placeholder } from "@/components/site/MissingInfo";
-import { PhotoPlaceholder } from "./PhotoPlaceholder";
+import { SmartImage } from "@/components/site/Asset";
+import { assets } from "@/data/assets";
+
+type CounterItem = {
+  value: number;
+  suffix: string;
+  label: { en: string; de: string };
+  icon?: string;
+};
 
 function Counter({ value, suffix }: { value: number; suffix: string }) {
   const [n, setN] = useState(0);
@@ -26,7 +35,12 @@ function Counter({ value, suffix }: { value: number; suffix: string }) {
     obs.observe(el);
     return () => obs.disconnect();
   }, [value]);
-  return <span ref={ref}>{n.toLocaleString()}{suffix}</span>;
+  return (
+    <span ref={ref} className="whitespace-nowrap tabular-nums">
+      {n.toLocaleString()}
+      {suffix}
+    </span>
+  );
 }
 
 export function ImpactCounters({
@@ -34,29 +48,32 @@ export function ImpactCounters({
   title,
   compact = false,
 }: {
-  items: { value: number; suffix: string; label: { en: string; de: string } }[];
+  items: CounterItem[];
   title?: string;
   compact?: boolean;
 }) {
   const { t, lang } = useLang();
+
   return (
     <section className="relative isolate overflow-hidden py-20">
-      {/* photo background */}
+      {/* photo background — uses real image when present, otherwise tonal placeholder */}
       <div className="absolute inset-0 -z-10">
-        <PhotoPlaceholder
+        <SmartImage
+          src={assets.photos.home.impact}
           label="community work background"
           className="h-full w-full"
           rounded="rounded-none"
           tone="blue"
-          showLabel={false}
+          showMissingBadge={false}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[var(--ithemba-blue-deepest)]/90 via-[var(--ithemba-blue-dark)]/85 to-[var(--ithemba-blue-dark)]/95" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[var(--ithemba-blue-deepest)]/92 via-[var(--ithemba-blue-dark)]/88 to-[var(--ithemba-blue-deepest)]/95" />
       </div>
 
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <div className="hand-eyebrow !text-[var(--ithemba-yellow)]">
             {lang === "en" ? "Together" : "Gemeinsam"}
+            <span aria-hidden className="ml-1 inline-block translate-y-[2px]">✦</span>
           </div>
           {title && (
             <h2 className="mt-1 font-display text-3xl font-bold text-white md:text-4xl">
@@ -70,23 +87,40 @@ export function ImpactCounters({
           </p>
         </div>
 
-        <div className={`mt-10 grid gap-3 sm:gap-4 ${compact ? "grid-cols-2 sm:grid-cols-3 lg:grid-cols-6" : "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4"}`}>
-          {items.map((it, i) => (
-            <div
-              key={i}
-              className="glass-dark relative overflow-hidden rounded-3xl p-5 text-center transition hover:-translate-y-0.5 hover:bg-white/10"
-            >
-              <div className="absolute -right-4 -top-4 h-16 w-16 rounded-full bg-[var(--ithemba-yellow)]/15 blur-xl" />
-              <div className="impact-number text-[var(--ithemba-yellow)]">
-                <Counter value={it.value} suffix={it.suffix} />
+        <div
+          className={`mt-12 grid gap-x-6 gap-y-10 ${
+            compact
+              ? "grid-cols-2 sm:grid-cols-3 lg:grid-cols-6"
+              : "grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-7"
+          }`}
+        >
+          {items.map((it, i) => {
+            const Icon =
+              (it.icon && ((Icons as unknown) as Record<string, Icons.LucideIcon>)[it.icon]) ||
+              Icons.Sparkles;
+            return (
+              <div
+                key={i}
+                className="group flex flex-col items-center text-center"
+              >
+                <div
+                  className="font-display font-extrabold leading-none text-[var(--ithemba-yellow)] drop-shadow-[0_2px_18px_rgba(251,191,36,0.25)]"
+                  style={{ fontSize: "clamp(1.85rem, 3vw, 2.75rem)" }}
+                >
+                  <Counter value={it.value} suffix={it.suffix} />
+                </div>
+                <div className="mt-3 flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-[var(--ithemba-yellow)] ring-1 ring-white/20 backdrop-blur-sm transition group-hover:bg-white/15">
+                  <Icon className="h-5 w-5" />
+                </div>
+                <div className="mt-3 max-w-[14rem] text-[12px] font-medium leading-snug text-white/85 md:text-sm">
+                  {t(it.label)}
+                </div>
               </div>
-              <div className="mt-2 text-[12px] font-medium leading-snug text-white/85 md:text-sm">
-                {t(it.label)}
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
-        <div className="mt-6 flex justify-center">
+
+        <div className="mt-10 flex justify-center">
           <Placeholder text="final impact counter values and reporting date" kind="verify" />
         </div>
       </div>

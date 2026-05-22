@@ -6,7 +6,6 @@ import { ProjectCard } from "@/components/blocks/ProjectCard";
 import { PartnerGrid } from "@/components/blocks/PartnerGrid";
 import { DonationWidget } from "@/components/blocks/DonationWidget";
 import { NewsletterSignup } from "@/components/blocks/NewsletterSignup";
-import { PhotoPlaceholder } from "@/components/blocks/PhotoPlaceholder";
 import { projects, impactCounters } from "@/data/projects";
 import { t } from "@/data/content";
 import { useLang } from "@/components/site/LanguageProvider";
@@ -33,22 +32,23 @@ function Home() {
         <div className="pointer-events-none absolute -left-20 top-20 h-72 w-72 blob bg-[var(--ithemba-yellow)]/15" />
         <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 md:grid-cols-2 lg:px-8">
           <div className="relative">
-            <PhotoPlaceholder
+            <SmartImage
+              src={assets.photos.home.aboutTeam}
               label="women-led iThemba team — community photo"
-              className="aspect-[4/5]"
+              className="aspect-[4/5] w-full"
               tone="warm"
+              showMissingBadge={false}
             />
-            {/* overlapping smaller photo */}
-            <div className="absolute -bottom-8 -right-6 hidden w-44 sm:block">
-              <PhotoPlaceholder
-                label="children of Pondoland"
-                className="aspect-square"
-                tone="sun"
-                rounded="rounded-[40%_60%_55%_45%/55%_45%_60%_40%]"
-              />
-            </div>
-            {/* yellow blob accent */}
             <div className="absolute -left-6 -top-6 h-20 w-20 blob bg-[var(--ithemba-yellow)] shadow-lg" aria-hidden />
+            {/* subtle handwritten heart accent */}
+            <svg
+              className="pointer-events-none absolute -right-3 -bottom-3 h-14 w-14 text-[var(--ithemba-yellow)] opacity-80 drop-shadow-md"
+              viewBox="0 0 32 32"
+              fill="currentColor"
+              aria-hidden
+            >
+              <path d="M23 5c-3 0-5.5 2-7 4.5C14.5 7 12 5 9 5 5 5 2 8 2 12c0 7 9 13 14 16 5-3 14-9 14-16 0-4-3-7-7-7z" />
+            </svg>
           </div>
 
           <div className="relative">
@@ -71,14 +71,15 @@ function Home() {
       {/* Belief / Mission / Serve — overlapping cards on a photo strip */}
       <section className="relative isolate overflow-hidden">
         <div className="absolute inset-0 -z-10">
-          <PhotoPlaceholder
+          <SmartImage
+            src={assets.photos.about.hero}
             label="Pondoland landscape and community"
             className="h-full w-full"
             rounded="rounded-none"
             tone="earth"
-            showLabel={false}
+            showMissingBadge={false}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[var(--ithemba-blue-deepest)]/80 via-[var(--ithemba-blue-dark)]/65 to-[var(--ithemba-blue-deepest)]/85" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[var(--ithemba-blue-deepest)]/85 via-[var(--ithemba-blue-dark)]/72 to-[var(--ithemba-blue-deepest)]/88" />
         </div>
         <div className="mx-auto max-w-7xl px-4 py-24 lg:px-8">
           <div className="mx-auto max-w-2xl text-center text-white">
@@ -95,51 +96,28 @@ function Home() {
                 title: tr(t.belief.title).split(" ").slice(-1)[0],
                 text: tr(t.belief.text),
                 accent: "var(--ithemba-yellow)",
-                bubble: assets.photos.home.beliefBubble1,
-                bubbleLabel: "Belief — community moment",
-                tone: "warm" as const,
-                bubbleShape: "rounded-[55%_45%_55%_45%/55%_45%_55%_45%]",
               },
               {
                 eyebrow: lang === "en" ? "Our" : "Unsere",
                 title: tr(t.mission.title).split(" ").slice(-1)[0],
                 text: tr(t.mission.text),
                 accent: "var(--ithemba-teal)",
-                bubble: assets.photos.home.beliefBubble2,
-                bubbleLabel: "Mission — practical work",
-                tone: "ocean" as const,
-                bubbleShape: "rounded-[60%_40%_50%_50%/45%_55%_45%_55%]",
               },
               {
                 eyebrow: lang === "en" ? "Who we" : "Für wen wir",
                 title: tr(t.serve.title).split(" ").slice(-1)[0],
                 text: tr(t.serve.text),
                 accent: "var(--ithemba-orange)",
-                bubble: assets.photos.home.beliefBubble3,
-                bubbleLabel: "Who we serve — family",
-                tone: "sun" as const,
-                bubbleShape: "rounded-[45%_55%_60%_40%/55%_45%_60%_40%]",
               },
             ].map((c, i) => (
               <div
                 key={i}
-                className="group relative overflow-visible rounded-[2rem] bg-white p-8 shadow-xl ring-1 ring-black/5 transition hover:-translate-y-1"
+                className="group relative overflow-hidden rounded-[2rem] bg-white p-8 shadow-xl ring-1 ring-black/5 transition hover:-translate-y-1"
               >
                 <div
                   className="pointer-events-none absolute -right-6 -top-6 h-24 w-24 rounded-full opacity-25 blur-2xl transition group-hover:opacity-50"
                   style={{ background: c.accent }}
                 />
-                {/* organic bubble photo — small, supportive, never crowding the text */}
-                <div className="pointer-events-none absolute -top-8 right-4 hidden h-20 w-20 md:block lg:h-24 lg:w-24">
-                  <SmartImage
-                    src={c.bubble}
-                    label={c.bubbleLabel}
-                    tone={c.tone}
-                    rounded={c.bubbleShape}
-                    className="h-full w-full shadow-lg ring-4 ring-white"
-                    showMissingBadge={false}
-                  />
-                </div>
                 <div className="hand-eyebrow" style={{ color: c.accent }}>{c.eyebrow}</div>
                 <div className="-mt-2 font-display text-4xl font-bold text-[var(--ithemba-blue-dark)]">
                   {c.title.toLowerCase()}
@@ -194,38 +172,15 @@ function Home() {
       {/* Donation block — photo background + clean form card */}
       <section id="donate" className="relative isolate overflow-hidden py-20 md:py-28">
         <div className="absolute inset-0 -z-10">
-          {/* Real photo background when uploaded; otherwise tonal placeholder. */}
           <SmartImage
-            src={assets.photos.home.donationBackground}
+            src={assets.photos.home.donation}
             label="Donation background — community moment"
             tone="sun"
             rounded="rounded-none"
             className="h-full w-full"
             showMissingBadge={false}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[var(--ithemba-blue-deepest)]/92 via-[var(--ithemba-blue-dark)]/80 to-[var(--ithemba-blue-dark)]/30" />
-        </div>
-
-        {/* small supporting bubble photos near the donation message */}
-        <div className="pointer-events-none absolute left-6 top-10 hidden h-24 w-24 lg:block xl:h-28 xl:w-28">
-          <SmartImage
-            src={assets.photos.home.donationBubble1}
-            label="Donation bubble — child"
-            tone="warm"
-            rounded="rounded-[55%_45%_60%_40%/55%_45%_60%_40%]"
-            className="h-full w-full shadow-2xl ring-4 ring-white/30"
-            showMissingBadge={false}
-          />
-        </div>
-        <div className="pointer-events-none absolute bottom-10 left-[42%] hidden h-20 w-20 lg:block xl:h-24 xl:w-24">
-          <SmartImage
-            src={assets.photos.home.donationBubble2}
-            label="Donation bubble — community"
-            tone="ocean"
-            rounded="rounded-[50%_50%_45%_55%/55%_45%_55%_45%]"
-            className="h-full w-full shadow-2xl ring-4 ring-white/30"
-            showMissingBadge={false}
-          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[var(--ithemba-blue-deepest)]/92 via-[var(--ithemba-blue-dark)]/82 to-[var(--ithemba-blue-dark)]/45" />
         </div>
 
         <div className="mx-auto grid max-w-7xl gap-12 px-4 md:grid-cols-[1.05fr_1fr] lg:px-8">
