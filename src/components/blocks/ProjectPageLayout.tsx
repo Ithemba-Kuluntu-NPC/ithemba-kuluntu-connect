@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Heart, ArrowLeft, type LucideIcon } from "lucide-react";
 import * as Icons from "lucide-react";
 
-import { PhotoPlaceholder } from "@/components/blocks/PhotoPlaceholder";
+
 import { DonationWidget, ProjectDonationNotes } from "@/components/blocks/DonationWidget";
 import { Placeholder } from "@/components/site/MissingInfo";
 import { useLang } from "@/components/site/LanguageProvider";
