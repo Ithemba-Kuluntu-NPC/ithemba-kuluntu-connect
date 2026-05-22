@@ -197,11 +197,14 @@ export function ProjectPageLayout({
         </h2>
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {[1, 2, 3, 4, 5, 6].map((i) => (
-            <PhotoPlaceholder
+            <SmartImage
               key={i}
+              src={hero}
               label={`${t(project.title)} — photo ${i}`}
               className="aspect-square"
+              rounded="rounded-2xl"
               tone={tone}
+              showMissingBadge={false}
             />
           ))}
         </div>
