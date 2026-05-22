@@ -5,9 +5,8 @@ import * as Icons from "lucide-react";
 import { useLang } from "@/components/site/LanguageProvider";
 import { t } from "@/data/content";
 import type { Project } from "@/data/projects";
-import { PhotoPlaceholder } from "./PhotoPlaceholder";
-import { SmartLogo } from "@/components/site/Asset";
-import { assets } from "@/data/assets";
+import { SmartImage, SmartLogo } from "@/components/site/Asset";
+import { assets, projectHeroPhoto } from "@/data/assets";
 
 const toneMap: Record<string, "warm" | "blue" | "earth" | "sun" | "ocean" | "green"> = {
   ecd: "sun",
@@ -18,8 +17,6 @@ const toneMap: Record<string, "warm" | "blue" | "earth" | "sun" | "ocean" | "gre
   "disaster-relief": "blue",
 };
 
-// Per-project logo from the asset manifest. Projects without a dedicated
-// logo (greenhouse, food-security, disaster-relief) keep the placeholder pill.
 const projectLogo: Record<string, string | undefined> = {
   ecd: assets.logos.no1Ecd,
   pureflow: assets.logos.pureflowAmanzi,
@@ -30,24 +27,23 @@ export function ProjectCard({ project }: { project: Project }) {
   const { t: tr } = useLang();
   const Icon = (Icons as any)[project.icon] ?? Icons.Heart;
   const tone = toneMap[project.slug] ?? "warm";
+  const hero = projectHeroPhoto[project.slug];
 
   return (
     <article
       className="group relative isolate flex h-full flex-col overflow-hidden rounded-[2rem] bg-white shadow-[0_10px_40px_-12px_rgb(15_42_140/0.18)] transition-transform hover:-translate-y-1 hover:shadow-[0_24px_60px_-20px_rgb(15_42_140/0.3)]"
     >
-      {/* image area with overlay info */}
       <div className="relative">
-        <PhotoPlaceholder
+        <SmartImage
+          src={hero}
           label={`${tr(project.title)} — feature photo`}
-          className="aspect-[16/11]"
+          className="aspect-[16/11] w-full"
           rounded="rounded-none"
           tone={tone}
-          showLabel={false}
+          showMissingBadge={false}
         />
-        {/* gradient base for legibility */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/60 via-black/15 to-transparent" />
 
-        {/* icon badge */}
         <div
           className="absolute left-4 top-4 flex h-12 w-12 items-center justify-center rounded-full shadow-lg ring-2 ring-white/40"
           style={{ background: project.accent }}
@@ -55,13 +51,13 @@ export function ProjectCard({ project }: { project: Project }) {
           <Icon className="h-5 w-5 text-white" />
         </div>
 
-        {/* logo placeholder pill — replaced by real project logo when uploaded */}
         <div className="absolute right-3 top-3 flex h-10 items-center gap-1 rounded-full bg-white/95 px-2 shadow-sm ring-1 ring-black/5 backdrop-blur">
           {projectLogo[project.slug] ? (
             <SmartLogo
               src={projectLogo[project.slug]!}
               alt={`${tr(project.title)} logo`}
               className="h-8 w-auto max-w-[6rem] object-contain"
+              showMissingBadge={false}
               fallback={
                 <span className="px-1 text-[9px] font-semibold uppercase tracking-wider text-foreground/70">
                   Logo · {project.slug}
@@ -73,11 +69,6 @@ export function ProjectCard({ project }: { project: Project }) {
               Logo · {project.slug}
             </span>
           )}
-        </div>
-
-        {/* tiny photo placeholder note */}
-        <div className="absolute bottom-3 left-3 text-[9px] font-medium uppercase tracking-widest text-white/70">
-          Photo placeholder
         </div>
       </div>
 
