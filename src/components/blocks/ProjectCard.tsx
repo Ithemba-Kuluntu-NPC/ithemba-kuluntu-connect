@@ -52,16 +52,17 @@ export function ProjectCard({ project }: { project: Project }) {
         </div>
 
         {projectLogo[project.slug] && (
-          <div className="absolute right-3 top-3 flex h-10 items-center gap-1 rounded-full bg-white/95 px-2 shadow-sm ring-1 ring-black/5 backdrop-blur">
+          <div className="absolute right-4 top-4 drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)]">
             <SmartLogo
               src={projectLogo[project.slug]!}
               alt={`${tr(project.title)} logo`}
-              className="h-8 w-auto max-w-[6rem] object-contain"
+              className="h-16 w-auto max-w-[8rem] object-contain md:h-20"
               showMissingBadge={false}
               fallback={<span className="sr-only">{tr(project.title)}</span>}
             />
           </div>
         )}
+
       </div>
 
       <div className="flex flex-1 flex-col p-6">
