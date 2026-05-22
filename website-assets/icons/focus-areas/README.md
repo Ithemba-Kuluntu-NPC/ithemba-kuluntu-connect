@@ -1,1 +1,0 @@
-icons focus areas
