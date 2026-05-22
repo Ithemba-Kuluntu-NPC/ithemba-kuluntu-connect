@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Heart, ArrowLeft, type LucideIcon } from "lucide-react";
 import * as Icons from "lucide-react";
 
-import { PhotoPlaceholder } from "@/components/blocks/PhotoPlaceholder";
+
 import { DonationWidget, ProjectDonationNotes } from "@/components/blocks/DonationWidget";
 import { Placeholder } from "@/components/site/MissingInfo";
 import { useLang } from "@/components/site/LanguageProvider";
@@ -101,11 +101,7 @@ export function ProjectPageLayout({
                   alt={`${t(project.title)} logo`}
                   className="h-7 w-auto max-w-[8rem] object-contain"
                   showMissingBadge={false}
-                  fallback={
-                    <span className="text-[11px] font-semibold uppercase tracking-wider text-foreground/70">
-                      Logo · {project.slug}
-                    </span>
-                  }
+                  fallback={<span className="sr-only">{t(project.title)}</span>}
                 />
               </div>
             )}
@@ -201,11 +197,14 @@ export function ProjectPageLayout({
         </h2>
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {[1, 2, 3, 4, 5, 6].map((i) => (
-            <PhotoPlaceholder
+            <SmartImage
               key={i}
+              src={hero}
               label={`${t(project.title)} — photo ${i}`}
               className="aspect-square"
+              rounded="rounded-2xl"
               tone={tone}
+              showMissingBadge={false}
             />
           ))}
         </div>

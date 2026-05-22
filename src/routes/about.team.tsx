@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHeader } from "@/components/blocks/LegalPage";
-import { PhotoPlaceholder } from "@/components/blocks/PhotoPlaceholder";
+import { SmartImage } from "@/components/site/Asset";
+import { assets } from "@/data/assets";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Heart } from "lucide-react";
 import { useLang } from "@/components/site/LanguageProvider";
@@ -72,12 +73,13 @@ function AboutTeam() {
                 className="group flex flex-col overflow-hidden rounded-[2rem] bg-white shadow-sm ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-lg"
               >
                 <div className="relative">
-                  <PhotoPlaceholder
+                  <SmartImage
+                    src={assets.photos.about.team}
                     label={fullName ?? "team member photo"}
                     className="aspect-[4/5] w-full"
                     rounded="rounded-none"
                     tone="ocean"
-                    showLabel={false}
+                    showMissingBadge={false}
                   />
                   {!m.photoSrc && (
                     <div className="absolute left-3 top-3">
