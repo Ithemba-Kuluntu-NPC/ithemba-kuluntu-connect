@@ -72,15 +72,29 @@ export function ProjectPageLayout({
         </div>
 
         <div className="relative mx-auto max-w-7xl px-4 py-20 md:py-28 lg:px-8">
+          {logoSrc && (
+            <div className="absolute right-4 top-6 md:right-8 md:top-10 drop-shadow-[0_4px_16px_rgba(0,0,0,0.5)]">
+              <SmartLogo
+                src={logoSrc}
+                alt={`${t(project.title)} logo`}
+                className="h-20 w-auto max-w-[10rem] object-contain md:h-28 md:max-w-[14rem]"
+                showMissingBadge={false}
+                fallback={<span className="sr-only">{t(project.title)}</span>}
+              />
+            </div>
+          )}
+
           <Link to="/projects" className="inline-flex items-center gap-1 text-sm font-medium text-white/85 hover:text-white">
             <ArrowLeft className="h-4 w-4" /> {lbl("All projects", "Alle Projekte")}
           </Link>
 
           <div className="mt-6 max-w-3xl">
             <div className="flex items-center gap-3">
-              <div className="flex h-14 w-14 items-center justify-center rounded-full shadow-lg ring-2 ring-white/30" style={{ background: project.accent }}>
-                <Icon className="h-7 w-7 text-white" />
-              </div>
+              {!logoSrc && (
+                <div className="flex h-14 w-14 items-center justify-center rounded-full shadow-lg ring-2 ring-white/30" style={{ background: project.accent }}>
+                  <Icon className="h-7 w-7 text-white" />
+                </div>
+              )}
               <div className="hand-eyebrow-lg" style={{ color: "var(--ithemba-yellow)" }}>
                 {eyebrow ?? lbl("Project", "Projekt")}
               </div>
@@ -93,18 +107,6 @@ export function ProjectPageLayout({
               {t(project.title)}
             </h1>
             <p className="mt-5 max-w-xl text-lg text-white/90">{t(project.description)}</p>
-
-            {logoSrc && (
-              <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-white/95 px-3 py-1.5 shadow-sm ring-1 ring-black/10">
-                <SmartLogo
-                  src={logoSrc}
-                  alt={`${t(project.title)} logo`}
-                  className="h-7 w-auto max-w-[8rem] object-contain"
-                  showMissingBadge={false}
-                  fallback={<span className="sr-only">{t(project.title)}</span>}
-                />
-              </div>
-            )}
 
             <div className="mt-6 flex flex-wrap gap-2">
               <Link to="/donate">
@@ -120,6 +122,7 @@ export function ProjectPageLayout({
             </div>
           </div>
         </div>
+
         <svg className="block w-full" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden>
           <path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="var(--background)" />
         </svg>
