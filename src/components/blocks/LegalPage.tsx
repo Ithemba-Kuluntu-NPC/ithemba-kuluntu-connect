@@ -1,6 +1,7 @@
 import { type ReactNode } from "react";
 import { Placeholder } from "@/components/site/MissingInfo";
-import { PhotoPlaceholder } from "./PhotoPlaceholder";
+import { SmartImage } from "@/components/site/Asset";
+import { assets } from "@/data/assets";
 
 export function LegalPage({
   title,
