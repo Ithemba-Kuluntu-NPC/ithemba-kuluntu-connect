@@ -94,9 +94,21 @@ export function ProjectPageLayout({
             </h1>
             <p className="mt-5 max-w-xl text-lg text-white/90">{t(project.description)}</p>
 
-            <div className="mt-3 inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-[11px] font-medium uppercase tracking-wider text-white/80 backdrop-blur">
-              Logo placeholder · {project.slug}
-            </div>
+            {logoSrc && (
+              <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-white/95 px-3 py-1.5 shadow-sm ring-1 ring-black/10">
+                <SmartLogo
+                  src={logoSrc}
+                  alt={`${t(project.title)} logo`}
+                  className="h-7 w-auto max-w-[8rem] object-contain"
+                  showMissingBadge={false}
+                  fallback={
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-foreground/70">
+                      Logo · {project.slug}
+                    </span>
+                  }
+                />
+              </div>
+            )}
 
             <div className="mt-6 flex flex-wrap gap-2">
               <Link to="/donate">
@@ -110,9 +122,6 @@ export function ProjectPageLayout({
                 </Button>
               </Link>
             </div>
-            <div className="mt-3 inline-block">
-              <Placeholder text={`final ${project.slug} logo file`} />
-            </div>
           </div>
         </div>
         <svg className="block w-full" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden>
@@ -123,10 +132,12 @@ export function ProjectPageLayout({
       {/* Why — editorial split */}
       <section className="mx-auto grid max-w-7xl gap-10 px-4 py-20 md:grid-cols-2 lg:px-8">
         <div className="relative">
-          <PhotoPlaceholder
+          <SmartImage
+            src={hero}
             label={`${t(project.title)} — why it matters`}
             className="aspect-[4/5] w-full"
             tone={tone}
+            showMissingBadge={false}
           />
           <div
             className="absolute -bottom-6 -right-6 hidden h-28 w-28 items-center justify-center rounded-full text-white shadow-xl md:flex"

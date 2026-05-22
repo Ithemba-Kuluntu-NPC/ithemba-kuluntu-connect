@@ -29,6 +29,7 @@ import { Route as ProjectsGreenhouseRouteImport } from './routes/projects/greenh
 import { Route as ProjectsFoodSecurityRouteImport } from './routes/projects/food-security'
 import { Route as ProjectsEcdRouteImport } from './routes/projects/ecd'
 import { Route as ProjectsDisasterReliefRouteImport } from './routes/projects/disaster-relief'
+import { Route as AboutTeamRouteImport } from './routes/about.team'
 
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
@@ -130,10 +131,15 @@ const ProjectsDisasterReliefRoute = ProjectsDisasterReliefRouteImport.update({
   path: '/projects/disaster-relief',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutTeamRoute = AboutTeamRouteImport.update({
+  id: '/team',
+  path: '/team',
+  getParentRoute: () => AboutRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/about': typeof AboutRouteWithChildren
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/datenschutz': typeof DatenschutzRoute
@@ -145,6 +151,7 @@ export interface FileRoutesByFullPath {
   '/missing-information': typeof MissingInformationRoute
   '/partners': typeof PartnersRoute
   '/terms': typeof TermsRoute
+  '/about/team': typeof AboutTeamRoute
   '/projects/disaster-relief': typeof ProjectsDisasterReliefRoute
   '/projects/ecd': typeof ProjectsEcdRoute
   '/projects/food-security': typeof ProjectsFoodSecurityRoute
@@ -155,7 +162,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/about': typeof AboutRouteWithChildren
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/datenschutz': typeof DatenschutzRoute
@@ -167,6 +174,7 @@ export interface FileRoutesByTo {
   '/missing-information': typeof MissingInformationRoute
   '/partners': typeof PartnersRoute
   '/terms': typeof TermsRoute
+  '/about/team': typeof AboutTeamRoute
   '/projects/disaster-relief': typeof ProjectsDisasterReliefRoute
   '/projects/ecd': typeof ProjectsEcdRoute
   '/projects/food-security': typeof ProjectsFoodSecurityRoute
@@ -178,7 +186,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/about': typeof AboutRouteWithChildren
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/datenschutz': typeof DatenschutzRoute
@@ -190,6 +198,7 @@ export interface FileRoutesById {
   '/missing-information': typeof MissingInformationRoute
   '/partners': typeof PartnersRoute
   '/terms': typeof TermsRoute
+  '/about/team': typeof AboutTeamRoute
   '/projects/disaster-relief': typeof ProjectsDisasterReliefRoute
   '/projects/ecd': typeof ProjectsEcdRoute
   '/projects/food-security': typeof ProjectsFoodSecurityRoute
@@ -214,6 +223,7 @@ export interface FileRouteTypes {
     | '/missing-information'
     | '/partners'
     | '/terms'
+    | '/about/team'
     | '/projects/disaster-relief'
     | '/projects/ecd'
     | '/projects/food-security'
@@ -236,6 +246,7 @@ export interface FileRouteTypes {
     | '/missing-information'
     | '/partners'
     | '/terms'
+    | '/about/team'
     | '/projects/disaster-relief'
     | '/projects/ecd'
     | '/projects/food-security'
@@ -258,6 +269,7 @@ export interface FileRouteTypes {
     | '/missing-information'
     | '/partners'
     | '/terms'
+    | '/about/team'
     | '/projects/disaster-relief'
     | '/projects/ecd'
     | '/projects/food-security'
@@ -269,7 +281,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
+  AboutRoute: typeof AboutRouteWithChildren
   ContactRoute: typeof ContactRoute
   CookiePolicyRoute: typeof CookiePolicyRoute
   DatenschutzRoute: typeof DatenschutzRoute
@@ -432,12 +444,29 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectsDisasterReliefRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about/team': {
+      id: '/about/team'
+      path: '/team'
+      fullPath: '/about/team'
+      preLoaderRoute: typeof AboutTeamRouteImport
+      parentRoute: typeof AboutRoute
+    }
   }
 }
 
+interface AboutRouteChildren {
+  AboutTeamRoute: typeof AboutTeamRoute
+}
+
+const AboutRouteChildren: AboutRouteChildren = {
+  AboutTeamRoute: AboutTeamRoute,
+}
+
+const AboutRouteWithChildren = AboutRoute._addFileChildren(AboutRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
+  AboutRoute: AboutRouteWithChildren,
   ContactRoute: ContactRoute,
   CookiePolicyRoute: CookiePolicyRoute,
   DatenschutzRoute: DatenschutzRoute,
