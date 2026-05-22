@@ -218,12 +218,13 @@ export function ProjectPageLayout({
       {/* Donation — photo-led */}
       <section className="relative isolate overflow-hidden py-20">
         <div className="absolute inset-0 -z-10">
-          <PhotoPlaceholder
+          <SmartImage
+            src={hero}
             label={`${t(project.title)} — donate`}
             className="h-full w-full"
             rounded="rounded-none"
             tone={tone}
-            showLabel={false}
+            showMissingBadge={false}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[var(--ithemba-blue-deepest)]/90 via-[var(--ithemba-blue-dark)]/75 to-[var(--ithemba-blue-dark)]/40" />
         </div>
