@@ -7,7 +7,7 @@ import { Placeholder } from "@/components/site/MissingInfo";
 import { SmartImage } from "@/components/site/Asset";
 import { assets } from "@/data/assets";
 
-export const Route = createFileRoute("/about")({ component: About });
+export const Route = createFileRoute("/about/")({ component: About });
 
 function About() {
   const { lang } = useLang();

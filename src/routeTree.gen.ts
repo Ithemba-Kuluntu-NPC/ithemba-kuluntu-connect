@@ -20,9 +20,9 @@ import { Route as DonateRouteImport } from './routes/donate'
 import { Route as DatenschutzRouteImport } from './routes/datenschutz'
 import { Route as CookiePolicyRouteImport } from './routes/cookie-policy'
 import { Route as ContactRouteImport } from './routes/contact'
-import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProjectsIndexRouteImport } from './routes/projects/index'
+import { Route as AboutIndexRouteImport } from './routes/about.index'
 import { Route as ProjectsPureflowRouteImport } from './routes/projects/pureflow'
 import { Route as ProjectsPondoDogsRouteImport } from './routes/projects/pondo-dogs'
 import { Route as ProjectsGreenhouseRouteImport } from './routes/projects/greenhouse'
@@ -86,11 +86,6 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -99,6 +94,11 @@ const IndexRoute = IndexRouteImport.update({
 const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
   id: '/projects/',
   path: '/projects/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutIndexRoute = AboutIndexRouteImport.update({
+  id: '/about/',
+  path: '/about/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProjectsPureflowRoute = ProjectsPureflowRouteImport.update({
@@ -139,7 +139,6 @@ const AboutTeamRoute = AboutTeamRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/about': typeof AboutRouteWithChildren
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/datenschutz': typeof DatenschutzRoute
@@ -158,11 +157,11 @@ export interface FileRoutesByFullPath {
   '/projects/greenhouse': typeof ProjectsGreenhouseRoute
   '/projects/pondo-dogs': typeof ProjectsPondoDogsRoute
   '/projects/pureflow': typeof ProjectsPureflowRoute
+  '/about/': typeof AboutIndexRoute
   '/projects/': typeof ProjectsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/about': typeof AboutRouteWithChildren
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/datenschutz': typeof DatenschutzRoute
@@ -181,12 +180,12 @@ export interface FileRoutesByTo {
   '/projects/greenhouse': typeof ProjectsGreenhouseRoute
   '/projects/pondo-dogs': typeof ProjectsPondoDogsRoute
   '/projects/pureflow': typeof ProjectsPureflowRoute
+  '/about': typeof AboutIndexRoute
   '/projects': typeof ProjectsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/about': typeof AboutRouteWithChildren
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/datenschutz': typeof DatenschutzRoute
@@ -205,13 +204,13 @@ export interface FileRoutesById {
   '/projects/greenhouse': typeof ProjectsGreenhouseRoute
   '/projects/pondo-dogs': typeof ProjectsPondoDogsRoute
   '/projects/pureflow': typeof ProjectsPureflowRoute
+  '/about/': typeof AboutIndexRoute
   '/projects/': typeof ProjectsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/about'
     | '/contact'
     | '/cookie-policy'
     | '/datenschutz'
@@ -230,11 +229,11 @@ export interface FileRouteTypes {
     | '/projects/greenhouse'
     | '/projects/pondo-dogs'
     | '/projects/pureflow'
+    | '/about/'
     | '/projects/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/about'
     | '/contact'
     | '/cookie-policy'
     | '/datenschutz'
@@ -253,11 +252,11 @@ export interface FileRouteTypes {
     | '/projects/greenhouse'
     | '/projects/pondo-dogs'
     | '/projects/pureflow'
+    | '/about'
     | '/projects'
   id:
     | '__root__'
     | '/'
-    | '/about'
     | '/contact'
     | '/cookie-policy'
     | '/datenschutz'
@@ -276,12 +275,12 @@ export interface FileRouteTypes {
     | '/projects/greenhouse'
     | '/projects/pondo-dogs'
     | '/projects/pureflow'
+    | '/about/'
     | '/projects/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRouteWithChildren
   ContactRoute: typeof ContactRoute
   CookiePolicyRoute: typeof CookiePolicyRoute
   DatenschutzRoute: typeof DatenschutzRoute
@@ -299,6 +298,7 @@ export interface RootRouteChildren {
   ProjectsGreenhouseRoute: typeof ProjectsGreenhouseRoute
   ProjectsPondoDogsRoute: typeof ProjectsPondoDogsRoute
   ProjectsPureflowRoute: typeof ProjectsPureflowRoute
+  AboutIndexRoute: typeof AboutIndexRoute
   ProjectsIndexRoute: typeof ProjectsIndexRoute
 }
 
@@ -381,13 +381,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -400,6 +393,13 @@ declare module '@tanstack/react-router' {
       path: '/projects'
       fullPath: '/projects/'
       preLoaderRoute: typeof ProjectsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about/': {
+      id: '/about/'
+      path: '/about'
+      fullPath: '/about/'
+      preLoaderRoute: typeof AboutIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/projects/pureflow': {
@@ -454,19 +454,8 @@ declare module '@tanstack/react-router' {
   }
 }
 
-interface AboutRouteChildren {
-  AboutTeamRoute: typeof AboutTeamRoute
-}
-
-const AboutRouteChildren: AboutRouteChildren = {
-  AboutTeamRoute: AboutTeamRoute,
-}
-
-const AboutRouteWithChildren = AboutRoute._addFileChildren(AboutRouteChildren)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AboutRoute: AboutRouteWithChildren,
   ContactRoute: ContactRoute,
   CookiePolicyRoute: CookiePolicyRoute,
   DatenschutzRoute: DatenschutzRoute,
@@ -484,8 +473,19 @@ const rootRouteChildren: RootRouteChildren = {
   ProjectsGreenhouseRoute: ProjectsGreenhouseRoute,
   ProjectsPondoDogsRoute: ProjectsPondoDogsRoute,
   ProjectsPureflowRoute: ProjectsPureflowRoute,
+  AboutIndexRoute: AboutIndexRoute,
   ProjectsIndexRoute: ProjectsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
