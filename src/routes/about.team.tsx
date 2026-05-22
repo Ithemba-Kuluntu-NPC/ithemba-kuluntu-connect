@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHeader } from "@/components/blocks/LegalPage";
-import { PhotoPlaceholder } from "@/components/blocks/PhotoPlaceholder";
+import { SmartImage } from "@/components/site/Asset";
+import { assets } from "@/data/assets";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Heart } from "lucide-react";
 import { useLang } from "@/components/site/LanguageProvider";
