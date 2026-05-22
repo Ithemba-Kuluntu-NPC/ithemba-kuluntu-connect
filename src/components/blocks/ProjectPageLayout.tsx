@@ -9,6 +9,14 @@ import { Placeholder } from "@/components/site/MissingInfo";
 import { useLang } from "@/components/site/LanguageProvider";
 import type { Project } from "@/data/projects";
 import { ImpactCounters } from "./ImpactCounters";
+import { SmartImage, SmartLogo } from "@/components/site/Asset";
+import { assets, projectHeroPhoto } from "@/data/assets";
+
+const projectLogo: Record<string, string | undefined> = {
+  ecd: assets.logos.no1Ecd,
+  pureflow: assets.logos.pureflowAmanzi,
+  "pondo-dogs": assets.logos.pondoDogs,
+};
 
 const toneMap: Record<string, "warm" | "blue" | "earth" | "sun" | "ocean" | "green"> = {
   ecd: "sun",
@@ -40,18 +48,21 @@ export function ProjectPageLayout({
   const lbl = (en: string, de: string) => (lang === "en" ? en : de);
   const Icon = (Icons as any)[project.icon] as LucideIcon;
   const tone = toneMap[project.slug] ?? "warm";
+  const hero = projectHeroPhoto[project.slug];
+  const logoSrc = projectLogo[project.slug];
 
   return (
     <>
       {/* Hero — photo background with overlay */}
       <section className="relative isolate overflow-hidden">
         <div className="absolute inset-0 -z-10">
-          <PhotoPlaceholder
+          <SmartImage
+            src={hero}
             label={`${t(project.title)} hero`}
             className="h-full w-full"
             rounded="rounded-none"
             tone={tone}
-            showLabel={false}
+            showMissingBadge={false}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
           <div

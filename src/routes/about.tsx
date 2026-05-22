@@ -1,21 +1,16 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHeader } from "@/components/blocks/LegalPage";
-import { PhotoPlaceholder } from "@/components/blocks/PhotoPlaceholder";
 import { Button } from "@/components/ui/button";
-import { Heart, Users, Shield, MapPin } from "lucide-react";
+import { Heart, Users, Shield, MapPin, ArrowRight } from "lucide-react";
 import { useLang } from "@/components/site/LanguageProvider";
 import { Placeholder } from "@/components/site/MissingInfo";
+import { SmartImage } from "@/components/site/Asset";
+import { assets } from "@/data/assets";
 
 export const Route = createFileRoute("/about")({ component: About });
 
-const directors = [
-  { name: "Ms. Anke Hamers", role: { en: "Director, Strategy & Finance", de: "Direktorin, Strategie & Finanzen" } },
-  { name: "Ms. Nosalathiso Phetshana", role: { en: "Director, Education & Community Development", de: "Direktorin, Bildung & Gemeindeentwicklung" } },
-  { name: "Ms. Sadhia Ahmed Alli", role: { en: "Director, Governance & Inclusion", de: "Direktorin, Governance & Inklusion" } },
-];
-
 function About() {
-  const { lang, t } = useLang();
+  const { lang } = useLang();
   const lbl = (en: string, de: string) => (lang === "en" ? en : de);
 
   return (
@@ -31,7 +26,12 @@ function About() {
       />
 
       <section className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-14 md:grid-cols-2 lg:px-8">
-        <PhotoPlaceholder label="iThemba Kuluntu team — community photo" className="aspect-[4/3]" />
+        <SmartImage
+          src={assets.photos.about.hero}
+          label="iThemba Kuluntu team — community photo"
+          className="aspect-[4/3]"
+          showMissingBadge={false}
+        />
         <div>
           <h2 className="font-display text-3xl font-bold">{lbl("Who we are", "Wer wir sind")}</h2>
           <p className="mt-3 text-foreground/85">
@@ -112,21 +112,41 @@ function About() {
         </div>
       </section>
 
+      {/* Our Team teaser — links to dedicated subpage */}
       <section className="bg-[var(--ithemba-cream)] py-14">
         <div className="mx-auto max-w-6xl px-4 lg:px-8">
-          <h2 className="font-display text-3xl font-bold text-[var(--ithemba-blue-dark)]">{lbl("Leadership team", "Leitungsteam")}</h2>
-          <Placeholder text="whether directors should be displayed publicly on the website" kind="verify" />
-          <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {directors.map((d) => (
-              <div key={d.name} className="rounded-3xl bg-white p-5 text-center shadow-sm">
-                <PhotoPlaceholder label={d.name} className="aspect-square" gradient="from-[var(--ithemba-blue)] to-[var(--ithemba-teal)]" />
-                <h3 className="mt-4 font-display text-lg font-bold">{d.name}</h3>
-                <p className="text-sm text-muted-foreground">{t(d.role)}</p>
+          <div className="relative overflow-hidden rounded-[2rem] bg-white p-8 shadow-sm md:p-12">
+            <div
+              className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full opacity-20 blur-2xl"
+              style={{ background: "var(--ithemba-yellow)" }}
+              aria-hidden
+            />
+            <div className="grid items-center gap-8 md:grid-cols-[1.2fr_1fr]">
+              <div>
+                <div className="hand-eyebrow">{lbl("Meet", "Lernen Sie")}</div>
+                <h2 className="-mt-1 font-display text-3xl font-bold text-[var(--ithemba-blue-dark)] md:text-4xl">
+                  {lbl("Our Team", "unser Team")}
+                </h2>
+                <p className="mt-3 max-w-lg text-foreground/80">
+                  {lbl(
+                    "The people behind iThemba Kuluntu — community leaders, educators, organisers and volunteers.",
+                    "Die Menschen hinter iThemba Kuluntu — Gemeindeleiterinnen, Pädagoginnen, Organisatorinnen und Freiwillige."
+                  )}
+                </p>
+                <Link to="/about/team">
+                  <Button className="mt-5 rounded-full bg-[var(--ithemba-blue)] hover:bg-[var(--ithemba-blue-dark)]">
+                    {lbl("Meet our team", "Unser Team kennenlernen")} <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
               </div>
-            ))}
-          </div>
-          <div className="mt-4">
-            <Placeholder text="final public team list and photos" kind="verify" />
+              <SmartImage
+                src={assets.photos.home.aboutTeam}
+                label="iThemba Kuluntu team"
+                className="aspect-[4/3] w-full"
+                rounded="rounded-2xl"
+                showMissingBadge={false}
+              />
+            </div>
           </div>
         </div>
       </section>
