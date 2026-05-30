@@ -1,3 +1,22 @@
+export type FocusAreaBadge =
+  | "education"
+  | "safe-water"
+  | "food-security"
+  | "skills-livelihoods"
+  | "community-health"
+  | "animal-welfare"
+  | "disaster-relief";
+
+export const focusAreaBadgeMeta: Record<FocusAreaBadge, { src: string; label: string }> = {
+  education: { src: "/assets/icons/project-areas/education-badge.png", label: "Education" },
+  "safe-water": { src: "/assets/icons/project-areas/safe-water-badge.png", label: "Safe water" },
+  "food-security": { src: "/assets/icons/project-areas/food-security-badge.png", label: "Food security" },
+  "skills-livelihoods": { src: "/assets/icons/project-areas/skills-livelihoods-badge.png", label: "Skills and livelihoods" },
+  "community-health": { src: "/assets/icons/project-areas/community-health-badge.png", label: "Community health" },
+  "animal-welfare": { src: "/assets/icons/project-areas/animal-welfare-badge.png", label: "Animal welfare" },
+  "disaster-relief": { src: "/assets/icons/project-areas/disaster-relief-badge.png", label: "Disaster relief" },
+};
+
 export type Project = {
   slug: string;
   path: string;
@@ -7,6 +26,7 @@ export type Project = {
   accent: string;
   bg: string;
   icon: string;
+  focusAreaBadges: FocusAreaBadge[];
 };
 
 export const projects: Project[] = [
