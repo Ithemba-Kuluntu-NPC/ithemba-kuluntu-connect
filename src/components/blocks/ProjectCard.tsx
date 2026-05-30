@@ -1,7 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Heart } from "lucide-react";
-import * as Icons from "lucide-react";
 import { useLang } from "@/components/site/LanguageProvider";
 import { t } from "@/data/content";
 import type { Project } from "@/data/projects";
