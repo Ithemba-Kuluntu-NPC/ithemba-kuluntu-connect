@@ -169,6 +169,22 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <div className="hidden items-center gap-0.5 xl:flex" role="group" aria-label="Social media">
+            {socialLinks.map(({ href, label, Icon }) => (
+              <a
+                key={href}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                title={label}
+                className="flex h-8 w-8 items-center justify-center rounded-full text-foreground/55 transition-colors hover:bg-[var(--ithemba-cream)] hover:text-[var(--ithemba-blue-dark)]"
+              >
+                <Icon className="h-4 w-4" />
+              </a>
+            ))}
+          </div>
+
           <div
             className="flex items-center gap-0.5 rounded-full border border-black/10 bg-white/70 p-0.5 text-[11px] font-semibold uppercase tracking-wide"
             role="group"
