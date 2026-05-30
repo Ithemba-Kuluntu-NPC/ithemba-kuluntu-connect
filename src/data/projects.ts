@@ -149,15 +149,17 @@ export const focusAreas = [
   { icon: "ShieldAlert", label: { en: "Disaster relief", de: "Katastrophenhilfe" } },
 ];
 
-export const partners = [
-  "Gift of the Givers",
-  "FNB Care",
-  "SA Harvest",
-  "Star Foundation",
-  "Red Cross",
-  "Rise Against Hunger",
-  "Tzu Chi Foundation",
-  "Save The Children",
+export type Partner = { name: string; logo: string; url: string; note?: string };
+
+export const partners: Partner[] = [
+  { name: "FNB", logo: "/assets/logos/partners/fnb-logo.png", url: "https://www.fnb.co.za/" },
+  { name: "Fresh Life Produce", logo: "/assets/logos/partners/fresh-life-produce-logo.png", url: "https://freshlifeproduce.com/" },
+  { name: "Gift of the Givers", logo: "/assets/logos/partners/gift-of-the-givers-logo.png", url: "https://giftofthegivers.org/" },
+  { name: "Nando’s", logo: "/assets/logos/partners/nandos-logo.png", url: "https://www.nandos.co.za/" },
+  { name: "Rise Against Hunger Africa", logo: "/assets/logos/partners/rise-against-hunger-logo.png", url: "https://www.riseagainsthunger.org/", note: "[[VERIFY BEFORE LAUNCH: confirm if a South Africa / Africa-specific Rise Against Hunger URL should be used instead]]" },
+  { name: "Star Foundation", logo: "/assets/logos/partners/star-foundation-logo.png", url: "https://thestarfoundation.co.za/" },
+  { name: "Tzu Chi Foundation", logo: "/assets/logos/partners/tzu-chi-logo.png", url: "https://global.tzuchi.org/", note: "[[VERIFY BEFORE LAUNCH: confirm if a South Africa-specific Tzu Chi URL should be used instead]]" },
+  { name: "SA Harvest", logo: "/assets/logos/partners/sa-harvest-logo.png", url: "https://saharvest.org/" },
 ];
 
 export const mediaItems = [
