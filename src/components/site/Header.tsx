@@ -281,6 +281,20 @@ export function Header() {
                 </button>
               ))}
             </div>
+            <div className="mt-3 flex items-center justify-center gap-2" role="group" aria-label="Social media">
+              {socialLinks.map(({ href, label, Icon }) => (
+                <a
+                  key={href}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-black/10 text-foreground/70 transition-colors hover:bg-[var(--ithemba-cream)] hover:text-[var(--ithemba-blue-dark)]"
+                >
+                  <Icon className="h-4 w-4" />
+                </a>
+              ))}
+            </div>
             <Link to="/donate" onClick={() => setOpen(false)} className="mt-2">
               <Button className="w-full rounded-full bg-[var(--ithemba-yellow)] font-semibold text-[var(--ithemba-brown)] hover:bg-[var(--ithemba-yellow)]/95">
                 <Heart className="mr-1.5 h-4 w-4 fill-current" /> {tr(t.cta.donateMonthly)}
