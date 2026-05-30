@@ -27,8 +27,23 @@ export function FocusAreas() {
   const { t, lang } = useLang();
   return (
     <section className="relative isolate overflow-hidden py-24 md:py-28">
+      {/* Top wave divider for smooth transition from "What guides us" */}
+      <svg
+        className="pointer-events-none absolute -top-px left-0 z-10 w-full text-[var(--ithemba-blue-deepest)]"
+        viewBox="0 0 1440 80"
+        preserveAspectRatio="none"
+        aria-hidden
+      >
+        <path
+          d="M0,40 C240,80 480,0 720,30 C960,60 1200,80 1440,40 L1440,0 L0,0 Z"
+          fill="currentColor"
+          opacity="0.95"
+        />
+      </svg>
+
       {/* Full-width photo background */}
       <div className="absolute inset-0 -z-10">
+
         <SmartImage
           src={assets.photos.home.impact}
           label="Community impact in Pondoland"
@@ -70,13 +85,9 @@ export function FocusAreas() {
             return (
               <div key={f.icon} className="group flex flex-col items-center gap-3 text-center">
                 <div
-                  className="relative flex h-24 w-24 items-center justify-center rounded-full bg-white/95 shadow-xl ring-1 ring-white/40 backdrop-blur-sm transition group-hover:-translate-y-1 group-hover:shadow-2xl md:h-28 md:w-28"
+                  className="relative flex h-24 w-24 items-center justify-center rounded-full bg-white shadow-xl ring-1 ring-black/5 transition group-hover:-translate-y-1 group-hover:shadow-2xl md:h-28 md:w-28"
                   style={{ color }}
                 >
-                  <div
-                    className="absolute inset-0 -z-10 blob opacity-25 transition group-hover:opacity-45"
-                    style={{ background: color }}
-                  />
                   <SmartIcon
                     src={mapping.src}
                     alt={t(f.label)}
@@ -85,6 +96,7 @@ export function FocusAreas() {
                     color={color}
                   />
                 </div>
+
                 <div className="text-sm font-semibold text-white drop-shadow-sm">
                   {t(f.label)}
                 </div>
