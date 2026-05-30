@@ -160,7 +160,7 @@ function Home() {
             <div className="hand-eyebrow">{lang === "en" ? "Partner" : "Partner"}</div>
             <h2 className="-mt-1 font-display text-3xl font-bold text-[var(--ithemba-blue-dark)] md:text-4xl">{tr(t.home.partnersTitle)}</h2>
           </div>
-          <div className="mt-10"><PartnerGrid /></div>
+          <div className="mt-10"><PartnerCarousel /></div>
           <div className="mt-10 text-center">
             <Link to="/partners">
               <Button size="lg" className="rounded-full bg-[var(--ithemba-blue)] hover:bg-[var(--ithemba-blue-dark)]">{tr(t.cta.partnerWithUs)}</Button>
