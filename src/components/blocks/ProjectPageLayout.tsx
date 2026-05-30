@@ -11,6 +11,7 @@ import type { Project } from "@/data/projects";
 import { ImpactCounters } from "./ImpactCounters";
 import { SmartImage, SmartLogo } from "@/components/site/Asset";
 import { assets, projectHeroPhoto } from "@/data/assets";
+import { FocusAreaBadges } from "@/components/blocks/FocusAreaBadges";
 
 const projectLogo: Record<string, string | undefined> = {
   ecd: assets.logos.no1Ecd,
