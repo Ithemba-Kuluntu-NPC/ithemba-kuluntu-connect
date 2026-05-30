@@ -92,7 +92,7 @@ export function FocusAreas() {
                     src={mapping.src}
                     alt={t(f.label)}
                     fallbackLucideName={mapping.fallback}
-                    className="h-16 w-16 md:h-20 md:w-20"
+                    className="absolute inset-2.5 h-[calc(100%-1.25rem)] w-[calc(100%-1.25rem)] md:inset-3"
                     color={color}
                   />
                 </div>
