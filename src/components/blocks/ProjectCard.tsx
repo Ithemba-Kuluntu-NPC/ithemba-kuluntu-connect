@@ -45,11 +45,8 @@ export function ProjectCard({ project }: { project: Project }) {
         />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/60 via-black/15 to-transparent" />
 
-        <div
-          className="absolute left-4 top-4 flex h-12 w-12 items-center justify-center rounded-full shadow-lg ring-2 ring-white/40"
-          style={{ background: project.accent }}
-        >
-          <Icon className="h-5 w-5 text-white" />
+        <div className="absolute left-3 top-3 max-w-[60%]">
+          <FocusAreaBadges badges={project.focusAreaBadges} size="sm" />
         </div>
 
         {projectLogo[project.slug] && (
