@@ -89,17 +89,17 @@ export function PartnerCarousel() {
         type="button"
         onClick={scrollPrev}
         aria-label="Previous partners"
-        className="absolute left-1 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-[var(--ithemba-yellow)] text-[var(--ithemba-brown)] shadow-md transition hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ithemba-brown)] focus-visible:ring-offset-2 md:left-2"
+        className="absolute left-0 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full text-[var(--ithemba-blue-dark)]/60 transition hover:bg-black/5 hover:text-[var(--ithemba-blue-dark)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ithemba-blue)]/40 md:left-1"
       >
-        <ChevronLeft className="h-5 w-5" />
+        <ChevronLeft className="h-6 w-6" strokeWidth={1.5} />
       </button>
       <button
         type="button"
         onClick={scrollNext}
         aria-label="Next partners"
-        className="absolute right-1 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-[var(--ithemba-yellow)] text-[var(--ithemba-brown)] shadow-md transition hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ithemba-brown)] focus-visible:ring-offset-2 md:right-2"
+        className="absolute right-0 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full text-[var(--ithemba-blue-dark)]/60 transition hover:bg-black/5 hover:text-[var(--ithemba-blue-dark)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ithemba-blue)]/40 md:right-1"
       >
-        <ChevronRight className="h-5 w-5" />
+        <ChevronRight className="h-6 w-6" strokeWidth={1.5} />
       </button>
     </div>
   );
