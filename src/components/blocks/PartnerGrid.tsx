@@ -1,4 +1,5 @@
 import { partners, type Partner } from "@/data/projects";
+import { cn } from "@/lib/utils";
 
 function LogoStage({ p }: { p: Partner }) {
   return (
@@ -8,13 +9,16 @@ function LogoStage({ p }: { p: Partner }) {
       rel="noopener noreferrer"
       aria-label={p.name}
       title={p.name}
-      className="group flex h-[110px] w-full items-center justify-center p-4"
+      className="group flex h-[140px] w-full items-center justify-center p-4"
     >
       <img
         src={p.logo}
         alt={`${p.name} logo`}
         loading="lazy"
-        className="max-h-[80px] max-w-[200px] object-contain opacity-90 transition group-hover:opacity-100 group-hover:scale-[1.04]"
+        className={cn(
+          "object-contain opacity-90 transition group-hover:opacity-100 group-hover:scale-[1.04]",
+          p.sizeClass ?? "max-h-[110px] max-w-[240px]",
+        )}
       />
     </a>
   );
