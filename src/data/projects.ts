@@ -59,6 +59,7 @@ export const projects: Project[] = [
     accent: "#0EA5E9",
     bg: "#E0F2FE",
     icon: "Droplet",
+    focusAreaBadges: ["safe-water", "education", "skills-livelihoods", "community-health", "disaster-relief"],
   },
   {
     slug: "greenhouse",
