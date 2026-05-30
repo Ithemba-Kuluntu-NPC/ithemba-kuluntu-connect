@@ -137,7 +137,7 @@ function Home() {
         <div className="mb-12 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
           <div>
             <div className="hand-eyebrow-lg">{lang === "en" ? "Our" : "Unsere"}</div>
-            <h2 className="-mt-2 font-display text-5xl font-bold text-[var(--ithemba-blue-dark)]">{tr(t.home.ourProjects)}</h2>
+            <h2 className="-mt-2 font-display text-5xl font-bold text-[var(--ithemba-blue-dark)]">{lang === "en" ? "projects" : "Projekte"}</h2>
             <p className="mt-3 max-w-md text-foreground/70">
               {lang === "en"
                 ? "Six interconnected programmes that strengthen rural families every day."
@@ -153,12 +153,49 @@ function Home() {
         </div>
       </section>
 
-      {/* Partners preview */}
-      <section className="bg-[var(--ithemba-cream)] py-20">
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+      {/* Partners preview — softly textured warm band, distinct from focus areas */}
+      <section className="relative isolate overflow-hidden py-24">
+        {/* Layered warm background */}
+        <div
+          className="absolute inset-0 -z-10"
+          style={{
+            background:
+              "linear-gradient(180deg, #fbf6ec 0%, #f6efe0 55%, #fbf6ec 100%)",
+          }}
+        />
+        {/* Subtle photo wash */}
+        <div className="absolute inset-0 -z-10 opacity-[0.10] mix-blend-multiply">
+          <SmartImage
+            src={assets.photos.partners.hero}
+            label="Partners hero wash"
+            className="h-full w-full"
+            rounded="rounded-none"
+            tone="warm"
+            showMissingBadge={false}
+          />
+        </div>
+        {/* Soft decorative blobs */}
+        <div className="pointer-events-none absolute -left-16 top-10 h-48 w-48 blob bg-[var(--ithemba-yellow)]/20" />
+        <div className="pointer-events-none absolute -right-16 bottom-10 h-56 w-56 blob bg-[var(--ithemba-teal)]/10" />
+
+        {/* Top wave divider for elegant transition from projects section */}
+        <svg
+          className="pointer-events-none absolute -top-px left-0 w-full text-white"
+          viewBox="0 0 1440 60"
+          preserveAspectRatio="none"
+          aria-hidden
+        >
+          <path
+            d="M0,30 C240,60 480,0 720,20 C960,40 1200,60 1440,30 L1440,0 L0,0 Z"
+            fill="currentColor"
+          />
+        </svg>
+
+        <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <div className="hand-eyebrow">{lang === "en" ? "Partner" : "Partner"}</div>
             <h2 className="-mt-1 font-display text-3xl font-bold text-[var(--ithemba-blue-dark)] md:text-4xl">{tr(t.home.partnersTitle)}</h2>
+            <div className="mx-auto mt-4 h-1 w-16 rounded-full bg-[var(--ithemba-yellow)]" />
           </div>
           <div className="mt-10"><PartnerCarousel /></div>
           <div className="mt-10 text-center">
