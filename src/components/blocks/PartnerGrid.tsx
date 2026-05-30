@@ -1,27 +1,33 @@
-import { partners } from "@/data/projects";
-import { Placeholder } from "@/components/site/MissingInfo";
+import { partners, type Partner } from "@/data/projects";
 
-export function PartnerGrid({ showPlaceholders = true }: { showPlaceholders?: boolean }) {
+function LogoStage({ p }: { p: Partner }) {
+  return (
+    <a
+      href={p.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={p.name}
+      title={p.name}
+      className="group flex h-[110px] w-full items-center justify-center rounded-2xl bg-white p-4 shadow-sm ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-md"
+    >
+      <img
+        src={p.logo}
+        alt={`${p.name} logo`}
+        loading="lazy"
+        className="max-h-[70px] max-w-[170px] object-contain transition group-hover:scale-[1.03]"
+      />
+    </a>
+  );
+}
+
+export function PartnerGrid({ showPlaceholders: _showPlaceholders = true }: { showPlaceholders?: boolean }) {
   return (
     <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
       {partners.map((p) => (
-        <div
-          key={p}
-          className="group flex flex-col items-center rounded-3xl bg-white p-5 text-center shadow-sm ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-md"
-        >
-          <div className="flex h-20 w-full items-center justify-center rounded-2xl bg-gradient-to-br from-slate-50 to-slate-100 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400 ring-1 ring-slate-200/60">
-            Logo
-          </div>
-          <div className="mt-3 text-sm font-semibold text-foreground">{p}</div>
-          {showPlaceholders && (
-            <div className="mt-2 flex flex-wrap justify-center gap-1">
-              <Placeholder text={`approved logo: ${p}`} />
-              <Placeholder text={`partner URL: ${p}`} />
-              <Placeholder text={`permission to display logo: ${p}`} kind="verify" />
-            </div>
-          )}
-        </div>
+        <LogoStage key={p.name} p={p} />
       ))}
     </div>
   );
 }
+
+export { LogoStage as PartnerLogoStage };
