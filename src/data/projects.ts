@@ -115,6 +115,7 @@ export const projects: Project[] = [
     accent: "#1E40AF",
     bg: "#DBEAFE",
     icon: "ShieldAlert",
+    focusAreaBadges: ["disaster-relief", "safe-water", "education", "skills-livelihoods", "community-health"],
   },
 ];
 
