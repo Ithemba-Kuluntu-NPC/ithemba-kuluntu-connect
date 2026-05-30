@@ -35,6 +35,19 @@ const navItems: NavItem[] = [
 
 const languages: Lang[] = ["en", "de", "nl"];
 
+const TikTokIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
+    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V8.79a8.16 8.16 0 0 0 4.77 1.52V6.86a4.85 4.85 0 0 1-1.84-.17z" />
+  </svg>
+);
+
+const socialLinks = [
+  { href: "https://www.instagram.com/ithemba.kuluntu/", label: "Follow iThemba Kuluntu on Instagram", Icon: Instagram },
+  { href: "https://web.facebook.com/people/IThemba-Kuluntu-e-V-NPO/61555304087486/", label: "Follow iThemba Kuluntu on Facebook", Icon: Facebook },
+  { href: "https://www.tiktok.com/@ithemba.kuluntu", label: "Follow iThemba Kuluntu on TikTok", Icon: TikTokIcon },
+  { href: "https://www.youtube.com/@iThembaKuluntu", label: "Follow iThemba Kuluntu on YouTube", Icon: Youtube },
+];
+
 export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
