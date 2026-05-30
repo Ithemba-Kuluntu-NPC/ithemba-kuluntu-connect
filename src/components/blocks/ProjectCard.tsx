@@ -25,7 +25,6 @@ const projectLogo: Record<string, string | undefined> = {
 
 export function ProjectCard({ project }: { project: Project }) {
   const { t: tr } = useLang();
-  const Icon = (Icons as any)[project.icon] ?? Icons.Heart;
   const tone = toneMap[project.slug] ?? "warm";
   const hero = projectHeroPhoto[project.slug];
 
