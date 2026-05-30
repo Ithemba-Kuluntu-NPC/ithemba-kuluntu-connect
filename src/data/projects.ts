@@ -8,13 +8,13 @@ export type FocusAreaBadge =
   | "disaster-relief";
 
 export const focusAreaBadgeMeta: Record<FocusAreaBadge, { src: string; label: string }> = {
-  education: { src: "/assets/icons/project-areas/education-badge.png", label: "Education" },
-  "safe-water": { src: "/assets/icons/project-areas/safe-water-badge.png", label: "Safe water" },
-  "food-security": { src: "/assets/icons/project-areas/food-security-badge.png", label: "Food security" },
-  "skills-livelihoods": { src: "/assets/icons/project-areas/skills-livelihoods-badge.png", label: "Skills and livelihoods" },
-  "community-health": { src: "/assets/icons/project-areas/community-health-badge.png", label: "Community health" },
-  "animal-welfare": { src: "/assets/icons/project-areas/animal-welfare-badge.png", label: "Animal welfare" },
-  "disaster-relief": { src: "/assets/icons/project-areas/disaster-relief-badge.png", label: "Disaster relief" },
+  education: { src: "/assets/icons/focus-areas/education-badge.png", label: "Education" },
+  "safe-water": { src: "/assets/icons/focus-areas/safe-water-badge.png", label: "Safe water" },
+  "food-security": { src: "/assets/icons/focus-areas/food-security-badge.png", label: "Food security" },
+  "skills-livelihoods": { src: "/assets/icons/focus-areas/skills-livelihoods-badge.png", label: "Skills and livelihoods" },
+  "community-health": { src: "/assets/icons/focus-areas/community-health-badge.png", label: "Community health" },
+  "animal-welfare": { src: "/assets/icons/focus-areas/animal-welfare-badge.png", label: "Animal welfare" },
+  "disaster-relief": { src: "/assets/icons/focus-areas/disaster-relief-badge.png", label: "Disaster relief" },
 };
 
 export type Project = {

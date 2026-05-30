@@ -1,4 +1,28 @@
+import { useState } from "react";
 import { focusAreaBadgeMeta, type FocusAreaBadge } from "@/data/projects";
+
+function BadgeImg({
+  src,
+  label,
+  sizing,
+}: {
+  src: string;
+  label: string;
+  sizing: string;
+}) {
+  const [errored, setErrored] = useState(false);
+  if (errored) return null;
+  return (
+    <img
+      src={src}
+      alt={label}
+      title={label}
+      className={`${sizing} object-contain drop-shadow-[0_2px_4px_rgba(0,0,0,0.35)]`}
+      loading="lazy"
+      onError={() => setErrored(true)}
+    />
+  );
+}
 
 export function FocusAreaBadges({
   badges,
@@ -19,16 +43,7 @@ export function FocusAreaBadges({
       {badges.map((b) => {
         const meta = focusAreaBadgeMeta[b];
         if (!meta) return null;
-        return (
-          <img
-            key={b}
-            src={meta.src}
-            alt={meta.label}
-            title={meta.label}
-            className={`${sizing} object-contain drop-shadow-[0_2px_4px_rgba(0,0,0,0.35)]`}
-            loading="lazy"
-          />
-        );
+        return <BadgeImg key={b} src={meta.src} label={meta.label} sizing={sizing} />;
       })}
     </div>
   );
