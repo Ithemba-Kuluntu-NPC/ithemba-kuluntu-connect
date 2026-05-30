@@ -45,6 +45,7 @@ export const projects: Project[] = [
     accent: "#F59E0B",
     bg: "#FEF3C7",
     icon: "GraduationCap",
+    focusAreaBadges: ["education", "food-security", "safe-water", "skills-livelihoods", "community-health"],
   },
   {
     slug: "pureflow",
