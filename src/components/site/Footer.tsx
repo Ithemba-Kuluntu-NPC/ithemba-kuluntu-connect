@@ -6,6 +6,9 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useLang } from "./LanguageProvider";
 
+const socialBase =
+  "flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white transition-all hover:bg-[var(--ithemba-yellow)] hover:text-[var(--ithemba-brown)] hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ithemba-yellow)]";
+
 export function Footer() {
   const [email, setEmail] = useState("");
   const [sent, setSent] = useState(false);
@@ -16,16 +19,16 @@ export function Footer() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
         {/* Org */}
         <div>
-          <div className="flex items-center gap-2.5">
-            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[var(--ithemba-yellow)] font-display font-bold text-[var(--ithemba-brown)]">iK</div>
-            <div className="font-display font-bold text-lg">iThemba Kuluntu</div>
-          </div>
-          <p className="mt-3 text-sm text-white/80">
+          <img
+            src="/assets/logos/ithemba-text-white.png"
+            alt="iThemba Kuluntu"
+            className="h-20 w-auto max-w-[220px] object-contain"
+          />
+          <p className="mt-4 text-sm text-white/80">
             {lang === "en"
               ? "Hope for communities. Built from the ground up in Pondoland."
               : "Hoffnung für Gemeinschaften. Von Grund auf in Pondoland aufgebaut."}
           </p>
-          <Placeholder text="Main iThemba Kuluntu logo (white version)" />
         </div>
 
         {/* SA org */}
@@ -40,21 +43,41 @@ export function Footer() {
               <MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0" />
               <span>Flat Rock Cottage, Cwebeni Beach, Port St Johns, Eastern Cape, South Africa, 5090</span>
             </li>
-            <li className="flex items-center gap-2"><Mail className="h-3.5 w-3.5" /><span>info@ithembakuluntu.org</span></li>
-            <li className="flex items-center gap-2"><Phone className="h-3.5 w-3.5" /><span>+27 71 977 8063</span></li>
+            <li className="flex items-center gap-2">
+              <Mail className="h-3.5 w-3.5 shrink-0" />
+              <a href="mailto:info@ithembakuluntu.org" className="hover:text-white">info@ithembakuluntu.org</a>
+            </li>
+            <li className="flex items-center gap-2">
+              <Phone className="h-3.5 w-3.5 shrink-0" />
+              <a href="tel:+27719778063" className="hover:text-white">+27 71 977 8063</a>
+            </li>
           </ul>
-          <Placeholder text="public phone number" kind="verify" />
         </div>
 
         {/* DE */}
         <div className="text-sm text-white/85">
           <h4 className="font-display text-base font-bold text-[var(--ithemba-yellow)]">iThemba Kuluntu e.V. — Germany</h4>
-          <div className="mt-2 space-y-1">
-            <Placeholder text="German registered address" />
-            <Placeholder text="German registration details" />
-            <Placeholder text="German donation account details" />
-            <Placeholder text="German contact details" />
-          </div>
+          <ul className="mt-2 space-y-1.5">
+            <li className="flex items-start gap-2">
+              <MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0" />
+              <span>Am Emberg 20<br />57399 Kirchhundem<br />Germany</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <Mail className="h-3.5 w-3.5 shrink-0" />
+              <a href="mailto:info@ithembakuluntu.org" className="hover:text-white">info@ithembakuluntu.org</a>
+            </li>
+            <li className="pt-1.5">
+              <div className="text-white/70">Eingetragen beim Amtsgericht Siegen</div>
+              <div>Vereinsregister 6845</div>
+            </li>
+            <li>Steuernummer: 338/5953/0753</li>
+            <li className="pt-1.5">
+              <div className="font-semibold text-white">Bankverbindung</div>
+              <div>iThemba Kuluntu e.V.</div>
+              <div>IBAN: DE52 8306 5408 0005 4056 96</div>
+              <div>BIC: GENODEF1SLR</div>
+            </li>
+          </ul>
         </div>
 
         {/* Newsletter + social */}
@@ -80,38 +103,41 @@ export function Footer() {
           </form>
           <Placeholder text="newsletter platform" />
 
-          <div className="mt-4 flex gap-2">
+          <div className="mt-5 flex flex-wrap gap-3">
             <a
               href="https://www.instagram.com/ithemba.kuluntu/"
               target="_blank" rel="noopener noreferrer"
-              className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 hover:bg-white/20"
-              aria-label="Instagram"
-              title="Instagram — verify before launch"
-            ><Instagram className="h-4 w-4" /></a>
-            <button
-              disabled
-              className="flex h-9 w-9 items-center justify-center rounded-full bg-white/5 text-white/40 cursor-not-allowed"
-              title="[[MISSING: final Facebook URL]]"
-              aria-label="Facebook (URL missing)"
-            ><Facebook className="h-4 w-4" /></button>
-            <button
-              disabled
-              className="flex h-9 w-9 items-center justify-center rounded-full bg-white/5 text-white/40 cursor-not-allowed"
-              title="[[MISSING: final YouTube URL]]"
-              aria-label="YouTube (URL missing)"
-            ><Youtube className="h-4 w-4" /></button>
-            <button
-              disabled
-              className="flex h-9 w-9 items-center justify-center rounded-full bg-white/5 text-white/40 cursor-not-allowed text-xs font-bold"
-              title="[[MISSING: final TikTok URL]]"
-              aria-label="TikTok (URL missing)"
-            >TT</button>
+              className={socialBase}
+              aria-label="Follow iThemba Kuluntu on Instagram"
+            ><Instagram className="h-5 w-5" /></a>
+            <a
+              href="https://web.facebook.com/people/IThemba-Kuluntu-e-V-NPO/61555304087486/"
+              target="_blank" rel="noopener noreferrer"
+              className={socialBase}
+              aria-label="Follow iThemba Kuluntu on Facebook"
+            ><Facebook className="h-5 w-5" /></a>
+            <a
+              href="https://www.tiktok.com/@ithemba.kuluntu"
+              target="_blank" rel="noopener noreferrer"
+              className={socialBase}
+              aria-label="Follow iThemba Kuluntu on TikTok"
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5" aria-hidden>
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V8.83a8.16 8.16 0 0 0 4.77 1.52V6.9a4.85 4.85 0 0 1-1.84-.21z"/>
+              </svg>
+            </a>
+            <a
+              href="https://www.youtube.com/@iThembaKuluntu"
+              target="_blank" rel="noopener noreferrer"
+              className={socialBase}
+              aria-label="Subscribe to iThemba Kuluntu on YouTube"
+            ><Youtube className="h-5 w-5" /></a>
           </div>
         </div>
       </div>
 
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-col items-start gap-3 px-4 py-5 text-xs text-white/70 md:flex-row md:items-center md:justify-between lg:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col items-start gap-3 px-4 py-5 pb-24 text-xs text-white/70 md:flex-row md:items-center md:justify-between md:pb-5 lg:px-8">
           <div>© {new Date().getFullYear()} iThemba Kuluntu NPC. All rights reserved.</div>
           <nav className="flex flex-wrap gap-x-4 gap-y-1">
             <Link to="/impressum" className="hover:text-white">Impressum</Link>
