@@ -13,7 +13,7 @@ function LogoItem({ p }: { p: Partner }) {
       rel="noopener noreferrer"
       aria-label={p.name}
       title={p.name}
-      className="group flex h-[150px] w-full items-center justify-center px-6"
+      className="group flex h-[200px] w-full items-center justify-center px-2 sm:px-3"
     >
       <img
         src={p.logo}
@@ -21,7 +21,7 @@ function LogoItem({ p }: { p: Partner }) {
         loading="lazy"
         className={cn(
           "object-contain opacity-90 transition group-hover:opacity-100 group-hover:scale-[1.04]",
-          p.sizeClass ?? "max-h-[120px] max-w-[260px]",
+          p.sizeClass ?? "max-h-[170px] max-w-[340px]",
         )}
       />
     </a>
@@ -89,17 +89,17 @@ export function PartnerCarousel() {
         type="button"
         onClick={scrollPrev}
         aria-label="Previous partners"
-        className="absolute left-1 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-[var(--ithemba-yellow)] text-[var(--ithemba-brown)] shadow-md transition hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ithemba-brown)] focus-visible:ring-offset-2 md:left-2"
+        className="absolute left-0 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full text-[var(--ithemba-blue-dark)]/60 transition hover:bg-black/5 hover:text-[var(--ithemba-blue-dark)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ithemba-blue)]/40 md:left-1"
       >
-        <ChevronLeft className="h-5 w-5" />
+        <ChevronLeft className="h-6 w-6" strokeWidth={1.5} />
       </button>
       <button
         type="button"
         onClick={scrollNext}
         aria-label="Next partners"
-        className="absolute right-1 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-[var(--ithemba-yellow)] text-[var(--ithemba-brown)] shadow-md transition hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ithemba-brown)] focus-visible:ring-offset-2 md:right-2"
+        className="absolute right-0 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full text-[var(--ithemba-blue-dark)]/60 transition hover:bg-black/5 hover:text-[var(--ithemba-blue-dark)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ithemba-blue)]/40 md:right-1"
       >
-        <ChevronRight className="h-5 w-5" />
+        <ChevronRight className="h-6 w-6" strokeWidth={1.5} />
       </button>
     </div>
   );

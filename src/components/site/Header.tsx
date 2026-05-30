@@ -1,5 +1,5 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Menu, X, Heart, ChevronDown } from "lucide-react";
+import { Menu, X, Heart, ChevronDown, Instagram, Facebook, Youtube } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useLang } from "./LanguageProvider";
 import { t } from "@/data/content";
@@ -34,6 +34,19 @@ const navItems: NavItem[] = [
 ];
 
 const languages: Lang[] = ["en", "de", "nl"];
+
+const TikTokIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
+    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V8.79a8.16 8.16 0 0 0 4.77 1.52V6.86a4.85 4.85 0 0 1-1.84-.17z" />
+  </svg>
+);
+
+const socialLinks = [
+  { href: "https://www.instagram.com/ithemba.kuluntu/", label: "Follow iThemba Kuluntu on Instagram", Icon: Instagram },
+  { href: "https://web.facebook.com/people/IThemba-Kuluntu-e-V-NPO/61555304087486/", label: "Follow iThemba Kuluntu on Facebook", Icon: Facebook },
+  { href: "https://www.tiktok.com/@ithemba.kuluntu", label: "Follow iThemba Kuluntu on TikTok", Icon: TikTokIcon },
+  { href: "https://www.youtube.com/@iThembaKuluntu", label: "Follow iThemba Kuluntu on YouTube", Icon: Youtube },
+];
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -156,6 +169,22 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <div className="hidden items-center gap-0.5 xl:flex" role="group" aria-label="Social media">
+            {socialLinks.map(({ href, label, Icon }) => (
+              <a
+                key={href}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                title={label}
+                className="flex h-8 w-8 items-center justify-center rounded-full text-foreground/55 transition-colors hover:bg-[var(--ithemba-cream)] hover:text-[var(--ithemba-blue-dark)]"
+              >
+                <Icon className="h-4 w-4" />
+              </a>
+            ))}
+          </div>
+
           <div
             className="flex items-center gap-0.5 rounded-full border border-black/10 bg-white/70 p-0.5 text-[11px] font-semibold uppercase tracking-wide"
             role="group"
@@ -250,6 +279,20 @@ export function Header() {
                 >
                   {code.toUpperCase()}
                 </button>
+              ))}
+            </div>
+            <div className="mt-3 flex items-center justify-center gap-2" role="group" aria-label="Social media">
+              {socialLinks.map(({ href, label, Icon }) => (
+                <a
+                  key={href}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-black/10 text-foreground/70 transition-colors hover:bg-[var(--ithemba-cream)] hover:text-[var(--ithemba-blue-dark)]"
+                >
+                  <Icon className="h-4 w-4" />
+                </a>
               ))}
             </div>
             <Link to="/donate" onClick={() => setOpen(false)} className="mt-2">
