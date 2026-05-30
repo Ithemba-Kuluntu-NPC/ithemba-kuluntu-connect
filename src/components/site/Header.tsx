@@ -1,5 +1,5 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Menu, X, Heart, ChevronDown } from "lucide-react";
+import { Menu, X, Heart, ChevronDown, Instagram, Facebook, Youtube } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useLang } from "./LanguageProvider";
 import { t } from "@/data/content";
