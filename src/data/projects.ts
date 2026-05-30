@@ -149,17 +149,24 @@ export const focusAreas = [
   { icon: "ShieldAlert", label: { en: "Disaster relief", de: "Katastrophenhilfe" } },
 ];
 
-export type Partner = { name: string; logo: string; url: string; note?: string };
+export type Partner = {
+  name: string;
+  logo: string;
+  url: string;
+  note?: string;
+  /** Tailwind classes controlling per-logo max-height/max-width for visual balance. */
+  sizeClass?: string;
+};
 
 export const partners: Partner[] = [
-  { name: "FNB", logo: "/assets/logos/partners/fnb-logo.png", url: "https://www.fnb.co.za/" },
-  { name: "Fresh Life Produce", logo: "/assets/logos/partners/fresh-life-produce-logo.png", url: "https://freshlifeproduce.com/" },
-  { name: "Gift of the Givers", logo: "/assets/logos/partners/gift-of-the-givers-logo.png", url: "https://giftofthegivers.org/" },
-  { name: "Nando’s", logo: "/assets/logos/partners/nandos-logo.png", url: "https://www.nandos.co.za/" },
-  { name: "Rise Against Hunger Africa", logo: "/assets/logos/partners/rise-against-hunger-logo.png", url: "https://www.riseagainsthunger.org/", note: "[[VERIFY BEFORE LAUNCH: confirm if a South Africa / Africa-specific Rise Against Hunger URL should be used instead]]" },
-  { name: "Star Foundation", logo: "/assets/logos/partners/star-foundation-logo.png", url: "https://thestarfoundation.co.za/" },
-  { name: "Tzu Chi Foundation", logo: "/assets/logos/partners/tzu-chi-logo.png", url: "https://global.tzuchi.org/", note: "[[VERIFY BEFORE LAUNCH: confirm if a South Africa-specific Tzu Chi URL should be used instead]]" },
-  { name: "SA Harvest", logo: "/assets/logos/partners/sa-harvest-logo.png", url: "https://saharvest.org/" },
+  { name: "FNB", logo: "/assets/logos/partners/fnb-logo.png", url: "https://www.fnb.co.za/", sizeClass: "max-h-[110px] max-w-[240px]" },
+  { name: "Fresh Life Produce", logo: "/assets/logos/partners/fresh-life-produce-transparent-logo.png", url: "https://freshlifeproduce.com/", sizeClass: "max-h-[130px] max-w-[260px]" },
+  { name: "Gift of the Givers", logo: "/assets/logos/partners/gift-of-the-givers-logo.png", url: "https://giftofthegivers.org/", sizeClass: "max-h-[140px] max-w-[260px]" },
+  { name: "Nando’s", logo: "/assets/logos/partners/nandos-logo.png", url: "https://www.nandos.co.za/", sizeClass: "max-h-[110px] max-w-[220px]" },
+  { name: "Rise Against Hunger Africa", logo: "/assets/logos/partners/rise-against-hunger-logo.png", url: "https://www.riseagainsthunger.org/", sizeClass: "max-h-[110px] max-w-[300px]", note: "[[VERIFY BEFORE LAUNCH: confirm if a South Africa / Africa-specific Rise Against Hunger URL should be used instead]]" },
+  { name: "Star Foundation", logo: "/assets/logos/partners/star-foundation-logo.png", url: "https://thestarfoundation.co.za/", sizeClass: "max-h-[120px] max-w-[240px]" },
+  { name: "Tzu Chi Foundation", logo: "/assets/logos/partners/tzu-chi-transparent-logo.png", url: "https://global.tzuchi.org/", sizeClass: "max-h-[130px] max-w-[260px]", note: "[[VERIFY BEFORE LAUNCH: confirm if a South Africa-specific Tzu Chi URL should be used instead]]" },
+  { name: "SA Harvest", logo: "/assets/logos/partners/sa-harvest-logo.png", url: "https://saharvest.org/", sizeClass: "max-h-[110px] max-w-[300px]" },
 ];
 
 export const mediaItems = [
