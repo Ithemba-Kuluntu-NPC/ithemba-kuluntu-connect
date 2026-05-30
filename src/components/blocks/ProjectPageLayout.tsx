@@ -11,6 +11,7 @@ import type { Project } from "@/data/projects";
 import { ImpactCounters } from "./ImpactCounters";
 import { SmartImage, SmartLogo } from "@/components/site/Asset";
 import { assets, projectHeroPhoto } from "@/data/assets";
+import { FocusAreaBadges } from "@/components/blocks/FocusAreaBadges";
 
 const projectLogo: Record<string, string | undefined> = {
   ecd: assets.logos.no1Ecd,
@@ -89,6 +90,7 @@ export function ProjectPageLayout({
           </Link>
 
           <div className="mt-6 max-w-3xl">
+            <FocusAreaBadges badges={project.focusAreaBadges} size="md" className="mb-4" />
             <div className="flex items-center gap-3">
               {!logoSrc && (
                 <div className="flex h-14 w-14 items-center justify-center rounded-full shadow-lg ring-2 ring-white/30" style={{ background: project.accent }}>

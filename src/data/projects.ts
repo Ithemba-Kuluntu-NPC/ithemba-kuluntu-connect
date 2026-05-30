@@ -1,3 +1,22 @@
+export type FocusAreaBadge =
+  | "education"
+  | "safe-water"
+  | "food-security"
+  | "skills-livelihoods"
+  | "community-health"
+  | "animal-welfare"
+  | "disaster-relief";
+
+export const focusAreaBadgeMeta: Record<FocusAreaBadge, { src: string; label: string }> = {
+  education: { src: "/assets/icons/project-areas/education-badge.png", label: "Education" },
+  "safe-water": { src: "/assets/icons/project-areas/safe-water-badge.png", label: "Safe water" },
+  "food-security": { src: "/assets/icons/project-areas/food-security-badge.png", label: "Food security" },
+  "skills-livelihoods": { src: "/assets/icons/project-areas/skills-livelihoods-badge.png", label: "Skills and livelihoods" },
+  "community-health": { src: "/assets/icons/project-areas/community-health-badge.png", label: "Community health" },
+  "animal-welfare": { src: "/assets/icons/project-areas/animal-welfare-badge.png", label: "Animal welfare" },
+  "disaster-relief": { src: "/assets/icons/project-areas/disaster-relief-badge.png", label: "Disaster relief" },
+};
+
 export type Project = {
   slug: string;
   path: string;
@@ -7,6 +26,7 @@ export type Project = {
   accent: string;
   bg: string;
   icon: string;
+  focusAreaBadges: FocusAreaBadge[];
 };
 
 export const projects: Project[] = [
@@ -25,6 +45,7 @@ export const projects: Project[] = [
     accent: "#F59E0B",
     bg: "#FEF3C7",
     icon: "GraduationCap",
+    focusAreaBadges: ["education", "food-security", "safe-water", "skills-livelihoods", "community-health"],
   },
   {
     slug: "pureflow",
@@ -38,6 +59,7 @@ export const projects: Project[] = [
     accent: "#0EA5E9",
     bg: "#E0F2FE",
     icon: "Droplet",
+    focusAreaBadges: ["safe-water", "education", "skills-livelihoods", "community-health", "disaster-relief"],
   },
   {
     slug: "greenhouse",
@@ -51,6 +73,7 @@ export const projects: Project[] = [
     accent: "#16A34A",
     bg: "#DCFCE7",
     icon: "Sprout",
+    focusAreaBadges: ["food-security", "skills-livelihoods", "community-health"],
   },
   {
     slug: "food-security",
@@ -64,6 +87,7 @@ export const projects: Project[] = [
     accent: "#EA580C",
     bg: "#FFEDD5",
     icon: "UtensilsCrossed",
+    focusAreaBadges: ["food-security", "community-health"],
   },
   {
     slug: "pondo-dogs",
@@ -77,6 +101,7 @@ export const projects: Project[] = [
     accent: "#D97706",
     bg: "#FEF3C7",
     icon: "PawPrint",
+    focusAreaBadges: ["animal-welfare", "education", "skills-livelihoods", "community-health"],
   },
   {
     slug: "disaster-relief",
@@ -90,6 +115,7 @@ export const projects: Project[] = [
     accent: "#1E40AF",
     bg: "#DBEAFE",
     icon: "ShieldAlert",
+    focusAreaBadges: ["disaster-relief", "safe-water", "education", "skills-livelihoods", "community-health"],
   },
 ];
 
