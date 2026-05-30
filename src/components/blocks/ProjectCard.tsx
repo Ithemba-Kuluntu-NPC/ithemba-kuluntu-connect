@@ -7,6 +7,7 @@ import { t } from "@/data/content";
 import type { Project } from "@/data/projects";
 import { SmartImage, SmartLogo } from "@/components/site/Asset";
 import { assets, projectHeroPhoto } from "@/data/assets";
+import { FocusAreaBadges } from "@/components/blocks/FocusAreaBadges";
 
 const toneMap: Record<string, "warm" | "blue" | "earth" | "sun" | "ocean" | "green"> = {
   ecd: "sun",
