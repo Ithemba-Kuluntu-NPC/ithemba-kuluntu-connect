@@ -87,6 +87,7 @@ export const projects: Project[] = [
     accent: "#EA580C",
     bg: "#FFEDD5",
     icon: "UtensilsCrossed",
+    focusAreaBadges: ["food-security", "community-health"],
   },
   {
     slug: "pondo-dogs",
