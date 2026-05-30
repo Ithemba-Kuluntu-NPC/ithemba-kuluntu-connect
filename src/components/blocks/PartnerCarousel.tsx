@@ -13,7 +13,7 @@ function LogoItem({ p }: { p: Partner }) {
       rel="noopener noreferrer"
       aria-label={p.name}
       title={p.name}
-      className="group flex h-[150px] w-full items-center justify-center px-6"
+      className="group flex h-[200px] w-full items-center justify-center px-2 sm:px-3"
     >
       <img
         src={p.logo}
@@ -21,7 +21,7 @@ function LogoItem({ p }: { p: Partner }) {
         loading="lazy"
         className={cn(
           "object-contain opacity-90 transition group-hover:opacity-100 group-hover:scale-[1.04]",
-          p.sizeClass ?? "max-h-[120px] max-w-[260px]",
+          p.sizeClass ?? "max-h-[170px] max-w-[340px]",
         )}
       />
     </a>
