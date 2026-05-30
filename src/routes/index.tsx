@@ -3,7 +3,7 @@ import { Hero } from "@/components/blocks/Hero";
 import { ImpactCounters } from "@/components/blocks/ImpactCounters";
 import { FocusAreas } from "@/components/blocks/FocusAreas";
 import { ProjectCard } from "@/components/blocks/ProjectCard";
-import { PartnerGrid } from "@/components/blocks/PartnerGrid";
+import { PartnerCarousel } from "@/components/blocks/PartnerCarousel";
 import { DonationWidget } from "@/components/blocks/DonationWidget";
 import { NewsletterSignup } from "@/components/blocks/NewsletterSignup";
 import { projects, impactCounters } from "@/data/projects";
