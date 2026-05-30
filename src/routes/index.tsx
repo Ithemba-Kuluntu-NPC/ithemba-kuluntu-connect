@@ -137,7 +137,7 @@ function Home() {
         <div className="mb-12 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
           <div>
             <div className="hand-eyebrow-lg">{lang === "en" ? "Our" : "Unsere"}</div>
-            <h2 className="-mt-2 font-display text-5xl font-bold text-[var(--ithemba-blue-dark)]">{tr(t.home.ourProjects)}</h2>
+            <h2 className="-mt-2 font-display text-5xl font-bold text-[var(--ithemba-blue-dark)]">{lang === "en" ? "projects" : "Projekte"}</h2>
             <p className="mt-3 max-w-md text-foreground/70">
               {lang === "en"
                 ? "Six interconnected programmes that strengthen rural families every day."
