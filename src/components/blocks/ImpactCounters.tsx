@@ -88,10 +88,8 @@ export function ImpactCounters({
         </div>
 
         <div
-          className={`mt-12 grid gap-x-6 gap-y-10 ${
-            compact
-              ? "grid-cols-2 sm:grid-cols-3 lg:grid-cols-6"
-              : "grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-7"
+          className={`mx-auto mt-12 flex flex-wrap justify-center gap-x-6 gap-y-10 ${
+            compact ? "max-w-6xl" : "max-w-6xl"
           }`}
         >
           {items.map((it, i) => {
@@ -101,11 +99,11 @@ export function ImpactCounters({
             return (
               <div
                 key={i}
-                className="group flex flex-col items-center text-center"
+                className="group flex basis-[calc(50%-12px)] flex-col items-center text-center sm:basis-[calc(33.333%-16px)] lg:basis-[calc(25%-18px)]"
               >
                 <div
                   className="font-display font-extrabold leading-none text-[var(--ithemba-yellow)] drop-shadow-[0_2px_18px_rgba(251,191,36,0.25)]"
-                  style={{ fontSize: "clamp(1.85rem, 3vw, 2.75rem)" }}
+                  style={{ fontSize: "clamp(1.75rem, 2.4vw, 2.5rem)" }}
                 >
                   <Counter value={it.value} suffix={it.suffix} />
                 </div>
@@ -119,6 +117,7 @@ export function ImpactCounters({
             );
           })}
         </div>
+
 
         <div className="mt-10 flex justify-center">
           <Placeholder text="final impact counter values and reporting date" kind="verify" />
