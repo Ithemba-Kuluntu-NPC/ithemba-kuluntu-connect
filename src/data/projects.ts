@@ -120,24 +120,20 @@ export const projects: Project[] = [
 ];
 
 export const impactCounters = [
-  { value: 3000, suffix: "+", icon: "Droplets", label: { en: "Safe water systems distributed", de: "Sauberes-Wasser-Systeme verteilt" } },
-  { value: 14000, suffix: "+", icon: "Users", label: { en: "People reached through PureFlow Amanzi", de: "Menschen erreicht durch PureFlow Amanzi" } },
-  { value: 300000, suffix: "+", icon: "Utensils", label: { en: "Meals served", de: "Mahlzeiten serviert" } },
-  { value: 2800, suffix: "+", icon: "Package", label: { en: "Food hampers distributed", de: "Lebensmittelpakete verteilt" } },
-  { value: 500, suffix: "", icon: "Baby", label: { en: "Children fed daily", de: "Kinder täglich versorgt" } },
-  { value: 600, suffix: "+", icon: "Home", label: { en: "Families supported", de: "Familien unterstützt" } },
-  { value: 13, suffix: "", icon: "MapPin", label: { en: "Villages reached", de: "Dörfer erreicht" } },
+  { value: 3094, suffix: "", icon: "Droplets", iconSrc: "/assets/icons/impact/impact-safe-water-systems.png", label: { en: "Safe water systems distributed", de: "Sauberes-Wasser-Systeme verteilt" } },
+  { value: 15000, suffix: "+", icon: "Users", iconSrc: "/assets/icons/impact/impact-people-reached.png", label: { en: "People reached through PureFlow Amanzi", de: "Menschen erreicht durch PureFlow Amanzi" } },
+  { value: 120, suffix: "", icon: "Baby", iconSrc: "/assets/icons/impact/impact-ecd-children.png", label: { en: "Children attending ECD daily", de: "Kinder täglich im ECD-Zentrum" } },
+  { value: 300000, suffix: "+", icon: "Utensils", iconSrc: "/assets/icons/impact/impact-meals-served.png", label: { en: "Meals served", de: "Mahlzeiten serviert" } },
+  { value: 2863, suffix: "", icon: "Package", iconSrc: "/assets/icons/impact/impact-food-hampers.png", label: { en: "Food hampers distributed", de: "Lebensmittelpakete verteilt" } },
+  { value: 600, suffix: "+", icon: "Bed", iconSrc: "/assets/icons/impact/impact-mattresses.png", label: { en: "Mattresses distributed", de: "Matratzen verteilt" } },
+  { value: 2100, suffix: "+", icon: "Bed", iconSrc: "/assets/icons/impact/impact-blankets.png", label: { en: "Blankets distributed", de: "Decken verteilt" } },
+  { value: 114, suffix: "", icon: "Accessibility", iconSrc: "/assets/icons/impact/impact-wheelchairs.png", label: { en: "Wheelchairs distributed", de: "Rollstühle verteilt" } },
+  { value: 1300, suffix: "+", icon: "Footprints", iconSrc: "/assets/icons/impact/impact-school-shoes.png", label: { en: "School shoes distributed", de: "Schulschuhe verteilt" } },
+  { value: 3000, suffix: "+", icon: "Home", iconSrc: "/assets/icons/impact/impact-families-supported.png", label: { en: "Families supported", de: "Familien unterstützt" } },
+  { value: 20, suffix: "+", icon: "MapPin", iconSrc: "/assets/icons/impact/impact-villages-reached.png", label: { en: "Villages reached", de: "Dörfer erreicht" } },
 ];
 
-export const fullImpactCounters = [
-  ...impactCounters,
-  { value: 250000, suffix: "+ kg", icon: "Truck", label: { en: "Food supplies delivered", de: "Lebensmittellieferungen" } },
-  { value: 2119, suffix: "", icon: "Bed", label: { en: "Blankets provided", de: "Decken bereitgestellt" } },
-  { value: 571, suffix: "", icon: "Bed", label: { en: "Mattresses provided", de: "Matratzen bereitgestellt" } },
-  { value: 114, suffix: "", icon: "Accessibility", label: { en: "Wheelchairs distributed", de: "Rollstühle verteilt" } },
-  { value: 1337, suffix: "", icon: "Footprints", label: { en: "Pairs of school shoes", de: "Paar Schulschuhe" } },
-  { value: 1, suffix: "", icon: "Droplet", label: { en: "Borehole installed", de: "Brunnen installiert" } },
-];
+export const fullImpactCounters = impactCounters;
 
 export const focusAreas = [
   { icon: "BookOpen", label: { en: "Education", de: "Bildung" } },
