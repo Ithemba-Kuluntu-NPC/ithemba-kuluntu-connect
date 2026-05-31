@@ -676,7 +676,7 @@ function WhatMakesDifferent({ c }: { c: AboutContent }) {
       </div>
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="max-w-3xl">
-          <div className="hand-eyebrow !text-[var(--ithemba-yellow)]">{c.different.heading}</div>
+          <div className="hand-eyebrow !text-[var(--ithemba-yellow)]">{c.eyebrows.different}</div>
           <h2 className="mt-1 font-display text-3xl font-bold md:text-4xl">{c.different.heading}</h2>
           <p className="mt-4 text-white/85 leading-relaxed">{c.different.intro}</p>
           <p className="mt-2 text-sm font-medium uppercase tracking-wider text-[var(--ithemba-yellow)]">
