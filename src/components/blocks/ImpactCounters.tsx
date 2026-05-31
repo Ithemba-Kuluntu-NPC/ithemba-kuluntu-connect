@@ -100,7 +100,7 @@ export function ImpactCounters({
             return (
               <div
                 key={i}
-                className="group flex basis-[calc(50%-12px)] flex-col items-center text-center sm:basis-[calc(33.333%-16px)] lg:basis-[calc(25%-18px)]"
+                className="group flex basis-[calc(50%-12px)] flex-col items-center text-center sm:basis-[calc(33.333%-16px)] lg:basis-[calc(33.333%-16px)] xl:basis-[calc(25%-18px)]"
               >
                 <div
                   className="font-display font-extrabold leading-none text-[var(--ithemba-yellow)] drop-shadow-[0_2px_18px_rgba(251,191,36,0.25)]"
@@ -108,8 +108,17 @@ export function ImpactCounters({
                 >
                   <Counter value={it.value} suffix={it.suffix} />
                 </div>
-                <div className="mt-3 flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-[var(--ithemba-yellow)] ring-1 ring-white/20 backdrop-blur-sm transition group-hover:bg-white/15">
-                  <Icon className="h-5 w-5" />
+                <div className="mt-3 flex h-14 w-14 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/20 backdrop-blur-sm transition group-hover:bg-white/15">
+                  {it.iconSrc ? (
+                    <img
+                      src={it.iconSrc}
+                      alt=""
+                      aria-hidden
+                      className="h-8 w-8 object-contain"
+                    />
+                  ) : (
+                    <Icon className="h-5 w-5 text-[var(--ithemba-yellow)]" />
+                  )}
                 </div>
                 <div className="mt-3 max-w-[14rem] text-[12px] font-medium leading-snug text-white/85 md:text-sm">
                   {t(it.label)}
