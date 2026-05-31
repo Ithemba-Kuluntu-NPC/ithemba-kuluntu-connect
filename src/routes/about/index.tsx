@@ -404,6 +404,7 @@ const NL: AboutContent = {
   },
   cta: {
     heading: "Loop met ons mee",
+    blueHeading: "Word deel van deze reis",
     paragraphs: [
       "iThemba Kuluntu bestaat omdat praktische zorg het dagelijks leven kan veranderen — één kind, één huishouden, één gezin en één gemeenschap tegelijk.",
       "Of u nu maandelijks doneert, partner wordt, ons werk deelt of ons helpt nieuwe supporters te bereiken: u wordt onderdeel van een groeiende kring van mensen die landelijke gemeenschappen in Zuid-Afrika helpen bouwen aan een veiligere, sterkere en waardigere toekomst.",
