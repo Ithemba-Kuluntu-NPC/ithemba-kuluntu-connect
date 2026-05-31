@@ -1,0 +1,171 @@
+ABOUT US PAGE — GERMAN REWRITE V1.0
+
+HERO SECTION
+
+Script heading:
+Über uns
+
+Main heading:
+iThemba Kuluntu
+
+Hero subtitle:
+Praktische, gemeindenahe Unterstützung für ländliche Familien in Südafrika — getragen von lokaler Verantwortung, internationaler Solidarität und langfristiger Begleitung.
+
+Hero short text:
+iThemba Kuluntu verbindet direkte Gemeindearbeit in Cwebeni, Port St Johns, Südafrika, mit Unterstützung, Partnerschaften und Aufklärungsarbeit aus Deutschland und darüber hinaus.
+
+SECTION 1 — WHO WE ARE
+
+Heading:
+Wer wir sind
+
+Text:
+iThemba Kuluntu ist eine gemeindenahe gemeinnützige Struktur, die ländliche Familien in Südafrika stärkt. Die praktische Arbeit vor Ort wird von iThemba Kuluntu NPC in Cwebeni, Port St Johns, im Eastern Cape umgesetzt und koordiniert. In Deutschland unterstützt iThemba Kuluntu e.V. diese Arbeit durch Aufklärungsarbeit, Fundraising, Partnerschaften und langfristige organisatorische Begleitung.
+
+Wir arbeiten an der Seite von Gemeinschaften, die mit miteinander verbundenen Herausforderungen leben: unsicherem Wasser, Ernährungsunsicherheit, begrenztem Zugang zu frühkindlicher Bildung, Armut, akuten Notlagen und fehlendem Zugang zu grundlegender tiermedizinischer Versorgung. Unsere Antwort ist ebenfalls verbunden — durch frühkindliche Bildung, sicheres Wasser, Ernährungssicherheit, lokale Arbeitsmöglichkeiten, Gemeindefürsorge, Tierschutz und Katastrophenhilfe.
+
+Das Herz von iThemba Kuluntu ist lokales Vertrauen. Wir glauben nicht an kurzfristige Lösungen von außen, die wieder verschwinden. Wir glauben an praktische Arbeit, die Gemeinschaften verstehen, nutzen, vertrauen und selbst mittragen können.
+
+SECTION 2 — WHERE WE WORK
+
+Heading:
+Wo wir arbeiten
+
+Text:
+Unsere Arbeit ist in Cwebeni, Port St Johns, an der Wild Coast in Pondoland, Eastern Cape, Südafrika, verwurzelt. Es ist eine ländliche Region mit starker Gemeinschaft, kulturellem Reichtum und großer natürlicher Schönheit — aber auch ein Ort, an dem viele Familien täglich mit Hindernissen beim Zugang zu Wasser, Nahrung, Transport, Bildung, Gesundheitsversorgung und Nothilfe konfrontiert sind.
+
+Für viele Haushalte hängen grundlegende Bedürfnisse eng zusammen. Unsicheres Wasser beeinflusst Gesundheit, Schulbesuch und Familienkosten. Hunger beeinträchtigt Lernen und Wohlbefinden. Armut begrenzt den Zugang zu Transport, medizinischer Versorgung, Tierhilfe und Zukunftschancen. Eine Krise wie eine Überschwemmung, ein Brand oder eine Krankheit kann schnell existenziell werden.
+
+Darum ist unsere Arbeit praktisch und ortsbezogen. Wir reagieren auf das, was Gemeinschaften tatsächlich erleben — mit Menschen, die die Region kennen, Familien verstehen und vor, während und nach der Unterstützung präsent sind.
+
+SECTION 3 — HOW THE GERMAN E.V. AND SOUTH AFRICAN NPC WORK TOGETHER
+
+Heading:
+Eine Mission, zwei rechtliche Strukturen
+
+Text:
+iThemba Kuluntu NPC ist die in Südafrika registrierte gemeinnützige Gesellschaft, die die praktische Projektarbeit vor Ort umsetzt und koordiniert. Dazu gehören Programme wie das No.1 ECD Centre, PureFlow Amanzi, Ernährungssicherheit, Pondo Dogs und Nothilfe.
+
+iThemba Kuluntu e.V. ist der gemeinnützige Verein mit Sitz in Kirchhundem, Deutschland. Der e.V. unterstützt die Arbeit in Südafrika durch Aufklärungsarbeit, Spendenmobilisierung, Partnerschaftsaufbau, Kommunikation und langfristige internationale Unterstützung für die Projekte.
+
+Beide Organisationen teilen dieselbe Mission: ländliche Gemeinschaften durch praktische, würdevolle und lokal verankerte Unterstützung zu stärken. Diese Struktur ermöglicht es Menschen in Deutschland und Europa, direkt zu gemeindegeführter Arbeit in Südafrika beizutragen, während die operative Arbeit nah bei den Gemeinschaften bleibt, denen sie dient.
+
+SECTION 4 — WHAT MAKES US DIFFERENT
+
+Heading:
+Was iThemba Kuluntu besonders macht
+
+Text:
+Wir arbeiten mit Gemeinschaften, nicht über sie hinweg. Unsere Arbeit beginnt mit Zuhören, lokalen Beziehungen und praktischen Bedürfnissen, die im Alltag sichtbar sind.
+
+Was unseren Ansatz auszeichnet:
+
+Lokale Verantwortung:
+Projekte werden von Menschen mitgestaltet und getragen, die die Gemeinschaft kennen und lokale Realitäten verstehen.
+
+Praktische Umsetzung:
+Wir konzentrieren uns auf konkrete Unterstützung — Mahlzeiten, Wassersysteme, frühes Lernen, Notfallversorgung, Tierhilfe, Schulungen, Verteilung und Nachbetreuung.
+
+Verbundene Hilfe:
+Wir behandeln Wasser, Nahrung, Bildung, Einkommen, Tierschutz und Nothilfe nicht als getrennte Probleme. Im Alltag ländlicher Familien hängt all das zusammen — deshalb muss auch unsere Antwort zusammenhängend sein.
+
+Langfristige Begleitung:
+Unser Ziel sind Strukturen, die bleiben, nicht einmalige Interventionen, die nach einem Fototermin verschwinden.
+
+Lokale Arbeitsmöglichkeiten:
+Wo immer möglich, schaffen unsere Projekte bezahlte Rollen und praktische Arbeitsmöglichkeiten für Menschen vor Ort, insbesondere für Frauen.
+
+Vertrauen und Verantwortung:
+Wir verbinden Vertrauen in der Gemeinschaft mit Registrierung, Governance, Dokumentation, Monitoring und Partnerschaften.
+
+SECTION 5 — WHAT GUIDES US
+
+Heading:
+Was uns leitet
+
+Card 1:
+Würde
+
+Text:
+Unterstützung darf Menschen niemals ihre Würde nehmen. Wir glauben an praktische Hilfe, die Familien, Gemeinschaften und lokales Wissen respektiert.
+
+Card 2:
+Lokale Mitverantwortung
+
+Text:
+Nachhaltige Veränderung entsteht, wenn Gemeinschaften Lösungen verstehen, nutzen und mittragen können, die ihr eigenes Leben betreffen.
+
+Card 3:
+Praktische Lösungen
+
+Text:
+Wir konzentrieren uns auf das, was tatsächlich umgesetzt, genutzt und erhalten werden kann — von sicheren Wassersystemen über Mahlzeiten und Lernräume bis hin zu Nothilfe und Tierfürsorge.
+
+Card 4:
+Langfristiges Vertrauen
+
+Text:
+Vertrauen entsteht durch Präsenz, Verlässlichkeit und konsequentes Dranbleiben. Unsere Arbeit hängt davon ab, auch nach der ersten Unterstützung weiter da zu sein.
+
+SECTION 6 — GOVERNANCE AND TRUST
+
+Heading:
+Governance und Vertrauen
+
+Text:
+Vertrauen ist entscheidend — besonders dann, wenn Menschen spenden, Partnerschaften eingehen oder gemeinnütziger Arbeit Verantwortung übertragen. iThemba Kuluntu ist auf formaler Registrierung, klarer Verantwortlichkeit und praktischer Berichterstattung aufgebaut.
+
+Südafrika:
+iThemba Kuluntu NPC ist in Südafrika als gemeinnützige Gesellschaft registriert und als Public Benefit Organisation anerkannt. Die Organisation ist außerdem NPO-registriert und VAT-registriert.
+
+Deutschland:
+iThemba Kuluntu e.V. ist in Deutschland registriert und unterstützt die Arbeit in Südafrika durch Fundraising, Aufklärungsarbeit, Partnerschaften und organisatorische Begleitung.
+
+Trust points:
+Registrierte gemeinnützige Strukturen in Südafrika und Deutschland
+Public Benefit Organisation Status in Südafrika
+Lokale Führung und gemeindenahe Umsetzung
+Transparente Projektkommunikation
+Monitoring und Nachbetreuung, wo Programme dies erfordern
+Partnerschaften mit vertrauenswürdigen Organisationen und Unterstützern
+
+SECTION 7 — OUR WORK TODAY
+
+Heading:
+Unsere Arbeit heute
+
+Text:
+Heute arbeitet iThemba Kuluntu in mehreren miteinander verbundenen Programmen:
+
+No.1 ECD Centre:
+Ein sicherer, fröhlicher und kostenfrei zugänglicher Ort für frühkindliche Bildung für kleine Kinder.
+
+PureFlow Amanzi:
+Ein Programm für sicheres Wasser, das Filtration, WASH-Bildung, lokale Verteilung und Nachbetreuung verbindet.
+
+Ernährungssicherheit:
+Mahlzeiten, Lebensmittelpakete, Gemeinschaftsküchen und Partnerschaften zur Lebensmittelrettung für Familien, die von Hunger betroffen sind.
+
+Greenhouse mit SA Harvest:
+Lebensmittelanbau, Ernährung und praktische Fähigkeiten als Beitrag zur Widerstandskraft der Gemeinschaft.
+
+Pondo Dogs:
+Tierschutz für Hunde und andere Haus- und Nutztiere, einschließlich Sterilisation, Futter, medizinischer Versorgung und humaner Aufklärung.
+
+Nothilfe & Katastrophenhilfe:
+Praktische Unterstützung für Familien, die von Überschwemmungen, Bränden, medizinischen Notfällen oder plötzlicher Not betroffen sind.
+
+SECTION 8 — CLOSING CTA
+
+Heading:
+Gehen Sie diesen Weg mit uns
+
+Text:
+iThemba Kuluntu gibt es, weil praktische Fürsorge den Alltag verändern kann — für ein Kind, einen Haushalt, eine Familie und eine Gemeinschaft nach der anderen.
+
+Ob Sie monatlich spenden, Partner werden, unsere Arbeit teilen oder uns mit neuen Unterstützerinnen und Unterstützern verbinden: Sie werden Teil eines wachsenden Kreises von Menschen, die ländlichen Gemeinschaften in Südafrika helfen, sicherere, stärkere und würdevollere Zukunftsperspektiven aufzubauen.
+
+Buttons:
+Unser Team kennenlernen
+Unsere Projekte entdecken
+Monatlich spenden
