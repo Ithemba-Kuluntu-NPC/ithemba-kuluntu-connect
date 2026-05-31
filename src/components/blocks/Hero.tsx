@@ -16,7 +16,7 @@ export function Hero() {
         <img
           src={heroPhoto}
           alt="Children in Pondoland sharing a joyful high-five with bubbles in the sunlight"
-          className="h-full w-full object-cover object-[80%_center] md:object-[78%_center]"
+          className="h-full w-full object-cover object-[95%_center] md:object-right"
           loading="eager"
           decoding="async"
         />
