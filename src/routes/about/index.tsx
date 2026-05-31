@@ -503,9 +503,22 @@ function HeroVideo({ c }: { c: AboutContent }) {
           <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] drop-shadow-sm flex items-center gap-2">
             <Sparkles className="h-5 w-5" aria-hidden /> {c.hero.eyebrow}
           </div>
-          <h1 className="mt-3 font-display text-[clamp(2.5rem,7vw,4.75rem)] font-extrabold leading-[0.95] tracking-tight">
-            {c.hero.title}
-            <svg className="mt-2 block w-48 md:w-72" height="14" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden>
+          <h1 className="mt-4">
+            <span className="sr-only">{c.hero.title}</span>
+            <SmartLogo
+              src={assets.logos.ithembaTextWhite}
+              alt={c.hero.title}
+              className="h-16 w-auto drop-shadow-[0_4px_24px_rgba(0,0,0,0.45)] md:h-24 lg:h-28"
+              fallback={
+                <span
+                  aria-hidden
+                  className="block font-display text-[clamp(2.5rem,7vw,4.75rem)] font-extrabold leading-[0.95] tracking-tight text-white"
+                >
+                  {c.hero.title}
+                </span>
+              }
+            />
+            <svg className="mt-3 block w-48 md:w-72" height="14" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden>
               <path d="M2,8 C50,2 120,14 198,6" stroke="var(--ithemba-yellow)" strokeWidth="4" strokeLinecap="round" fill="none" />
             </svg>
           </h1>
