@@ -851,7 +851,7 @@ function OurWorkToday({ c }: { c: AboutContent }) {
   return (
     <section className="mx-auto max-w-7xl px-4 py-16 md:py-20 lg:px-8">
       <div className="max-w-2xl">
-        <div className="hand-eyebrow">{c.work.heading}</div>
+        <div className="hand-eyebrow">{c.eyebrows.work}</div>
         <h2 className="mt-1 font-display text-3xl font-bold text-[var(--ithemba-blue-dark)] md:text-4xl">
           {c.work.heading}
         </h2>
