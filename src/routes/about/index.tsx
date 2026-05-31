@@ -743,16 +743,20 @@ function WhatGuidesUs({ c }: { c: AboutContent }) {
 function Governance({ c }: { c: AboutContent }) {
   const g = c.governance;
   return (
-    <section className="bg-[var(--ithemba-cream)] py-16 md:py-20">
+    <section className="relative isolate overflow-hidden bg-[var(--ithemba-blue-deepest)] py-16 text-white md:py-20">
+      <div className="absolute inset-0 -z-10 opacity-50">
+        <div className="absolute -left-24 top-10 h-72 w-72 rounded-full bg-[var(--ithemba-blue)]/40 blur-3xl" />
+        <div className="absolute right-0 bottom-0 h-80 w-80 rounded-full bg-[var(--ithemba-yellow)]/15 blur-3xl" />
+      </div>
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
-          <div className="hand-eyebrow inline-flex items-center justify-center gap-2">
-            <ShieldCheck className="h-4 w-4" /> {g.heading}
+          <div className="hand-eyebrow !text-[var(--ithemba-yellow)] inline-flex items-center justify-center gap-2">
+            <ShieldCheck className="h-4 w-4" /> {c.eyebrows.governance}
           </div>
-          <h2 className="mt-1 font-display text-3xl font-bold text-[var(--ithemba-blue-dark)] md:text-4xl">
+          <h2 className="mt-1 font-display text-3xl font-bold md:text-4xl">
             {g.heading}
           </h2>
-          <p className="mt-4 text-foreground/85 leading-relaxed">{g.intro}</p>
+          <p className="mt-4 text-white/85 leading-relaxed">{g.intro}</p>
         </div>
 
         {/* Two countries */}
