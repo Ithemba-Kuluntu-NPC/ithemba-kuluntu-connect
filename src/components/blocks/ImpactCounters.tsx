@@ -108,16 +108,16 @@ export function ImpactCounters({
                 >
                   <Counter value={it.value} suffix={it.suffix} />
                 </div>
-                <div className="mt-3 flex h-14 w-14 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/20 backdrop-blur-sm transition group-hover:bg-white/15">
+                <div className="mt-4 flex items-center justify-center">
                   {it.iconSrc ? (
                     <img
                       src={it.iconSrc}
                       alt=""
                       aria-hidden
-                      className="h-8 w-8 object-contain"
+                      className="h-[42px] w-[42px] object-contain drop-shadow-[0_2px_10px_rgba(251,191,36,0.25)] md:h-16 md:w-16"
                     />
                   ) : (
-                    <Icon className="h-5 w-5 text-[var(--ithemba-yellow)]" />
+                    <Icon className="h-10 w-10 text-[var(--ithemba-yellow)] md:h-14 md:w-14" />
                   )}
                 </div>
                 <div className="mt-3 max-w-[14rem] text-[12px] font-medium leading-snug text-white/85 md:text-sm">
