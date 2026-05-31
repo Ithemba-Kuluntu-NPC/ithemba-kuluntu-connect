@@ -581,7 +581,7 @@ function WhereWeWork({ c }: { c: AboutContent }) {
       </div>
       <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 md:grid-cols-[1.1fr_1fr] lg:px-8">
         <div>
-          <div className="hand-eyebrow">{c.where.heading}</div>
+          <div className="hand-eyebrow">{c.eyebrows.where}</div>
           <h2 className="mt-1 font-display text-3xl font-bold text-[var(--ithemba-blue-dark)] md:text-4xl">
             {c.where.heading}
           </h2>
