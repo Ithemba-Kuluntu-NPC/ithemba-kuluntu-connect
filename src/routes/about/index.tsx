@@ -291,6 +291,7 @@ const DE: AboutContent = {
   },
   cta: {
     heading: "Gehen Sie diesen Weg mit uns",
+    blueHeading: "Werden Sie Teil dieses Weges",
     paragraphs: [
       "iThemba Kuluntu gibt es, weil praktische Fürsorge den Alltag verändern kann — für ein Kind, einen Haushalt, eine Familie und eine Gemeinschaft nach der anderen.",
       "Ob Sie monatlich spenden, Partner werden, unsere Arbeit teilen oder uns mit neuen Unterstützerinnen und Unterstützern verbinden: Sie werden Teil eines wachsenden Kreises von Menschen, die ländlichen Gemeinschaften in Südafrika helfen, sicherere, stärkere und würdevollere Zukunftsperspektiven aufzubauen.",
