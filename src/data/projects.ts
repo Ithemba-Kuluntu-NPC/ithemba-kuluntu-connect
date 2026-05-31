@@ -20,9 +20,9 @@ export const focusAreaBadgeMeta: Record<FocusAreaBadge, { src: string; label: st
 export type Project = {
   slug: string;
   path: string;
-  title: { en: string; de: string };
-  tagline: { en: string; de: string };
-  description: { en: string; de: string };
+  title: { en: string; de: string; nl?: string };
+  tagline: { en: string; de: string; nl?: string };
+  description: { en: string; de: string; nl?: string };
   accent: string;
   bg: string;
   icon: string;
@@ -33,14 +33,16 @@ export const projects: Project[] = [
   {
     slug: "ecd",
     path: "/projects/ecd",
-    title: { en: "No.1 ECD Centre", de: "No.1 ECD-Zentrum" },
+    title: { en: "No.1 ECD Centre", de: "No.1 ECD Centre", nl: "No.1 ECD Centre" },
     tagline: {
-      en: "Early learning, joyfully delivered.",
-      de: "Frühkindliche Bildung — mit Freude vermittelt.",
+      en: "One child. One month. A stronger start.",
+      de: "Ein Kind. Ein Monat. Ein stärkerer Start.",
+      nl: "Eén kind. Eén maand. Een sterkere start.",
     },
     description: {
-      en: "A safe, joyful place where young children learn, play, eat and prepare for Grade R.",
-      de: "Ein sicherer, fröhlicher Ort, an dem kleine Kinder lernen, spielen, essen und sich auf die Grade R vorbereiten.",
+      en: "A safe, joyful and free-to-attend early learning centre where young children eat, play, learn and prepare for school — while creating paid roles for local women as teachers, cooks and carers.",
+      de: "Ein sicherer, fröhlicher und kostenfrei zugänglicher Ort für frühkindliche Bildung in Südafrika, an dem kleine Kinder essen, spielen, lernen und sich auf die Schule vorbereiten — während zugleich bezahlte Arbeitsplätze für Frauen vor Ort als Lehrerinnen, Köchinnen und Betreuungspersonen entstehen.",
+      nl: "Een veilige, vrolijke en kosteloos toegankelijke plek voor vroegschoolse educatie in Zuid-Afrika, waar jonge kinderen eten, spelen, leren en zich voorbereiden op school — terwijl er tegelijk betaalde banen ontstaan voor vrouwen ter plaatse als leerkrachten, koks en verzorgers.",
     },
     accent: "#F59E0B",
     bg: "#FEF3C7",
@@ -50,11 +52,16 @@ export const projects: Project[] = [
   {
     slug: "pureflow",
     path: "/projects/pureflow",
-    title: { en: "PureFlow Amanzi", de: "PureFlow Amanzi" },
-    tagline: { en: "Safe water. Stronger communities.", de: "Sauberes Wasser. Stärkere Gemeinschaften." },
+    title: { en: "PureFlow Amanzi", de: "PureFlow Amanzi", nl: "PureFlow Amanzi" },
+    tagline: {
+      en: "One family. Safer water. Stronger daily life.",
+      de: "Eine Familie. Sichereres Wasser. Ein stärkerer Alltag.",
+      nl: "Eén gezin. Veiliger water. Een sterker dagelijks leven.",
+    },
     description: {
-      en: "Practical safe water access for households, schools and ECD centres.",
-      de: "Praktischer Zugang zu sauberem Wasser für Haushalte, Schulen und ECD-Zentren.",
+      en: "A community-based safe water programme bringing household filtration, WASH education, local delivery and follow-up support to rural families, schools and ECD centres.",
+      de: "Ein gemeindebasiertes Programm für sicheres Wasser in Südafrika, das Haushaltsfiltration, WASH-Bildung, lokale Verteilung und Nachbetreuung zu Familien, Schulen und ECD-Zentren in ländlichen Gemeinden bringt.",
+      nl: "Een gemeenschapsgericht programma voor veilig water in Zuid-Afrika, dat huishoudfiltratie, WASH-educatie, lokale distributie en opvolging brengt naar gezinnen, scholen en ECD-centra in landelijke gemeenschappen.",
     },
     accent: "#0EA5E9",
     bg: "#E0F2FE",
@@ -64,11 +71,16 @@ export const projects: Project[] = [
   {
     slug: "greenhouse",
     path: "/projects/greenhouse",
-    title: { en: "Greenhouse with SA Harvest", de: "Gewächshaus mit SA Harvest" },
-    tagline: { en: "Food, skills and nutrition close to home.", de: "Nahrung, Fähigkeiten und Ernährung vor Ort." },
+    title: { en: "Greenhouse with SA Harvest", de: "Greenhouse mit SA Harvest", nl: "Greenhouse met SA Harvest" },
+    tagline: {
+      en: "Food, skills and nutrition close to home.",
+      de: "Nahrung, Fähigkeiten und Ernährung nah an der Gemeinschaft.",
+      nl: "Voedsel, vaardigheden en voeding dicht bij de gemeenschap.",
+    },
     description: {
-      en: "Growing food, training local women and linking nutrition to early learning.",
-      de: "Nahrungsmittel anbauen, lokale Frauen ausbilden und Ernährung mit frühkindlicher Bildung verbinden.",
+      en: "A greenhouse partnership that grows food, strengthens nutrition and creates practical learning and work opportunities for local women and the wider community.",
+      de: "Eine Gewächshaus-Partnerschaft, die Lebensmittel anbaut, Ernährung stärkt und praktische Lern- und Arbeitsmöglichkeiten für Frauen vor Ort und die weitere Gemeinschaft schafft.",
+      nl: "Een kaspartnerschap dat voedsel verbouwt, voeding versterkt en praktische leer- en werkmogelijkheden creëert voor vrouwen ter plaatse en de bredere gemeenschap.",
     },
     accent: "#16A34A",
     bg: "#DCFCE7",
@@ -78,11 +90,16 @@ export const projects: Project[] = [
   {
     slug: "food-security",
     path: "/projects/food-security",
-    title: { en: "Food Security", de: "Ernährungssicherheit" },
-    tagline: { en: "Meals that protect families from hunger.", de: "Mahlzeiten, die Familien vor Hunger schützen." },
+    title: { en: "Food Security", de: "Ernährungssicherheit", nl: "Voedselzekerheid" },
+    tagline: {
+      en: "Meals that protect families from hunger.",
+      de: "Mahlzeiten, die Familien vor Hunger schützen.",
+      nl: "Maaltijden die gezinnen beschermen tegen honger.",
+    },
     description: {
-      en: "Meals, food parcels, community kitchens and rescued food partnerships.",
-      de: "Mahlzeiten, Lebensmittelpakete, Gemeinschaftsküchen und Partnerschaften zur Lebensmittelrettung.",
+      en: "Through meals, food parcels, community kitchens and food rescue partnerships, we help families through times when food is not guaranteed.",
+      de: "Durch Mahlzeiten, Lebensmittelpakete, Gemeinschaftsküchen und Partnerschaften zur Rettung von Lebensmitteln helfen wir Familien in Südafrika in Zeiten, in denen Nahrung nicht gesichert ist.",
+      nl: "Met maaltijden, voedselpakketten, gemeenschapskeukens en partnerschappen rond voedselredding helpen we gezinnen in Zuid-Afrika in periodes waarin voedsel niet vanzelfsprekend is.",
     },
     accent: "#EA580C",
     bg: "#FFEDD5",
@@ -92,11 +109,16 @@ export const projects: Project[] = [
   {
     slug: "pondo-dogs",
     path: "/projects/pondo-dogs",
-    title: { en: "Pondo Dogs", de: "Pondo Dogs" },
-    tagline: { en: "Animal welfare for community wellbeing.", de: "Tierwohl für das Wohl der Gemeinschaft." },
+    title: { en: "Pondo Dogs", de: "Pondo Dogs", nl: "Pondo Dogs" },
+    tagline: {
+      en: "Healthier animals. Kinder communities.",
+      de: "Gesündere Tiere. Freundlichere Gemeinschaften.",
+      nl: "Gezondere dieren. Vriendelijkere gemeenschappen.",
+    },
     description: {
-      en: "Care for animals as part of community wellbeing — safer, healthier lives for dogs and families.",
-      de: "Tiere als Teil des Gemeinschaftswohls — sichereres, gesünderes Leben für Hunde und Familien.",
+      en: "Animal welfare is part of community wellbeing. Through Pondo Dogs, we support dogs and other domestic or working animals with sterilisation, food, medical care, emergency help and humane education — helping animals and families live safer, healthier lives.",
+      de: "Tierschutz ist Teil des Wohlergehens einer Gemeinschaft. Durch Pondo Dogs werden Hunde und andere Haus- und Nutztiere mit Sterilisation, Futter, medizinischer Versorgung, Nothilfe und humaner Aufklärung unterstützt — damit Tiere und Familien sicherer und gesünder leben können.",
+      nl: "Dierenwelzijn is onderdeel van het welzijn van een gemeenschap. Via Pondo Dogs worden honden en andere huis- en werkdieren ondersteund met sterilisatie, voeding, medische zorg, noodhulp en humane educatie — zodat dieren en gezinnen veiliger en gezonder kunnen leven.",
     },
     accent: "#D97706",
     bg: "#FEF3C7",
@@ -106,11 +128,16 @@ export const projects: Project[] = [
   {
     slug: "disaster-relief",
     path: "/projects/disaster-relief",
-    title: { en: "Disaster Relief", de: "Katastrophenhilfe" },
-    tagline: { en: "Practical help when crisis hits.", de: "Praktische Hilfe in der Krise." },
+    title: { en: "Disaster Relief", de: "Nothilfe & Katastrophenhilfe", nl: "Noodhulp & rampenhulp" },
+    tagline: {
+      en: "Practical help when crisis hits.",
+      de: "Praktische Hilfe, wenn eine Krise eintritt.",
+      nl: "Praktische hulp wanneer een crisis toeslaat.",
+    },
     description: {
-      en: "Practical support when families face floods, fires, medical crises or sudden hardship.",
-      de: "Praktische Unterstützung bei Überschwemmungen, Bränden, medizinischen Notfällen oder plötzlicher Not.",
+      en: "When families face floods, fires, medical crises or sudden hardship, we respond with practical support rooted in local knowledge and community trust.",
+      de: "Wenn Familien von Überschwemmungen, Bränden, medizinischen Notfällen oder plötzlicher Not betroffen sind, unterstützt iThemba Kuluntu mit praktischer Hilfe, die auf lokaler Kenntnis und Vertrauen in der Gemeinschaft beruht.",
+      nl: "Wanneer gezinnen worden getroffen door overstromingen, branden, medische noodsituaties of plotselinge tegenslag, ondersteunt iThemba Kuluntu met praktische hulp die is gebaseerd op lokale kennis en vertrouwen binnen de gemeenschap.",
     },
     accent: "#1E40AF",
     bg: "#DBEAFE",
@@ -120,29 +147,29 @@ export const projects: Project[] = [
 ];
 
 export const impactCounters = [
-  { value: 3094, suffix: "", icon: "Droplets", iconSrc: "/assets/icons/impact/impact-safe-water-systems.png", label: { en: "Safe water systems distributed", de: "Sauberes-Wasser-Systeme verteilt" } },
-  { value: 15000, suffix: "+", icon: "Users", iconSrc: "/assets/icons/impact/impact-people-reached.png", label: { en: "People reached through PureFlow Amanzi", de: "Menschen erreicht durch PureFlow Amanzi" } },
-  { value: 120, suffix: "", icon: "Baby", iconSrc: "/assets/icons/impact/impact-ecd-children.png", label: { en: "Children attending ECD daily", de: "Kinder täglich im ECD-Zentrum" } },
-  { value: 300000, suffix: "+", icon: "Utensils", iconSrc: "/assets/icons/impact/impact-meals-served.png", label: { en: "Meals served", de: "Mahlzeiten serviert" } },
-  { value: 2863, suffix: "", icon: "Package", iconSrc: "/assets/icons/impact/impact-food-hampers.png", label: { en: "Food hampers distributed", de: "Lebensmittelpakete verteilt" } },
-  { value: 600, suffix: "+", icon: "Bed", iconSrc: "/assets/icons/impact/impact-mattresses.png", label: { en: "Mattresses distributed", de: "Matratzen verteilt" } },
-  { value: 2100, suffix: "+", icon: "Bed", iconSrc: "/assets/icons/impact/impact-blankets.png", label: { en: "Blankets distributed", de: "Decken verteilt" } },
-  { value: 114, suffix: "", icon: "Accessibility", iconSrc: "/assets/icons/impact/impact-wheelchairs.png", label: { en: "Wheelchairs distributed", de: "Rollstühle verteilt" } },
-  { value: 1300, suffix: "+", icon: "Footprints", iconSrc: "/assets/icons/impact/impact-school-shoes.png", label: { en: "School shoes distributed", de: "Schulschuhe verteilt" } },
-  { value: 3000, suffix: "+", icon: "Home", iconSrc: "/assets/icons/impact/impact-families-supported.png", label: { en: "Families supported", de: "Familien unterstützt" } },
-  { value: 20, suffix: "+", icon: "MapPin", iconSrc: "/assets/icons/impact/impact-villages-reached.png", label: { en: "Villages reached", de: "Dörfer erreicht" } },
+  { value: 3094, suffix: "", icon: "Droplets", iconSrc: "/assets/icons/impact/impact-safe-water-systems.png", label: { en: "Safe water systems distributed", de: "Wassersysteme verteilt", nl: "Watersystemen verdeeld" } },
+  { value: 15000, suffix: "+", icon: "Users", iconSrc: "/assets/icons/impact/impact-people-reached.png", label: { en: "People reached through PureFlow Amanzi", de: "Menschen durch PureFlow Amanzi erreicht", nl: "Mensen bereikt via PureFlow Amanzi" } },
+  { value: 120, suffix: "", icon: "Baby", iconSrc: "/assets/icons/impact/impact-ecd-children.png", label: { en: "Children attending ECD daily", de: "Kinder täglich im ECD Centre betreut", nl: "Kinderen dagelijks in het ECD Centre begeleid" } },
+  { value: 300000, suffix: "+", icon: "Utensils", iconSrc: "/assets/icons/impact/impact-meals-served.png", label: { en: "Meals served", de: "Mahlzeiten ausgegeben", nl: "Maaltijden verstrekt" } },
+  { value: 2863, suffix: "", icon: "Package", iconSrc: "/assets/icons/impact/impact-food-hampers.png", label: { en: "Food hampers distributed", de: "Lebensmittelpakete verteilt", nl: "Voedselpakketten verdeeld" } },
+  { value: 600, suffix: "+", icon: "Bed", iconSrc: "/assets/icons/impact/impact-mattresses.png", label: { en: "Mattresses distributed", de: "Matratzen verteilt", nl: "Matrassen verdeeld" } },
+  { value: 2100, suffix: "+", icon: "Bed", iconSrc: "/assets/icons/impact/impact-blankets.png", label: { en: "Blankets distributed", de: "Decken verteilt", nl: "Dekens verdeeld" } },
+  { value: 114, suffix: "", icon: "Accessibility", iconSrc: "/assets/icons/impact/impact-wheelchairs.png", label: { en: "Wheelchairs distributed", de: "Rollstühle verteilt", nl: "Rolstoelen verdeeld" } },
+  { value: 1300, suffix: "+", icon: "Footprints", iconSrc: "/assets/icons/impact/impact-school-shoes.png", label: { en: "School shoes distributed", de: "Schulschuhe verteilt", nl: "Schoolschoenen verdeeld" } },
+  { value: 3000, suffix: "+", icon: "Home", iconSrc: "/assets/icons/impact/impact-families-supported.png", label: { en: "Families supported", de: "Familien unterstützt", nl: "Gezinnen ondersteund" } },
+  { value: 20, suffix: "+", icon: "MapPin", iconSrc: "/assets/icons/impact/impact-villages-reached.png", label: { en: "Villages reached", de: "Dörfer erreicht", nl: "Dorpen bereikt" } },
 ];
 
 export const fullImpactCounters = impactCounters;
 
 export const focusAreas = [
-  { icon: "BookOpen", label: { en: "Education", de: "Bildung" } },
-  { icon: "Droplet", label: { en: "Safe water", de: "Sauberes Wasser" } },
-  { icon: "UtensilsCrossed", label: { en: "Food security", de: "Ernährungssicherheit" } },
-  { icon: "Wrench", label: { en: "Skills & livelihoods", de: "Fähigkeiten & Lebensgrundlagen" } },
-  { icon: "HeartPulse", label: { en: "Community health", de: "Gesundheit" } },
-  { icon: "PawPrint", label: { en: "Animal welfare", de: "Tierwohl" } },
-  { icon: "ShieldAlert", label: { en: "Disaster relief", de: "Katastrophenhilfe" } },
+  { icon: "BookOpen", label: { en: "Education", de: "Bildung", nl: "Onderwijs" } },
+  { icon: "Droplet", label: { en: "Safe water", de: "Sicheres Wasser", nl: "Veilig water" } },
+  { icon: "UtensilsCrossed", label: { en: "Food security", de: "Ernährungssicherheit", nl: "Voedselzekerheid" } },
+  { icon: "Wrench", label: { en: "Skills & livelihoods", de: "Qualifizierung & Einkommen", nl: "Vaardigheden & inkomen" } },
+  { icon: "HeartPulse", label: { en: "Community health", de: "Gesundheit der Gemeinschaft", nl: "Gemeenschapsgezondheid" } },
+  { icon: "PawPrint", label: { en: "Animal welfare", de: "Tierschutz", nl: "Dierenwelzijn" } },
+  { icon: "ShieldAlert", label: { en: "Disaster relief", de: "Nothilfe", nl: "Noodhulp" } },
 ];
 
 export type Partner = {
