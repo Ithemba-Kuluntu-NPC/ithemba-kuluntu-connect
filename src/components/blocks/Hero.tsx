@@ -78,7 +78,12 @@ export function Hero() {
 
               <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs font-medium text-white/85 backdrop-blur ring-1 ring-white/20">
                 <MapPin className="h-3.5 w-3.5 text-[var(--ithemba-yellow)]" />
-                {lang === "en" ? "Pondoland · Eastern Cape · South Africa" : "Pondoland · Eastern Cape · Südafrika"}
+                {lang === "en"
+                  ? "Pondoland · Eastern Cape · South Africa"
+                  : lang === "de"
+                  ? "Pondoland · Eastern Cape · Südafrika"
+                  : "Pondoland · Eastern Cape · Zuid-Afrika"}
+
               </div>
             </div>
           </div>

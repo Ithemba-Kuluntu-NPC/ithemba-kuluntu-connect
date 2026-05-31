@@ -1,19 +1,20 @@
 import { useEffect, useRef, useState } from "react";
 import * as Icons from "lucide-react";
 import { useLang } from "@/components/site/LanguageProvider";
-import { Placeholder } from "@/components/site/MissingInfo";
 import { SmartImage } from "@/components/site/Asset";
 import { assets } from "@/data/assets";
+
 
 type CounterItem = {
   value: number;
   suffix: string;
-  label: { en: string; de: string };
+  label: { en: string; de: string; nl?: string };
   icon?: string;
   iconSrc?: string;
 };
 
-function Counter({ value, suffix }: { value: number; suffix: string }) {
+
+function Counter({ value, suffix, locale }: { value: number; suffix: string; locale: string }) {
   const [n, setN] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
   useEffect(() => {
@@ -38,11 +39,12 @@ function Counter({ value, suffix }: { value: number; suffix: string }) {
   }, [value]);
   return (
     <span ref={ref} className="whitespace-nowrap tabular-nums">
-      {n.toLocaleString()}
+      {n.toLocaleString(locale)}
       {suffix}
     </span>
   );
 }
+
 
 export function ImpactCounters({
   items,
@@ -73,7 +75,7 @@ export function ImpactCounters({
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <div className="hand-eyebrow !text-[var(--ithemba-yellow)]">
-            {lang === "en" ? "Together" : "Gemeinsam"}
+            {lang === "en" ? "Together" : lang === "de" ? "Gemeinsam" : "Samen"}
             <span aria-hidden className="ml-1 inline-block translate-y-[2px]">✦</span>
           </div>
           {title && (
@@ -83,9 +85,12 @@ export function ImpactCounters({
           )}
           <p className="mt-3 text-sm text-white/75 md:text-base">
             {lang === "en"
-              ? "Real numbers from communities we walk with."
-              : "Echte Zahlen aus den Gemeinschaften, die wir begleiten."}
+              ? "Real numbers from communities we walk with, built through practical care, local trust and long-term commitment."
+              : lang === "de"
+              ? "Diese Zahlen stehen für praktische Arbeit vor Ort in Südafrika — getragen von lokalem Vertrauen, langfristigem Engagement und Unterstützung aus Deutschland und darüber hinaus."
+              : "Deze cijfers staan voor praktisch werk ter plaatse in Zuid-Afrika — gedragen door lokaal vertrouwen, langdurige inzet en steun vanuit Duitsland en daarbuiten."}
           </p>
+
         </div>
 
         <div
@@ -118,7 +123,7 @@ export function ImpactCounters({
                   className="mt-4 font-display font-extrabold leading-none text-[var(--ithemba-yellow)] drop-shadow-[0_2px_18px_rgba(251,191,36,0.25)]"
                   style={{ fontSize: "clamp(1.75rem, 2.4vw, 2.5rem)" }}
                 >
-                  <Counter value={it.value} suffix={it.suffix} />
+                  <Counter value={it.value} suffix={it.suffix} locale={lang === "en" ? "en-US" : lang === "de" ? "de-DE" : "nl-NL"} />
                 </div>
                 <div className="mt-3 max-w-[14rem] text-[12px] font-medium leading-snug text-white/85 md:text-sm">
                   {t(it.label)}
@@ -127,12 +132,8 @@ export function ImpactCounters({
             );
           })}
         </div>
-
-
-        <div className="mt-10 flex justify-center">
-          <Placeholder text="final impact counter values and reporting date" kind="verify" />
-        </div>
       </div>
     </section>
   );
 }
+

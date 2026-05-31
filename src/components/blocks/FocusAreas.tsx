@@ -67,16 +67,17 @@ export function FocusAreas() {
             {lang === "en" ? "Our" : lang === "de" ? "Unsere" : "Onze"}
           </div>
           <h2 className="-mt-2 font-display text-4xl font-bold md:text-5xl">
-            {lang === "en" ? "focus areas" : lang === "de" ? "Schwerpunkte" : "focus areas"}
+            {lang === "en" ? "focus areas" : lang === "de" ? "Schwerpunkte" : "speerpunten"}
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-white/85">
             {lang === "en"
-              ? "Seven interconnected ways we walk alongside rural communities in Pondoland."
+              ? "Seven connected ways we walk alongside rural communities in Pondoland."
               : lang === "de"
-              ? "Sieben miteinander verbundene Wege, wie wir ländliche Gemeinschaften in Pondoland begleiten."
-              : "Seven interconnected ways we walk alongside rural communities in Pondoland."}
+              ? "Sieben miteinander verbundene Bereiche, in denen iThemba Kuluntu ländliche Gemeinschaften in Südafrika stärkt."
+              : "Zeven verbonden werkgebieden waarmee iThemba Kuluntu landelijke gemeenschappen in Zuid-Afrika versterkt."}
           </p>
         </div>
+
 
         <div className="mt-14 grid grid-cols-2 gap-6 sm:grid-cols-4 lg:grid-cols-7">
           {focusAreas.map((f, i) => {
