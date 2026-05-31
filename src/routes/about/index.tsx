@@ -556,7 +556,7 @@ function WhoWeAre({ c }: { c: AboutContent }) {
           />
         </div>
         <div>
-          <div className="hand-eyebrow">{c.who.heading}</div>
+          <div className="hand-eyebrow">{c.eyebrows.who}</div>
           <h2 className="mt-1 font-display text-3xl font-bold text-[var(--ithemba-blue-dark)] md:text-4xl">
             {c.who.heading}
           </h2>
