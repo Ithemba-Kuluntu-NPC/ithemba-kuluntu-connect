@@ -521,6 +521,17 @@ function HeroVideo({ c }: { c: AboutContent }) {
         <div className="absolute right-[-6rem] top-[-6rem] h-[28rem] w-[28rem] sun-glow" />
       </div>
 
+      {/* Subtle hint that this hero will hold a real team video */}
+      {!showVideo && (
+        <div className="pointer-events-none absolute right-4 top-4 z-10 hidden items-center gap-2 rounded-full bg-black/40 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.14em] text-white/85 ring-1 ring-white/15 backdrop-blur md:inline-flex">
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--ithemba-yellow)] opacity-75" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--ithemba-yellow)]" />
+          </span>
+          Hero video placeholder · ready for real team video
+        </div>
+      )}
+
       <div className="mx-auto max-w-7xl px-4 pb-20 pt-20 md:pb-28 md:pt-28 lg:min-h-[78vh] lg:px-8">
         <div className="relative max-w-3xl text-white">
           <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] drop-shadow-sm flex items-center gap-2">
