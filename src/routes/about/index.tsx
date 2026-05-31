@@ -75,6 +75,16 @@ type AboutContent = {
 };
 
 const EN: AboutContent = {
+  eyebrows: {
+    who: "Our story",
+    where: "Place",
+    structures: "Together",
+    different: "Our approach",
+    guides: "Our values",
+    governance: "Trust",
+    work: "In action",
+    cta: "Walk with us",
+  },
   hero: {
     eyebrow: "About",
     title: "iThemba Kuluntu",
