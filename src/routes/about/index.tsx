@@ -616,7 +616,7 @@ function Structures({ c }: { c: AboutContent }) {
     <section className="mx-auto max-w-7xl px-4 py-16 md:py-20 lg:px-8">
       <div className="mx-auto max-w-3xl text-center">
         <div className="hand-eyebrow inline-flex items-center justify-center gap-2">
-          <Handshake className="h-4 w-4" /> {c.structures.heading}
+          <Handshake className="h-4 w-4" /> {c.eyebrows.structures}
         </div>
         <h2 className="mt-1 font-display text-3xl font-bold text-[var(--ithemba-blue-dark)] md:text-4xl">
           {c.structures.heading}
