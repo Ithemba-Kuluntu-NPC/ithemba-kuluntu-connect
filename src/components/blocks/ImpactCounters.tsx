@@ -102,23 +102,23 @@ export function ImpactCounters({
                 key={i}
                 className="group flex basis-[calc(50%-12px)] flex-col items-center text-center sm:basis-[calc(33.333%-16px)] lg:basis-[calc(33.333%-16px)] xl:basis-[calc(25%-18px)]"
               >
-                <div
-                  className="font-display font-extrabold leading-none text-[var(--ithemba-yellow)] drop-shadow-[0_2px_18px_rgba(251,191,36,0.25)]"
-                  style={{ fontSize: "clamp(1.75rem, 2.4vw, 2.5rem)" }}
-                >
-                  <Counter value={it.value} suffix={it.suffix} />
-                </div>
-                <div className="mt-4 flex items-center justify-center">
+                <div className="flex items-center justify-center">
                   {it.iconSrc ? (
                     <img
                       src={it.iconSrc}
                       alt=""
                       aria-hidden
-                      className="h-[42px] w-[42px] object-contain drop-shadow-[0_2px_10px_rgba(251,191,36,0.25)] md:h-16 md:w-16"
+                      className="h-[60px] w-[60px] object-contain drop-shadow-[0_2px_12px_rgba(251,191,36,0.25)] md:h-20 md:w-20 lg:h-24 lg:w-24"
                     />
                   ) : (
-                    <Icon className="h-10 w-10 text-[var(--ithemba-yellow)] md:h-14 md:w-14" />
+                    <Icon className="h-14 w-14 text-[var(--ithemba-yellow)] md:h-20 md:w-20 lg:h-24 lg:w-24" />
                   )}
+                </div>
+                <div
+                  className="mt-4 font-display font-extrabold leading-none text-[var(--ithemba-yellow)] drop-shadow-[0_2px_18px_rgba(251,191,36,0.25)]"
+                  style={{ fontSize: "clamp(1.75rem, 2.4vw, 2.5rem)" }}
+                >
+                  <Counter value={it.value} suffix={it.suffix} />
                 </div>
                 <div className="mt-3 max-w-[14rem] text-[12px] font-medium leading-snug text-white/85 md:text-sm">
                   {t(it.label)}
