@@ -188,6 +188,16 @@ const EN: AboutContent = {
 };
 
 const DE: AboutContent = {
+  eyebrows: {
+    who: "Unsere Geschichte",
+    where: "Ort",
+    structures: "Gemeinsam",
+    different: "Unser Ansatz",
+    guides: "Unsere Werte",
+    governance: "Vertrauen",
+    work: "In Aktion",
+    cta: "Gehen Sie mit uns",
+  },
   hero: {
     eyebrow: "Über uns",
     title: "iThemba Kuluntu",
