@@ -178,6 +178,7 @@ const EN: AboutContent = {
   },
   cta: {
     heading: "Walk with us",
+    blueHeading: "Be part of the journey",
     paragraphs: [
       "iThemba Kuluntu exists because practical care can change daily life — one child, one household, one family and one community at a time.",
       "Whether you give monthly, partner with us, share our work or help connect us with new supporters, you become part of a growing circle of people helping rural communities in South Africa build safer, stronger and more dignified futures.",
