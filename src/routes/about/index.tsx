@@ -25,7 +25,7 @@ import {
 } from "lucide-react";
 import { useLang } from "@/components/site/LanguageProvider";
 import { Placeholder } from "@/components/site/MissingInfo";
-import { SmartImage } from "@/components/site/Asset";
+import { SmartImage, SmartLogo } from "@/components/site/Asset";
 import { assets } from "@/data/assets";
 import type { Lang } from "@/data/content";
 
@@ -37,6 +37,16 @@ type Card = { title: string; text: string };
 type Project = { title: string; text: string; to: string; icon: typeof GraduationCap };
 
 type AboutContent = {
+  eyebrows: {
+    who: string;
+    where: string;
+    structures: string;
+    different: string;
+    guides: string;
+    governance: string;
+    work: string;
+    cta: string;
+  };
   hero: { eyebrow: string; title: string; subtitle: string; intro: string };
   who: { heading: string; paragraphs: string[] };
   where: { heading: string; paragraphs: string[] };
@@ -61,10 +71,20 @@ type AboutContent = {
     deDetailsHeading: string;
   };
   work: { heading: string; lead: string; projects: Project[] };
-  cta: { heading: string; paragraphs: string[]; buttons: { team: string; projects: string; donate: string } };
+  cta: { heading: string; blueHeading: string; paragraphs: string[]; buttons: { team: string; projects: string; donate: string } };
 };
 
 const EN: AboutContent = {
+  eyebrows: {
+    who: "Our story",
+    where: "Place",
+    structures: "Together",
+    different: "Our approach",
+    guides: "Our values",
+    governance: "Trust",
+    work: "In action",
+    cta: "Walk with us",
+  },
   hero: {
     eyebrow: "About",
     title: "iThemba Kuluntu",
@@ -158,6 +178,7 @@ const EN: AboutContent = {
   },
   cta: {
     heading: "Walk with us",
+    blueHeading: "Be part of the journey",
     paragraphs: [
       "iThemba Kuluntu exists because practical care can change daily life — one child, one household, one family and one community at a time.",
       "Whether you give monthly, partner with us, share our work or help connect us with new supporters, you become part of a growing circle of people helping rural communities in South Africa build safer, stronger and more dignified futures.",
@@ -167,6 +188,16 @@ const EN: AboutContent = {
 };
 
 const DE: AboutContent = {
+  eyebrows: {
+    who: "Unsere Geschichte",
+    where: "Ort",
+    structures: "Gemeinsam",
+    different: "Unser Ansatz",
+    guides: "Unsere Werte",
+    governance: "Vertrauen",
+    work: "In Aktion",
+    cta: "Gehen Sie mit uns",
+  },
   hero: {
     eyebrow: "Über uns",
     title: "iThemba Kuluntu",
@@ -260,6 +291,7 @@ const DE: AboutContent = {
   },
   cta: {
     heading: "Gehen Sie diesen Weg mit uns",
+    blueHeading: "Werden Sie Teil dieses Weges",
     paragraphs: [
       "iThemba Kuluntu gibt es, weil praktische Fürsorge den Alltag verändern kann — für ein Kind, einen Haushalt, eine Familie und eine Gemeinschaft nach der anderen.",
       "Ob Sie monatlich spenden, Partner werden, unsere Arbeit teilen oder uns mit neuen Unterstützerinnen und Unterstützern verbinden: Sie werden Teil eines wachsenden Kreises von Menschen, die ländlichen Gemeinschaften in Südafrika helfen, sicherere, stärkere und würdevollere Zukunftsperspektiven aufzubauen.",
@@ -269,6 +301,16 @@ const DE: AboutContent = {
 };
 
 const NL: AboutContent = {
+  eyebrows: {
+    who: "Ons verhaal",
+    where: "Plek",
+    structures: "Samen",
+    different: "Onze aanpak",
+    guides: "Onze waarden",
+    governance: "Vertrouwen",
+    work: "In actie",
+    cta: "Loop met ons mee",
+  },
   hero: {
     eyebrow: "Over ons",
     title: "iThemba Kuluntu",
@@ -362,6 +404,7 @@ const NL: AboutContent = {
   },
   cta: {
     heading: "Loop met ons mee",
+    blueHeading: "Word deel van deze reis",
     paragraphs: [
       "iThemba Kuluntu bestaat omdat praktische zorg het dagelijks leven kan veranderen — één kind, één huishouden, één gezin en één gemeenschap tegelijk.",
       "Of u nu maandelijks doneert, partner wordt, ons werk deelt of ons helpt nieuwe supporters te bereiken: u wordt onderdeel van een groeiende kring van mensen die landelijke gemeenschappen in Zuid-Afrika helpen bouwen aan een veiligere, sterkere en waardigere toekomst.",
@@ -460,9 +503,22 @@ function HeroVideo({ c }: { c: AboutContent }) {
           <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] drop-shadow-sm flex items-center gap-2">
             <Sparkles className="h-5 w-5" aria-hidden /> {c.hero.eyebrow}
           </div>
-          <h1 className="mt-3 font-display text-[clamp(2.5rem,7vw,4.75rem)] font-extrabold leading-[0.95] tracking-tight">
-            {c.hero.title}
-            <svg className="mt-2 block w-48 md:w-72" height="14" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden>
+          <h1 className="mt-4">
+            <span className="sr-only">{c.hero.title}</span>
+            <SmartLogo
+              src={assets.logos.ithembaTextWhite}
+              alt={c.hero.title}
+              className="h-16 w-auto drop-shadow-[0_4px_24px_rgba(0,0,0,0.45)] md:h-24 lg:h-28"
+              fallback={
+                <span
+                  aria-hidden
+                  className="block font-display text-[clamp(2.5rem,7vw,4.75rem)] font-extrabold leading-[0.95] tracking-tight text-white"
+                >
+                  {c.hero.title}
+                </span>
+              }
+            />
+            <svg className="mt-3 block w-48 md:w-72" height="14" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden>
               <path d="M2,8 C50,2 120,14 198,6" stroke="var(--ithemba-yellow)" strokeWidth="4" strokeLinecap="round" fill="none" />
             </svg>
           </h1>
@@ -500,7 +556,7 @@ function WhoWeAre({ c }: { c: AboutContent }) {
           />
         </div>
         <div>
-          <div className="hand-eyebrow">{c.who.heading}</div>
+          <div className="hand-eyebrow">{c.eyebrows.who}</div>
           <h2 className="mt-1 font-display text-3xl font-bold text-[var(--ithemba-blue-dark)] md:text-4xl">
             {c.who.heading}
           </h2>
@@ -525,7 +581,7 @@ function WhereWeWork({ c }: { c: AboutContent }) {
       </div>
       <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 md:grid-cols-[1.1fr_1fr] lg:px-8">
         <div>
-          <div className="hand-eyebrow">{c.where.heading}</div>
+          <div className="hand-eyebrow">{c.eyebrows.where}</div>
           <h2 className="mt-1 font-display text-3xl font-bold text-[var(--ithemba-blue-dark)] md:text-4xl">
             {c.where.heading}
           </h2>
@@ -560,7 +616,7 @@ function Structures({ c }: { c: AboutContent }) {
     <section className="mx-auto max-w-7xl px-4 py-16 md:py-20 lg:px-8">
       <div className="mx-auto max-w-3xl text-center">
         <div className="hand-eyebrow inline-flex items-center justify-center gap-2">
-          <Handshake className="h-4 w-4" /> {c.structures.heading}
+          <Handshake className="h-4 w-4" /> {c.eyebrows.structures}
         </div>
         <h2 className="mt-1 font-display text-3xl font-bold text-[var(--ithemba-blue-dark)] md:text-4xl">
           {c.structures.heading}
@@ -620,7 +676,7 @@ function WhatMakesDifferent({ c }: { c: AboutContent }) {
       </div>
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="max-w-3xl">
-          <div className="hand-eyebrow !text-[var(--ithemba-yellow)]">{c.different.heading}</div>
+          <div className="hand-eyebrow !text-[var(--ithemba-yellow)]">{c.eyebrows.different}</div>
           <h2 className="mt-1 font-display text-3xl font-bold md:text-4xl">{c.different.heading}</h2>
           <p className="mt-4 text-white/85 leading-relaxed">{c.different.intro}</p>
           <p className="mt-2 text-sm font-medium uppercase tracking-wider text-[var(--ithemba-yellow)]">
@@ -653,7 +709,7 @@ function WhatGuidesUs({ c }: { c: AboutContent }) {
   return (
     <section className="mx-auto max-w-7xl px-4 py-16 md:py-20 lg:px-8">
       <div className="mx-auto max-w-2xl text-center">
-        <div className="hand-eyebrow">{c.guides.heading}</div>
+        <div className="hand-eyebrow">{c.eyebrows.guides}</div>
         <h2 className="mt-1 font-display text-3xl font-bold text-[var(--ithemba-blue-dark)] md:text-4xl">
           {c.guides.heading}
         </h2>
@@ -687,16 +743,20 @@ function WhatGuidesUs({ c }: { c: AboutContent }) {
 function Governance({ c }: { c: AboutContent }) {
   const g = c.governance;
   return (
-    <section className="bg-[var(--ithemba-cream)] py-16 md:py-20">
+    <section className="relative isolate overflow-hidden bg-[var(--ithemba-blue-deepest)] py-16 text-white md:py-20">
+      <div className="absolute inset-0 -z-10 opacity-50">
+        <div className="absolute -left-24 top-10 h-72 w-72 rounded-full bg-[var(--ithemba-blue)]/40 blur-3xl" />
+        <div className="absolute right-0 bottom-0 h-80 w-80 rounded-full bg-[var(--ithemba-yellow)]/15 blur-3xl" />
+      </div>
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
-          <div className="hand-eyebrow inline-flex items-center justify-center gap-2">
-            <ShieldCheck className="h-4 w-4" /> {g.heading}
+          <div className="hand-eyebrow !text-[var(--ithemba-yellow)] inline-flex items-center justify-center gap-2">
+            <ShieldCheck className="h-4 w-4" /> {c.eyebrows.governance}
           </div>
-          <h2 className="mt-1 font-display text-3xl font-bold text-[var(--ithemba-blue-dark)] md:text-4xl">
+          <h2 className="mt-1 font-display text-3xl font-bold md:text-4xl">
             {g.heading}
           </h2>
-          <p className="mt-4 text-foreground/85 leading-relaxed">{g.intro}</p>
+          <p className="mt-4 text-white/85 leading-relaxed">{g.intro}</p>
         </div>
 
         {/* Two countries */}
@@ -750,7 +810,7 @@ function Governance({ c }: { c: AboutContent }) {
 
         {/* Trust pills */}
         <div className="mt-10">
-          <h3 className="text-center text-xs font-semibold uppercase tracking-[0.18em] text-[var(--ithemba-blue)]">
+          <h3 className="text-center text-xs font-semibold uppercase tracking-[0.18em] text-[var(--ithemba-yellow)]">
             {g.trustHeading}
           </h3>
           <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -795,7 +855,7 @@ function OurWorkToday({ c }: { c: AboutContent }) {
   return (
     <section className="mx-auto max-w-7xl px-4 py-16 md:py-20 lg:px-8">
       <div className="max-w-2xl">
-        <div className="hand-eyebrow">{c.work.heading}</div>
+        <div className="hand-eyebrow">{c.eyebrows.work}</div>
         <h2 className="mt-1 font-display text-3xl font-bold text-[var(--ithemba-blue-dark)] md:text-4xl">
           {c.work.heading}
         </h2>
@@ -843,9 +903,9 @@ function ClosingCTA({ c }: { c: AboutContent }) {
       </div>
       <div className="mx-auto max-w-4xl px-4 text-center lg:px-8">
         <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] inline-flex items-center gap-2 justify-center">
-          <Heart className="h-5 w-5 fill-[var(--ithemba-yellow)]" /> {c.cta.heading}
+          <Heart className="h-5 w-5 fill-[var(--ithemba-yellow)]" /> {c.eyebrows.cta}
         </div>
-        <h2 className="mt-2 font-display text-3xl font-bold md:text-5xl">{c.cta.heading}</h2>
+        <h2 className="mt-2 font-display text-3xl font-bold md:text-5xl">{c.cta.blueHeading}</h2>
         <div className="mx-auto mt-6 max-w-2xl space-y-4 text-white/90 leading-relaxed">
           {c.cta.paragraphs.map((p, i) => (
             <p key={i}>{p}</p>
