@@ -37,6 +37,16 @@ type Card = { title: string; text: string };
 type Project = { title: string; text: string; to: string; icon: typeof GraduationCap };
 
 type AboutContent = {
+  eyebrows: {
+    who: string;
+    where: string;
+    structures: string;
+    different: string;
+    guides: string;
+    governance: string;
+    work: string;
+    cta: string;
+  };
   hero: { eyebrow: string; title: string; subtitle: string; intro: string };
   who: { heading: string; paragraphs: string[] };
   where: { heading: string; paragraphs: string[] };
@@ -61,7 +71,7 @@ type AboutContent = {
     deDetailsHeading: string;
   };
   work: { heading: string; lead: string; projects: Project[] };
-  cta: { heading: string; paragraphs: string[]; buttons: { team: string; projects: string; donate: string } };
+  cta: { heading: string; blueHeading: string; paragraphs: string[]; buttons: { team: string; projects: string; donate: string } };
 };
 
 const EN: AboutContent = {
