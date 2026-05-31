@@ -450,9 +450,32 @@ function About() {
       <WhatMakesDifferent c={c} />
       <WhatGuidesUs c={c} />
       <Governance c={c} />
-      <OurWorkToday c={c} />
+      <BlueToBlueWave />
       <ClosingCTA c={c} />
     </>
+  );
+}
+
+/** Soft cream wave separator between two adjacent blue sections. */
+function BlueToBlueWave() {
+  return (
+    <div aria-hidden className="relative -my-px bg-[var(--ithemba-blue-deepest)]">
+      <svg
+        className="block w-full"
+        viewBox="0 0 1440 80"
+        preserveAspectRatio="none"
+      >
+        <path
+          d="M0,32 C240,72 480,8 720,36 C960,64 1200,12 1440,40 L1440,80 L0,80 Z"
+          fill="var(--ithemba-cream)"
+          opacity="0.95"
+        />
+        <path
+          d="M0,48 C240,16 520,80 760,48 C1000,16 1220,72 1440,52 L1440,80 L0,80 Z"
+          fill="var(--ithemba-blue-deepest)"
+        />
+      </svg>
+    </div>
   );
 }
 
