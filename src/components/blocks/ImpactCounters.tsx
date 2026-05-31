@@ -10,6 +10,7 @@ type CounterItem = {
   suffix: string;
   label: { en: string; de: string };
   icon?: string;
+  iconSrc?: string;
 };
 
 function Counter({ value, suffix }: { value: number; suffix: string }) {
