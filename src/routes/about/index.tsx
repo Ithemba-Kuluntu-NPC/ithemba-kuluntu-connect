@@ -810,7 +810,7 @@ function Governance({ c }: { c: AboutContent }) {
 
         {/* Trust pills */}
         <div className="mt-10">
-          <h3 className="text-center text-xs font-semibold uppercase tracking-[0.18em] text-[var(--ithemba-blue)]">
+          <h3 className="text-center text-xs font-semibold uppercase tracking-[0.18em] text-[var(--ithemba-yellow)]">
             {g.trustHeading}
           </h3>
           <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
