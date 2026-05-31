@@ -1,0 +1,531 @@
+MAIN HOME PAGE TEXT COMPONENTS — GERMAN REWRITE V2.0
+PERSPEKTIVE: iThemba Kuluntu e.V. Deutschland
+
+HEADER / TOP NAVIGATION
+
+Main logo link:
+iThemba Kuluntu
+
+Navigation:
+Über uns
+Projekte
+Medien
+Partner
+Spenden
+Kontakt
+
+Dropdown under About:
+Über uns
+Unser Team
+
+Dropdown under Projects:
+Alle Projekte
+No.1 ECD Centre
+PureFlow Amanzi
+Greenhouse mit SA Harvest
+Ernährungssicherheit
+Pondo Dogs
+Nothilfe & Katastrophenhilfe
+
+Language switch:
+EN
+DE
+NL
+
+Header donation button:
+Monatlich spenden
+
+Social media accessibility labels:
+iThemba Kuluntu auf Instagram folgen
+iThemba Kuluntu auf Facebook folgen
+iThemba Kuluntu auf TikTok folgen
+iThemba Kuluntu auf YouTube folgen
+
+HERO SECTION
+
+Small heading:
+Willkommen bei
+
+Main logo text equivalent:
+iThemba Kuluntu
+
+Main message:
+Hoffnung für Gemeinschaften. Von Deutschland aus unterstützt. In Südafrika verwurzelt.
+
+Supporting text:
+iThemba Kuluntu e.V. mit Sitz in Kirchhundem unterstützt die Arbeit von iThemba Kuluntu NPC in Cwebeni, Port St Johns, Südafrika. Gemeinsam stärken wir ländliche Familien an der Wild Coast in Pondoland durch frühkindliche Bildung, sicheres Wasser, Ernährungssicherheit, lokale Arbeitsmöglichkeiten, Tierschutz und Nothilfe.
+
+Alternative shorter supporting text:
+Von Deutschland aus unterstützen wir direkte, gemeindenahe Arbeit in Südafrika — für Bildung, sicheres Wasser, Ernährung, lokale Arbeitsmöglichkeiten, Tierschutz und Nothilfe.
+
+Primary button:
+Monatlich spenden
+
+Secondary button:
+Mehr über uns erfahren
+
+Optional small line below buttons:
+Monatliche Spenden helfen, verlässlich zu planen, lokale Arbeitsplätze zu sichern und praktische Hilfe in Südafrika kontinuierlich möglich zu machen.
+
+IMPACT SECTION
+
+Script heading:
+Gemeinsam
+
+Main heading:
+Unsere Wirkung in Zahlen
+
+Supporting text:
+Diese Zahlen stehen für praktische Arbeit vor Ort in Südafrika — getragen von lokalem Vertrauen, langfristigem Engagement und Unterstützung aus Deutschland und darüber hinaus.
+
+Impact counter 1:
+3.094
+Wassersysteme verteilt
+
+Impact counter 2:
+15.000+
+Menschen durch PureFlow Amanzi erreicht
+
+Impact counter 3:
+120
+Kinder täglich im ECD Centre betreut
+
+Impact counter 4:
+300.000+
+Mahlzeiten ausgegeben
+
+Impact counter 5:
+2.863
+Lebensmittelpakete verteilt
+
+Impact counter 6:
+600+
+Matratzen verteilt
+
+Impact counter 7:
+2.100+
+Decken verteilt
+
+Impact counter 8:
+114
+Rollstühle verteilt
+
+Impact counter 9:
+1.300+
+Schulschuhe verteilt
+
+Impact counter 10:
+3.000+
+Familien unterstützt
+
+Impact counter 11:
+20+
+Dörfer erreicht
+
+ABOUT PREVIEW SECTION
+
+Script heading:
+Wer
+
+Main heading:
+wir sind
+
+Main text:
+iThemba Kuluntu e.V. ist ein gemeinnütziger Verein mit Sitz in Kirchhundem. Wir leisten in Deutschland Aufklärungsarbeit, bauen Unterstützung auf und begleiten die direkte Arbeit von iThemba Kuluntu NPC in Südafrika.
+
+Supporting text:
+Die praktische Projektarbeit findet in Cwebeni, Port St Johns, an der Wild Coast in Pondoland statt. Dort arbeitet iThemba Kuluntu NPC eng mit ländlichen Gemeinschaften zusammen — nicht über sie hinweg, sondern mit lokalem Vertrauen, praktischer Umsetzung und langfristiger Verantwortung.
+
+Button:
+Mehr erfahren
+
+WHAT GUIDES US / VALUES SECTION
+
+Section heading:
+Was uns leitet
+
+Card 1 script heading:
+Woran
+
+Card 1 main heading:
+wir glauben
+
+Card 1 text:
+Nachhaltige Veränderung beginnt mit Würde, lokaler Verantwortung und praktischen Lösungen, denen Gemeinschaften vertrauen, die sie nutzen und selbst mittragen können.
+
+Card 2 script heading:
+Unsere
+
+Card 2 main heading:
+Aufgabe
+
+Card 2 text:
+Als gemeinnütziger Verein in Deutschland unterstützen wir direkte, gemeindenahe Arbeit in Südafrika — durch Spenden, Partnerschaften, Aufklärung, Netzwerke und langfristige Begleitung.
+
+Card 3 script heading:
+Wem
+
+Card 3 main heading:
+wir dienen
+
+Card 3 text:
+Die Arbeit unterstützt Kinder, Familien, Betreuungspersonen, Schulen, ECD-Zentren, besonders belastete Haushalte, Frauen vor Ort sowie Tiere in ländlichen, unterversorgten Gemeinschaften in Südafrika.
+
+FOCUS AREAS SECTION
+
+Script heading:
+Unsere
+
+Main heading:
+Schwerpunkte
+
+Supporting text:
+Sieben miteinander verbundene Bereiche, in denen iThemba Kuluntu ländliche Gemeinschaften in Südafrika stärkt.
+
+Focus area labels:
+Bildung
+Sicheres Wasser
+Ernährungssicherheit
+Qualifizierung & Einkommen
+Gesundheit der Gemeinschaft
+Tierschutz
+Nothilfe
+
+PROJECTS SECTION
+
+Script heading:
+Unsere
+
+Main heading:
+Projekte
+
+Supporting text:
+Die Projekte in Südafrika verfolgen ein gemeinsames Ziel: ein sichereres, stärkeres und würdevolleres Leben für ländliche Familien im Alltag.
+
+Button:
+Alle Projekte
+
+Project 1 title:
+No.1 ECD Centre
+
+Project 1 subtitle:
+Ein Kind. Ein Monat. Ein stärkerer Start.
+
+Project 1 text:
+Ein sicherer, fröhlicher und kostenfrei zugänglicher Ort für frühkindliche Bildung in Südafrika, an dem kleine Kinder essen, spielen, lernen und sich auf die Schule vorbereiten — während zugleich bezahlte Arbeitsplätze für Frauen vor Ort als Lehrerinnen, Köchinnen und Betreuungspersonen entstehen.
+
+Project 1 monthly giving line:
+42 € im Monat helfen, ein Kind einen ganzen Monat lang an den Betriebstagen des ECD-Zentrums zu betreuen.
+
+Project 1 buttons:
+Mehr erfahren
+Dieses Projekt unterstützen
+
+Project 2 title:
+PureFlow Amanzi
+
+Project 2 subtitle:
+Eine Familie. Sichereres Wasser. Ein stärkerer Alltag.
+
+Project 2 text:
+Ein gemeindebasiertes Programm für sicheres Wasser in Südafrika, das Haushaltsfiltration, WASH-Bildung, lokale Verteilung und Nachbetreuung zu Familien, Schulen und ECD-Zentren in ländlichen Gemeinden bringt.
+
+Project 2 monthly giving line:
+30 € im Monat helfen einem Haushalt, Zugang zu sichererem Wasser zu Hause zu erhalten.
+
+Project 2 buttons:
+Mehr erfahren
+Dieses Projekt unterstützen
+
+Project 3 title:
+Greenhouse mit SA Harvest
+
+Project 3 subtitle:
+Nahrung, Fähigkeiten und Ernährung nah an der Gemeinschaft.
+
+Project 3 text:
+Eine Gewächshaus-Partnerschaft, die Lebensmittel anbaut, Ernährung stärkt und praktische Lern- und Arbeitsmöglichkeiten für Frauen vor Ort und die weitere Gemeinschaft schafft.
+
+Project 3 buttons:
+Mehr erfahren
+Dieses Projekt unterstützen
+
+Project 4 title:
+Ernährungssicherheit
+
+Project 4 subtitle:
+Mahlzeiten, die Familien vor Hunger schützen.
+
+Project 4 text:
+Durch Mahlzeiten, Lebensmittelpakete, Gemeinschaftsküchen und Partnerschaften zur Rettung von Lebensmitteln helfen wir Familien in Südafrika in Zeiten, in denen Nahrung nicht gesichert ist.
+
+Project 4 buttons:
+Mehr erfahren
+Dieses Projekt unterstützen
+
+Project 5 title:
+Pondo Dogs
+
+Project 5 subtitle:
+Gesündere Tiere. Freundlichere Gemeinschaften.
+
+Project 5 text:
+Tierschutz ist Teil des Wohlergehens einer Gemeinschaft. Durch Pondo Dogs werden Hunde und andere Haus- und Nutztiere mit Sterilisation, Futter, medizinischer Versorgung, Nothilfe und humaner Aufklärung unterstützt — damit Tiere und Familien sicherer und gesünder leben können.
+
+Project 5 monthly giving line:
+Monatliche Unterstützung hilft, Sterilisationen, Futter, medizinische Versorgung und Nothilfe für gefährdete Tiere zu finanzieren.
+
+Project 5 buttons:
+Mehr erfahren
+Dieses Projekt unterstützen
+
+Project 6 title:
+Nothilfe & Katastrophenhilfe
+
+Project 6 subtitle:
+Praktische Hilfe, wenn eine Krise eintritt.
+
+Project 6 text:
+Wenn Familien von Überschwemmungen, Bränden, medizinischen Notfällen oder plötzlicher Not betroffen sind, unterstützt iThemba Kuluntu mit praktischer Hilfe, die auf lokaler Kenntnis und Vertrauen in der Gemeinschaft beruht.
+
+Project 6 buttons:
+Mehr erfahren
+Dieses Projekt unterstützen
+
+PARTNERS SECTION
+
+Script heading:
+Partner
+
+Main heading:
+Partner, die diese Arbeit möglich machen
+
+Supporting text:
+Unsere Arbeit wächst durch vertrauensvolle Partnerschaften mit Organisationen, Unternehmen, Spenderinnen und Spendern sowie lokalen Strukturen, die an praktische, gemeindenahe Veränderung in Südafrika glauben.
+
+Button:
+Partner werden
+
+Partner names:
+FNB
+Fresh Life Produce
+Gift of the Givers
+Nando’s
+Rise Against Hunger Africa
+Star Foundation
+Tzu Chi Foundation
+SA Harvest
+
+DONATION SECTION
+
+Script heading:
+Monatlich geben
+
+Main heading:
+Werden Sie monatliche Unterstützerin oder monatlicher Unterstützer
+
+Main text:
+Monatliche Spenden machen Unterstützung verlässlich. Sie helfen, die Arbeit in Südafrika vorauszuplanen, lokale Arbeitsplätze zu sichern, Kinder und Familien zu begleiten und praktische Hilfe Monat für Monat fortzuführen.
+
+Support points:
+Hält das No.1 ECD Centre für Kinder und Familien kostenfrei zugänglich
+Hilft Haushalten durch PureFlow Amanzi, sichereres Wasser zu nutzen
+Unterstützt Ernährung, Fürsorge und Nothilfe dort, wo Familien sie am dringendsten brauchen
+Finanziert Sterilisationen, Futter und medizinische Versorgung für gefährdete Hunde und andere Tiere
+Hilft, lokale Arbeitsplätze in Betreuung, Küche, Bildung, Verteilung und Gemeindearbeit zu sichern
+Stärkt langfristige, lokal getragene Arbeit in ländlichen Gemeinschaften in Südafrika
+
+Suggested monthly giving cards:
+
+Card 1 heading:
+Ein Kind unterstützen
+
+Card 1 amount:
+42 € / Monat
+
+Card 1 text:
+Hilft einem Kind, einen ganzen Monat lang Betreuung im No.1 ECD Centre zu erhalten — inklusive Mahlzeiten, frühem Lernen, Spiel, Sicherheit und lokaler Frauenbeschäftigung.
+
+Card 1 CTA:
+Ein Kind monatlich unterstützen
+
+Card 2 heading:
+Einen Haushalt unterstützen
+
+Card 2 amount:
+30 € / Monat
+
+Card 2 text:
+Hilft einem Haushalt, durch PureFlow Amanzi Zugang zu sichererem Wasser zu Hause zu erhalten — inklusive WASH-Bildung, lokaler Verteilung und Nachbetreuung.
+
+Card 2 CTA:
+Sicheres Wasser monatlich unterstützen
+
+Card 3 heading:
+Tierschutz unterstützen
+
+Card 3 amount:
+20 € / Monat
+
+Card 3 text:
+Hilft, Sterilisationen, Futter, medizinische Versorgung und Nothilfe für gefährdete Tiere zu finanzieren — für gesündere Tiere und freundlichere Gemeinschaften.
+
+Card 3 CTA:
+Tierschutz monatlich unterstützen
+
+Donation type tabs:
+Monatlich
+Einmalig
+
+Amount heading:
+Betrag auswählen
+
+Donation amounts:
+10 €
+20 €
+30 €
+42 €
+50 €
+100 €
+250 €
+Eigener Betrag
+
+Verification note:
+Vor dem Launch prüfen: finale Zahlungsanbieter-Logik
+
+Gift direction heading:
+Spende zuordnen
+
+Gift direction options:
+Dort, wo Hilfe am dringendsten gebraucht wird
+No.1 ECD Centre
+PureFlow Amanzi
+Ernährungssicherheit
+Tierschutz
+Nothilfe
+
+Form labels:
+Name
+E-Mail
+Land
+
+Payment method heading:
+Zahlungsmethode
+
+Payment options:
+Karte
+PayPal
+Überweisung
+
+Donation button:
+Monatlich spenden
+
+Trust / reassurance points:
+Sicher spenden
+Monatlich helfen
+Transparente Berichte
+Gemeindenahe Wirkung
+
+NEWSLETTER SECTION
+
+Heading:
+Unsere Arbeit begleiten
+
+Text:
+Erhalten Sie Neuigkeiten aus Südafrika, Projektgeschichten, Wirkungsberichte und konkrete Möglichkeiten, die Arbeit monatlich zu unterstützen.
+
+Email field placeholder:
+Ihre E-Mail-Adresse
+
+Button:
+Abonnieren
+
+Missing note:
+Fehlende Information: Newsletter-Plattform
+
+FOOTER TEXT
+
+Footer logo / organisation:
+iThemba Kuluntu
+
+Footer tagline:
+Von Deutschland aus unterstützt. In Südafrika verwurzelt.
+
+German organisation heading:
+iThemba Kuluntu e.V. — Deutschland
+
+German address:
+Am Emberg 20
+57399 Kirchhundem
+Deutschland
+
+German registration:
+Eingetragen beim Amtsgericht Siegen
+Vereinsregister 6845
+
+German tax number:
+Steuernummer: 338/5953/0753
+
+German bank details:
+Bankverbindung:
+iThemba Kuluntu e.V.
+IBAN: DE52 8306 5408 0005 4056 96
+BIC: GENO DEF1 SLR
+
+Email:
+[info@ithembakuluntu.org](mailto:info@ithembakuluntu.org)
+
+South African organisation heading:
+iThemba Kuluntu NPC — Südafrika
+
+South African registration details:
+Registration: 2023/199348/08
+PBO: 930081177
+NPO: 300-700
+VAT: 4430318792
+
+South African address:
+Flat Rock Cottage, Cwebeni Beach, Port St Johns, Eastern Cape, Südafrika, 5090
+
+South African phone:
++27 71 977 8063
+
+Footer newsletter heading:
+Unsere Arbeit begleiten
+
+Footer newsletter email placeholder:
+Ihre E-Mail-Adresse
+
+Footer newsletter button:
+Abonnieren
+
+Footer social links:
+Instagram
+Facebook
+TikTok
+YouTube
+
+Footer legal links:
+Impressum
+Datenschutz
+Cookie-Richtlinie
+Nutzungsbedingungen
+Spendenbedingungen
+
+Copyright:
+© 2026 iThemba Kuluntu NPC. Alle Rechte vorbehalten.
+
+FLOATING DONATION BUTTON
+
+Button:
+Monatlich spenden
+
+Optional hover / aria label:
+Monatliche Unterstützerin oder monatlicher Unterstützer werden
+
+INTERNAL VERIFICATION NOTES BEFORE LAUNCH
+
+Vor dem Launch prüfen: finale Wirkungszahlen und Berichtszeitraum.
+Vor dem Launch prüfen: finale Zahlungsanbieter-Logik.
+Vor dem Launch prüfen: ob zweckgebundene Projektspenden rechtlich und organisatorisch möglich sind.
+Vor dem Launch prüfen: Newsletter-Plattform.

@@ -1,0 +1,531 @@
+MAIN HOME PAGE TEXT COMPONENTS — DUTCH REWRITE V1.0
+PERSPECTIEF: iThemba Kuluntu e.V. Duitsland
+
+HEADER / TOP NAVIGATION
+
+Main logo link:
+iThemba Kuluntu
+
+Navigation:
+Over ons
+Projecten
+Media
+Partners
+Doneren
+Contact
+
+Dropdown under About:
+Over ons
+Ons team
+
+Dropdown under Projects:
+Alle projecten
+No.1 ECD Centre
+PureFlow Amanzi
+Greenhouse met SA Harvest
+Voedselzekerheid
+Pondo Dogs
+Noodhulp & rampenhulp
+
+Language switch:
+EN
+DE
+NL
+
+Header donation button:
+Maandelijks doneren
+
+Social media accessibility labels:
+Volg iThemba Kuluntu op Instagram
+Volg iThemba Kuluntu op Facebook
+Volg iThemba Kuluntu op TikTok
+Volg iThemba Kuluntu op YouTube
+
+HERO SECTION
+
+Small heading:
+Welkom bij
+
+Main logo text equivalent:
+iThemba Kuluntu
+
+Main message:
+Hoop voor gemeenschappen. Gesteund vanuit Duitsland. Geworteld in Zuid-Afrika.
+
+Supporting text:
+iThemba Kuluntu e.V., gevestigd in Kirchhundem, ondersteunt het werk van iThemba Kuluntu NPC in Cwebeni, Port St Johns, Zuid-Afrika. Samen versterken we landelijke gezinnen aan de Wild Coast in Pondoland door vroegschoolse educatie, veilig water, voedselzekerheid, lokale werkgelegenheid, dierenwelzijn en noodhulp.
+
+Alternative shorter supporting text:
+Vanuit Duitsland ondersteunen we directe, gemeenschapsgerichte hulp in Zuid-Afrika — voor onderwijs, veilig water, voedselzekerheid, lokale werkgelegenheid, dierenwelzijn en noodhulp.
+
+Primary button:
+Maandelijks doneren
+
+Secondary button:
+Lees meer over ons
+
+Optional small line below buttons:
+Maandelijkse donaties helpen ons vooruit te plannen, lokale banen te behouden en praktische hulp in Zuid-Afrika blijvend mogelijk te maken.
+
+IMPACT SECTION
+
+Script heading:
+Samen
+
+Main heading:
+Onze impact in cijfers
+
+Supporting text:
+Deze cijfers staan voor praktisch werk ter plaatse in Zuid-Afrika — gedragen door lokaal vertrouwen, langdurige inzet en steun vanuit Duitsland en daarbuiten.
+
+Impact counter 1:
+3.094
+Watersystemen verdeeld
+
+Impact counter 2:
+15.000+
+Mensen bereikt via PureFlow Amanzi
+
+Impact counter 3:
+120
+Kinderen dagelijks in het ECD Centre begeleid
+
+Impact counter 4:
+300.000+
+Maaltijden verstrekt
+
+Impact counter 5:
+2.863
+Voedselpakketten verdeeld
+
+Impact counter 6:
+600+
+Matrassen verdeeld
+
+Impact counter 7:
+2.100+
+Dekens verdeeld
+
+Impact counter 8:
+114
+Rolstoelen verdeeld
+
+Impact counter 9:
+1.300+
+Schoolschoenen verdeeld
+
+Impact counter 10:
+3.000+
+Gezinnen ondersteund
+
+Impact counter 11:
+20+
+Dorpen bereikt
+
+ABOUT PREVIEW SECTION
+
+Script heading:
+Wie
+
+Main heading:
+wij zijn
+
+Main text:
+iThemba Kuluntu e.V. is een Duitse non-profitvereniging met zetel in Kirchhundem. In Duitsland doen we aan bewustwording, bouwen we steun op en begeleiden we het directe werk van iThemba Kuluntu NPC in Zuid-Afrika.
+
+Supporting text:
+Het praktische projectwerk vindt plaats in Cwebeni, Port St Johns, aan de Wild Coast in Pondoland. Daar werkt iThemba Kuluntu NPC nauw samen met landelijke gemeenschappen — niet van bovenaf, maar op basis van lokaal vertrouwen, praktische uitvoering en langdurige verantwoordelijkheid.
+
+Button:
+Meer lezen
+
+WHAT GUIDES US / VALUES SECTION
+
+Section heading:
+Wat ons leidt
+
+Card 1 script heading:
+Waarin
+
+Card 1 main heading:
+wij geloven
+
+Card 1 text:
+Duurzame verandering begint met waardigheid, lokaal leiderschap en praktische oplossingen die gemeenschappen vertrouwen, gebruiken en zelf mee kunnen dragen.
+
+Card 2 script heading:
+Onze
+
+Card 2 main heading:
+opdracht
+
+Card 2 text:
+Als non-profitvereniging in Duitsland ondersteunen we directe, gemeenschapsgerichte hulp in Zuid-Afrika — via donaties, partnerschappen, bewustwording, netwerken en langdurige begeleiding.
+
+Card 3 script heading:
+Voor wie
+
+Card 3 main heading:
+wij er zijn
+
+Card 3 text:
+Het werk ondersteunt kinderen, gezinnen, verzorgers, scholen, ECD-centra, kwetsbare huishoudens, vrouwen ter plaatse en dieren in landelijke, onderbediende gemeenschappen in Zuid-Afrika.
+
+FOCUS AREAS SECTION
+
+Script heading:
+Onze
+
+Main heading:
+speerpunten
+
+Supporting text:
+Zeven verbonden werkgebieden waarmee iThemba Kuluntu landelijke gemeenschappen in Zuid-Afrika versterkt.
+
+Focus area labels:
+Onderwijs
+Veilig water
+Voedselzekerheid
+Vaardigheden & inkomen
+Gemeenschapsgezondheid
+Dierenwelzijn
+Noodhulp
+
+PROJECTS SECTION
+
+Script heading:
+Onze
+
+Main heading:
+Projecten
+
+Supporting text:
+De projecten in Zuid-Afrika hebben één gezamenlijk doel: een veiliger, sterker en waardiger dagelijks leven voor landelijke gezinnen.
+
+Button:
+Alle projecten
+
+Project 1 title:
+No.1 ECD Centre
+
+Project 1 subtitle:
+Eén kind. Eén maand. Een sterkere start.
+
+Project 1 text:
+Een veilige, vrolijke en kosteloos toegankelijke plek voor vroegschoolse educatie in Zuid-Afrika, waar jonge kinderen eten, spelen, leren en zich voorbereiden op school — terwijl er tegelijk betaalde banen ontstaan voor vrouwen ter plaatse als leerkrachten, koks en verzorgers.
+
+Project 1 monthly giving line:
+€ 42 per maand helpt één kind een volledige maand ondersteuning te ontvangen op de openingsdagen van het ECD-centre.
+
+Project 1 buttons:
+Meer lezen
+Steun dit project
+
+Project 2 title:
+PureFlow Amanzi
+
+Project 2 subtitle:
+Eén gezin. Veiliger water. Een sterker dagelijks leven.
+
+Project 2 text:
+Een gemeenschapsgericht programma voor veilig water in Zuid-Afrika, dat huishoudfiltratie, WASH-educatie, lokale distributie en opvolging brengt naar gezinnen, scholen en ECD-centra in landelijke gemeenschappen.
+
+Project 2 monthly giving line:
+€ 30 per maand helpt één huishouden toegang te krijgen tot veiliger water thuis.
+
+Project 2 buttons:
+Meer lezen
+Steun dit project
+
+Project 3 title:
+Greenhouse met SA Harvest
+
+Project 3 subtitle:
+Voedsel, vaardigheden en voeding dicht bij de gemeenschap.
+
+Project 3 text:
+Een kaspartnerschap dat voedsel verbouwt, voeding versterkt en praktische leer- en werkmogelijkheden creëert voor vrouwen ter plaatse en de bredere gemeenschap.
+
+Project 3 buttons:
+Meer lezen
+Steun dit project
+
+Project 4 title:
+Voedselzekerheid
+
+Project 4 subtitle:
+Maaltijden die gezinnen beschermen tegen honger.
+
+Project 4 text:
+Met maaltijden, voedselpakketten, gemeenschapskeukens en partnerschappen rond voedselredding helpen we gezinnen in Zuid-Afrika in periodes waarin voedsel niet vanzelfsprekend is.
+
+Project 4 buttons:
+Meer lezen
+Steun dit project
+
+Project 5 title:
+Pondo Dogs
+
+Project 5 subtitle:
+Gezondere dieren. Vriendelijkere gemeenschappen.
+
+Project 5 text:
+Dierenwelzijn is onderdeel van het welzijn van een gemeenschap. Via Pondo Dogs worden honden en andere huis- en werkdieren ondersteund met sterilisatie, voeding, medische zorg, noodhulp en humane educatie — zodat dieren en gezinnen veiliger en gezonder kunnen leven.
+
+Project 5 monthly giving line:
+Maandelijkse steun helpt sterilisaties, voeding, medische zorg en noodhulp voor kwetsbare dieren te financieren.
+
+Project 5 buttons:
+Meer lezen
+Steun dit project
+
+Project 6 title:
+Noodhulp & rampenhulp
+
+Project 6 subtitle:
+Praktische hulp wanneer een crisis toeslaat.
+
+Project 6 text:
+Wanneer gezinnen worden getroffen door overstromingen, branden, medische noodsituaties of plotselinge tegenslag, ondersteunt iThemba Kuluntu met praktische hulp die is gebaseerd op lokale kennis en vertrouwen binnen de gemeenschap.
+
+Project 6 buttons:
+Meer lezen
+Steun dit project
+
+PARTNERS SECTION
+
+Script heading:
+Partner
+
+Main heading:
+Partners die dit werk mogelijk maken
+
+Supporting text:
+Ons werk groeit door betrouwbare partnerschappen met organisaties, bedrijven, donateurs en lokale structuren die geloven in praktische, gemeenschapsgerichte verandering in Zuid-Afrika.
+
+Button:
+Partner worden
+
+Partner names:
+FNB
+Fresh Life Produce
+Gift of the Givers
+Nando’s
+Rise Against Hunger Africa
+Star Foundation
+Tzu Chi Foundation
+SA Harvest
+
+DONATION SECTION
+
+Script heading:
+Maandelijks geven
+
+Main heading:
+Word maandelijkse ondersteuner
+
+Main text:
+Maandelijkse donaties maken steun betrouwbaar. Ze helpen om het werk in Zuid-Afrika vooruit te plannen, lokale banen te behouden, kinderen en gezinnen te ondersteunen en praktische hulp maand na maand voort te zetten.
+
+Support points:
+Houdt het No.1 ECD Centre kosteloos toegankelijk voor kinderen en gezinnen
+Helpt huishoudens via PureFlow Amanzi veiliger water te gebruiken
+Ondersteunt voeding, zorg en noodhulp waar gezinnen dit het hardst nodig hebben
+Financiert sterilisaties, voeding en medische zorg voor kwetsbare honden en andere dieren
+Helpt lokale banen in zorg, keuken, onderwijs, distributie en gemeenschapswerk te behouden
+Versterkt langdurig, lokaal gedragen werk in landelijke gemeenschappen in Zuid-Afrika
+
+Suggested monthly giving cards:
+
+Card 1 heading:
+Steun een kind
+
+Card 1 amount:
+€ 42 / maand
+
+Card 1 text:
+Helpt één kind een volledige maand zorg te ontvangen in het No.1 ECD Centre — inclusief maaltijden, vroeg leren, spel, veiligheid en lokale werkgelegenheid voor vrouwen.
+
+Card 1 CTA:
+Steun een kind maandelijks
+
+Card 2 heading:
+Steun een huishouden
+
+Card 2 amount:
+€ 30 / maand
+
+Card 2 text:
+Helpt één huishouden via PureFlow Amanzi toegang te krijgen tot veiliger water thuis — inclusief WASH-educatie, lokale distributie en opvolging.
+
+Card 2 CTA:
+Steun veilig water maandelijks
+
+Card 3 heading:
+Steun dierenwelzijn
+
+Card 3 amount:
+€ 20 / maand
+
+Card 3 text:
+Helpt sterilisaties, voeding, medische zorg en noodhulp voor kwetsbare dieren te financieren — voor gezondere dieren en vriendelijkere gemeenschappen.
+
+Card 3 CTA:
+Steun dierenwelzijn maandelijks
+
+Donation type tabs:
+Maandelijks
+Eenmalig
+
+Amount heading:
+Kies een bedrag
+
+Donation amounts:
+€ 10
+€ 20
+€ 30
+€ 42
+€ 50
+€ 100
+€ 250
+Eigen bedrag
+
+Verification note:
+Voor lancering controleren: definitieve logica van de betalingsprovider
+
+Gift direction heading:
+Bestemming van uw gift
+
+Gift direction options:
+Waar hulp het hardst nodig is
+No.1 ECD Centre
+PureFlow Amanzi
+Voedselzekerheid
+Dierenwelzijn
+Noodhulp
+
+Form labels:
+Naam
+E-mail
+Land
+
+Payment method heading:
+Betaalmethode
+
+Payment options:
+Kaart
+PayPal
+Bankoverschrijving
+
+Donation button:
+Maandelijks doneren
+
+Trust / reassurance points:
+Veilig doneren
+Maandelijks helpen
+Transparante rapportage
+Gemeenschapsgerichte impact
+
+NEWSLETTER SECTION
+
+Heading:
+Volg ons werk
+
+Text:
+Ontvang nieuws uit Zuid-Afrika, projectverhalen, impactrapporten en concrete manieren om het werk maandelijks te ondersteunen.
+
+Email field placeholder:
+Uw e-mailadres
+
+Button:
+Aanmelden
+
+Missing note:
+Ontbrekende informatie: nieuwsbriefplatform
+
+FOOTER TEXT
+
+Footer logo / organisation:
+iThemba Kuluntu
+
+Footer tagline:
+Gesteund vanuit Duitsland. Geworteld in Zuid-Afrika.
+
+German organisation heading:
+iThemba Kuluntu e.V. — Duitsland
+
+German address:
+Am Emberg 20
+57399 Kirchhundem
+Duitsland
+
+German registration:
+Ingeschreven bij Amtsgericht Siegen
+Vereinsregister 6845
+
+German tax number:
+Steuernummer: 338/5953/0753
+
+German bank details:
+Bankgegevens:
+iThemba Kuluntu e.V.
+IBAN: DE52 8306 5408 0005 4056 96
+BIC: GENO DEF1 SLR
+
+Email:
+[info@ithembakuluntu.org](mailto:info@ithembakuluntu.org)
+
+South African organisation heading:
+iThemba Kuluntu NPC — Zuid-Afrika
+
+South African registration details:
+Registratie: 2023/199348/08
+PBO: 930081177
+NPO: 300-700
+VAT: 4430318792
+
+South African address:
+Flat Rock Cottage, Cwebeni Beach, Port St Johns, Eastern Cape, Zuid-Afrika, 5090
+
+South African phone:
++27 71 977 8063
+
+Footer newsletter heading:
+Volg ons werk
+
+Footer newsletter email placeholder:
+Uw e-mailadres
+
+Footer newsletter button:
+Aanmelden
+
+Footer social links:
+Instagram
+Facebook
+TikTok
+YouTube
+
+Footer legal links:
+Impressum
+Privacyverklaring
+Cookiebeleid
+Gebruiksvoorwaarden
+Donatievoorwaarden
+
+Copyright:
+© 2026 iThemba Kuluntu NPC. Alle rechten voorbehouden.
+
+FLOATING DONATION BUTTON
+
+Button:
+Maandelijks doneren
+
+Optional hover / aria label:
+Word maandelijkse ondersteuner
+
+INTERNAL VERIFICATION NOTES BEFORE LAUNCH
+
+Voor lancering controleren: definitieve impactcijfers en rapportageperiode.
+Voor lancering controleren: definitieve logica van de betalingsprovider.
+Voor lancering controleren: of projectgebonden donaties juridisch en organisatorisch mogelijk zijn.
+Voor lancering controleren: nieuwsbriefplatform.
