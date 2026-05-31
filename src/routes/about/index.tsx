@@ -450,9 +450,32 @@ function About() {
       <WhatMakesDifferent c={c} />
       <WhatGuidesUs c={c} />
       <Governance c={c} />
-      <OurWorkToday c={c} />
+      <BlueToBlueWave />
       <ClosingCTA c={c} />
     </>
+  );
+}
+
+/** Soft cream wave separator between two adjacent blue sections. */
+function BlueToBlueWave() {
+  return (
+    <div aria-hidden className="relative -my-px bg-[var(--ithemba-blue-deepest)]">
+      <svg
+        className="block w-full"
+        viewBox="0 0 1440 80"
+        preserveAspectRatio="none"
+      >
+        <path
+          d="M0,32 C240,72 480,8 720,36 C960,64 1200,12 1440,40 L1440,80 L0,80 Z"
+          fill="var(--ithemba-cream)"
+          opacity="0.95"
+        />
+        <path
+          d="M0,48 C240,16 520,80 760,48 C1000,16 1220,72 1440,52 L1440,80 L0,80 Z"
+          fill="var(--ithemba-blue-deepest)"
+        />
+      </svg>
+    </div>
   );
 }
 
@@ -497,6 +520,17 @@ function HeroVideo({ c }: { c: AboutContent }) {
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
         <div className="absolute right-[-6rem] top-[-6rem] h-[28rem] w-[28rem] sun-glow" />
       </div>
+
+      {/* Subtle hint that this hero will hold a real team video */}
+      {!showVideo && (
+        <div className="pointer-events-none absolute right-4 top-4 z-10 hidden items-center gap-2 rounded-full bg-black/40 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.14em] text-white/85 ring-1 ring-white/15 backdrop-blur md:inline-flex">
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--ithemba-yellow)] opacity-75" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--ithemba-yellow)]" />
+          </span>
+          Hero video placeholder · ready for real team video
+        </div>
+      )}
 
       <div className="mx-auto max-w-7xl px-4 pb-20 pt-20 md:pb-28 md:pt-28 lg:min-h-[78vh] lg:px-8">
         <div className="relative max-w-3xl text-white">
