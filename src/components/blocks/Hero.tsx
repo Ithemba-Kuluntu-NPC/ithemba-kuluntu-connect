@@ -3,8 +3,9 @@ import { Button } from "@/components/ui/button";
 import { Heart, ArrowRight, MapPin } from "lucide-react";
 import { useLang } from "@/components/site/LanguageProvider";
 import { t } from "@/data/content";
-import { SmartImage, SmartLogo } from "@/components/site/Asset";
+import { SmartLogo } from "@/components/site/Asset";
 import { assets } from "@/data/assets";
+import heroPhoto from "@/assets/home-hero.jpg";
 
 export function Hero() {
   const { t: tr, lang } = useLang();
@@ -12,13 +13,12 @@ export function Hero() {
     <section className="relative isolate overflow-hidden">
       {/* full-bleed photo background */}
       <div className="absolute inset-0 -z-10">
-        <SmartImage
-          src={assets.photos.home.hero}
-          label="Pondoland community hero — children, women, landscape"
-          className="h-full w-full"
-          rounded="rounded-none"
-          tone="earth"
-          showMissingBadge={false}
+        <img
+          src={heroPhoto}
+          alt="Children in Pondoland sharing a joyful high-five with bubbles in the sunlight"
+          className="h-full w-full object-cover object-center"
+          loading="eager"
+          decoding="async"
         />
         {/* readable overlays: deep blue from left, warm gradient from bottom */}
         <div className="absolute inset-0 bg-gradient-to-r from-[var(--ithemba-blue-deepest)]/85 via-[var(--ithemba-blue-dark)]/55 to-transparent" />
