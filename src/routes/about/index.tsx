@@ -709,7 +709,7 @@ function WhatGuidesUs({ c }: { c: AboutContent }) {
   return (
     <section className="mx-auto max-w-7xl px-4 py-16 md:py-20 lg:px-8">
       <div className="mx-auto max-w-2xl text-center">
-        <div className="hand-eyebrow">{c.guides.heading}</div>
+        <div className="hand-eyebrow">{c.eyebrows.guides}</div>
         <h2 className="mt-1 font-display text-3xl font-bold text-[var(--ithemba-blue-dark)] md:text-4xl">
           {c.guides.heading}
         </h2>
