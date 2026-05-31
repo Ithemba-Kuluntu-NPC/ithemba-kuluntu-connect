@@ -301,6 +301,16 @@ const DE: AboutContent = {
 };
 
 const NL: AboutContent = {
+  eyebrows: {
+    who: "Ons verhaal",
+    where: "Plek",
+    structures: "Samen",
+    different: "Onze aanpak",
+    guides: "Onze waarden",
+    governance: "Vertrouwen",
+    work: "In actie",
+    cta: "Loop met ons mee",
+  },
   hero: {
     eyebrow: "Over ons",
     title: "iThemba Kuluntu",
