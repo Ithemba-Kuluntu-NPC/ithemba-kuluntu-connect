@@ -899,9 +899,9 @@ function ClosingCTA({ c }: { c: AboutContent }) {
       </div>
       <div className="mx-auto max-w-4xl px-4 text-center lg:px-8">
         <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] inline-flex items-center gap-2 justify-center">
-          <Heart className="h-5 w-5 fill-[var(--ithemba-yellow)]" /> {c.cta.heading}
+          <Heart className="h-5 w-5 fill-[var(--ithemba-yellow)]" /> {c.eyebrows.cta}
         </div>
-        <h2 className="mt-2 font-display text-3xl font-bold md:text-5xl">{c.cta.heading}</h2>
+        <h2 className="mt-2 font-display text-3xl font-bold md:text-5xl">{c.cta.blueHeading}</h2>
         <div className="mx-auto mt-6 max-w-2xl space-y-4 text-white/90 leading-relaxed">
           {c.cta.paragraphs.map((p, i) => (
             <p key={i}>{p}</p>
