@@ -3,9 +3,9 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Heart, MapPin, Sparkles, Users } from "lucide-react";
 import { useLang } from "@/components/site/LanguageProvider";
-import { SmartImage, SmartLogo } from "@/components/site/Asset";
-import { assets } from "@/data/assets";
+import { SmartImage } from "@/components/site/Asset";
 import type { Lang } from "@/data/content";
+
 
 export const Route = createFileRoute("/about/team")({ component: AboutTeam });
 
