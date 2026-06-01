@@ -607,10 +607,11 @@ const COPY: Record<Lang, Copy> = {
         "Vandaag is het Centre een plek van dagelijkse zorg en ontwikkeling. Het is niet alleen een gebouw. Het is een veilige omgeving waar kinderen welkom zijn, eten krijgen, leren, getroost worden, aangemoedigd worden en voorbereid worden op de volgende stap in hun onderwijs.",
       ],
       timeline: [
-        { when: "2024", what: "FNB Care zegt steun toe voor de infrastructuur" },
-        { when: "2024–2025", what: "Vrouwen uit de gemeenschap worden opgeleid als ECD-leerkrachten" },
-        { when: "April 2025", what: "Gebouw voltooid" },
-        { when: "2025", what: "Deuren openen voor 120 kinderen" },
+        { when: "30 augustus 2024", what: "Vrouwen uit de gemeenschap beginnen aan de ECD-leerkrachtenopleiding, ondersteund door FNB Care." },
+        { when: "Oktober 2024", what: "De bouw van de ECD-infrastructuur begint." },
+        { when: "Maart–april 2025", what: "De ECD-leerkrachten nemen deel aan verdere workshops en praktische voorbereiding." },
+        { when: "April 2025", what: "Het ECD-gebouw wordt voltooid." },
+        { when: "Mei 2025", what: "Het No.1 ECD Centre opent officieel zijn deuren." },
       ],
     },
     women: {
