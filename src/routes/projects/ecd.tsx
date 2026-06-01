@@ -1220,59 +1220,57 @@ function Provides({ c }: { c: Copy }) {
 
 /* ---------- DAILY RHYTHM ---------- */
 function Rhythm({ c }: { c: Copy }) {
+  const rhythmIcons = [Sun, PlayCircle, Utensils, HandHeart, Music, BookOpen, Moon, Smile, Cookie, Moon, Users, Heart];
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-[var(--ithemba-blue-dark)] via-[var(--ithemba-blue)] to-[var(--ithemba-blue-dark)] py-20 text-white">
       <div className="pointer-events-none absolute left-[-6rem] top-[-6rem] h-[24rem] w-[24rem] sun-glow" />
       <div className="pointer-events-none absolute right-10 bottom-10">
         <SunDoodle className="h-20 w-20 text-[var(--ithemba-yellow)]/50" />
       </div>
-      <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
-        <div className="max-w-2xl">
+      <div className="relative mx-auto max-w-4xl px-4 lg:px-8">
+        <div className="text-center">
           <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)]">{c.rhythm.eyebrow}</div>
           <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.rhythm.title}</h2>
-          <p className="mt-4 text-lg text-white/90">{c.rhythm.intro}</p>
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-white/90">{c.rhythm.intro}</p>
         </div>
 
-        {/* winding rhythm */}
-        <ol className="relative mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {/* vertical dotted snake path */}
+        <ol className="relative mt-12 space-y-5">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute left-6 top-3 bottom-3 w-px"
+            style={{
+              backgroundImage:
+                "repeating-linear-gradient(to bottom, var(--ithemba-yellow) 0 6px, transparent 6px 14px)",
+            }}
+          />
           {c.rhythm.items.map((r, i) => {
-            const rhythmIcons = [
-              Sun,
-              PlayCircle,
-              Utensils,
-              HandHeart,
-              Music,
-              BookOpen,
-              Moon,
-              Smile,
-              Cookie,
-              Moon,
-              Users,
-              Heart,
-            ];
             const Icon = rhythmIcons[i % rhythmIcons.length];
             return (
               <li
                 key={i}
-                className="group relative rounded-3xl bg-white/10 p-5 ring-1 ring-white/15 backdrop-blur transition hover:bg-white/15"
-                style={{
-                  borderRadius:
-                    i % 3 === 0
-                      ? "62% 38% 55% 45% / 50% 60% 40% 50%"
-                      : i % 3 === 1
-                      ? "40% 60% 65% 35% / 55% 45% 55% 45%"
-                      : "1.5rem",
-                }}
+                className="relative pl-16"
+                style={{ marginLeft: `${(i % 2) * 0.75}rem` }}
               >
-                <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--ithemba-yellow)] text-[var(--ithemba-brown)]">
-                    <Icon className="h-5 w-5" />
-                  </div>
+                <div className="absolute left-0 top-1 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--ithemba-yellow)] text-[var(--ithemba-brown)] shadow-md ring-4 ring-[var(--ithemba-blue-dark)]">
+                  <Icon className="h-5 w-5" />
+                </div>
+                <div
+                  className="rounded-3xl bg-white/10 p-4 ring-1 ring-white/15 backdrop-blur"
+                  style={{
+                    borderRadius:
+                      i % 3 === 0
+                        ? "1.5rem"
+                        : i % 3 === 1
+                        ? "55% 45% 60% 40% / 45% 55% 45% 55%"
+                        : "1.5rem",
+                  }}
+                >
                   <div className="font-display text-base font-bold text-[var(--ithemba-yellow)]">
                     {r.time}
                   </div>
+                  <div className="mt-1 text-sm leading-snug text-white/95">{r.what}</div>
                 </div>
-                <div className="mt-3 text-sm leading-snug text-white/95">{r.what}</div>
               </li>
             );
           })}
