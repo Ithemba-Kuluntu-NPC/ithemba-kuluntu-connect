@@ -223,10 +223,11 @@ const COPY: Record<Lang, Copy> = {
         "The centre now stands as a place of daily care and learning. It is not only a building. It is a safe environment where children are welcomed, fed, taught, comforted, encouraged and prepared for the next step in their education.",
       ],
       timeline: [
-        { when: "2024", what: "FNB Care commits infrastructure support" },
-        { when: "2024–2025", what: "Local women trained as ECD teachers" },
-        { when: "April 2025", what: "Building completed" },
-        { when: "2025", what: "Doors open for 120 children" },
+        { when: "30 August 2024", what: "Local women begin ECD teacher training supported by FNB Care." },
+        { when: "October 2024", what: "Construction of the ECD infrastructure begins." },
+        { when: "March–April 2025", what: "ECD teachers take part in further workshops and practical preparation." },
+        { when: "April 2025", what: "The ECD building is completed." },
+        { when: "May 2025", what: "The No.1 ECD Centre officially opens its doors." },
       ],
     },
     women: {
