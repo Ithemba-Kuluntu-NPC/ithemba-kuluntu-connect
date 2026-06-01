@@ -32,6 +32,7 @@ import { SmartImage, SmartLogo } from "@/components/site/Asset";
 import { DonationWidget } from "@/components/blocks/DonationWidget";
 import { FocusAreaBadges } from "@/components/blocks/FocusAreaBadges";
 import { assets } from "@/data/assets";
+import { focusAreaBadgeMeta } from "@/data/projects";
 import type { Lang } from "@/data/content";
 
 export const Route = createFileRoute("/projects/ecd")({ component: EcdPage });
@@ -222,10 +223,11 @@ const COPY: Record<Lang, Copy> = {
         "The centre now stands as a place of daily care and learning. It is not only a building. It is a safe environment where children are welcomed, fed, taught, comforted, encouraged and prepared for the next step in their education.",
       ],
       timeline: [
-        { when: "2024", what: "FNB Care commits infrastructure support" },
-        { when: "2024–2025", what: "Local women trained as ECD teachers" },
-        { when: "April 2025", what: "Building completed" },
-        { when: "2025", what: "Doors open for 120 children" },
+        { when: "30 August 2024", what: "Local women begin ECD teacher training supported by FNB Care." },
+        { when: "October 2024", what: "Construction of the ECD infrastructure begins." },
+        { when: "March–April 2025", what: "ECD teachers take part in further workshops and practical preparation." },
+        { when: "April 2025", what: "The ECD building is completed." },
+        { when: "May 2025", what: "The No.1 ECD Centre officially opens its doors." },
       ],
     },
     women: {
@@ -413,10 +415,11 @@ const COPY: Record<Lang, Copy> = {
         "Heute ist das Centre ein Ort täglicher Fürsorge und Bildung. Es ist nicht nur ein Gebäude. Es ist ein sicherer Raum, in dem Kinder willkommen geheißen, ernährt, unterrichtet, getröstet, ermutigt und auf den nächsten Schritt ihres Bildungswegs vorbereitet werden.",
       ],
       timeline: [
-        { when: "2024", what: "FNB Care sagt Unterstützung für die Infrastruktur zu" },
-        { when: "2024–2025", what: "Frauen aus der Gemeinschaft werden zu ECD-Lehrkräften ausgebildet" },
-        { when: "April 2025", what: "Gebäude fertiggestellt" },
-        { when: "2025", what: "Türen öffnen für 120 Kinder" },
+        { when: "30. August 2024", what: "Frauen aus der Gemeinschaft beginnen die Ausbildung zu ECD-Lehrkräften, unterstützt von FNB Care." },
+        { when: "Oktober 2024", what: "Der Bau der ECD-Infrastruktur beginnt." },
+        { when: "März–April 2025", what: "Die ECD-Lehrkräfte nehmen an weiteren Workshops und praktischer Vorbereitung teil." },
+        { when: "April 2025", what: "Das ECD-Gebäude wird fertiggestellt." },
+        { when: "Mai 2025", what: "Das No.1 ECD Centre öffnet offiziell seine Türen." },
       ],
     },
     women: {
@@ -604,10 +607,11 @@ const COPY: Record<Lang, Copy> = {
         "Vandaag is het Centre een plek van dagelijkse zorg en ontwikkeling. Het is niet alleen een gebouw. Het is een veilige omgeving waar kinderen welkom zijn, eten krijgen, leren, getroost worden, aangemoedigd worden en voorbereid worden op de volgende stap in hun onderwijs.",
       ],
       timeline: [
-        { when: "2024", what: "FNB Care zegt steun toe voor de infrastructuur" },
-        { when: "2024–2025", what: "Vrouwen uit de gemeenschap worden opgeleid als ECD-leerkrachten" },
-        { when: "April 2025", what: "Gebouw voltooid" },
-        { when: "2025", what: "Deuren openen voor 120 kinderen" },
+        { when: "30 augustus 2024", what: "Vrouwen uit de gemeenschap beginnen aan de ECD-leerkrachtenopleiding, ondersteund door FNB Care." },
+        { when: "Oktober 2024", what: "De bouw van de ECD-infrastructuur begint." },
+        { when: "Maart–april 2025", what: "De ECD-leerkrachten nemen deel aan verdere workshops en praktische voorbereiding." },
+        { when: "April 2025", what: "Het ECD-gebouw wordt voltooid." },
+        { when: "Mei 2025", what: "Het No.1 ECD Centre opent officieel zijn deuren." },
       ],
     },
     women: {
@@ -928,35 +932,44 @@ function Snapshot({ c }: { c: Copy }) {
     <section className="relative overflow-hidden bg-[var(--ithemba-cream)] py-20">
       <div className="pointer-events-none absolute -left-10 top-10 h-44 w-44 blob bg-[var(--ithemba-yellow)]/25" />
       <div className="pointer-events-none absolute -right-10 bottom-10 h-52 w-52 blob-2 bg-[var(--ithemba-blue)]/15" />
-      <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
-        <SectionHeading eyebrow={c.snapshot.eyebrow} title={c.snapshot.title} />
-        <div className="mt-6 grid gap-8 md:grid-cols-2">
-          <div className="space-y-4 text-lg leading-relaxed text-foreground/85">
-            {c.snapshot.body.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
-          </div>
-          <div className="grid grid-cols-2 gap-3">
-            {c.snapshot.facts.map((f, i) => {
-              const Icon = factIcons[i % factIcons.length];
-              return (
+      <div className="relative mx-auto max-w-5xl px-4 lg:px-8">
+        <div className="text-center">
+          <SectionHeading eyebrow={c.snapshot.eyebrow} title={c.snapshot.title} center />
+        </div>
+        <div className="mx-auto mt-6 max-w-3xl space-y-4 text-center text-lg leading-relaxed text-foreground/85">
+          {c.snapshot.body.map((p, i) => (
+            <p key={i}>{p}</p>
+          ))}
+        </div>
+        <div className="mt-14 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-4">
+          {c.snapshot.facts.map((f, i) => {
+            const Icon = factIcons[i % factIcons.length];
+            const tones = [
+              "bg-[var(--ithemba-yellow)]/25 text-[var(--ithemba-yellow-warm)]",
+              "bg-[var(--ithemba-blue)]/15 text-[var(--ithemba-blue-dark)]",
+            ];
+            return (
+              <div key={f.label} className="flex flex-col items-center text-center">
                 <div
-                  key={f.label}
-                  className="group relative rounded-3xl bg-white p-4 shadow-sm ring-1 ring-black/5 transition hover:shadow-md"
+                  className={`flex h-16 w-16 items-center justify-center ${tones[i % 2]}`}
+                  style={{
+                    borderRadius:
+                      i % 2 === 0
+                        ? "60% 40% 55% 45% / 50% 60% 40% 50%"
+                        : "9999px",
+                  }}
                 >
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--ithemba-yellow)]/20 text-[var(--ithemba-yellow-warm)]">
-                    <Icon className="h-5 w-5" />
-                  </div>
-                  <div className="mt-3 text-xs font-semibold uppercase tracking-wide text-foreground/60">
-                    {f.label}
-                  </div>
-                  <div className="mt-1 font-display text-lg font-bold leading-tight text-[var(--ithemba-blue-dark)]">
-                    {f.value}
-                  </div>
+                  <Icon className="h-7 w-7" />
                 </div>
-              );
-            })}
-          </div>
+                <div className="mt-3 font-display text-xl font-extrabold leading-tight text-[var(--ithemba-blue-dark)]">
+                  {f.value}
+                </div>
+                <div className="mt-1 text-[11px] font-semibold uppercase tracking-wide text-foreground/60">
+                  {f.label}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -1008,18 +1021,27 @@ function Importance({ c }: { c: Copy }) {
               <p key={i}>{p}</p>
             ))}
           </div>
-          <div className="grid grid-cols-2 gap-4 self-start sm:grid-cols-3">
-            {c.importance.pillars.map((p) => {
+          <div className="flex flex-wrap items-center justify-center gap-4 self-start">
+            {c.importance.pillars.map((p, i) => {
               const Icon = ICONS[p.icon];
+              const sizes = ["h-28 w-28", "h-32 w-32", "h-28 w-28"];
               return (
                 <div
                   key={p.label}
-                  className="rounded-3xl bg-white/8 p-5 text-center ring-1 ring-white/10 backdrop-blur"
+                  className={`${sizes[i % sizes.length]} flex flex-col items-center justify-center gap-1.5 bg-white/10 p-3 text-center ring-1 ring-white/15 backdrop-blur`}
+                  style={{
+                    borderRadius:
+                      i % 3 === 0
+                        ? "62% 38% 55% 45% / 50% 60% 40% 50%"
+                        : i % 3 === 1
+                        ? "9999px"
+                        : "55% 45% 60% 40% / 45% 55% 45% 55%",
+                  }}
                 >
-                  <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[var(--ithemba-yellow)]/20 text-[var(--ithemba-yellow)]">
-                    <Icon className="h-6 w-6" />
+                  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[var(--ithemba-yellow)]/25 text-[var(--ithemba-yellow)]">
+                    <Icon className="h-4 w-4" />
                   </div>
-                  <div className="mt-3 text-sm font-semibold leading-snug">{p.label}</div>
+                  <div className="text-[11px] font-semibold leading-snug">{p.label}</div>
                 </div>
               );
             })}
@@ -1063,19 +1085,47 @@ function Building({ c }: { c: Copy }) {
       <div className="mt-14">
         <div className="hand-eyebrow">Timeline</div>
         <div className="relative mt-4">
-          <div className="absolute left-0 right-0 top-6 hidden h-1 rounded-full bg-[var(--ithemba-yellow)]/40 md:block" />
-          <ol className="grid gap-6 md:grid-cols-4">
+          {/* desktop wavy dotted path */}
+          <svg
+            className="pointer-events-none absolute inset-x-0 top-7 hidden h-24 w-full md:block"
+            viewBox="0 0 1200 100"
+            preserveAspectRatio="none"
+            aria-hidden
+          >
+            <path
+              d="M40,50 C200,0 360,100 540,50 C720,0 900,100 1160,50"
+              stroke="var(--ithemba-yellow)"
+              strokeWidth="3"
+              strokeLinecap="round"
+              strokeDasharray="2 10"
+              fill="none"
+            />
+          </svg>
+          {/* mobile vertical dotted path */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute left-7 top-2 bottom-2 w-px md:hidden"
+            style={{
+              backgroundImage:
+                "repeating-linear-gradient(to bottom, var(--ithemba-yellow) 0 6px, transparent 6px 14px)",
+            }}
+          />
+          <ol className="grid gap-6 md:grid-cols-5 md:gap-4">
             {c.building.timeline.map((t, i) => (
               <li key={i} className="relative">
-                <div className="flex md:flex-col md:items-center md:text-center">
-                  <div className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--ithemba-yellow)] text-[var(--ithemba-brown)] shadow-md ring-4 ring-[var(--background)]">
-                    <span className="text-sm font-bold">{i + 1}</span>
+                <div
+                  className={`flex items-start gap-4 md:flex-col md:items-center md:text-center ${
+                    i % 2 === 1 ? "md:translate-y-7" : ""
+                  }`}
+                >
+                  <div className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[var(--ithemba-yellow)] text-[var(--ithemba-brown)] shadow-md ring-4 ring-[var(--background)]">
+                    <Sparkles className="h-5 w-5" />
                   </div>
-                  <div className="ml-4 md:ml-0 md:mt-3">
-                    <div className="font-display text-lg font-bold text-[var(--ithemba-blue-dark)]">
+                  <div className="md:mt-3">
+                    <div className="font-display text-sm font-bold text-[var(--ithemba-blue-dark)]">
                       {t.when}
                     </div>
-                    <div className="mt-1 text-sm leading-snug text-foreground/80">{t.what}</div>
+                    <div className="mt-1 text-xs leading-snug text-foreground/80">{t.what}</div>
                   </div>
                 </div>
               </li>
@@ -1134,25 +1184,30 @@ function Provides({ c }: { c: Copy }) {
         <SectionHeading eyebrow={c.provides.eyebrow} title={c.provides.title} />
         <p className="mt-5 text-lg leading-relaxed text-foreground/85">{c.provides.intro}</p>
       </div>
-      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-12 grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
         {c.provides.items.map((it, i) => {
           const Icon = ICONS[it.icon] ?? Sparkles;
           const tones = [
-            "bg-[var(--ithemba-yellow)]/20 text-[var(--ithemba-yellow-warm)]",
-            "bg-[var(--ithemba-blue)]/12 text-[var(--ithemba-blue-dark)]",
+            "bg-[var(--ithemba-yellow)]/25 text-[var(--ithemba-yellow-warm)]",
+            "bg-[var(--ithemba-blue)]/15 text-[var(--ithemba-blue-dark)]",
             "bg-emerald-100 text-emerald-700",
           ];
           return (
-            <div
-              key={it.label}
-              className="flex items-start gap-4 rounded-3xl bg-white p-5 shadow-sm ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-md"
-            >
+            <div key={it.label} className="flex items-center gap-4">
               <div
-                className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl ${tones[i % tones.length]}`}
+                className={`flex h-14 w-14 shrink-0 items-center justify-center ${tones[i % tones.length]}`}
+                style={{
+                  borderRadius:
+                    i % 3 === 0
+                      ? "62% 38% 55% 45% / 50% 60% 40% 50%"
+                      : i % 3 === 1
+                      ? "9999px"
+                      : "55% 45% 60% 40% / 45% 55% 45% 55%",
+                }}
               >
                 <Icon className="h-6 w-6" />
               </div>
-              <div className="pt-1.5 text-sm font-medium leading-snug text-foreground/90">
+              <div className="text-base font-medium leading-snug text-foreground/90">
                 {it.label}
               </div>
             </div>
@@ -1165,59 +1220,57 @@ function Provides({ c }: { c: Copy }) {
 
 /* ---------- DAILY RHYTHM ---------- */
 function Rhythm({ c }: { c: Copy }) {
+  const rhythmIcons = [Sun, PlayCircle, Utensils, HandHeart, Music, BookOpen, Moon, Smile, Cookie, Moon, Users, Heart];
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-[var(--ithemba-blue-dark)] via-[var(--ithemba-blue)] to-[var(--ithemba-blue-dark)] py-20 text-white">
       <div className="pointer-events-none absolute left-[-6rem] top-[-6rem] h-[24rem] w-[24rem] sun-glow" />
       <div className="pointer-events-none absolute right-10 bottom-10">
         <SunDoodle className="h-20 w-20 text-[var(--ithemba-yellow)]/50" />
       </div>
-      <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
-        <div className="max-w-2xl">
+      <div className="relative mx-auto max-w-4xl px-4 lg:px-8">
+        <div className="text-center">
           <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)]">{c.rhythm.eyebrow}</div>
           <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.rhythm.title}</h2>
-          <p className="mt-4 text-lg text-white/90">{c.rhythm.intro}</p>
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-white/90">{c.rhythm.intro}</p>
         </div>
 
-        {/* winding rhythm */}
-        <ol className="relative mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {/* vertical dotted snake path */}
+        <ol className="relative mt-12 space-y-5">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute left-6 top-3 bottom-3 w-px"
+            style={{
+              backgroundImage:
+                "repeating-linear-gradient(to bottom, var(--ithemba-yellow) 0 6px, transparent 6px 14px)",
+            }}
+          />
           {c.rhythm.items.map((r, i) => {
-            const rhythmIcons = [
-              Sun,
-              PlayCircle,
-              Utensils,
-              HandHeart,
-              Music,
-              BookOpen,
-              Moon,
-              Smile,
-              Cookie,
-              Moon,
-              Users,
-              Heart,
-            ];
             const Icon = rhythmIcons[i % rhythmIcons.length];
             return (
               <li
                 key={i}
-                className="group relative rounded-3xl bg-white/10 p-5 ring-1 ring-white/15 backdrop-blur transition hover:bg-white/15"
-                style={{
-                  borderRadius:
-                    i % 3 === 0
-                      ? "62% 38% 55% 45% / 50% 60% 40% 50%"
-                      : i % 3 === 1
-                      ? "40% 60% 65% 35% / 55% 45% 55% 45%"
-                      : "1.5rem",
-                }}
+                className="relative pl-16"
+                style={{ marginLeft: `${(i % 2) * 0.75}rem` }}
               >
-                <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--ithemba-yellow)] text-[var(--ithemba-brown)]">
-                    <Icon className="h-5 w-5" />
-                  </div>
+                <div className="absolute left-0 top-1 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--ithemba-yellow)] text-[var(--ithemba-brown)] shadow-md ring-4 ring-[var(--ithemba-blue-dark)]">
+                  <Icon className="h-5 w-5" />
+                </div>
+                <div
+                  className="rounded-3xl bg-white/10 p-4 ring-1 ring-white/15 backdrop-blur"
+                  style={{
+                    borderRadius:
+                      i % 3 === 0
+                        ? "1.5rem"
+                        : i % 3 === 1
+                        ? "55% 45% 60% 40% / 45% 55% 45% 55%"
+                        : "1.5rem",
+                  }}
+                >
                   <div className="font-display text-base font-bold text-[var(--ithemba-yellow)]">
                     {r.time}
                   </div>
+                  <div className="mt-1 text-sm leading-snug text-white/95">{r.what}</div>
                 </div>
-                <div className="mt-3 text-sm leading-snug text-white/95">{r.what}</div>
               </li>
             );
           })}
@@ -1280,19 +1333,27 @@ function Focus({ c }: { c: Copy }) {
             ))}
           </div>
         </div>
-        <div className="mt-10 grid gap-4 sm:grid-cols-3 lg:grid-cols-5">
-          {c.focus.items.map((f) => {
-            const Icon = ICONS[f.icon] ?? Sparkles;
+        <div className="mt-10 flex flex-wrap items-end justify-center gap-x-8 gap-y-6">
+          {(
+            [
+              ["education", c.focus.items[0]?.label ?? "Education"],
+              ["food-security", c.focus.items[1]?.label ?? "Food security"],
+              ["safe-water", c.focus.items[2]?.label ?? "Safe water"],
+              ["skills-livelihoods", c.focus.items[3]?.label ?? "Skills & livelihoods"],
+              ["community-health", c.focus.items[4]?.label ?? "Community health"],
+            ] as const
+          ).map(([badge, label]) => {
+            const meta = focusAreaBadgeMeta[badge];
             return (
-              <div
-                key={f.label}
-                className="flex flex-col items-center rounded-3xl bg-white p-5 text-center shadow-sm ring-1 ring-black/5"
-              >
-                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[var(--ithemba-blue)]/10 text-[var(--ithemba-blue-dark)]">
-                  <Icon className="h-7 w-7" />
-                </div>
+              <div key={badge} className="flex w-28 flex-col items-center text-center">
+                <img
+                  src={meta.src}
+                  alt={meta.label}
+                  className="h-16 w-16 object-contain drop-shadow-sm md:h-20 md:w-20"
+                  loading="lazy"
+                />
                 <div className="mt-3 text-sm font-semibold text-[var(--ithemba-blue-dark)]">
-                  {f.label}
+                  {label}
                 </div>
               </div>
             );
@@ -1305,40 +1366,43 @@ function Focus({ c }: { c: Copy }) {
 
 /* ---------- IMPACT ---------- */
 function Impact({ c }: { c: Copy }) {
-  const big = c.impact.points.slice(0, 2);
-  const rest = c.impact.points.slice(2);
   return (
     <section className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
-      <div className="max-w-3xl">
-        <SectionHeading eyebrow={c.impact.eyebrow} title={c.impact.title} />
+      <div className="mx-auto max-w-3xl text-center">
+        <SectionHeading eyebrow={c.impact.eyebrow} title={c.impact.title} center />
       </div>
-      <div className="mt-8 grid gap-5 md:grid-cols-2">
-        {big.map((p, i) => (
-          <div
-            key={i}
-            className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-[var(--ithemba-yellow)] to-[var(--ithemba-yellow-warm)] p-8 text-[var(--ithemba-brown)] shadow-lg"
-          >
-            <SunDoodle className="absolute right-4 top-4 h-10 w-10 text-white/60" />
-            <div className="font-display text-4xl font-extrabold leading-tight md:text-5xl">
-              {p}
+      <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {c.impact.points.map((p, i) => {
+          const highlighted = i < 2;
+          return (
+            <div
+              key={i}
+              className={`relative overflow-hidden rounded-[2rem] p-6 shadow-sm ring-1 transition hover:-translate-y-0.5 ${
+                highlighted
+                  ? "bg-[var(--ithemba-yellow)]/20 ring-[var(--ithemba-yellow)]/40"
+                  : "bg-white ring-black/5"
+              }`}
+            >
+              {highlighted && (
+                <SunDoodle className="absolute right-3 top-3 h-6 w-6 text-[var(--ithemba-yellow)]/70" />
+              )}
+              <div
+                className={`flex h-10 w-10 items-center justify-center rounded-full ${
+                  highlighted
+                    ? "bg-[var(--ithemba-yellow)] text-[var(--ithemba-brown)]"
+                    : "bg-[var(--ithemba-blue)]/10 text-[var(--ithemba-blue-dark)]"
+                }`}
+              >
+                <Heart className="h-5 w-5 fill-current" />
+              </div>
+              <div className="mt-4 text-base font-semibold leading-snug text-[var(--ithemba-blue-dark)]">
+                {p}
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
-      <div className="mt-5 grid gap-4 sm:grid-cols-2">
-        {rest.map((p, i) => (
-          <div
-            key={i}
-            className="flex gap-3 rounded-3xl bg-white p-5 shadow-sm ring-1 ring-black/5"
-          >
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--ithemba-blue)]/10 text-[var(--ithemba-blue-dark)]">
-              <Heart className="h-4 w-4 fill-current" />
-            </div>
-            <div className="pt-1 text-sm leading-snug">{p}</div>
-          </div>
-        ))}
-      </div>
-      <div className="mt-8 rounded-3xl border-2 border-dashed border-[var(--ithemba-yellow)] bg-[var(--ithemba-yellow)]/10 p-6 text-center">
+      <div className="mt-10 rounded-3xl border-2 border-dashed border-[var(--ithemba-yellow)] bg-[var(--ithemba-yellow)]/10 p-6 text-center">
         <SparkleDoodle className="mx-auto h-6 w-6" />
         <p className="mt-2 text-lg font-semibold text-[var(--ithemba-blue-dark)]">
           {c.impact.monthlyLine}
@@ -1408,7 +1472,8 @@ function Monthly({ c }: { c: Copy }) {
 /* ---------- CLOSING ---------- */
 function Closing({ c }: { c: Copy }) {
   return (
-    <section className="relative overflow-hidden bg-[var(--ithemba-cream)] py-20">
+    <section className="relative overflow-hidden bg-gradient-to-br from-[var(--ithemba-blue-deepest)] via-[var(--ithemba-blue-dark)] to-[var(--ithemba-blue)] py-20 text-white">
+      <div className="pointer-events-none absolute right-[-6rem] top-[-6rem] h-[24rem] w-[24rem] sun-glow" />
       <div className="pointer-events-none absolute left-10 top-10">
         <SunDoodle className="h-12 w-12 text-[var(--ithemba-yellow)]/60" />
       </div>
@@ -1416,11 +1481,11 @@ function Closing({ c }: { c: Copy }) {
         <SparkleDoodle className="h-8 w-8" />
       </div>
       <div className="relative mx-auto max-w-3xl px-4 text-center lg:px-8">
-        <div className="hand-eyebrow-lg">{c.closing.eyebrow}</div>
-        <h2 className="-mt-1 font-display text-4xl font-extrabold text-[var(--ithemba-blue-dark)] md:text-5xl">
+        <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)]">{c.closing.eyebrow}</div>
+        <h2 className="-mt-1 font-display text-4xl font-extrabold md:text-5xl">
           {c.closing.title}
         </h2>
-        <div className="mt-5 space-y-4 text-lg leading-relaxed text-foreground/85">
+        <div className="mt-5 space-y-4 text-lg leading-relaxed text-white/90">
           {c.closing.body.map((p, i) => (
             <p key={i}>{p}</p>
           ))}
@@ -1438,13 +1503,13 @@ function Closing({ c }: { c: Copy }) {
             <Button
               size="lg"
               variant="outline"
-              className="rounded-full border-[var(--ithemba-blue-dark)]/30 text-[var(--ithemba-blue-dark)] hover:bg-[var(--ithemba-blue-dark)]/5"
+              className="rounded-full border-white/40 bg-white/10 text-white hover:bg-white/20 hover:text-white"
             >
               {c.closing.once}
             </Button>
           </Link>
           <Link to="/projects">
-            <Button size="lg" variant="ghost" className="rounded-full text-[var(--ithemba-blue-dark)]">
+            <Button size="lg" variant="ghost" className="rounded-full text-white hover:bg-white/10 hover:text-white">
               {c.closing.all}
             </Button>
           </Link>
