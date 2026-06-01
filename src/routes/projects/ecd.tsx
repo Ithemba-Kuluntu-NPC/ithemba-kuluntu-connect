@@ -1184,25 +1184,30 @@ function Provides({ c }: { c: Copy }) {
         <SectionHeading eyebrow={c.provides.eyebrow} title={c.provides.title} />
         <p className="mt-5 text-lg leading-relaxed text-foreground/85">{c.provides.intro}</p>
       </div>
-      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-12 grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
         {c.provides.items.map((it, i) => {
           const Icon = ICONS[it.icon] ?? Sparkles;
           const tones = [
-            "bg-[var(--ithemba-yellow)]/20 text-[var(--ithemba-yellow-warm)]",
-            "bg-[var(--ithemba-blue)]/12 text-[var(--ithemba-blue-dark)]",
+            "bg-[var(--ithemba-yellow)]/25 text-[var(--ithemba-yellow-warm)]",
+            "bg-[var(--ithemba-blue)]/15 text-[var(--ithemba-blue-dark)]",
             "bg-emerald-100 text-emerald-700",
           ];
           return (
-            <div
-              key={it.label}
-              className="flex items-start gap-4 rounded-3xl bg-white p-5 shadow-sm ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-md"
-            >
+            <div key={it.label} className="flex items-center gap-4">
               <div
-                className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl ${tones[i % tones.length]}`}
+                className={`flex h-14 w-14 shrink-0 items-center justify-center ${tones[i % tones.length]}`}
+                style={{
+                  borderRadius:
+                    i % 3 === 0
+                      ? "62% 38% 55% 45% / 50% 60% 40% 50%"
+                      : i % 3 === 1
+                      ? "9999px"
+                      : "55% 45% 60% 40% / 45% 55% 45% 55%",
+                }}
               >
                 <Icon className="h-6 w-6" />
               </div>
-              <div className="pt-1.5 text-sm font-medium leading-snug text-foreground/90">
+              <div className="text-base font-medium leading-snug text-foreground/90">
                 {it.label}
               </div>
             </div>
