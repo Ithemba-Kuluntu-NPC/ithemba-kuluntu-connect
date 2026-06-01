@@ -415,10 +415,11 @@ const COPY: Record<Lang, Copy> = {
         "Heute ist das Centre ein Ort täglicher Fürsorge und Bildung. Es ist nicht nur ein Gebäude. Es ist ein sicherer Raum, in dem Kinder willkommen geheißen, ernährt, unterrichtet, getröstet, ermutigt und auf den nächsten Schritt ihres Bildungswegs vorbereitet werden.",
       ],
       timeline: [
-        { when: "2024", what: "FNB Care sagt Unterstützung für die Infrastruktur zu" },
-        { when: "2024–2025", what: "Frauen aus der Gemeinschaft werden zu ECD-Lehrkräften ausgebildet" },
-        { when: "April 2025", what: "Gebäude fertiggestellt" },
-        { when: "2025", what: "Türen öffnen für 120 Kinder" },
+        { when: "30. August 2024", what: "Frauen aus der Gemeinschaft beginnen die Ausbildung zu ECD-Lehrkräften, unterstützt von FNB Care." },
+        { when: "Oktober 2024", what: "Der Bau der ECD-Infrastruktur beginnt." },
+        { when: "März–April 2025", what: "Die ECD-Lehrkräfte nehmen an weiteren Workshops und praktischer Vorbereitung teil." },
+        { when: "April 2025", what: "Das ECD-Gebäude wird fertiggestellt." },
+        { when: "Mai 2025", what: "Das No.1 ECD Centre öffnet offiziell seine Türen." },
       ],
     },
     women: {
