@@ -1114,13 +1114,9 @@ function Building({ c }: { c: Copy }) {
             {c.building.timeline.map((t, i) => (
               <li key={i} className="relative">
                 <div
-                  className="flex items-start gap-4 md:flex-col md:items-center md:text-center"
-                  style={{
-                    transform:
-                      typeof window !== "undefined" && window.matchMedia("(min-width: 768px)").matches
-                        ? `translateY(${i % 2 === 0 ? "0" : "1.75rem"})`
-                        : undefined,
-                  }}
+                  className={`flex items-start gap-4 md:flex-col md:items-center md:text-center ${
+                    i % 2 === 1 ? "md:translate-y-7" : ""
+                  }`}
                 >
                   <div className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[var(--ithemba-yellow)] text-[var(--ithemba-brown)] shadow-md ring-4 ring-[var(--background)]">
                     <Sparkles className="h-5 w-5" />
