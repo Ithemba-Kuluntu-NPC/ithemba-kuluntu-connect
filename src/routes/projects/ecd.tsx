@@ -932,35 +932,44 @@ function Snapshot({ c }: { c: Copy }) {
     <section className="relative overflow-hidden bg-[var(--ithemba-cream)] py-20">
       <div className="pointer-events-none absolute -left-10 top-10 h-44 w-44 blob bg-[var(--ithemba-yellow)]/25" />
       <div className="pointer-events-none absolute -right-10 bottom-10 h-52 w-52 blob-2 bg-[var(--ithemba-blue)]/15" />
-      <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
-        <SectionHeading eyebrow={c.snapshot.eyebrow} title={c.snapshot.title} />
-        <div className="mt-6 grid gap-8 md:grid-cols-2">
-          <div className="space-y-4 text-lg leading-relaxed text-foreground/85">
-            {c.snapshot.body.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
-          </div>
-          <div className="grid grid-cols-2 gap-3">
-            {c.snapshot.facts.map((f, i) => {
-              const Icon = factIcons[i % factIcons.length];
-              return (
+      <div className="relative mx-auto max-w-5xl px-4 lg:px-8">
+        <div className="text-center">
+          <SectionHeading eyebrow={c.snapshot.eyebrow} title={c.snapshot.title} center />
+        </div>
+        <div className="mx-auto mt-6 max-w-3xl space-y-4 text-center text-lg leading-relaxed text-foreground/85">
+          {c.snapshot.body.map((p, i) => (
+            <p key={i}>{p}</p>
+          ))}
+        </div>
+        <div className="mt-14 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-4">
+          {c.snapshot.facts.map((f, i) => {
+            const Icon = factIcons[i % factIcons.length];
+            const tones = [
+              "bg-[var(--ithemba-yellow)]/25 text-[var(--ithemba-yellow-warm)]",
+              "bg-[var(--ithemba-blue)]/15 text-[var(--ithemba-blue-dark)]",
+            ];
+            return (
+              <div key={f.label} className="flex flex-col items-center text-center">
                 <div
-                  key={f.label}
-                  className="group relative rounded-3xl bg-white p-4 shadow-sm ring-1 ring-black/5 transition hover:shadow-md"
+                  className={`flex h-16 w-16 items-center justify-center ${tones[i % 2]}`}
+                  style={{
+                    borderRadius:
+                      i % 2 === 0
+                        ? "60% 40% 55% 45% / 50% 60% 40% 50%"
+                        : "9999px",
+                  }}
                 >
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--ithemba-yellow)]/20 text-[var(--ithemba-yellow-warm)]">
-                    <Icon className="h-5 w-5" />
-                  </div>
-                  <div className="mt-3 text-xs font-semibold uppercase tracking-wide text-foreground/60">
-                    {f.label}
-                  </div>
-                  <div className="mt-1 font-display text-lg font-bold leading-tight text-[var(--ithemba-blue-dark)]">
-                    {f.value}
-                  </div>
+                  <Icon className="h-7 w-7" />
                 </div>
-              );
-            })}
-          </div>
+                <div className="mt-3 font-display text-xl font-extrabold leading-tight text-[var(--ithemba-blue-dark)]">
+                  {f.value}
+                </div>
+                <div className="mt-1 text-[11px] font-semibold uppercase tracking-wide text-foreground/60">
+                  {f.label}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
