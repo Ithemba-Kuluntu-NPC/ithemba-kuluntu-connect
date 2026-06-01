@@ -32,6 +32,7 @@ import { SmartImage, SmartLogo } from "@/components/site/Asset";
 import { DonationWidget } from "@/components/blocks/DonationWidget";
 import { FocusAreaBadges } from "@/components/blocks/FocusAreaBadges";
 import { assets } from "@/data/assets";
+import { focusAreaBadgeMeta } from "@/data/projects";
 import type { Lang } from "@/data/content";
 
 export const Route = createFileRoute("/projects/ecd")({ component: EcdPage });
