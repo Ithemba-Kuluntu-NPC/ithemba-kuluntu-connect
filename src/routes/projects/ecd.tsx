@@ -1085,19 +1085,51 @@ function Building({ c }: { c: Copy }) {
       <div className="mt-14">
         <div className="hand-eyebrow">Timeline</div>
         <div className="relative mt-4">
-          <div className="absolute left-0 right-0 top-6 hidden h-1 rounded-full bg-[var(--ithemba-yellow)]/40 md:block" />
-          <ol className="grid gap-6 md:grid-cols-4">
+          {/* desktop wavy dotted path */}
+          <svg
+            className="pointer-events-none absolute inset-x-0 top-7 hidden h-24 w-full md:block"
+            viewBox="0 0 1200 100"
+            preserveAspectRatio="none"
+            aria-hidden
+          >
+            <path
+              d="M40,50 C200,0 360,100 540,50 C720,0 900,100 1160,50"
+              stroke="var(--ithemba-yellow)"
+              strokeWidth="3"
+              strokeLinecap="round"
+              strokeDasharray="2 10"
+              fill="none"
+            />
+          </svg>
+          {/* mobile vertical dotted path */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute left-7 top-2 bottom-2 w-px md:hidden"
+            style={{
+              backgroundImage:
+                "repeating-linear-gradient(to bottom, var(--ithemba-yellow) 0 6px, transparent 6px 14px)",
+            }}
+          />
+          <ol className="grid gap-6 md:grid-cols-5 md:gap-4">
             {c.building.timeline.map((t, i) => (
               <li key={i} className="relative">
-                <div className="flex md:flex-col md:items-center md:text-center">
-                  <div className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--ithemba-yellow)] text-[var(--ithemba-brown)] shadow-md ring-4 ring-[var(--background)]">
-                    <span className="text-sm font-bold">{i + 1}</span>
+                <div
+                  className="flex items-start gap-4 md:flex-col md:items-center md:text-center"
+                  style={{
+                    transform:
+                      typeof window !== "undefined" && window.matchMedia("(min-width: 768px)").matches
+                        ? `translateY(${i % 2 === 0 ? "0" : "1.75rem"})`
+                        : undefined,
+                  }}
+                >
+                  <div className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[var(--ithemba-yellow)] text-[var(--ithemba-brown)] shadow-md ring-4 ring-[var(--background)]">
+                    <Sparkles className="h-5 w-5" />
                   </div>
-                  <div className="ml-4 md:ml-0 md:mt-3">
-                    <div className="font-display text-lg font-bold text-[var(--ithemba-blue-dark)]">
+                  <div className="md:mt-3">
+                    <div className="font-display text-sm font-bold text-[var(--ithemba-blue-dark)]">
                       {t.when}
                     </div>
-                    <div className="mt-1 text-sm leading-snug text-foreground/80">{t.what}</div>
+                    <div className="mt-1 text-xs leading-snug text-foreground/80">{t.what}</div>
                   </div>
                 </div>
               </li>
