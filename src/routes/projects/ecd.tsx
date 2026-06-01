@@ -1472,7 +1472,8 @@ function Monthly({ c }: { c: Copy }) {
 /* ---------- CLOSING ---------- */
 function Closing({ c }: { c: Copy }) {
   return (
-    <section className="relative overflow-hidden bg-[var(--ithemba-cream)] py-20">
+    <section className="relative overflow-hidden bg-gradient-to-br from-[var(--ithemba-blue-deepest)] via-[var(--ithemba-blue-dark)] to-[var(--ithemba-blue)] py-20 text-white">
+      <div className="pointer-events-none absolute right-[-6rem] top-[-6rem] h-[24rem] w-[24rem] sun-glow" />
       <div className="pointer-events-none absolute left-10 top-10">
         <SunDoodle className="h-12 w-12 text-[var(--ithemba-yellow)]/60" />
       </div>
@@ -1480,11 +1481,11 @@ function Closing({ c }: { c: Copy }) {
         <SparkleDoodle className="h-8 w-8" />
       </div>
       <div className="relative mx-auto max-w-3xl px-4 text-center lg:px-8">
-        <div className="hand-eyebrow-lg">{c.closing.eyebrow}</div>
-        <h2 className="-mt-1 font-display text-4xl font-extrabold text-[var(--ithemba-blue-dark)] md:text-5xl">
+        <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)]">{c.closing.eyebrow}</div>
+        <h2 className="-mt-1 font-display text-4xl font-extrabold md:text-5xl">
           {c.closing.title}
         </h2>
-        <div className="mt-5 space-y-4 text-lg leading-relaxed text-foreground/85">
+        <div className="mt-5 space-y-4 text-lg leading-relaxed text-white/90">
           {c.closing.body.map((p, i) => (
             <p key={i}>{p}</p>
           ))}
@@ -1502,13 +1503,13 @@ function Closing({ c }: { c: Copy }) {
             <Button
               size="lg"
               variant="outline"
-              className="rounded-full border-[var(--ithemba-blue-dark)]/30 text-[var(--ithemba-blue-dark)] hover:bg-[var(--ithemba-blue-dark)]/5"
+              className="rounded-full border-white/40 bg-white/10 text-white hover:bg-white/20 hover:text-white"
             >
               {c.closing.once}
             </Button>
           </Link>
           <Link to="/projects">
-            <Button size="lg" variant="ghost" className="rounded-full text-[var(--ithemba-blue-dark)]">
+            <Button size="lg" variant="ghost" className="rounded-full text-white hover:bg-white/10 hover:text-white">
               {c.closing.all}
             </Button>
           </Link>
