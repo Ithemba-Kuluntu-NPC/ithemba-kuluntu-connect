@@ -407,32 +407,17 @@ function TeamHero({ c }: { c: HeroCopy }) {
           >
             <ArrowLeft className="h-3.5 w-3.5" /> {c.back}
           </Link>
-          <div className="mt-4 hand-eyebrow-lg !text-[var(--ithemba-yellow)] drop-shadow-sm flex items-center gap-2">
+          <div className="mt-8 hand-eyebrow-lg !text-[var(--ithemba-yellow)] drop-shadow-sm flex items-center gap-2">
             <Sparkles className="h-5 w-5" aria-hidden /> {c.eyebrow}
           </div>
-          <h1 className="mt-3">
-            <span className="sr-only">{c.title}</span>
-            <SmartLogo
-              src={assets.logos.ithembaTextWhite}
-              alt={c.title}
-              className="h-14 w-auto drop-shadow-[0_4px_24px_rgba(0,0,0,0.45)] md:h-20"
-              fallback={
-                <span
-                  aria-hidden
-                  className="block font-display text-[clamp(2.25rem,6vw,4rem)] font-extrabold leading-[0.95] tracking-tight text-white"
-                >
-                  {c.title}
-                </span>
-              }
-            />
-            <span className="mt-2 block font-display text-3xl font-bold text-white md:text-4xl">
-              {c.title}
-            </span>
-            <svg className="mt-3 block w-48 md:w-72" height="14" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden>
-              <path d="M2,8 C50,2 120,14 198,6" stroke="var(--ithemba-yellow)" strokeWidth="4" strokeLinecap="round" fill="none" />
-            </svg>
+          <h1 className="mt-2 font-display text-[clamp(2.5rem,6vw,4.5rem)] font-extrabold leading-[1] tracking-tight text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.45)]">
+            {c.title}
           </h1>
+          <svg className="mt-4 block w-48 md:w-72" height="14" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden>
+            <path d="M2,8 C50,2 120,14 198,6" stroke="var(--ithemba-yellow)" strokeWidth="4" strokeLinecap="round" fill="none" />
+          </svg>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/95 md:text-xl">{c.subtitle}</p>
+
           <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/85 md:text-base">{c.intro}</p>
 
           <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs font-medium text-white/85 backdrop-blur ring-1 ring-white/20">
