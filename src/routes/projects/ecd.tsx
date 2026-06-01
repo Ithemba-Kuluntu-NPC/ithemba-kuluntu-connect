@@ -1366,40 +1366,43 @@ function Focus({ c }: { c: Copy }) {
 
 /* ---------- IMPACT ---------- */
 function Impact({ c }: { c: Copy }) {
-  const big = c.impact.points.slice(0, 2);
-  const rest = c.impact.points.slice(2);
   return (
     <section className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
-      <div className="max-w-3xl">
-        <SectionHeading eyebrow={c.impact.eyebrow} title={c.impact.title} />
+      <div className="mx-auto max-w-3xl text-center">
+        <SectionHeading eyebrow={c.impact.eyebrow} title={c.impact.title} center />
       </div>
-      <div className="mt-8 grid gap-5 md:grid-cols-2">
-        {big.map((p, i) => (
-          <div
-            key={i}
-            className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-[var(--ithemba-yellow)] to-[var(--ithemba-yellow-warm)] p-8 text-[var(--ithemba-brown)] shadow-lg"
-          >
-            <SunDoodle className="absolute right-4 top-4 h-10 w-10 text-white/60" />
-            <div className="font-display text-4xl font-extrabold leading-tight md:text-5xl">
-              {p}
+      <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {c.impact.points.map((p, i) => {
+          const highlighted = i < 2;
+          return (
+            <div
+              key={i}
+              className={`relative overflow-hidden rounded-[2rem] p-6 shadow-sm ring-1 transition hover:-translate-y-0.5 ${
+                highlighted
+                  ? "bg-[var(--ithemba-yellow)]/20 ring-[var(--ithemba-yellow)]/40"
+                  : "bg-white ring-black/5"
+              }`}
+            >
+              {highlighted && (
+                <SunDoodle className="absolute right-3 top-3 h-6 w-6 text-[var(--ithemba-yellow)]/70" />
+              )}
+              <div
+                className={`flex h-10 w-10 items-center justify-center rounded-full ${
+                  highlighted
+                    ? "bg-[var(--ithemba-yellow)] text-[var(--ithemba-brown)]"
+                    : "bg-[var(--ithemba-blue)]/10 text-[var(--ithemba-blue-dark)]"
+                }`}
+              >
+                <Heart className="h-5 w-5 fill-current" />
+              </div>
+              <div className="mt-4 text-base font-semibold leading-snug text-[var(--ithemba-blue-dark)]">
+                {p}
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
-      <div className="mt-5 grid gap-4 sm:grid-cols-2">
-        {rest.map((p, i) => (
-          <div
-            key={i}
-            className="flex gap-3 rounded-3xl bg-white p-5 shadow-sm ring-1 ring-black/5"
-          >
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--ithemba-blue)]/10 text-[var(--ithemba-blue-dark)]">
-              <Heart className="h-4 w-4 fill-current" />
-            </div>
-            <div className="pt-1 text-sm leading-snug">{p}</div>
-          </div>
-        ))}
-      </div>
-      <div className="mt-8 rounded-3xl border-2 border-dashed border-[var(--ithemba-yellow)] bg-[var(--ithemba-yellow)]/10 p-6 text-center">
+      <div className="mt-10 rounded-3xl border-2 border-dashed border-[var(--ithemba-yellow)] bg-[var(--ithemba-yellow)]/10 p-6 text-center">
         <SparkleDoodle className="mx-auto h-6 w-6" />
         <p className="mt-2 text-lg font-semibold text-[var(--ithemba-blue-dark)]">
           {c.impact.monthlyLine}
