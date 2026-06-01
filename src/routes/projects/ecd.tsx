@@ -1021,18 +1021,27 @@ function Importance({ c }: { c: Copy }) {
               <p key={i}>{p}</p>
             ))}
           </div>
-          <div className="grid grid-cols-2 gap-4 self-start sm:grid-cols-3">
-            {c.importance.pillars.map((p) => {
+          <div className="flex flex-wrap items-center justify-center gap-4 self-start">
+            {c.importance.pillars.map((p, i) => {
               const Icon = ICONS[p.icon];
+              const sizes = ["h-28 w-28", "h-32 w-32", "h-28 w-28"];
               return (
                 <div
                   key={p.label}
-                  className="rounded-3xl bg-white/8 p-5 text-center ring-1 ring-white/10 backdrop-blur"
+                  className={`${sizes[i % sizes.length]} flex flex-col items-center justify-center gap-1.5 bg-white/10 p-3 text-center ring-1 ring-white/15 backdrop-blur`}
+                  style={{
+                    borderRadius:
+                      i % 3 === 0
+                        ? "62% 38% 55% 45% / 50% 60% 40% 50%"
+                        : i % 3 === 1
+                        ? "9999px"
+                        : "55% 45% 60% 40% / 45% 55% 45% 55%",
+                  }}
                 >
-                  <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[var(--ithemba-yellow)]/20 text-[var(--ithemba-yellow)]">
-                    <Icon className="h-6 w-6" />
+                  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[var(--ithemba-yellow)]/25 text-[var(--ithemba-yellow)]">
+                    <Icon className="h-4 w-4" />
                   </div>
-                  <div className="mt-3 text-sm font-semibold leading-snug">{p.label}</div>
+                  <div className="text-[11px] font-semibold leading-snug">{p.label}</div>
                 </div>
               );
             })}
