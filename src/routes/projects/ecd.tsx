@@ -1333,19 +1333,27 @@ function Focus({ c }: { c: Copy }) {
             ))}
           </div>
         </div>
-        <div className="mt-10 grid gap-4 sm:grid-cols-3 lg:grid-cols-5">
-          {c.focus.items.map((f) => {
-            const Icon = ICONS[f.icon] ?? Sparkles;
+        <div className="mt-10 flex flex-wrap items-end justify-center gap-x-8 gap-y-6">
+          {(
+            [
+              ["education", c.focus.items[0]?.label ?? "Education"],
+              ["food-security", c.focus.items[1]?.label ?? "Food security"],
+              ["safe-water", c.focus.items[2]?.label ?? "Safe water"],
+              ["skills-livelihoods", c.focus.items[3]?.label ?? "Skills & livelihoods"],
+              ["community-health", c.focus.items[4]?.label ?? "Community health"],
+            ] as const
+          ).map(([badge, label]) => {
+            const meta = focusAreaBadgeMeta[badge];
             return (
-              <div
-                key={f.label}
-                className="flex flex-col items-center rounded-3xl bg-white p-5 text-center shadow-sm ring-1 ring-black/5"
-              >
-                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[var(--ithemba-blue)]/10 text-[var(--ithemba-blue-dark)]">
-                  <Icon className="h-7 w-7" />
-                </div>
+              <div key={badge} className="flex w-28 flex-col items-center text-center">
+                <img
+                  src={meta.src}
+                  alt={meta.label}
+                  className="h-16 w-16 object-contain drop-shadow-sm md:h-20 md:w-20"
+                  loading="lazy"
+                />
                 <div className="mt-3 text-sm font-semibold text-[var(--ithemba-blue-dark)]">
-                  {f.label}
+                  {label}
                 </div>
               </div>
             );
