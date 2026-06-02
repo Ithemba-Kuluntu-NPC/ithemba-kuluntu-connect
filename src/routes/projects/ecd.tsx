@@ -754,6 +754,83 @@ const ICONS: Record<string, typeof BookOpen> = {
   Cookie,
 };
 
+/* ---------- Custom ECD icon set (yellow outline PNGs, transparent) ---------- */
+const ECD_ICON_BASE = "/assets/icons/projects/no1-ecd";
+const ECD_ICONS = {
+  opened: `${ECD_ICON_BASE}/ecd-opened.png`,
+  childrenSupported: `${ECD_ICON_BASE}/ecd-children-supported.png`,
+  ageGroups: `${ECD_ICON_BASE}/ecd-age-groups.png`,
+  freeToAttend: `${ECD_ICON_BASE}/ecd-free-to-attend.png`,
+  meals: `${ECD_ICON_BASE}/ecd-breakfast-lunch-snacks.png`,
+  team: `${ECD_ICON_BASE}/ecd-local-teachers-staff.png`,
+  builtWith: `${ECD_ICON_BASE}/ecd-built-with-support.png`,
+  registered: `${ECD_ICON_BASE}/ecd-registered.png`,
+  brain: `${ECD_ICON_BASE}/ecd-brain-development.png`,
+  playSongs: `${ECD_ICON_BASE}/ecd-play-songs-stories.png`,
+  responsive: `${ECD_ICON_BASE}/ecd-responsive-care.png`,
+  community: `${ECD_ICON_BASE}/ecd-community-led-teaching-care-team.png`,
+  schoolReady: `${ECD_ICON_BASE}/ecd-school-readiness.png`,
+  safety: `${ECD_ICON_BASE}/ecd-safety-routine.png`,
+  nutrition: `${ECD_ICON_BASE}/ecd-daily-nutrition.png`,
+  rest: `${ECD_ICON_BASE}/ecd-rest-nap-time.png`,
+  widerFood: `${ECD_ICON_BASE}/ecd-wider-food-security-care.png`,
+} as const;
+
+function EcdIcon({
+  src,
+  alt,
+  className = "h-16 w-16 md:h-20 md:w-20",
+}: {
+  src: string;
+  alt: string;
+  className?: string;
+}) {
+  return (
+    <img
+      src={src}
+      alt={alt}
+      className={`${className} object-contain`}
+      loading="lazy"
+    />
+  );
+}
+
+/* Per-section icon orderings — index-aligned with COPY arrays. */
+const SNAPSHOT_ICONS = [
+  ECD_ICONS.opened,
+  ECD_ICONS.childrenSupported,
+  ECD_ICONS.ageGroups,
+  ECD_ICONS.freeToAttend,
+  ECD_ICONS.meals,
+  ECD_ICONS.team,
+  ECD_ICONS.builtWith,
+  ECD_ICONS.registered,
+];
+const IMPORTANCE_ICONS = [
+  ECD_ICONS.brain,
+  ECD_ICONS.playSongs,
+  ECD_ICONS.safety,
+  ECD_ICONS.nutrition,
+  ECD_ICONS.responsive,
+  ECD_ICONS.schoolReady,
+];
+const PROVIDES_ICONS = [
+  ECD_ICONS.playSongs,
+  ECD_ICONS.meals,
+  ECD_ICONS.safety,
+  ECD_ICONS.schoolReady,
+  ECD_ICONS.ageGroups,
+  ECD_ICONS.playSongs,
+  ECD_ICONS.rest,
+  ECD_ICONS.freeToAttend,
+  ECD_ICONS.community,
+  ECD_ICONS.team,
+  ECD_ICONS.widerFood,
+];
+const RHYTHM_TONES: Array<"sun" | "blue" | "warm" | "green" | "ocean" | "earth"> = [
+  "sun", "warm", "sun", "blue", "warm", "green", "blue", "ocean", "warm", "blue", "green", "sun",
+];
+
 /* ---------- Doodle SVGs ---------- */
 function SunDoodle({ className = "h-8 w-8 text-[var(--ithemba-yellow)]" }) {
   return <Sun className={className} aria-hidden />;
