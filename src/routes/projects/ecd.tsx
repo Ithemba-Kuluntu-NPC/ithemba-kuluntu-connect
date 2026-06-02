@@ -24,7 +24,7 @@ import {
   Building2,
   Award,
   Cookie,
-  Baby,
+  
   PlayCircle,
 } from "lucide-react";
 import { useLang } from "@/components/site/LanguageProvider";
