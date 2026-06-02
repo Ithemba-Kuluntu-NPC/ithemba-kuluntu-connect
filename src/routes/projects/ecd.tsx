@@ -1069,48 +1069,63 @@ function Why({ c }: { c: Copy }) {
   );
 }
 
-/* ---------- IMPORTANCE (ECD matters) ---------- */
+/* ---------- IMPORTANCE (ECD matters) — photo bg + icons below ---------- */
 function Importance({ c }: { c: Copy }) {
   return (
-    <section className="relative overflow-hidden bg-[var(--ithemba-blue-deepest)] py-20 text-white">
-      <div className="pointer-events-none absolute -right-20 top-10 h-72 w-72 sun-glow" />
-      <div className="pointer-events-none absolute left-10 bottom-10 h-32 w-32 blob bg-white/5" />
-      <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
-        <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)]">{c.importance.eyebrow}</div>
-        <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.importance.title}</h2>
-        <div className="mt-6 grid gap-10 md:grid-cols-2">
-          <div className="space-y-4 text-lg leading-relaxed text-white/90">
-            {c.importance.body.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
+    <section className="relative isolate overflow-hidden py-20 text-white md:py-24">
+      <div className="absolute inset-0 -z-10">
+        <SmartImage
+          src={PHOTO_CHILD}
+          label="Young children learning at the No.1 ECD Centre"
+          className="h-full w-full"
+          rounded="rounded-none"
+          tone="sun"
+          showMissingBadge={false}
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/92 via-[var(--ithemba-blue-dark)]/82 to-[var(--ithemba-blue)]/55" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--ithemba-blue-deepest)]/70 via-transparent to-transparent" />
+        <div className="absolute right-[-6rem] top-[-6rem] h-[28rem] w-[28rem] sun-glow" />
+      </div>
+
+      <div className="relative mx-auto max-w-5xl px-4 lg:px-8">
+        <div className="max-w-3xl">
+          <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center gap-2">
+            <SparkleDoodle /> {c.importance.eyebrow}
           </div>
-          <div className="flex flex-wrap items-center justify-center gap-4 self-start">
-            {c.importance.pillars.map((p, i) => {
-              const Icon = ICONS[p.icon];
-              const sizes = ["h-28 w-28", "h-32 w-32", "h-28 w-28"];
-              return (
-                <div
-                  key={p.label}
-                  className={`${sizes[i % sizes.length]} flex flex-col items-center justify-center gap-1.5 bg-white/10 p-3 text-center ring-1 ring-white/15 backdrop-blur`}
-                  style={{
-                    borderRadius:
-                      i % 3 === 0
-                        ? "62% 38% 55% 45% / 50% 60% 40% 50%"
-                        : i % 3 === 1
-                        ? "9999px"
-                        : "55% 45% 60% 40% / 45% 55% 45% 55%",
-                  }}
-                >
-                  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[var(--ithemba-yellow)]/25 text-[var(--ithemba-yellow)]">
-                    <Icon className="h-4 w-4" />
-                  </div>
-                  <div className="text-[11px] font-semibold leading-snug">{p.label}</div>
-                </div>
-              );
-            })}
-          </div>
+          <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">
+            {c.importance.title}
+          </h2>
+        </div>
+        <div className="mt-6 max-w-3xl space-y-4 text-lg leading-relaxed text-white/90">
+          {c.importance.body.map((p, i) => (
+            <p key={i}>{p}</p>
+          ))}
+        </div>
+
+        {/* Six development areas — below the text, large icons, no boxes */}
+        <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 md:grid-cols-6">
+          {c.importance.pillars.map((p, i) => (
+            <div key={p.label} className="flex flex-col items-center text-center">
+              <EcdIcon
+                src={IMPORTANCE_ICONS[i] ?? IMPORTANCE_ICONS[0]}
+                alt={p.label}
+                className="h-20 w-20 md:h-24 md:w-24 drop-shadow-[0_2px_6px_rgba(0,0,0,0.35)]"
+              />
+              <div className="mt-3 text-xs font-semibold leading-snug text-white/95 md:text-sm">
+                {p.label}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
+
+      {/* wave divider blue → cream */}
+      <svg className="mt-16 block w-full" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden>
+        <path
+          d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z"
+          fill="var(--background)"
+        />
+      </svg>
     </section>
   );
 }
