@@ -1004,7 +1004,6 @@ function SectionHeading({
 
 /* ---------- SNAPSHOT ---------- */
 function Snapshot({ c }: { c: Copy }) {
-  const factIcons = [Sparkles, Baby, Smile, ShieldCheck, Utensils, Users, Building2, Award];
   return (
     <section className="relative overflow-hidden bg-[var(--ithemba-cream)] py-20">
       <div className="pointer-events-none absolute -left-10 top-10 h-44 w-44 blob bg-[var(--ithemba-yellow)]/25" />
@@ -1018,35 +1017,22 @@ function Snapshot({ c }: { c: Copy }) {
             <p key={i}>{p}</p>
           ))}
         </div>
-        <div className="mt-14 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-4">
-          {c.snapshot.facts.map((f, i) => {
-            const Icon = factIcons[i % factIcons.length];
-            const tones = [
-              "bg-[var(--ithemba-yellow)]/25 text-[var(--ithemba-yellow-warm)]",
-              "bg-[var(--ithemba-blue)]/15 text-[var(--ithemba-blue-dark)]",
-            ];
-            return (
-              <div key={f.label} className="flex flex-col items-center text-center">
-                <div
-                  className={`flex h-16 w-16 items-center justify-center ${tones[i % 2]}`}
-                  style={{
-                    borderRadius:
-                      i % 2 === 0
-                        ? "60% 40% 55% 45% / 50% 60% 40% 50%"
-                        : "9999px",
-                  }}
-                >
-                  <Icon className="h-7 w-7" />
-                </div>
-                <div className="mt-3 font-display text-xl font-extrabold leading-tight text-[var(--ithemba-blue-dark)]">
-                  {f.value}
-                </div>
-                <div className="mt-1 text-[11px] font-semibold uppercase tracking-wide text-foreground/60">
-                  {f.label}
-                </div>
+        <div className="mt-14 grid grid-cols-2 gap-x-6 gap-y-12 sm:grid-cols-4">
+          {c.snapshot.facts.map((f, i) => (
+            <div key={f.label} className="flex flex-col items-center text-center">
+              <EcdIcon
+                src={SNAPSHOT_ICONS[i] ?? SNAPSHOT_ICONS[0]}
+                alt={f.label}
+                className="h-20 w-20 md:h-24 md:w-24"
+              />
+              <div className="mt-4 font-display text-xl font-extrabold leading-tight text-[var(--ithemba-blue-dark)]">
+                {f.value}
               </div>
-            );
-          })}
+              <div className="mt-1 text-[11px] font-semibold uppercase tracking-wide text-foreground/60">
+                {f.label}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
