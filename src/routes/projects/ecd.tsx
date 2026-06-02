@@ -1254,107 +1254,126 @@ function Women({ c }: { c: Copy }) {
   );
 }
 
-/* ---------- PROVIDES ---------- */
+/* ---------- PROVIDES — custom icons, flowing grid, no boxes ---------- */
 function Provides({ c }: { c: Copy }) {
   return (
-    <section className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
-      <div className="max-w-3xl">
-        <SectionHeading eyebrow={c.provides.eyebrow} title={c.provides.title} />
-        <p className="mt-5 text-lg leading-relaxed text-foreground/85">{c.provides.intro}</p>
-      </div>
-      <div className="mt-12 grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
-        {c.provides.items.map((it, i) => {
-          const Icon = ICONS[it.icon] ?? Sparkles;
-          const tones = [
-            "bg-[var(--ithemba-yellow)]/25 text-[var(--ithemba-yellow-warm)]",
-            "bg-[var(--ithemba-blue)]/15 text-[var(--ithemba-blue-dark)]",
-            "bg-emerald-100 text-emerald-700",
-          ];
-          return (
-            <div key={it.label} className="flex items-center gap-4">
-              <div
-                className={`flex h-14 w-14 shrink-0 items-center justify-center ${tones[i % tones.length]}`}
-                style={{
-                  borderRadius:
-                    i % 3 === 0
-                      ? "62% 38% 55% 45% / 50% 60% 40% 50%"
-                      : i % 3 === 1
-                      ? "9999px"
-                      : "55% 45% 60% 40% / 45% 55% 45% 55%",
-                }}
-              >
-                <Icon className="h-6 w-6" />
-              </div>
-              <div className="text-base font-medium leading-snug text-foreground/90">
+    <section className="relative overflow-hidden bg-[var(--ithemba-cream)] py-20">
+      <div className="pointer-events-none absolute -right-16 top-16 h-56 w-56 blob-2 bg-[var(--ithemba-yellow)]/20" />
+      <div className="pointer-events-none absolute -left-16 bottom-16 h-48 w-48 blob bg-[var(--ithemba-blue)]/12" />
+      <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
+        <div className="max-w-3xl">
+          <SectionHeading eyebrow={c.provides.eyebrow} title={c.provides.title} />
+          <p className="mt-5 text-lg leading-relaxed text-foreground/85">{c.provides.intro}</p>
+        </div>
+        <div className="mt-14 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 md:grid-cols-4">
+          {c.provides.items.map((it, i) => (
+            <div key={it.label} className="flex flex-col items-center text-center">
+              <EcdIcon
+                src={PROVIDES_ICONS[i] ?? PROVIDES_ICONS[0]}
+                alt={it.label}
+                className="h-20 w-20 md:h-24 md:w-24"
+              />
+              <div className="mt-3 text-sm font-medium leading-snug text-[var(--ithemba-blue-dark)]">
                 {it.label}
               </div>
             </div>
-          );
-        })}
+          ))}
+        </div>
       </div>
     </section>
   );
 }
 
-/* ---------- DAILY RHYTHM ---------- */
+/* ---------- DAILY RHYTHM — alternating photo/text bubbles + wavy path ---------- */
 function Rhythm({ c }: { c: Copy }) {
   const rhythmIcons = [Sun, PlayCircle, Utensils, HandHeart, Music, BookOpen, Moon, Smile, Cookie, Moon, Users, Heart];
+  const rhythmPhotoLabels = [
+    "Children arriving at the ECD Centre",
+    "Children at free and guided play",
+    "Children eating breakfast",
+    "Daily care routine",
+    "Morning circle — singing and movement",
+    "Teacher guiding learning",
+    "Quiet rest for younger children",
+    "Older children learning through play",
+    "A warm lunch served",
+    "Nap time at the centre",
+    "Afternoon play and calm activities",
+    "Goodbye circle and prayer",
+  ];
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-[var(--ithemba-blue-dark)] via-[var(--ithemba-blue)] to-[var(--ithemba-blue-dark)] py-20 text-white">
       <div className="pointer-events-none absolute left-[-6rem] top-[-6rem] h-[24rem] w-[24rem] sun-glow" />
       <div className="pointer-events-none absolute right-10 bottom-10">
         <SunDoodle className="h-20 w-20 text-[var(--ithemba-yellow)]/50" />
       </div>
-      <div className="relative mx-auto max-w-4xl px-4 lg:px-8">
+      <div className="pointer-events-none absolute left-12 top-24">
+        <SparkleDoodle className="h-6 w-6 text-[var(--ithemba-yellow)]/60" />
+      </div>
+
+      <div className="relative mx-auto max-w-5xl px-4 lg:px-8">
         <div className="text-center">
           <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)]">{c.rhythm.eyebrow}</div>
           <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.rhythm.title}</h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-white/90">{c.rhythm.intro}</p>
         </div>
 
-        {/* vertical dotted snake path */}
-        <ol className="relative mt-12 space-y-5">
+        {/* central dotted vertical path (desktop) */}
+        <div className="relative mt-14">
           <div
             aria-hidden
-            className="pointer-events-none absolute left-6 top-3 bottom-3 w-px"
+            className="pointer-events-none absolute left-6 top-0 bottom-0 w-px md:left-1/2 md:-translate-x-1/2"
             style={{
               backgroundImage:
                 "repeating-linear-gradient(to bottom, var(--ithemba-yellow) 0 6px, transparent 6px 14px)",
             }}
           />
-          {c.rhythm.items.map((r, i) => {
-            const Icon = rhythmIcons[i % rhythmIcons.length];
-            return (
-              <li
-                key={i}
-                className="relative pl-16"
-                style={{ marginLeft: `${(i % 2) * 0.75}rem` }}
-              >
-                <div className="absolute left-0 top-1 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--ithemba-yellow)] text-[var(--ithemba-brown)] shadow-md ring-4 ring-[var(--ithemba-blue-dark)]">
-                  <Icon className="h-5 w-5" />
-                </div>
-                <div
-                  className="rounded-3xl bg-white/10 p-4 ring-1 ring-white/15 backdrop-blur"
-                  style={{
-                    borderRadius:
-                      i % 3 === 0
-                        ? "1.5rem"
-                        : i % 3 === 1
-                        ? "55% 45% 60% 40% / 45% 55% 45% 55%"
-                        : "1.5rem",
-                  }}
-                >
-                  <div className="font-display text-base font-bold text-[var(--ithemba-yellow)]">
-                    {r.time}
+          <ol className="relative space-y-10 md:space-y-14">
+            {c.rhythm.items.map((r, i) => {
+              const Icon = rhythmIcons[i % rhythmIcons.length];
+              const tone = RHYTHM_TONES[i % RHYTHM_TONES.length];
+              const isLeft = i % 2 === 0;
+              return (
+                <li key={i} className="relative">
+                  {/* timeline dot */}
+                  <div className="absolute left-6 top-6 z-10 flex h-12 w-12 -translate-x-1/2 items-center justify-center rounded-full bg-[var(--ithemba-yellow)] text-[var(--ithemba-brown)] shadow-md ring-4 ring-[var(--ithemba-blue-dark)] md:left-1/2">
+                    <Icon className="h-5 w-5" />
                   </div>
-                  <div className="mt-1 text-sm leading-snug text-white/95">{r.what}</div>
-                </div>
-              </li>
-            );
-          })}
-        </ol>
 
-        <p className="mx-auto mt-10 max-w-3xl text-center text-base leading-relaxed text-white/85">
+                  {/* row */}
+                  <div
+                    className={`grid items-center gap-6 pl-16 md:grid-cols-2 md:gap-12 md:pl-0 ${
+                      isLeft ? "" : "md:[&>*:first-child]:order-2"
+                    }`}
+                  >
+                    {/* photo bubble */}
+                    <div className={`order-1 ${isLeft ? "md:pr-12 md:text-right" : "md:pl-12"}`}>
+                      <SmartImage
+                        src={`/assets/photos/ecd/rhythm-${i + 1}.jpg`}
+                        label={rhythmPhotoLabels[i]}
+                        className="mx-auto aspect-square w-32 sm:w-40 md:w-48"
+                        rounded="rounded-[55%_45%_60%_40%/45%_55%_45%_55%]"
+                        tone={tone}
+                        showMissingBadge={false}
+                      />
+                    </div>
+                    {/* text */}
+                    <div className={`order-2 ${isLeft ? "md:pl-12" : "md:pr-12 md:text-right"}`}>
+                      <div className="font-display text-base font-bold text-[var(--ithemba-yellow)] md:text-lg">
+                        {r.time}
+                      </div>
+                      <div className="mt-1 text-sm leading-snug text-white/95 md:text-base">
+                        {r.what}
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              );
+            })}
+          </ol>
+        </div>
+
+        <p className="mx-auto mt-12 max-w-3xl text-center text-base leading-relaxed text-white/85">
           {c.rhythm.outro}
         </p>
       </div>
