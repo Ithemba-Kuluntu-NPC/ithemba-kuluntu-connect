@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   ArrowLeft,
@@ -27,6 +27,7 @@ import {
 import { useLang } from "@/components/site/LanguageProvider";
 import { SmartImage, SmartLogo } from "@/components/site/Asset";
 import { FocusAreaBadges } from "@/components/blocks/FocusAreaBadges";
+import { focusAreaBadgeMeta } from "@/data/projects";
 import { assets } from "@/data/assets";
 import type { Lang } from "@/data/content";
 
@@ -1160,18 +1161,18 @@ function Snapshot({ c }: { c: Copy }) {
   );
 }
 
-/* ---------- WHO / BELIEVE — editorial two-up ---------- */
-function WhoBelieve({ c }: { c: Copy }) {
+/* ---------- WHO — photo left, text right (cream) ---------- */
+function Who({ c }: { c: Copy }) {
   return (
     <section className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
-      <div className="grid gap-12 md:grid-cols-2">
+      <div className="grid items-center gap-12 md:grid-cols-2">
         <div className="relative">
           <div className="absolute -left-6 -top-6 h-24 w-24 blob bg-[var(--ithemba-yellow)]/35 -z-10" />
           <SmartImage
             src={PHOTO_COMMUNITY}
             label="Dogs and people in a Pondoland community"
             className="aspect-[4/5] w-full"
-            rounded="rounded-[2.5rem]"
+            rounded="rounded-[55%_45%_60%_40%/45%_55%_45%_55%]"
             tone="earth"
             showMissingBadge={false}
           />
@@ -1179,23 +1180,44 @@ function WhoBelieve({ c }: { c: Copy }) {
             <PawPrint className="h-9 w-9" />
           </div>
         </div>
-        <div className="flex flex-col justify-center gap-10">
-          <div>
-            <SectionHeading eyebrow={c.who.eyebrow} title={c.who.title} />
-            <div className="mt-5 space-y-4 text-lg leading-relaxed text-foreground/85">
-              {c.who.body.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
+        <div>
+          <SectionHeading eyebrow={c.who.eyebrow} title={c.who.title} />
+          <div className="mt-5 space-y-4 text-lg leading-relaxed text-foreground/85">
+            {c.who.body.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
           </div>
-          <div className="rounded-3xl bg-[var(--ithemba-cream)] p-6 ring-1 ring-[var(--ithemba-yellow)]/30">
-            <SectionHeading eyebrow={c.believe.eyebrow} title={c.believe.title} />
-            <div className="mt-4 space-y-3 text-base leading-relaxed text-foreground/85">
-              {c.believe.body.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
-          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- BELIEVE — blue photo overlay, text-left ---------- */
+function Believe({ c }: { c: Copy }) {
+  return (
+    <section className="relative isolate overflow-hidden py-20 text-white md:py-24">
+      <div className="absolute inset-0 -z-10">
+        <SmartImage
+          src={PHOTO_COMMUNITY}
+          label="Animals and families in community"
+          className="h-full w-full"
+          rounded="rounded-none"
+          tone="earth"
+          showMissingBadge={false}
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/93 via-[var(--ithemba-blue-dark)]/85 to-[var(--ithemba-blue)]/55" />
+        <div className="absolute left-[-6rem] bottom-[-6rem] h-[24rem] w-[24rem] sun-glow" />
+      </div>
+      <div className="relative mx-auto max-w-4xl px-4 lg:px-8">
+        <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center gap-2">
+          <PawDoodle /> {c.believe.eyebrow}
+        </div>
+        <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.believe.title}</h2>
+        <div className="mt-6 space-y-4 text-lg leading-relaxed text-white/90">
+          {c.believe.body.map((p, i) => (
+            <p key={i}>{p}</p>
+          ))}
         </div>
       </div>
     </section>
@@ -1246,21 +1268,20 @@ function What({ c }: { c: Copy }) {
           <SectionHeading eyebrow={c.what.eyebrow} title={c.what.title} />
           <p className="mt-5 text-lg leading-relaxed text-foreground/85">{c.what.intro}</p>
         </div>
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
           {c.what.areas.map((area, i) => {
             const Icon = AREA_ICONS[i] ?? PawPrint;
             return (
               <div
                 key={area}
-                className="group relative flex items-start gap-4 rounded-[2rem] bg-white p-5 shadow-sm ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-md"
+                className="flex items-start gap-4"
               >
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[var(--ithemba-yellow)]/20 text-[var(--ithemba-blue-dark)]">
-                  <Icon className="h-6 w-6" />
+                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-[45%_55%_55%_45%/55%_45%_55%_45%] bg-[var(--ithemba-yellow)]/35 text-[var(--ithemba-blue-dark)]">
+                  <Icon className="h-7 w-7" />
                 </div>
-                <div className="font-display text-base font-bold leading-snug text-[var(--ithemba-blue-dark)]">
+                <div className="pt-2 font-display text-lg font-bold leading-snug text-[var(--ithemba-blue-dark)]">
                   {area}
                 </div>
-                <PawPrint className="pointer-events-none absolute bottom-3 right-3 h-4 w-4 text-[var(--ithemba-yellow)]/40 group-hover:text-[var(--ithemba-yellow)]/70" />
               </div>
             );
           })}
@@ -1293,15 +1314,29 @@ function CareSection({
   photo: string;
   photoLabel: string;
   reversed?: boolean;
-  background?: "cream" | "white";
+  background?: "cream" | "white" | "blue";
 }) {
-  const bg = background === "cream" ? "bg-[var(--ithemba-cream)]" : "bg-background";
+  const isBlue = background === "blue";
+  const bg =
+    background === "cream"
+      ? "bg-[var(--ithemba-cream)]"
+      : isBlue
+        ? "bg-[var(--ithemba-blue-dark)]"
+        : "bg-background";
+  const textColor = isBlue ? "text-white/90" : "text-foreground/85";
+  const outroColor = isBlue ? "text-white/75" : "text-foreground/75";
   return (
     <section className={`relative overflow-hidden ${bg} py-20`}>
-      <div className="mx-auto max-w-7xl px-4 lg:px-8">
+      {isBlue && (
+        <>
+          <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 sun-glow" />
+          <div className="pointer-events-none absolute -left-16 bottom-16 h-48 w-48 blob bg-[var(--ithemba-yellow)]/10" />
+        </>
+      )}
+      <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
         <div className={`grid items-center gap-10 md:grid-cols-2 ${reversed ? "md:[&>*:first-child]:order-2" : ""}`}>
           <div className="relative">
-            <div className="absolute -left-6 -top-6 -z-10 h-24 w-24 blob bg-[var(--ithemba-yellow)]/30" />
+            <div className={`absolute -left-6 -top-6 -z-10 h-24 w-24 blob ${isBlue ? "bg-[var(--ithemba-yellow)]/20" : "bg-[var(--ithemba-yellow)]/30"}`} />
             <SmartImage
               src={photo}
               label={photoLabel}
@@ -1312,18 +1347,27 @@ function CareSection({
             />
           </div>
           <div>
-            <SectionHeading eyebrow={eyebrow} title={title} />
-            <div className="mt-5 space-y-4 text-lg leading-relaxed text-foreground/85">
+            {isBlue ? (
+              <>
+                <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center gap-2">
+                  <PawDoodle /> {eyebrow}
+                </div>
+                <h2 className="-mt-1 font-display text-4xl font-bold text-white md:text-5xl">{title}</h2>
+              </>
+            ) : (
+              <SectionHeading eyebrow={eyebrow} title={title} />
+            )}
+            <div className={`mt-5 space-y-4 text-lg leading-relaxed ${textColor}`}>
               {body.map((p, i) => (
                 <p key={i}>{p}</p>
               ))}
             </div>
             {items && items.length > 0 && (
-              <ul className="mt-6 grid gap-2 sm:grid-cols-2">
+              <ul className="mt-6 grid gap-x-5 gap-y-2 sm:grid-cols-2">
                 {items.map((it) => (
                   <li
                     key={it.text}
-                    className="flex items-start gap-2 rounded-2xl bg-white/80 px-4 py-2 text-sm font-medium text-foreground/85 ring-1 ring-black/5"
+                    className={`flex items-start gap-2 text-sm font-medium ${isBlue ? "text-white/90" : "text-foreground/85"}`}
                   >
                     <PawPrint className="mt-0.5 h-4 w-4 shrink-0 text-[var(--ithemba-yellow)]" />
                     <span>{it.text}</span>
@@ -1332,7 +1376,7 @@ function CareSection({
               </ul>
             )}
             {outro && (
-              <p className="mt-6 text-base leading-relaxed text-foreground/75">{outro}</p>
+              <p className={`mt-6 text-base leading-relaxed ${outroColor}`}>{outro}</p>
             )}
           </div>
         </div>
@@ -1357,17 +1401,6 @@ function Sterilisation({ c }: { c: Copy }) {
         <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/92 via-[var(--ithemba-blue-dark)]/82 to-[var(--ithemba-blue)]/55" />
       </div>
 
-      {/* monthly rhythm strip */}
-      <div className="pointer-events-none absolute inset-x-0 top-10 hidden justify-center gap-3 md:flex">
-        {Array.from({ length: 12 }).map((_, i) => (
-          <div
-            key={i}
-            className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-[10px] font-semibold text-white/60 ring-1 ring-white/15"
-          >
-            {i + 1}
-          </div>
-        ))}
-      </div>
 
       <div className="relative mx-auto max-w-4xl px-4 lg:px-8">
         <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center gap-2">
@@ -1420,14 +1453,6 @@ function Education({ c }: { c: Copy }) {
       <div className="pointer-events-none absolute -left-16 top-16 h-48 w-48 blob bg-[var(--ithemba-yellow)]/20" />
       <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
         <div className="grid gap-10 md:grid-cols-2 md:items-center">
-          <div>
-            <SectionHeading eyebrow={c.education.eyebrow} title={c.education.title} />
-            <div className="mt-5 space-y-4 text-lg leading-relaxed text-foreground/85">
-              {c.education.body.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
-          </div>
           <div className="relative">
             <SmartImage
               src={PHOTO_COMMUNITY}
@@ -1437,6 +1462,14 @@ function Education({ c }: { c: Copy }) {
               tone="earth"
               showMissingBadge={false}
             />
+          </div>
+          <div>
+            <SectionHeading eyebrow={c.education.eyebrow} title={c.education.title} />
+            <div className="mt-5 space-y-4 text-lg leading-relaxed text-foreground/85">
+              {c.education.body.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </div>
           </div>
         </div>
         <div className="mt-12 flex flex-wrap justify-center gap-2">
@@ -1499,15 +1532,23 @@ function Focus({ c }: { c: Copy }) {
             ))}
           </div>
         </div>
-        <div className="mt-12 grid grid-cols-2 gap-6 md:grid-cols-4">
-          {c.focus.areas.map((a) => (
-            <div key={a.key} className="flex flex-col items-center text-center">
-              <FocusAreaBadges badges={[a.key]} size="md" />
-              <div className="mt-3 text-sm font-semibold text-[var(--ithemba-blue-dark)]">
-                {a.label}
+        <div className="mt-14 grid grid-cols-2 items-start gap-x-6 gap-y-10 md:grid-cols-4">
+          {c.focus.areas.map((a) => {
+            const meta = focusAreaBadgeMeta[a.key];
+            return (
+              <div key={a.key} className="flex flex-col items-center text-center">
+                <img
+                  src={meta.src}
+                  alt={a.label}
+                  className="h-20 w-20 object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.18)] md:h-24 md:w-24"
+                  loading="lazy"
+                />
+                <div className="mt-5 font-display text-base font-bold text-[var(--ithemba-blue-dark)] md:text-lg">
+                  {a.label}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
@@ -1653,34 +1694,95 @@ function Monthly({ c }: { c: Copy }) {
 }
 
 /* ---------- IMPACT ---------- */
-function Impact({ c }: { c: Copy }) {
-  return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[var(--ithemba-blue-dark)] via-[var(--ithemba-blue)] to-[var(--ithemba-blue-dark)] py-20 text-white">
-      <div className="pointer-events-none absolute left-[-6rem] top-[-6rem] h-[24rem] w-[24rem] sun-glow" />
-      <div className="pointer-events-none absolute right-12 bottom-12 opacity-30">
-        <PawPrint className="h-10 w-10 text-[var(--ithemba-yellow)]" />
-      </div>
-      <div className="relative mx-auto max-w-5xl px-4 text-center lg:px-8">
-        <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)]">{c.impact.eyebrow}</div>
-        <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.impact.title}</h2>
+const IMPACT_ICONS: LucideIcon[] = [Syringe, Stethoscope, Users];
 
-        <div className="mx-auto mt-12 grid max-w-4xl gap-6 sm:grid-cols-3">
-          {c.impact.counters.map((cnt) => (
-            <div
-              key={cnt.label}
-              className="rounded-[2rem] bg-white/10 p-8 ring-1 ring-white/20 backdrop-blur"
-            >
-              <div className="flex justify-center">
-                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[var(--ithemba-yellow)] text-[var(--ithemba-brown)]">
-                  <PawPrint className="h-7 w-7" />
+function parseCounter(value: string): { n: number; suffix: string } {
+  const m = value.match(/^([\d.,]+)(.*)$/);
+  if (!m) return { n: 0, suffix: value };
+  const numeric = parseInt(m[1].replace(/[.,]/g, ""), 10);
+  return { n: isNaN(numeric) ? 0 : numeric, suffix: m[2] };
+}
+
+function AnimatedNumber({ target, locale }: { target: number; locale: string }) {
+  const [n, setN] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          const dur = 1400;
+          const start = performance.now();
+          const step = (now: number) => {
+            const p = Math.min(1, (now - start) / dur);
+            const eased = 1 - Math.pow(1 - p, 3);
+            setN(Math.floor(eased * target));
+            if (p < 1) requestAnimationFrame(step);
+          };
+          requestAnimationFrame(step);
+          obs.disconnect();
+        }
+      },
+      { threshold: 0.3 },
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [target]);
+  return (
+    <span ref={ref} className="tabular-nums">
+      {n.toLocaleString(locale)}
+    </span>
+  );
+}
+
+function Impact({ c }: { c: Copy }) {
+  const { lang } = useLang();
+  const locale = lang === "en" ? "en-US" : lang === "de" ? "de-DE" : "nl-NL";
+  return (
+    <section className="relative isolate overflow-hidden py-20 text-white md:py-24">
+      <div className="absolute inset-0 -z-10">
+        <SmartImage
+          src={PHOTO_HERO}
+          label="Pondo Dogs impact"
+          className="h-full w-full"
+          rounded="rounded-none"
+          tone="earth"
+          showMissingBadge={false}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[var(--ithemba-blue-deepest)]/92 via-[var(--ithemba-blue-dark)]/88 to-[var(--ithemba-blue-deepest)]/95" />
+      </div>
+      <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
+        <div className="mx-auto max-w-2xl text-center">
+          <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center justify-center gap-2">
+            <PawDoodle /> {c.impact.eyebrow}
+          </div>
+          <h2 className="-mt-1 font-display text-3xl font-bold md:text-4xl">{c.impact.title}</h2>
+        </div>
+
+        <div className="mx-auto mt-12 flex flex-wrap justify-center gap-x-6 gap-y-10">
+          {c.impact.counters.map((cnt, i) => {
+            const Icon = IMPACT_ICONS[i] ?? PawPrint;
+            const { n, suffix } = parseCounter(cnt.value);
+            return (
+              <div
+                key={cnt.label}
+                className="flex basis-[calc(50%-12px)] flex-col items-center text-center sm:basis-[calc(33.333%-16px)]"
+              >
+                <Icon className="h-14 w-14 text-[var(--ithemba-yellow)] md:h-20 md:w-20 lg:h-24 lg:w-24" />
+                <div
+                  className="mt-4 font-display font-extrabold leading-none text-[var(--ithemba-yellow)] drop-shadow-[0_2px_18px_rgba(251,191,36,0.25)]"
+                  style={{ fontSize: "clamp(1.75rem, 2.4vw, 2.5rem)" }}
+                >
+                  <AnimatedNumber target={n} locale={locale} />
+                  {suffix}
+                </div>
+                <div className="mt-3 max-w-[14rem] text-[12px] font-medium leading-snug text-white/85 md:text-sm">
+                  {cnt.label}
                 </div>
               </div>
-              <div className="mt-4 font-display text-5xl font-extrabold text-[var(--ithemba-yellow)]">
-                {cnt.value}
-              </div>
-              <div className="mt-2 text-sm font-medium text-white/90">{cnt.label}</div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
@@ -1753,7 +1855,8 @@ function PondoDogsPage() {
     <>
       <Hero c={c} />
       <Snapshot c={c} />
-      <WhoBelieve c={c} />
+      <Who c={c} />
+      <Believe c={c} />
       <Why c={c} />
       <What c={c} />
       <CareSection
@@ -1793,7 +1896,7 @@ function PondoDogsPage() {
         photo={PHOTO_CARE}
         photoLabel="Food and shelter support for animals"
         reversed
-        background="white"
+        background="blue"
       />
       <Education c={c} />
       <More c={c} />
