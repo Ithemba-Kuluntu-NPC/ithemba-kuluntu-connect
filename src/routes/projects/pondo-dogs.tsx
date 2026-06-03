@@ -1452,14 +1452,6 @@ function Education({ c }: { c: Copy }) {
       <div className="pointer-events-none absolute -left-16 top-16 h-48 w-48 blob bg-[var(--ithemba-yellow)]/20" />
       <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
         <div className="grid gap-10 md:grid-cols-2 md:items-center">
-          <div>
-            <SectionHeading eyebrow={c.education.eyebrow} title={c.education.title} />
-            <div className="mt-5 space-y-4 text-lg leading-relaxed text-foreground/85">
-              {c.education.body.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
-          </div>
           <div className="relative">
             <SmartImage
               src={PHOTO_COMMUNITY}
@@ -1469,6 +1461,14 @@ function Education({ c }: { c: Copy }) {
               tone="earth"
               showMissingBadge={false}
             />
+          </div>
+          <div>
+            <SectionHeading eyebrow={c.education.eyebrow} title={c.education.title} />
+            <div className="mt-5 space-y-4 text-lg leading-relaxed text-foreground/85">
+              {c.education.body.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </div>
           </div>
         </div>
         <div className="mt-12 flex flex-wrap justify-center gap-2">
