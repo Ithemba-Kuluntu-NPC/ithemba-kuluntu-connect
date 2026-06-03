@@ -1866,7 +1866,7 @@ function PondoDogsPage() {
         items={c.medical.items}
         photo={PHOTO_CARE}
         photoLabel="Caring for a sick or injured animal"
-        background="cream"
+        background="blue"
       />
       <CareSection
         eyebrow={c.preventive.eyebrow}
