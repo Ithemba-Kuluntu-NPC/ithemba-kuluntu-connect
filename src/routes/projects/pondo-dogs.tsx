@@ -1267,21 +1267,20 @@ function What({ c }: { c: Copy }) {
           <SectionHeading eyebrow={c.what.eyebrow} title={c.what.title} />
           <p className="mt-5 text-lg leading-relaxed text-foreground/85">{c.what.intro}</p>
         </div>
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
           {c.what.areas.map((area, i) => {
             const Icon = AREA_ICONS[i] ?? PawPrint;
             return (
               <div
                 key={area}
-                className="group relative flex items-start gap-4 rounded-[2rem] bg-white p-5 shadow-sm ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-md"
+                className="flex items-start gap-4"
               >
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[var(--ithemba-yellow)]/20 text-[var(--ithemba-blue-dark)]">
-                  <Icon className="h-6 w-6" />
+                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-[45%_55%_55%_45%/55%_45%_55%_45%] bg-[var(--ithemba-yellow)]/35 text-[var(--ithemba-blue-dark)]">
+                  <Icon className="h-7 w-7" />
                 </div>
-                <div className="font-display text-base font-bold leading-snug text-[var(--ithemba-blue-dark)]">
+                <div className="pt-2 font-display text-lg font-bold leading-snug text-[var(--ithemba-blue-dark)]">
                   {area}
                 </div>
-                <PawPrint className="pointer-events-none absolute bottom-3 right-3 h-4 w-4 text-[var(--ithemba-yellow)]/40 group-hover:text-[var(--ithemba-yellow)]/70" />
               </div>
             );
           })}
