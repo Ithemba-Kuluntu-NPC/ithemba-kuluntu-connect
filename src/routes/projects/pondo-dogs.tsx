@@ -1400,17 +1400,6 @@ function Sterilisation({ c }: { c: Copy }) {
         <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/92 via-[var(--ithemba-blue-dark)]/82 to-[var(--ithemba-blue)]/55" />
       </div>
 
-      {/* monthly rhythm strip */}
-      <div className="pointer-events-none absolute inset-x-0 top-10 hidden justify-center gap-3 md:flex">
-        {Array.from({ length: 12 }).map((_, i) => (
-          <div
-            key={i}
-            className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-[10px] font-semibold text-white/60 ring-1 ring-white/15"
-          >
-            {i + 1}
-          </div>
-        ))}
-      </div>
 
       <div className="relative mx-auto max-w-4xl px-4 lg:px-8">
         <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center gap-2">
