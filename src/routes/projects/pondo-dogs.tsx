@@ -1098,10 +1098,10 @@ function Hero({ c }: { c: Copy }) {
         </div>
       </div>
 
-      <svg className="block w-full" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden>
+      <svg className="block w-full -mb-px" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden>
         <path
           d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z"
-          fill="var(--background)"
+          fill="var(--ithemba-cream)"
         />
       </svg>
     </section>
@@ -1497,23 +1497,41 @@ const ANIMAL_ICONS: { icon: LucideIcon; label: string }[] = [
 
 function More({ c }: { c: Copy }) {
   return (
-    <section className="mx-auto max-w-5xl px-4 py-20 lg:px-8">
-      <div className="text-center">
-        <SectionHeading eyebrow={c.more.eyebrow} title={c.more.title} center />
+    <section className="relative isolate overflow-hidden py-20 text-white">
+      <div className="absolute inset-0 -z-10">
+        <SmartImage
+          src={PHOTO_COMMUNITY}
+          label="Animals and people in Pondoland"
+          className="h-full w-full"
+          rounded="rounded-none"
+          tone="earth"
+          showMissingBadge={false}
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/92 via-[var(--ithemba-blue-dark)]/85 to-[var(--ithemba-blue)]/60" />
       </div>
-      <div className="mx-auto mt-6 max-w-3xl space-y-4 text-center text-lg leading-relaxed text-foreground/85">
-        {c.more.body.map((p, i) => (
-          <p key={i}>{p}</p>
-        ))}
-      </div>
-      <div className="mt-10 flex flex-wrap items-end justify-center gap-8">
-        {ANIMAL_ICONS.map((a) => (
-          <div key={a.label} className="flex flex-col items-center">
-            <div className="flex h-20 w-20 items-center justify-center rounded-[45%_55%_50%_50%/55%_45%_55%_45%] bg-[var(--ithemba-yellow)]/25 text-[var(--ithemba-blue-dark)] shadow-sm">
-              <a.icon className="h-10 w-10" />
-            </div>
+      <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 sun-glow" />
+      <div className="pointer-events-none absolute -left-16 bottom-12 h-48 w-48 blob bg-[var(--ithemba-yellow)]/10" />
+      <div className="relative mx-auto max-w-5xl px-4 lg:px-8">
+        <div className="text-center">
+          <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] inline-flex items-center gap-2">
+            <PawDoodle /> {c.more.eyebrow}
           </div>
-        ))}
+          <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.more.title}</h2>
+        </div>
+        <div className="mx-auto mt-6 max-w-3xl space-y-4 text-center text-lg leading-relaxed text-white/90">
+          {c.more.body.map((p, i) => (
+            <p key={i}>{p}</p>
+          ))}
+        </div>
+        <div className="mt-10 flex flex-wrap items-end justify-center gap-8">
+          {ANIMAL_ICONS.map((a) => (
+            <div key={a.label} className="flex flex-col items-center">
+              <div className="flex h-20 w-20 items-center justify-center rounded-[45%_55%_50%_50%/55%_45%_55%_45%] bg-white/15 text-[var(--ithemba-yellow)] ring-1 ring-white/20 backdrop-blur">
+                <a.icon className="h-10 w-10" />
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -1785,6 +1803,29 @@ function Impact({ c }: { c: Copy }) {
           })}
         </div>
       </div>
+
+      {/* gentle wave divider into Closing */}
+      <svg
+        className="relative mt-16 block w-full"
+        viewBox="0 0 1440 60"
+        preserveAspectRatio="none"
+        aria-hidden
+      >
+        <path
+          d="M0,30 C240,55 480,5 720,30 C960,55 1200,5 1440,30"
+          stroke="var(--ithemba-yellow)"
+          strokeOpacity="0.35"
+          strokeWidth="2"
+          fill="none"
+        />
+        <path
+          d="M0,38 C240,62 480,12 720,38 C960,62 1200,12 1440,38"
+          stroke="#ffffff"
+          strokeOpacity="0.18"
+          strokeWidth="1.5"
+          fill="none"
+        />
+      </svg>
     </section>
   );
 }
@@ -1866,7 +1907,7 @@ function PondoDogsPage() {
         items={c.medical.items}
         photo={PHOTO_CARE}
         photoLabel="Caring for a sick or injured animal"
-        background="cream"
+        background="blue"
       />
       <CareSection
         eyebrow={c.preventive.eyebrow}
