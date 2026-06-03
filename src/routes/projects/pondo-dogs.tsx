@@ -27,6 +27,7 @@ import {
 import { useLang } from "@/components/site/LanguageProvider";
 import { SmartImage, SmartLogo } from "@/components/site/Asset";
 import { FocusAreaBadges } from "@/components/blocks/FocusAreaBadges";
+import { focusAreaBadgeMeta } from "@/data/projects";
 import { assets } from "@/data/assets";
 import type { Lang } from "@/data/content";
 
