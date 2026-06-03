@@ -1463,40 +1463,59 @@ function Nutrition({ c }: { c: Copy }) {
   );
 }
 
-/* ---------- FOCUS AREAS ---------- */
+/* ---------- FOCUS AREAS — blue photo-backed ---------- */
 function Focus({ c }: { c: Copy }) {
+  const items: ReadonlyArray<readonly [
+    "education" | "food-security" | "safe-water" | "skills-livelihoods" | "community-health",
+    string,
+  ]> = [
+    ["education", c.focus.items[0]?.label ?? "Education"],
+    ["food-security", c.focus.items[1]?.label ?? "Food security"],
+    ["safe-water", c.focus.items[2]?.label ?? "Safe water"],
+    ["skills-livelihoods", c.focus.items[3]?.label ?? "Skills & livelihoods"],
+    ["community-health", c.focus.items[4]?.label ?? "Community health"],
+  ];
   return (
-    <section className="relative overflow-hidden bg-[var(--ithemba-cream)] py-20">
-      <div className="pointer-events-none absolute -left-20 -top-10 h-60 w-60 blob-2 bg-[var(--ithemba-blue)]/12" />
+    <section className="relative isolate overflow-hidden py-20 text-white md:py-24">
+      <div className="absolute inset-0 -z-10">
+        <SmartImage
+          src={PHOTO_CHILD}
+          label="One centre, many layers of impact — community connection"
+          className="h-full w-full"
+          rounded="rounded-none"
+          tone="ocean"
+          showMissingBadge={false}
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/92 via-[var(--ithemba-blue-dark)]/82 to-[var(--ithemba-blue)]/55" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--ithemba-blue-deepest)]/70 via-transparent to-transparent" />
+        <div className="absolute left-[-6rem] top-[-6rem] h-[24rem] w-[24rem] sun-glow" />
+      </div>
       <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
         <div className="max-w-3xl">
-          <SectionHeading eyebrow={c.focus.eyebrow} title={c.focus.title} />
-          <div className="mt-5 space-y-4 text-lg leading-relaxed text-foreground/85">
-            {c.focus.body.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
+          <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center gap-2">
+            <SparkleDoodle /> {c.focus.eyebrow}
           </div>
+          <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.focus.title}</h2>
         </div>
-        <div className="mt-10 flex flex-wrap items-end justify-center gap-x-8 gap-y-6">
-          {(
-            [
-              ["education", c.focus.items[0]?.label ?? "Education"],
-              ["food-security", c.focus.items[1]?.label ?? "Food security"],
-              ["safe-water", c.focus.items[2]?.label ?? "Safe water"],
-              ["skills-livelihoods", c.focus.items[3]?.label ?? "Skills & livelihoods"],
-              ["community-health", c.focus.items[4]?.label ?? "Community health"],
-            ] as const
-          ).map(([badge, label]) => {
+        <div className="mt-6 max-w-3xl space-y-4 text-lg leading-relaxed text-white/90">
+          {c.focus.body.map((p, i) => (
+            <p key={i}>{p}</p>
+          ))}
+        </div>
+        <div className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-5">
+          {items.map(([badge, label]) => {
             const meta = focusAreaBadgeMeta[badge];
             return (
-              <div key={badge} className="flex w-28 flex-col items-center text-center">
-                <img
-                  src={meta.src}
-                  alt={meta.label}
-                  className="h-16 w-16 object-contain drop-shadow-sm md:h-20 md:w-20"
-                  loading="lazy"
-                />
-                <div className="mt-3 text-sm font-semibold text-[var(--ithemba-blue-dark)]">
+              <div key={badge} className="flex flex-col items-center text-center">
+                <div className="flex h-20 w-20 items-center justify-center md:h-24 md:w-24">
+                  <img
+                    src={meta.src}
+                    alt={meta.label}
+                    className="h-full w-full object-contain drop-shadow-[0_2px_6px_rgba(0,0,0,0.35)]"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="mt-3 text-sm font-semibold leading-snug text-white">
                   {label}
                 </div>
               </div>
@@ -1508,35 +1527,55 @@ function Focus({ c }: { c: Copy }) {
   );
 }
 
-/* ---------- IMPACT — equal weight bubbles ---------- */
+/* ---------- IMPACT — blue background, yellow/cream organic cards ---------- */
 function Impact({ c }: { c: Copy }) {
+  const blobs = [
+    "rounded-[55%_45%_60%_40%/45%_55%_45%_55%]",
+    "rounded-[40%_60%_45%_55%/55%_45%_60%_40%]",
+    "rounded-[50%_50%_45%_55%/60%_40%_50%_50%]",
+    "rounded-[60%_40%_55%_45%/45%_55%_45%_55%]",
+    "rounded-[45%_55%_55%_45%/55%_45%_60%_40%]",
+    "rounded-[55%_45%_45%_55%/50%_50%_45%_55%]",
+  ];
+  const tints = [
+    "bg-[var(--ithemba-yellow)] text-[var(--ithemba-brown)]",
+    "bg-white text-[var(--ithemba-blue-dark)]",
+    "bg-[var(--ithemba-cream)] text-[var(--ithemba-blue-dark)]",
+    "bg-white text-[var(--ithemba-blue-dark)]",
+    "bg-[var(--ithemba-yellow)] text-[var(--ithemba-brown)]",
+    "bg-[var(--ithemba-cream)] text-[var(--ithemba-blue-dark)]",
+  ];
   return (
-    <section className="relative overflow-hidden bg-[var(--ithemba-cream)] py-20">
-      <div className="pointer-events-none absolute -left-20 top-10 h-56 w-56 blob bg-[var(--ithemba-yellow)]/20" />
-      <div className="pointer-events-none absolute -right-20 bottom-10 h-56 w-56 blob-2 bg-[var(--ithemba-blue)]/12" />
+    <section className="relative overflow-hidden bg-gradient-to-br from-[var(--ithemba-blue-dark)] via-[var(--ithemba-blue)] to-[var(--ithemba-blue-dark)] py-20 text-white">
+      <div className="pointer-events-none absolute right-[-6rem] top-[-6rem] h-[24rem] w-[24rem] sun-glow" />
+      <div className="pointer-events-none absolute left-10 top-16"><Star className="h-6 w-6 text-[var(--ithemba-yellow)]/50 fill-current" /></div>
+      <div className="pointer-events-none absolute right-16 bottom-16 font-display text-3xl text-[var(--ithemba-yellow)]/30 select-none">ABC</div>
+      <div className="pointer-events-none absolute left-1/3 bottom-10"><Heart className="h-5 w-5 text-[var(--ithemba-yellow)]/40 fill-current" /></div>
+
       <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
-          <SectionHeading eyebrow={c.impact.eyebrow} title={c.impact.title} center />
+          <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)]">{c.impact.eyebrow}</div>
+          <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.impact.title}</h2>
         </div>
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid auto-rows-fr gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {c.impact.points.map((p, i) => (
             <div
               key={i}
-              className="relative flex flex-col items-center rounded-[2rem] bg-white p-6 text-center shadow-sm ring-1 ring-black/5 transition hover:-translate-y-0.5"
+              className={`relative flex h-full flex-col items-center justify-center p-7 text-center shadow-lg ring-1 ring-black/5 ${tints[i % tints.length]} ${blobs[i % blobs.length]}`}
             >
-              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[var(--ithemba-yellow)] text-[var(--ithemba-brown)] shadow-sm">
-                <Heart className="h-6 w-6 fill-current" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/70 shadow-sm">
+                <Heart className="h-5 w-5 fill-current text-[var(--ithemba-brown)]" />
               </div>
-              <div className="mt-4 text-base font-semibold leading-snug text-[var(--ithemba-blue-dark)]">
+              <div className="mt-3 text-base font-semibold leading-snug">
                 {p}
               </div>
-              <SparkleDoodle className="absolute right-3 top-3 h-4 w-4 text-[var(--ithemba-yellow)]/60" />
+              <SparkleDoodle className="absolute right-4 top-4 h-4 w-4 text-[var(--ithemba-brown)]/50" />
             </div>
           ))}
         </div>
-        <div className="mt-10 rounded-3xl border-2 border-dashed border-[var(--ithemba-yellow)] bg-[var(--ithemba-yellow)]/15 p-6 text-center">
+        <div className="mt-10 rounded-3xl border-2 border-dashed border-[var(--ithemba-yellow)] bg-white/10 p-6 text-center backdrop-blur">
           <SparkleDoodle className="mx-auto h-6 w-6" />
-          <p className="mt-2 text-lg font-semibold text-[var(--ithemba-blue-dark)]">
+          <p className="mt-2 text-lg font-semibold text-white">
             {c.impact.monthlyLine}
           </p>
         </div>
