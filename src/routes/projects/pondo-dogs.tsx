@@ -1160,18 +1160,18 @@ function Snapshot({ c }: { c: Copy }) {
   );
 }
 
-/* ---------- WHO / BELIEVE — editorial two-up ---------- */
-function WhoBelieve({ c }: { c: Copy }) {
+/* ---------- WHO — photo left, text right (cream) ---------- */
+function Who({ c }: { c: Copy }) {
   return (
     <section className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
-      <div className="grid gap-12 md:grid-cols-2">
+      <div className="grid items-center gap-12 md:grid-cols-2">
         <div className="relative">
           <div className="absolute -left-6 -top-6 h-24 w-24 blob bg-[var(--ithemba-yellow)]/35 -z-10" />
           <SmartImage
             src={PHOTO_COMMUNITY}
             label="Dogs and people in a Pondoland community"
             className="aspect-[4/5] w-full"
-            rounded="rounded-[2.5rem]"
+            rounded="rounded-[55%_45%_60%_40%/45%_55%_45%_55%]"
             tone="earth"
             showMissingBadge={false}
           />
@@ -1179,23 +1179,44 @@ function WhoBelieve({ c }: { c: Copy }) {
             <PawPrint className="h-9 w-9" />
           </div>
         </div>
-        <div className="flex flex-col justify-center gap-10">
-          <div>
-            <SectionHeading eyebrow={c.who.eyebrow} title={c.who.title} />
-            <div className="mt-5 space-y-4 text-lg leading-relaxed text-foreground/85">
-              {c.who.body.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
+        <div>
+          <SectionHeading eyebrow={c.who.eyebrow} title={c.who.title} />
+          <div className="mt-5 space-y-4 text-lg leading-relaxed text-foreground/85">
+            {c.who.body.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
           </div>
-          <div className="rounded-3xl bg-[var(--ithemba-cream)] p-6 ring-1 ring-[var(--ithemba-yellow)]/30">
-            <SectionHeading eyebrow={c.believe.eyebrow} title={c.believe.title} />
-            <div className="mt-4 space-y-3 text-base leading-relaxed text-foreground/85">
-              {c.believe.body.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
-          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- BELIEVE — blue photo overlay, text-left ---------- */
+function Believe({ c }: { c: Copy }) {
+  return (
+    <section className="relative isolate overflow-hidden py-20 text-white md:py-24">
+      <div className="absolute inset-0 -z-10">
+        <SmartImage
+          src={PHOTO_COMMUNITY}
+          label="Animals and families in community"
+          className="h-full w-full"
+          rounded="rounded-none"
+          tone="earth"
+          showMissingBadge={false}
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/93 via-[var(--ithemba-blue-dark)]/85 to-[var(--ithemba-blue)]/55" />
+        <div className="absolute left-[-6rem] bottom-[-6rem] h-[24rem] w-[24rem] sun-glow" />
+      </div>
+      <div className="relative mx-auto max-w-4xl px-4 lg:px-8">
+        <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center gap-2">
+          <PawDoodle /> {c.believe.eyebrow}
+        </div>
+        <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.believe.title}</h2>
+        <div className="mt-6 space-y-4 text-lg leading-relaxed text-white/90">
+          {c.believe.body.map((p, i) => (
+            <p key={i}>{p}</p>
+          ))}
         </div>
       </div>
     </section>
