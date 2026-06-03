@@ -1119,13 +1119,6 @@ function Importance({ c }: { c: Copy }) {
         </div>
       </div>
 
-      {/* wave divider blue → cream */}
-      <svg className="mt-16 block w-full" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden>
-        <path
-          d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z"
-          fill="var(--background)"
-        />
-      </svg>
     </section>
   );
 }
@@ -1215,39 +1208,44 @@ function Building({ c }: { c: Copy }) {
   );
 }
 
-/* ---------- WOMEN ---------- */
+/* ---------- WOMEN — blue photo-backed ---------- */
 function Women({ c }: { c: Copy }) {
   return (
-    <section className="relative overflow-hidden bg-[var(--ithemba-cream)] py-20">
-      <div className="pointer-events-none absolute right-10 top-10 h-32 w-32 blob-4 bg-[var(--ithemba-yellow)]/30" />
-      <div className="relative mx-auto grid max-w-7xl gap-10 px-4 md:grid-cols-2 lg:px-8">
-        <div className="relative order-2 md:order-1">
-          <SmartImage
-            src={PHOTO_CLASSROOM}
-            label="Local women caring and teaching at the ECD Centre"
-            className="aspect-[4/5] w-full"
-            rounded="rounded-[2.5rem]"
-            tone="warm"
-            showMissingBadge={false}
-          />
+    <section className="relative isolate overflow-hidden py-20 text-white md:py-24">
+      <div className="absolute inset-0 -z-10">
+        <SmartImage
+          src={PHOTO_CLASSROOM}
+          label="Local women caring and teaching at the ECD Centre"
+          className="h-full w-full"
+          rounded="rounded-none"
+          tone="warm"
+          showMissingBadge={false}
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/92 via-[var(--ithemba-blue-dark)]/82 to-[var(--ithemba-blue)]/55" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--ithemba-blue-deepest)]/70 via-transparent to-transparent" />
+        <div className="absolute right-[-6rem] bottom-[-6rem] h-[24rem] w-[24rem] sun-glow" />
+      </div>
+      <div className="relative mx-auto max-w-5xl px-4 lg:px-8">
+        <div className="max-w-3xl">
+          <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center gap-2">
+            <SparkleDoodle /> {c.women.eyebrow}
+          </div>
+          <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.women.title}</h2>
         </div>
-        <div className="order-1 flex flex-col justify-center md:order-2">
-          <SectionHeading eyebrow={c.women.eyebrow} title={c.women.title} />
-          <div className="mt-5 space-y-4 text-lg leading-relaxed text-foreground/85">
-            {c.women.body.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
-          </div>
-          <div className="mt-6 flex flex-wrap gap-2">
-            {c.women.roles.map((r) => (
-              <span
-                key={r}
-                className="rounded-full bg-white px-4 py-1.5 text-sm font-medium text-[var(--ithemba-blue-dark)] shadow-sm ring-1 ring-black/5"
-              >
-                {r}
-              </span>
-            ))}
-          </div>
+        <div className="mt-6 max-w-3xl space-y-4 text-lg leading-relaxed text-white/90">
+          {c.women.body.map((p, i) => (
+            <p key={i}>{p}</p>
+          ))}
+        </div>
+        <div className="mt-8 flex flex-wrap gap-2">
+          {c.women.roles.map((r) => (
+            <span
+              key={r}
+              className="rounded-full bg-white/15 px-4 py-1.5 text-sm font-medium text-white ring-1 ring-white/25 backdrop-blur"
+            >
+              {r}
+            </span>
+          ))}
         </div>
       </div>
     </section>
@@ -1285,8 +1283,28 @@ function Provides({ c }: { c: Copy }) {
 }
 
 /* ---------- DAILY RHYTHM — alternating photo/text bubbles + wavy path ---------- */
+const RHYTHM_ICONS = [
+  ECD_ICONS.opened,
+  ECD_ICONS.playSongs,
+  ECD_ICONS.meals,
+  ECD_ICONS.safety,
+  ECD_ICONS.playSongs,
+  ECD_ICONS.ageGroups,
+  ECD_ICONS.rest,
+  ECD_ICONS.schoolReady,
+  ECD_ICONS.meals,
+  ECD_ICONS.rest,
+  ECD_ICONS.playSongs,
+  ECD_ICONS.responsive,
+];
+const RHYTHM_BLOBS = [
+  "rounded-[55%_45%_60%_40%/45%_55%_45%_55%]",
+  "rounded-[60%_40%_45%_55%/50%_60%_40%_50%]",
+  "rounded-[50%_50%_55%_45%/60%_40%_60%_40%]",
+  "rounded-[45%_55%_50%_50%/55%_45%_55%_45%]",
+];
+
 function Rhythm({ c }: { c: Copy }) {
-  const rhythmIcons = [Sun, PlayCircle, Utensils, HandHeart, Music, BookOpen, Moon, Smile, Cookie, Moon, Users, Heart];
   const rhythmPhotoLabels = [
     "Children arriving at the ECD Centre",
     "Children at free and guided play",
@@ -1310,6 +1328,10 @@ function Rhythm({ c }: { c: Copy }) {
       <div className="pointer-events-none absolute left-12 top-24">
         <SparkleDoodle className="h-6 w-6 text-[var(--ithemba-yellow)]/60" />
       </div>
+      {/* playful ECD accents */}
+      <div className="pointer-events-none absolute right-1/3 top-12 font-display text-3xl text-[var(--ithemba-yellow)]/30 select-none">ABC</div>
+      <div className="pointer-events-none absolute left-1/4 bottom-24"><Star className="h-6 w-6 text-[var(--ithemba-yellow)]/40 fill-current" /></div>
+      <div className="pointer-events-none absolute right-16 top-1/3"><Heart className="h-5 w-5 text-[var(--ithemba-yellow)]/40 fill-current" /></div>
 
       <div className="relative mx-auto max-w-5xl px-4 lg:px-8">
         <div className="text-center">
@@ -1318,7 +1340,7 @@ function Rhythm({ c }: { c: Copy }) {
           <p className="mx-auto mt-4 max-w-2xl text-lg text-white/90">{c.rhythm.intro}</p>
         </div>
 
-        {/* central dotted vertical path (desktop) */}
+        {/* central dotted vertical path */}
         <div className="relative mt-14">
           <div
             aria-hidden
@@ -1328,44 +1350,69 @@ function Rhythm({ c }: { c: Copy }) {
                 "repeating-linear-gradient(to bottom, var(--ithemba-yellow) 0 6px, transparent 6px 14px)",
             }}
           />
-          <ol className="relative space-y-10 md:space-y-14">
+          <ol className="relative space-y-10 md:space-y-16">
             {c.rhythm.items.map((r, i) => {
-              const Icon = rhythmIcons[i % rhythmIcons.length];
+              const iconSrc = RHYTHM_ICONS[i] ?? RHYTHM_ICONS[0];
               const tone = RHYTHM_TONES[i % RHYTHM_TONES.length];
+              const blob = RHYTHM_BLOBS[i % RHYTHM_BLOBS.length];
               const isLeft = i % 2 === 0;
+
+              const photo = (
+                <div className={isLeft ? "md:justify-self-end md:pr-10" : "md:justify-self-start md:pl-10"}>
+                  <div className="relative mx-auto w-32 sm:w-40 md:w-48">
+                    <SmartImage
+                      src={`/assets/photos/ecd/rhythm-${i + 1}.jpg`}
+                      label={rhythmPhotoLabels[i]}
+                      className="aspect-square w-full"
+                      rounded={blob}
+                      tone={tone}
+                      showMissingBadge={false}
+                    />
+                    {/* small accent dot */}
+                    <div className="absolute -right-2 -top-2 hidden md:block">
+                      <SparkleDoodle className="h-5 w-5 text-[var(--ithemba-yellow)]" />
+                    </div>
+                  </div>
+                </div>
+              );
+              const text = (
+                <div className={isLeft ? "md:pl-10 md:text-left" : "md:pr-10 md:text-right"}>
+                  <div className="inline-flex items-center gap-3">
+                    <EcdIcon src={iconSrc} alt={r.time} className="h-10 w-10 md:h-12 md:w-12" />
+                    <div className="font-display text-base font-bold text-[var(--ithemba-yellow)] md:text-lg">
+                      {r.time}
+                    </div>
+                  </div>
+                  <div className="mt-2 text-sm leading-snug text-white/95 md:text-base">
+                    {r.what}
+                  </div>
+                </div>
+              );
+
               return (
                 <li key={i} className="relative">
-                  {/* timeline dot */}
-                  <div className="absolute left-6 top-6 z-10 flex h-12 w-12 -translate-x-1/2 items-center justify-center rounded-full bg-[var(--ithemba-yellow)] text-[var(--ithemba-brown)] shadow-md ring-4 ring-[var(--ithemba-blue-dark)] md:left-1/2">
-                    <Icon className="h-5 w-5" />
+                  {/* timeline dot on the path */}
+                  <div className="absolute left-6 top-6 z-10 hidden h-4 w-4 -translate-x-1/2 rounded-full bg-[var(--ithemba-yellow)] ring-4 ring-[var(--ithemba-blue-dark)] md:left-1/2 md:block" />
+
+                  {/* mobile: stack photo above text, indented past path */}
+                  <div className="space-y-4 pl-16 md:hidden">
+                    {photo}
+                    {text}
                   </div>
 
-                  {/* row */}
-                  <div
-                    className={`grid items-center gap-6 pl-16 md:grid-cols-2 md:gap-12 md:pl-0 ${
-                      isLeft ? "" : "md:[&>*:first-child]:order-2"
-                    }`}
-                  >
-                    {/* photo bubble */}
-                    <div className={`order-1 ${isLeft ? "md:pr-12 md:text-right" : "md:pl-12"}`}>
-                      <SmartImage
-                        src={`/assets/photos/ecd/rhythm-${i + 1}.jpg`}
-                        label={rhythmPhotoLabels[i]}
-                        className="mx-auto aspect-square w-32 sm:w-40 md:w-48"
-                        rounded="rounded-[55%_45%_60%_40%/45%_55%_45%_55%]"
-                        tone={tone}
-                        showMissingBadge={false}
-                      />
-                    </div>
-                    {/* text */}
-                    <div className={`order-2 ${isLeft ? "md:pl-12" : "md:pr-12 md:text-right"}`}>
-                      <div className="font-display text-base font-bold text-[var(--ithemba-yellow)] md:text-lg">
-                        {r.time}
-                      </div>
-                      <div className="mt-1 text-sm leading-snug text-white/95 md:text-base">
-                        {r.what}
-                      </div>
-                    </div>
+                  {/* desktop: alternating two-column */}
+                  <div className="hidden md:grid md:grid-cols-2 md:items-center md:gap-8">
+                    {isLeft ? (
+                      <>
+                        {photo}
+                        {text}
+                      </>
+                    ) : (
+                      <>
+                        {text}
+                        {photo}
+                      </>
+                    )}
                   </div>
                 </li>
               );
@@ -1416,40 +1463,59 @@ function Nutrition({ c }: { c: Copy }) {
   );
 }
 
-/* ---------- FOCUS AREAS ---------- */
+/* ---------- FOCUS AREAS — blue photo-backed ---------- */
 function Focus({ c }: { c: Copy }) {
+  const items: ReadonlyArray<readonly [
+    "education" | "food-security" | "safe-water" | "skills-livelihoods" | "community-health",
+    string,
+  ]> = [
+    ["education", c.focus.items[0]?.label ?? "Education"],
+    ["food-security", c.focus.items[1]?.label ?? "Food security"],
+    ["safe-water", c.focus.items[2]?.label ?? "Safe water"],
+    ["skills-livelihoods", c.focus.items[3]?.label ?? "Skills & livelihoods"],
+    ["community-health", c.focus.items[4]?.label ?? "Community health"],
+  ];
   return (
-    <section className="relative overflow-hidden bg-[var(--ithemba-cream)] py-20">
-      <div className="pointer-events-none absolute -left-20 -top-10 h-60 w-60 blob-2 bg-[var(--ithemba-blue)]/12" />
+    <section className="relative isolate overflow-hidden py-20 text-white md:py-24">
+      <div className="absolute inset-0 -z-10">
+        <SmartImage
+          src={PHOTO_CHILD}
+          label="One centre, many layers of impact — community connection"
+          className="h-full w-full"
+          rounded="rounded-none"
+          tone="ocean"
+          showMissingBadge={false}
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/92 via-[var(--ithemba-blue-dark)]/82 to-[var(--ithemba-blue)]/55" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--ithemba-blue-deepest)]/70 via-transparent to-transparent" />
+        <div className="absolute left-[-6rem] top-[-6rem] h-[24rem] w-[24rem] sun-glow" />
+      </div>
       <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
         <div className="max-w-3xl">
-          <SectionHeading eyebrow={c.focus.eyebrow} title={c.focus.title} />
-          <div className="mt-5 space-y-4 text-lg leading-relaxed text-foreground/85">
-            {c.focus.body.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
+          <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center gap-2">
+            <SparkleDoodle /> {c.focus.eyebrow}
           </div>
+          <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.focus.title}</h2>
         </div>
-        <div className="mt-10 flex flex-wrap items-end justify-center gap-x-8 gap-y-6">
-          {(
-            [
-              ["education", c.focus.items[0]?.label ?? "Education"],
-              ["food-security", c.focus.items[1]?.label ?? "Food security"],
-              ["safe-water", c.focus.items[2]?.label ?? "Safe water"],
-              ["skills-livelihoods", c.focus.items[3]?.label ?? "Skills & livelihoods"],
-              ["community-health", c.focus.items[4]?.label ?? "Community health"],
-            ] as const
-          ).map(([badge, label]) => {
+        <div className="mt-6 max-w-3xl space-y-4 text-lg leading-relaxed text-white/90">
+          {c.focus.body.map((p, i) => (
+            <p key={i}>{p}</p>
+          ))}
+        </div>
+        <div className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-5">
+          {items.map(([badge, label]) => {
             const meta = focusAreaBadgeMeta[badge];
             return (
-              <div key={badge} className="flex w-28 flex-col items-center text-center">
-                <img
-                  src={meta.src}
-                  alt={meta.label}
-                  className="h-16 w-16 object-contain drop-shadow-sm md:h-20 md:w-20"
-                  loading="lazy"
-                />
-                <div className="mt-3 text-sm font-semibold text-[var(--ithemba-blue-dark)]">
+              <div key={badge} className="flex flex-col items-center text-center">
+                <div className="flex h-20 w-20 items-center justify-center md:h-24 md:w-24">
+                  <img
+                    src={meta.src}
+                    alt={meta.label}
+                    className="h-full w-full object-contain drop-shadow-[0_2px_6px_rgba(0,0,0,0.35)]"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="mt-3 text-sm font-semibold leading-snug text-white">
                   {label}
                 </div>
               </div>
@@ -1461,35 +1527,55 @@ function Focus({ c }: { c: Copy }) {
   );
 }
 
-/* ---------- IMPACT — equal weight bubbles ---------- */
+/* ---------- IMPACT — blue background, yellow/cream organic cards ---------- */
 function Impact({ c }: { c: Copy }) {
+  const blobs = [
+    "rounded-[55%_45%_60%_40%/45%_55%_45%_55%]",
+    "rounded-[40%_60%_45%_55%/55%_45%_60%_40%]",
+    "rounded-[50%_50%_45%_55%/60%_40%_50%_50%]",
+    "rounded-[60%_40%_55%_45%/45%_55%_45%_55%]",
+    "rounded-[45%_55%_55%_45%/55%_45%_60%_40%]",
+    "rounded-[55%_45%_45%_55%/50%_50%_45%_55%]",
+  ];
+  const tints = [
+    "bg-[var(--ithemba-yellow)] text-[var(--ithemba-brown)]",
+    "bg-white text-[var(--ithemba-blue-dark)]",
+    "bg-[var(--ithemba-cream)] text-[var(--ithemba-blue-dark)]",
+    "bg-white text-[var(--ithemba-blue-dark)]",
+    "bg-[var(--ithemba-yellow)] text-[var(--ithemba-brown)]",
+    "bg-[var(--ithemba-cream)] text-[var(--ithemba-blue-dark)]",
+  ];
   return (
-    <section className="relative overflow-hidden bg-[var(--ithemba-cream)] py-20">
-      <div className="pointer-events-none absolute -left-20 top-10 h-56 w-56 blob bg-[var(--ithemba-yellow)]/20" />
-      <div className="pointer-events-none absolute -right-20 bottom-10 h-56 w-56 blob-2 bg-[var(--ithemba-blue)]/12" />
+    <section className="relative overflow-hidden bg-gradient-to-br from-[var(--ithemba-blue-dark)] via-[var(--ithemba-blue)] to-[var(--ithemba-blue-dark)] py-20 text-white">
+      <div className="pointer-events-none absolute right-[-6rem] top-[-6rem] h-[24rem] w-[24rem] sun-glow" />
+      <div className="pointer-events-none absolute left-10 top-16"><Star className="h-6 w-6 text-[var(--ithemba-yellow)]/50 fill-current" /></div>
+      <div className="pointer-events-none absolute right-16 bottom-16 font-display text-3xl text-[var(--ithemba-yellow)]/30 select-none">ABC</div>
+      <div className="pointer-events-none absolute left-1/3 bottom-10"><Heart className="h-5 w-5 text-[var(--ithemba-yellow)]/40 fill-current" /></div>
+
       <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
-          <SectionHeading eyebrow={c.impact.eyebrow} title={c.impact.title} center />
+          <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)]">{c.impact.eyebrow}</div>
+          <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.impact.title}</h2>
         </div>
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid auto-rows-fr gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {c.impact.points.map((p, i) => (
             <div
               key={i}
-              className="relative flex flex-col items-center rounded-[2rem] bg-white p-6 text-center shadow-sm ring-1 ring-black/5 transition hover:-translate-y-0.5"
+              className={`relative flex h-full flex-col items-center justify-center p-7 text-center shadow-lg ring-1 ring-black/5 ${tints[i % tints.length]} ${blobs[i % blobs.length]}`}
             >
-              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[var(--ithemba-yellow)] text-[var(--ithemba-brown)] shadow-sm">
-                <Heart className="h-6 w-6 fill-current" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/70 shadow-sm">
+                <Heart className="h-5 w-5 fill-current text-[var(--ithemba-brown)]" />
               </div>
-              <div className="mt-4 text-base font-semibold leading-snug text-[var(--ithemba-blue-dark)]">
+              <div className="mt-3 text-base font-semibold leading-snug">
                 {p}
               </div>
-              <SparkleDoodle className="absolute right-3 top-3 h-4 w-4 text-[var(--ithemba-yellow)]/60" />
+              <SparkleDoodle className="absolute right-4 top-4 h-4 w-4 text-[var(--ithemba-brown)]/50" />
             </div>
           ))}
         </div>
-        <div className="mt-10 rounded-3xl border-2 border-dashed border-[var(--ithemba-yellow)] bg-[var(--ithemba-yellow)]/15 p-6 text-center">
+        <div className="mt-10 rounded-3xl border-2 border-dashed border-[var(--ithemba-yellow)] bg-white/10 p-6 text-center backdrop-blur">
           <SparkleDoodle className="mx-auto h-6 w-6" />
-          <p className="mt-2 text-lg font-semibold text-[var(--ithemba-blue-dark)]">
+          <p className="mt-2 text-lg font-semibold text-white">
             {c.impact.monthlyLine}
           </p>
         </div>
