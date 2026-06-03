@@ -1774,7 +1774,8 @@ function PondoDogsPage() {
     <>
       <Hero c={c} />
       <Snapshot c={c} />
-      <WhoBelieve c={c} />
+      <Who c={c} />
+      <Believe c={c} />
       <Why c={c} />
       <What c={c} />
       <CareSection
