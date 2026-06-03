@@ -1694,34 +1694,95 @@ function Monthly({ c }: { c: Copy }) {
 }
 
 /* ---------- IMPACT ---------- */
-function Impact({ c }: { c: Copy }) {
-  return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[var(--ithemba-blue-dark)] via-[var(--ithemba-blue)] to-[var(--ithemba-blue-dark)] py-20 text-white">
-      <div className="pointer-events-none absolute left-[-6rem] top-[-6rem] h-[24rem] w-[24rem] sun-glow" />
-      <div className="pointer-events-none absolute right-12 bottom-12 opacity-30">
-        <PawPrint className="h-10 w-10 text-[var(--ithemba-yellow)]" />
-      </div>
-      <div className="relative mx-auto max-w-5xl px-4 text-center lg:px-8">
-        <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)]">{c.impact.eyebrow}</div>
-        <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.impact.title}</h2>
+const IMPACT_ICONS: LucideIcon[] = [Syringe, Stethoscope, Users];
 
-        <div className="mx-auto mt-12 grid max-w-4xl gap-6 sm:grid-cols-3">
-          {c.impact.counters.map((cnt) => (
-            <div
-              key={cnt.label}
-              className="rounded-[2rem] bg-white/10 p-8 ring-1 ring-white/20 backdrop-blur"
-            >
-              <div className="flex justify-center">
-                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[var(--ithemba-yellow)] text-[var(--ithemba-brown)]">
-                  <PawPrint className="h-7 w-7" />
+function parseCounter(value: string): { n: number; suffix: string } {
+  const m = value.match(/^([\d.,]+)(.*)$/);
+  if (!m) return { n: 0, suffix: value };
+  const numeric = parseInt(m[1].replace(/[.,]/g, ""), 10);
+  return { n: isNaN(numeric) ? 0 : numeric, suffix: m[2] };
+}
+
+function AnimatedNumber({ target, locale }: { target: number; locale: string }) {
+  const [n, setN] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          const dur = 1400;
+          const start = performance.now();
+          const step = (now: number) => {
+            const p = Math.min(1, (now - start) / dur);
+            const eased = 1 - Math.pow(1 - p, 3);
+            setN(Math.floor(eased * target));
+            if (p < 1) requestAnimationFrame(step);
+          };
+          requestAnimationFrame(step);
+          obs.disconnect();
+        }
+      },
+      { threshold: 0.3 },
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [target]);
+  return (
+    <span ref={ref} className="tabular-nums">
+      {n.toLocaleString(locale)}
+    </span>
+  );
+}
+
+function Impact({ c }: { c: Copy }) {
+  const { lang } = useLang();
+  const locale = lang === "en" ? "en-US" : lang === "de" ? "de-DE" : "nl-NL";
+  return (
+    <section className="relative isolate overflow-hidden py-20 text-white md:py-24">
+      <div className="absolute inset-0 -z-10">
+        <SmartImage
+          src={PHOTO_HERO}
+          label="Pondo Dogs impact"
+          className="h-full w-full"
+          rounded="rounded-none"
+          tone="earth"
+          showMissingBadge={false}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[var(--ithemba-blue-deepest)]/92 via-[var(--ithemba-blue-dark)]/88 to-[var(--ithemba-blue-deepest)]/95" />
+      </div>
+      <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
+        <div className="mx-auto max-w-2xl text-center">
+          <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center justify-center gap-2">
+            <PawDoodle /> {c.impact.eyebrow}
+          </div>
+          <h2 className="-mt-1 font-display text-3xl font-bold md:text-4xl">{c.impact.title}</h2>
+        </div>
+
+        <div className="mx-auto mt-12 flex flex-wrap justify-center gap-x-6 gap-y-10">
+          {c.impact.counters.map((cnt, i) => {
+            const Icon = IMPACT_ICONS[i] ?? PawPrint;
+            const { n, suffix } = parseCounter(cnt.value);
+            return (
+              <div
+                key={cnt.label}
+                className="flex basis-[calc(50%-12px)] flex-col items-center text-center sm:basis-[calc(33.333%-16px)]"
+              >
+                <Icon className="h-14 w-14 text-[var(--ithemba-yellow)] md:h-20 md:w-20 lg:h-24 lg:w-24" />
+                <div
+                  className="mt-4 font-display font-extrabold leading-none text-[var(--ithemba-yellow)] drop-shadow-[0_2px_18px_rgba(251,191,36,0.25)]"
+                  style={{ fontSize: "clamp(1.75rem, 2.4vw, 2.5rem)" }}
+                >
+                  <AnimatedNumber target={n} locale={locale} />
+                  {suffix}
+                </div>
+                <div className="mt-3 max-w-[14rem] text-[12px] font-medium leading-snug text-white/85 md:text-sm">
+                  {cnt.label}
                 </div>
               </div>
-              <div className="mt-4 font-display text-5xl font-extrabold text-[var(--ithemba-yellow)]">
-                {cnt.value}
-              </div>
-              <div className="mt-2 text-sm font-medium text-white/90">{cnt.label}</div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
