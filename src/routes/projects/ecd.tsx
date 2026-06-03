@@ -1278,8 +1278,28 @@ function Provides({ c }: { c: Copy }) {
 }
 
 /* ---------- DAILY RHYTHM — alternating photo/text bubbles + wavy path ---------- */
+const RHYTHM_ICONS = [
+  ECD_ICONS.opened,
+  ECD_ICONS.playSongs,
+  ECD_ICONS.meals,
+  ECD_ICONS.safety,
+  ECD_ICONS.playSongs,
+  ECD_ICONS.ageGroups,
+  ECD_ICONS.rest,
+  ECD_ICONS.schoolReady,
+  ECD_ICONS.meals,
+  ECD_ICONS.rest,
+  ECD_ICONS.playSongs,
+  ECD_ICONS.responsive,
+];
+const RHYTHM_BLOBS = [
+  "rounded-[55%_45%_60%_40%/45%_55%_45%_55%]",
+  "rounded-[60%_40%_45%_55%/50%_60%_40%_50%]",
+  "rounded-[50%_50%_55%_45%/60%_40%_60%_40%]",
+  "rounded-[45%_55%_50%_50%/55%_45%_55%_45%]",
+];
+
 function Rhythm({ c }: { c: Copy }) {
-  const rhythmIcons = [Sun, PlayCircle, Utensils, HandHeart, Music, BookOpen, Moon, Smile, Cookie, Moon, Users, Heart];
   const rhythmPhotoLabels = [
     "Children arriving at the ECD Centre",
     "Children at free and guided play",
@@ -1303,6 +1323,10 @@ function Rhythm({ c }: { c: Copy }) {
       <div className="pointer-events-none absolute left-12 top-24">
         <SparkleDoodle className="h-6 w-6 text-[var(--ithemba-yellow)]/60" />
       </div>
+      {/* playful ECD accents */}
+      <div className="pointer-events-none absolute right-1/3 top-12 font-display text-3xl text-[var(--ithemba-yellow)]/30 select-none">ABC</div>
+      <div className="pointer-events-none absolute left-1/4 bottom-24"><Star className="h-6 w-6 text-[var(--ithemba-yellow)]/40 fill-current" /></div>
+      <div className="pointer-events-none absolute right-16 top-1/3"><Heart className="h-5 w-5 text-[var(--ithemba-yellow)]/40 fill-current" /></div>
 
       <div className="relative mx-auto max-w-5xl px-4 lg:px-8">
         <div className="text-center">
@@ -1311,7 +1335,7 @@ function Rhythm({ c }: { c: Copy }) {
           <p className="mx-auto mt-4 max-w-2xl text-lg text-white/90">{c.rhythm.intro}</p>
         </div>
 
-        {/* central dotted vertical path (desktop) */}
+        {/* central dotted vertical path */}
         <div className="relative mt-14">
           <div
             aria-hidden
@@ -1321,44 +1345,69 @@ function Rhythm({ c }: { c: Copy }) {
                 "repeating-linear-gradient(to bottom, var(--ithemba-yellow) 0 6px, transparent 6px 14px)",
             }}
           />
-          <ol className="relative space-y-10 md:space-y-14">
+          <ol className="relative space-y-10 md:space-y-16">
             {c.rhythm.items.map((r, i) => {
-              const Icon = rhythmIcons[i % rhythmIcons.length];
+              const iconSrc = RHYTHM_ICONS[i] ?? RHYTHM_ICONS[0];
               const tone = RHYTHM_TONES[i % RHYTHM_TONES.length];
+              const blob = RHYTHM_BLOBS[i % RHYTHM_BLOBS.length];
               const isLeft = i % 2 === 0;
+
+              const photo = (
+                <div className={isLeft ? "md:justify-self-end md:pr-10" : "md:justify-self-start md:pl-10"}>
+                  <div className="relative mx-auto w-32 sm:w-40 md:w-48">
+                    <SmartImage
+                      src={`/assets/photos/ecd/rhythm-${i + 1}.jpg`}
+                      label={rhythmPhotoLabels[i]}
+                      className="aspect-square w-full"
+                      rounded={blob}
+                      tone={tone}
+                      showMissingBadge={false}
+                    />
+                    {/* small accent dot */}
+                    <div className="absolute -right-2 -top-2 hidden md:block">
+                      <SparkleDoodle className="h-5 w-5 text-[var(--ithemba-yellow)]" />
+                    </div>
+                  </div>
+                </div>
+              );
+              const text = (
+                <div className={isLeft ? "md:pl-10 md:text-left" : "md:pr-10 md:text-right"}>
+                  <div className="inline-flex items-center gap-3">
+                    <EcdIcon src={iconSrc} alt={r.time} className="h-10 w-10 md:h-12 md:w-12" />
+                    <div className="font-display text-base font-bold text-[var(--ithemba-yellow)] md:text-lg">
+                      {r.time}
+                    </div>
+                  </div>
+                  <div className="mt-2 text-sm leading-snug text-white/95 md:text-base">
+                    {r.what}
+                  </div>
+                </div>
+              );
+
               return (
                 <li key={i} className="relative">
-                  {/* timeline dot */}
-                  <div className="absolute left-6 top-6 z-10 flex h-12 w-12 -translate-x-1/2 items-center justify-center rounded-full bg-[var(--ithemba-yellow)] text-[var(--ithemba-brown)] shadow-md ring-4 ring-[var(--ithemba-blue-dark)] md:left-1/2">
-                    <Icon className="h-5 w-5" />
+                  {/* timeline dot on the path */}
+                  <div className="absolute left-6 top-6 z-10 hidden h-4 w-4 -translate-x-1/2 rounded-full bg-[var(--ithemba-yellow)] ring-4 ring-[var(--ithemba-blue-dark)] md:left-1/2 md:block" />
+
+                  {/* mobile: stack photo above text, indented past path */}
+                  <div className="space-y-4 pl-16 md:hidden">
+                    {photo}
+                    {text}
                   </div>
 
-                  {/* row */}
-                  <div
-                    className={`grid items-center gap-6 pl-16 md:grid-cols-2 md:gap-12 md:pl-0 ${
-                      isLeft ? "" : "md:[&>*:first-child]:order-2"
-                    }`}
-                  >
-                    {/* photo bubble */}
-                    <div className={`order-1 ${isLeft ? "md:pr-12 md:text-right" : "md:pl-12"}`}>
-                      <SmartImage
-                        src={`/assets/photos/ecd/rhythm-${i + 1}.jpg`}
-                        label={rhythmPhotoLabels[i]}
-                        className="mx-auto aspect-square w-32 sm:w-40 md:w-48"
-                        rounded="rounded-[55%_45%_60%_40%/45%_55%_45%_55%]"
-                        tone={tone}
-                        showMissingBadge={false}
-                      />
-                    </div>
-                    {/* text */}
-                    <div className={`order-2 ${isLeft ? "md:pl-12" : "md:pr-12 md:text-right"}`}>
-                      <div className="font-display text-base font-bold text-[var(--ithemba-yellow)] md:text-lg">
-                        {r.time}
-                      </div>
-                      <div className="mt-1 text-sm leading-snug text-white/95 md:text-base">
-                        {r.what}
-                      </div>
-                    </div>
+                  {/* desktop: alternating two-column */}
+                  <div className="hidden md:grid md:grid-cols-2 md:items-center md:gap-8">
+                    {isLeft ? (
+                      <>
+                        {photo}
+                        {text}
+                      </>
+                    ) : (
+                      <>
+                        {text}
+                        {photo}
+                      </>
+                    )}
                   </div>
                 </li>
               );
