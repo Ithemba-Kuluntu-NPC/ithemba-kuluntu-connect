@@ -1208,39 +1208,44 @@ function Building({ c }: { c: Copy }) {
   );
 }
 
-/* ---------- WOMEN ---------- */
+/* ---------- WOMEN — blue photo-backed ---------- */
 function Women({ c }: { c: Copy }) {
   return (
-    <section className="relative overflow-hidden bg-[var(--ithemba-cream)] py-20">
-      <div className="pointer-events-none absolute right-10 top-10 h-32 w-32 blob-4 bg-[var(--ithemba-yellow)]/30" />
-      <div className="relative mx-auto grid max-w-7xl gap-10 px-4 md:grid-cols-2 lg:px-8">
-        <div className="relative order-2 md:order-1">
-          <SmartImage
-            src={PHOTO_CLASSROOM}
-            label="Local women caring and teaching at the ECD Centre"
-            className="aspect-[4/5] w-full"
-            rounded="rounded-[2.5rem]"
-            tone="warm"
-            showMissingBadge={false}
-          />
+    <section className="relative isolate overflow-hidden py-20 text-white md:py-24">
+      <div className="absolute inset-0 -z-10">
+        <SmartImage
+          src={PHOTO_CLASSROOM}
+          label="Local women caring and teaching at the ECD Centre"
+          className="h-full w-full"
+          rounded="rounded-none"
+          tone="warm"
+          showMissingBadge={false}
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/92 via-[var(--ithemba-blue-dark)]/82 to-[var(--ithemba-blue)]/55" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--ithemba-blue-deepest)]/70 via-transparent to-transparent" />
+        <div className="absolute right-[-6rem] bottom-[-6rem] h-[24rem] w-[24rem] sun-glow" />
+      </div>
+      <div className="relative mx-auto max-w-5xl px-4 lg:px-8">
+        <div className="max-w-3xl">
+          <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center gap-2">
+            <SparkleDoodle /> {c.women.eyebrow}
+          </div>
+          <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.women.title}</h2>
         </div>
-        <div className="order-1 flex flex-col justify-center md:order-2">
-          <SectionHeading eyebrow={c.women.eyebrow} title={c.women.title} />
-          <div className="mt-5 space-y-4 text-lg leading-relaxed text-foreground/85">
-            {c.women.body.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
-          </div>
-          <div className="mt-6 flex flex-wrap gap-2">
-            {c.women.roles.map((r) => (
-              <span
-                key={r}
-                className="rounded-full bg-white px-4 py-1.5 text-sm font-medium text-[var(--ithemba-blue-dark)] shadow-sm ring-1 ring-black/5"
-              >
-                {r}
-              </span>
-            ))}
-          </div>
+        <div className="mt-6 max-w-3xl space-y-4 text-lg leading-relaxed text-white/90">
+          {c.women.body.map((p, i) => (
+            <p key={i}>{p}</p>
+          ))}
+        </div>
+        <div className="mt-8 flex flex-wrap gap-2">
+          {c.women.roles.map((r) => (
+            <span
+              key={r}
+              className="rounded-full bg-white/15 px-4 py-1.5 text-sm font-medium text-white ring-1 ring-white/25 backdrop-blur"
+            >
+              {r}
+            </span>
+          ))}
         </div>
       </div>
     </section>
