@@ -1531,15 +1531,23 @@ function Focus({ c }: { c: Copy }) {
             ))}
           </div>
         </div>
-        <div className="mt-12 grid grid-cols-2 gap-6 md:grid-cols-4">
-          {c.focus.areas.map((a) => (
-            <div key={a.key} className="flex flex-col items-center text-center">
-              <FocusAreaBadges badges={[a.key]} size="md" />
-              <div className="mt-3 text-sm font-semibold text-[var(--ithemba-blue-dark)]">
-                {a.label}
+        <div className="mt-14 grid grid-cols-2 items-start gap-x-6 gap-y-10 md:grid-cols-4">
+          {c.focus.areas.map((a) => {
+            const meta = focusAreaBadgeMeta[a.key];
+            return (
+              <div key={a.key} className="flex flex-col items-center text-center">
+                <img
+                  src={meta.src}
+                  alt={a.label}
+                  className="h-20 w-20 object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.18)] md:h-24 md:w-24"
+                  loading="lazy"
+                />
+                <div className="mt-5 font-display text-base font-bold text-[var(--ithemba-blue-dark)] md:text-lg">
+                  {a.label}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
