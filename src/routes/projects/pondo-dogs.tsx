@@ -1896,7 +1896,7 @@ function PondoDogsPage() {
         photo={PHOTO_CARE}
         photoLabel="Food and shelter support for animals"
         reversed
-        background="white"
+        background="blue"
       />
       <Education c={c} />
       <More c={c} />
