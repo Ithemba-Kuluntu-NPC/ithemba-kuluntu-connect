@@ -1313,15 +1313,29 @@ function CareSection({
   photo: string;
   photoLabel: string;
   reversed?: boolean;
-  background?: "cream" | "white";
+  background?: "cream" | "white" | "blue";
 }) {
-  const bg = background === "cream" ? "bg-[var(--ithemba-cream)]" : "bg-background";
+  const isBlue = background === "blue";
+  const bg =
+    background === "cream"
+      ? "bg-[var(--ithemba-cream)]"
+      : isBlue
+        ? "bg-[var(--ithemba-blue-dark)]"
+        : "bg-background";
+  const textColor = isBlue ? "text-white/90" : "text-foreground/85";
+  const outroColor = isBlue ? "text-white/75" : "text-foreground/75";
   return (
     <section className={`relative overflow-hidden ${bg} py-20`}>
-      <div className="mx-auto max-w-7xl px-4 lg:px-8">
+      {isBlue && (
+        <>
+          <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 sun-glow" />
+          <div className="pointer-events-none absolute -left-16 bottom-16 h-48 w-48 blob bg-[var(--ithemba-yellow)]/10" />
+        </>
+      )}
+      <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
         <div className={`grid items-center gap-10 md:grid-cols-2 ${reversed ? "md:[&>*:first-child]:order-2" : ""}`}>
           <div className="relative">
-            <div className="absolute -left-6 -top-6 -z-10 h-24 w-24 blob bg-[var(--ithemba-yellow)]/30" />
+            <div className={`absolute -left-6 -top-6 -z-10 h-24 w-24 blob ${isBlue ? "bg-[var(--ithemba-yellow)]/20" : "bg-[var(--ithemba-yellow)]/30"}`} />
             <SmartImage
               src={photo}
               label={photoLabel}
@@ -1332,18 +1346,27 @@ function CareSection({
             />
           </div>
           <div>
-            <SectionHeading eyebrow={eyebrow} title={title} />
-            <div className="mt-5 space-y-4 text-lg leading-relaxed text-foreground/85">
+            {isBlue ? (
+              <>
+                <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center gap-2">
+                  <PawDoodle /> {eyebrow}
+                </div>
+                <h2 className="-mt-1 font-display text-4xl font-bold text-white md:text-5xl">{title}</h2>
+              </>
+            ) : (
+              <SectionHeading eyebrow={eyebrow} title={title} />
+            )}
+            <div className={`mt-5 space-y-4 text-lg leading-relaxed ${textColor}`}>
               {body.map((p, i) => (
                 <p key={i}>{p}</p>
               ))}
             </div>
             {items && items.length > 0 && (
-              <ul className="mt-6 grid gap-2 sm:grid-cols-2">
+              <ul className="mt-6 grid gap-x-5 gap-y-2 sm:grid-cols-2">
                 {items.map((it) => (
                   <li
                     key={it.text}
-                    className="flex items-start gap-2 rounded-2xl bg-white/80 px-4 py-2 text-sm font-medium text-foreground/85 ring-1 ring-black/5"
+                    className={`flex items-start gap-2 text-sm font-medium ${isBlue ? "text-white/90" : "text-foreground/85"}`}
                   >
                     <PawPrint className="mt-0.5 h-4 w-4 shrink-0 text-[var(--ithemba-yellow)]" />
                     <span>{it.text}</span>
@@ -1352,7 +1375,7 @@ function CareSection({
               </ul>
             )}
             {outro && (
-              <p className="mt-6 text-base leading-relaxed text-foreground/75">{outro}</p>
+              <p className={`mt-6 text-base leading-relaxed ${outroColor}`}>{outro}</p>
             )}
           </div>
         </div>
