@@ -1635,18 +1635,18 @@ function Focus({ c }: { c: Copy }) {
 }
 
 /* ---------- DONATION HELP LIST ---------- */
-const DONATION_ICONS: LucideIcon[] = [
-  Repeat,
-  AlertCircle,
-  Stethoscope,
-  Syringe,
-  ShieldCheck,
-  Utensils,
-  HomeIcon,
-  Truck,
-  BookOpen,
-  HandHeart,
-  Users,
+const DONATION_ICONS: string[] = [
+  ICON.sterilisation,
+  ICON.emergencyCare,
+  ICON.medicalCare,
+  ICON.preventiveCare,
+  ICON.deworming,
+  ICON.foodSupport,
+  ICON.shelterSupport,
+  ICON.transportVet,
+  ICON.ownerEducation,
+  ICON.homeBased,
+  ICON.localCoordination,
 ];
 
 function DonationHelp({ c }: { c: Copy }) {
@@ -1677,23 +1677,20 @@ function DonationHelp({ c }: { c: Copy }) {
             ))}
           </div>
         </div>
-        <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {c.donation.items.map((it, i) => {
-            const Icon = DONATION_ICONS[i] ?? PawPrint;
-            return (
-              <div
-                key={it}
-                className="flex items-center gap-3 rounded-2xl bg-white/10 px-4 py-3 ring-1 ring-white/15 backdrop-blur"
-              >
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--ithemba-yellow)]/25 text-[var(--ithemba-yellow)]">
-                  <Icon className="h-5 w-5" />
-                </div>
-                <span className="text-sm font-medium text-white/95">{it}</span>
-              </div>
-            );
-          })}
+        <div className="mt-10 grid gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+          {c.donation.items.map((it, i) => (
+            <div key={it} className="flex items-center gap-4">
+              <PdIcon
+                src={DONATION_ICONS[i] ?? ICON.coreSupport}
+                className="h-14 w-14 shrink-0 md:h-16 md:w-16"
+              />
+              <span className="text-sm font-medium leading-snug text-white/95 md:text-base">
+                {it}
+              </span>
+            </div>
+          ))}
         </div>
-        <p className="mt-8 max-w-3xl text-base leading-relaxed text-white/85">
+        <p className="mt-10 max-w-3xl text-base leading-relaxed text-white/85">
           {c.donation.outro}
         </p>
       </div>
