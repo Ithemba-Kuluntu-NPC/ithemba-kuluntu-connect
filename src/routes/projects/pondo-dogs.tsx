@@ -45,6 +45,51 @@ const PHOTO_COMMUNITY = assets.photos.pondoDogs.community;
 
 const KUSTENHUND_URL = "https://www.kuestenhund.com/";
 
+/* ---------- custom Pondo Dogs icons ---------- */
+const PD_ICON = "/assets/icons/projects/pondo-dogs";
+const ICON = {
+  project: `${PD_ICON}/pondo-dogs-project.png`,
+  communityWellbeing: `${PD_ICON}/pondo-dogs-community-wellbeing.png`,
+  location: `${PD_ICON}/pondo-dogs-location.png`,
+  animalsSupported: `${PD_ICON}/pondo-dogs-animals-supported.png`,
+  communityTeams: `${PD_ICON}/pondo-dogs-community-teams.png`,
+  coreSupport: `${PD_ICON}/pondo-dogs-core-support.png`,
+  monthlySupport: `${PD_ICON}/pondo-dogs-monthly-support.png`,
+  medicalCare: `${PD_ICON}/pondo-dogs-medical-care.png`,
+  preventiveCare: `${PD_ICON}/pondo-dogs-preventive-care.png`,
+  sterilisation: `${PD_ICON}/pondo-dogs-sterilisation.png`,
+  homeBased: `${PD_ICON}/pondo-dogs-home-based-support.png`,
+  foodAndShelter: `${PD_ICON}/pondo-dogs-food-and-shelter.png`,
+  ownerEducation: `${PD_ICON}/pondo-dogs-owner-education.png`,
+  emergencyCare: `${PD_ICON}/pondo-dogs-emergency-care.png`,
+  deworming: `${PD_ICON}/pondo-dogs-deworming-parasite-control.png`,
+  foodSupport: `${PD_ICON}/pondo-dogs-food-support.png`,
+  shelterSupport: `${PD_ICON}/pondo-dogs-shelter-support.png`,
+  transportVet: `${PD_ICON}/pondo-dogs-transport-vet-care.png`,
+  localCoordination: `${PD_ICON}/pondo-dogs-local-coordination.png`,
+} as const;
+
+/** Small helper: render a custom Pondo Dogs icon cleanly without bubble container. */
+function PdIcon({
+  src,
+  alt = "",
+  className = "h-14 w-14",
+}: {
+  src: string;
+  alt?: string;
+  className?: string;
+}) {
+  return (
+    <img
+      src={src}
+      alt={alt}
+      aria-hidden={alt === "" ? true : undefined}
+      className={`${className} object-contain`}
+      loading="lazy"
+    />
+  );
+}
+
 /* ---------- reduced motion ---------- */
 function useReducedMotion() {
   const [reduced, setReduced] = useState(false);
