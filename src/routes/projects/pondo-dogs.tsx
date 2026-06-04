@@ -1770,7 +1770,7 @@ function Monthly({ c }: { c: Copy }) {
 }
 
 /* ---------- IMPACT ---------- */
-const IMPACT_ICONS: LucideIcon[] = [Syringe, Stethoscope, Users];
+const IMPACT_ICONS: string[] = [ICON.sterilisation, ICON.medicalCare, ICON.ownerEducation];
 
 function parseCounter(value: string): { n: number; suffix: string } {
   const m = value.match(/^([\d.,]+)(.*)$/);
