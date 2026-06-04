@@ -1307,7 +1307,14 @@ function Why({ c }: { c: Copy }) {
 }
 
 /* ---------- WHAT — six connected support areas ---------- */
-const AREA_ICONS: LucideIcon[] = [Stethoscope, Syringe, Repeat, HomeIcon, Utensils, BookOpen];
+const AREA_ICONS: string[] = [
+  ICON.medicalCare,
+  ICON.preventiveCare,
+  ICON.sterilisation,
+  ICON.homeBased,
+  ICON.foodAndShelter,
+  ICON.ownerEducation,
+];
 
 function What({ c }: { c: Copy }) {
   return (
@@ -1320,22 +1327,17 @@ function What({ c }: { c: Copy }) {
           <p className="mt-5 text-lg leading-relaxed text-foreground/85">{c.what.intro}</p>
         </div>
         <div className="mt-12 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-          {c.what.areas.map((area, i) => {
-            const Icon = AREA_ICONS[i] ?? PawPrint;
-            return (
-              <div
-                key={area}
-                className="flex items-start gap-4"
-              >
-                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-[45%_55%_55%_45%/55%_45%_55%_45%] bg-[var(--ithemba-yellow)]/35 text-[var(--ithemba-blue-dark)]">
-                  <Icon className="h-7 w-7" />
-                </div>
-                <div className="pt-2 font-display text-lg font-bold leading-snug text-[var(--ithemba-blue-dark)]">
-                  {area}
-                </div>
+          {c.what.areas.map((area, i) => (
+            <div key={area} className="flex items-start gap-5">
+              <PdIcon
+                src={AREA_ICONS[i] ?? ICON.coreSupport}
+                className="h-16 w-16 shrink-0 md:h-20 md:w-20"
+              />
+              <div className="pt-2 font-display text-lg font-bold leading-snug text-[var(--ithemba-blue-dark)]">
+                {area}
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
         <p className="mx-auto mt-10 max-w-3xl text-base leading-relaxed text-foreground/80">
           {c.what.outro}
