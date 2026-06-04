@@ -1271,6 +1271,29 @@ function Believe({ c }: { c: Copy }) {
           ))}
         </div>
       </div>
+
+      {/* gentle wave divider into Why */}
+      <svg
+        className="relative mt-16 block w-full"
+        viewBox="0 0 1440 60"
+        preserveAspectRatio="none"
+        aria-hidden
+      >
+        <path
+          d="M0,30 C240,55 480,5 720,30 C960,55 1200,5 1440,30"
+          stroke="var(--ithemba-yellow)"
+          strokeOpacity="0.35"
+          strokeWidth="2"
+          fill="none"
+        />
+        <path
+          d="M0,38 C240,62 480,12 720,38 C960,62 1200,12 1440,38"
+          stroke="#ffffff"
+          strokeOpacity="0.18"
+          strokeWidth="1.5"
+          fill="none"
+        />
+      </svg>
     </section>
   );
 }
