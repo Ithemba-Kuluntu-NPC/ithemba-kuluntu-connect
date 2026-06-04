@@ -1565,12 +1565,6 @@ function Education({ c }: { c: Copy }) {
 }
 
 /* ---------- MORE THAN DOGS ---------- */
-const ANIMAL_ICONS: { icon: LucideIcon; label: string }[] = [
-  { icon: Dog, label: "Dogs" },
-  { icon: Cat, label: "Cats" },
-  { icon: Bird, label: "Other" },
-];
-
 function More({ c }: { c: Copy }) {
   return (
     <section className="relative isolate overflow-hidden py-20 text-white">
@@ -1597,15 +1591,6 @@ function More({ c }: { c: Copy }) {
         <div className="mx-auto mt-6 max-w-3xl space-y-4 text-center text-lg leading-relaxed text-white/90">
           {c.more.body.map((p, i) => (
             <p key={i}>{p}</p>
-          ))}
-        </div>
-        <div className="mt-10 flex flex-wrap items-end justify-center gap-8">
-          {ANIMAL_ICONS.map((a) => (
-            <div key={a.label} className="flex flex-col items-center">
-              <div className="flex h-20 w-20 items-center justify-center rounded-[45%_55%_50%_50%/55%_45%_55%_45%] bg-white/15 text-[var(--ithemba-yellow)] ring-1 ring-white/20 backdrop-blur">
-                <a.icon className="h-10 w-10" />
-              </div>
-            </div>
           ))}
         </div>
       </div>
