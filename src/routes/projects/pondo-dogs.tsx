@@ -1838,14 +1838,14 @@ function Impact({ c }: { c: Copy }) {
 
         <div className="mx-auto mt-12 flex flex-wrap justify-center gap-x-6 gap-y-10">
           {c.impact.counters.map((cnt, i) => {
-            const Icon = IMPACT_ICONS[i] ?? PawPrint;
+            const iconSrc = IMPACT_ICONS[i] ?? ICON.coreSupport;
             const { n, suffix } = parseCounter(cnt.value);
             return (
               <div
                 key={cnt.label}
                 className="flex basis-[calc(50%-12px)] flex-col items-center text-center sm:basis-[calc(33.333%-16px)]"
               >
-                <Icon className="h-14 w-14 text-[var(--ithemba-yellow)] md:h-20 md:w-20 lg:h-24 lg:w-24" />
+                <PdIcon src={iconSrc} className="h-14 w-14 md:h-20 md:w-20 lg:h-24 lg:w-24" />
                 <div
                   className="mt-4 font-display font-extrabold leading-none text-[var(--ithemba-yellow)] drop-shadow-[0_2px_18px_rgba(251,191,36,0.25)]"
                   style={{ fontSize: "clamp(1.75rem, 2.4vw, 2.5rem)" }}
