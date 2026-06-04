@@ -1451,48 +1451,71 @@ function Sterilisation({ c }: { c: Copy }) {
           tone="earth"
           showMissingBadge={false}
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/92 via-[var(--ithemba-blue-dark)]/82 to-[var(--ithemba-blue)]/55" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/93 via-[var(--ithemba-blue-dark)]/86 to-[var(--ithemba-blue)]/60" />
+        <div className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 sun-glow" />
       </div>
 
-
-      <div className="relative mx-auto max-w-4xl px-4 lg:px-8">
-        <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center gap-2">
-          <PawDoodle /> {c.sterilisation.eyebrow}
-        </div>
-        <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">
-          {c.sterilisation.title}
-        </h2>
-        <div className="mt-6 space-y-4 text-lg leading-relaxed text-white/90">
-          <p>
-            {c.sterilisation.bodyPre}
-            <KustenhundLink className="text-white" />
-            {c.sterilisation.bodyPost}
-          </p>
-          <p>{c.sterilisation.body2}</p>
-          <p>{c.sterilisation.body3}</p>
-        </div>
-
-        {/* Partner card */}
-        <div className="mt-8 flex flex-wrap items-center gap-4 rounded-3xl bg-white/10 p-5 ring-1 ring-white/20 backdrop-blur">
-          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--ithemba-yellow)] text-[var(--ithemba-brown)]">
-            <HandHeart className="h-7 w-7" />
-          </div>
-          <div className="flex-1 min-w-[220px]">
-            <div className="text-xs font-semibold uppercase tracking-wide text-white/70">
-              Partner
-            </div>
-            <div className="font-display text-lg font-bold">
-              <KustenhundLink className="text-white" />
+      <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
+        <div className="grid items-center gap-12 md:grid-cols-2">
+          {/* photo bubble */}
+          <div className="relative">
+            <div className="pointer-events-none absolute -left-6 -top-6 -z-10 h-28 w-28 blob bg-[var(--ithemba-yellow)]/25" />
+            <SmartImage
+              src={PHOTO_CARE}
+              label="Animal welfare team preparing a sterilisation campaign"
+              className="aspect-[4/5] w-full"
+              rounded="rounded-[55%_45%_60%_40%/45%_55%_45%_55%]"
+              tone="earth"
+              showMissingBadge={false}
+            />
+            {/* clean icon badge */}
+            <div className="absolute -bottom-4 -right-2 flex items-center gap-2 rounded-full bg-white/95 px-3 py-2 text-[var(--ithemba-blue-dark)] shadow-lg ring-1 ring-[var(--ithemba-yellow)]/40 backdrop-blur">
+              <PdIcon src={ICON.sterilisation} className="h-7 w-7" />
+              <span className="pr-1 text-xs font-semibold uppercase tracking-wide">
+                {c.sterilisation.eyebrow}
+              </span>
             </div>
           </div>
-          <a
-            href={KUSTENHUND_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-full bg-[var(--ithemba-yellow)] px-4 py-2 text-sm font-semibold text-[var(--ithemba-brown)] hover:bg-[var(--ithemba-yellow)]/95"
-          >
-            kuestenhund.com →
-          </a>
+
+          {/* text + partner */}
+          <div>
+            <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center gap-2">
+              <PawDoodle /> {c.sterilisation.eyebrow}
+            </div>
+            <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">
+              {c.sterilisation.title}
+            </h2>
+            <div className="mt-6 space-y-4 text-lg leading-relaxed text-white/90">
+              <p>
+                {c.sterilisation.bodyPre}
+                <KustenhundLink className="text-white" />
+                {c.sterilisation.bodyPost}
+              </p>
+              <p>{c.sterilisation.body2}</p>
+              <p>{c.sterilisation.body3}</p>
+            </div>
+
+            {/* Partner card — discreet, references partner without over-emphasis */}
+            <div className="mt-8 flex flex-wrap items-center gap-4 rounded-3xl bg-white/10 p-5 ring-1 ring-white/20 backdrop-blur">
+              <PdIcon src={ICON.sterilisation} className="h-12 w-12" />
+              <div className="flex-1 min-w-[200px]">
+                <div className="text-xs font-semibold uppercase tracking-wide text-white/70">
+                  Partner
+                </div>
+                <div className="font-display text-lg font-bold">
+                  <KustenhundLink className="text-white" />
+                </div>
+              </div>
+              <a
+                href={KUSTENHUND_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full bg-[var(--ithemba-yellow)] px-4 py-2 text-sm font-semibold text-[var(--ithemba-brown)] hover:bg-[var(--ithemba-yellow)]/95"
+              >
+                kuestenhund.com →
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
