@@ -45,6 +45,51 @@ const PHOTO_COMMUNITY = assets.photos.pondoDogs.community;
 
 const KUSTENHUND_URL = "https://www.kuestenhund.com/";
 
+/* ---------- custom Pondo Dogs icons ---------- */
+const PD_ICON = "/assets/icons/projects/pondo-dogs";
+const ICON = {
+  project: `${PD_ICON}/pondo-dogs-project.png`,
+  communityWellbeing: `${PD_ICON}/pondo-dogs-community-wellbeing.png`,
+  location: `${PD_ICON}/pondo-dogs-location.png`,
+  animalsSupported: `${PD_ICON}/pondo-dogs-animals-supported.png`,
+  communityTeams: `${PD_ICON}/pondo-dogs-community-teams.png`,
+  coreSupport: `${PD_ICON}/pondo-dogs-core-support.png`,
+  monthlySupport: `${PD_ICON}/pondo-dogs-monthly-support.png`,
+  medicalCare: `${PD_ICON}/pondo-dogs-medical-care.png`,
+  preventiveCare: `${PD_ICON}/pondo-dogs-preventive-care.png`,
+  sterilisation: `${PD_ICON}/pondo-dogs-sterilisation.png`,
+  homeBased: `${PD_ICON}/pondo-dogs-home-based-support.png`,
+  foodAndShelter: `${PD_ICON}/pondo-dogs-food-and-shelter.png`,
+  ownerEducation: `${PD_ICON}/pondo-dogs-owner-education.png`,
+  emergencyCare: `${PD_ICON}/pondo-dogs-emergency-care.png`,
+  deworming: `${PD_ICON}/pondo-dogs-deworming-parasite-control.png`,
+  foodSupport: `${PD_ICON}/pondo-dogs-food-support.png`,
+  shelterSupport: `${PD_ICON}/pondo-dogs-shelter-support.png`,
+  transportVet: `${PD_ICON}/pondo-dogs-transport-vet-care.png`,
+  localCoordination: `${PD_ICON}/pondo-dogs-local-coordination.png`,
+} as const;
+
+/** Small helper: render a custom Pondo Dogs icon cleanly without bubble container. */
+function PdIcon({
+  src,
+  alt = "",
+  className = "h-14 w-14",
+}: {
+  src: string;
+  alt?: string;
+  className?: string;
+}) {
+  return (
+    <img
+      src={src}
+      alt={alt}
+      aria-hidden={alt === "" ? true : undefined}
+      className={`${className} object-contain`}
+      loading="lazy"
+    />
+  );
+}
+
 /* ---------- reduced motion ---------- */
 function useReducedMotion() {
   const [reduced, setReduced] = useState(false);
@@ -1109,7 +1154,15 @@ function Hero({ c }: { c: Copy }) {
 }
 
 /* ---------- SNAPSHOT ---------- */
-const SNAPSHOT_ICONS: LucideIcon[] = [PawPrint, Heart, HomeIcon, Dog, Users, Stethoscope, HandHeart];
+const SNAPSHOT_ICONS: string[] = [
+  ICON.project,
+  ICON.communityWellbeing,
+  ICON.location,
+  ICON.animalsSupported,
+  ICON.communityTeams,
+  ICON.coreSupport,
+  ICON.monthlySupport,
+];
 
 function Snapshot({ c }: { c: Copy }) {
   return (
@@ -1131,22 +1184,20 @@ function Snapshot({ c }: { c: Copy }) {
         </div>
 
         <div className="mt-14 grid grid-cols-2 gap-x-6 gap-y-12 sm:grid-cols-4">
-          {c.snapshot.facts.map((f, i) => {
-            const Icon = SNAPSHOT_ICONS[i] ?? PawPrint;
-            return (
-              <div key={f.label} className="flex flex-col items-center text-center">
-                <div className="flex h-16 w-16 items-center justify-center rounded-[40%_60%_55%_45%/55%_45%_60%_40%] bg-white text-[var(--ithemba-blue-dark)] shadow-sm ring-1 ring-[var(--ithemba-yellow)]/40">
-                  <Icon className="h-8 w-8" />
-                </div>
-                <div className="mt-4 font-display text-base font-extrabold leading-tight text-[var(--ithemba-blue-dark)]">
-                  {f.value}
-                </div>
-                <div className="mt-1 text-[11px] font-semibold uppercase tracking-wide text-foreground/60">
-                  {f.label}
-                </div>
+          {c.snapshot.facts.map((f, i) => (
+            <div key={f.label} className="flex flex-col items-center text-center">
+              <PdIcon
+                src={SNAPSHOT_ICONS[i] ?? ICON.project}
+                className="h-16 w-16 md:h-20 md:w-20"
+              />
+              <div className="mt-4 font-display text-base font-extrabold leading-tight text-[var(--ithemba-blue-dark)]">
+                {f.value}
               </div>
-            );
-          })}
+              <div className="mt-1 text-[11px] font-semibold uppercase tracking-wide text-foreground/60">
+                {f.label}
+              </div>
+            </div>
+          ))}
         </div>
 
         {/* Partner line */}
@@ -1256,7 +1307,14 @@ function Why({ c }: { c: Copy }) {
 }
 
 /* ---------- WHAT — six connected support areas ---------- */
-const AREA_ICONS: LucideIcon[] = [Stethoscope, Syringe, Repeat, HomeIcon, Utensils, BookOpen];
+const AREA_ICONS: string[] = [
+  ICON.medicalCare,
+  ICON.preventiveCare,
+  ICON.sterilisation,
+  ICON.homeBased,
+  ICON.foodAndShelter,
+  ICON.ownerEducation,
+];
 
 function What({ c }: { c: Copy }) {
   return (
@@ -1269,22 +1327,17 @@ function What({ c }: { c: Copy }) {
           <p className="mt-5 text-lg leading-relaxed text-foreground/85">{c.what.intro}</p>
         </div>
         <div className="mt-12 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-          {c.what.areas.map((area, i) => {
-            const Icon = AREA_ICONS[i] ?? PawPrint;
-            return (
-              <div
-                key={area}
-                className="flex items-start gap-4"
-              >
-                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-[45%_55%_55%_45%/55%_45%_55%_45%] bg-[var(--ithemba-yellow)]/35 text-[var(--ithemba-blue-dark)]">
-                  <Icon className="h-7 w-7" />
-                </div>
-                <div className="pt-2 font-display text-lg font-bold leading-snug text-[var(--ithemba-blue-dark)]">
-                  {area}
-                </div>
+          {c.what.areas.map((area, i) => (
+            <div key={area} className="flex items-start gap-5">
+              <PdIcon
+                src={AREA_ICONS[i] ?? ICON.coreSupport}
+                className="h-16 w-16 shrink-0 md:h-20 md:w-20"
+              />
+              <div className="pt-2 font-display text-lg font-bold leading-snug text-[var(--ithemba-blue-dark)]">
+                {area}
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
         <p className="mx-auto mt-10 max-w-3xl text-base leading-relaxed text-foreground/80">
           {c.what.outro}
@@ -1398,48 +1451,71 @@ function Sterilisation({ c }: { c: Copy }) {
           tone="earth"
           showMissingBadge={false}
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/92 via-[var(--ithemba-blue-dark)]/82 to-[var(--ithemba-blue)]/55" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/93 via-[var(--ithemba-blue-dark)]/86 to-[var(--ithemba-blue)]/60" />
+        <div className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 sun-glow" />
       </div>
 
-
-      <div className="relative mx-auto max-w-4xl px-4 lg:px-8">
-        <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center gap-2">
-          <PawDoodle /> {c.sterilisation.eyebrow}
-        </div>
-        <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">
-          {c.sterilisation.title}
-        </h2>
-        <div className="mt-6 space-y-4 text-lg leading-relaxed text-white/90">
-          <p>
-            {c.sterilisation.bodyPre}
-            <KustenhundLink className="text-white" />
-            {c.sterilisation.bodyPost}
-          </p>
-          <p>{c.sterilisation.body2}</p>
-          <p>{c.sterilisation.body3}</p>
-        </div>
-
-        {/* Partner card */}
-        <div className="mt-8 flex flex-wrap items-center gap-4 rounded-3xl bg-white/10 p-5 ring-1 ring-white/20 backdrop-blur">
-          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--ithemba-yellow)] text-[var(--ithemba-brown)]">
-            <HandHeart className="h-7 w-7" />
-          </div>
-          <div className="flex-1 min-w-[220px]">
-            <div className="text-xs font-semibold uppercase tracking-wide text-white/70">
-              Partner
-            </div>
-            <div className="font-display text-lg font-bold">
-              <KustenhundLink className="text-white" />
+      <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
+        <div className="grid items-center gap-12 md:grid-cols-2">
+          {/* photo bubble */}
+          <div className="relative">
+            <div className="pointer-events-none absolute -left-6 -top-6 -z-10 h-28 w-28 blob bg-[var(--ithemba-yellow)]/25" />
+            <SmartImage
+              src={PHOTO_CARE}
+              label="Animal welfare team preparing a sterilisation campaign"
+              className="aspect-[4/5] w-full"
+              rounded="rounded-[55%_45%_60%_40%/45%_55%_45%_55%]"
+              tone="earth"
+              showMissingBadge={false}
+            />
+            {/* clean icon badge */}
+            <div className="absolute -bottom-4 -right-2 flex items-center gap-2 rounded-full bg-white/95 px-3 py-2 text-[var(--ithemba-blue-dark)] shadow-lg ring-1 ring-[var(--ithemba-yellow)]/40 backdrop-blur">
+              <PdIcon src={ICON.sterilisation} className="h-7 w-7" />
+              <span className="pr-1 text-xs font-semibold uppercase tracking-wide">
+                {c.sterilisation.eyebrow}
+              </span>
             </div>
           </div>
-          <a
-            href={KUSTENHUND_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-full bg-[var(--ithemba-yellow)] px-4 py-2 text-sm font-semibold text-[var(--ithemba-brown)] hover:bg-[var(--ithemba-yellow)]/95"
-          >
-            kuestenhund.com →
-          </a>
+
+          {/* text + partner */}
+          <div>
+            <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center gap-2">
+              <PawDoodle /> {c.sterilisation.eyebrow}
+            </div>
+            <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">
+              {c.sterilisation.title}
+            </h2>
+            <div className="mt-6 space-y-4 text-lg leading-relaxed text-white/90">
+              <p>
+                {c.sterilisation.bodyPre}
+                <KustenhundLink className="text-white" />
+                {c.sterilisation.bodyPost}
+              </p>
+              <p>{c.sterilisation.body2}</p>
+              <p>{c.sterilisation.body3}</p>
+            </div>
+
+            {/* Partner card — discreet, references partner without over-emphasis */}
+            <div className="mt-8 flex flex-wrap items-center gap-4 rounded-3xl bg-white/10 p-5 ring-1 ring-white/20 backdrop-blur">
+              <PdIcon src={ICON.sterilisation} className="h-12 w-12" />
+              <div className="flex-1 min-w-[200px]">
+                <div className="text-xs font-semibold uppercase tracking-wide text-white/70">
+                  Partner
+                </div>
+                <div className="font-display text-lg font-bold">
+                  <KustenhundLink className="text-white" />
+                </div>
+              </div>
+              <a
+                href={KUSTENHUND_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full bg-[var(--ithemba-yellow)] px-4 py-2 text-sm font-semibold text-[var(--ithemba-brown)] hover:bg-[var(--ithemba-yellow)]/95"
+              >
+                kuestenhund.com →
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1489,12 +1565,6 @@ function Education({ c }: { c: Copy }) {
 }
 
 /* ---------- MORE THAN DOGS ---------- */
-const ANIMAL_ICONS: { icon: LucideIcon; label: string }[] = [
-  { icon: Dog, label: "Dogs" },
-  { icon: Cat, label: "Cats" },
-  { icon: Bird, label: "Other" },
-];
-
 function More({ c }: { c: Copy }) {
   return (
     <section className="relative isolate overflow-hidden py-20 text-white">
@@ -1521,15 +1591,6 @@ function More({ c }: { c: Copy }) {
         <div className="mx-auto mt-6 max-w-3xl space-y-4 text-center text-lg leading-relaxed text-white/90">
           {c.more.body.map((p, i) => (
             <p key={i}>{p}</p>
-          ))}
-        </div>
-        <div className="mt-10 flex flex-wrap items-end justify-center gap-8">
-          {ANIMAL_ICONS.map((a) => (
-            <div key={a.label} className="flex flex-col items-center">
-              <div className="flex h-20 w-20 items-center justify-center rounded-[45%_55%_50%_50%/55%_45%_55%_45%] bg-white/15 text-[var(--ithemba-yellow)] ring-1 ring-white/20 backdrop-blur">
-                <a.icon className="h-10 w-10" />
-              </div>
-            </div>
           ))}
         </div>
       </div>
@@ -1574,18 +1635,18 @@ function Focus({ c }: { c: Copy }) {
 }
 
 /* ---------- DONATION HELP LIST ---------- */
-const DONATION_ICONS: LucideIcon[] = [
-  Repeat,
-  AlertCircle,
-  Stethoscope,
-  Syringe,
-  ShieldCheck,
-  Utensils,
-  HomeIcon,
-  Truck,
-  BookOpen,
-  HandHeart,
-  Users,
+const DONATION_ICONS: string[] = [
+  ICON.sterilisation,
+  ICON.emergencyCare,
+  ICON.medicalCare,
+  ICON.preventiveCare,
+  ICON.deworming,
+  ICON.foodSupport,
+  ICON.shelterSupport,
+  ICON.transportVet,
+  ICON.ownerEducation,
+  ICON.homeBased,
+  ICON.localCoordination,
 ];
 
 function DonationHelp({ c }: { c: Copy }) {
@@ -1616,23 +1677,20 @@ function DonationHelp({ c }: { c: Copy }) {
             ))}
           </div>
         </div>
-        <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {c.donation.items.map((it, i) => {
-            const Icon = DONATION_ICONS[i] ?? PawPrint;
-            return (
-              <div
-                key={it}
-                className="flex items-center gap-3 rounded-2xl bg-white/10 px-4 py-3 ring-1 ring-white/15 backdrop-blur"
-              >
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--ithemba-yellow)]/25 text-[var(--ithemba-yellow)]">
-                  <Icon className="h-5 w-5" />
-                </div>
-                <span className="text-sm font-medium text-white/95">{it}</span>
-              </div>
-            );
-          })}
+        <div className="mt-10 grid gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+          {c.donation.items.map((it, i) => (
+            <div key={it} className="flex items-center gap-4">
+              <PdIcon
+                src={DONATION_ICONS[i] ?? ICON.coreSupport}
+                className="h-14 w-14 shrink-0 md:h-16 md:w-16"
+              />
+              <span className="text-sm font-medium leading-snug text-white/95 md:text-base">
+                {it}
+              </span>
+            </div>
+          ))}
         </div>
-        <p className="mt-8 max-w-3xl text-base leading-relaxed text-white/85">
+        <p className="mt-10 max-w-3xl text-base leading-relaxed text-white/85">
           {c.donation.outro}
         </p>
       </div>
@@ -1712,7 +1770,7 @@ function Monthly({ c }: { c: Copy }) {
 }
 
 /* ---------- IMPACT ---------- */
-const IMPACT_ICONS: LucideIcon[] = [Syringe, Stethoscope, Users];
+const IMPACT_ICONS: string[] = [ICON.sterilisation, ICON.medicalCare, ICON.ownerEducation];
 
 function parseCounter(value: string): { n: number; suffix: string } {
   const m = value.match(/^([\d.,]+)(.*)$/);
@@ -1780,14 +1838,14 @@ function Impact({ c }: { c: Copy }) {
 
         <div className="mx-auto mt-12 flex flex-wrap justify-center gap-x-6 gap-y-10">
           {c.impact.counters.map((cnt, i) => {
-            const Icon = IMPACT_ICONS[i] ?? PawPrint;
+            const iconSrc = IMPACT_ICONS[i] ?? ICON.coreSupport;
             const { n, suffix } = parseCounter(cnt.value);
             return (
               <div
                 key={cnt.label}
                 className="flex basis-[calc(50%-12px)] flex-col items-center text-center sm:basis-[calc(33.333%-16px)]"
               >
-                <Icon className="h-14 w-14 text-[var(--ithemba-yellow)] md:h-20 md:w-20 lg:h-24 lg:w-24" />
+                <PdIcon src={iconSrc} className="h-14 w-14 md:h-20 md:w-20 lg:h-24 lg:w-24" />
                 <div
                   className="mt-4 font-display font-extrabold leading-none text-[var(--ithemba-yellow)] drop-shadow-[0_2px_18px_rgba(251,191,36,0.25)]"
                   style={{ fontSize: "clamp(1.75rem, 2.4vw, 2.5rem)" }}
