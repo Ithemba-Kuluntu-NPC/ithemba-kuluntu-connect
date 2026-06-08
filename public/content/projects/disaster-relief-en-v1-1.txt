@@ -1,0 +1,293 @@
+DISASTER RELIEF PROJECT PAGE - ENGLISH CONTENT V1.1
+
+HERO SECTION
+
+Script heading:
+Disaster Relief
+
+Main heading:
+Disaster Relief
+
+Hero text:
+Practical emergency support for families in Cwebeni and surrounding communities when crisis hits, from floods, fires and sudden hardship to urgent household needs, medical situations and recovery support.
+
+Alternative shorter hero text:
+Fast, practical help for families facing crisis, hardship and emergency needs in Pondoland.
+
+Hero buttons:
+Donate Monthly to Support This Project
+Give Once
+
+SECTION 1 - PROJECT SNAPSHOT
+
+Script heading:
+At a glance
+
+Main heading:
+Practical help when families need it most
+
+Text:
+Disaster Relief is iThemba Kuluntu’s response to urgent hardship in the communities we work with.
+
+In rural communities, a crisis can become overwhelming quickly. A flood, fire, illness, accident, loss of income or sudden family emergency can leave households without food, bedding, transport, basic supplies or a safe way to recover.
+
+Our response is practical and community-rooted. We work with local knowledge, trusted relationships and direct support to help families through the most urgent moments.
+
+Key facts:
+
+Project:
+Disaster Relief
+
+Focus:
+Emergency support for families facing crisis or sudden hardship
+
+Where:
+Cwebeni, Port St Johns, Eastern Cape, South Africa
+
+Core support:
+Food, blankets, mattresses, school shoes, wheelchairs, emergency supplies and practical recovery support
+
+How we respond:
+Through local coordination, household-level support and direct practical assistance
+
+Donation focus:
+Helping families recover from crisis with dignity and practical care
+
+SECTION 2 - WHY THIS PROJECT EXISTS
+
+Script heading:
+Why
+
+Main heading:
+emergency support matters
+
+Text:
+For many families, there is no safety net when crisis hits.
+
+A fire can destroy household belongings in one night. Heavy rain or flooding can damage homes and cut families off from support. A medical situation can create urgent transport or care needs. A child may need school shoes. A caregiver may need a mattress, blankets or basic supplies to restore dignity at home.
+
+Disaster Relief exists because practical help matters in the first difficult days after a crisis. It helps families breathe, stabilise and begin again.
+
+This work is not about creating dependency. It is about standing with families when the pressure is too heavy to carry alone.
+
+SECTION 3 - WHAT WE PROVIDE
+
+Script heading:
+Practical care
+
+Main heading:
+Support that responds to real needs
+
+Text:
+Disaster Relief support depends on the situation and the needs of each household.
+
+Support may include:
+
+Emergency food support
+
+Blankets
+
+Mattresses
+
+School shoes
+
+Wheelchairs
+
+Clothing or basic household supplies
+
+Transport or coordination support
+
+Support after floods, fires or sudden hardship
+
+Help for families facing urgent medical or care-related needs
+
+Text:
+The support is simple, direct and practical. It is shaped by what families actually need, not by a one-size-fits-all response.
+
+SECTION 4 - HOW WE RESPOND
+
+Script heading:
+Local trust
+
+Main heading:
+Fast help through local knowledge
+
+Text:
+Disaster Relief works because iThemba Kuluntu is present in the community.
+
+Our local team understands the area, the families and the situations that create urgent need. This makes it possible to respond quickly, identify real priorities and support households in a respectful way.
+
+We do not respond from a distance. We respond through relationships, local coordination and practical follow-up where possible.
+
+This local trust helps ensure that support reaches families who need it most.
+
+SECTION 5 - CONNECTED TO OUR FOCUS AREAS
+
+Script heading:
+Connected care
+
+Main heading:
+Emergency support touches every part of family life
+
+Text:
+Disaster Relief connects to several iThemba Kuluntu focus areas.
+
+Focus areas:
+
+Disaster relief
+
+Food security
+
+Safe water
+
+Education
+
+Skills & livelihoods
+
+Community health
+
+Text:
+A crisis often affects more than one part of life. Food may be needed first. Safe water may become urgent. Children may need school supplies to return to learning. A family may need basic household items to sleep safely again. Health, dignity and stability are all connected.
+
+This is why Disaster Relief is part of iThemba Kuluntu’s wider community care. It helps families move from immediate crisis toward recovery.
+
+SECTION 6 - WHAT YOUR DONATION HELPS SUPPORT
+
+Script heading:
+Your support
+
+Main heading:
+Help families recover with dignity
+
+Text:
+Donations help iThemba Kuluntu respond when families face urgent hardship.
+
+Your support can help provide:
+
+Food for households in crisis
+
+Blankets and mattresses
+
+School shoes for children
+
+Wheelchairs and mobility support
+
+Emergency household supplies
+
+Transport and delivery support
+
+Support after floods, fires or sudden hardship
+
+Local coordination and follow-up
+
+Text:
+A donation to Disaster Relief helps provide practical care at the moment it is needed most. It helps families recover with dignity, stability and support from people who know the community.
+
+SECTION 7 - DONATION OPTIONS
+
+Script heading:
+Give monthly
+
+Main heading:
+Help us respond when crisis hits
+
+Text:
+Emergency needs are often unpredictable, but the ability to respond should not be.
+
+Monthly giving helps iThemba Kuluntu stay ready. It allows us to keep practical support moving when families suddenly face floods, fires, illness, accidents or urgent hardship.
+
+Suggested donation card:
+
+Card heading:
+Support emergency relief
+
+Card amount:
+€10 / month
+
+Card text:
+Helps provide emergency food, blankets, mattresses, school shoes, mobility support and practical care for families in crisis.
+
+Donation type tabs:
+Monthly
+One-time
+
+Amount heading:
+Choose an amount
+
+Donation amounts:
+€10
+€20
+€30
+€42
+€50
+€100
+€250
+Custom
+
+Gift direction:
+Disaster Relief
+
+Payment method heading:
+Payment Method
+
+Payment options:
+Card
+PayPal
+Bank Transfer
+
+Donation buttons:
+Support disaster relief monthly
+Give once to Disaster Relief
+
+Trust points:
+Secure donation
+Monthly giving
+Practical emergency support
+Community-rooted care
+Transparent reporting
+
+SECTION 8 - IMPACT TO DATE
+
+Script heading:
+Impact
+
+Main heading:
+What your support helps make possible
+
+Impact counters:
+
+600+
+Mattresses distributed
+
+2,100+
+Blankets distributed
+
+114
+Wheelchairs distributed
+
+1,300+
+School shoes distributed
+
+SECTION 9 - CLOSING CTA
+
+Script heading:
+When crisis hits
+
+Main heading:
+Help families begin again
+
+Text:
+Disaster Relief exists because families should not face crisis alone.
+
+Your support helps provide practical emergency care when households are overwhelmed, and helps families take the first steps from crisis toward recovery.
+
+Buttons:
+Donate Monthly to Support This Project
+Give Once
+Explore All Projects
+
+INTERNAL NOTES BEFORE LAUNCH
+
+Confirm donation platform/payment provider.
+
+Confirm whether project-specific restricted donations are legally and operationally possible.
