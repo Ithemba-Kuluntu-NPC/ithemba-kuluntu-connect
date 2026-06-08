@@ -529,12 +529,9 @@ const COPY: Record<Lang, Copy> = {
 /* ---------- icon registry ---------- */
 const ICONS: Record<string, typeof Heart> = {
   Heart, Users, MapPin, Building2, Truck, HandHeart, ShieldAlert, Package, Flame,
-  Home, Droplets, Stethoscope, Footprints, Accessibility, Shirt, Bed, LifeBuoy, Compass,
-  Utensils: HandHeart, // utensils not imported; fallback handled below
+  Home, Droplets, Stethoscope, Footprints, Accessibility, Shirt, Bed, LifeBuoy, Compass, Utensils,
 };
-// proper utensils icon
-import { Utensils } from "lucide-react";
-ICONS["Utensils"] = Utensils;
+
 
 const SNAPSHOT_ICONS = [LifeBuoy, HandHeart, MapPin, Package, Compass, Heart];
 
