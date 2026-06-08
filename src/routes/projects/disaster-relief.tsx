@@ -25,6 +25,7 @@ import {
   Bed,
   LifeBuoy,
   Compass,
+  Utensils,
 } from "lucide-react";
 import { useLang } from "@/components/site/LanguageProvider";
 import { SmartImage } from "@/components/site/Asset";
