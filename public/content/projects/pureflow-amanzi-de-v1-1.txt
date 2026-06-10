@@ -1,0 +1,784 @@
+PUREFLOW AMANZI PROJECT PAGE - GERMAN CONTENT V1.1
+
+HERO SECTION
+
+Script heading:
+Sicheres Wasser
+
+Main heading:
+PureFlow Amanzi
+
+Hero text:
+PureFlow Amanzi bringt sicheres Trinkwasser, WASH-Bildung, lokale Arbeitsplätze und klimaresiliente Haushaltsfiltration zu Familien, Schulen und ECD-Zentren in ländlichen Regionen Südafrikas.
+
+Alternative shorter hero text:
+Sicheres Wasser. Lokale Arbeit. Stärkere Gemeinschaften. Klimaschutz.
+
+Hero buttons:
+Monatlich für dieses Projekt spenden
+Einmalig spenden
+
+Optional small line:
+30 € pro Monat helfen einem Haushalt, zu Hause Zugang zu sichererem Wasser zu erhalten.
+
+SECTION 1 - IMPACT FIRST
+
+Script heading:
+Wirkung
+
+Main heading:
+Sicheres Wasser, das den Alltag verändert
+
+Text:
+PureFlow Amanzi ist eines der wichtigsten Programme von iThemba Kuluntu, weil sicheres Wasser gleichzeitig Gesundheit, Bildung, familiäre Stabilität, lokale Beschäftigung und Klimaresilienz beeinflusst.
+
+Dieses Projekt bedeutet nicht nur, Familien einen Wasserfilter zu geben. Es baut ein praktisches System rund um den Haushalt auf: sicheres Trinkwasser, WASH-Bildung, lokale Montage, Schulungen in der Gemeinschaft, Hausbesuche, Datenerfassung und langfristige Verantwortlichkeit.
+
+Impact counters:
+
+3.094
+Haushalte erreicht
+
+14.211
+Menschen mit sauberem Wasser
+
+30 Mio.+
+Liter sauberes Wasser bereitgestellt
+
+8.000+
+Tonnen CO₂ reduziert
+
+4 Mio.+
+Kilogramm Feuerholz eingespart
+
+12.000+
+Bäume geschützt
+
+Impact note:
+Jede Zahl steht für mehr als Verteilung. Sie steht für lokale Teams, Schulungen, Haushaltsbildung, Nachbetreuung und Vertrauen in der Gemeinschaft.
+
+SECTION 2 - SDG ALIGNMENT
+
+Script heading:
+Globale Ziele
+
+Main heading:
+Ein Projekt mit vielen Wirkungsebenen
+
+Text:
+PureFlow Amanzi leistet einen direkten Beitrag zu mehreren Zielen für nachhaltige Entwicklung. Das Projekt verbindet Zugang zu sicherem Wasser, Gesundheitsschutz, Bildung, lokale Arbeitsplätze, Klimaschutz und gemeindenahe Umsetzung.
+
+Dieser Abschnitt soll weit oben auf der Seite stehen, direkt nach den Wirkungszahlen.
+
+Einfache SDG-Logo-Karten oder Icon-Kacheln verwenden.
+
+SDG cards:
+
+SDG 1:
+Keine Armut
+
+Connection:
+Verringert die Belastung besonders gefährdeter Haushalte, indem wasserbedingte Gesundheitsrisiken, medizinische Kosten und akute Haushaltsrisiken reduziert werden.
+
+SDG 3:
+Gesundheit und Wohlergehen
+
+Connection:
+Sichereres Wasser und WASH-Bildung helfen, Familien vor wasserbedingten Krankheiten zu schützen und die Belastung durch Rauch beim Abkochen von Wasser zu verringern.
+
+SDG 4:
+Hochwertige Bildung
+
+Connection:
+Kinder lernen besser, wenn sie gesund, ausreichend versorgt und geschützt sind. WASH-Bildung vermittelt zudem praktisches Wissen in Schulen und ECD-Zentren.
+
+SDG 5:
+Geschlechtergleichstellung
+
+Connection:
+Wasserunsicherheit und das Sammeln von Feuerholz belasten häufig besonders Frauen und Mädchen. Sichereres Wasser im Haushalt kann täglichen Druck verringern und Zeit für Fürsorge, Lernen, Arbeit und Verantwortung freisetzen.
+
+SDG 6:
+Sauberes Wasser und Sanitäreinrichtungen
+
+Connection:
+Dies ist das zentrale SDG des Projekts. PureFlow Amanzi schafft Zugang zu sichererem Trinkwasser auf Haushaltsebene durch Filtration, Bildung und Nachbetreuung.
+
+SDG 8:
+Menschenwürdige Arbeit und Wirtschaftswachstum
+
+Connection:
+Das Projekt schafft lokale Arbeit in Montage, Verteilung, Schulung, Wartung, WASH-Begleitung, Hausbesuchen und Datenerfassung, mit einem klaren Fokus auf Beschäftigung innerhalb der Gemeinschaft.
+
+SDG 10:
+Weniger Ungleichheiten
+
+Connection:
+PureFlow Amanzi erreicht ländliche und unterversorgte Gemeinschaften, die häufig nur begrenzten Zugang zu Infrastruktur, Dienstleistungen und sicherem Trinkwasser haben.
+
+SDG 11:
+Nachhaltige Städte und Gemeinden
+
+Connection:
+Das Programm stärkt die Widerstandsfähigkeit von Gemeinschaften durch haushaltsnahe Lösungen, lokale Beteiligung und praktische Unterstützung in Regionen mit schwacher Infrastruktur.
+
+SDG 12:
+Nachhaltiger Konsum und Produktion
+
+Connection:
+Der Filter reduziert die Abhängigkeit von abgefülltem Wasser, unterstützt wasserbezogene Lösungen mit wenig Abfall und fördert einen verantwortungsvollen Umgang mit Ressourcen.
+
+SDG 13:
+Maßnahmen zum Klimaschutz
+
+Connection:
+Indem weniger Wasser abgekocht werden muss, reduziert PureFlow Amanzi den Verbrauch von Feuerholz, senkt CO₂-Emissionen und hilft, Bäume und lokale Ökosysteme zu schützen.
+
+SDG 17:
+Partnerschaften zur Erreichung der Ziele
+
+Connection:
+Das Programm ist darauf ausgelegt, durch Zusammenarbeit zwischen Gemeinden, Spenderinnen und Spendern, Partnern, lokaler Führung und den Feldteams von iThemba Kuluntu zu wachsen.
+
+Text:
+Die SDGs zeigen die größere Bedeutung des Projekts. Im Kern bleibt PureFlow Amanzi jedoch lokal verankert: ein Haushalt, eine Schule, ein ECD-Zentrum und eine Gemeinschaft nach der anderen.
+
+SECTION 3 - PROJECT SNAPSHOT
+
+Script heading:
+Auf einen Blick
+
+Main heading:
+Sicheres Wasser, lokale Kompetenzen und verlässliche Umsetzung
+
+Text:
+PureFlow Amanzi ist ein gemeindebasiertes Safe-Water-Programm von iThemba Kuluntu. Es unterstützt ländliche Haushalte, Schulen, ECD-Zentren, Kliniken und besonders gefährdete Einrichtungen mit schwerkraftbasierter Wasserfiltration, WASH-Bildung, lokaler Montage, Haushaltsschulungen und Nachbetreuung.
+
+Das System ist für ländliche Regionen und Orte mit schwacher Infrastruktur entwickelt. Es funktioniert ohne Strom, ohne Chemikalien und ohne Abkochen. Dadurch ist es für Familien praktisch nutzbar, die eine sichere Wasserlösung für den Alltag zu Hause brauchen.
+
+Das Programm wird in Südafrika entwickelt, montiert und verteilt. Lokale Gemeindemitglieder werden in Montage, Wartung, Rollout, WASH-Bildung und Hausbesuchen geschult. So entstehen Arbeitsplätze, technische Fähigkeiten und eine Umsetzung, die in den Gemeinden verankert bleibt.
+
+Key facts:
+
+Project:
+PureFlow Amanzi
+
+Focus:
+Sicheres Wasser, WASH-Bildung, lokale Arbeitsplätze und Klimaresilienz
+
+Where:
+Ländliche und unterversorgte Gemeinschaften in Südafrika, mit starkem Fokus auf Pondoland und das Eastern Cape
+
+Core support:
+Haushalts-Wasserfiltration, WASH-Bildung, lokale Montage, Verteilung, Wartung, Hausbesuche und Wirkungserfassung
+
+Who it supports:
+Haushalte, Schulen, ECD-Zentren, Kliniken, Alteneinrichtungen sowie Not- und Katastrophenhilfe
+
+How it works:
+Schwerkraftbasierte Filtration ohne Strom, ohne Chemikalien und ohne Abkochen
+
+Donation focus:
+30 € pro Monat helfen einem Haushalt, zu Hause Zugang zu sichererem Wasser zu erhalten
+
+SECTION 4 - WHY SAFE WATER MATTERS
+
+Script heading:
+Warum
+
+Main heading:
+Wasser alles verändert
+
+Text:
+Unsicheres Wasser betrifft weit mehr als den Durst.
+
+Wenn Familien auf kontaminiertes Wasser angewiesen sind, werden Kinder anfälliger für Krankheiten, Betreuungspersonen tragen ständige Sorge, der Schulbesuch kann leiden und Haushalte geben oft Geld für Transport, Medikamente oder Alternativen aus.
+
+In vielen ländlichen Gemeinden holen Familien Wasser aus unsicheren Quellen, die unbehandelt sind, mit Tieren geteilt werden oder leicht verunreinigt werden können. Die Folgen können Durchfall, Bauchschmerzen, Hautprobleme, Parasiten, Dehydrierung und wiederholte Klinikbesuche sein.
+
+Sicheres Wasser verändert diese tägliche Realität. Es stärkt Gesundheit, Würde, Lernen, familiäre Stabilität und die Widerstandsfähigkeit der Gemeinschaft.
+
+SECTION 5 - WHY BOILING IS NOT ENOUGH
+
+Script heading:
+Mehr als Abkochen
+
+Main heading:
+Eine sicherere Lösung ohne Feuerholz, Rauch oder Strom
+
+Text:
+Wasser abzukochen wirkt zunächst wie eine einfache Lösung. In vielen ländlichen Haushalten entstehen dadurch jedoch neue schwere Belastungen.
+
+Abkochen braucht oft Feuerholz, Zeit und bringt Rauchbelastung mit sich. Frauen und Mädchen verbringen mitunter Stunden damit, Holz zu sammeln. Rauch in Innenräumen kann die Atemwege belasten, besonders bei Kindern. Feuerholzverbrauch trägt zu Entwaldung, Bodenerosion und Klimabelastung bei.
+
+PureFlow Amanzi bietet eine praktische Alternative. Das System filtert Wasser ohne Strom, ohne Chemikalien und ohne Abkochen.
+
+Das hilft, Folgendes zu verringern:
+
+Sammeln von Feuerholz
+
+Rauchbelastung in Innenräumen
+
+Belastung für Frauen und Mädchen
+
+CO₂-Emissionen
+
+Entwaldung
+
+Plastikmüll durch abgefülltes Wasser
+
+Abhängigkeit von teuren oder unzuverlässigen Alternativen
+
+Text:
+Sicheres Wasser sollte Familien nicht Gesundheit, Zeit, Bäume oder Zukunft kosten.
+
+SECTION 6 - HOW THE FILTER WORKS
+
+Script heading:
+Die Technologie
+
+Main heading:
+Einfache Filtration für den ländlichen Alltag
+
+Text:
+PureFlow Amanzi nutzt schwerkraftbasierte Ultrafiltration.
+
+Das Wasser fließt durch eine Membran mit ultrafeinen Poren von etwa 0,1 Mikron. Schädliche Bakterien und Schmutzpartikel werden zurückgehalten, während gereinigtes Wasser hindurchfließt.
+
+Das System ist:
+
+schwerkraftbetrieben
+
+stromfrei
+
+chemikalienfrei
+
+tragbar
+
+leicht zu montieren
+
+einfach zu reinigen
+
+wartungsarm
+
+für den Haushalt geeignet
+
+praktisch in ländlichen Regionen und bei schwacher Infrastruktur
+
+Text:
+Das System entfernt schädliche Bakterien und stellt sofort sicheres Trinkwasser bereit, ohne Strom, Chemikalien oder Abkochen.
+
+Technical note:
+Unabhängige Tests bestätigen eine Entfernung von mehr als 99,9999 % von E. coli und Gesamtcoliformen.
+
+Optional expandable section:
+Eine aufklappbare Sektion oder visuelle Erklärung „So funktioniert der Filter“ einfügen, damit technische Details verfügbar sind, ohne die Seite zu überladen.
+
+SECTION 7 - LOCAL JOBS, SKILLS AND COMMUNITY OWNERSHIP
+
+Script heading:
+Lokale Lebensgrundlagen
+
+Main heading:
+Sicheres Wasser schafft auch Arbeit
+
+Text:
+PureFlow Amanzi ist so aufgebaut, dass lokaler Wert entsteht, nicht nur ein Produkt verteilt wird.
+
+Menschen aus der Gemeinschaft werden in Filtermontage, Wartung, Rollout, WASH-Begleitung, Haushaltsschulungen und Nachbetreuung geschult. Dadurch entstehen praktische Fähigkeiten und Beschäftigungsmöglichkeiten innerhalb der Gemeinden, in denen das Projekt umgesetzt wird.
+
+Arbeit und Kompetenzen entstehen durch:
+
+Filtermontage
+
+Unterstützung bei Verteilung und Rollout
+
+WASH-Schulungen
+
+Vorführungen in Haushalten
+
+Anleitung zur Wartung
+
+Hausbesuche zur Nachbetreuung
+
+Erfassung von Rückmeldungen aus der Gemeinschaft
+
+Datenerfassung und Berichterstattung
+
+Feldkoordination
+
+Unterstützung für Berichte an Spender, Partner und Förderer
+
+Text:
+Das ist wichtig, weil sichere Wasserversorgung auch die lokale Wirtschaft stärken sollte. Wenn geschulte Gemeindemitglieder Systeme montieren, Haushalte besuchen, Nutzung und Wartung erklären, Rückmeldungen sammeln und Wirkung dokumentieren, wird das Projekt verlässlicher, vertrauenswürdiger und nachhaltiger.
+
+PureFlow Amanzi ist deshalb nicht nur ein Safe-Water-Projekt. Es ist auch ein Projekt für Kompetenzen, Beschäftigung und lokale Eigenverantwortung.
+
+SECTION 8 - THE PUREFLOW AMANZI MODEL
+
+Script heading:
+So funktioniert es
+
+Main heading:
+Ein vollständiges Rollout-Modell, nicht nur ein Filter
+
+Text:
+PureFlow Amanzi verbindet Technologie, Schulung, Gemeindemobilisierung und Nachbetreuung.
+
+Das Modell umfasst:
+
+Community mobilisation:
+Lokale Führung und Gemeindestrukturen helfen dabei, Rollout-Gebiete zu identifizieren und Vertrauen aufzubauen.
+
+Local team training:
+Gemeindemitglieder werden in Montage, Wartung, WASH-Begleitung und Haushaltsunterstützung geschult.
+
+System assembly:
+Die Filter werden von geschulten lokalen Teams nach standardisierten Abläufen montiert.
+
+Household distribution:
+Safe-Water-Systeme werden an Haushalte, Schulen, ECD-Zentren und besonders gefährdete Einrichtungen verteilt.
+
+WASH education:
+Familien erhalten praktische Anleitung zu sicherem Wasser, Hygiene, Filtergebrauch, Reinigung und Lagerung.
+
+Household follow-up:
+Geschulte lokale Teams besuchen Haushalte, um Nutzung, Wartung, Zustand des Systems und Erfahrungen der Familien zu überprüfen.
+
+Data and reporting:
+Teams erfassen Rückmeldungen und Felddaten, um Verantwortlichkeit, Spenderberichte und zukünftige Verbesserungen zu unterstützen.
+
+Text:
+Deshalb ist PureFlow Amanzi auf Skalierung ausgelegt. Es ist praktisch, messbar, gemeindegeführt und bereit für starke Partnerschaften.
+
+SECTION 9 - WASH EDUCATION
+
+Script heading:
+WASH
+
+Main heading:
+Wissen macht sicheres Wasser wirksamer
+
+Text:
+WASH steht für Wasser, Sanitärversorgung und Hygiene. Bei PureFlow Amanzi ist WASH-Bildung ein wesentlicher Bestandteil.
+
+Familien erhalten nicht nur einen Filter. Sie bekommen auch Anleitung, warum sicheres Wasser wichtig ist, wie das System richtig benutzt wird, wie es gereinigt wird, wie Wasser sicher gelagert wird und wie erneute Verunreinigung nach der Filtration vermieden werden kann.
+
+WASH-Bildung unterstützt:
+
+Sicheren Umgang mit Wasser
+
+Richtige Nutzung des Filters
+
+Reinigung und Wartung
+
+Saubere Wasserlagerung
+
+Hygienebewusstsein
+
+Verringerung von Kontaminationsrisiken
+
+Gesündere Routinen zu Hause
+
+Sicherere Lernumgebungen in Schulen und ECD-Zentren
+
+Text:
+Der Filter ist das Werkzeug. Bildung sorgt dafür, dass Familien ihn richtig nutzen, ihm vertrauen und ihn langfristig funktionsfähig halten.
+
+SECTION 10 - CHILDREN, SCHOOLS AND ECD CENTRES
+
+Script heading:
+Kinder zuerst
+
+Main heading:
+Sicheres Wasser dort, wo Kinder lernen
+
+Text:
+PureFlow Amanzi unterstützt auch Orte, an denen Kinder lernen, spielen und wachsen.
+
+Schulen und ECD-Zentren brauchen sichereres Wasser, weil Kinder besonders anfällig für wasserbedingte Krankheiten sind. Sicheres Wasser unterstützt Lernen, Ernährung, Hygiene und tägliche Betreuung.
+
+Im iThemba Kuluntu No.1 ECD Centre ist PureFlow Amanzi Teil eines größeren Systems für das Wohlergehen der Kinder. Kinder brauchen sicheres Wasser, Essen, Hygiene, Routinen, Spiel, Ruhe und frühkindliche Bildung, um sich gut entwickeln zu können.
+
+Das System gibt Kindern außerdem eine praktische Möglichkeit, Wassersicherheit zu verstehen. Wenn Kinder sauberes Wasser begreifen, tragen sie dieses Wissen nach Hause und helfen, gesündere Gewohnheiten in ihren Familien aufzubauen.
+
+SECTION 11 - CLIMATE AND ENVIRONMENTAL IMPACT
+
+Script heading:
+Klimaresilienz
+
+Main heading:
+Sicheres Wasser ohne Abkochen
+
+Text:
+PureFlow Amanzi ist auch ein Programm für Klimaresilienz.
+
+Da das System ohne Abkochen funktioniert, kann der Bedarf an Feuerholz reduziert werden. Das senkt Rauchbelastung, verringert den Druck auf Wälder und reduziert Emissionen, die durch Wasseraufbereitung über offenem Feuer entstehen.
+
+Ökologische Vorteile sind:
+
+Reduzierte CO₂-Emissionen
+
+Weniger Feuerholzverbrauch
+
+Geringerer Druck auf Wälder
+
+Weniger Rauchbelastung in Innenräumen
+
+Weniger Plastikmüll durch abgefülltes Wasser
+
+Bessere Luftqualität
+
+Schutz von Lebensräumen und Ökosystemen
+
+Mehr Widerstandsfähigkeit in netzfernen und katastrophenbetroffenen Gebieten
+
+Text:
+Ein Haushaltswasserfilter kann nicht jedes Wasserproblem lösen. Aber er gibt Familien ein praktisches Werkzeug, um Wasser im Alltag sicherer zu machen, gerade in einem sich verändernden Klima.
+
+SECTION 12 - MONITORING AND IMPACT TRACKING
+
+Script heading:
+Verantwortlichkeit
+
+Main heading:
+Nachbetreuung macht die Wirkung stärker
+
+Text:
+PureFlow Amanzi umfasst Monitoring und Wirkungserfassung, weil langfristiger Erfolg mehr braucht als Verteilung.
+
+Geschulte lokale Teams besuchen ausgewählte Haushalte, um zu prüfen, ob die Filter richtig genutzt werden, ob die Wartung verstanden wurde, in welchem Zustand sich das System befindet und wie Familien das Wasser erleben.
+
+Monitoring includes:
+
+Regelmäßige stichprobenartige Hausbesuche
+
+Überprüfung von Nutzung, Pflege und Zustand der Filter
+
+Unterstützung bei Wartung
+
+Erfassung von Rückmeldungen aus den Haushalten
+
+Rückmeldungen zu Wasserqualität und gesundheitlichen Veränderungen
+
+Datengestützte Berichte für Spender, Partner und Förderer
+
+Kontinuierliches Lernen zur Verbesserung zukünftiger Rollouts
+
+Text:
+Diese Nachbetreuung schafft Verantwortlichkeit. Sie hilft dem Team zu verstehen, was funktioniert, wo Unterstützung nötig ist und wie das Programm wachsen kann, ohne Qualität zu verlieren.
+
+Sie schafft außerdem lokale Beschäftigung und stärkt das Vertrauen von Spendern, weil das Projekt echte Felddaten zeigen kann, nicht nur Verteilungszahlen.
+
+SECTION 13 - REAL-WORLD RESULTS
+
+Script heading:
+Im Alltag
+
+Main heading:
+Was Familien berichten
+
+Text:
+Familien, die PureFlow Amanzi Systeme erhalten haben, berichten von konkreten Veränderungen im Alltag.
+
+Reported outcomes include:
+
+Weniger Durchfall und Bauchschmerzen
+
+Weniger Hautausschläge und Haarprobleme
+
+Weniger Klinikbesuche wegen Magen-Darm-Beschwerden
+
+Weniger Ausgaben für Medikamente
+
+Weniger Rauchbelastung im Haus
+
+Bessere Gesundheit, Stimmung und Energie bei Kindern
+
+Weniger Fehltage in der Schule
+
+Sauberer aussehende und besser schmeckende Speisen und Getränke
+
+Weniger Zeit für Feuerholz sammeln und Wasser abkochen
+
+Mehr Zeit für Kinderbetreuung, Ruhe, Hausaufgaben oder Lernen
+
+Mehr Würde, Komfort und Selbstständigkeit
+
+Text:
+Diese Erfahrungen sind wichtig, weil sie zeigen, was sicheres Wasser auf Haushaltsebene bedeutet. Die Wirkung ist nicht abstrakt. Sie zeigt sich beim Kochen, in der Schule, in der Gesundheit, in der verfügbaren Zeit, im Selbstvertrauen und im täglichen Wohlbefinden.
+
+SECTION 14 - WATCH PUREFLOW AMANZI IN ACTION
+
+Script heading:
+Ansehen
+
+Main heading:
+PureFlow Amanzi im Einsatz
+
+Text:
+Videos zeigen, was hinter den Zahlen steht: die Gemeinden, die Haushalts-Rollouts, WASH-Bildung, lokale Teams, Partnerschaften und Kinder, die sichere Wassergewohnheiten lernen.
+
+YouTube-Videos responsiv einbetten. Saubere Videokarten mit kurzen Beschreibungen verwenden. YouTube-Videos nicht automatisch abspielen.
+
+Main videos:
+
+Video 1 title:
+PureFlow Amanzi Überblick
+
+Video 1 description:
+Eine Einführung in PureFlow Amanzi und die Safe-Water-Arbeit in ländlichen Gemeinden.
+
+YouTube URL:
+https://www.youtube.com/watch?v=IoRHLU5Cm7o
+
+Video 2 title:
+Kleine ECD-Wasserbotschafter
+
+Video 2 description:
+Kinder im ECD-Zentrum lernen über sicheres Wasser und tragen WASH-Wissen in ihre Familien.
+
+YouTube URL:
+https://www.youtube.com/watch?v=ZsCUcyV9MTg
+
+Video 3 title:
+Partnerschaftsmodell in der Praxis
+
+Video 3 description:
+Ein Beispiel aus dem Feld, das sichere Wasserverteilung, lokale Eigenverantwortung und partnerschaftlichen Rollout zeigt.
+
+YouTube URL:
+https://www.youtube.com/watch?v=MJAD9N-oW3M
+
+Step-by-step guide videos:
+
+Video 4 title:
+Anleitung zur Nutzung
+
+YouTube URL:
+https://www.youtube.com/watch?v=z4AekP8-Luc
+
+Video 5 title:
+Anleitung zur Reinigung
+
+YouTube URL:
+https://www.youtube.com/watch?v=kz8EPC6FWUc
+
+Video 6 title:
+Anleitung zur Montage
+
+YouTube URL:
+https://www.youtube.com/watch?v=Ad3enwiOVI0
+
+Optional layout note:
+Die ersten drei Videos als zentrale Story-Videos zeigen. Die drei Schritt-für-Schritt-Videos in einem kleineren Bereich „Anleitungen“ oder in einem Akkordeon platzieren, damit die Seite übersichtlich bleibt.
+
+SECTION 15 - CONNECTED TO OUR FOCUS AREAS
+
+Script heading:
+Verbundene Fürsorge
+
+Main heading:
+Sicheres Wasser stärkt die ganze Gemeinschaft
+
+Text:
+PureFlow Amanzi ist mit mehreren Arbeitsschwerpunkten von iThemba Kuluntu verbunden.
+
+Focus areas:
+
+Sicheres Wasser
+
+Gemeindegesundheit
+
+Bildung
+
+Ernährungssicherheit
+
+Klimaresilienz
+
+Kompetenzen & Lebensgrundlagen
+
+Katastrophenhilfe
+
+Text:
+Das Projekt unterstützt sicheres Wasser durch Haushaltsfiltration. Es stärkt die Gemeindegesundheit, weil Wasser Krankheit, Hygiene und familiäres Wohlbefinden beeinflusst. Es unterstützt Bildung, weil Kinder besser lernen, wenn sie gesund und geschützt sind. Es ist mit Ernährungssicherheit verbunden, weil sicheres Wasser für Kochen, Mahlzeiten und Kinderernährung wichtig ist. Es unterstützt Klimaresilienz, indem Feuerholzverbrauch reduziert und Familien im Umgang mit Wasserrisiken gestärkt werden. Es stärkt Kompetenzen und Lebensgrundlagen durch lokale Montage, Wartung, Schulung, Nachbetreuung und Datenerfassung. Es unterstützt auch Katastrophenhilfe, weil das System in Notlagen schnellen Zugang zu sichererem Wasser ermöglichen kann.
+
+PureFlow Amanzi ist kein isoliertes Filterprojekt. Es ist Teil eines umfassenderen Systems der Fürsorge.
+
+SECTION 16 - PARTNERSHIP AND SCALE
+
+Script heading:
+Skalierbar
+
+Main heading:
+Ein praktisches Modell für Partner und Förderer
+
+Text:
+PureFlow Amanzi ist darauf ausgelegt, durch Partnerschaften zu wachsen.
+
+Das Modell ist praktisch genug für ländliche Bedingungen, strukturiert genug für Verantwortlichkeit und flexibel genug, um in unterschiedlichen Gemeinden und Distrikten zu funktionieren.
+
+The partnership model includes:
+
+Lokale Teams werden in Rollout, Montage und WASH-Begleitung geschult
+
+Gemeindestrukturen werden für Mobilisierung und Koordination eingebunden
+
+Haushaltsverteilung wird mit praktischen Schulungseinheiten verbunden
+
+Standardisierte Rollout-Schritte können in anderen Regionen wiederholt werden
+
+Feldbegleitung und einfache Dokumentation sind in die Umsetzung integriert
+
+Hausbesuche und Datenerfassung gehören zum Modell
+
+Berichte für Spender, Partner und Förderer werden unterstützt
+
+Text:
+Das ist Basisarbeit, die professionell umgesetzt wird: vertrauenswürdig, messbar, gemeindegeführt und bereit, mit den richtigen Partnern zu wachsen.
+
+SECTION 17 - WHAT YOUR DONATION HELPS SUPPORT
+
+Script heading:
+Ihre Unterstützung
+
+Main heading:
+Helfen Sie einem Haushalt, Zugang zu sichererem Wasser zu erhalten
+
+Text:
+Spenden helfen, PureFlow Amanzi von der Produktion bis zur Verteilung, Bildung, Nachbetreuung und langfristigen Verantwortlichkeit am Laufen zu halten.
+
+Your support can help provide:
+
+Haushalts-Wasserfiltersysteme
+
+Filterkomponenten und Montagematerial
+
+Schulung für lokale Montage
+
+Wartungsschulung
+
+WASH-Bildung
+
+Vorführungen in Haushalten
+
+Verteilung und Transport
+
+Hausbesuche zur Nachbetreuung
+
+Datenerfassung und Berichterstattung
+
+Unterstützung für Schulen und ECD-Zentren
+
+Feldkoordination
+
+Monitoring und Dokumentation
+
+Text:
+Eine Spende für PureFlow Amanzi hilft Familien, zu Hause Zugang zu sichererem Wasser zu erhalten, und unterstützt die lokalen Strukturen, die das Programm wirksam machen.
+
+SECTION 18 - DONATION OPTIONS
+
+Script heading:
+Monatlich geben
+
+Main heading:
+Sicheres Wasser jeden Monat unterstützen
+
+Text:
+Sicheres Wasser braucht Beständigkeit. Familien brauchen sichereres Wasser nicht nur einmal. Sie brauchen verlässliche Systeme, klare Anleitung und Nachbetreuung, damit das Programm stark bleibt.
+
+Monatliche Spenden helfen iThemba Kuluntu, vorausschauend zu planen, lokale Teams zu schulen, mehr Haushalte zu erreichen und Bildung, Wartung und Monitoring weiterzuführen.
+
+Suggested donation card:
+
+Card heading:
+Einen Haushalt unterstützen
+
+Card amount:
+30 € / Monat
+
+Card text:
+Hilft einem Haushalt, durch PureFlow Amanzi zu Hause Zugang zu sichererem Wasser zu erhalten, einschließlich Filtration, WASH-Bildung, lokaler Verteilung und Nachbetreuung.
+
+Donation type tabs:
+Monatlich
+Einmalig
+
+Amount heading:
+Betrag auswählen
+
+Donation amounts:
+10 €
+20 €
+30 €
+42 €
+50 €
+100 €
+250 €
+Individuell
+
+Gift direction:
+PureFlow Amanzi
+
+Payment method heading:
+Zahlungsmethode
+
+Payment options:
+Karte
+PayPal
+Banküberweisung
+
+Donation buttons:
+Sicheres Wasser monatlich unterstützen
+Einmalig für PureFlow Amanzi spenden
+
+Trust points:
+Sichere Spende
+Monatliche Unterstützung
+Zugang zu sicherem Wasser
+WASH-Bildung
+Lokale Arbeitsplätze
+Klimaresilienz
+Transparente Berichterstattung
+
+SECTION 19 - CLOSING CTA
+
+Script heading:
+Sicheres Wasser
+
+Main heading:
+Helfen Sie Familien, ihren Alltag zu stärken
+
+Text:
+PureFlow Amanzi gibt es, weil sicheres Wasser den Alltag verändert. Es schützt Kinder, unterstützt Betreuungspersonen, schafft lokale Arbeit, stärkt Schulen und ECD-Zentren und hilft ländlichen Familien, widerstandsfähiger zu werden.
+
+Ihre Unterstützung hilft, Safe-Water-Systeme, WASH-Bildung, geschulte lokale Teams, Hausbesuche und verantwortliche Umsetzung zu Gemeinden zu bringen, die sie brauchen.
+
+Buttons:
+Monatlich für dieses Projekt spenden
+Einmalig spenden
+Alle Projekte entdecken
+
+INTERNAL NOTES BEFORE LAUNCH
+
+Bestätigen, ob die öffentliche Seite die exakten Wirkungszahlen verwenden soll:
+3.094 Haushalte erreicht
+14.211 Menschen mit sauberem Wasser
+30 Mio.+ Liter sauberes Wasser bereitgestellt
+8.000+ Tonnen CO₂ reduziert
+4 Mio.+ Kilogramm Feuerholz eingespart
+12.000+ Bäume geschützt
+
+Bestätigen, ob „14.211 Menschen“ auf der öffentlichen Website zu „15.000+ Menschen erreicht“ gerundet werden soll, um mit den anderen Website-Wirkungszahlen konsistent zu bleiben.
+
+Bestätigen, ob SDG-Logo-Dateien bereits verfügbar sind oder hochgeladen werden müssen.
+
+Bestätigen, ob die Patent-pending-Information öffentlich genannt werden soll:
+South African Patent Application No. 2026/00975
+
+Bestätigen, ob WHO, UNICEF, SGS und SANS 241 auf der öffentlichen Seite erwähnt werden sollen.
+
+Bestätigen, ob zweckgebundene Projektspenden rechtlich und operativ möglich sind.
+
+Spendenplattform und Zahlungsanbieter bestätigen.
