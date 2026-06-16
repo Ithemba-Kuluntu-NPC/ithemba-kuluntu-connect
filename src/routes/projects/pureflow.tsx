@@ -2752,33 +2752,44 @@ function Partnership({ c }: { c: Copy }) {
   return (
     <section className="relative overflow-hidden bg-white py-20">
       <div className="pointer-events-none absolute -left-10 top-10 h-44 w-44 blob bg-[var(--ithemba-yellow)]/15" />
-      <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
-        <div className="grid gap-10 md:grid-cols-[1.1fr_1fr] md:items-start">
-          <div>
-            <SectionHeading eyebrow={c.partnership.eyebrow} title={c.partnership.title} />
-            <div className="mt-5 space-y-4 text-base leading-relaxed text-foreground/85">
-              {c.partnership.body.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
-            <p className="mt-6 rounded-2xl border-l-4 border-[var(--ithemba-yellow)] bg-[var(--ithemba-cream)] p-4 text-base italic leading-relaxed text-[var(--ithemba-blue-dark)]">
-              {c.partnership.closing}
-            </p>
-          </div>
-
-          <ul className="grid gap-3">
-            {c.partnership.items.map((it) => (
-              <li
-                key={it}
-                className="flex items-start gap-3 rounded-2xl bg-[var(--ithemba-cream)] p-4 ring-1 ring-sky-100"
-              >
-                <Handshake className="mt-0.5 h-5 w-5 shrink-0 text-[var(--ithemba-blue)]" />
-                <span className="text-sm font-medium leading-snug text-[var(--ithemba-blue-dark)]">
-                  {it}
-                </span>
-              </li>
+      <div className="relative mx-auto max-w-5xl px-4 lg:px-8">
+        <div className="max-w-3xl">
+          <SectionHeading eyebrow={c.partnership.eyebrow} title={c.partnership.title} />
+          <div className="mt-5 space-y-4 text-base leading-relaxed text-foreground/85">
+            {c.partnership.body.map((p, i) => (
+              <p key={i}>{p}</p>
             ))}
-          </ul>
+          </div>
+          <p className="mt-6 rounded-2xl border-l-4 border-[var(--ithemba-yellow)] bg-[var(--ithemba-cream)] p-4 text-base italic leading-relaxed text-[var(--ithemba-blue-dark)]">
+            {c.partnership.closing}
+          </p>
+        </div>
+
+        {/* Partner logos — directly on the background, no boxes/borders/shadows */}
+        <div className="mt-12">
+          <div className="text-center text-xs font-semibold uppercase tracking-[0.14em] text-[var(--ithemba-blue)]/70">
+            Partners we have already worked with
+          </div>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-12 gap-y-8">
+            <img
+              src="/assets/logos/partners/nandos-logo.png"
+              alt="Nando’s"
+              className="h-14 w-auto object-contain md:h-16"
+            />
+            <img
+              src="/assets/logos/partners/gift-of-the-givers-logo.png"
+              alt="Gift of the Givers"
+              className="h-14 w-auto object-contain md:h-16"
+            />
+            <img
+              src="/assets/logos/partners/star-foundation-logo.png"
+              alt="Star Foundation"
+              className="h-14 w-auto object-contain md:h-16"
+            />
+            <div className="flex h-14 w-32 items-center justify-center text-center text-[11px] font-medium uppercase tracking-wide text-foreground/50 md:h-16">
+              Rossi logo pending
+            </div>
+          </div>
         </div>
       </div>
     </section>
