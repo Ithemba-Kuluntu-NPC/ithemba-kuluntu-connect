@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/accordion";
 import {
   ArrowLeft,
+  ArrowRight,
   Heart,
   Sparkles,
   Sun,
@@ -47,8 +48,14 @@ import {
   BookOpen,
   Sparkle,
   CheckCircle2,
+  Zap,
+  PowerOff,
+  FlaskConical,
+  Hammer,
+  SprayCan,
   type LucideIcon,
 } from "lucide-react";
+
 import { useLang } from "@/components/site/LanguageProvider";
 import { SmartImage, SmartLogo } from "@/components/site/Asset";
 import { DonationWidget } from "@/components/blocks/DonationWidget";
@@ -1832,7 +1839,7 @@ function PageNav({ c }: { c: Copy }) {
 function Impact({ c }: { c: Copy }) {
   return (
     <section id="impact" className="scroll-mt-32">
-      <div className="bg-[var(--ithemba-cream)] pt-16 pb-2">
+      <div className="bg-[var(--ithemba-cream)] pt-16 pb-12">
         <div className="mx-auto max-w-5xl px-4 text-center lg:px-8">
           <SectionHeading eyebrow={c.impact.eyebrow} title={c.impact.title} center />
           <div className="mx-auto mt-5 max-w-3xl space-y-4 text-lg leading-relaxed text-foreground/85">
@@ -1841,9 +1848,21 @@ function Impact({ c }: { c: Copy }) {
             ))}
           </div>
         </div>
+        {/* soft wave divider: cream -> deep blue counters */}
+        <svg className="mt-10 block w-full" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden>
+          <path
+            d="M0,55 C240,90 480,15 720,45 C960,75 1200,15 1440,50 L1440,90 L0,90 Z"
+            fill="var(--ithemba-blue-deepest)"
+            opacity="0.55"
+          />
+          <path
+            d="M0,65 C240,95 480,30 720,60 C960,90 1200,30 1440,65 L1440,90 L0,90 Z"
+            fill="var(--ithemba-blue-deepest)"
+          />
+        </svg>
       </div>
       <ImpactCounters items={c.impact.items} title="" />
-      <div className="bg-[var(--ithemba-cream)] pb-16">
+      <div className="bg-[var(--ithemba-cream)] pb-16 pt-12">
         <p className="mx-auto max-w-3xl px-4 text-center text-base italic leading-relaxed text-foreground/70 lg:px-8">
           {c.impact.note}
         </p>
@@ -1867,6 +1886,21 @@ const SDG_COLORS: Record<number, string> = {
   17: "#19486A",
 };
 
+// Tech benefit icons map (matches the fixed bullet order in content):
+// Gravity, Electricity-free, Chemical-free, Portable, Easy to assemble,
+// Simple to clean, Low-maintenance, Household use, Rural / community settings
+const TECH_BENEFIT_ICONS: LucideIcon[] = [
+  Droplet,
+  PowerOff,
+  FlaskConical,
+  Package,
+  Hammer,
+  SprayCan,
+  Wrench,
+  Home,
+  MapPin,
+];
+
 function Sdg({ c }: { c: Copy }) {
   return (
     <section
@@ -1881,37 +1915,48 @@ function Sdg({ c }: { c: Copy }) {
           <p className="mt-5 text-lg leading-relaxed text-foreground/85">{c.sdg.intro}</p>
         </div>
 
-        <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+        {/* SDG tiles — official-style colored squares standing directly on the background.
+            NOTE: official SDG logo PNGs are not yet available in /public/assets/icons/sdg/.
+            These are clean placeholders that keep correct SDG colors and identity until
+            the official SDG logo files are added. Do not treat as final brand artwork. */}
+        <div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
           {c.sdg.items.map((sdg) => (
-            <div
-              key={sdg.number}
-              className="group relative flex flex-col items-center rounded-2xl border border-black/5 bg-white p-4 text-center shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
-            >
+            <div key={sdg.number} className="flex flex-col items-center text-center">
               <div
-                className="flex h-16 w-16 items-center justify-center rounded-xl font-display text-2xl font-extrabold text-white shadow-md"
+                className="relative flex aspect-square w-full max-w-[7.5rem] flex-col items-center justify-center rounded-md p-2 text-white shadow-sm"
                 style={{ background: SDG_COLORS[sdg.number] }}
                 aria-hidden
               >
-                {sdg.number}
+                <div className="font-display text-[10px] font-bold uppercase tracking-[0.14em] opacity-90">
+                  SDG {sdg.number}
+                </div>
+                <div className="mt-1 font-display text-[2.25rem] font-extrabold leading-none">
+                  {sdg.number}
+                </div>
+                <div className="mt-1 px-1 text-[10px] font-semibold leading-tight">
+                  {sdg.title}
+                </div>
               </div>
-              <div className="mt-3 text-[11px] font-semibold uppercase tracking-wide text-foreground/60">
-                SDG {sdg.number}
-              </div>
-              <div className="mt-1 text-sm font-semibold leading-snug text-[var(--ithemba-blue-dark)]">
-                {sdg.title}
+              <div className="mt-2 text-[10px] font-medium uppercase tracking-wide text-foreground/45">
+                Placeholder · awaiting official SDG logo
               </div>
             </div>
           ))}
         </div>
 
-        <div className="mt-10">
-          <Accordion type="single" collapsible className="mx-auto max-w-4xl">
+        <div className="mt-12">
+          <Accordion type="single" collapsible className="mx-auto max-w-4xl space-y-2">
             {c.sdg.items.map((sdg) => (
-              <AccordionItem key={sdg.number} value={`sdg-${sdg.number}`}>
-                <AccordionTrigger>
+              <AccordionItem
+                key={sdg.number}
+                value={`sdg-${sdg.number}`}
+                className="overflow-hidden rounded-xl border-0 bg-white/60 shadow-sm"
+                style={{ borderLeft: `6px solid ${SDG_COLORS[sdg.number]}` }}
+              >
+                <AccordionTrigger className="px-4">
                   <span className="flex items-center gap-3 text-left">
                     <span
-                      className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-xs font-bold text-white"
+                      className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-md font-display text-sm font-extrabold text-white"
                       style={{ background: SDG_COLORS[sdg.number] }}
                       aria-hidden
                     >
@@ -1923,7 +1968,7 @@ function Sdg({ c }: { c: Copy }) {
                   </span>
                 </AccordionTrigger>
                 <AccordionContent>
-                  <p className="pl-10 text-sm leading-relaxed text-foreground/80">
+                  <p className="px-4 pb-2 pl-16 text-sm leading-relaxed text-foreground/80">
                     {sdg.connection}
                   </p>
                 </AccordionContent>
@@ -1931,6 +1976,7 @@ function Sdg({ c }: { c: Copy }) {
             ))}
           </Accordion>
         </div>
+
 
         <p className="mx-auto mt-10 max-w-3xl text-center text-base italic leading-relaxed text-foreground/70">
           {c.sdg.outro}
@@ -1948,58 +1994,38 @@ function Snapshot({ c }: { c: Copy }) {
     <section className="relative overflow-hidden bg-[var(--ithemba-cream)] py-20">
       <div className="pointer-events-none absolute -left-10 top-10 h-44 w-44 blob bg-[var(--ithemba-yellow)]/25" />
       <div className="pointer-events-none absolute -right-10 bottom-10 h-52 w-52 blob-2 bg-sky-300/20" />
-      <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
-        <div className="grid gap-10 md:grid-cols-[1fr_1.2fr] md:items-start">
-          <div className="relative">
-            <SmartImage
-              src={PHOTO_BUCKET}
-              label="PureFlow Amanzi gravity-fed filtration system in use"
-              className="aspect-[4/5] w-full"
-              tone="ocean"
-              rounded="rounded-3xl"
-              showMissingBadge={false}
-            />
-            <div
-              className="absolute -bottom-5 -right-5 hidden h-24 w-24 items-center justify-center rounded-full text-white shadow-xl md:flex"
-              style={{ background: "var(--ithemba-blue-dark)" }}
-              aria-hidden
-            >
-              <Droplets className="h-9 w-9" />
-            </div>
+      <div className="relative mx-auto max-w-5xl px-4 lg:px-8">
+        <div className="max-w-3xl">
+          <SectionHeading eyebrow={c.snapshot.eyebrow} title={c.snapshot.title} />
+          <div className="mt-5 space-y-4 text-base leading-relaxed text-foreground/85">
+            {c.snapshot.body.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
           </div>
+        </div>
 
-          <div>
-            <SectionHeading eyebrow={c.snapshot.eyebrow} title={c.snapshot.title} />
-            <div className="mt-5 space-y-4 text-base leading-relaxed text-foreground/85">
-              {c.snapshot.body.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
-
-            <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
-              {c.snapshot.facts.map((f, i) => {
-                const Icon = SNAPSHOT_ICONS[i] ?? Heart;
-                return (
-                  <div
-                    key={f.label}
-                    className="flex items-start gap-3 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-sky-100"
-                  >
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--ithemba-blue-dark)]/10 ring-1 ring-[var(--ithemba-blue-dark)]/15">
-                      <Icon className="h-5 w-5 text-[var(--ithemba-blue-dark)]" />
-                    </div>
-                    <div>
-                      <div className="text-[10px] font-semibold uppercase tracking-wide text-foreground/60">
-                        {f.label}
-                      </div>
-                      <div className="mt-0.5 text-sm font-semibold leading-snug text-[var(--ithemba-blue-dark)]">
-                        {f.value}
-                      </div>
-                    </div>
+        <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {c.snapshot.facts.map((f, i) => {
+            const Icon = SNAPSHOT_ICONS[i] ?? Heart;
+            return (
+              <div
+                key={f.label}
+                className="flex items-start gap-3 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-sky-100"
+              >
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--ithemba-blue-dark)]/10 ring-1 ring-[var(--ithemba-blue-dark)]/15">
+                  <Icon className="h-5 w-5 text-[var(--ithemba-blue-dark)]" />
+                </div>
+                <div>
+                  <div className="text-[10px] font-semibold uppercase tracking-wide text-foreground/60">
+                    {f.label}
                   </div>
-                );
-              })}
-            </div>
-          </div>
+                  <div className="mt-0.5 text-sm font-semibold leading-snug text-[var(--ithemba-blue-dark)]">
+                    {f.value}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -2101,54 +2127,66 @@ function Tech({ c }: { c: Copy }) {
             {c.tech.body.map((p, i) => (
               <p key={i}>{p}</p>
             ))}
+            {/* integrated closing sentence — kept verbatim, woven into body flow */}
+            <p>{c.tech.closing}</p>
           </div>
         </div>
 
-        {/* 3-step visual */}
-        <div className="mt-12 grid gap-4 md:grid-cols-3">
-          {c.tech.steps.map((s, i) => (
-            <div
-              key={i}
-              className="relative rounded-3xl bg-white p-6 shadow-sm ring-1 ring-sky-100"
-            >
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--ithemba-blue)] font-display text-lg font-bold text-white">
-                  {i + 1}
+        {/* 3 photo-based steps */}
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
+          {c.tech.steps.map((s, i) => {
+            const photo = i === 0 ? PHOTO_BUCKET : i === 1 ? PHOTO_DEMO : PHOTO_BEFORE_AFTER;
+            const label =
+              i === 0
+                ? "Photo placeholder: dirty water poured into upper chamber"
+                : i === 1
+                  ? "Photo placeholder: close-up of ultra-filtration membrane / filter system"
+                  : "Photo placeholder: clear filtered water / family using safe water";
+            return (
+              <figure
+                key={i}
+                className="overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-sky-100"
+              >
+                <div className="relative">
+                  <SmartImage
+                    src={photo}
+                    label={label}
+                    className="aspect-[4/3] w-full"
+                    tone="ocean"
+                    rounded="rounded-none"
+                    showMissingBadge={false}
+                  />
+                  <span className="absolute left-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full bg-[var(--ithemba-blue)] font-display text-sm font-extrabold text-white shadow-md">
+                    {i + 1}
+                  </span>
                 </div>
-                <div className="text-[var(--ithemba-blue-dark)]">
-                  {i === 0 ? (
-                    <Droplets className="h-7 w-7" />
-                  ) : i === 1 ? (
-                    <Cog className="h-7 w-7" />
-                  ) : (
-                    <Droplet className="h-7 w-7" />
-                  )}
-                </div>
-              </div>
-              <div className="mt-3 font-display text-lg font-bold text-[var(--ithemba-blue-dark)]">
-                {s.label}
-              </div>
-              <p className="mt-2 text-sm leading-relaxed text-foreground/80">{s.text}</p>
-            </div>
-          ))}
+                <figcaption className="p-5">
+                  <div className="font-display text-lg font-bold text-[var(--ithemba-blue-dark)]">
+                    {s.label}
+                  </div>
+                  <p className="mt-2 text-sm leading-relaxed text-foreground/80">{s.text}</p>
+                </figcaption>
+              </figure>
+            );
+          })}
         </div>
 
-        {/* features pills */}
-        <div className="mt-8 flex flex-wrap gap-2">
-          {c.tech.bullets.map((b) => (
-            <span
-              key={b}
-              className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-[var(--ithemba-blue-dark)] shadow-sm ring-1 ring-sky-100"
-            >
-              <CheckCircle2 className="h-3.5 w-3.5 text-[var(--ithemba-blue)]" />
-              {b}
-            </span>
-          ))}
+        {/* benefit pills with meaningful icons (no ticks) */}
+        <div className="mt-10 flex flex-wrap gap-2">
+          {c.tech.bullets.map((b, i) => {
+            const Icon = TECH_BENEFIT_ICONS[i] ?? Sparkles;
+            return (
+              <span
+                key={b}
+                className="inline-flex items-center gap-2 rounded-full bg-white px-3.5 py-2 text-xs font-semibold text-[var(--ithemba-blue-dark)] shadow-sm ring-1 ring-sky-100"
+              >
+                <Icon className="h-4 w-4 text-[var(--ithemba-blue)]" />
+                {b}
+              </span>
+            );
+          })}
         </div>
 
-        <p className="mt-8 max-w-3xl text-base leading-relaxed text-foreground/85">
-          {c.tech.closing}
-        </p>
 
         {/* technical accordion */}
         <div className="mt-8">
@@ -2172,16 +2210,6 @@ function Tech({ c }: { c: Copy }) {
 
 /* ============================== LOCAL JOBS ============================== */
 function Jobs({ c }: { c: Copy }) {
-  const pathway = [
-    "Training",
-    "Assembly",
-    "Distribution",
-    "Household demos",
-    "Maintenance",
-    "Follow-up",
-    "Data",
-    "Reporting",
-  ];
   return (
     <section
       id="local-jobs"
@@ -2212,39 +2240,46 @@ function Jobs({ c }: { c: Copy }) {
           ))}
         </div>
 
-        <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-          {c.jobs.items.map((it, i) => {
-            const Icon = ICONS[it.icon] ?? HandHeart;
-            return (
-              <div
-                key={i}
-                className="flex items-start gap-3 rounded-2xl bg-white/10 p-4 ring-1 ring-white/15 backdrop-blur"
-              >
-                <Icon className="h-5 w-5 shrink-0 text-[var(--ithemba-yellow)]" />
-                <span className="text-sm font-medium leading-snug text-white">{it.label}</span>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* pathway flow */}
-        <div className="mt-10 rounded-3xl bg-white/10 p-5 ring-1 ring-white/15 backdrop-blur">
+        {/* Combined Jobs & Skills Pathway — one connected journey with icons + arrows */}
+        <div className="mt-12 rounded-3xl bg-white/10 p-6 ring-1 ring-white/15 backdrop-blur md:p-8">
           <div className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--ithemba-yellow)]">
-            Jobs & skills pathway
+            Jobs &amp; skills pathway
           </div>
-          <div className="mt-3 flex flex-wrap items-center gap-2">
-            {pathway.map((p, i) => (
-              <div key={p} className="flex items-center gap-2">
-                <span className="rounded-full bg-[var(--ithemba-yellow)]/15 px-3 py-1 text-xs font-semibold text-[var(--ithemba-yellow)] ring-1 ring-[var(--ithemba-yellow)]/35">
-                  {p}
-                </span>
-                {i < pathway.length - 1 && (
-                  <span aria-hidden className="text-[var(--ithemba-yellow)]/60">
-                    →
-                  </span>
-                )}
-              </div>
-            ))}
+          <div className="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 lg:grid-cols-5">
+            {c.jobs.items.map((it, i) => {
+              const Icon = ICONS[it.icon] ?? HandHeart;
+              const isLast = i === c.jobs.items.length - 1;
+              const isEndOfRowLg = (i + 1) % 5 === 0;
+              return (
+                <div key={i} className="relative flex flex-col items-center text-center">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--ithemba-yellow)]/15 ring-1 ring-[var(--ithemba-yellow)]/40">
+                    <Icon className="h-7 w-7 text-[var(--ithemba-yellow)]" />
+                  </div>
+                  <div className="mt-2 text-[10px] font-semibold uppercase tracking-wide text-[var(--ithemba-yellow)]/80">
+                    Step {i + 1}
+                  </div>
+                  <div className="mt-1 max-w-[10rem] text-sm font-semibold leading-snug text-white">
+                    {it.label}
+                  </div>
+                  {/* horizontal arrow (desktop, within a row) */}
+                  {!isLast && !isEndOfRowLg && (
+                    <ArrowRight
+                      aria-hidden
+                      className="pointer-events-none absolute right-[-14px] top-5 hidden h-5 w-5 text-[var(--ithemba-yellow)]/70 lg:block"
+                      strokeWidth={3}
+                    />
+                  )}
+                  {/* sm:grid-cols-2 row arrow */}
+                  {!isLast && i % 2 === 0 && (
+                    <ArrowRight
+                      aria-hidden
+                      className="pointer-events-none absolute right-[-10px] top-5 hidden h-5 w-5 text-[var(--ithemba-yellow)]/70 sm:block lg:hidden"
+                      strokeWidth={3}
+                    />
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
 
@@ -2303,33 +2338,45 @@ function Wash({ c }: { c: Copy }) {
       className="scroll-mt-32 relative overflow-hidden bg-[var(--ithemba-cream)] py-20"
     >
       <div className="pointer-events-none absolute -left-10 top-10 h-44 w-44 blob bg-[var(--ithemba-yellow)]/25" />
-      <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
-        <div className="grid gap-10 md:grid-cols-2 md:items-start">
-          <div>
-            <SectionHeading eyebrow={c.wash.eyebrow} title={c.wash.title} />
-            <div className="mt-5 space-y-4 text-base leading-relaxed text-foreground/85">
-              {c.wash.body.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
-            <p className="mt-6 font-display text-lg italic text-[var(--ithemba-blue-dark)]">
-              {c.wash.closing}
-            </p>
+      <div className="relative mx-auto max-w-5xl px-4 lg:px-8">
+        <div className="max-w-3xl">
+          <SectionHeading eyebrow={c.wash.eyebrow} title={c.wash.title} />
+          <div className="mt-5 space-y-4 text-base leading-relaxed text-foreground/85">
+            {c.wash.body.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
           </div>
+          <p className="mt-6 font-display text-lg italic text-[var(--ithemba-blue-dark)]">
+            {c.wash.closing}
+          </p>
+        </div>
 
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-            {c.wash.supports.map((s) => (
+        {/* Benefit icons below the text (no longer beside it) */}
+        <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {c.wash.supports.map((s, i) => {
+            const WASH_ICONS: LucideIcon[] = [
+              Droplet,
+              Cog,
+              SprayCan,
+              Package,
+              Sparkles,
+              ShieldCheck,
+              Home,
+              School,
+            ];
+            const Icon = WASH_ICONS[i] ?? BookOpen;
+            return (
               <div
                 key={s}
                 className="flex items-start gap-3 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-sky-100"
               >
-                <BookOpen className="mt-0.5 h-5 w-5 shrink-0 text-[var(--ithemba-blue)]" />
+                <Icon className="mt-0.5 h-5 w-5 shrink-0 text-[var(--ithemba-blue)]" />
                 <span className="text-sm font-medium leading-snug text-[var(--ithemba-blue-dark)]">
                   {s}
                 </span>
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -2430,18 +2477,19 @@ function Climate({ c }: { c: Copy }) {
 
 /* ============================== MONITORING ============================== */
 function Monitor({ c }: { c: Copy }) {
-  const loop = [
-    "Household visit",
-    "Usage check",
-    "Maintenance support",
-    "Feedback collection",
-    "Data reporting",
-    "Learning & improvement",
+  const LOOP_ICONS: LucideIcon[] = [
+    Home,
+    ClipboardCheck,
+    Wrench,
+    HandHeart,
+    HeartPulse,
+    LineChart,
+    Sparkles,
   ];
   return (
     <section className="relative overflow-hidden bg-[var(--ithemba-cream)] py-20">
       <div className="pointer-events-none absolute -right-16 top-16 h-56 w-56 blob-2 bg-sky-300/25" />
-      <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
+      <div className="relative mx-auto max-w-5xl px-4 lg:px-8">
         <div className="max-w-3xl">
           <SectionHeading eyebrow={c.monitor.eyebrow} title={c.monitor.title} />
           <div className="mt-5 space-y-4 text-base leading-relaxed text-foreground/85">
@@ -2451,35 +2499,44 @@ function Monitor({ c }: { c: Copy }) {
           </div>
         </div>
 
-        <div className="mt-10 grid gap-8 md:grid-cols-2">
-          <ul className="space-y-2">
-            {c.monitor.items.map((it) => (
-              <li
-                key={it}
-                className="flex items-start gap-3 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-sky-100"
-              >
-                <ClipboardCheck className="mt-0.5 h-5 w-5 shrink-0 text-[var(--ithemba-blue)]" />
-                <span className="text-sm font-medium leading-snug text-[var(--ithemba-blue-dark)]">
-                  {it}
-                </span>
-              </li>
-            ))}
-          </ul>
-
-          <div className="rounded-3xl bg-[var(--ithemba-blue-dark)] p-6 text-white shadow-lg">
-            <div className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--ithemba-yellow)]">
-              Accountability loop
-            </div>
-            <ol className="mt-4 space-y-3">
-              {loop.map((step, i) => (
-                <li key={step} className="flex items-start gap-3">
-                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--ithemba-yellow)] font-display text-xs font-bold text-[var(--ithemba-brown)]">
-                    {i + 1}
-                  </span>
-                  <span className="text-sm font-medium leading-snug">{step}</span>
-                </li>
-              ))}
-            </ol>
+        {/* Single unified Accountability Loop visual (no duplicate left list) */}
+        <div className="mt-12 rounded-3xl bg-[var(--ithemba-blue-dark)] p-6 text-white shadow-xl md:p-8">
+          <div className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--ithemba-yellow)]">
+            Accountability loop
+          </div>
+          <div className="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7">
+            {[
+              "Household visit",
+              "Usage check",
+              "Maintenance support",
+              "Feedback collection",
+              "Water quality & health feedback",
+              "Data reporting",
+              "Learning & improvement",
+            ].map((step, i, arr) => {
+              const Icon = LOOP_ICONS[i] ?? ClipboardCheck;
+              const isLast = i === arr.length - 1;
+              return (
+                <div key={step} className="relative flex flex-col items-center text-center">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--ithemba-yellow)]/15 ring-1 ring-[var(--ithemba-yellow)]/40">
+                    <Icon className="h-7 w-7 text-[var(--ithemba-yellow)]" />
+                  </div>
+                  <div className="mt-2 text-[10px] font-semibold uppercase tracking-wide text-[var(--ithemba-yellow)]/80">
+                    Step {i + 1}
+                  </div>
+                  <div className="mt-1 max-w-[10rem] text-sm font-semibold leading-snug">
+                    {step}
+                  </div>
+                  {!isLast && (
+                    <ArrowRight
+                      aria-hidden
+                      className="pointer-events-none absolute right-[-12px] top-5 hidden h-5 w-5 text-[var(--ithemba-yellow)]/70 xl:block"
+                      strokeWidth={3}
+                    />
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
 
@@ -2648,11 +2705,31 @@ function Focus({ c }: { c: Copy }) {
 
         <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-7">
           {c.focus.items.map((it) => {
-            const Icon = ICONS[it.icon] ?? Heart;
+            // Map content icon names to the real focus-area icon files used on the homepage.
+            const focusKey: Record<string, keyof typeof assets.focusAreaIcons | undefined> = {
+              Droplet: "safe-water",
+              HeartPulse: "community-health",
+              GraduationCap: "education",
+              Utensils: "food-security",
+              CloudSun: undefined, // climate resilience — no dedicated focus icon yet
+              Wrench: "skills-livelihoods",
+              HandHeart: "disaster-relief",
+            };
+            const key = focusKey[it.icon];
+            const Fallback = ICONS[it.icon] ?? Heart;
             return (
               <div key={it.label} className="flex flex-col items-center text-center">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15 backdrop-blur md:h-20 md:w-20">
-                  <Icon className="h-8 w-8 text-[var(--ithemba-yellow)] md:h-10 md:w-10" />
+                <div className="flex h-20 w-20 items-center justify-center md:h-24 md:w-24">
+                  {key ? (
+                    <img
+                      src={assets.focusAreaIcons[key]}
+                      alt=""
+                      aria-hidden
+                      className="h-full w-full object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.35)]"
+                    />
+                  ) : (
+                    <Fallback className="h-12 w-12 text-[var(--ithemba-yellow)] md:h-14 md:w-14" />
+                  )}
                 </div>
                 <div className="mt-3 text-xs font-semibold leading-snug text-white md:text-sm">
                   {it.label}
@@ -2675,33 +2752,44 @@ function Partnership({ c }: { c: Copy }) {
   return (
     <section className="relative overflow-hidden bg-white py-20">
       <div className="pointer-events-none absolute -left-10 top-10 h-44 w-44 blob bg-[var(--ithemba-yellow)]/15" />
-      <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
-        <div className="grid gap-10 md:grid-cols-[1.1fr_1fr] md:items-start">
-          <div>
-            <SectionHeading eyebrow={c.partnership.eyebrow} title={c.partnership.title} />
-            <div className="mt-5 space-y-4 text-base leading-relaxed text-foreground/85">
-              {c.partnership.body.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
-            <p className="mt-6 rounded-2xl border-l-4 border-[var(--ithemba-yellow)] bg-[var(--ithemba-cream)] p-4 text-base italic leading-relaxed text-[var(--ithemba-blue-dark)]">
-              {c.partnership.closing}
-            </p>
-          </div>
-
-          <ul className="grid gap-3">
-            {c.partnership.items.map((it) => (
-              <li
-                key={it}
-                className="flex items-start gap-3 rounded-2xl bg-[var(--ithemba-cream)] p-4 ring-1 ring-sky-100"
-              >
-                <Handshake className="mt-0.5 h-5 w-5 shrink-0 text-[var(--ithemba-blue)]" />
-                <span className="text-sm font-medium leading-snug text-[var(--ithemba-blue-dark)]">
-                  {it}
-                </span>
-              </li>
+      <div className="relative mx-auto max-w-5xl px-4 lg:px-8">
+        <div className="max-w-3xl">
+          <SectionHeading eyebrow={c.partnership.eyebrow} title={c.partnership.title} />
+          <div className="mt-5 space-y-4 text-base leading-relaxed text-foreground/85">
+            {c.partnership.body.map((p, i) => (
+              <p key={i}>{p}</p>
             ))}
-          </ul>
+          </div>
+          <p className="mt-6 rounded-2xl border-l-4 border-[var(--ithemba-yellow)] bg-[var(--ithemba-cream)] p-4 text-base italic leading-relaxed text-[var(--ithemba-blue-dark)]">
+            {c.partnership.closing}
+          </p>
+        </div>
+
+        {/* Partner logos — directly on the background, no boxes/borders/shadows */}
+        <div className="mt-12">
+          <div className="text-center text-xs font-semibold uppercase tracking-[0.14em] text-[var(--ithemba-blue)]/70">
+            Partners we have already worked with
+          </div>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-12 gap-y-8">
+            <img
+              src="/assets/logos/partners/nandos-logo.png"
+              alt="Nando’s"
+              className="h-14 w-auto object-contain md:h-16"
+            />
+            <img
+              src="/assets/logos/partners/gift-of-the-givers-logo.png"
+              alt="Gift of the Givers"
+              className="h-14 w-auto object-contain md:h-16"
+            />
+            <img
+              src="/assets/logos/partners/star-foundation-logo.png"
+              alt="Star Foundation"
+              className="h-14 w-auto object-contain md:h-16"
+            />
+            <div className="flex h-14 w-32 items-center justify-center text-center text-[11px] font-medium uppercase tracking-wide text-foreground/50 md:h-16">
+              Rossi logo pending
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -2751,7 +2839,7 @@ function DonationSupport({ c }: { c: Copy }) {
           })}
         </div>
 
-        <p className="mx-auto mt-10 max-w-3xl text-center text-base leading-relaxed text-foreground/75">
+        <p className="mx-auto mt-10 max-w-3xl text-center font-display text-xl italic leading-relaxed text-[var(--ithemba-blue-dark)] md:text-2xl">
           {c.donationSupport.closing}
         </p>
       </div>
@@ -2919,6 +3007,20 @@ function PureFlowPage() {
       <Partnership c={c} />
       <DonationSupport c={c} />
       <Monthly c={c} />
+      {/* soft wave between donation and final Safe water CTA */}
+      <div style={{ background: "var(--ithemba-blue-deepest)" }}>
+        <svg className="block w-full" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden>
+          <path
+            d="M0,55 C240,90 480,15 720,45 C960,75 1200,15 1440,50 L1440,90 L0,90 Z"
+            fill="var(--ithemba-blue-dark)"
+            opacity="0.6"
+          />
+          <path
+            d="M0,65 C240,95 480,30 720,60 C960,90 1200,30 1440,65 L1440,90 L0,90 Z"
+            fill="var(--ithemba-blue-dark)"
+          />
+        </svg>
+      </div>
       <Closing c={c} />
     </>
   );
