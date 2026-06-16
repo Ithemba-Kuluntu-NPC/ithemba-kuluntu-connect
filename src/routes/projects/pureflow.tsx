@@ -2705,11 +2705,31 @@ function Focus({ c }: { c: Copy }) {
 
         <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-7">
           {c.focus.items.map((it) => {
-            const Icon = ICONS[it.icon] ?? Heart;
+            // Map content icon names to the real focus-area icon files used on the homepage.
+            const focusKey: Record<string, keyof typeof assets.focusAreaIcons | undefined> = {
+              Droplet: "safe-water",
+              HeartPulse: "community-health",
+              GraduationCap: "education",
+              Utensils: "food-security",
+              CloudSun: undefined, // climate resilience — no dedicated focus icon yet
+              Wrench: "skills-livelihoods",
+              HandHeart: "disaster-relief",
+            };
+            const key = focusKey[it.icon];
+            const Fallback = ICONS[it.icon] ?? Heart;
             return (
               <div key={it.label} className="flex flex-col items-center text-center">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15 backdrop-blur md:h-20 md:w-20">
-                  <Icon className="h-8 w-8 text-[var(--ithemba-yellow)] md:h-10 md:w-10" />
+                <div className="flex h-20 w-20 items-center justify-center md:h-24 md:w-24">
+                  {key ? (
+                    <img
+                      src={assets.focusAreaIcons[key]}
+                      alt=""
+                      aria-hidden
+                      className="h-full w-full object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.35)]"
+                    />
+                  ) : (
+                    <Fallback className="h-12 w-12 text-[var(--ithemba-yellow)] md:h-14 md:w-14" />
+                  )}
                 </div>
                 <div className="mt-3 text-xs font-semibold leading-snug text-white md:text-sm">
                   {it.label}
