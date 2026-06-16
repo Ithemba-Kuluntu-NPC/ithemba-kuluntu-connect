@@ -1900,37 +1900,48 @@ function Sdg({ c }: { c: Copy }) {
           <p className="mt-5 text-lg leading-relaxed text-foreground/85">{c.sdg.intro}</p>
         </div>
 
-        <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+        {/* SDG tiles — official-style colored squares standing directly on the background.
+            NOTE: official SDG logo PNGs are not yet available in /public/assets/icons/sdg/.
+            These are clean placeholders that keep correct SDG colors and identity until
+            the official SDG logo files are added. Do not treat as final brand artwork. */}
+        <div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
           {c.sdg.items.map((sdg) => (
-            <div
-              key={sdg.number}
-              className="group relative flex flex-col items-center rounded-2xl border border-black/5 bg-white p-4 text-center shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
-            >
+            <div key={sdg.number} className="flex flex-col items-center text-center">
               <div
-                className="flex h-16 w-16 items-center justify-center rounded-xl font-display text-2xl font-extrabold text-white shadow-md"
+                className="relative flex aspect-square w-full max-w-[7.5rem] flex-col items-center justify-center rounded-md p-2 text-white shadow-sm"
                 style={{ background: SDG_COLORS[sdg.number] }}
                 aria-hidden
               >
-                {sdg.number}
+                <div className="font-display text-[10px] font-bold uppercase tracking-[0.14em] opacity-90">
+                  SDG {sdg.number}
+                </div>
+                <div className="mt-1 font-display text-[2.25rem] font-extrabold leading-none">
+                  {sdg.number}
+                </div>
+                <div className="mt-1 px-1 text-[10px] font-semibold leading-tight">
+                  {sdg.title}
+                </div>
               </div>
-              <div className="mt-3 text-[11px] font-semibold uppercase tracking-wide text-foreground/60">
-                SDG {sdg.number}
-              </div>
-              <div className="mt-1 text-sm font-semibold leading-snug text-[var(--ithemba-blue-dark)]">
-                {sdg.title}
+              <div className="mt-2 text-[10px] font-medium uppercase tracking-wide text-foreground/45">
+                Placeholder · awaiting official SDG logo
               </div>
             </div>
           ))}
         </div>
 
-        <div className="mt-10">
-          <Accordion type="single" collapsible className="mx-auto max-w-4xl">
+        <div className="mt-12">
+          <Accordion type="single" collapsible className="mx-auto max-w-4xl space-y-2">
             {c.sdg.items.map((sdg) => (
-              <AccordionItem key={sdg.number} value={`sdg-${sdg.number}`}>
-                <AccordionTrigger>
+              <AccordionItem
+                key={sdg.number}
+                value={`sdg-${sdg.number}`}
+                className="overflow-hidden rounded-xl border-0 bg-white/60 shadow-sm"
+                style={{ borderLeft: `6px solid ${SDG_COLORS[sdg.number]}` }}
+              >
+                <AccordionTrigger className="px-4">
                   <span className="flex items-center gap-3 text-left">
                     <span
-                      className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-xs font-bold text-white"
+                      className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-md font-display text-sm font-extrabold text-white"
                       style={{ background: SDG_COLORS[sdg.number] }}
                       aria-hidden
                     >
@@ -1942,7 +1953,7 @@ function Sdg({ c }: { c: Copy }) {
                   </span>
                 </AccordionTrigger>
                 <AccordionContent>
-                  <p className="pl-10 text-sm leading-relaxed text-foreground/80">
+                  <p className="px-4 pb-2 pl-16 text-sm leading-relaxed text-foreground/80">
                     {sdg.connection}
                   </p>
                 </AccordionContent>
@@ -1950,6 +1961,7 @@ function Sdg({ c }: { c: Copy }) {
             ))}
           </Accordion>
         </div>
+
 
         <p className="mx-auto mt-10 max-w-3xl text-center text-base italic leading-relaxed text-foreground/70">
           {c.sdg.outro}
