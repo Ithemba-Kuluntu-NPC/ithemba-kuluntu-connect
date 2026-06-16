@@ -799,21 +799,8 @@ function Kitchen({ c }: { c: Copy }) {
           </div>
           <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.kitchen.title}</h2>
         </div>
-        <div className="mt-6 grid gap-6 md:grid-cols-2">
-          <div className="space-y-4 text-lg leading-relaxed text-white/90">
-            {c.kitchen.body.map((p, i) => <p key={i}>{p}</p>)}
-          </div>
-          <div className="self-start rounded-3xl bg-white/10 p-6 ring-1 ring-white/15 backdrop-blur">
-            <div className="flex items-center gap-3 text-[var(--ithemba-yellow)]">
-              <HandHeart className="h-7 w-7" />
-              <Soup className="h-7 w-7" />
-              <Users className="h-7 w-7" />
-            </div>
-            <div className="mt-4 font-display text-xl font-bold">
-              {c.kitchen.title}
-            </div>
-            <p className="mt-2 text-sm text-white/85">{c.kitchen.body[1]}</p>
-          </div>
+        <div className="mt-6 max-w-3xl space-y-4 text-lg leading-relaxed text-white/90">
+          {c.kitchen.body.map((p, i) => <p key={i}>{p}</p>)}
         </div>
       </div>
     </section>
