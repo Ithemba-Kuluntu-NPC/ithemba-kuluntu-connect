@@ -232,10 +232,10 @@ const COPY: Record<Lang, Copy> = {
     impact: {
       title: "What your support helps make possible",
       items: [
-        { value: 600, suffix: "+", iconSrc: "/assets/icons/impact/impact-mattresses.png", label: { en: "Mattresses distributed", de: "Matratzen verteilt", nl: "Matrassen verdeeld" } },
-        { value: 2100, suffix: "+", iconSrc: "/assets/icons/impact/impact-blankets.png", label: { en: "Blankets distributed", de: "Decken verteilt", nl: "Dekens verdeeld" } },
-        { value: 114, suffix: "", iconSrc: "/assets/icons/impact/impact-wheelchairs.png", label: { en: "Wheelchairs distributed", de: "Rollstühle verteilt", nl: "Rolstoelen verdeeld" } },
-        { value: 1300, suffix: "+", iconSrc: "/assets/icons/impact/impact-school-shoes.png", label: { en: "School shoes distributed", de: "Schulschuhe verteilt", nl: "Schoolschoenen verdeeld" } },
+        { value: 600, suffix: "+", iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-mattresses.png", label: { en: "Mattresses distributed", de: "Matratzen verteilt", nl: "Matrassen verdeeld" } },
+        { value: 2100, suffix: "+", iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-blankets.png", label: { en: "Blankets distributed", de: "Decken verteilt", nl: "Dekens verdeeld" } },
+        { value: 114, suffix: "", iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-wheelchairs.png", label: { en: "Wheelchairs distributed", de: "Rollstühle verteilt", nl: "Rolstoelen verdeeld" } },
+        { value: 1300, suffix: "+", iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-school-shoes.png", label: { en: "School shoes distributed", de: "Schulschuhe verteilt", nl: "Schoolschoenen verdeeld" } },
       ],
     },
     closing: {
@@ -369,10 +369,10 @@ const COPY: Record<Lang, Copy> = {
     impact: {
       title: "Was Ihre Unterstützung möglich macht",
       items: [
-        { value: 600, suffix: "+", iconSrc: "/assets/icons/impact/impact-mattresses.png", label: { en: "Mattresses distributed", de: "Matratzen verteilt", nl: "Matrassen verdeeld" } },
-        { value: 2100, suffix: "+", iconSrc: "/assets/icons/impact/impact-blankets.png", label: { en: "Blankets distributed", de: "Decken verteilt", nl: "Dekens verdeeld" } },
-        { value: 114, suffix: "", iconSrc: "/assets/icons/impact/impact-wheelchairs.png", label: { en: "Wheelchairs distributed", de: "Rollstühle verteilt", nl: "Rolstoelen verdeeld" } },
-        { value: 1300, suffix: "+", iconSrc: "/assets/icons/impact/impact-school-shoes.png", label: { en: "School shoes distributed", de: "Schulschuhe verteilt", nl: "Schoolschoenen verdeeld" } },
+        { value: 600, suffix: "+", iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-mattresses.png", label: { en: "Mattresses distributed", de: "Matratzen verteilt", nl: "Matrassen verdeeld" } },
+        { value: 2100, suffix: "+", iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-blankets.png", label: { en: "Blankets distributed", de: "Decken verteilt", nl: "Dekens verdeeld" } },
+        { value: 114, suffix: "", iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-wheelchairs.png", label: { en: "Wheelchairs distributed", de: "Rollstühle verteilt", nl: "Rolstoelen verdeeld" } },
+        { value: 1300, suffix: "+", iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-school-shoes.png", label: { en: "School shoes distributed", de: "Schulschuhe verteilt", nl: "Schoolschoenen verdeeld" } },
       ],
     },
     closing: {
@@ -506,10 +506,10 @@ const COPY: Record<Lang, Copy> = {
     impact: {
       title: "Wat uw steun mogelijk maakt",
       items: [
-        { value: 600, suffix: "+", iconSrc: "/assets/icons/impact/impact-mattresses.png", label: { en: "Mattresses distributed", de: "Matratzen verteilt", nl: "Matrassen verdeeld" } },
-        { value: 2100, suffix: "+", iconSrc: "/assets/icons/impact/impact-blankets.png", label: { en: "Blankets distributed", de: "Decken verteilt", nl: "Dekens verdeeld" } },
-        { value: 114, suffix: "", iconSrc: "/assets/icons/impact/impact-wheelchairs.png", label: { en: "Wheelchairs distributed", de: "Rollstühle verteilt", nl: "Rolstoelen verdeeld" } },
-        { value: 1300, suffix: "+", iconSrc: "/assets/icons/impact/impact-school-shoes.png", label: { en: "School shoes distributed", de: "Schulschuhe verteilt", nl: "Schoolschoenen verdeeld" } },
+        { value: 600, suffix: "+", iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-mattresses.png", label: { en: "Mattresses distributed", de: "Matratzen verteilt", nl: "Matrassen verdeeld" } },
+        { value: 2100, suffix: "+", iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-blankets.png", label: { en: "Blankets distributed", de: "Decken verteilt", nl: "Dekens verdeeld" } },
+        { value: 114, suffix: "", iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-wheelchairs.png", label: { en: "Wheelchairs distributed", de: "Rollstühle verteilt", nl: "Rolstoelen verdeeld" } },
+        { value: 1300, suffix: "+", iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-school-shoes.png", label: { en: "School shoes distributed", de: "Schulschuhe verteilt", nl: "Schoolschoenen verdeeld" } },
       ],
     },
     closing: {
