@@ -2112,54 +2112,66 @@ function Tech({ c }: { c: Copy }) {
             {c.tech.body.map((p, i) => (
               <p key={i}>{p}</p>
             ))}
+            {/* integrated closing sentence — kept verbatim, woven into body flow */}
+            <p>{c.tech.closing}</p>
           </div>
         </div>
 
-        {/* 3-step visual */}
-        <div className="mt-12 grid gap-4 md:grid-cols-3">
-          {c.tech.steps.map((s, i) => (
-            <div
-              key={i}
-              className="relative rounded-3xl bg-white p-6 shadow-sm ring-1 ring-sky-100"
-            >
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--ithemba-blue)] font-display text-lg font-bold text-white">
-                  {i + 1}
+        {/* 3 photo-based steps */}
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
+          {c.tech.steps.map((s, i) => {
+            const photo = i === 0 ? PHOTO_BUCKET : i === 1 ? PHOTO_DEMO : PHOTO_BEFORE_AFTER;
+            const label =
+              i === 0
+                ? "Photo placeholder: dirty water poured into upper chamber"
+                : i === 1
+                  ? "Photo placeholder: close-up of ultra-filtration membrane / filter system"
+                  : "Photo placeholder: clear filtered water / family using safe water";
+            return (
+              <figure
+                key={i}
+                className="overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-sky-100"
+              >
+                <div className="relative">
+                  <SmartImage
+                    src={photo}
+                    label={label}
+                    className="aspect-[4/3] w-full"
+                    tone="ocean"
+                    rounded="rounded-none"
+                    showMissingBadge={false}
+                  />
+                  <span className="absolute left-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full bg-[var(--ithemba-blue)] font-display text-sm font-extrabold text-white shadow-md">
+                    {i + 1}
+                  </span>
                 </div>
-                <div className="text-[var(--ithemba-blue-dark)]">
-                  {i === 0 ? (
-                    <Droplets className="h-7 w-7" />
-                  ) : i === 1 ? (
-                    <Cog className="h-7 w-7" />
-                  ) : (
-                    <Droplet className="h-7 w-7" />
-                  )}
-                </div>
-              </div>
-              <div className="mt-3 font-display text-lg font-bold text-[var(--ithemba-blue-dark)]">
-                {s.label}
-              </div>
-              <p className="mt-2 text-sm leading-relaxed text-foreground/80">{s.text}</p>
-            </div>
-          ))}
+                <figcaption className="p-5">
+                  <div className="font-display text-lg font-bold text-[var(--ithemba-blue-dark)]">
+                    {s.label}
+                  </div>
+                  <p className="mt-2 text-sm leading-relaxed text-foreground/80">{s.text}</p>
+                </figcaption>
+              </figure>
+            );
+          })}
         </div>
 
-        {/* features pills */}
-        <div className="mt-8 flex flex-wrap gap-2">
-          {c.tech.bullets.map((b) => (
-            <span
-              key={b}
-              className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-[var(--ithemba-blue-dark)] shadow-sm ring-1 ring-sky-100"
-            >
-              <CheckCircle2 className="h-3.5 w-3.5 text-[var(--ithemba-blue)]" />
-              {b}
-            </span>
-          ))}
+        {/* benefit pills with meaningful icons (no ticks) */}
+        <div className="mt-10 flex flex-wrap gap-2">
+          {c.tech.bullets.map((b, i) => {
+            const Icon = TECH_BENEFIT_ICONS[i] ?? Sparkles;
+            return (
+              <span
+                key={b}
+                className="inline-flex items-center gap-2 rounded-full bg-white px-3.5 py-2 text-xs font-semibold text-[var(--ithemba-blue-dark)] shadow-sm ring-1 ring-sky-100"
+              >
+                <Icon className="h-4 w-4 text-[var(--ithemba-blue)]" />
+                {b}
+              </span>
+            );
+          })}
         </div>
 
-        <p className="mt-8 max-w-3xl text-base leading-relaxed text-foreground/85">
-          {c.tech.closing}
-        </p>
 
         {/* technical accordion */}
         <div className="mt-8">
