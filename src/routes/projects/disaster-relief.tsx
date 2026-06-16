@@ -756,15 +756,19 @@ function Provide({ c }: { c: Copy }) {
           <SectionHeading eyebrow={c.provide.eyebrow} title={c.provide.title} />
           <p className="mt-5 text-lg leading-relaxed text-foreground/85">{c.provide.intro}</p>
         </div>
-        <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 md:grid-cols-3">
+        <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 md:grid-cols-3">
           {c.provide.items.map((it, i) => {
-            const Icon = ICONS[it.icon] ?? HandHeart;
+            const iconSrc = DONATION_ICON_PATHS[it.icon] ?? `${DR_ICON_BASE}/disaster-relief-core-support.png`;
             return (
-              <div key={i} className="flex items-start gap-4 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-sky-100">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--ithemba-blue-dark)]/10 ring-1 ring-[var(--ithemba-blue-dark)]/15">
-                  <Icon className="h-6 w-6 text-[var(--ithemba-blue-dark)]" />
-                </div>
-                <div className="text-sm font-medium leading-snug text-[var(--ithemba-blue-dark)]">{it.label}</div>
+              <div key={i} className="flex flex-col items-center text-center">
+                <img
+                  src={iconSrc}
+                  alt=""
+                  aria-hidden
+                  className="h-16 w-16 md:h-20 md:w-20 object-contain"
+                  loading="lazy"
+                />
+                <div className="mt-3 text-sm font-medium leading-snug text-[var(--ithemba-blue-dark)]">{it.label}</div>
               </div>
             );
           })}
