@@ -160,7 +160,7 @@ const COPY: Record<Lang, Copy> = {
       items: [
         { icon: "Utensils", label: "Emergency food support" },
         { icon: "Bed", label: "Blankets" },
-        { icon: "Bed", label: "Mattresses" },
+        { icon: "Mattress", label: "Mattresses" },
         { icon: "Footprints", label: "School shoes" },
         { icon: "Accessibility", label: "Wheelchairs" },
         { icon: "Shirt", label: "Clothing or basic household supplies" },
