@@ -266,7 +266,7 @@ const COPY: Record<Lang, Copy> = {
         { icon: "GraduationCap", label: "Training and follow-up support" },
         { icon: "Truck", label: "Harvesting and distribution support" },
         { icon: "Users", label: "Local coordination" },
-        { icon: "Heart", label: "Support for women working with the system" },
+        
         { icon: "Cookie", label: "Fresh produce to supplement meals at the No.1 ECD Centre" },
         { icon: "Handshake", label: "Connection to wider food security work" },
       ],
@@ -422,7 +422,7 @@ const COPY: Record<Lang, Copy> = {
         { icon: "GraduationCap", label: "Schulung und Nachbetreuung" },
         { icon: "Truck", label: "Unterstützung bei Ernte und Verteilung" },
         { icon: "Users", label: "Lokale Koordination" },
-        { icon: "Heart", label: "Unterstützung für Frauen, die mit dem System arbeiten" },
+        
         { icon: "Cookie", label: "Frische Lebensmittel zur Ergänzung der Mahlzeiten im No.1 ECD Centre" },
         { icon: "Handshake", label: "Verbindung zur weiteren Ernährungssicherungsarbeit" },
       ],
@@ -578,7 +578,7 @@ const COPY: Record<Lang, Copy> = {
         { icon: "GraduationCap", label: "Training en opvolging" },
         { icon: "Truck", label: "Ondersteuning bij oogst en verdeling" },
         { icon: "Users", label: "Lokale coördinatie" },
-        { icon: "Heart", label: "Ondersteuning voor vrouwen die met het systeem werken" },
+        
         { icon: "Cookie", label: "Verse producten om maaltijden in het No.1 ECD Centre aan te vullen" },
         { icon: "Handshake", label: "Verbinding met breder voedselzekerheidswerk" },
       ],
@@ -639,7 +639,7 @@ const DONATION_ICON_PATHS: Record<string, string> = {
   Truck: `${GH_ICON_BASE}/greenhouse-harvesting-distribution.png`,
   Users: `${GH_ICON_BASE}/greenhouse-local-coordination.png`,
   Heart: `${GH_ICON_BASE}/greenhouse-local-women-trained.png`,
-  Cookie: `${GH_ICON_BASE}/greenhouse-food-security-tomato.png`,
+  Cookie: `${GH_ICON_BASE}/greenhouse-focus.png`,
   Handshake: `${GH_ICON_BASE}/greenhouse-connection-food-security.png`,
 };
 
