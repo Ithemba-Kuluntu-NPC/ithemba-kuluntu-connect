@@ -778,19 +778,8 @@ function Respond({ c }: { c: Copy }) {
           </div>
           <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.respond.title}</h2>
         </div>
-        <div className="mt-6 grid gap-6 md:grid-cols-2">
-          <div className="space-y-4 text-lg leading-relaxed text-white/90">
-            {c.respond.body.map((p, i) => <p key={i}>{p}</p>)}
-          </div>
-          <div className="self-start rounded-3xl bg-white/10 p-6 ring-1 ring-white/15 backdrop-blur">
-            <div className="flex items-center gap-3 text-[var(--ithemba-yellow)]">
-              <Users className="h-7 w-7" />
-              <HandHeart className="h-7 w-7" />
-              <Compass className="h-7 w-7" />
-            </div>
-            <div className="mt-4 font-display text-xl font-bold">{c.respond.title}</div>
-            <p className="mt-2 text-sm text-white/85">{c.respond.body[1]}</p>
-          </div>
+        <div className="mt-6 max-w-3xl space-y-4 text-lg leading-relaxed text-white/90">
+          {c.respond.body.map((p, i) => <p key={i}>{p}</p>)}
         </div>
       </div>
     </section>
@@ -897,6 +886,10 @@ function Monthly({ c }: { c: Copy }) {
         <div className="absolute inset-0 bg-gradient-to-r from-[var(--ithemba-blue-deepest)]/92 via-[var(--ithemba-blue-dark)]/80 to-[var(--ithemba-blue-dark)]/45" />
         <div className="absolute right-[-6rem] top-[-6rem] h-[28rem] w-[28rem] sun-glow" />
       </div>
+      <svg className="pointer-events-none absolute inset-x-0 top-0 -mt-px block h-12 w-full md:h-16" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden>
+        <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,0 L0,0 Z" fill="var(--ithemba-blue-deepest)" opacity="0.55" />
+        <path d="M0,55 C240,90 480,15 720,55 C960,90 1200,15 1440,55 L1440,0 L0,0 Z" fill="var(--ithemba-blue-deepest)" />
+      </svg>
       <div className="mx-auto grid max-w-7xl gap-10 px-4 md:grid-cols-2 lg:px-8">
         <div className="text-white">
           <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)]">{c.monthly.eyebrow}</div>
@@ -936,6 +929,10 @@ function Monthly({ c }: { c: Copy }) {
 function Closing({ c }: { c: Copy }) {
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-[var(--ithemba-blue-deepest)] via-[var(--ithemba-blue-dark)] to-[var(--ithemba-blue)] py-20 text-white">
+      <svg className="pointer-events-none absolute inset-x-0 top-0 -mt-px block h-12 w-full md:h-16" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden>
+        <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,0 L0,0 Z" fill="var(--ithemba-blue-deepest)" opacity="0.55" />
+        <path d="M0,55 C240,90 480,15 720,55 C960,90 1200,15 1440,55 L1440,0 L0,0 Z" fill="var(--ithemba-blue-deepest)" />
+      </svg>
       <div className="pointer-events-none absolute right-[-6rem] top-[-6rem] h-[24rem] w-[24rem] sun-glow" />
       <div className="pointer-events-none absolute left-10 top-10"><SunDoodle className="h-12 w-12 text-[var(--ithemba-yellow)]/60" /></div>
       <div className="pointer-events-none absolute right-10 bottom-10"><Heart className="h-9 w-9 text-[var(--ithemba-yellow)]/70" /></div>
