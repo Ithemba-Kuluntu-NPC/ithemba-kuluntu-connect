@@ -2477,18 +2477,19 @@ function Climate({ c }: { c: Copy }) {
 
 /* ============================== MONITORING ============================== */
 function Monitor({ c }: { c: Copy }) {
-  const loop = [
-    "Household visit",
-    "Usage check",
-    "Maintenance support",
-    "Feedback collection",
-    "Data reporting",
-    "Learning & improvement",
+  const LOOP_ICONS: LucideIcon[] = [
+    Home,
+    ClipboardCheck,
+    Wrench,
+    HandHeart,
+    HeartPulse,
+    LineChart,
+    Sparkles,
   ];
   return (
     <section className="relative overflow-hidden bg-[var(--ithemba-cream)] py-20">
       <div className="pointer-events-none absolute -right-16 top-16 h-56 w-56 blob-2 bg-sky-300/25" />
-      <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
+      <div className="relative mx-auto max-w-5xl px-4 lg:px-8">
         <div className="max-w-3xl">
           <SectionHeading eyebrow={c.monitor.eyebrow} title={c.monitor.title} />
           <div className="mt-5 space-y-4 text-base leading-relaxed text-foreground/85">
@@ -2498,35 +2499,44 @@ function Monitor({ c }: { c: Copy }) {
           </div>
         </div>
 
-        <div className="mt-10 grid gap-8 md:grid-cols-2">
-          <ul className="space-y-2">
-            {c.monitor.items.map((it) => (
-              <li
-                key={it}
-                className="flex items-start gap-3 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-sky-100"
-              >
-                <ClipboardCheck className="mt-0.5 h-5 w-5 shrink-0 text-[var(--ithemba-blue)]" />
-                <span className="text-sm font-medium leading-snug text-[var(--ithemba-blue-dark)]">
-                  {it}
-                </span>
-              </li>
-            ))}
-          </ul>
-
-          <div className="rounded-3xl bg-[var(--ithemba-blue-dark)] p-6 text-white shadow-lg">
-            <div className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--ithemba-yellow)]">
-              Accountability loop
-            </div>
-            <ol className="mt-4 space-y-3">
-              {loop.map((step, i) => (
-                <li key={step} className="flex items-start gap-3">
-                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--ithemba-yellow)] font-display text-xs font-bold text-[var(--ithemba-brown)]">
-                    {i + 1}
-                  </span>
-                  <span className="text-sm font-medium leading-snug">{step}</span>
-                </li>
-              ))}
-            </ol>
+        {/* Single unified Accountability Loop visual (no duplicate left list) */}
+        <div className="mt-12 rounded-3xl bg-[var(--ithemba-blue-dark)] p-6 text-white shadow-xl md:p-8">
+          <div className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--ithemba-yellow)]">
+            Accountability loop
+          </div>
+          <div className="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7">
+            {[
+              "Household visit",
+              "Usage check",
+              "Maintenance support",
+              "Feedback collection",
+              "Water quality & health feedback",
+              "Data reporting",
+              "Learning & improvement",
+            ].map((step, i, arr) => {
+              const Icon = LOOP_ICONS[i] ?? ClipboardCheck;
+              const isLast = i === arr.length - 1;
+              return (
+                <div key={step} className="relative flex flex-col items-center text-center">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--ithemba-yellow)]/15 ring-1 ring-[var(--ithemba-yellow)]/40">
+                    <Icon className="h-7 w-7 text-[var(--ithemba-yellow)]" />
+                  </div>
+                  <div className="mt-2 text-[10px] font-semibold uppercase tracking-wide text-[var(--ithemba-yellow)]/80">
+                    Step {i + 1}
+                  </div>
+                  <div className="mt-1 max-w-[10rem] text-sm font-semibold leading-snug">
+                    {step}
+                  </div>
+                  {!isLast && (
+                    <ArrowRight
+                      aria-hidden
+                      className="pointer-events-none absolute right-[-12px] top-5 hidden h-5 w-5 text-[var(--ithemba-yellow)]/70 xl:block"
+                      strokeWidth={3}
+                    />
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
 
