@@ -618,8 +618,30 @@ const ICONS: Record<string, typeof Sprout> = {
   PackageOpen, Hammer, Truck, Heart, Building2, MapPin, Calendar, Award,
 };
 
-/* ---------- snapshot fact icons (index-aligned) ---------- */
-const SNAPSHOT_ICONS = [Sprout, Leaf, MapPin, Award, Handshake, Wrench, GraduationCap, Building2];
+/* ---------- custom PNG icons (uploaded) ---------- */
+const GH_ICON_BASE = "/assets/icons/projects/greenhouse";
+const SNAPSHOT_ICON_PATHS = [
+  `${GH_ICON_BASE}/greenhouse-project.png`,
+  `${GH_ICON_BASE}/greenhouse-focus.png`,
+  `${GH_ICON_BASE}/greenhouse-location.png`,
+  `${GH_ICON_BASE}/greenhouse-sponsored-by.png`,
+  `${GH_ICON_BASE}/greenhouse-connection-food-security.png`,
+  `${GH_ICON_BASE}/greenhouse-growing-system.png`,
+  `${GH_ICON_BASE}/greenhouse-local-women-trained.png`,
+  `${GH_ICON_BASE}/greenhouse-connected-project.png`,
+];
+const DONATION_ICON_PATHS: Record<string, string> = {
+  Sprout: `${GH_ICON_BASE}/greenhouse-seeds-seedlings.png`,
+  PackageOpen: `${GH_ICON_BASE}/greenhouse-growing-materials.png`,
+  Droplet: `${GH_ICON_BASE}/greenhouse-water-nutrients.png`,
+  Hammer: `${GH_ICON_BASE}/greenhouse-tools-maintenance.png`,
+  GraduationCap: `${GH_ICON_BASE}/greenhouse-local-women-trained.png`,
+  Truck: `${GH_ICON_BASE}/greenhouse-harvesting-distribution.png`,
+  Users: `${GH_ICON_BASE}/greenhouse-local-coordination.png`,
+  Heart: `${GH_ICON_BASE}/greenhouse-local-women-trained.png`,
+  Cookie: `${GH_ICON_BASE}/greenhouse-food-security-tomato.png`,
+  Handshake: `${GH_ICON_BASE}/greenhouse-connection-food-security.png`,
+};
 
 function SparkleDoodle({ className = "h-5 w-5 text-[var(--ithemba-yellow)]" }) {
   return <Sparkles className={className} aria-hidden />;
@@ -758,13 +780,17 @@ function Snapshot({ c }: { c: Copy }) {
         </div>
         <div className="mt-14 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-4">
           {c.snapshot.facts.map((f, i) => {
-            const Icon = SNAPSHOT_ICONS[i] ?? Sprout;
+            const iconSrc = SNAPSHOT_ICON_PATHS[i];
             return (
               <div key={f.label} className="flex flex-col items-center text-center">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white shadow-md ring-1 ring-emerald-200">
-                  <Icon className="h-7 w-7 text-emerald-700" />
-                </div>
-                <div className="mt-1 text-[11px] font-semibold uppercase tracking-wide text-foreground/60">{f.label}</div>
+                <img
+                  src={iconSrc}
+                  alt=""
+                  aria-hidden="true"
+                  className="h-16 w-16 object-contain md:h-20 md:w-20"
+                  loading="lazy"
+                />
+                <div className="mt-3 text-[11px] font-semibold uppercase tracking-wide text-foreground/60">{f.label}</div>
                 <div className="mt-1 font-display text-base font-extrabold leading-tight text-[var(--ithemba-blue-dark)]">{f.value}</div>
               </div>
             );
@@ -1011,14 +1037,18 @@ function DonationSupport({ c }: { c: Copy }) {
           <SectionHeading eyebrow={c.donation.eyebrow} title={c.donation.title} />
           <p className="mt-5 text-lg leading-relaxed text-foreground/85">{c.donation.intro}</p>
         </div>
-        <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 md:grid-cols-5">
+        <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 md:grid-cols-5">
           {c.donation.items.map((it) => {
-            const Icon = ICONS[it.icon] ?? Sprout;
+            const iconSrc = DONATION_ICON_PATHS[it.icon];
             return (
               <div key={it.label} className="flex flex-col items-center text-center">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white shadow-md ring-1 ring-emerald-200 md:h-20 md:w-20">
-                  <Icon className="h-7 w-7 text-emerald-700 md:h-8 md:w-8" />
-                </div>
+                <img
+                  src={iconSrc}
+                  alt=""
+                  aria-hidden="true"
+                  className="h-16 w-16 object-contain md:h-20 md:w-20"
+                  loading="lazy"
+                />
                 <div className="mt-3 text-sm font-medium leading-snug text-[var(--ithemba-blue-dark)]">{it.label}</div>
               </div>
             );
