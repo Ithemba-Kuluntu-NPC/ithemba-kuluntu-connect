@@ -1037,14 +1037,18 @@ function DonationSupport({ c }: { c: Copy }) {
           <SectionHeading eyebrow={c.donation.eyebrow} title={c.donation.title} />
           <p className="mt-5 text-lg leading-relaxed text-foreground/85">{c.donation.intro}</p>
         </div>
-        <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 md:grid-cols-5">
+        <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 md:grid-cols-5">
           {c.donation.items.map((it) => {
-            const Icon = ICONS[it.icon] ?? Sprout;
+            const iconSrc = DONATION_ICON_PATHS[it.icon];
             return (
               <div key={it.label} className="flex flex-col items-center text-center">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white shadow-md ring-1 ring-emerald-200 md:h-20 md:w-20">
-                  <Icon className="h-7 w-7 text-emerald-700 md:h-8 md:w-8" />
-                </div>
+                <img
+                  src={iconSrc}
+                  alt=""
+                  aria-hidden="true"
+                  className="h-16 w-16 object-contain md:h-20 md:w-20"
+                  loading="lazy"
+                />
                 <div className="mt-3 text-sm font-medium leading-snug text-[var(--ithemba-blue-dark)]">{it.label}</div>
               </div>
             );
