@@ -970,7 +970,24 @@ function Impact({ c }: { c: Copy }) {
 /* ---------- MONTHLY (with widget) ---------- */
 function Monthly({ c }: { c: Copy }) {
   return (
-    <section className="relative isolate overflow-hidden py-20">
+    <section className="relative isolate overflow-hidden pt-28 pb-20 md:pt-32">
+      {/* soft wave transition from the impact section above */}
+      <svg
+        className="pointer-events-none absolute -top-px left-0 z-10 block w-full"
+        viewBox="0 0 1440 120"
+        preserveAspectRatio="none"
+        aria-hidden
+      >
+        <path
+          d="M0,60 C240,110 480,10 720,55 C960,100 1200,20 1440,65 L1440,0 L0,0 Z"
+          fill="var(--ithemba-blue-deepest)"
+          opacity="0.55"
+        />
+        <path
+          d="M0,80 C240,30 480,120 720,75 C960,30 1200,110 1440,70 L1440,0 L0,0 Z"
+          fill="var(--ithemba-blue-deepest)"
+        />
+      </svg>
       <div className="absolute inset-0 -z-10">
         <SmartImage
           src={PHOTO_KITCHEN}
