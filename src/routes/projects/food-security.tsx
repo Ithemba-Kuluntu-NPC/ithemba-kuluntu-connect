@@ -607,7 +607,6 @@ function Hero({ c }: { c: Copy }) {
           <img src={FALLBACK_POSTER} alt="" aria-hidden className="absolute inset-0 h-full w-full object-cover -z-10" />
         )}
         <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/85 via-[var(--ithemba-blue-dark)]/65 to-[var(--ithemba-blue)]/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
         <div className="absolute right-[-6rem] top-[-6rem] h-[28rem] w-[28rem] sun-glow" />
       </div>
 
@@ -800,21 +799,8 @@ function Kitchen({ c }: { c: Copy }) {
           </div>
           <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.kitchen.title}</h2>
         </div>
-        <div className="mt-6 grid gap-6 md:grid-cols-2">
-          <div className="space-y-4 text-lg leading-relaxed text-white/90">
-            {c.kitchen.body.map((p, i) => <p key={i}>{p}</p>)}
-          </div>
-          <div className="self-start rounded-3xl bg-white/10 p-6 ring-1 ring-white/15 backdrop-blur">
-            <div className="flex items-center gap-3 text-[var(--ithemba-yellow)]">
-              <HandHeart className="h-7 w-7" />
-              <Soup className="h-7 w-7" />
-              <Users className="h-7 w-7" />
-            </div>
-            <div className="mt-4 font-display text-xl font-bold">
-              {c.kitchen.title}
-            </div>
-            <p className="mt-2 text-sm text-white/85">{c.kitchen.body[1]}</p>
-          </div>
+        <div className="mt-6 max-w-3xl space-y-4 text-lg leading-relaxed text-white/90">
+          {c.kitchen.body.map((p, i) => <p key={i}>{p}</p>)}
         </div>
       </div>
     </section>
@@ -984,7 +970,24 @@ function Impact({ c }: { c: Copy }) {
 /* ---------- MONTHLY (with widget) ---------- */
 function Monthly({ c }: { c: Copy }) {
   return (
-    <section className="relative isolate overflow-hidden py-20">
+    <section className="relative isolate overflow-hidden pt-28 pb-20 md:pt-32">
+      {/* soft wave transition from the impact section above */}
+      <svg
+        className="pointer-events-none absolute -top-px left-0 z-10 block w-full"
+        viewBox="0 0 1440 120"
+        preserveAspectRatio="none"
+        aria-hidden
+      >
+        <path
+          d="M0,60 C240,110 480,10 720,55 C960,100 1200,20 1440,65 L1440,0 L0,0 Z"
+          fill="var(--ithemba-blue-deepest)"
+          opacity="0.55"
+        />
+        <path
+          d="M0,80 C240,30 480,120 720,75 C960,30 1200,110 1440,70 L1440,0 L0,0 Z"
+          fill="var(--ithemba-blue-deepest)"
+        />
+      </svg>
       <div className="absolute inset-0 -z-10">
         <SmartImage
           src={PHOTO_KITCHEN}
@@ -1035,7 +1038,24 @@ function Monthly({ c }: { c: Copy }) {
 /* ---------- CLOSING ---------- */
 function Closing({ c }: { c: Copy }) {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[var(--ithemba-blue-deepest)] via-[var(--ithemba-blue-dark)] to-[var(--ithemba-blue)] py-20 text-white">
+    <section className="relative overflow-hidden bg-gradient-to-br from-[var(--ithemba-blue-deepest)] via-[var(--ithemba-blue-dark)] to-[var(--ithemba-blue)] pt-28 pb-20 text-white md:pt-32">
+      {/* soft wave transition from the donation section above */}
+      <svg
+        className="pointer-events-none absolute -top-px left-0 z-10 block w-full"
+        viewBox="0 0 1440 120"
+        preserveAspectRatio="none"
+        aria-hidden
+      >
+        <path
+          d="M0,60 C240,110 480,10 720,55 C960,100 1200,20 1440,65 L1440,0 L0,0 Z"
+          fill="var(--ithemba-blue-deepest)"
+          opacity="0.55"
+        />
+        <path
+          d="M0,80 C240,30 480,120 720,75 C960,30 1200,110 1440,70 L1440,0 L0,0 Z"
+          fill="var(--ithemba-blue-deepest)"
+        />
+      </svg>
       <div className="pointer-events-none absolute right-[-6rem] top-[-6rem] h-[24rem] w-[24rem] sun-glow" />
       <div className="pointer-events-none absolute left-10 top-10">
         <SunDoodle className="h-12 w-12 text-[var(--ithemba-yellow)]/60" />
