@@ -2210,16 +2210,6 @@ function Tech({ c }: { c: Copy }) {
 
 /* ============================== LOCAL JOBS ============================== */
 function Jobs({ c }: { c: Copy }) {
-  const pathway = [
-    "Training",
-    "Assembly",
-    "Distribution",
-    "Household demos",
-    "Maintenance",
-    "Follow-up",
-    "Data",
-    "Reporting",
-  ];
   return (
     <section
       id="local-jobs"
@@ -2250,39 +2240,46 @@ function Jobs({ c }: { c: Copy }) {
           ))}
         </div>
 
-        <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-          {c.jobs.items.map((it, i) => {
-            const Icon = ICONS[it.icon] ?? HandHeart;
-            return (
-              <div
-                key={i}
-                className="flex items-start gap-3 rounded-2xl bg-white/10 p-4 ring-1 ring-white/15 backdrop-blur"
-              >
-                <Icon className="h-5 w-5 shrink-0 text-[var(--ithemba-yellow)]" />
-                <span className="text-sm font-medium leading-snug text-white">{it.label}</span>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* pathway flow */}
-        <div className="mt-10 rounded-3xl bg-white/10 p-5 ring-1 ring-white/15 backdrop-blur">
+        {/* Combined Jobs & Skills Pathway — one connected journey with icons + arrows */}
+        <div className="mt-12 rounded-3xl bg-white/10 p-6 ring-1 ring-white/15 backdrop-blur md:p-8">
           <div className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--ithemba-yellow)]">
-            Jobs & skills pathway
+            Jobs &amp; skills pathway
           </div>
-          <div className="mt-3 flex flex-wrap items-center gap-2">
-            {pathway.map((p, i) => (
-              <div key={p} className="flex items-center gap-2">
-                <span className="rounded-full bg-[var(--ithemba-yellow)]/15 px-3 py-1 text-xs font-semibold text-[var(--ithemba-yellow)] ring-1 ring-[var(--ithemba-yellow)]/35">
-                  {p}
-                </span>
-                {i < pathway.length - 1 && (
-                  <span aria-hidden className="text-[var(--ithemba-yellow)]/60">
-                    →
-                  </span>
-                )}
-              </div>
-            ))}
+          <div className="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 lg:grid-cols-5">
+            {c.jobs.items.map((it, i) => {
+              const Icon = ICONS[it.icon] ?? HandHeart;
+              const isLast = i === c.jobs.items.length - 1;
+              const isEndOfRowLg = (i + 1) % 5 === 0;
+              return (
+                <div key={i} className="relative flex flex-col items-center text-center">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--ithemba-yellow)]/15 ring-1 ring-[var(--ithemba-yellow)]/40">
+                    <Icon className="h-7 w-7 text-[var(--ithemba-yellow)]" />
+                  </div>
+                  <div className="mt-2 text-[10px] font-semibold uppercase tracking-wide text-[var(--ithemba-yellow)]/80">
+                    Step {i + 1}
+                  </div>
+                  <div className="mt-1 max-w-[10rem] text-sm font-semibold leading-snug text-white">
+                    {it.label}
+                  </div>
+                  {/* horizontal arrow (desktop, within a row) */}
+                  {!isLast && !isEndOfRowLg && (
+                    <ArrowRight
+                      aria-hidden
+                      className="pointer-events-none absolute right-[-14px] top-5 hidden h-5 w-5 text-[var(--ithemba-yellow)]/70 lg:block"
+                      strokeWidth={3}
+                    />
+                  )}
+                  {/* sm:grid-cols-2 row arrow */}
+                  {!isLast && i % 2 === 0 && (
+                    <ArrowRight
+                      aria-hidden
+                      className="pointer-events-none absolute right-[-10px] top-5 hidden h-5 w-5 text-[var(--ithemba-yellow)]/70 sm:block lg:hidden"
+                      strokeWidth={3}
+                    />
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
 
