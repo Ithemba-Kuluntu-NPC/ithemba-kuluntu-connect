@@ -1886,6 +1886,21 @@ const SDG_COLORS: Record<number, string> = {
   17: "#19486A",
 };
 
+// Tech benefit icons map (matches the fixed bullet order in content):
+// Gravity, Electricity-free, Chemical-free, Portable, Easy to assemble,
+// Simple to clean, Low-maintenance, Household use, Rural / community settings
+const TECH_BENEFIT_ICONS: LucideIcon[] = [
+  Droplet,
+  PowerOff,
+  FlaskConical,
+  Package,
+  Hammer,
+  SprayCan,
+  Wrench,
+  Home,
+  MapPin,
+];
+
 function Sdg({ c }: { c: Copy }) {
   return (
     <section
