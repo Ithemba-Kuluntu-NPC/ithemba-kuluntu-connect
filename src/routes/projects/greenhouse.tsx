@@ -618,8 +618,30 @@ const ICONS: Record<string, typeof Sprout> = {
   PackageOpen, Hammer, Truck, Heart, Building2, MapPin, Calendar, Award,
 };
 
-/* ---------- snapshot fact icons (index-aligned) ---------- */
-const SNAPSHOT_ICONS = [Sprout, Leaf, MapPin, Award, Handshake, Wrench, GraduationCap, Building2];
+/* ---------- custom PNG icons (uploaded) ---------- */
+const GH_ICON_BASE = "/assets/icons/projects/greenhouse";
+const SNAPSHOT_ICON_PATHS = [
+  `${GH_ICON_BASE}/greenhouse-project.png`,
+  `${GH_ICON_BASE}/greenhouse-focus.png`,
+  `${GH_ICON_BASE}/greenhouse-location.png`,
+  `${GH_ICON_BASE}/greenhouse-sponsored-by.png`,
+  `${GH_ICON_BASE}/greenhouse-connection-food-security.png`,
+  `${GH_ICON_BASE}/greenhouse-growing-system.png`,
+  `${GH_ICON_BASE}/greenhouse-local-women-trained.png`,
+  `${GH_ICON_BASE}/greenhouse-connected-project.png`,
+];
+const DONATION_ICON_PATHS: Record<string, string> = {
+  Sprout: `${GH_ICON_BASE}/greenhouse-seeds-seedlings.png`,
+  PackageOpen: `${GH_ICON_BASE}/greenhouse-growing-materials.png`,
+  Droplet: `${GH_ICON_BASE}/greenhouse-water-nutrients.png`,
+  Hammer: `${GH_ICON_BASE}/greenhouse-tools-maintenance.png`,
+  GraduationCap: `${GH_ICON_BASE}/greenhouse-local-women-trained.png`,
+  Truck: `${GH_ICON_BASE}/greenhouse-harvesting-distribution.png`,
+  Users: `${GH_ICON_BASE}/greenhouse-local-coordination.png`,
+  Heart: `${GH_ICON_BASE}/greenhouse-local-women-trained.png`,
+  Cookie: `${GH_ICON_BASE}/greenhouse-food-security-tomato.png`,
+  Handshake: `${GH_ICON_BASE}/greenhouse-connection-food-security.png`,
+};
 
 function SparkleDoodle({ className = "h-5 w-5 text-[var(--ithemba-yellow)]" }) {
   return <Sparkles className={className} aria-hidden />;
