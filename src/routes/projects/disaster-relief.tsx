@@ -929,6 +929,10 @@ function Monthly({ c }: { c: Copy }) {
 function Closing({ c }: { c: Copy }) {
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-[var(--ithemba-blue-deepest)] via-[var(--ithemba-blue-dark)] to-[var(--ithemba-blue)] py-20 text-white">
+      <svg className="pointer-events-none absolute inset-x-0 top-0 -mt-px block h-12 w-full md:h-16" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden>
+        <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,0 L0,0 Z" fill="var(--ithemba-blue-deepest)" opacity="0.55" />
+        <path d="M0,55 C240,90 480,15 720,55 C960,90 1200,15 1440,55 L1440,0 L0,0 Z" fill="var(--ithemba-blue-deepest)" />
+      </svg>
       <div className="pointer-events-none absolute right-[-6rem] top-[-6rem] h-[24rem] w-[24rem] sun-glow" />
       <div className="pointer-events-none absolute left-10 top-10"><SunDoodle className="h-12 w-12 text-[var(--ithemba-yellow)]/60" /></div>
       <div className="pointer-events-none absolute right-10 bottom-10"><Heart className="h-9 w-9 text-[var(--ithemba-yellow)]/70" /></div>
