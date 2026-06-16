@@ -886,6 +886,10 @@ function Monthly({ c }: { c: Copy }) {
         <div className="absolute inset-0 bg-gradient-to-r from-[var(--ithemba-blue-deepest)]/92 via-[var(--ithemba-blue-dark)]/80 to-[var(--ithemba-blue-dark)]/45" />
         <div className="absolute right-[-6rem] top-[-6rem] h-[28rem] w-[28rem] sun-glow" />
       </div>
+      <svg className="pointer-events-none absolute inset-x-0 top-0 -mt-px block h-12 w-full md:h-16" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden>
+        <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,0 L0,0 Z" fill="var(--ithemba-blue-deepest)" opacity="0.55" />
+        <path d="M0,55 C240,90 480,15 720,55 C960,90 1200,15 1440,55 L1440,0 L0,0 Z" fill="var(--ithemba-blue-deepest)" />
+      </svg>
       <div className="mx-auto grid max-w-7xl gap-10 px-4 md:grid-cols-2 lg:px-8">
         <div className="text-white">
           <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)]">{c.monthly.eyebrow}</div>
