@@ -526,14 +526,32 @@ const COPY: Record<Lang, Copy> = {
   },
 };
 
-/* ---------- icon registry ---------- */
-const ICONS: Record<string, typeof Heart> = {
-  Heart, Users, MapPin, Building2, Truck, HandHeart, ShieldAlert, Package, Flame,
-  Home, Droplets, Stethoscope, Footprints, Accessibility, Shirt, Bed, LifeBuoy, Compass, Utensils,
+/* ---------- icon registry (custom PNGs) ---------- */
+const DR_ICON_BASE = "/assets/icons/projects/disaster-relief";
+
+const SNAPSHOT_ICON_PATHS = [
+  `${DR_ICON_BASE}/disaster-relief-project-and-after-support.png`,
+  `${DR_ICON_BASE}/disaster-relief-focus.png`,
+  `${DR_ICON_BASE}/disaster-relief-location.png`,
+  `${DR_ICON_BASE}/disaster-relief-core-support.png`,
+  `${DR_ICON_BASE}/disaster-relief-how-we-respond.png`,
+  `${DR_ICON_BASE}/disaster-relief-donation-focus.png`,
+];
+
+const DONATION_ICON_PATHS: Record<string, string> = {
+  Utensils: `${DR_ICON_BASE}/disaster-relief-emergency-food-support.png`,
+  Bed: `${DR_ICON_BASE}/disaster-relief-blankets.png`,
+  Mattress: `${DR_ICON_BASE}/disaster-relief-mattresses.png`,
+  Footprints: `${DR_ICON_BASE}/disaster-relief-school-shoes.png`,
+  Accessibility: `${DR_ICON_BASE}/disaster-relief-wheelchairs.png`,
+  Shirt: `${DR_ICON_BASE}/disaster-relief-clothing-basic-household-support.png`,
+  Package: `${DR_ICON_BASE}/disaster-relief-clothing-basic-household-support.png`,
+  Truck: `${DR_ICON_BASE}/disaster-relief-transport-coordination.png`,
+  Flame: `${DR_ICON_BASE}/disaster-relief-project-and-after-support.png`,
+  Stethoscope: `${DR_ICON_BASE}/disaster-relief-urgent-medical-care.png`,
+  Compass: `${DR_ICON_BASE}/disaster-relief-how-we-respond.png`,
 };
 
-
-const SNAPSHOT_ICONS = [LifeBuoy, HandHeart, MapPin, Package, Compass, Heart];
 
 function SparkleDoodle({ className = "h-5 w-5 text-[var(--ithemba-yellow)]" }) {
   return <Sparkles className={className} aria-hidden />;
