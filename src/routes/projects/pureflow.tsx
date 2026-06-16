@@ -2839,7 +2839,7 @@ function DonationSupport({ c }: { c: Copy }) {
           })}
         </div>
 
-        <p className="mx-auto mt-10 max-w-3xl text-center text-base leading-relaxed text-foreground/75">
+        <p className="mx-auto mt-10 max-w-3xl text-center font-display text-xl italic leading-relaxed text-[var(--ithemba-blue-dark)] md:text-2xl">
           {c.donationSupport.closing}
         </p>
       </div>
