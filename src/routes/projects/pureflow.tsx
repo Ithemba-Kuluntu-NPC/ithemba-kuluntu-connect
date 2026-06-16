@@ -1979,58 +1979,38 @@ function Snapshot({ c }: { c: Copy }) {
     <section className="relative overflow-hidden bg-[var(--ithemba-cream)] py-20">
       <div className="pointer-events-none absolute -left-10 top-10 h-44 w-44 blob bg-[var(--ithemba-yellow)]/25" />
       <div className="pointer-events-none absolute -right-10 bottom-10 h-52 w-52 blob-2 bg-sky-300/20" />
-      <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
-        <div className="grid gap-10 md:grid-cols-[1fr_1.2fr] md:items-start">
-          <div className="relative">
-            <SmartImage
-              src={PHOTO_BUCKET}
-              label="PureFlow Amanzi gravity-fed filtration system in use"
-              className="aspect-[4/5] w-full"
-              tone="ocean"
-              rounded="rounded-3xl"
-              showMissingBadge={false}
-            />
-            <div
-              className="absolute -bottom-5 -right-5 hidden h-24 w-24 items-center justify-center rounded-full text-white shadow-xl md:flex"
-              style={{ background: "var(--ithemba-blue-dark)" }}
-              aria-hidden
-            >
-              <Droplets className="h-9 w-9" />
-            </div>
+      <div className="relative mx-auto max-w-5xl px-4 lg:px-8">
+        <div className="max-w-3xl">
+          <SectionHeading eyebrow={c.snapshot.eyebrow} title={c.snapshot.title} />
+          <div className="mt-5 space-y-4 text-base leading-relaxed text-foreground/85">
+            {c.snapshot.body.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
           </div>
+        </div>
 
-          <div>
-            <SectionHeading eyebrow={c.snapshot.eyebrow} title={c.snapshot.title} />
-            <div className="mt-5 space-y-4 text-base leading-relaxed text-foreground/85">
-              {c.snapshot.body.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
-
-            <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
-              {c.snapshot.facts.map((f, i) => {
-                const Icon = SNAPSHOT_ICONS[i] ?? Heart;
-                return (
-                  <div
-                    key={f.label}
-                    className="flex items-start gap-3 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-sky-100"
-                  >
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--ithemba-blue-dark)]/10 ring-1 ring-[var(--ithemba-blue-dark)]/15">
-                      <Icon className="h-5 w-5 text-[var(--ithemba-blue-dark)]" />
-                    </div>
-                    <div>
-                      <div className="text-[10px] font-semibold uppercase tracking-wide text-foreground/60">
-                        {f.label}
-                      </div>
-                      <div className="mt-0.5 text-sm font-semibold leading-snug text-[var(--ithemba-blue-dark)]">
-                        {f.value}
-                      </div>
-                    </div>
+        <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {c.snapshot.facts.map((f, i) => {
+            const Icon = SNAPSHOT_ICONS[i] ?? Heart;
+            return (
+              <div
+                key={f.label}
+                className="flex items-start gap-3 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-sky-100"
+              >
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--ithemba-blue-dark)]/10 ring-1 ring-[var(--ithemba-blue-dark)]/15">
+                  <Icon className="h-5 w-5 text-[var(--ithemba-blue-dark)]" />
+                </div>
+                <div>
+                  <div className="text-[10px] font-semibold uppercase tracking-wide text-foreground/60">
+                    {f.label}
                   </div>
-                );
-              })}
-            </div>
-          </div>
+                  <div className="mt-0.5 text-sm font-semibold leading-snug text-[var(--ithemba-blue-dark)]">
+                    {f.value}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
