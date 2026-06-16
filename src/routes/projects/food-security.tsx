@@ -1038,7 +1038,24 @@ function Monthly({ c }: { c: Copy }) {
 /* ---------- CLOSING ---------- */
 function Closing({ c }: { c: Copy }) {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[var(--ithemba-blue-deepest)] via-[var(--ithemba-blue-dark)] to-[var(--ithemba-blue)] py-20 text-white">
+    <section className="relative overflow-hidden bg-gradient-to-br from-[var(--ithemba-blue-deepest)] via-[var(--ithemba-blue-dark)] to-[var(--ithemba-blue)] pt-28 pb-20 text-white md:pt-32">
+      {/* soft wave transition from the donation section above */}
+      <svg
+        className="pointer-events-none absolute -top-px left-0 z-10 block w-full"
+        viewBox="0 0 1440 120"
+        preserveAspectRatio="none"
+        aria-hidden
+      >
+        <path
+          d="M0,60 C240,110 480,10 720,55 C960,100 1200,20 1440,65 L1440,0 L0,0 Z"
+          fill="var(--ithemba-blue-deepest)"
+          opacity="0.55"
+        />
+        <path
+          d="M0,80 C240,30 480,120 720,75 C960,30 1200,110 1440,70 L1440,0 L0,0 Z"
+          fill="var(--ithemba-blue-deepest)"
+        />
+      </svg>
       <div className="pointer-events-none absolute right-[-6rem] top-[-6rem] h-[24rem] w-[24rem] sun-glow" />
       <div className="pointer-events-none absolute left-10 top-10">
         <SunDoodle className="h-12 w-12 text-[var(--ithemba-yellow)]/60" />
