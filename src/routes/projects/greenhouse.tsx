@@ -891,18 +891,18 @@ function HowItWorks({ c }: { c: Copy }) {
                 <p className="mt-3 text-sm leading-snug text-white/85">{s.text}</p>
                 {i < c.how.steps.length - 1 && (
                   <>
-                    {/* desktop: right arrow */}
-                    <div className="pointer-events-none absolute -right-5 top-1/2 z-10 hidden -translate-y-1/2 md:block">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--ithemba-yellow)] text-[var(--ithemba-brown)] shadow-lg ring-4 ring-[var(--ithemba-blue-deepest)]/40">
-                        <ArrowRight className="h-6 w-6" strokeWidth={3} />
-                      </div>
-                    </div>
-                    {/* mobile: down arrow */}
-                    <div className="pointer-events-none absolute -bottom-5 left-1/2 z-10 -translate-x-1/2 md:hidden">
-                      <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[var(--ithemba-yellow)] text-[var(--ithemba-brown)] shadow-lg ring-4 ring-[var(--ithemba-blue-deepest)]/40">
-                        <ArrowDown className="h-5 w-5" strokeWidth={3} />
-                      </div>
-                    </div>
+                    {/* desktop: right arrow, sits in the gutter low on the card */}
+                    <ArrowRight
+                      aria-hidden
+                      className="pointer-events-none absolute -right-6 bottom-5 z-10 hidden h-9 w-9 text-[var(--ithemba-yellow)] md:block"
+                      strokeWidth={3.5}
+                    />
+                    {/* mobile: down arrow between stacked cards */}
+                    <ArrowDown
+                      aria-hidden
+                      className="pointer-events-none absolute -bottom-6 left-1/2 z-10 h-8 w-8 -translate-x-1/2 text-[var(--ithemba-yellow)] md:hidden"
+                      strokeWidth={3.5}
+                    />
                   </>
                 )}
               </div>
