@@ -2338,33 +2338,45 @@ function Wash({ c }: { c: Copy }) {
       className="scroll-mt-32 relative overflow-hidden bg-[var(--ithemba-cream)] py-20"
     >
       <div className="pointer-events-none absolute -left-10 top-10 h-44 w-44 blob bg-[var(--ithemba-yellow)]/25" />
-      <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
-        <div className="grid gap-10 md:grid-cols-2 md:items-start">
-          <div>
-            <SectionHeading eyebrow={c.wash.eyebrow} title={c.wash.title} />
-            <div className="mt-5 space-y-4 text-base leading-relaxed text-foreground/85">
-              {c.wash.body.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
-            <p className="mt-6 font-display text-lg italic text-[var(--ithemba-blue-dark)]">
-              {c.wash.closing}
-            </p>
+      <div className="relative mx-auto max-w-5xl px-4 lg:px-8">
+        <div className="max-w-3xl">
+          <SectionHeading eyebrow={c.wash.eyebrow} title={c.wash.title} />
+          <div className="mt-5 space-y-4 text-base leading-relaxed text-foreground/85">
+            {c.wash.body.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
           </div>
+          <p className="mt-6 font-display text-lg italic text-[var(--ithemba-blue-dark)]">
+            {c.wash.closing}
+          </p>
+        </div>
 
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-            {c.wash.supports.map((s) => (
+        {/* Benefit icons below the text (no longer beside it) */}
+        <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {c.wash.supports.map((s, i) => {
+            const WASH_ICONS: LucideIcon[] = [
+              Droplet,
+              Cog,
+              SprayCan,
+              Package,
+              Sparkles,
+              ShieldCheck,
+              Home,
+              School,
+            ];
+            const Icon = WASH_ICONS[i] ?? BookOpen;
+            return (
               <div
                 key={s}
                 className="flex items-start gap-3 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-sky-100"
               >
-                <BookOpen className="mt-0.5 h-5 w-5 shrink-0 text-[var(--ithemba-blue)]" />
+                <Icon className="mt-0.5 h-5 w-5 shrink-0 text-[var(--ithemba-blue)]" />
                 <span className="text-sm font-medium leading-snug text-[var(--ithemba-blue-dark)]">
                   {s}
                 </span>
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
       </div>
     </section>
