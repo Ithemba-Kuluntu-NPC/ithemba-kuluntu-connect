@@ -1839,7 +1839,7 @@ function PageNav({ c }: { c: Copy }) {
 function Impact({ c }: { c: Copy }) {
   return (
     <section id="impact" className="scroll-mt-32">
-      <div className="bg-[var(--ithemba-cream)] pt-16 pb-2">
+      <div className="bg-[var(--ithemba-cream)] pt-16 pb-12">
         <div className="mx-auto max-w-5xl px-4 text-center lg:px-8">
           <SectionHeading eyebrow={c.impact.eyebrow} title={c.impact.title} center />
           <div className="mx-auto mt-5 max-w-3xl space-y-4 text-lg leading-relaxed text-foreground/85">
@@ -1848,9 +1848,21 @@ function Impact({ c }: { c: Copy }) {
             ))}
           </div>
         </div>
+        {/* soft wave divider: cream -> deep blue counters */}
+        <svg className="mt-10 block w-full" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden>
+          <path
+            d="M0,55 C240,90 480,15 720,45 C960,75 1200,15 1440,50 L1440,90 L0,90 Z"
+            fill="var(--ithemba-blue-deepest)"
+            opacity="0.55"
+          />
+          <path
+            d="M0,65 C240,95 480,30 720,60 C960,90 1200,30 1440,65 L1440,90 L0,90 Z"
+            fill="var(--ithemba-blue-deepest)"
+          />
+        </svg>
       </div>
       <ImpactCounters items={c.impact.items} title="" />
-      <div className="bg-[var(--ithemba-cream)] pb-16">
+      <div className="bg-[var(--ithemba-cream)] pb-16 pt-12">
         <p className="mx-auto max-w-3xl px-4 text-center text-base italic leading-relaxed text-foreground/70 lg:px-8">
           {c.impact.note}
         </p>
