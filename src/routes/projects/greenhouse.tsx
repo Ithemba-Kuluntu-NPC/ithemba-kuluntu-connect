@@ -873,23 +873,13 @@ function HowItWorks({ c }: { c: Copy }) {
           </div>
           <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.how.title}</h2>
         </div>
-        <div className="mt-6 grid gap-10 md:grid-cols-2">
-          <div className="space-y-4 text-lg leading-relaxed text-white/90">
-            {c.how.body.map((p, i) => <p key={i}>{p}</p>)}
-          </div>
-          <ul className="grid grid-cols-1 gap-2 self-start sm:grid-cols-2">
-            {c.how.benefits.map((b) => (
-              <li key={b} className="flex items-start gap-2 rounded-2xl bg-white/10 p-3 text-sm text-white/95 ring-1 ring-white/15 backdrop-blur">
-                <Leaf className="mt-0.5 h-4 w-4 shrink-0 text-[var(--ithemba-yellow)]" />
-                <span>{b}</span>
-              </li>
-            ))}
-          </ul>
+        <div className="mt-6 max-w-3xl space-y-4 text-lg leading-relaxed text-white/90">
+          {c.how.body.map((p, i) => <p key={i}>{p}</p>)}
         </div>
 
         {/* growing flow */}
         <div className="mt-14">
-          <div className="grid gap-4 md:grid-cols-4">
+          <div className="grid gap-6 md:grid-cols-4 md:gap-4">
             {c.how.steps.map((s, i) => (
               <div key={s.title} className="relative rounded-3xl bg-white/10 p-6 ring-1 ring-white/15 backdrop-blur">
                 <div className="flex items-center gap-3">
@@ -900,7 +890,20 @@ function HowItWorks({ c }: { c: Copy }) {
                 </div>
                 <p className="mt-3 text-sm leading-snug text-white/85">{s.text}</p>
                 {i < c.how.steps.length - 1 && (
-                  <ArrowDown className="absolute -bottom-3 right-6 hidden h-5 w-5 rotate-[-90deg] text-[var(--ithemba-yellow)] md:block" />
+                  <>
+                    {/* desktop: right arrow */}
+                    <div className="pointer-events-none absolute -right-5 top-1/2 z-10 hidden -translate-y-1/2 md:block">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--ithemba-yellow)] text-[var(--ithemba-brown)] shadow-lg ring-4 ring-[var(--ithemba-blue-deepest)]/40">
+                        <ArrowRight className="h-6 w-6" strokeWidth={3} />
+                      </div>
+                    </div>
+                    {/* mobile: down arrow */}
+                    <div className="pointer-events-none absolute -bottom-5 left-1/2 z-10 -translate-x-1/2 md:hidden">
+                      <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[var(--ithemba-yellow)] text-[var(--ithemba-brown)] shadow-lg ring-4 ring-[var(--ithemba-blue-deepest)]/40">
+                        <ArrowDown className="h-5 w-5" strokeWidth={3} />
+                      </div>
+                    </div>
+                  </>
                 )}
               </div>
             ))}
