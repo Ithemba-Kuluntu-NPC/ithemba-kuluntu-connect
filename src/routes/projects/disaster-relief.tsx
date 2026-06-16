@@ -160,7 +160,7 @@ const COPY: Record<Lang, Copy> = {
       items: [
         { icon: "Utensils", label: "Emergency food support" },
         { icon: "Bed", label: "Blankets" },
-        { icon: "Bed", label: "Mattresses" },
+        { icon: "Mattress", label: "Mattresses" },
         { icon: "Footprints", label: "School shoes" },
         { icon: "Accessibility", label: "Wheelchairs" },
         { icon: "Shirt", label: "Clothing or basic household supplies" },
@@ -232,10 +232,10 @@ const COPY: Record<Lang, Copy> = {
     impact: {
       title: "What your support helps make possible",
       items: [
-        { value: 600, suffix: "+", iconSrc: "/assets/icons/impact/impact-mattresses.png", label: { en: "Mattresses distributed", de: "Matratzen verteilt", nl: "Matrassen verdeeld" } },
-        { value: 2100, suffix: "+", iconSrc: "/assets/icons/impact/impact-blankets.png", label: { en: "Blankets distributed", de: "Decken verteilt", nl: "Dekens verdeeld" } },
-        { value: 114, suffix: "", iconSrc: "/assets/icons/impact/impact-wheelchairs.png", label: { en: "Wheelchairs distributed", de: "Rollstühle verteilt", nl: "Rolstoelen verdeeld" } },
-        { value: 1300, suffix: "+", iconSrc: "/assets/icons/impact/impact-school-shoes.png", label: { en: "School shoes distributed", de: "Schulschuhe verteilt", nl: "Schoolschoenen verdeeld" } },
+        { value: 600, suffix: "+", iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-mattresses.png", label: { en: "Mattresses distributed", de: "Matratzen verteilt", nl: "Matrassen verdeeld" } },
+        { value: 2100, suffix: "+", iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-blankets.png", label: { en: "Blankets distributed", de: "Decken verteilt", nl: "Dekens verdeeld" } },
+        { value: 114, suffix: "", iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-wheelchairs.png", label: { en: "Wheelchairs distributed", de: "Rollstühle verteilt", nl: "Rolstoelen verdeeld" } },
+        { value: 1300, suffix: "+", iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-school-shoes.png", label: { en: "School shoes distributed", de: "Schulschuhe verteilt", nl: "Schoolschoenen verdeeld" } },
       ],
     },
     closing: {
@@ -297,7 +297,7 @@ const COPY: Record<Lang, Copy> = {
       items: [
         { icon: "Utensils", label: "Lebensmittelhilfe in Notlagen" },
         { icon: "Bed", label: "Decken" },
-        { icon: "Bed", label: "Matratzen" },
+        { icon: "Mattress", label: "Matratzen" },
         { icon: "Footprints", label: "Schulschuhe" },
         { icon: "Accessibility", label: "Rollstühle" },
         { icon: "Shirt", label: "Kleidung oder grundlegende Haushaltsgegenstände" },
@@ -369,10 +369,10 @@ const COPY: Record<Lang, Copy> = {
     impact: {
       title: "Was Ihre Unterstützung möglich macht",
       items: [
-        { value: 600, suffix: "+", iconSrc: "/assets/icons/impact/impact-mattresses.png", label: { en: "Mattresses distributed", de: "Matratzen verteilt", nl: "Matrassen verdeeld" } },
-        { value: 2100, suffix: "+", iconSrc: "/assets/icons/impact/impact-blankets.png", label: { en: "Blankets distributed", de: "Decken verteilt", nl: "Dekens verdeeld" } },
-        { value: 114, suffix: "", iconSrc: "/assets/icons/impact/impact-wheelchairs.png", label: { en: "Wheelchairs distributed", de: "Rollstühle verteilt", nl: "Rolstoelen verdeeld" } },
-        { value: 1300, suffix: "+", iconSrc: "/assets/icons/impact/impact-school-shoes.png", label: { en: "School shoes distributed", de: "Schulschuhe verteilt", nl: "Schoolschoenen verdeeld" } },
+        { value: 600, suffix: "+", iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-mattresses.png", label: { en: "Mattresses distributed", de: "Matratzen verteilt", nl: "Matrassen verdeeld" } },
+        { value: 2100, suffix: "+", iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-blankets.png", label: { en: "Blankets distributed", de: "Decken verteilt", nl: "Dekens verdeeld" } },
+        { value: 114, suffix: "", iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-wheelchairs.png", label: { en: "Wheelchairs distributed", de: "Rollstühle verteilt", nl: "Rolstoelen verdeeld" } },
+        { value: 1300, suffix: "+", iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-school-shoes.png", label: { en: "School shoes distributed", de: "Schulschuhe verteilt", nl: "Schoolschoenen verdeeld" } },
       ],
     },
     closing: {
@@ -434,7 +434,7 @@ const COPY: Record<Lang, Copy> = {
       items: [
         { icon: "Utensils", label: "Noodvoedselhulp" },
         { icon: "Bed", label: "Dekens" },
-        { icon: "Bed", label: "Matrassen" },
+        { icon: "Mattress", label: "Matrassen" },
         { icon: "Footprints", label: "Schoolschoenen" },
         { icon: "Accessibility", label: "Rolstoelen" },
         { icon: "Shirt", label: "Kleding of basisbenodigdheden voor het huishouden" },
@@ -506,10 +506,10 @@ const COPY: Record<Lang, Copy> = {
     impact: {
       title: "Wat uw steun mogelijk maakt",
       items: [
-        { value: 600, suffix: "+", iconSrc: "/assets/icons/impact/impact-mattresses.png", label: { en: "Mattresses distributed", de: "Matratzen verteilt", nl: "Matrassen verdeeld" } },
-        { value: 2100, suffix: "+", iconSrc: "/assets/icons/impact/impact-blankets.png", label: { en: "Blankets distributed", de: "Decken verteilt", nl: "Dekens verdeeld" } },
-        { value: 114, suffix: "", iconSrc: "/assets/icons/impact/impact-wheelchairs.png", label: { en: "Wheelchairs distributed", de: "Rollstühle verteilt", nl: "Rolstoelen verdeeld" } },
-        { value: 1300, suffix: "+", iconSrc: "/assets/icons/impact/impact-school-shoes.png", label: { en: "School shoes distributed", de: "Schulschuhe verteilt", nl: "Schoolschoenen verdeeld" } },
+        { value: 600, suffix: "+", iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-mattresses.png", label: { en: "Mattresses distributed", de: "Matratzen verteilt", nl: "Matrassen verdeeld" } },
+        { value: 2100, suffix: "+", iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-blankets.png", label: { en: "Blankets distributed", de: "Decken verteilt", nl: "Dekens verdeeld" } },
+        { value: 114, suffix: "", iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-wheelchairs.png", label: { en: "Wheelchairs distributed", de: "Rollstühle verteilt", nl: "Rolstoelen verdeeld" } },
+        { value: 1300, suffix: "+", iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-school-shoes.png", label: { en: "School shoes distributed", de: "Schulschuhe verteilt", nl: "Schoolschoenen verdeeld" } },
       ],
     },
     closing: {
@@ -526,14 +526,32 @@ const COPY: Record<Lang, Copy> = {
   },
 };
 
-/* ---------- icon registry ---------- */
-const ICONS: Record<string, typeof Heart> = {
-  Heart, Users, MapPin, Building2, Truck, HandHeart, ShieldAlert, Package, Flame,
-  Home, Droplets, Stethoscope, Footprints, Accessibility, Shirt, Bed, LifeBuoy, Compass, Utensils,
+/* ---------- icon registry (custom PNGs) ---------- */
+const DR_ICON_BASE = "/assets/icons/projects/disaster-relief";
+
+const SNAPSHOT_ICON_PATHS = [
+  `${DR_ICON_BASE}/disaster-relief-project-and-after-support.png`,
+  `${DR_ICON_BASE}/disaster-relief-focus.png`,
+  `${DR_ICON_BASE}/disaster-relief-location.png`,
+  `${DR_ICON_BASE}/disaster-relief-core-support.png`,
+  `${DR_ICON_BASE}/disaster-relief-how-we-respond.png`,
+  `${DR_ICON_BASE}/disaster-relief-donation-focus.png`,
+];
+
+const DONATION_ICON_PATHS: Record<string, string> = {
+  Utensils: `${DR_ICON_BASE}/disaster-relief-emergency-food-support.png`,
+  Bed: `${DR_ICON_BASE}/disaster-relief-blankets.png`,
+  Mattress: `${DR_ICON_BASE}/disaster-relief-mattresses.png`,
+  Footprints: `${DR_ICON_BASE}/disaster-relief-school-shoes.png`,
+  Accessibility: `${DR_ICON_BASE}/disaster-relief-wheelchairs.png`,
+  Shirt: `${DR_ICON_BASE}/disaster-relief-clothing-basic-household-support.png`,
+  Package: `${DR_ICON_BASE}/disaster-relief-clothing-basic-household-support.png`,
+  Truck: `${DR_ICON_BASE}/disaster-relief-transport-coordination.png`,
+  Flame: `${DR_ICON_BASE}/disaster-relief-project-and-after-support.png`,
+  Stethoscope: `${DR_ICON_BASE}/disaster-relief-urgent-medical-care.png`,
+  Compass: `${DR_ICON_BASE}/disaster-relief-how-we-respond.png`,
 };
 
-
-const SNAPSHOT_ICONS = [LifeBuoy, HandHeart, MapPin, Package, Compass, Heart];
 
 function SparkleDoodle({ className = "h-5 w-5 text-[var(--ithemba-yellow)]" }) {
   return <Sparkles className={className} aria-hidden />;
@@ -671,12 +689,16 @@ function Snapshot({ c }: { c: Copy }) {
         </div>
         <div className="mt-14 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-4">
           {c.snapshot.facts.map((f, i) => {
-            const Icon = SNAPSHOT_ICONS[i] ?? HandHeart;
+            const iconSrc = SNAPSHOT_ICON_PATHS[i];
             return (
               <div key={f.label} className="flex flex-col items-center text-center">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white shadow-md ring-1 ring-sky-200">
-                  <Icon className="h-7 w-7 text-[var(--ithemba-blue-dark)]" />
-                </div>
+                <img
+                  src={iconSrc}
+                  alt=""
+                  aria-hidden
+                  className="h-16 w-16 md:h-20 md:w-20 object-contain"
+                  loading="lazy"
+                />
                 <div className="mt-3 text-[11px] font-semibold uppercase tracking-wide text-foreground/60">{f.label}</div>
                 <div className="mt-1 font-display text-base font-extrabold leading-tight text-[var(--ithemba-blue-dark)]">{f.value}</div>
               </div>
@@ -734,15 +756,19 @@ function Provide({ c }: { c: Copy }) {
           <SectionHeading eyebrow={c.provide.eyebrow} title={c.provide.title} />
           <p className="mt-5 text-lg leading-relaxed text-foreground/85">{c.provide.intro}</p>
         </div>
-        <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 md:grid-cols-3">
+        <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 md:grid-cols-3">
           {c.provide.items.map((it, i) => {
-            const Icon = ICONS[it.icon] ?? HandHeart;
+            const iconSrc = DONATION_ICON_PATHS[it.icon] ?? `${DR_ICON_BASE}/disaster-relief-core-support.png`;
             return (
-              <div key={i} className="flex items-start gap-4 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-sky-100">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--ithemba-blue-dark)]/10 ring-1 ring-[var(--ithemba-blue-dark)]/15">
-                  <Icon className="h-6 w-6 text-[var(--ithemba-blue-dark)]" />
-                </div>
-                <div className="text-sm font-medium leading-snug text-[var(--ithemba-blue-dark)]">{it.label}</div>
+              <div key={i} className="flex flex-col items-center text-center">
+                <img
+                  src={iconSrc}
+                  alt=""
+                  aria-hidden
+                  className="h-16 w-16 md:h-20 md:w-20 object-contain"
+                  loading="lazy"
+                />
+                <div className="mt-3 text-sm font-medium leading-snug text-[var(--ithemba-blue-dark)]">{it.label}</div>
               </div>
             );
           })}
@@ -848,12 +874,16 @@ function DonationSupport({ c }: { c: Copy }) {
         </div>
         <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 md:grid-cols-4">
           {c.donation.items.map((it, i) => {
-            const Icon = ICONS[it.icon] ?? HandHeart;
+            const iconSrc = DONATION_ICON_PATHS[it.icon] ?? `${DR_ICON_BASE}/disaster-relief-donation-focus.png`;
             return (
               <div key={i} className="flex flex-col items-center text-center">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white shadow-md ring-1 ring-sky-200 md:h-20 md:w-20">
-                  <Icon className="h-7 w-7 text-[var(--ithemba-blue-dark)] md:h-8 md:w-8" />
-                </div>
+                <img
+                  src={iconSrc}
+                  alt=""
+                  aria-hidden
+                  className="h-16 w-16 md:h-20 md:w-20 object-contain"
+                  loading="lazy"
+                />
                 <div className="mt-3 text-sm font-medium leading-snug text-[var(--ithemba-blue-dark)]">{it.label}</div>
               </div>
             );
