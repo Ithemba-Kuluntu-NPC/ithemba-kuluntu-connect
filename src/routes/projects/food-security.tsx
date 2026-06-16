@@ -551,15 +551,31 @@ const COPY: Record<Lang, Copy> = {
   },
 };
 
-/* ---------- icon registry ---------- */
-const ICONS: Record<string, typeof Sprout> = {
-  Sprout, Leaf, Users, GraduationCap, Handshake, Cookie, PackageOpen, Truck,
-  Heart, Building2, MapPin, Award, UtensilsCrossed, Soup, Baby, Flame, HandHeart,
-  ShieldAlert, Package, Utensils,
-};
+/* ---------- custom icon paths ---------- */
+const FS_ICON_BASE = "/assets/icons/projects/food-security";
 
-/* snapshot fact icons (index-aligned) */
-const SNAPSHOT_ICONS = [UtensilsCrossed, HandHeart, MapPin, Soup, Users, Building2, Heart];
+/* snapshot fact icons (index-aligned with snapshot.facts) */
+const SNAPSHOT_ICON_PATHS = [
+  `${FS_ICON_BASE}/food-security-project.png`,
+  `${FS_ICON_BASE}/food-security-focus.png`,
+  `${FS_ICON_BASE}/food-security-location.png`,
+  `${FS_ICON_BASE}/food-security-core-support.png`,
+  `${FS_ICON_BASE}/food-security-community-role.png`,
+  `${FS_ICON_BASE}/food-security-connected-projects.png`,
+  `${FS_ICON_BASE}/food-security-donation-focus.png`,
+];
+
+/* donation icons (keyed by the icon label used in copy) */
+const DONATION_ICON_PATHS: Record<string, string> = {
+  PackageOpen: `${FS_ICON_BASE}/food-security-core-support.png`,
+  Soup: `${FS_ICON_BASE}/food-security-donation-focus.png`,
+  Utensils: `${FS_ICON_BASE}/food-security-project.png`,
+  Sprout: `${FS_ICON_BASE}/food-security-greenhouse-growing.png`,
+  Flame: `${FS_ICON_BASE}/food-security-cooking-supplies.png`,
+  Truck: `${FS_ICON_BASE}/food-security-transport-distribution.png`,
+  Users: `${FS_ICON_BASE}/food-security-community-role.png`,
+  ShieldAlert: `${FS_ICON_BASE}/food-security-emergency-food-support.png`,
+};
 
 function SparkleDoodle({ className = "h-5 w-5 text-[var(--ithemba-yellow)]" }) {
   return <Sparkles className={className} aria-hidden />;
@@ -696,12 +712,10 @@ function Snapshot({ c }: { c: Copy }) {
         </div>
         <div className="mt-14 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-4">
           {c.snapshot.facts.map((f, i) => {
-            const Icon = SNAPSHOT_ICONS[i] ?? UtensilsCrossed;
+            const iconSrc = SNAPSHOT_ICON_PATHS[i];
             return (
               <div key={f.label} className="flex flex-col items-center text-center">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white shadow-md ring-1 ring-orange-200">
-                  <Icon className="h-7 w-7 text-orange-700" />
-                </div>
+                <img src={iconSrc} alt="" aria-hidden className="h-16 w-16 object-contain md:h-20 md:w-20" />
                 <div className="mt-3 text-[11px] font-semibold uppercase tracking-wide text-foreground/60">{f.label}</div>
                 <div className="mt-1 font-display text-base font-extrabold leading-tight text-[var(--ithemba-blue-dark)]">{f.value}</div>
               </div>
@@ -945,12 +959,10 @@ function DonationSupport({ c }: { c: Copy }) {
         </div>
         <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 md:grid-cols-4">
           {c.donation.items.map((it) => {
-            const Icon = ICONS[it.icon] ?? UtensilsCrossed;
+            const iconSrc = DONATION_ICON_PATHS[it.icon] ?? `${FS_ICON_BASE}/food-security-project.png`;
             return (
               <div key={it.label} className="flex flex-col items-center text-center">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white shadow-md ring-1 ring-orange-200 md:h-20 md:w-20">
-                  <Icon className="h-7 w-7 text-orange-700 md:h-8 md:w-8" />
-                </div>
+                <img src={iconSrc} alt="" aria-hidden className="h-16 w-16 object-contain md:h-20 md:w-20" />
                 <div className="mt-3 text-sm font-medium leading-snug text-[var(--ithemba-blue-dark)]">{it.label}</div>
               </div>
             );
