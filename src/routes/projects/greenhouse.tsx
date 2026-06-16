@@ -824,31 +824,23 @@ function Partnership({ c }: { c: Copy }) {
           {c.partnership.body.map((p, i) => <p key={i}>{p}</p>)}
         </div>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {c.partnership.roles.map((r, i) => (
-            <div
-              key={r.name}
-              className="relative flex flex-col items-center rounded-3xl bg-white p-7 text-center shadow-md ring-1 ring-black/5"
-            >
-              <div className="flex h-24 w-full items-center justify-center">
+        <div className="mt-16 grid gap-14 md:grid-cols-3 md:gap-10">
+          {c.partnership.roles.map((r) => (
+            <div key={r.name} className="flex flex-col items-center text-center">
+              <div className="flex h-32 w-full items-center justify-center md:h-36">
                 {r.logo ? (
                   <img
                     src={r.logo}
                     alt={`${r.name} logo`}
-                    className="max-h-20 max-w-[180px] object-contain"
+                    className="max-h-28 max-w-[260px] object-contain md:max-h-32 md:max-w-[300px]"
                     loading="lazy"
                   />
                 ) : (
-                  <Building2 className="h-12 w-12 text-[var(--ithemba-blue)]" />
+                  <Building2 className="h-20 w-20 text-[var(--ithemba-blue)]" />
                 )}
               </div>
-              <div className="mt-4 font-display text-lg font-bold text-[var(--ithemba-blue-dark)]">{r.name}</div>
-              <div className="mt-2 text-sm leading-snug text-foreground/75">{r.role}</div>
-              {i < c.partnership.roles.length - 1 && (
-                <div className="absolute -bottom-3 left-1/2 hidden -translate-x-1/2 md:block">
-                  <div className="h-6 w-6 rotate-45 rounded-md bg-[var(--ithemba-yellow)]/40" />
-                </div>
-              )}
+              <div className="mt-6 font-display text-xl font-bold text-[var(--ithemba-blue-dark)]">{r.name}</div>
+              <div className="mt-2 max-w-xs text-sm leading-snug text-foreground/75">{r.role}</div>
             </div>
           ))}
         </div>
