@@ -3007,6 +3007,20 @@ function PureFlowPage() {
       <Partnership c={c} />
       <DonationSupport c={c} />
       <Monthly c={c} />
+      {/* soft wave between donation and final Safe water CTA */}
+      <div style={{ background: "var(--ithemba-blue-deepest)" }}>
+        <svg className="block w-full" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden>
+          <path
+            d="M0,55 C240,90 480,15 720,45 C960,75 1200,15 1440,50 L1440,90 L0,90 Z"
+            fill="var(--ithemba-blue-dark)"
+            opacity="0.6"
+          />
+          <path
+            d="M0,65 C240,95 480,30 720,60 C960,90 1200,30 1440,65 L1440,90 L0,90 Z"
+            fill="var(--ithemba-blue-dark)"
+          />
+        </svg>
+      </div>
       <Closing c={c} />
     </>
   );
