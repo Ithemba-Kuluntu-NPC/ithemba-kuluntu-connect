@@ -712,12 +712,10 @@ function Snapshot({ c }: { c: Copy }) {
         </div>
         <div className="mt-14 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-4">
           {c.snapshot.facts.map((f, i) => {
-            const Icon = SNAPSHOT_ICONS[i] ?? UtensilsCrossed;
+            const iconSrc = SNAPSHOT_ICON_PATHS[i];
             return (
               <div key={f.label} className="flex flex-col items-center text-center">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white shadow-md ring-1 ring-orange-200">
-                  <Icon className="h-7 w-7 text-orange-700" />
-                </div>
+                <img src={iconSrc} alt="" aria-hidden className="h-16 w-16 object-contain md:h-20 md:w-20" />
                 <div className="mt-3 text-[11px] font-semibold uppercase tracking-wide text-foreground/60">{f.label}</div>
                 <div className="mt-1 font-display text-base font-extrabold leading-tight text-[var(--ithemba-blue-dark)]">{f.value}</div>
               </div>
