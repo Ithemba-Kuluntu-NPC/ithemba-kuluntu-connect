@@ -52,7 +52,7 @@ import {
   PowerOff,
   FlaskConical,
   Hammer,
-  Spray,
+  SprayCan,
   type LucideIcon,
 } from "lucide-react";
 import { assets as siteAssets } from "@/data/assets";
