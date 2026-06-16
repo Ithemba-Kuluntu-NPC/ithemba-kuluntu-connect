@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/accordion";
 import {
   ArrowLeft,
+  ArrowRight,
   Heart,
   Sparkles,
   Sun,
@@ -47,8 +48,14 @@ import {
   BookOpen,
   Sparkle,
   CheckCircle2,
+  Zap,
+  PowerOff,
+  FlaskConical,
+  Hammer,
+  Spray,
   type LucideIcon,
 } from "lucide-react";
+import { assets as siteAssets } from "@/data/assets";
 import { useLang } from "@/components/site/LanguageProvider";
 import { SmartImage, SmartLogo } from "@/components/site/Asset";
 import { DonationWidget } from "@/components/blocks/DonationWidget";
