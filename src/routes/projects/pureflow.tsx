@@ -55,7 +55,7 @@ import {
   SprayCan,
   type LucideIcon,
 } from "lucide-react";
-import { assets as siteAssets } from "@/data/assets";
+
 import { useLang } from "@/components/site/LanguageProvider";
 import { SmartImage, SmartLogo } from "@/components/site/Asset";
 import { DonationWidget } from "@/components/blocks/DonationWidget";
