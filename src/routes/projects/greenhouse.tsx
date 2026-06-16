@@ -21,6 +21,7 @@ import {
   Hammer,
   Truck,
   ArrowDown,
+  ArrowRight,
   PlayCircle,
   Star,
   Award,
