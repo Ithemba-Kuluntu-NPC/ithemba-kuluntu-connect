@@ -551,15 +551,31 @@ const COPY: Record<Lang, Copy> = {
   },
 };
 
-/* ---------- icon registry ---------- */
-const ICONS: Record<string, typeof Sprout> = {
-  Sprout, Leaf, Users, GraduationCap, Handshake, Cookie, PackageOpen, Truck,
-  Heart, Building2, MapPin, Award, UtensilsCrossed, Soup, Baby, Flame, HandHeart,
-  ShieldAlert, Package, Utensils,
-};
+/* ---------- custom icon paths ---------- */
+const FS_ICON_BASE = "/assets/icons/projects/food-security";
 
-/* snapshot fact icons (index-aligned) */
-const SNAPSHOT_ICONS = [UtensilsCrossed, HandHeart, MapPin, Soup, Users, Building2, Heart];
+/* snapshot fact icons (index-aligned with snapshot.facts) */
+const SNAPSHOT_ICON_PATHS = [
+  `${FS_ICON_BASE}/food-security-project.png`,
+  `${FS_ICON_BASE}/food-security-focus.png`,
+  `${FS_ICON_BASE}/food-security-location.png`,
+  `${FS_ICON_BASE}/food-security-core-support.png`,
+  `${FS_ICON_BASE}/food-security-community-role.png`,
+  `${FS_ICON_BASE}/food-security-connected-projects.png`,
+  `${FS_ICON_BASE}/food-security-donation-focus.png`,
+];
+
+/* donation icons (keyed by the icon label used in copy) */
+const DONATION_ICON_PATHS: Record<string, string> = {
+  PackageOpen: `${FS_ICON_BASE}/food-security-core-support.png`,
+  Soup: `${FS_ICON_BASE}/food-security-donation-focus.png`,
+  Utensils: `${FS_ICON_BASE}/food-security-project.png`,
+  Sprout: `${FS_ICON_BASE}/food-security-greenhouse-growing.png`,
+  Flame: `${FS_ICON_BASE}/food-security-cooking-supplies.png`,
+  Truck: `${FS_ICON_BASE}/food-security-transport-distribution.png`,
+  Users: `${FS_ICON_BASE}/food-security-community-role.png`,
+  ShieldAlert: `${FS_ICON_BASE}/food-security-emergency-food-support.png`,
+};
 
 function SparkleDoodle({ className = "h-5 w-5 text-[var(--ithemba-yellow)]" }) {
   return <Sparkles className={className} aria-hidden />;
