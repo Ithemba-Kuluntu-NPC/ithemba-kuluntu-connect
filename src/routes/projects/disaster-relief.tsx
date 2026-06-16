@@ -434,7 +434,7 @@ const COPY: Record<Lang, Copy> = {
       items: [
         { icon: "Utensils", label: "Noodvoedselhulp" },
         { icon: "Bed", label: "Dekens" },
-        { icon: "Bed", label: "Matrassen" },
+        { icon: "Mattress", label: "Matrassen" },
         { icon: "Footprints", label: "Schoolschoenen" },
         { icon: "Accessibility", label: "Rolstoelen" },
         { icon: "Shirt", label: "Kleding of basisbenodigdheden voor het huishouden" },
