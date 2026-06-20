@@ -1,0 +1,204 @@
+PARTNERS PAGE - GERMAN CONTENT V1.0
+
+HERO SECTION
+
+Script heading:
+Partnerschaften
+
+Main heading:
+Partner von iThemba Kuluntu werden
+
+Hero text:
+Wir arbeiten mit Partnern zusammen, die praktische, gemeindenahe Veränderung in Pondoland und darüber hinaus unterstützen möchten. Gemeinsam können wir sicheres Wasser, frühkindliche Bildung, Ernährungssicherheit, Tierschutz, Katastrophenhilfe und lokale Lebensgrundlagen stärken.
+
+Alternative shorter hero text:
+Starke Partnerschaften helfen, praktische Fürsorge weiterzutragen.
+
+Hero buttons:
+Partner werden
+Unsere Projekte entdecken
+
+Hero video note:
+Ein Video-Hero verwenden, wenn geeignetes Videomaterial verfügbar ist. Wenn noch kein finales Partner-Video vorhanden ist, einen hochwertigen Video-Platzhalter nutzen, der Gemeindearbeit, Projektumsetzung, lokale Teams, Kinder, Wasser, Lebensmittelhilfe und Zusammenarbeit mit Partnern zeigt.
+
+SECTION 1 - WHY PARTNER WITH US
+
+Script heading:
+Gemeinsam
+
+Main heading:
+Praktische Wirkung, getragen von lokalem Vertrauen
+
+Text:
+iThemba Kuluntu ist tief in den Gemeinschaften verwurzelt, mit denen wir arbeiten. Unsere Arbeit ist praktisch, beziehungsorientiert und an den realen Bedürfnissen vor Ort ausgerichtet.
+
+Partnerschaften helfen uns, schneller zu handeln, mehr Familien zu erreichen und langfristige Lösungen aufzubauen, denen Gemeinschaften vertrauen können.
+
+Warum Partner mit uns arbeiten:
+
+Lokales Vertrauen und verlässliche Umsetzung vor Ort
+
+Von Frauen mitgetragene, gemeindenahe Leitung
+
+Transparente Berichterstattung und Verantwortlichkeit
+
+Verbundene Programme in den Bereichen Wasser, Ernährung, Bildung, Fürsorge und Lebensgrundlagen
+
+Nachgewiesene Fähigkeit, auf akute Bedarfe zu reagieren
+
+Langfristige Präsenz in Pondoland
+
+SECTION 2 - PARTNERSHIP OPPORTUNITIES
+
+Script heading:
+Wo Partner helfen
+
+Main heading:
+Unterstützen Sie einen Projektbereich, der zu Ihrer Mission passt
+
+Text:
+Partner können einen einzelnen Projektbereich unterstützen oder dazu beitragen, die Arbeit von iThemba Kuluntu insgesamt zu stärken.
+
+Projektbereiche für Partnerschaften:
+
+Frühkindliche Bildung
+
+Sicheres Wasser und WASH-Bildung
+
+Ernährungssicherheit
+
+Gewächshaus und lokale Ernährung
+
+Tierschutz
+
+Katastrophenhilfe
+
+Gemeindegesundheit
+
+Kompetenzen und Lebensgrundlagen
+
+Text:
+Jede Partnerschaft wird entlang praktischer Bedarfe, klarer Ziele und verantwortlicher Umsetzung gestaltet.
+
+SECTION 3 - OUR CURRENT PARTNERS
+
+Script heading:
+Unsere Partner
+
+Main heading:
+Organisationen, die mit uns gehen
+
+Text:
+Wir sind dankbar für die Partner, die diese Arbeit möglich machen, durch Finanzierung, Lebensmittelhilfe, technische Expertise, Schulungen, Notfallhilfe, Unterstützung im Tierschutz und langfristige Zusammenarbeit.
+
+Current partner logos to display:
+
+FNB
+
+Fresh Life Produce
+
+Gift of the Givers
+
+Nando’s
+
+Rise Against Hunger Africa
+
+SA Harvest
+
+Star Foundation
+
+Tzu Chi Foundation
+
+Küstenhund e.V.
+
+Text:
+Diese Partnerschaften helfen, Fürsorge in konkrete Wirkung zu übersetzen: Mahlzeiten werden ausgegeben, Wassersysteme geliefert, Kinder unterstützt, Tiere behandelt, Familien erreicht und Gemeinschaften gestärkt.
+
+SECTION 4 - HOW PARTNERSHIP CAN WORK
+
+Script heading:
+So kann Zusammenarbeit aussehen
+
+Main heading:
+Einfach, klar und verantwortungsvoll
+
+Text:
+Eine Partnerschaft kann mit einem Projekt, einer Kampagne, einer Spende, einem technischen Beitrag oder einem gemeinsamen Rollout beginnen.
+
+Formen der Zusammenarbeit:
+
+Projektförderung
+
+Monatliche oder jährliche Unterstützung
+
+Corporate Social Investment
+
+Lebensmittel-, Material- oder Ausstattungsspenden
+
+Technische Expertise und Schulungen
+
+Unterstützung in Not- und Krisensituationen
+
+Öffentlichkeitsarbeit und Medienkooperation
+
+Ehrenamtliche oder kompetenzbasierte Unterstützung
+
+Text:
+Wir schätzen Partnerschaften, die praktisch, respektvoll und auf echte Ergebnisse für die Gemeinschaften ausgerichtet sind.
+
+SECTION 5 - WHAT PARTNERS CAN EXPECT
+
+Script heading:
+Vertrauen
+
+Main heading:
+Klare Kommunikation und verantwortliche Nachverfolgung
+
+Text:
+Partner sollen wissen, wohin ihre Unterstützung geht und was sie konkret möglich macht.
+
+Partner können erwarten:
+
+Einen klaren Projektfokus
+
+Praktische Umsetzung durch lokale Teams
+
+Updates aus dem Feld
+
+Fotos, Geschichten oder Berichte, wo passend
+
+Ehrliche Kommunikation über Bedarfe und Herausforderungen
+
+Respekt gegenüber Gemeinschaften und Begünstigten
+
+Eine Zusammenarbeit, die auf Vertrauen und gemeinsamer Zielsetzung beruht
+
+SECTION 6 - CLOSING CTA
+
+Script heading:
+Lassen Sie uns gemeinsam aufbauen
+
+Main heading:
+Ihre Partnerschaft kann Fürsorge weitertragen
+
+Text:
+Ob Stiftung, Unternehmen, Kirche, Schule, Organisation oder private Unterstützerin oder privater Unterstützer: Ihre Partnerschaft kann praktische Arbeit stärken, auf die Gemeinschaften angewiesen sind.
+
+Gemeinsam können wir Kinder, Familien, Tiere und lokale Teams mit direkter, würdevoller und vertrauensvoller Unterstützung begleiten.
+
+Buttons:
+Partner werden
+Kontakt aufnehmen
+Unsere Projekte entdecken
+
+INTERNAL NOTES BEFORE LAUNCH
+
+Finale Partnerliste und Logo-Dateien bestätigen.
+
+Bestätigen, ob alle genannten Partner öffentlich angezeigt werden sollen.
+
+Bestätigen, ob Partnerlogos mit den jeweiligen Partner-Websites verlinkt werden sollen.
+
+Bestätigen, ob Küstenhund e.V. auf der allgemeinen Partnerseite oder nur auf der Pondo Dogs Seite erscheinen soll.
+
+Bestätigen, ob Rossi ergänzt werden soll, sobald Logo und Partnerschaftsformulierung bereit sind.

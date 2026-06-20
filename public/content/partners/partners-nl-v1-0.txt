@@ -1,0 +1,204 @@
+PARTNERS PAGE - DUTCH CONTENT V1.0
+
+HERO SECTION
+
+Script heading:
+Partnerschappen
+
+Main heading:
+Word partner van iThemba Kuluntu
+
+Hero text:
+Wij werken samen met partners die praktische, gemeenschapsgerichte verandering in Pondoland en daarbuiten willen versterken. Samen kunnen we veilig water, vroege kinderontwikkeling, voedselzekerheid, dierenwelzijn, noodhulp en lokale bestaansmogelijkheden ondersteunen.
+
+Alternative shorter hero text:
+Sterke partnerschappen helpen praktische zorg verder reiken.
+
+Hero buttons:
+Word partner
+Ontdek onze projecten
+
+Hero video note:
+Gebruik een video hero wanneer geschikt videomateriaal beschikbaar is. Als er nog geen definitieve partner-video is, gebruik dan een hoogwaardige video-placeholder die gemeenschapswerk, projectuitvoering, lokale teams, kinderen, water, voedselhulp en samenwerking met partners laat zien.
+
+SECTION 1 - WHY PARTNER WITH US
+
+Script heading:
+Samen
+
+Main heading:
+Praktische impact, gedragen door lokaal vertrouwen
+
+Text:
+iThemba Kuluntu is diep geworteld in de gemeenschappen waarmee we werken. Onze aanpak is praktisch, relationeel en gebaseerd op echte behoeften ter plaatse.
+
+Partnerschappen helpen ons sneller te handelen, meer families te bereiken en duurzame oplossingen op te bouwen die door gemeenschappen worden vertrouwd.
+
+Waarom partners met ons samenwerken:
+
+Lokaal vertrouwen en betrouwbare uitvoering op de grond
+
+Door vrouwen gedragen, gemeenschapsgerichte leiding
+
+Transparante rapportage en verantwoording
+
+Verbonden programma’s rond water, voeding, educatie, zorg en bestaansmogelijkheden
+
+Bewezen vermogen om op urgente behoeften te reageren
+
+Langdurige aanwezigheid in Pondoland
+
+SECTION 2 - PARTNERSHIP OPPORTUNITIES
+
+Script heading:
+Waar partners helpen
+
+Main heading:
+Steun een projectgebied dat past bij uw missie
+
+Text:
+Partners kunnen één specifiek projectgebied ondersteunen of bijdragen aan de bredere werking van iThemba Kuluntu.
+
+Projectgebieden voor partnerschappen:
+
+Vroege kinderontwikkeling
+
+Veilig water en WASH-educatie
+
+Voedselzekerheid
+
+Greenhouse en lokale voeding
+
+Dierenwelzijn
+
+Noodhulp
+
+Gemeenschapsgezondheid
+
+Vaardigheden en bestaansmogelijkheden
+
+Text:
+Elke samenwerking wordt opgebouwd rond praktische behoeften, duidelijke doelen en verantwoordelijke uitvoering.
+
+SECTION 3 - OUR CURRENT PARTNERS
+
+Script heading:
+Onze partners
+
+Main heading:
+Organisaties die met ons meelopen
+
+Text:
+Wij zijn dankbaar voor de partners die dit werk mogelijk maken via financiering, voedselsteun, technische expertise, training, noodhulp, ondersteuning voor dierenwelzijn en langdurige samenwerking.
+
+Current partner logos to display:
+
+FNB
+
+Fresh Life Produce
+
+Gift of the Givers
+
+Nando’s
+
+Rise Against Hunger Africa
+
+SA Harvest
+
+Star Foundation
+
+Tzu Chi Foundation
+
+Küstenhund e.V.
+
+Text:
+Deze partnerschappen helpen zorg om te zetten in concrete actie: maaltijden worden verstrekt, watersystemen geleverd, kinderen ondersteund, dieren behandeld, families bereikt en gemeenschappen versterkt.
+
+SECTION 4 - HOW PARTNERSHIP CAN WORK
+
+Script heading:
+Hoe samenwerking eruit kan zien
+
+Main heading:
+Eenvoudig, helder en verantwoord
+
+Text:
+Een partnerschap kan beginnen met één project, één campagne, één donatie, één technische bijdrage of één gezamenlijke uitrol.
+
+Vormen van samenwerking:
+
+Projectsponsoring
+
+Maandelijkse of jaarlijkse steun
+
+Corporate social investment
+
+Steun in de vorm van voedsel, materialen of uitrusting
+
+Technische expertise en training
+
+Ondersteuning bij noodsituaties en crisisrespons
+
+Bewustwording en mediasamenwerking
+
+Vrijwillige of vaardigheidsgerichte ondersteuning
+
+Text:
+Wij waarderen partnerschappen die praktisch, respectvol en gericht zijn op echte resultaten voor gemeenschappen.
+
+SECTION 5 - WHAT PARTNERS CAN EXPECT
+
+Script heading:
+Vertrouwen
+
+Main heading:
+Heldere communicatie en zorgvuldige opvolging
+
+Text:
+Partners moeten weten waar hun steun naartoe gaat en wat die concreet mogelijk maakt.
+
+Partners kunnen rekenen op:
+
+Een duidelijke projectfocus
+
+Praktische uitvoering door lokale teams
+
+Updates uit het veld
+
+Foto’s, verhalen of rapportages waar passend
+
+Eerlijke communicatie over behoeften en uitdagingen
+
+Respect voor gemeenschappen en begunstigden
+
+Een samenwerking gebouwd op vertrouwen en gedeelde doelgerichtheid
+
+SECTION 6 - CLOSING CTA
+
+Script heading:
+Laten we samen bouwen
+
+Main heading:
+Uw partnerschap kan zorg verder laten reiken
+
+Text:
+Of u nu een stichting, bedrijf, kerk, school, organisatie of individuele ondersteuner bent: uw partnerschap kan praktisch werk versterken waarop gemeenschappen vertrouwen.
+
+Samen kunnen we kinderen, families, dieren en lokale teams ondersteunen met zorg die direct, waardig en geworteld is in vertrouwen.
+
+Buttons:
+Word partner
+Neem contact op
+Ontdek onze projecten
+
+INTERNAL NOTES BEFORE LAUNCH
+
+Definitieve partnerlijst en logobestanden bevestigen.
+
+Bevestigen of alle genoemde partners openbaar getoond mogen worden.
+
+Bevestigen of partnerlogo’s naar de websites van de partners moeten linken.
+
+Bevestigen of Küstenhund e.V. op de algemene partnerpagina moet verschijnen of alleen op de Pondo Dogs pagina.
+
+Bevestigen of Rossi moet worden toegevoegd zodra logo en partnerschapsformulering klaar zijn.

@@ -1,0 +1,204 @@
+PARTNERS PAGE - ENGLISH CONTENT V1.0
+
+HERO SECTION
+
+Script heading:
+Partnerships
+
+Main heading:
+Partner with iThemba Kuluntu
+
+Hero text:
+We work with partners who want to support practical, community-rooted change in Pondoland and beyond. Together, we can strengthen safe water, early childhood development, food security, animal welfare, disaster relief and local livelihoods.
+
+Alternative shorter hero text:
+Strong partnerships help practical care reach further.
+
+Hero buttons:
+Become a Partner
+Explore Our Projects
+
+Hero video note:
+Use a video hero if available. If no final partner video is available yet, use a polished video-style placeholder showing community work, project delivery, local teams, children, water, food support and partner collaboration.
+
+SECTION 1 - WHY PARTNER WITH US
+
+Script heading:
+Together
+
+Main heading:
+Practical impact, carried by local trust
+
+Text:
+iThemba Kuluntu is rooted in the communities we serve. Our work is practical, relationship-based and built around real needs on the ground.
+
+Partnerships help us move faster, reach more families and build long-term solutions that communities can trust.
+
+Why partners work with us:
+
+Local trust and grounded delivery
+
+Women-led and community-rooted leadership
+
+Transparent reporting and accountability
+
+Connected programmes across water, food, learning, care and livelihoods
+
+Proven response capacity
+
+Long-term presence in Pondoland
+
+SECTION 2 - PARTNERSHIP OPPORTUNITIES
+
+Script heading:
+Where partners help
+
+Main heading:
+Support a project area that matches your mission
+
+Text:
+Partners can support one project area or help strengthen the wider work of iThemba Kuluntu.
+
+Project partnership areas:
+
+Early childhood development
+
+Safe water and WASH education
+
+Food security
+
+Greenhouse and local nutrition
+
+Animal welfare
+
+Disaster relief
+
+Community health
+
+Skills and livelihoods
+
+Text:
+Each partnership is shaped around practical needs, clear goals and responsible implementation.
+
+SECTION 3 - OUR CURRENT PARTNERS
+
+Script heading:
+Our partners
+
+Main heading:
+Organisations walking with us
+
+Text:
+We are grateful for the partners who help make this work possible through funding, food support, technical expertise, training, emergency response, animal welfare support and long-term collaboration.
+
+Current partner logos to display:
+
+FNB
+
+Fresh Life Produce
+
+Gift of the Givers
+
+Nando’s
+
+Rise Against Hunger Africa
+
+SA Harvest
+
+Star Foundation
+
+Tzu Chi Foundation
+
+Küstenhund e.V.
+
+Text:
+These partnerships help turn care into action: meals served, water systems delivered, children supported, animals treated, families reached and communities strengthened.
+
+SECTION 4 - HOW PARTNERSHIP CAN WORK
+
+Script heading:
+How it works
+
+Main heading:
+Simple, clear and accountable
+
+Text:
+A partnership can begin with one project, one campaign, one donation, one technical contribution or one shared rollout.
+
+Partnership formats:
+
+Project sponsorship
+
+Monthly or annual support
+
+Corporate social investment
+
+Food, materials or equipment support
+
+Technical expertise and training
+
+Emergency response support
+
+Awareness and media collaboration
+
+Volunteer or skills-based support
+
+Text:
+We value partnerships that are practical, respectful and focused on real outcomes for communities.
+
+SECTION 5 - WHAT PARTNERS CAN EXPECT
+
+Script heading:
+Trust
+
+Main heading:
+Clear communication and responsible follow-up
+
+Text:
+Partners should know where their support goes and what it helps make possible.
+
+Partners can expect:
+
+A clear project focus
+
+Practical implementation through local teams
+
+Updates from the field
+
+Photos, stories or reports where appropriate
+
+Honest communication about needs and challenges
+
+Respect for communities and beneficiaries
+
+A relationship built on trust and shared purpose
+
+SECTION 6 - CLOSING CTA
+
+Script heading:
+Let’s build together
+
+Main heading:
+Your partnership can help care reach further
+
+Text:
+Whether you are a foundation, company, church, school, organisation or individual supporter, your partnership can help strengthen practical work that communities rely on.
+
+Together, we can support children, families, animals and local teams with care that is direct, dignified and rooted in trust.
+
+Buttons:
+Become a Partner
+Contact Us
+Explore Our Projects
+
+INTERNAL NOTES BEFORE LAUNCH
+
+Confirm final partner list and logo files.
+
+Confirm whether all listed partners should appear publicly.
+
+Confirm whether partner logos should link to partner websites.
+
+Confirm whether Küstenhund e.V. should appear on the main Partners page or only on the Pondo Dogs page.
+
+Confirm whether Rossi should be added once logo and partnership wording are ready.
