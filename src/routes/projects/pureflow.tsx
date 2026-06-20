@@ -2703,32 +2703,38 @@ function Focus({ c }: { c: Copy }) {
           ))}
         </div>
 
-        <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-7">
+        <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-4 lg:grid-cols-7">
           {c.focus.items.map((it) => {
-            // Map content icon names to the real focus-area icon files used on the homepage.
-            const focusKey: Record<string, keyof typeof assets.focusAreaIcons | undefined> = {
-              Droplet: "safe-water",
-              HeartPulse: "community-health",
-              GraduationCap: "education",
-              Utensils: "food-security",
-              CloudSun: undefined, // climate resilience — no dedicated focus icon yet
-              Wrench: "skills-livelihoods",
-              HandHeart: "disaster-relief",
+            // Map content icon names to the badge focus-area icons (colorful circular
+            // background with white outline icon) used across project pages.
+            const badgeKey: Record<string, string | undefined> = {
+              Droplet: "safe-water-badge",
+              HeartPulse: "community-health-badge",
+              GraduationCap: "education-badge",
+              Utensils: "food-security-badge",
+              CloudSun: undefined, // climate resilience — no dedicated badge yet
+              Wrench: "skills-livelihoods-badge",
+              HandHeart: "disaster-relief-badge",
             };
-            const key = focusKey[it.icon];
+            const badge = badgeKey[it.icon];
             const Fallback = ICONS[it.icon] ?? Heart;
             return (
               <div key={it.label} className="flex flex-col items-center text-center">
                 <div className="flex h-20 w-20 items-center justify-center md:h-24 md:w-24">
-                  {key ? (
+                  {badge ? (
                     <img
-                      src={assets.focusAreaIcons[key]}
+                      src={`/assets/icons/focus-areas/${badge}.png`}
                       alt=""
                       aria-hidden
-                      className="h-full w-full object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.35)]"
+                      className="h-full w-full object-contain drop-shadow-[0_4px_14px_rgba(0,0,0,0.35)]"
                     />
                   ) : (
-                    <Fallback className="h-12 w-12 text-[var(--ithemba-yellow)] md:h-14 md:w-14" />
+                    <div
+                      className="flex h-full w-full items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-emerald-700 shadow-md ring-2 ring-white/30"
+                      aria-hidden
+                    >
+                      <Fallback className="h-10 w-10 text-white md:h-12 md:w-12" strokeWidth={1.75} />
+                    </div>
                   )}
                 </div>
                 <div className="mt-3 text-xs font-semibold leading-snug text-white md:text-sm">
