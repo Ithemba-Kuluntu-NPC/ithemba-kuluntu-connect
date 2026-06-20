@@ -1839,7 +1839,7 @@ function PageNav({ c }: { c: Copy }) {
 function Impact({ c }: { c: Copy }) {
   return (
     <section id="impact" className="scroll-mt-32">
-      <div className="bg-[var(--ithemba-cream)] pt-16 pb-12">
+      <div className="bg-[var(--ithemba-cream)] pt-16 pb-0">
         <div className="mx-auto max-w-5xl px-4 text-center lg:px-8">
           <SectionHeading eyebrow={c.impact.eyebrow} title={c.impact.title} center />
           <div className="mx-auto mt-5 max-w-3xl space-y-4 text-lg leading-relaxed text-foreground/85">
@@ -2703,32 +2703,38 @@ function Focus({ c }: { c: Copy }) {
           ))}
         </div>
 
-        <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-7">
+        <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-4 lg:grid-cols-7">
           {c.focus.items.map((it) => {
-            // Map content icon names to the real focus-area icon files used on the homepage.
-            const focusKey: Record<string, keyof typeof assets.focusAreaIcons | undefined> = {
-              Droplet: "safe-water",
-              HeartPulse: "community-health",
-              GraduationCap: "education",
-              Utensils: "food-security",
-              CloudSun: undefined, // climate resilience — no dedicated focus icon yet
-              Wrench: "skills-livelihoods",
-              HandHeart: "disaster-relief",
+            // Map content icon names to the badge focus-area icons (colorful circular
+            // background with white outline icon) used across project pages.
+            const badgeKey: Record<string, string | undefined> = {
+              Droplet: "safe-water-badge",
+              HeartPulse: "community-health-badge",
+              GraduationCap: "education-badge",
+              Utensils: "food-security-badge",
+              CloudSun: undefined, // climate resilience — no dedicated badge yet
+              Wrench: "skills-livelihoods-badge",
+              HandHeart: "disaster-relief-badge",
             };
-            const key = focusKey[it.icon];
+            const badge = badgeKey[it.icon];
             const Fallback = ICONS[it.icon] ?? Heart;
             return (
               <div key={it.label} className="flex flex-col items-center text-center">
                 <div className="flex h-20 w-20 items-center justify-center md:h-24 md:w-24">
-                  {key ? (
+                  {badge ? (
                     <img
-                      src={assets.focusAreaIcons[key]}
+                      src={`/assets/icons/focus-areas/${badge}.png`}
                       alt=""
                       aria-hidden
-                      className="h-full w-full object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.35)]"
+                      className="h-full w-full object-contain drop-shadow-[0_4px_14px_rgba(0,0,0,0.35)]"
                     />
                   ) : (
-                    <Fallback className="h-12 w-12 text-[var(--ithemba-yellow)] md:h-14 md:w-14" />
+                    <div
+                      className="flex h-full w-full items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-emerald-700 shadow-md ring-2 ring-white/30"
+                      aria-hidden
+                    >
+                      <Fallback className="h-10 w-10 text-white md:h-12 md:w-12" strokeWidth={1.75} />
+                    </div>
                   )}
                 </div>
                 <div className="mt-3 text-xs font-semibold leading-snug text-white md:text-sm">
@@ -2765,28 +2771,29 @@ function Partnership({ c }: { c: Copy }) {
           </p>
         </div>
 
-        {/* Partner logos — directly on the background, no boxes/borders/shadows */}
-        <div className="mt-12">
-          <div className="text-center text-xs font-semibold uppercase tracking-[0.14em] text-[var(--ithemba-blue)]/70">
+        {/* Partner logos — directly on the background, larger and confident */}
+        <div className="mt-16">
+          <div className="text-center font-display text-lg font-semibold text-[var(--ithemba-blue-dark)] md:text-xl">
             Partners we have already worked with
           </div>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-12 gap-y-8">
+          <div className="mx-auto mt-3 h-px w-24 bg-[var(--ithemba-blue)]/20" aria-hidden />
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-x-14 gap-y-10 md:gap-x-20">
             <img
               src="/assets/logos/partners/nandos-logo.png"
               alt="Nando’s"
-              className="h-14 w-auto object-contain md:h-16"
+              className="h-16 w-auto object-contain md:h-24 lg:h-28"
             />
             <img
               src="/assets/logos/partners/gift-of-the-givers-logo.png"
               alt="Gift of the Givers"
-              className="h-14 w-auto object-contain md:h-16"
+              className="h-16 w-auto object-contain md:h-24 lg:h-28"
             />
             <img
               src="/assets/logos/partners/star-foundation-logo.png"
               alt="Star Foundation"
-              className="h-14 w-auto object-contain md:h-16"
+              className="h-16 w-auto object-contain md:h-24 lg:h-28"
             />
-            <div className="flex h-14 w-32 items-center justify-center text-center text-[11px] font-medium uppercase tracking-wide text-foreground/50 md:h-16">
+            <div className="flex h-16 w-40 items-center justify-center text-center text-xs font-medium uppercase tracking-wide text-foreground/50 md:h-24 md:w-48 md:text-sm lg:h-28">
               Rossi logo pending
             </div>
           </div>
@@ -2988,10 +2995,18 @@ function PureFlowPage() {
       <Hero c={c} />
       <PageNav c={c} />
       <Impact c={c} />
-      <Wave from="var(--ithemba-cream)" to="#ffffff" />
-      <Sdg c={c} />
       <Snapshot c={c} />
       <Why c={c} />
+      {/* soft wave between blue Why section and white SDG section */}
+      <div style={{ background: "var(--ithemba-blue-deepest)" }}>
+        <svg className="block w-full" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden>
+          <path
+            d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z"
+            fill="#ffffff"
+          />
+        </svg>
+      </div>
+      <Sdg c={c} />
       <Boil c={c} />
       <Tech c={c} />
       <Jobs c={c} />
