@@ -83,7 +83,7 @@ const HOW_ICONS = {
   Handshake, Repeat, Building2, PackageOpen, Wrench, Siren, Megaphone, UserCheck,
 } as const;
 const EXPECT_ICONS = {
-  Target, Users, MapPin, Camera, MessageCircle, ShieldHeart, Compass,
+  Target, Users, MapPin, Camera, MessageCircle, HeartHandshake, Compass,
 } as const;
 
 const COPY: Record<"en" | "de" | "nl", Copy> = {
@@ -160,7 +160,7 @@ const COPY: Record<"en" | "de" | "nl", Copy> = {
         { icon: "MapPin", label: "Updates from the field" },
         { icon: "Camera", label: "Photos, stories or reports where appropriate" },
         { icon: "MessageCircle", label: "Honest communication about needs and challenges" },
-        { icon: "ShieldHeart", label: "Respect for communities and beneficiaries" },
+        { icon: "HeartHandshake", label: "Respect for communities and beneficiaries" },
         { icon: "Compass", label: "A relationship built on trust and shared purpose" },
       ],
     },
@@ -249,7 +249,7 @@ const COPY: Record<"en" | "de" | "nl", Copy> = {
         { icon: "MapPin", label: "Updates aus dem Feld" },
         { icon: "Camera", label: "Fotos, Geschichten oder Berichte, wo passend" },
         { icon: "MessageCircle", label: "Ehrliche Kommunikation über Bedarfe und Herausforderungen" },
-        { icon: "ShieldHeart", label: "Respekt gegenüber Gemeinschaften und Begünstigten" },
+        { icon: "HeartHandshake", label: "Respekt gegenüber Gemeinschaften und Begünstigten" },
         { icon: "Compass", label: "Eine Zusammenarbeit, die auf Vertrauen und gemeinsamer Zielsetzung beruht" },
       ],
     },
@@ -338,7 +338,7 @@ const COPY: Record<"en" | "de" | "nl", Copy> = {
         { icon: "MapPin", label: "Updates uit het veld" },
         { icon: "Camera", label: "Foto’s, verhalen of rapportages waar passend" },
         { icon: "MessageCircle", label: "Eerlijke communicatie over behoeften en uitdagingen" },
-        { icon: "ShieldHeart", label: "Respect voor gemeenschappen en begunstigden" },
+        { icon: "HeartHandshake", label: "Respect voor gemeenschappen en begunstigden" },
         { icon: "Compass", label: "Een samenwerking gebouwd op vertrouwen en gedeelde doelgerichtheid" },
       ],
     },
