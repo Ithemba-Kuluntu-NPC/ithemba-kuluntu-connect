@@ -2771,28 +2771,29 @@ function Partnership({ c }: { c: Copy }) {
           </p>
         </div>
 
-        {/* Partner logos — directly on the background, no boxes/borders/shadows */}
-        <div className="mt-12">
-          <div className="text-center text-xs font-semibold uppercase tracking-[0.14em] text-[var(--ithemba-blue)]/70">
+        {/* Partner logos — directly on the background, larger and confident */}
+        <div className="mt-16">
+          <div className="text-center font-display text-lg font-semibold text-[var(--ithemba-blue-dark)] md:text-xl">
             Partners we have already worked with
           </div>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-12 gap-y-8">
+          <div className="mx-auto mt-3 h-px w-24 bg-[var(--ithemba-blue)]/20" aria-hidden />
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-x-14 gap-y-10 md:gap-x-20">
             <img
               src="/assets/logos/partners/nandos-logo.png"
               alt="Nando’s"
-              className="h-14 w-auto object-contain md:h-16"
+              className="h-16 w-auto object-contain md:h-24 lg:h-28"
             />
             <img
               src="/assets/logos/partners/gift-of-the-givers-logo.png"
               alt="Gift of the Givers"
-              className="h-14 w-auto object-contain md:h-16"
+              className="h-16 w-auto object-contain md:h-24 lg:h-28"
             />
             <img
               src="/assets/logos/partners/star-foundation-logo.png"
               alt="Star Foundation"
-              className="h-14 w-auto object-contain md:h-16"
+              className="h-16 w-auto object-contain md:h-24 lg:h-28"
             />
-            <div className="flex h-14 w-32 items-center justify-center text-center text-[11px] font-medium uppercase tracking-wide text-foreground/50 md:h-16">
+            <div className="flex h-16 w-40 items-center justify-center text-center text-xs font-medium uppercase tracking-wide text-foreground/50 md:h-24 md:w-48 md:text-sm lg:h-28">
               Rossi logo pending
             </div>
           </div>
