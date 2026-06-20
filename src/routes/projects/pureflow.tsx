@@ -1839,7 +1839,7 @@ function PageNav({ c }: { c: Copy }) {
 function Impact({ c }: { c: Copy }) {
   return (
     <section id="impact" className="scroll-mt-32">
-      <div className="bg-[var(--ithemba-cream)] pt-16 pb-12">
+      <div className="bg-[var(--ithemba-cream)] pt-16 pb-0">
         <div className="mx-auto max-w-5xl px-4 text-center lg:px-8">
           <SectionHeading eyebrow={c.impact.eyebrow} title={c.impact.title} center />
           <div className="mx-auto mt-5 max-w-3xl space-y-4 text-lg leading-relaxed text-foreground/85">
