@@ -83,7 +83,7 @@ const HOW_ICONS = {
   Handshake, Repeat, Building2, PackageOpen, Wrench, Siren, Megaphone, UserCheck,
 } as const;
 const EXPECT_ICONS = {
-  Target, Users, MapPin, Camera, MessageCircle, ShieldHeart, Compass,
+  Target, Users, MapPin, Camera, MessageCircle, HeartHandshake, Compass,
 } as const;
 
 const COPY: Record<"en" | "de" | "nl", Copy> = {
