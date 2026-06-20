@@ -2988,10 +2988,18 @@ function PureFlowPage() {
       <Hero c={c} />
       <PageNav c={c} />
       <Impact c={c} />
-      <Wave from="var(--ithemba-cream)" to="#ffffff" />
-      <Sdg c={c} />
       <Snapshot c={c} />
       <Why c={c} />
+      {/* soft wave between blue Why section and white SDG section */}
+      <div style={{ background: "var(--ithemba-blue-deepest)" }}>
+        <svg className="block w-full" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden>
+          <path
+            d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z"
+            fill="#ffffff"
+          />
+        </svg>
+      </div>
+      <Sdg c={c} />
       <Boil c={c} />
       <Tech c={c} />
       <Jobs c={c} />
