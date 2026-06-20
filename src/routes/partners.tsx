@@ -22,7 +22,7 @@ import {
   MapPin,
   Camera,
   MessageCircle,
-  ShieldHeart,
+  HeartHandshake,
   Compass,
 } from "lucide-react";
 import { useLang } from "@/components/site/LanguageProvider";
