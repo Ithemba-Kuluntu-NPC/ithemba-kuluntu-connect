@@ -91,6 +91,8 @@ function RootComponent() {
           </main>
           <Footer />
           <FloatingDonate />
+          <BackToTop />
+
           <CookieConsent />
         </div>
       </LanguageProvider>
