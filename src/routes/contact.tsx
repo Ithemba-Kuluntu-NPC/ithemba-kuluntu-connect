@@ -470,7 +470,7 @@ function ContactPage() {
 
       {/* ============ HOW WE CAN HELP ============ */}
       <section className="bg-white">
-        <div className="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28">
+        <div className="mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
           <p
             className="text-3xl"
             style={{ fontFamily: '"Caveat", "Kalam", cursive', color: blue }}
