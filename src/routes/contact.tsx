@@ -388,9 +388,10 @@ function ContactPage() {
             <h2 className="mt-1 font-display text-3xl font-bold text-[color:var(--ithemba-blue-deepest,#0b2545)] md:text-4xl">
               {c.details.heading}
             </h2>
-            <p className="mt-4 max-w-md text-[15px] text-foreground/80 md:text-base">{c.details.intro}</p>
+            <p className="mt-3 max-w-md text-[15px] text-foreground/80">{c.details.intro}</p>
 
-            <ul className="mt-8 space-y-5">
+            <ul className="mt-6 space-y-4">
+
               <li className="flex items-start gap-4">
                 <span className="mt-0.5 flex h-11 w-11 flex-none items-center justify-center rounded-full bg-[color:var(--ithemba-blue,#1d4e89)]/10 text-[color:var(--ithemba-blue,#1d4e89)]" aria-hidden>
                   <Mail className="h-5 w-5" />
