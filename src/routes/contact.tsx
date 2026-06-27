@@ -35,7 +35,7 @@ function Wave({ from, to }: { from: string; to: string }) {
       <svg
         viewBox="0 0 1440 90"
         preserveAspectRatio="none"
-        className="block h-[60px] w-full md:h-[90px]"
+        className="block h-[44px] w-full md:h-[64px]"
         aria-hidden
       >
         <path d="M0,40 C240,90 480,0 720,40 C960,80 1200,10 1440,50 L1440,90 L0,90 Z" fill={to} />
@@ -43,6 +43,7 @@ function Wave({ from, to }: { from: string; to: string }) {
     </div>
   );
 }
+
 
 /* ---------- copy ---------- */
 type Copy = {
@@ -279,55 +280,56 @@ function ContactFormCard({ copy }: { copy: Copy["form"] }) {
   return (
     <form
       onSubmit={onSubmit}
-      className="rounded-3xl bg-white p-6 shadow-[0_20px_60px_-30px_rgba(11,37,69,0.35)] ring-1 ring-[color:var(--ithemba-blue,#1d4e89)]/10 md:p-10"
+      className="rounded-3xl bg-white p-5 shadow-[0_20px_60px_-30px_rgba(11,37,69,0.35)] ring-1 ring-[color:var(--ithemba-blue,#1d4e89)]/10 md:p-7"
     >
-      <h3 className="font-display text-2xl font-bold text-[color:var(--ithemba-blue-deepest,#0b2545)] md:text-3xl">
+      <h3 className="font-display text-2xl font-bold text-[color:var(--ithemba-blue-deepest,#0b2545)] md:text-[26px]">
         {copy.heading}
       </h3>
-      <p className="mt-2 text-sm text-foreground/70 md:text-[15px]">{copy.subheading}</p>
+      <p className="mt-1 text-sm text-foreground/70">{copy.subheading}</p>
 
-      <div className="mt-6 grid gap-5 md:grid-cols-2">
-        <div className="space-y-1.5">
+      <div className="mt-5 grid gap-4 md:grid-cols-2">
+        <div className="space-y-1">
           <Label htmlFor="c-name" className="text-[13px] font-semibold text-[color:var(--ithemba-blue-deepest,#0b2545)]">
             {copy.name}
           </Label>
-          <Input id="c-name" name="name" required autoComplete="name" className="h-11 rounded-xl border-[color:var(--ithemba-blue,#1d4e89)]/15 bg-[color:var(--ithemba-cream,#fdf7ed)]/40 shadow-none focus-visible:ring-[color:var(--ithemba-blue,#1d4e89)]" />
+          <Input id="c-name" name="name" required autoComplete="name" className="h-10 rounded-xl border-[color:var(--ithemba-blue,#1d4e89)]/15 bg-[color:var(--ithemba-cream,#fdf7ed)]/40 shadow-none focus-visible:ring-[color:var(--ithemba-blue,#1d4e89)]" />
         </div>
-        <div className="space-y-1.5">
+        <div className="space-y-1">
           <Label htmlFor="c-email" className="text-[13px] font-semibold text-[color:var(--ithemba-blue-deepest,#0b2545)]">
             {copy.email}
           </Label>
-          <Input id="c-email" name="email" type="email" required autoComplete="email" className="h-11 rounded-xl border-[color:var(--ithemba-blue,#1d4e89)]/15 bg-[color:var(--ithemba-cream,#fdf7ed)]/40 shadow-none focus-visible:ring-[color:var(--ithemba-blue,#1d4e89)]" />
+          <Input id="c-email" name="email" type="email" required autoComplete="email" className="h-10 rounded-xl border-[color:var(--ithemba-blue,#1d4e89)]/15 bg-[color:var(--ithemba-cream,#fdf7ed)]/40 shadow-none focus-visible:ring-[color:var(--ithemba-blue,#1d4e89)]" />
         </div>
-        <div className="space-y-1.5">
+        <div className="space-y-1">
           <Label htmlFor="c-country" className="text-[13px] font-semibold text-[color:var(--ithemba-blue-deepest,#0b2545)]">
             {copy.country}
           </Label>
-          <Input id="c-country" name="country" autoComplete="country-name" className="h-11 rounded-xl border-[color:var(--ithemba-blue,#1d4e89)]/15 bg-[color:var(--ithemba-cream,#fdf7ed)]/40 shadow-none focus-visible:ring-[color:var(--ithemba-blue,#1d4e89)]" />
+          <Input id="c-country" name="country" autoComplete="country-name" className="h-10 rounded-xl border-[color:var(--ithemba-blue,#1d4e89)]/15 bg-[color:var(--ithemba-cream,#fdf7ed)]/40 shadow-none focus-visible:ring-[color:var(--ithemba-blue,#1d4e89)]" />
         </div>
-        <div className="space-y-1.5">
+        <div className="space-y-1">
           <Label htmlFor="c-subject" className="text-[13px] font-semibold text-[color:var(--ithemba-blue-deepest,#0b2545)]">
             {copy.subject}
           </Label>
-          <Input id="c-subject" name="subject" className="h-11 rounded-xl border-[color:var(--ithemba-blue,#1d4e89)]/15 bg-[color:var(--ithemba-cream,#fdf7ed)]/40 shadow-none focus-visible:ring-[color:var(--ithemba-blue,#1d4e89)]" />
+          <Input id="c-subject" name="subject" className="h-10 rounded-xl border-[color:var(--ithemba-blue,#1d4e89)]/15 bg-[color:var(--ithemba-cream,#fdf7ed)]/40 shadow-none focus-visible:ring-[color:var(--ithemba-blue,#1d4e89)]" />
         </div>
-        <div className="space-y-1.5 md:col-span-2">
+        <div className="space-y-1 md:col-span-2">
           <Label htmlFor="c-message" className="text-[13px] font-semibold text-[color:var(--ithemba-blue-deepest,#0b2545)]">
             {copy.message}
           </Label>
-          <Textarea id="c-message" name="message" rows={6} required className="rounded-xl border-[color:var(--ithemba-blue,#1d4e89)]/15 bg-[color:var(--ithemba-cream,#fdf7ed)]/40 shadow-none focus-visible:ring-[color:var(--ithemba-blue,#1d4e89)]" />
+          <Textarea id="c-message" name="message" rows={4} required className="rounded-xl border-[color:var(--ithemba-blue,#1d4e89)]/15 bg-[color:var(--ithemba-cream,#fdf7ed)]/40 shadow-none focus-visible:ring-[color:var(--ithemba-blue,#1d4e89)]" />
         </div>
       </div>
 
       <Button
         type="submit"
         size="lg"
-        className="mt-7 w-full rounded-full bg-[color:var(--ithemba-blue,#1d4e89)] py-6 text-base font-semibold text-white shadow-[0_10px_30px_-10px_rgba(29,78,137,0.6)] hover:bg-[color:var(--ithemba-blue-deepest,#0b2545)]"
+        className="mt-5 w-full rounded-full bg-[color:var(--ithemba-blue,#1d4e89)] py-5 text-base font-semibold text-white shadow-[0_10px_30px_-10px_rgba(29,78,137,0.6)] hover:bg-[color:var(--ithemba-blue-deepest,#0b2545)]"
       >
         <Send className="mr-2 h-5 w-5" />
         {copy.submit}
       </Button>
     </form>
+
   );
 }
 
@@ -345,7 +347,7 @@ function ContactPage() {
     <main>
       {/* ============ HERO ============ */}
       <section className="relative isolate overflow-hidden">
-        <div className="relative h-[62vh] min-h-[440px] w-full">
+        <div className="relative h-[48vh] min-h-[360px] w-full">
           <img
             src={HERO_IMG}
             alt="Cwebeni community landscape in Pondoland, Eastern Cape"
@@ -356,7 +358,7 @@ function ContactPage() {
             className="absolute inset-0"
             style={{ background: "radial-gradient(60% 80% at 20% 30%, rgba(11,37,69,0.45), transparent 70%)" }}
           />
-          <div className="relative z-10 mx-auto flex h-full max-w-6xl flex-col justify-end px-5 pb-16 pt-24 md:px-8 md:pb-24">
+          <div className="relative z-10 mx-auto flex h-full max-w-6xl flex-col justify-end px-5 pb-10 pt-20 md:px-8 md:pb-14">
             <p
               className="text-2xl md:text-3xl"
               style={{ fontFamily: '"Caveat", "Kalam", cursive', color: yellow }}
@@ -374,7 +376,7 @@ function ContactPage() {
 
       {/* ============ DETAILS + FORM ============ */}
       <section style={{ background: cream }}>
-        <div className="mx-auto grid max-w-6xl gap-10 px-5 py-20 md:px-8 md:py-28 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14">
+        <div className="mx-auto grid max-w-6xl gap-8 px-5 py-10 md:px-8 md:py-14 lg:grid-cols-[0.95fr_1.05fr] lg:gap-12">
           {/* Left — details */}
           <div>
             <p
@@ -386,9 +388,10 @@ function ContactPage() {
             <h2 className="mt-1 font-display text-3xl font-bold text-[color:var(--ithemba-blue-deepest,#0b2545)] md:text-4xl">
               {c.details.heading}
             </h2>
-            <p className="mt-4 max-w-md text-[15px] text-foreground/80 md:text-base">{c.details.intro}</p>
+            <p className="mt-3 max-w-md text-[15px] text-foreground/80">{c.details.intro}</p>
 
-            <ul className="mt-8 space-y-5">
+            <ul className="mt-6 space-y-4">
+
               <li className="flex items-start gap-4">
                 <span className="mt-0.5 flex h-11 w-11 flex-none items-center justify-center rounded-full bg-[color:var(--ithemba-blue,#1d4e89)]/10 text-[color:var(--ithemba-blue,#1d4e89)]" aria-hidden>
                   <Mail className="h-5 w-5" />
@@ -424,7 +427,7 @@ function ContactPage() {
               </li>
             </ul>
 
-            <div className="mt-10 grid gap-5 sm:grid-cols-2">
+            <div className="mt-6 grid gap-4 sm:grid-cols-2">
               <div className="rounded-2xl bg-white p-5 ring-1 ring-[color:var(--ithemba-blue,#1d4e89)]/10">
                 <div className="flex items-center gap-2 text-[color:var(--ithemba-blue,#1d4e89)]">
                   <MapPin className="h-4 w-4" aria-hidden />
@@ -445,7 +448,7 @@ function ContactPage() {
               </div>
             </div>
 
-            <div className="mt-8 flex items-center gap-2">
+            <div className="mt-6 flex items-center gap-2">
               <a
                 href="https://www.instagram.com/ithemba.kuluntu/"
                 target="_blank"
@@ -467,7 +470,7 @@ function ContactPage() {
 
       {/* ============ HOW WE CAN HELP ============ */}
       <section className="bg-white">
-        <div className="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28">
+        <div className="mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
           <p
             className="text-3xl"
             style={{ fontFamily: '"Caveat", "Kalam", cursive', color: blue }}
@@ -479,7 +482,7 @@ function ContactPage() {
           </h2>
           <p className="mt-4 max-w-3xl text-[15px] text-foreground/80 md:text-base">{c.help.text}</p>
 
-          <ul className="mt-10 grid gap-x-10 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-8 grid gap-x-10 gap-y-5 sm:grid-cols-2 lg:grid-cols-3">
             {c.help.items.map((it) => {
               const Icon = HELP_ICONS[it.icon];
               return (

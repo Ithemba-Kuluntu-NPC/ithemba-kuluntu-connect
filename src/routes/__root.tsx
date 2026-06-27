@@ -13,6 +13,8 @@ import { LanguageProvider } from "@/components/site/LanguageProvider";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { FloatingDonate } from "@/components/site/FloatingDonate";
+import { BackToTop } from "@/components/site/BackToTop";
+
 import { CookieConsent } from "@/components/site/CookieConsent";
 
 function NotFoundComponent() {
@@ -89,6 +91,8 @@ function RootComponent() {
           </main>
           <Footer />
           <FloatingDonate />
+          <BackToTop />
+
           <CookieConsent />
         </div>
       </LanguageProvider>
