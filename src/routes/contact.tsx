@@ -376,7 +376,7 @@ function ContactPage() {
 
       {/* ============ DETAILS + FORM ============ */}
       <section style={{ background: cream }}>
-        <div className="mx-auto grid max-w-6xl gap-10 px-5 py-20 md:px-8 md:py-28 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14">
+        <div className="mx-auto grid max-w-6xl gap-8 px-5 py-10 md:px-8 md:py-14 lg:grid-cols-[0.95fr_1.05fr] lg:gap-12">
           {/* Left — details */}
           <div>
             <p
