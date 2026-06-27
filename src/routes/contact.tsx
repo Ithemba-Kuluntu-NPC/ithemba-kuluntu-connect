@@ -448,7 +448,7 @@ function ContactPage() {
               </div>
             </div>
 
-            <div className="mt-8 flex items-center gap-2">
+            <div className="mt-6 flex items-center gap-2">
               <a
                 href="https://www.instagram.com/ithemba.kuluntu/"
                 target="_blank"
