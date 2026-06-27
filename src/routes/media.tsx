@@ -309,6 +309,114 @@ function ExternalA({
   );
 }
 
+/* ---------- branded fallback thumbnail ---------- */
+function publisherInitials(name: string) {
+  const cleaned = name.replace(/[^A-Za-z0-9 ]+/g, " ").trim();
+  const parts = cleaned.split(/\s+/).filter(Boolean);
+  if (parts.length === 0) return "iK";
+  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+  return (parts[0][0] + parts[1][0]).toUpperCase();
+}
+
+function hashHue(s: string) {
+  let h = 0;
+  for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0;
+  return h % 360;
+}
+
+function BrandedFallback({
+  publisher,
+  typeLabel,
+  tone = "cream",
+}: {
+  publisher: string;
+  typeLabel: string;
+  tone?: "cream" | "blue";
+}) {
+  const hue = hashHue(publisher);
+  const isBlue = tone === "blue";
+  const bg = isBlue
+    ? `linear-gradient(135deg, #0b2545 0%, #1d4e89 60%, hsl(${hue}, 55%, 28%) 100%)`
+    : `linear-gradient(135deg, #fdf7ed 0%, #f3e7cf 55%, hsl(${hue}, 65%, 82%) 100%)`;
+  const textColor = isBlue ? "#ffffff" : "#0b2545";
+  const subColor = isBlue ? "rgba(255,255,255,0.75)" : "rgba(11,37,69,0.65)";
+  const initials = publisherInitials(publisher);
+  const patternId = `dots-${hue}-${isBlue ? "b" : "c"}`;
+  return (
+    <div
+      aria-hidden
+      className="absolute inset-0 flex flex-col items-center justify-center overflow-hidden"
+      style={{ background: bg }}
+    >
+      <svg
+        className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.18]"
+        viewBox="0 0 200 120"
+        preserveAspectRatio="xMidYMid slice"
+      >
+        <defs>
+          <pattern id={patternId} width="14" height="14" patternUnits="userSpaceOnUse">
+            <circle cx="2" cy="2" r="1.2" fill={isBlue ? "#ffffff" : "#0b2545"} />
+          </pattern>
+        </defs>
+        <rect width="200" height="120" fill={`url(#${patternId})`} />
+      </svg>
+      <span
+        className="absolute -right-6 -top-6 h-24 w-24 rounded-full"
+        style={{ background: isBlue ? "rgba(245,198,74,0.25)" : "rgba(29,78,137,0.12)" }}
+      />
+      <div
+        className="relative flex h-12 w-12 items-center justify-center rounded-full font-display text-lg font-bold"
+        style={{
+          background: isBlue ? "rgba(245,198,74,0.95)" : "rgba(29,78,137,0.95)",
+          color: isBlue ? "#0b2545" : "#ffffff",
+        }}
+      >
+        {initials}
+      </div>
+      <div
+        className="relative mt-2 px-3 text-center font-display text-sm font-bold uppercase tracking-wide md:text-base"
+        style={{ color: textColor }}
+      >
+        {publisher}
+      </div>
+      <div
+        className="relative mt-0.5 text-[10px] font-semibold uppercase tracking-[0.22em]"
+        style={{ color: subColor }}
+      >
+        {typeLabel}
+      </div>
+    </div>
+  );
+}
+
+function ThumbWithFallback({
+  src,
+  alt,
+  publisher,
+  typeLabel,
+  tone = "cream",
+}: {
+  src: string | null;
+  alt: string;
+  publisher: string;
+  typeLabel: string;
+  tone?: "cream" | "blue";
+}) {
+  const [failed, setFailed] = useState(!src);
+  if (failed || !src) {
+    return <BrandedFallback publisher={publisher} typeLabel={typeLabel} tone={tone} />;
+  }
+  return (
+    <img
+      src={src}
+      alt={alt}
+      loading="lazy"
+      className="h-full w-full object-cover transition group-hover:scale-[1.03]"
+      onError={() => setFailed(true)}
+    />
+  );
+}
+
 /* ---------- cards ---------- */
 function FeaturedCard({
   item,
@@ -319,19 +427,18 @@ function FeaturedCard({
 }) {
   const isVideo = item.kind === "video";
   const yt = isVideo ? getYouTubeId(item.url) : null;
-  const thumb = yt ? ytThumb(yt) : assets.photos.media.placeholder;
+  const thumbSrc = yt ? ytThumb(yt) : null;
+  const typeLabel = isVideo ? c.type.video : c.type.article;
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-[1.75rem] bg-white shadow-[0_14px_50px_-18px_rgb(15_42_140/0.28)] ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-xl">
       <ExternalA href={item.url} ariaLabel={item.title} className="relative block">
-        <div className="relative aspect-[16/9] w-full overflow-hidden bg-[color:var(--ithemba-blue-deepest,#0b2545)]/10">
-          <img
-            src={thumb}
-            alt={item.title}
-            loading="lazy"
-            className="h-full w-full object-cover transition group-hover:scale-[1.03]"
-            onError={(e) => {
-              (e.currentTarget as HTMLImageElement).src = assets.photos.media.placeholder;
-            }}
+        <div className="relative aspect-[16/9] w-full overflow-hidden bg-[color:var(--ithemba-cream,#fdf7ed)]">
+          <ThumbWithFallback
+            src={thumbSrc}
+            alt=""
+            publisher={item.publisher}
+            typeLabel={typeLabel}
+            tone="cream"
           />
           {isVideo && (
             <span className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-90 transition group-hover:opacity-100">
@@ -339,10 +446,7 @@ function FeaturedCard({
             </span>
           )}
           <span className="absolute left-3 top-3">
-            <TypeBadge
-              label={isVideo ? c.type.video : c.type.article}
-              tone={isVideo ? "yellow" : "blue"}
-            />
+            <TypeBadge label={typeLabel} tone={isVideo ? "yellow" : "blue"} />
           </span>
         </div>
       </ExternalA>
@@ -380,7 +484,7 @@ function VideoCard({
   dark?: boolean;
 }) {
   const id = getYouTubeId(item.url);
-  const thumb = id ? ytThumb(id) : assets.photos.media.placeholder;
+  const thumbSrc = id ? ytThumb(id) : null;
   return (
     <article
       className={
@@ -392,14 +496,12 @@ function VideoCard({
     >
       <ExternalA href={item.url} ariaLabel={item.title ?? item.publisher} className="relative block">
         <div className="relative aspect-[16/9] w-full overflow-hidden bg-black/20">
-          <img
-            src={thumb}
-            alt={item.title ?? `${item.publisher} video`}
-            loading="lazy"
-            className="h-full w-full object-cover transition group-hover:scale-[1.03]"
-            onError={(e) => {
-              (e.currentTarget as HTMLImageElement).src = assets.photos.media.placeholder;
-            }}
+          <ThumbWithFallback
+            src={thumbSrc}
+            alt=""
+            publisher={item.publisher}
+            typeLabel={videoLabel}
+            tone={dark ? "blue" : "cream"}
           />
           <span className="absolute inset-0 flex items-center justify-center bg-black/20 transition group-hover:bg-black/30">
             <PlayCircle className="h-14 w-14 text-white drop-shadow-lg" />
@@ -453,24 +555,34 @@ function VideoCard({
   );
 }
 
-function ArticleRow({ a, label }: { a: ArticleItem; label: string }) {
+function ArticleRow({ a, label, typeLabel }: { a: ArticleItem; label: string; typeLabel: string }) {
   return (
-    <li className="group flex flex-col gap-3 rounded-2xl bg-white p-4 shadow-[0_6px_24px_-12px_rgb(15_42_140/0.18)] ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-md md:flex-row md:items-center md:gap-6">
-      <div className="flex items-center gap-3 text-[11px] font-semibold uppercase tracking-wider text-[color:var(--ithemba-blue,#1d4e89)] md:w-56 md:flex-none">
-        {a.date && <span className="whitespace-nowrap">{a.date}</span>}
-        {a.date && <span className="h-1 w-1 rounded-full bg-[color:var(--ithemba-blue,#1d4e89)]/40" />}
-        <span className="truncate">{a.publisher}</span>
-      </div>
-      <h3 className="flex-1 font-display text-[15px] font-semibold leading-snug text-[color:var(--ithemba-blue-deepest,#0b2545)] md:text-base">
-        {a.title}
-      </h3>
-      <div className="md:flex-none">
-        <Button asChild size="sm" variant="outline" className="rounded-full">
-          <ExternalA href={a.url}>
-            {label}
-            <ExternalLink className="ml-1.5 h-3.5 w-3.5" />
-          </ExternalA>
-        </Button>
+    <li className="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-[0_6px_24px_-12px_rgb(15_42_140/0.18)] ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-md md:flex-row md:items-stretch">
+      <ExternalA href={a.url} ariaLabel={a.title} className="relative block md:w-52 md:flex-none">
+        <div className="relative aspect-[16/9] w-full overflow-hidden md:h-full">
+          <BrandedFallback publisher={a.publisher} typeLabel={typeLabel} tone="cream" />
+          <span className="absolute left-2 top-2">
+            <TypeBadge label={typeLabel} tone="blue" />
+          </span>
+        </div>
+      </ExternalA>
+      <div className="flex flex-1 flex-col gap-2 p-4 md:flex-row md:items-center md:gap-6">
+        <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-[color:var(--ithemba-blue,#1d4e89)] md:w-40 md:flex-none">
+          {a.date && <span className="whitespace-nowrap">{a.date}</span>}
+          {a.date && <span className="h-1 w-1 rounded-full bg-[color:var(--ithemba-blue,#1d4e89)]/40" />}
+          <span className="truncate">{a.publisher}</span>
+        </div>
+        <h3 className="flex-1 font-display text-[15px] font-semibold leading-snug text-[color:var(--ithemba-blue-deepest,#0b2545)] md:text-base">
+          {a.title}
+        </h3>
+        <div className="md:flex-none">
+          <Button asChild size="sm" variant="outline" className="rounded-full">
+            <ExternalA href={a.url}>
+              {label}
+              <ExternalLink className="ml-1.5 h-3.5 w-3.5" />
+            </ExternalA>
+          </Button>
+        </div>
       </div>
     </li>
   );
@@ -616,7 +728,7 @@ function MediaPage() {
             </h2>
             <ul className="mt-7 flex flex-col gap-3">
               {ARTICLES.map((a) => (
-                <ArticleRow key={a.url} a={a} label={c.articles.read} />
+                <ArticleRow key={a.url} a={a} label={c.articles.read} typeLabel={c.type.article} />
               ))}
             </ul>
           </div>
