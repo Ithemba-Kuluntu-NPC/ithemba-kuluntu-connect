@@ -35,7 +35,7 @@ function Wave({ from, to }: { from: string; to: string }) {
       <svg
         viewBox="0 0 1440 90"
         preserveAspectRatio="none"
-        className="block h-[60px] w-full md:h-[90px]"
+        className="block h-[44px] w-full md:h-[64px]"
         aria-hidden
       >
         <path d="M0,40 C240,90 480,0 720,40 C960,80 1200,10 1440,50 L1440,90 L0,90 Z" fill={to} />
@@ -43,6 +43,7 @@ function Wave({ from, to }: { from: string; to: string }) {
     </div>
   );
 }
+
 
 /* ---------- copy ---------- */
 type Copy = {
