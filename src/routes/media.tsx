@@ -728,7 +728,7 @@ function MediaPage() {
             </h2>
             <ul className="mt-7 flex flex-col gap-3">
               {ARTICLES.map((a) => (
-                <ArticleRow key={a.url} a={a} label={c.articles.read} />
+                <ArticleRow key={a.url} a={a} label={c.articles.read} typeLabel={c.type.article} />
               ))}
             </ul>
           </div>
