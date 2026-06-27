@@ -70,7 +70,7 @@ function Wave({ from, to }: { from: string; to: string }) {
       <svg
         viewBox="0 0 1440 90"
         preserveAspectRatio="none"
-        className="block h-[54px] w-full md:h-[80px]"
+        className="block h-[44px] w-full md:h-[64px]"
       >
         <path d="M0,40 C240,90 480,0 720,40 C960,80 1200,10 1440,50 L1440,90 L0,90 Z" fill={to} />
       </svg>
@@ -346,7 +346,7 @@ function FeaturedCard({
           </span>
         </div>
       </ExternalA>
-      <div className="flex flex-1 flex-col gap-3 p-6">
+      <div className="flex flex-1 flex-col gap-2 p-5">
         <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[color:var(--ithemba-blue,#1d4e89)]">
           <span>{item.publisher}</span>
           <span className="h-1 w-1 rounded-full bg-[color:var(--ithemba-blue,#1d4e89)]/40" />
@@ -409,7 +409,7 @@ function VideoCard({
           </span>
         </div>
       </ExternalA>
-      <div className={"flex flex-1 flex-col gap-2 p-5 " + (dark ? "text-white" : "")}>
+      <div className={"flex flex-1 flex-col gap-2 p-4 " + (dark ? "text-white" : "")}>
         <div
           className={
             "flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider " +
@@ -455,7 +455,7 @@ function VideoCard({
 
 function ArticleRow({ a, label }: { a: ArticleItem; label: string }) {
   return (
-    <li className="group flex flex-col gap-3 rounded-2xl bg-white p-5 shadow-[0_6px_24px_-12px_rgb(15_42_140/0.18)] ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-md md:flex-row md:items-center md:gap-6">
+    <li className="group flex flex-col gap-3 rounded-2xl bg-white p-4 shadow-[0_6px_24px_-12px_rgb(15_42_140/0.18)] ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-md md:flex-row md:items-center md:gap-6">
       <div className="flex items-center gap-3 text-[11px] font-semibold uppercase tracking-wider text-[color:var(--ithemba-blue,#1d4e89)] md:w-56 md:flex-none">
         {a.date && <span className="whitespace-nowrap">{a.date}</span>}
         {a.date && <span className="h-1 w-1 rounded-full bg-[color:var(--ithemba-blue,#1d4e89)]/40" />}
@@ -506,7 +506,7 @@ function MediaPage() {
     <main>
       {/* HERO */}
       <section className="relative isolate overflow-hidden">
-        <div className="relative h-[58vh] min-h-[420px] w-full">
+        <div className="relative h-[48vh] min-h-[360px] w-full">
           <img
             src={assets.photos.home.impact}
             alt=""
@@ -521,7 +521,7 @@ function MediaPage() {
             className="absolute inset-0"
             style={{ background: "radial-gradient(60% 80% at 20% 30%, rgba(11,37,69,0.45), transparent 70%)" }}
           />
-          <div className="relative z-10 mx-auto flex h-full max-w-6xl flex-col justify-end px-5 pb-14 pt-24 md:px-8 md:pb-20">
+          <div className="relative z-10 mx-auto flex h-full max-w-6xl flex-col justify-end px-5 pb-10 pt-20 md:px-8 md:pb-14">
             <p className="text-2xl md:text-3xl" style={{ color: yellow, fontFamily: script }}>
               {c.hero.eyebrow}
             </p>
@@ -536,7 +536,7 @@ function MediaPage() {
 
       {/* FILTER BAR */}
       <section style={{ background: cream }}>
-        <div className="mx-auto max-w-6xl px-5 pt-10 md:px-8 md:pt-14">
+        <div className="mx-auto max-w-6xl px-5 pt-5 md:px-8 md:pt-8">
           <div className="flex flex-wrap items-center gap-2">
             {filters.map((f) => {
               const active = filter === f.id;
@@ -565,14 +565,14 @@ function MediaPage() {
       {/* FEATURED */}
       {show.featured && (
         <section style={{ background: cream }}>
-          <div className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-20">
+          <div className="mx-auto max-w-6xl px-5 py-10 md:px-8 md:py-14">
             <p className="text-3xl" style={{ color: blue, fontFamily: script }}>
               {c.featured.eyebrow}
             </p>
             <h2 className="mt-1 font-display text-3xl font-bold text-[color:var(--ithemba-blue-deepest,#0b2545)] md:text-4xl">
               {c.featured.title}
             </h2>
-            <div className="mt-10 grid gap-7 md:grid-cols-2">
+            <div className="mt-7 grid gap-5 md:grid-cols-2">
               {FEATURED.map((item) => (
                 <FeaturedCard key={item.url} item={item} c={c} />
               ))}
@@ -586,14 +586,14 @@ function MediaPage() {
       {/* BROADCAST */}
       {show.broadcast && (
         <section className="bg-white">
-          <div className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-20">
+          <div className="mx-auto max-w-6xl px-5 py-10 md:px-8 md:py-14">
             <p className="text-3xl" style={{ color: blue, fontFamily: script }}>
               {c.broadcast.eyebrow}
             </p>
             <h2 className="mt-1 font-display text-3xl font-bold text-[color:var(--ithemba-blue-deepest,#0b2545)] md:text-4xl">
               {c.broadcast.title}
             </h2>
-            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-7 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {BROADCAST.map((v) => (
                 <VideoCard key={v.url} item={v} watchLabel={c.broadcast.watch} videoLabel={c.type.broadcast} />
               ))}
@@ -607,14 +607,14 @@ function MediaPage() {
       {/* ARTICLES */}
       {show.articles && (
         <section style={{ background: cream }}>
-          <div className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-20">
+          <div className="mx-auto max-w-6xl px-5 py-10 md:px-8 md:py-14">
             <p className="text-3xl" style={{ color: blue, fontFamily: script }}>
               {c.articles.eyebrow}
             </p>
             <h2 className="mt-1 font-display text-3xl font-bold text-[color:var(--ithemba-blue-deepest,#0b2545)] md:text-4xl">
               {c.articles.title}
             </h2>
-            <ul className="mt-10 flex flex-col gap-3">
+            <ul className="mt-7 flex flex-col gap-3">
               {ARTICLES.map((a) => (
                 <ArticleRow key={a.url} a={a} label={c.articles.read} />
               ))}
@@ -637,7 +637,7 @@ function MediaPage() {
               }}
             />
           </div>
-          <div className="relative mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28">
+          <div className="relative mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
             <p className="text-3xl md:text-4xl" style={{ color: yellow, fontFamily: script }}>
               {c.pureflow.eyebrow}
             </p>
@@ -645,13 +645,13 @@ function MediaPage() {
               {c.pureflow.title}
             </h2>
 
-            <div className="mt-10 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-7 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {PUREFLOW_STORIES.map((v) => (
                 <VideoCard key={v.url} item={v} watchLabel={c.pureflow.watch} videoLabel={c.type.feature} dark />
               ))}
             </div>
 
-            <div className="mt-16">
+            <div className="mt-10">
               <div className="flex items-center gap-3">
                 <span className="h-px flex-1 bg-white/20" />
                 <span
@@ -662,7 +662,7 @@ function MediaPage() {
                 </span>
                 <span className="h-px flex-1 bg-white/20" />
               </div>
-              <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                 {PUREFLOW_GUIDES.map((v) => (
                   <VideoCard key={v.url} item={v} watchLabel={c.pureflow.watch} videoLabel={c.pureflow.guides} dark />
                 ))}
@@ -676,7 +676,7 @@ function MediaPage() {
 
       {/* YOUTUBE CHANNEL */}
       <section style={{ background: cream }}>
-        <div className="mx-auto max-w-5xl px-5 py-16 text-center md:px-8 md:py-20">
+        <div className="mx-auto max-w-5xl px-5 py-10 text-center md:px-8 md:py-14">
           <p className="text-3xl" style={{ color: blue, fontFamily: script }}>
             {c.channel.eyebrow}
           </p>
@@ -684,7 +684,7 @@ function MediaPage() {
             {c.channel.title}
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-[15px] text-foreground/80 md:text-base">{c.channel.text}</p>
-          <div className="mt-7 flex justify-center">
+          <div className="mt-5 flex justify-center">
             <Button
               asChild
               size="lg"
@@ -703,8 +703,8 @@ function MediaPage() {
 
       {/* PRESS */}
       <section className="bg-white">
-        <div className="mx-auto max-w-5xl px-5 py-16 md:px-8 md:py-20">
-          <div className="rounded-3xl bg-[color:var(--ithemba-cream,#fdf7ed)] p-8 ring-1 ring-black/5 md:p-12">
+        <div className="mx-auto max-w-5xl px-5 py-10 md:px-8 md:py-14">
+          <div className="rounded-3xl bg-[color:var(--ithemba-cream,#fdf7ed)] p-6 ring-1 ring-black/5 md:p-10">
             <p className="text-3xl" style={{ color: blue, fontFamily: script }}>
               {c.press.eyebrow}
             </p>
@@ -712,7 +712,7 @@ function MediaPage() {
               {c.press.title}
             </h2>
             <p className="mt-4 max-w-2xl text-[15px] text-foreground/80 md:text-base">{c.press.text}</p>
-            <div className="mt-6 flex flex-wrap items-center gap-4">
+            <div className="mt-5 flex flex-wrap items-center gap-4">
               <a
                 href="mailto:info@ithembakuluntu.org"
                 className="inline-flex items-center gap-2 font-display text-lg font-semibold text-[color:var(--ithemba-blue-deepest,#0b2545)] underline-offset-4 hover:underline"
@@ -739,13 +739,13 @@ function MediaPage() {
           className="absolute inset-0 h-full w-full object-cover opacity-30"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0b2545]/85 via-[#0b2545]/80 to-[#0b2545]/95" />
-        <div className="relative mx-auto max-w-5xl px-5 py-24 text-center md:px-8 md:py-32">
+        <div className="relative mx-auto max-w-5xl px-5 py-16 text-center md:px-8 md:py-20">
           <p className="text-3xl md:text-4xl" style={{ color: yellow, fontFamily: script }}>
             {c.cta.eyebrow}
           </p>
           <h2 className="mt-2 font-display text-3xl font-bold md:text-5xl">{c.cta.title}</h2>
           <p className="mx-auto mt-5 max-w-2xl text-[15px] text-white/85 md:text-base">{c.cta.text}</p>
-          <div className="mt-9 flex flex-wrap justify-center gap-3">
+          <div className="mt-7 flex flex-wrap justify-center gap-3">
             <Button asChild size="lg" className="bg-[var(--ithemba-yellow,#f5c64a)] text-[#0b2545] hover:bg-[var(--ithemba-yellow,#f5c64a)]/90">
               <Link to="/projects">
                 {c.cta.projects}
