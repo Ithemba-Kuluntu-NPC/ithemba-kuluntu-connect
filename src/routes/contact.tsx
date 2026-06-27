@@ -280,55 +280,56 @@ function ContactFormCard({ copy }: { copy: Copy["form"] }) {
   return (
     <form
       onSubmit={onSubmit}
-      className="rounded-3xl bg-white p-6 shadow-[0_20px_60px_-30px_rgba(11,37,69,0.35)] ring-1 ring-[color:var(--ithemba-blue,#1d4e89)]/10 md:p-10"
+      className="rounded-3xl bg-white p-5 shadow-[0_20px_60px_-30px_rgba(11,37,69,0.35)] ring-1 ring-[color:var(--ithemba-blue,#1d4e89)]/10 md:p-7"
     >
-      <h3 className="font-display text-2xl font-bold text-[color:var(--ithemba-blue-deepest,#0b2545)] md:text-3xl">
+      <h3 className="font-display text-2xl font-bold text-[color:var(--ithemba-blue-deepest,#0b2545)] md:text-[26px]">
         {copy.heading}
       </h3>
-      <p className="mt-2 text-sm text-foreground/70 md:text-[15px]">{copy.subheading}</p>
+      <p className="mt-1 text-sm text-foreground/70">{copy.subheading}</p>
 
-      <div className="mt-6 grid gap-5 md:grid-cols-2">
-        <div className="space-y-1.5">
+      <div className="mt-5 grid gap-4 md:grid-cols-2">
+        <div className="space-y-1">
           <Label htmlFor="c-name" className="text-[13px] font-semibold text-[color:var(--ithemba-blue-deepest,#0b2545)]">
             {copy.name}
           </Label>
-          <Input id="c-name" name="name" required autoComplete="name" className="h-11 rounded-xl border-[color:var(--ithemba-blue,#1d4e89)]/15 bg-[color:var(--ithemba-cream,#fdf7ed)]/40 shadow-none focus-visible:ring-[color:var(--ithemba-blue,#1d4e89)]" />
+          <Input id="c-name" name="name" required autoComplete="name" className="h-10 rounded-xl border-[color:var(--ithemba-blue,#1d4e89)]/15 bg-[color:var(--ithemba-cream,#fdf7ed)]/40 shadow-none focus-visible:ring-[color:var(--ithemba-blue,#1d4e89)]" />
         </div>
-        <div className="space-y-1.5">
+        <div className="space-y-1">
           <Label htmlFor="c-email" className="text-[13px] font-semibold text-[color:var(--ithemba-blue-deepest,#0b2545)]">
             {copy.email}
           </Label>
-          <Input id="c-email" name="email" type="email" required autoComplete="email" className="h-11 rounded-xl border-[color:var(--ithemba-blue,#1d4e89)]/15 bg-[color:var(--ithemba-cream,#fdf7ed)]/40 shadow-none focus-visible:ring-[color:var(--ithemba-blue,#1d4e89)]" />
+          <Input id="c-email" name="email" type="email" required autoComplete="email" className="h-10 rounded-xl border-[color:var(--ithemba-blue,#1d4e89)]/15 bg-[color:var(--ithemba-cream,#fdf7ed)]/40 shadow-none focus-visible:ring-[color:var(--ithemba-blue,#1d4e89)]" />
         </div>
-        <div className="space-y-1.5">
+        <div className="space-y-1">
           <Label htmlFor="c-country" className="text-[13px] font-semibold text-[color:var(--ithemba-blue-deepest,#0b2545)]">
             {copy.country}
           </Label>
-          <Input id="c-country" name="country" autoComplete="country-name" className="h-11 rounded-xl border-[color:var(--ithemba-blue,#1d4e89)]/15 bg-[color:var(--ithemba-cream,#fdf7ed)]/40 shadow-none focus-visible:ring-[color:var(--ithemba-blue,#1d4e89)]" />
+          <Input id="c-country" name="country" autoComplete="country-name" className="h-10 rounded-xl border-[color:var(--ithemba-blue,#1d4e89)]/15 bg-[color:var(--ithemba-cream,#fdf7ed)]/40 shadow-none focus-visible:ring-[color:var(--ithemba-blue,#1d4e89)]" />
         </div>
-        <div className="space-y-1.5">
+        <div className="space-y-1">
           <Label htmlFor="c-subject" className="text-[13px] font-semibold text-[color:var(--ithemba-blue-deepest,#0b2545)]">
             {copy.subject}
           </Label>
-          <Input id="c-subject" name="subject" className="h-11 rounded-xl border-[color:var(--ithemba-blue,#1d4e89)]/15 bg-[color:var(--ithemba-cream,#fdf7ed)]/40 shadow-none focus-visible:ring-[color:var(--ithemba-blue,#1d4e89)]" />
+          <Input id="c-subject" name="subject" className="h-10 rounded-xl border-[color:var(--ithemba-blue,#1d4e89)]/15 bg-[color:var(--ithemba-cream,#fdf7ed)]/40 shadow-none focus-visible:ring-[color:var(--ithemba-blue,#1d4e89)]" />
         </div>
-        <div className="space-y-1.5 md:col-span-2">
+        <div className="space-y-1 md:col-span-2">
           <Label htmlFor="c-message" className="text-[13px] font-semibold text-[color:var(--ithemba-blue-deepest,#0b2545)]">
             {copy.message}
           </Label>
-          <Textarea id="c-message" name="message" rows={6} required className="rounded-xl border-[color:var(--ithemba-blue,#1d4e89)]/15 bg-[color:var(--ithemba-cream,#fdf7ed)]/40 shadow-none focus-visible:ring-[color:var(--ithemba-blue,#1d4e89)]" />
+          <Textarea id="c-message" name="message" rows={4} required className="rounded-xl border-[color:var(--ithemba-blue,#1d4e89)]/15 bg-[color:var(--ithemba-cream,#fdf7ed)]/40 shadow-none focus-visible:ring-[color:var(--ithemba-blue,#1d4e89)]" />
         </div>
       </div>
 
       <Button
         type="submit"
         size="lg"
-        className="mt-7 w-full rounded-full bg-[color:var(--ithemba-blue,#1d4e89)] py-6 text-base font-semibold text-white shadow-[0_10px_30px_-10px_rgba(29,78,137,0.6)] hover:bg-[color:var(--ithemba-blue-deepest,#0b2545)]"
+        className="mt-5 w-full rounded-full bg-[color:var(--ithemba-blue,#1d4e89)] py-5 text-base font-semibold text-white shadow-[0_10px_30px_-10px_rgba(29,78,137,0.6)] hover:bg-[color:var(--ithemba-blue-deepest,#0b2545)]"
       >
         <Send className="mr-2 h-5 w-5" />
         {copy.submit}
       </Button>
     </form>
+
   );
 }
 
