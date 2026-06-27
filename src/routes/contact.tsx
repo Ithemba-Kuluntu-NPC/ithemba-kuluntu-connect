@@ -347,7 +347,7 @@ function ContactPage() {
     <main>
       {/* ============ HERO ============ */}
       <section className="relative isolate overflow-hidden">
-        <div className="relative h-[62vh] min-h-[440px] w-full">
+        <div className="relative h-[48vh] min-h-[360px] w-full">
           <img
             src={HERO_IMG}
             alt="Cwebeni community landscape in Pondoland, Eastern Cape"
