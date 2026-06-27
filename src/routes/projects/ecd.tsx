@@ -1320,7 +1320,7 @@ function Rhythm({ c }: { c: Copy }) {
     "Goodbye circle and prayer",
   ];
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[var(--ithemba-blue-dark)] via-[var(--ithemba-blue)] to-[var(--ithemba-blue-dark)] py-20 text-white">
+    <section className="relative overflow-hidden bg-gradient-to-br from-[var(--ithemba-blue-dark)] via-[var(--ithemba-blue)] to-[var(--ithemba-blue-dark)] py-12 text-white md:py-16">
       <div className="pointer-events-none absolute left-[-6rem] top-[-6rem] h-[24rem] w-[24rem] sun-glow" />
       <div className="pointer-events-none absolute right-10 bottom-10">
         <SunDoodle className="h-20 w-20 text-[var(--ithemba-yellow)]/50" />
@@ -1337,20 +1337,20 @@ function Rhythm({ c }: { c: Copy }) {
         <div className="text-center">
           <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)]">{c.rhythm.eyebrow}</div>
           <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.rhythm.title}</h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-white/90">{c.rhythm.intro}</p>
+          <p className="mx-auto mt-3 max-w-2xl text-base text-white/90 md:text-lg">{c.rhythm.intro}</p>
         </div>
 
         {/* central dotted vertical path */}
-        <div className="relative mt-14">
+        <div className="relative mt-8">
           <div
             aria-hidden
-            className="pointer-events-none absolute left-6 top-0 bottom-0 w-px md:left-1/2 md:-translate-x-1/2"
+            className="pointer-events-none absolute left-4 top-2 bottom-2 w-px md:left-1/2 md:-translate-x-1/2"
             style={{
               backgroundImage:
-                "repeating-linear-gradient(to bottom, var(--ithemba-yellow) 0 6px, transparent 6px 14px)",
+                "repeating-linear-gradient(to bottom, var(--ithemba-yellow) 0 6px, transparent 6px 12px)",
             }}
           />
-          <ol className="relative space-y-10 md:space-y-16">
+          <ol className="relative space-y-5 md:space-y-7">
             {c.rhythm.items.map((r, i) => {
               const iconSrc = RHYTHM_ICONS[i] ?? RHYTHM_ICONS[0];
               const tone = RHYTHM_TONES[i % RHYTHM_TONES.length];
@@ -1358,8 +1358,8 @@ function Rhythm({ c }: { c: Copy }) {
               const isLeft = i % 2 === 0;
 
               const photo = (
-                <div className={isLeft ? "md:justify-self-end md:pr-10" : "md:justify-self-start md:pl-10"}>
-                  <div className="relative mx-auto w-32 sm:w-40 md:w-48">
+                <div className={isLeft ? "md:justify-self-end md:pr-8" : "md:justify-self-start md:pl-8"}>
+                  <div className="relative w-20 sm:w-24 md:w-28">
                     <SmartImage
                       src={`/assets/photos/ecd/rhythm-${i + 1}.jpg`}
                       label={rhythmPhotoLabels[i]}
@@ -1368,22 +1368,21 @@ function Rhythm({ c }: { c: Copy }) {
                       tone={tone}
                       showMissingBadge={false}
                     />
-                    {/* small accent dot */}
-                    <div className="absolute -right-2 -top-2 hidden md:block">
-                      <SparkleDoodle className="h-5 w-5 text-[var(--ithemba-yellow)]" />
+                    <div className="absolute -right-1 -top-1 hidden md:block">
+                      <SparkleDoodle className="h-4 w-4 text-[var(--ithemba-yellow)]" />
                     </div>
                   </div>
                 </div>
               );
               const text = (
-                <div className={isLeft ? "md:pl-10 md:text-left" : "md:pr-10 md:text-right"}>
-                  <div className="inline-flex items-center gap-3">
-                    <EcdIcon src={iconSrc} alt={r.time} className="h-10 w-10 md:h-12 md:w-12" />
-                    <div className="font-display text-base font-bold text-[var(--ithemba-yellow)] md:text-lg">
+                <div className={isLeft ? "md:pl-8 md:text-left" : "md:pr-8 md:text-right"}>
+                  <div className={`inline-flex items-center gap-2 ${isLeft ? "" : "md:flex-row-reverse"}`}>
+                    <EcdIcon src={iconSrc} alt={r.time} className="h-8 w-8 md:h-10 md:w-10" />
+                    <div className="font-display text-sm font-bold text-[var(--ithemba-yellow)] md:text-base">
                       {r.time}
                     </div>
                   </div>
-                  <div className="mt-2 text-sm leading-snug text-white/95 md:text-base">
+                  <div className="mt-1 text-sm leading-snug text-white/95 md:text-[15px]">
                     {r.what}
                   </div>
                 </div>
@@ -1392,16 +1391,35 @@ function Rhythm({ c }: { c: Copy }) {
               return (
                 <li key={i} className="relative">
                   {/* timeline dot on the path */}
-                  <div className="absolute left-6 top-6 z-10 hidden h-4 w-4 -translate-x-1/2 rounded-full bg-[var(--ithemba-yellow)] ring-4 ring-[var(--ithemba-blue-dark)] md:left-1/2 md:block" />
+                  <div className="absolute left-4 top-4 z-10 h-3 w-3 -translate-x-1/2 rounded-full bg-[var(--ithemba-yellow)] ring-4 ring-[var(--ithemba-blue-dark)] md:left-1/2 md:top-6 md:h-3.5 md:w-3.5" />
 
-                  {/* mobile: stack photo above text, indented past path */}
-                  <div className="space-y-4 pl-16 md:hidden">
-                    {photo}
-                    {text}
+                  {/* mobile: photo + text side-by-side as one connected unit */}
+                  <div className="flex items-center gap-3 pl-10 md:hidden">
+                    <div className="shrink-0">
+                      <div className="relative w-16">
+                        <SmartImage
+                          src={`/assets/photos/ecd/rhythm-${i + 1}.jpg`}
+                          label={rhythmPhotoLabels[i]}
+                          className="aspect-square w-full"
+                          rounded={blob}
+                          tone={tone}
+                          showMissingBadge={false}
+                        />
+                      </div>
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <div className="inline-flex items-center gap-2">
+                        <EcdIcon src={iconSrc} alt={r.time} className="h-7 w-7" />
+                        <div className="font-display text-sm font-bold text-[var(--ithemba-yellow)]">
+                          {r.time}
+                        </div>
+                      </div>
+                      <div className="mt-0.5 text-sm leading-snug text-white/95">{r.what}</div>
+                    </div>
                   </div>
 
                   {/* desktop: alternating two-column */}
-                  <div className="hidden md:grid md:grid-cols-2 md:items-center md:gap-8">
+                  <div className="hidden md:grid md:grid-cols-2 md:items-center md:gap-6">
                     {isLeft ? (
                       <>
                         {photo}
@@ -1420,11 +1438,12 @@ function Rhythm({ c }: { c: Copy }) {
           </ol>
         </div>
 
-        <p className="mx-auto mt-12 max-w-3xl text-center text-base leading-relaxed text-white/85">
+        <p className="mx-auto mt-8 max-w-3xl text-center text-base leading-relaxed text-white/85">
           {c.rhythm.outro}
         </p>
       </div>
     </section>
+
   );
 }
 
