@@ -482,7 +482,7 @@ function ContactPage() {
           </h2>
           <p className="mt-4 max-w-3xl text-[15px] text-foreground/80 md:text-base">{c.help.text}</p>
 
-          <ul className="mt-10 grid gap-x-10 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-8 grid gap-x-10 gap-y-5 sm:grid-cols-2 lg:grid-cols-3">
             {c.help.items.map((it) => {
               const Icon = HELP_ICONS[it.icon];
               return (
