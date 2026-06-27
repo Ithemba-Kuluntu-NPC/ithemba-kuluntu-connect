@@ -358,7 +358,7 @@ function ContactPage() {
             className="absolute inset-0"
             style={{ background: "radial-gradient(60% 80% at 20% 30%, rgba(11,37,69,0.45), transparent 70%)" }}
           />
-          <div className="relative z-10 mx-auto flex h-full max-w-6xl flex-col justify-end px-5 pb-16 pt-24 md:px-8 md:pb-24">
+          <div className="relative z-10 mx-auto flex h-full max-w-6xl flex-col justify-end px-5 pb-10 pt-20 md:px-8 md:pb-14">
             <p
               className="text-2xl md:text-3xl"
               style={{ fontFamily: '"Caveat", "Kalam", cursive', color: yellow }}
