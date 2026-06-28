@@ -1,0 +1,156 @@
+# ==========================================
+# PUREFLOW AMANZI PROJECT PAGE CONFIGURATION
+# LANGUAGE: DUTCH (nl)
+# VERSION: 3.1 (Optimized for Community/Non-Profit Tone)
+# ==========================================
+
+# ------------------------------------------
+# 01. HERO SECTION
+# ------------------------------------------
+hero.script_heading: Veilig water, door vrouwen gedragen
+hero.main_heading: Het transformatietraject
+hero.sub_heading: Veilig water. Lokale werkgelegenheid. Sterkere gemeenschappen. Klimaatactie.
+hero.text_long: Een holistisch implementatieplatform dat de dagelijkse watercrisis omzet in lokale groene banen, onderwijsgelijkheid en langdurige economische veerkracht voor vrouwen in ruraal Zuid-Afrika.
+hero.text_small_line: Elektriciteitsvrije filtratie op basis van zwaartekracht ontmoet duurzame gemeenschapsontwikkeling ter plaatse.
+hero.patent_trust_line: Octrooi aangevraagd: Zuid-Afrikaanse octrooiaanvraag nr. 2026/00975
+hero.cta.monthly: Versterk rurale vrouwen maandelijks
+hero.cta.once: Eenmalig doneren
+
+# ------------------------------------------
+# 02. THE PATHWAY AT A GLANCE (Navigation Stepper)
+# ------------------------------------------
+pathway.script_heading: Het blauwdruk
+pathway.main_heading: Van een huishoudelijke interventie naar langdurige transformatie van de gemeenschap
+pathway.sub_heading: Ons model werkt via een geverifieerde cyclus van 6 stappen om systemische rurale armoede te doorbreken.
+
+pathway.step1.num: 01
+pathway.step1.title: Structureel probleem
+pathway.step1.short_desc: De genderspecifieke last van onveilig water.
+
+pathway.step2.num: 02
+pathway.step2.title: Het PureFlow-model
+pathway.step2.short_desc: Een volledig, lokaal beheerd platform.
+
+pathway.step3.num: 03
+pathway.step3.title: Direct maatschappelijk nut
+pathway.step3.short_desc: Snelle ontlasting voor gezondheid en huishoudens.
+
+pathway.step4.num: 04
+pathway.step4.title: Systeemsubstantie
+pathway.step4.short_desc: Acute crisisbeheersing wordt omgezet in permanente oplossingen.
+
+pathway.step5.num: 05
+pathway.step5.title: Breder maatschappelijk succes
+pathway.step5.short_desc: Financiële zelfstandigheid en bestaanszekerheid voor vrouwen.
+
+pathway.step6.num: 06
+pathway.step6.title: Langdurige transformatie
+pathway.step6.short_desc: Fundamenten voor een zelfredzame toekomst van de gemeenschappen.
+
+# ------------------------------------------
+# 03. SHOWCASE & FIELD DATA
+# ------------------------------------------
+showcase.script_heading: Inzicht & Resultaten
+showcase.main_heading: PureFlow Amanzi in actie
+showcase.text: Deze korte video en onze actuele praktijkgegevens tonen hoe een structureel ecosysteem veelzijdige rurale behoeften in realtime oplost.
+showcase.video.url: https://www.youtube.com/watch?v=IoRHLU5Cm7o
+showcase.video.title: PureFlow Amanzi overzicht
+showcase.video.description: Last-mile logistiek en continue impactmonitoring in het veld.
+
+impact.note: Elk individueel cijfer staat voor een sluitende documentatie bij de introductie, datagestuurde nazorgbezoeken en diep vertrouwen binnen de gemeenschappen.
+impact.counters.households.value: 3.094
+impact.counters.households.label: Huishoudens met permanent veilige toegang tot drinkwater
+impact.counters.people.value: 15.000+
+impact.counters.people.label: Mensen beschermd tegen wateroverdraagbare ziekten
+impact.counters.litres.value: 30M+
+impact.counters.litres.label: Liter systematisch gegenereerde veilige drinkwatercapaciteit
+impact.counters.co2.value: 8.000+
+impact.counters.co2.label: Ton CO₂e vermeden of gereduceerd (onder voorbehoud van verificatie)
+impact.counters.firewood.value: 4M+
+impact.counters.firewood.label: Kilogram open boma brandhoutkap vermeden (onder voorbehoud van verificatie)
+impact.counters.trees.value: 12.000+
+impact.counters.trees.label: Kwetsbare inheemse bomen beschermd tegen ontbossing (onder voorbehoud van verificatie)
+
+# ------------------------------------------
+# 04. THE 6 STEPS OF TRANSFORMATION
+# ------------------------------------------
+
+# STEP 01: Structural Problem
+step1.num: 01
+step1.tag: De crisis
+step1.heading: Vrouwen en kinderen dragen de zwaarste last
+step1.text_block: In afgelegen rurale gebieden is wateronveiligheid een genderspecifieke crisis. Moeders, grootmoeders en schoolgaande meisjes leggen dagelijks kilometers af om water te halen uit modderige rivieren en veedammen. Deze onbetaalde arbeid kost jaarlijks duizenden uren, zorgt ervoor dat tienermeisjes door watergerelateerde ziekten achteropraken of school helemaal afbreken, und stelt gezinnen bloot aan giftige houtrook van open vuur bij het koken.
+step1.cta_label: Het volledige plaatje bekijken
+step1.image_path: /pureflow problem.png
+
+# STEP 02: PureFlow Model
+step2.num: 02
+step2.tag: De katalysator
+step2.heading: Een volledig implementatieplatform – in plaats van een eenmalige productoverdracht
+step2.text_block: Het simpelweg uitdelen van losse onderdelen lost geen systemische crisis op. Het PureFlow-model is een duurzame, door de gemeenschap zelf beheerde motor. De filteremmer werkt volledig zonder elektriciteit of chemische toevoegingen, filtert het water tot 0,1 micron en elimineert bacteriële verontreinigingen volledig.
+step2.cta_label: De technische oplossing ontdekken
+step2.image_path: /pureflow solution.png
+
+# Step 02 Sub-Section: Loop Elements
+step2.loop.heading: Van het eerste gesprek tot langdurig gebruik
+step2.loop.sub_heading: Het PureFlow-model is een vijftraps distributiecyclus – ontworpen rond reële rurale omstandigheden en de mensen die er wonen.
+step2.loop.1.title: Luisteren
+step2.loop.1.desc: We zitten samen met lokale leiders en huishoudens en plannen gezamenlijk.
+step2.loop.2.title: Assembleren
+step2.loop.2.desc: De filters worden door getrainde lokale vrouwen gemonteerd en op kwaliteit getest.
+step2.loop.3.title: Overdragen
+step2.loop.3.desc: Persoonlijke levering direct aan huis – zelfs in de meest onherbergzame regio's.
+step2.loop.4.title: Scholen
+step2.loop.4.desc: Praktische WASH-educatie direct ter plaatse, huishouden per huishouden.
+step2.loop.5.title: Blijven
+step2.loop.5.desc: Continue nazorgbezoeken en gemeenschapsgerichte monitoring.
+
+# STEP 03: Immediate Public Benefit
+step3.num: 03
+step3.tag: Directe ontlasting
+step3.heading: Transformatie voor kwetsbare onderwijsinstellingen
+step3.text_block: Directe veranderingen worden zichtbaar in de huishoudens, lokale opvangcentra (ECD's) en rurale scholen. Zodra klaslokalen voorzien zijn van betrouwbaar, schoon water, daalt het risico op ziekten spectaculair. Kinderen blijven gezond, geconcentreerd en nemen actief deel aan de lessen – schoolverzuim neemt drastisch af en opent echte onderwijskansen.
+step3.cta_label: Onze onderwijsimpact bekijken
+step3.image_path: /pureflow school.png
+
+# STEP 04: System Shifts
+step4.num: 04
+step4.tag: Duurzaam handelen
+step4.heading: Van acuut gebrek naar permanente oplossingen in het huishouden
+step4.text_block: Echte transformatie vindt plaats wanneer een hele gemeenschap haar langetermijngewoonten verandert. Door de introductie van een eenvoudig, betrouwbaar reinigingsprotocol (terugspoelen via speciale spuiten/nozzles) worden gezinnen in staat gesteld hun systemen permanent zelf te onderhouden. De mindset verschuift van pure crisisbeheersing naar permanente gezondheidszorg.
+step4.cta_label: Ons monitoringconcept controleren
+step4.image_path: /pureflow monitoring phone placeholder.png
+
+# STEP 05: Wider Community Gains
+step5.num: 05
+step5.tag: Economische versterking
+step5.heading: Veilig water creëert financiële onafhankelijkheid voor vrouwen
+step5.text_block: Het concept verandert structurele wateronveiligheid in formele, betaalde banen voor vrouwen en jongeren in rurale gebieden. Door het leren van productienormen, het volgen van de toeleveringsketen en datagestuurd werk in het veld, nemen vrouwen leidende rollen en verantwoordelijkheid op zich in hun dorpen. Er ontstaan stabiele, groene inkomens die rechtstreeks terugvloeien naar de voeding van de gezinnen, de gezondheid van de kinderen en de lokale handel.
+step5.cta_label: Ons model voor groene banen ontdekken
+step5.image_path: /pureflow local women jobs.png
+
+# STEP 06: Long-Term Transformation
+step6.num: 06
+step6.tag: Generatiebestendigheid
+step6.heading: Fundamenten voor een zelfredzame toekomst van de gemeenschap
+step6.text_block: Na verloop van tijd tellen de voordelen van individuele huishoudens op tot een veerkrachtige totaalstructuur. Medische kosten dalen, de lokale werkgelegenheid stijgt en de onafhankelijkheid van de dorpen wordt fundamenteel hersteld. De gemeenschap creëert een solide basis die dient als anker voor toekomstige ontwikkelingen – van lokale landbouwinitiatieven tot uitgebreide onderwijsinstellingen.
+step6.cta_label: Onze langetermijnvisie lezen
+step6.image_path: /pureflow transformation landscape placeholder.png
+
+# ------------------------------------------
+# 05. BRANDED SDG ALIGNMENT GRID
+# ------------------------------------------
+sdg.main_heading: Wereldwijd kader voor duurzaamheid
+sdg.sub_heading: PureFlow Amanzi draagt rechtstreeks bij aan de Duurzame Ontwikkelingsdoelen van de Verenigde Naties (SDG's).
+
+sdg.1.title: SDG 1: Geen armoede
+sdg.1.desc: Vermindert de economische druk op kwetsbare huishoudens door medische kosten te verlagen en de veerkracht van gezinnen te versterken.
+sdg.3.title: SDG 3: Goede gezondheid en welzijn
+sdg.3.desc: Beschermt gezinnen tegen wateroverdraagbare ziekten und voorkomt de inademing van giftige rookgassen in huis.
+sdg.4.title: SDG 4: Kwaliteitsonderwijs
+sdg.4.desc: Gezonde en goed gehydrateerde kinderen leren beter. Veilig water en WASH-scholing helpen onderwijsuitval te verminderen.
+sdg.5.title: SDG 5: Gendergelijkheid
+sdg.5.desc: Ontlast vrouwen en meisjes van onbetaalde bronnenwerving zoals het sprokkelen van hout en het halen van water.
+sdg.6.title: SDG 6: Schoon water en sanitair
+sdg.6.desc: De kernfocus. Maakt een directe, huishoudelijke toegang tot veilig drinkwater mogelijk via filtratie en langdurige nazorg.
+sdg.8.title: SDG 8

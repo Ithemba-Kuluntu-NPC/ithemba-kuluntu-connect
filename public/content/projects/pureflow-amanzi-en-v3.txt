@@ -1,0 +1,216 @@
+# ==========================================
+# PUREFLOW AMANZI PROJECT PAGE CONFIGURATION
+# LANGUAGE: ENGLISH (en)
+# VERSION: 3.0 (The Transformation Pathway)
+# ==========================================
+
+# ------------------------------------------
+# 01. HERO SECTION
+# ------------------------------------------
+hero.script_heading: Safe Water, Female Leadership
+hero.main_heading: The Transformation Pathway
+hero.sub_heading: Safe water. Local employment. Stronger communities. Climate action.
+hero.text_long: A holistic implementation platform converting the daily water crisis into local green jobs, educational equality, and long-term economic resilience for women in rural South Africa.
+hero.text_small_line: Electricity-free, gravity-fed filtration meets last-mile community development.
+hero.patent_trust_line: Patent pending: South African Patent Application No. 2026/00975
+hero.cta.monthly: Support Female Leaders Monthly
+hero.cta.once: Give Once
+
+# ------------------------------------------
+# 02. THE PATHWAY AT A GLANCE (Navigation Stepper)
+# ------------------------------------------
+pathway.script_heading: The Blueprint
+pathway.main_heading: From a household intervention to long-term community transformation
+pathway.sub_heading: Our model operates across a verified 6-step cycle to shift systemic rural poverty.
+
+pathway.step1.num: 01
+pathway.step1.title: Structural Problem
+pathway.step1.short_desc: The gendered burden of unsafe water.
+
+pathway.step2.num: 02
+pathway.step2.title: PureFlow Model
+pathway.step2.short_desc: A complete, locally assembled platform.
+
+pathway.step3.num: 03
+pathway.step3.title: Immediate Public Benefit
+pathway.step3.short_desc: Rapid health and household relief.
+
+pathway.step4.num: 04
+pathway.step4.title: System Shifts
+pathway.step4.short_desc: Turning urgent needs into permanent solutions.
+
+pathway.step5.num: 05
+pathway.step5.title: Wider Community Gains
+pathway.step5.short_desc: Financial independent livelihoods for women.
+
+pathway.step6.num: 06
+pathway.step6.title: Long-Term Transformation
+pathway.step6.short_desc: Foundations for community self-reliance.
+
+# ------------------------------------------
+# 03. SHOWCASE & FIELD DATA
+# ------------------------------------------
+showcase.script_heading: Watch & Verify
+showcase.main_heading: PureFlow Amanzi in Action
+showcase.text: This short video and our field metrics show how a structural ecosystem addresses multi-layered rural needs in real time.
+showcase.video.url: https://www.youtube.com/watch?v=IoRHLU5Cm7o
+showcase.video.title: PureFlow Amanzi Overview
+showcase.video.description: Real-world last-mile delivery and field tracking.
+
+impact.note: Every single figure represents verified household onboarding tracking, data-logged follow-up visits, and lasting communal trust.
+impact.counters.households.value: 3,094
+impact.counters.households.label: Households secured with safer water access
+impact.counters.people.value: 15,000+
+impact.counters.people.label: Individuals protected from waterborne illnesses
+impact.counters.litres.value: 30M+
+impact.counters.litres.label: Litres of clean water capacity systematically generated
+impact.counters.co2.value: 8,000+
+impact.counters.co2.label: Tonnes of CO₂e avoided or reduced (subject to verification)
+impact.counters.firewood.value: 4M+
+impact.counters.firewood.label: Kilograms of open boma firewood logging avoided (subject to verification)
+impact.counters.trees.value: 12,000+
+impact.counters.trees.label: Vulnerable indigenous trees protected from deforestation (subject to verification)
+
+# ------------------------------------------
+# 04. THE 6 STEPS OF TRANSFORMATION
+# ------------------------------------------
+
+# STEP 01: Structural Problem
+step1.num: 01
+step1.tag: The Crisis
+step1.heading: Women and children carry the heaviest burden
+step1.text_block: In deep rural areas, water insecurity is a gendered crisis. Mothers, grandmothers, and school-aged girls walk miles daily to collect water from muddy rivers and livestock dams. This unpaid labor costs thousands of hours annually, causes teenage girls to fall behind or drop out of school due to waterborne sickness, and exposes families to toxic wood smoke from open fire boiling.
+step1.cta_label: Read the Full Picture
+step1.image_path: /pureflow problem.png
+
+# STEP 02: PureFlow Model
+step2.num: 02
+step2.tag: The Catalyst
+step2.heading: A full implementation platform — not a product handover alone
+step2.text_block: Dropping off loose parts does not solve a systemic crisis. The PureFlow model is a continuous, community-managed engine. The filtration bucket functions without electricity or chemical additives, filtering water down to 0.1 microns to completely eradicate bacterial contaminants.
+step2.cta_label: Explore the Technical Solution
+step2.image_path: /pureflow solution.png
+
+# Step 02 Sub-Section: Loop Elements
+step2.loop.heading: From first conversation to lasting use
+step2.loop.sub_heading: The PureFlow model is a five-step delivery loop — designed around real rural conditions and the people who live there.
+step2.loop.1.title: Listen
+step2.loop.1.desc: Sit with local leaders and households. Plan together.
+step2.loop.2.title: Assemble
+step2.loop.2.desc: Filters built and tested by trained local hands.
+step2.loop.3.title: Deliver
+step2.loop.3.desc: Hand-delivered into rural homes — even the hardest to reach.
+step2.loop.4.title: Teach
+step2.loop.4.desc: Practical WASH onboarding, household by household.
+step2.loop.5.title: Stay
+step2.loop.5.desc: Follow-up visits and community-based monitoring.
+
+# STEP 03: Immediate Public Benefit
+step3.num: 03
+step3.tag: Direct Relief
+step3.heading: Transforming high-need learning environments
+step3.text_block: Immediate change manifests within households, local early childhood development (ECD) spaces, and rural schools. When classrooms receive reliable, clean water, the risk of waterborne illnesses drops instantly. Children stay healthy, focused, and present in class, and school absenteeism declines dramatically, unlocking immediate learning potential.
+step3.cta_label: See Our ECD Footprint
+step3.image_path: /pureflow school.png
+
+# STEP 04: System Shifts
+step4.num: 04
+step4.tag: Sustained Action
+step4.heading: From urgent needs to permanent household solutions
+step4.text_block: True transformation happens when an entire community changes its long-term habits. By introducing a reliable, simple cleaning protocol (backwashing via specialized syringes/nozzles), families are fully empowered to maintain their own systems indefinitely. The traditional mindset shifts from crisis-coping to permanent health security.
+step4.cta_label: Review Our Monitoring Framework
+step4.image_path: /pureflow monitoring phone placeholder.png
+
+# STEP 05: Wider Community Gains
+step5.num: 05
+step5.tag: Economic Upliftment
+step5.heading: Safe water creates independent female livelihoods
+step5.text_block: The delivery model converts structural water insecurity into formal, paid employment opportunities for rural women and youth. By learning manufacturing standards, supply tracking, and data-driven field auditing, women step into prominent leadership and coordination roles within their villages. This creates stable, green incomes that are directly reinvested into household food security, children's health, and local trade.
+step5.cta_label: Explore Our Green Jobs Model
+step5.image_path: /pureflow local women jobs.png
+
+# STEP 06: Long-Term Transformation
+step6.num: 06
+step6.tag: Generational Resilience
+step6.heading: Building foundations for future community self-reliance
+step6.text_block: Over time, individual household benefits scale up to build broad, resilient communities. As health expenditures drop and local employment grows, village self-reliance is fundamentally restored. The community establishes a strong grassroots platform capable of anchoring future developments—from local agricultural initiatives to advanced educational facilities.
+step6.cta_label: Read Our Long-Term Vision
+step6.image_path: /pureflow transformation landscape placeholder.png
+
+# ------------------------------------------
+# 05. BRANDED SDG ALIGNMENT GRID
+# ------------------------------------------
+sdg.main_heading: Coordinated Global Frameworks
+sdg.sub_heading: PureFlow Amanzi directly supports several UN Sustainable Development Goals.
+
+sdg.1.title: SDG 1: No Poverty
+sdg.1.desc: Reduces economic pressure on vulnerable households by lowering medical costs and supporting household resilience.
+sdg.3.title: SDG 3: Good Health and Well-being
+sdg.3.desc: Protects families from waterborne illness and reduces toxic indoor smoke inhalation.
+sdg.4.title: SDG 4: Quality Education
+sdg.4.desc: Children learn better when healthy and hydrated. Safe water and WASH education help reduce school disruption.
+sdg.5.title: SDG 5: Gender Equality
+sdg.5.desc: Relieves the disproportionate burden on women and girls tasked with gathering firewood and fetching water.
+sdg.6.title: SDG 6: Clean Water and Sanitation
+sdg.6.desc: The core focus. Provides accessible, household-level safe drinking water through filtration and follow-up.
+sdg.8.title: SDG 8: Decent Work and Economic Growth
+sdg.8.desc: Generates local green jobs via assembly, training, and data collection, prioritizing local youth and women.
+sdg.10.title: SDG 10: Reduced Inequalities
+sdg.10.desc: Reaches isolated rural communities, including Pondoland, where access to reliable safe-water infrastructure is limited.
+sdg.11.title: SDG 11: Sustainable Communities
+sdg.11.desc: Strengthens community self-reliance and emergency preparedness in off-grid regions.
+sdg.12.title: SDG 12: Responsible Consumption
+sdg.12.desc: Lowers environmental footprints by promoting sustainable local resources and skipping plastic bottled water.
+sdg.13.title: SDG 13: Climate Action
+sdg.13.desc: Directly avoids deforestation and cuts emissions by cutting out open-fire boiling wood requirements.
+sdg.17.title: SDG 17: Partnerships for the Goals
+sdg.17.desc: Built to scale through active co-financing between NGOs, corporate sponsors, public-sector stakeholders, and community leadership.
+
+# ------------------------------------------
+# 06. PARTNERSHIPS
+# ------------------------------------------
+partners.script_heading: Collaborate With Us
+partners.main_heading: Ready for large-scale institutional mobilization
+partners.text: PureFlow Amanzi is built to scale alongside corporate sponsors, non-profit networks, and traditional leadership authorities. Partner logos are rendered seamlessly without heavy bounding frames.
+partners.list: Gift of the Givers, The Star Foundation, Nando's, LottoStar, OR Tambo District Municipality, Department of Health / OR Tambo District Health
+
+# ------------------------------------------
+# 07. PREMIUM DONATION BOX / CTA
+# ------------------------------------------
+donation.script_heading: Invest in Transformation
+donation.main_heading: Support female-led water security
+donation.text_intro: Lasting change requires consistent resources. Your monthly commitment funds raw components, rigorous laboratory quality testing, formal employment contracts for local women, and continuous household field monitoring.
+
+donation.card.heading: Support safe water
+donation.card.text: Help provide household filtration, WASH education, local delivery, safe-use training and follow-up support through PureFlow Amanzi.
+donation.tab.monthly: Give Monthly
+donation.tab.once: Give Once
+donation.amount.heading: Choose an amount
+
+# Currency definitions & tiers
+donation.currency.symbol: €
+donation.amt.1: 15
+donation.amt.1_desc: Funds ongoing field follow-up tracking and community WASH education.
+donation.amt.2: 30
+donation.amt.2_desc: Funds component logistics and formal assembly wages for local women.
+donation.amt.3: 45
+donation.amt.3_desc: Securely deploys full, long-term safe water filtration capacity directly into a high-need household.
+donation.amt.4: 90
+donation.amt.4_desc: Fully covers water filtration and clean sanitation support for two complete multi-generational families.
+donation.amt.5: 250
+donation.amt.5_desc: Accelerates broad institutional distribution across community hubs, clinics, and rural learning environments.
+donation.amt.custom: Custom Amount
+
+donation.payment.heading: Payment Method
+donation.payment.options: Card, PayPal, Bank Transfer
+donation.btn.monthly: Authorize Monthly Transformation Support
+donation.btn.once: Give once to PureFlow Amanzi
+donation.trust_points: Fully Secure Encryption, Tailored Field Data Reporting, Monitored Socioeconomic Impacts, Direct Community Reinvestment
+
+# ------------------------------------------
+# 08. CLOSING BRAND SIGNATURE
+# ------------------------------------------
+closing.main_heading: Together We Grow Stronger
+closing.text: PureFlow Amanzi is more than a water filter; it is a collaborative platform built to restore health, dignity, and economic opportunity to women and children across rural South Africa. Your support turns structural problems into lasting, generations-deep transformation.
+closing.btn.monthly: Join the Pathway Monthly
+closing.btn.projects: Explore All Projects
