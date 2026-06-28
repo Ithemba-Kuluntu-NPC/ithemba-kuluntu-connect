@@ -1,868 +1,1166 @@
-// This is a compact comparison concept for PureFlow Amanzi and should not
-// replace the existing live project page until approved.
+// This is a compact comparison concept for PureFlow Amanzi built around the Transformation Pathway, focusing on women's livelihoods.
 //
 // Route: /projects/pureflow-amanzi-compact
 // Content is dynamically loaded at runtime from:
-//   - public/content/projects/pureflow-amanzi-en-v2.txt
-//   - public/content/projects/pureflow-amanzi-de-v2.txt
-//   - public/content/projects/pureflow-amanzi-nl-v2.txt
+//   - public/content/projects/pureflow-amanzi-en-v3.txt
+//   - public/content/projects/pureflow-amanzi-de-v3.txt
+//   - public/content/projects/pureflow-amanzi-nl-v3.txt
 // Language is driven by the global LanguageProvider (EN / DE / NL).
 
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowLeft,
-  Droplets,
-  HeartPulse,
-  GraduationCap,
-  Leaf,
-  Users,
-  Home as HomeIcon,
-  Flame,
-  TreePine,
-  Cloud,
-  Sparkles,
-  CheckCircle2,
+  ArrowRight,
   PlayCircle,
-  Wrench,
-  GraduationCap as Grad,
-  Truck,
-  ClipboardCheck,
-  HandHeart,
-  Building2,
   ShieldCheck,
-  Globe2,
-  Zap,
-  PowerOff,
-  Recycle,
-  School,
-  Briefcase,
-  type LucideIcon,
+  Sparkles,
+  Heart,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
-  Tabs,
-  TabsList,
-  TabsTrigger,
-  TabsContent,
-} from "@/components/ui/tabs";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { useLang } from "@/components/site/LanguageProvider";
-import { DonationWidget } from "@/components/blocks/DonationWidget";
-import { assets } from "@/data/assets";
+import { partners as allPartners } from "@/data/projects";
+import { cn } from "@/lib/utils";
 import type { Lang } from "@/data/content";
 
 export const Route = createFileRoute("/projects/pureflow-amanzi-compact")({
   component: PureFlowCompactPage,
 });
 
-/* ============================== CONTENT LOADER ============================== */
-
-const CONTENT_URLS: Record<Lang, string> = {
-  en: "/content/projects/pureflow-amanzi-en-v2.txt",
-  de: "/content/projects/pureflow-amanzi-de-v2.txt",
-  nl: "/content/projects/pureflow-amanzi-nl-v2.txt",
-};
+// ----------------------- Content loading -----------------------
 
 type Dict = Record<string, string>;
 
 function parseContent(raw: string): Dict {
   const out: Dict = {};
-  for (const line of raw.split(/\r?\n/)) {
-    const trimmed = line.trim();
-    if (!trimmed || trimmed.startsWith("#")) continue;
-    const idx = trimmed.indexOf(":");
+  for (const lineRaw of raw.split(/\r?\n/)) {
+    const line = lineRaw.trim();
+    if (!line || line.startsWith("#")) continue;
+    const idx = line.indexOf(":");
     if (idx === -1) continue;
-    const key = trimmed.slice(0, idx).trim();
-    const value = trimmed.slice(idx + 1).trim();
+    const key = line.slice(0, idx).trim();
+    const value = line.slice(idx + 1).trim();
     if (key) out[key] = value;
   }
   return out;
 }
 
 function useProjectContent(lang: Lang) {
-  const [dict, setDict] = useState<Dict | null>(null);
+  const [dict, setDict] = useState<Dict>({});
+  const [enFallback, setEnFallback] = useState<Dict>({});
+
   useEffect(() => {
     let cancelled = false;
-    setDict(null);
-    fetch(CONTENT_URLS[lang])
-      .then((r) => r.text())
-      .then((txt) => {
-        if (!cancelled) setDict(parseContent(txt));
-      })
-      .catch(() => {
-        if (!cancelled) setDict({});
-      });
+    fetch(`/content/projects/pureflow-amanzi-en-v3.txt`)
+      .then((r) => (r.ok ? r.text() : ""))
+      .then((t) => !cancelled && setEnFallback(parseContent(t)))
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch(`/content/projects/pureflow-amanzi-${lang}-v3.txt`)
+      .then((r) => (r.ok ? r.text() : ""))
+      .then((t) => !cancelled && setDict(parseContent(t)))
+      .catch(() => {});
     return () => {
       cancelled = true;
     };
   }, [lang]);
-  return dict;
+
+  return useMemo(() => {
+    const t = (key: string, fb = ""): string =>
+      dict[key] ?? enFallback[key] ?? fb;
+    return { t };
+  }, [dict, enFallback]);
 }
 
-const list = (s?: string) =>
-  (s ?? "")
-    .split(/,\s*/)
-    .map((x) => x.trim())
-    .filter(Boolean);
+// ----------------------- Tokens -----------------------
 
-/* ============================== UI HELPERS ============================== */
+const BLUE = "#0F2A8C";
+const BLUE_DEEP = "#081A60";
+const YELLOW = "#FBBF24";
+const CREAM = "#FBF6E9";
+const CREAM_WARM = "#F5EDD7";
+const SERIF = '"Fraunces", "Georgia", serif';
+const SCRIPT = '"Caveat", "Kalam", cursive';
 
-function Wave({ from, to }: { from: string; to: string }) {
+const ASSET_BASE = "/assets/icons/projects/pureflow";
+
+// ----------------------- Reusable building blocks -----------------------
+
+function WaveDivider({
+  from = "#FBF6E9",
+  to = "#0F2A8C",
+  flip = false,
+}: {
+  from?: string;
+  to?: string;
+  flip?: boolean;
+}) {
   return (
-    <div className={`relative ${from}`}>
+    <div
+      aria-hidden
+      className="relative -mb-px w-full overflow-hidden leading-[0]"
+      style={{ background: from, transform: flip ? "scaleY(-1)" : undefined }}
+    >
       <svg
-        viewBox="0 0 1440 60"
+        viewBox="0 0 1440 90"
         preserveAspectRatio="none"
-        className={`block h-[44px] w-full md:h-[64px] ${to}`}
-        aria-hidden
+        className="block h-[60px] w-full md:h-[90px]"
       >
         <path
-          d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z"
-          fill="currentColor"
+          d="M0,40 C240,90 480,0 720,40 C960,80 1200,10 1440,50 L1440,90 L0,90 Z"
+          fill={to}
         />
       </svg>
     </div>
   );
 }
 
-function ScriptHeading({ children }: { children: React.ReactNode }) {
+function Script({ children, color = YELLOW, className = "" }: { children: React.ReactNode; color?: string; className?: string }) {
   return (
-    <p className="font-script text-2xl text-amber-400 md:text-3xl">{children}</p>
-  );
-}
-
-function SectionTitle({ children }: { children: React.ReactNode }) {
-  return (
-    <h2 className="font-serif text-3xl font-bold leading-tight tracking-tight md:text-4xl">
+    <p
+      className={cn("text-2xl md:text-3xl leading-none", className)}
+      style={{ fontFamily: SCRIPT, color }}
+    >
       {children}
-    </h2>
+    </p>
   );
 }
 
-function youTubeEmbed(url?: string) {
-  if (!url) return "";
-  const m = url.match(/(?:v=|youtu\.be\/)([\w-]{6,})/);
-  return m ? `https://www.youtube-nocookie.com/embed/${m[1]}` : "";
-}
-function youTubeThumb(url?: string) {
-  if (!url) return "";
-  const m = url.match(/(?:v=|youtu\.be\/)([\w-]{6,})/);
-  return m ? `https://i.ytimg.com/vi/${m[1]}/hqdefault.jpg` : "";
-}
-
-/* ============================== ICON MAPS ============================== */
-
-const SNAPSHOT_ICONS: LucideIcon[] = [Droplets, HeartPulse, GraduationCap, Leaf];
-
-const TECH_FEATURE_ICONS: Record<string, LucideIcon> = {
-  default: CheckCircle2,
-  electric: PowerOff,
-  power: PowerOff,
-  strom: PowerOff,
-  zwaartekracht: Droplets,
-  gravity: Droplets,
-  chemical: Sparkles,
-  chemikal: Sparkles,
-  chemicaliën: Sparkles,
-  portable: Truck,
-  tragbar: Truck,
-  draagbaar: Truck,
-  assemble: Wrench,
-  montier: Wrench,
-  montage: Wrench,
-  clean: Sparkles,
-  reinig: Sparkles,
-  maintenance: Wrench,
-  wartung: Wrench,
-  onderhoud: Wrench,
-  household: HomeIcon,
-  haushalt: HomeIcon,
-  huishoud: HomeIcon,
-};
-
-function featureIcon(label: string): LucideIcon {
-  const l = label.toLowerCase();
-  for (const k of Object.keys(TECH_FEATURE_ICONS)) {
-    if (k !== "default" && l.includes(k)) return TECH_FEATURE_ICONS[k];
-  }
-  return CheckCircle2;
-}
-
-const COUNTER_ICONS: Record<string, LucideIcon> = {
-  households: HomeIcon,
-  people: Users,
-  litres: Droplets,
-  co2: Cloud,
-  firewood: Flame,
-  trees: TreePine,
-};
-
-const SDG_COLORS: Record<string, string> = {
-  "1": "#E5243B",
-  "3": "#4C9F38",
-  "4": "#C5192D",
-  "5": "#FF3A21",
-  "6": "#26BDE2",
-  "8": "#A21942",
-  "10": "#DD1367",
-  "11": "#FD9D24",
-  "12": "#BF8B2E",
-  "13": "#3F7E44",
-  "17": "#19486A",
-};
-const SDG_KEYS = ["1", "3", "4", "5", "6", "8", "10", "11", "12", "13", "17"];
-
-/* ============================== PAGE ============================== */
-
-function PureFlowCompactPage() {
-  const { lang } = useLang();
-  const dict = useProjectContent(lang);
-  const t = (k: string, fb = "") => (dict ? dict[k] ?? fb : fb);
-
-  const heroPoster = assets.photos.projects.pureflowHero;
-
-  const counters = useMemo(
-    () =>
-      (["households", "people", "litres", "co2", "firewood", "trees"] as const).map(
-        (k) => ({
-          key: k,
-          value: t(`impact.counters.${k}.value`),
-          label: t(`impact.counters.${k}.label`),
-          Icon: COUNTER_ICONS[k],
-        }),
-      ),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [dict],
-  );
-
-  // Loading skeleton until first content arrives
-  if (!dict) {
-    return (
-      <main className="min-h-screen bg-[#0b2a4a] text-white">
-        <div className="mx-auto max-w-5xl px-4 py-32 text-center opacity-70">
-          <Droplets className="mx-auto mb-4 h-10 w-10 animate-pulse" />
-          <p>Loading…</p>
-        </div>
-      </main>
-    );
-  }
-
-  return (
-    <main className="min-h-screen bg-[#fbf6ec] text-slate-900">
-      {/* ============== HERO ============== */}
-      <section className="relative overflow-hidden bg-[#0b2a4a] text-white">
-        <img
-          src={heroPoster}
-          alt=""
-          className="absolute inset-0 h-full w-full object-cover opacity-40"
-          loading="eager"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0b2a4a]/85 via-[#0b2a4a]/75 to-[#0b2a4a]/95" />
-        <div className="relative mx-auto max-w-6xl px-4 pb-16 pt-24 md:pb-24 md:pt-32">
-          <Link
-            to="/projects"
-            className="mb-6 inline-flex items-center gap-2 text-sm text-white/80 hover:text-white"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            {lang === "de" ? "Alle Projekte" : lang === "nl" ? "Alle projecten" : "All projects"}
-          </Link>
-          <ScriptHeading>{t("hero.script_heading")}</ScriptHeading>
-          <h1 className="mt-2 font-serif text-4xl font-bold leading-tight md:text-6xl">
-            {t("hero.main_heading")}
-          </h1>
-          <p className="mt-4 max-w-3xl text-lg text-white/90 md:text-xl">
-            {t("hero.sub_heading")}
-          </p>
-          <p className="mt-3 max-w-3xl text-white/80">{t("hero.text_long")}</p>
-          <p className="mt-2 max-w-3xl text-sm text-white/70">
-            {t("hero.text_small_line")}
-          </p>
-          <p className="mt-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs text-white/85">
-            <ShieldCheck className="h-3.5 w-3.5" />
-            {t("hero.patent_trust_line")}
-          </p>
-          <div className="mt-7 flex flex-wrap gap-3">
-            <Button asChild size="lg" className="bg-amber-400 text-slate-900 hover:bg-amber-300">
-              <a href="#donate">{t("hero.cta.monthly")}</a>
-            </Button>
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="border-white/40 bg-transparent text-white hover:bg-white/10"
-            >
-              <a href="#donate">{t("hero.cta.once")}</a>
-            </Button>
-          </div>
-        </div>
-        <Wave from="bg-[#0b2a4a]" to="text-[#fbf6ec]" />
-      </section>
-
-      {/* ============== CONTEXT + AT A GLANCE ============== */}
-      <section className="bg-[#fbf6ec]">
-        <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 md:grid-cols-5 md:gap-10 md:py-16">
-          <div className="md:col-span-3">
-            <ScriptHeading>{t("context.script_heading")}</ScriptHeading>
-            <SectionTitle>{t("context.main_heading")}</SectionTitle>
-            <p className="mt-4 text-base leading-relaxed text-slate-700 md:text-lg">
-              {t("context.challenge_text")}
-            </p>
-            <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
-              {[
-                { Icon: Droplets, label: lang === "de" ? "Wasser" : lang === "nl" ? "Water" : "Water" },
-                { Icon: HeartPulse, label: lang === "de" ? "Gesundheit" : lang === "nl" ? "Gezondheid" : "Health" },
-                { Icon: GraduationCap, label: lang === "de" ? "Bildung" : lang === "nl" ? "Onderwijs" : "Education" },
-                { Icon: Leaf, label: lang === "de" ? "Klima" : lang === "nl" ? "Klimaat" : "Climate" },
-              ].map(({ Icon, label }) => (
-                <div key={label} className="flex flex-col items-center gap-2 text-center">
-                  <Icon className="h-7 w-7 text-[#0b2a4a]" />
-                  <span className="text-xs font-medium text-slate-600">{label}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-          <aside className="md:col-span-2">
-            <div className="rounded-2xl border border-amber-200/60 bg-white p-6 shadow-sm">
-              <h3 className="font-serif text-xl font-bold text-[#0b2a4a]">
-                {t("context.snapshot_heading")}
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-slate-700">
-                {t("context.snapshot_text")}
-              </p>
-              <div className="mt-4 rounded-lg bg-amber-50 px-4 py-3 text-sm text-slate-800">
-                <strong className="text-[#0b2a4a]">€·R130</strong> — {t("context.value_money_line")}
-              </div>
-              <p className="mt-3 text-xs italic text-slate-500">
-                {t("context.impact_summary_line")}
-              </p>
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <Wave from="bg-[#fbf6ec]" to="text-[#0b2a4a]" />
-
-      {/* ============== VIDEO + IMPACT COUNTERS ============== */}
-      <section className="bg-[#0b2a4a] text-white">
-        <div className="mx-auto max-w-6xl px-4 py-12 md:py-16">
-          <div className="mb-8 text-center">
-            <ScriptHeading>{t("showcase.script_heading")}</ScriptHeading>
-            <h2 className="mt-1 font-serif text-3xl font-bold md:text-4xl">
-              {t("showcase.main_heading")}
-            </h2>
-            <p className="mx-auto mt-3 max-w-3xl text-white/80">{t("showcase.text")}</p>
-          </div>
-          <div className="grid gap-8 md:grid-cols-5 md:gap-10">
-            <div className="md:col-span-3">
-              <div className="overflow-hidden rounded-2xl border border-white/10 bg-black shadow-xl">
-                <div className="aspect-video w-full">
-                  <iframe
-                    src={youTubeEmbed(t("showcase.video.url"))}
-                    title={t("showcase.video.title")}
-                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="h-full w-full"
-                  />
-                </div>
-              </div>
-              <p className="mt-3 text-sm font-medium text-amber-300">
-                {t("showcase.video.title")}
-              </p>
-              <p className="text-sm text-white/70">{t("showcase.video.description")}</p>
-            </div>
-            <div className="md:col-span-2">
-              <div className="grid grid-cols-2 gap-3">
-                {counters.map(({ key, value, label, Icon }) => (
-                  <div
-                    key={key}
-                    className="rounded-xl border border-white/10 bg-white/5 p-4 text-center backdrop-blur"
-                  >
-                    <Icon className="mx-auto h-5 w-5 text-amber-300" />
-                    <div className="mt-2 font-serif text-2xl font-bold text-white md:text-3xl">
-                      {value}
-                    </div>
-                    <div className="mt-1 text-[11px] leading-tight text-white/70">
-                      {label}
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <p className="mt-4 text-xs italic text-white/60">{t("impact.note")}</p>
-            </div>
-          </div>
-        </div>
-        <Wave from="bg-[#0b2a4a]" to="text-[#fbf6ec]" />
-      </section>
-
-      {/* ============== DEEP DIVE TABS / ACCORDION ============== */}
-      <section className="bg-[#fbf6ec]">
-        <div className="mx-auto max-w-6xl px-4 py-12 md:py-16">
-          <div className="mb-8 text-center">
-            <SectionTitle>{t("tabs.main_heading")}</SectionTitle>
-            <p className="mx-auto mt-3 max-w-2xl text-slate-700">{t("tabs.sub_heading")}</p>
-          </div>
-
-          {/* Desktop: tabs */}
-          <div className="hidden md:block">
-            <Tabs defaultValue="t1" className="w-full">
-              <TabsList className="grid h-auto w-full grid-cols-4 rounded-xl bg-white p-1 shadow-sm">
-                {(["t1", "t2", "t3", "t4"] as const).map((k) => (
-                  <TabsTrigger
-                    key={k}
-                    value={k}
-                    className="rounded-lg py-3 text-sm font-medium data-[state=active]:bg-[#0b2a4a] data-[state=active]:text-white"
-                  >
-                    {t(`tabs.${k}.title`)}
-                  </TabsTrigger>
-                ))}
-              </TabsList>
-              {(["t1", "t2", "t3", "t4"] as const).map((k) => (
-                <TabsContent key={k} value={k} className="mt-6">
-                  <TabContent dictKey={k} t={t} />
-                </TabsContent>
-              ))}
-            </Tabs>
-          </div>
-
-          {/* Mobile: accordion */}
-          <div className="md:hidden">
-            <Accordion type="single" collapsible defaultValue="t1">
-              {(["t1", "t2", "t3", "t4"] as const).map((k) => (
-                <AccordionItem key={k} value={k} className="border-amber-200/60">
-                  <AccordionTrigger className="text-left font-serif text-base font-semibold text-[#0b2a4a]">
-                    {t(`tabs.${k}.title`)}
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    <TabContent dictKey={k} t={t} />
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
-        </div>
-      </section>
-
-      <Wave from="bg-[#fbf6ec]" to="text-white" />
-
-      {/* ============== HUMAN IMPACT ============== */}
-      <section className="bg-white">
-        <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 md:grid-cols-2 md:items-center md:gap-12 md:py-16">
-          <div className="overflow-hidden rounded-3xl shadow-md">
-            <img
-              src={assets.photos.pureflow.schoolOrEcd}
-              alt=""
-              className="aspect-[4/5] w-full object-cover"
-              loading="lazy"
-            />
-          </div>
-          <div>
-            <ScriptHeading>{t("human.script_heading")}</ScriptHeading>
-            <SectionTitle>{t("human.main_heading")}</SectionTitle>
-            <div className="mt-5 rounded-2xl border border-amber-100 bg-amber-50/60 p-5">
-              <h3 className="flex items-center gap-2 font-serif text-lg font-semibold text-[#0b2a4a]">
-                <School className="h-5 w-5" />
-                {t("human.schools_heading")}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-slate-700">
-                {t("human.schools_text")}
-              </p>
-            </div>
-            <h3 className="mt-6 font-serif text-lg font-semibold text-[#0b2a4a]">
-              {t("human.outcomes_heading")}
-            </h3>
-            <p className="mt-1 text-sm text-slate-700">{t("human.outcomes_text")}</p>
-            <ul className="mt-4 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-2">
-              {list(t("human.outcomes_list")).map((item) => (
-                <li key={item} className="flex items-start gap-2 text-sm text-slate-700">
-                  <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald-600" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <Wave from="bg-white" to="text-[#0b2a4a]" />
-
-      {/* ============== CLIMATE ============== */}
-      <section className="bg-[#0b2a4a] text-white">
-        <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 md:grid-cols-3 md:py-16">
-          <div className="md:col-span-2">
-            <ScriptHeading>{t("climate.script_heading")}</ScriptHeading>
-            <h2 className="mt-1 font-serif text-3xl font-bold md:text-4xl">
-              {t("climate.main_heading")}
-            </h2>
-            <p className="mt-4 text-white/85">{t("climate.text_1")}</p>
-            <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3">
-              {list(t("climate.benefits_list")).map((b, i) => {
-                const Icons = [Cloud, Flame, TreePine, Leaf, Recycle, ShieldCheck];
-                const Icon = Icons[i % Icons.length];
-                return (
-                  <div
-                    key={b}
-                    className="flex flex-col items-start gap-2 rounded-xl border border-white/10 bg-white/5 p-4"
-                  >
-                    <Icon className="h-6 w-6 text-amber-300" />
-                    <span className="text-sm text-white/90">{b}</span>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-          <aside className="rounded-2xl border border-amber-300/30 bg-amber-300/10 p-6">
-            <h3 className="flex items-center gap-2 font-serif text-lg font-semibold text-amber-200">
-              <ClipboardCheck className="h-5 w-5" />
-              {t("climate.tracking_heading")}
-            </h3>
-            <p className="mt-3 text-sm leading-relaxed text-white/85">
-              {t("climate.tracking_text")}
-            </p>
-          </aside>
-        </div>
-        <Wave from="bg-[#0b2a4a]" to="text-[#fbf6ec]" />
-      </section>
-
-      {/* ============== SDG GRID ============== */}
-      <section className="bg-[#fbf6ec]">
-        <div className="mx-auto max-w-6xl px-4 py-12 md:py-16">
-          <div className="mb-8 text-center">
-            <SectionTitle>{t("sdg.main_heading")}</SectionTitle>
-            <p className="mx-auto mt-3 max-w-2xl text-slate-700">{t("sdg.sub_heading")}</p>
-          </div>
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {SDG_KEYS.map((n) => {
-              const color = SDG_COLORS[n] ?? "#0b2a4a";
-              const title = t(`sdg.${n}.title`);
-              const desc = t(`sdg.${n}.desc`);
-              return (
-                <div
-                  key={n}
-                  className="flex gap-3 rounded-xl border border-white/0 bg-white p-4 shadow-sm transition hover:shadow-md"
-                  style={{ borderLeft: `5px solid ${color}` }}
-                >
-                  <div
-                    className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg font-serif text-lg font-bold text-white"
-                    style={{ backgroundColor: color }}
-                    aria-hidden
-                  >
-                    {n}
-                  </div>
-                  <div>
-                    <h3 className="font-serif text-sm font-semibold text-[#0b2a4a]">
-                      {title}
-                    </h3>
-                    <p className="mt-1 text-xs leading-relaxed text-slate-700">{desc}</p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      <Wave from="bg-[#fbf6ec]" to="text-white" />
-
-      {/* ============== MEDIA + PARTNERS ============== */}
-      <section className="bg-white">
-        <div className="mx-auto max-w-6xl px-4 py-12 md:py-16">
-          <div className="mb-6 text-center">
-            <ScriptHeading>{t("media.script_heading")}</ScriptHeading>
-            <SectionTitle>{t("media.main_heading")}</SectionTitle>
-          </div>
-
-          <Tabs defaultValue="stories" className="w-full">
-            <TabsList className="mx-auto grid h-auto w-full max-w-md grid-cols-2 rounded-xl bg-amber-50 p-1">
-              <TabsTrigger
-                value="stories"
-                className="rounded-lg py-2 text-sm font-medium data-[state=active]:bg-[#0b2a4a] data-[state=active]:text-white"
-              >
-                {lang === "de"
-                  ? "Geschichten"
-                  : lang === "nl"
-                    ? "Verhalen"
-                    : "Community Stories"}
-              </TabsTrigger>
-              <TabsTrigger
-                value="guides"
-                className="rounded-lg py-2 text-sm font-medium data-[state=active]:bg-[#0b2a4a] data-[state=active]:text-white"
-              >
-                {lang === "de"
-                  ? "Anleitungen"
-                  : lang === "nl"
-                    ? "Handleidingen"
-                    : "Technical Guides"}
-              </TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="stories" className="mt-6">
-              <div className="grid gap-5 md:grid-cols-2">
-                {(["story1", "story2"] as const).map((sk) => {
-                  const url = t(`media.${sk}.url`);
-                  const title = t(`media.${sk}.title`);
-                  const desc = t(`media.${sk}.desc`);
-                  return (
-                    <a
-                      key={sk}
-                      href={url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
-                    >
-                      <div className="relative aspect-video overflow-hidden bg-slate-100">
-                        <img
-                          src={youTubeThumb(url)}
-                          alt=""
-                          className="h-full w-full object-cover transition group-hover:scale-105"
-                          loading="lazy"
-                        />
-                        <PlayCircle className="absolute inset-0 m-auto h-14 w-14 text-white drop-shadow-lg" />
-                      </div>
-                      <div className="p-4">
-                        <h3 className="font-serif text-base font-semibold text-[#0b2a4a]">
-                          {title}
-                        </h3>
-                        <p className="mt-1 text-sm text-slate-600">{desc}</p>
-                      </div>
-                    </a>
-                  );
-                })}
-              </div>
-            </TabsContent>
-
-            <TabsContent value="guides" className="mt-6">
-              <div className="grid gap-4 sm:grid-cols-3">
-                {(["guide1", "guide2", "guide3"] as const).map((gk) => {
-                  const url = t(`media.${gk}.url`);
-                  const title = t(`media.${gk}.title`);
-                  return (
-                    <a
-                      key={gk}
-                      href={url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition hover:shadow-md"
-                    >
-                      <div className="relative aspect-video overflow-hidden bg-slate-100">
-                        <img
-                          src={youTubeThumb(url)}
-                          alt=""
-                          className="h-full w-full object-cover transition group-hover:scale-105"
-                          loading="lazy"
-                        />
-                        <PlayCircle className="absolute inset-0 m-auto h-10 w-10 text-white drop-shadow" />
-                      </div>
-                      <div className="p-3">
-                        <p className="text-sm font-medium text-[#0b2a4a]">{title}</p>
-                      </div>
-                    </a>
-                  );
-                })}
-              </div>
-            </TabsContent>
-          </Tabs>
-
-          {/* Partners */}
-          <div className="mt-12 rounded-2xl border border-slate-200 bg-amber-50/50 p-6 md:p-8">
-            <div className="text-center">
-              <h3 className="font-serif text-xl font-bold text-[#0b2a4a]">
-                {t("partners.heading")}
-              </h3>
-              <p className="mx-auto mt-2 max-w-3xl text-sm text-slate-700">
-                {t("partners.text")}
-              </p>
-            </div>
-            <ul className="mt-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
-              {list(t("partners.list")).map((p) => (
-                <li
-                  key={p}
-                  className="rounded-full border border-slate-300 bg-white px-4 py-1.5 text-xs font-medium text-slate-700"
-                >
-                  {p}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <Wave from="bg-white" to="text-[#fbf6ec]" />
-
-      {/* ============== DONATION + CLOSING ============== */}
-      <section id="donate" className="bg-[#fbf6ec]">
-        <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 md:grid-cols-5 md:py-16">
-          <div className="md:col-span-2">
-            <ScriptHeading>{t("donation.script_heading")}</ScriptHeading>
-            <SectionTitle>{t("donation.main_heading")}</SectionTitle>
-            <p className="mt-4 text-slate-700">{t("donation.text_intro")}</p>
-            <ul className="mt-5 space-y-2">
-              {list(t("donation.supports_list")).map((s) => (
-                <li key={s} className="flex items-start gap-2 text-sm text-slate-800">
-                  <HandHeart className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-500" />
-                  {s}
-                </li>
-              ))}
-            </ul>
-            <ul className="mt-6 flex flex-wrap gap-2">
-              {list(t("donation.trust_points")).map((s) => (
-                <li
-                  key={s}
-                  className="rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs text-emerald-800"
-                >
-                  ✓ {s}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="md:col-span-3">
-            <div className="rounded-2xl border border-amber-200 bg-white p-2 shadow-sm">
-              <DonationWidget defaultProject="pureflow" />
-            </div>
-          </div>
-        </div>
-
-        <div className="mx-auto max-w-4xl px-4 pb-16 text-center">
-          <h2 className="font-serif text-2xl font-bold italic text-[#0b2a4a] md:text-3xl">
-            {t("donation.closing.heading")}
-          </h2>
-          <p className="mt-3 text-slate-700">{t("donation.closing.text")}</p>
-        </div>
-      </section>
-    </main>
-  );
-}
-
-/* ============================== TAB CONTENT ============================== */
-
-function TabContent({
-  dictKey,
-  t,
+function CircleArt({
+  src,
+  alt,
+  size = "lg",
+  className = "",
+  ring = "rgba(251,191,36,0.7)",
+  bg = "rgba(255,255,255,0.92)",
 }: {
-  dictKey: "t1" | "t2" | "t3" | "t4";
-  t: (k: string, fb?: string) => string;
+  src: string;
+  alt: string;
+  size?: "sm" | "md" | "lg" | "xl";
+  className?: string;
+  ring?: string;
+  bg?: string;
 }) {
-  const heading = t(`tabs.${dictKey}.heading`);
-  const text1 = t(`tabs.${dictKey}.text_1`);
-
-  if (dictKey === "t1") {
-    return (
-      <div className="grid gap-6 md:grid-cols-2">
-        <div>
-          <h3 className="font-serif text-2xl font-bold text-[#0b2a4a]">{heading}</h3>
-          <p className="mt-3 text-slate-700">{text1}</p>
-          <div className="mt-5 flex flex-wrap gap-2">
-            {list(t("tabs.t1.features")).map((f) => {
-              const Icon = featureIcon(f);
-              return (
-                <span
-                  key={f}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-[#0b2a4a]/15 bg-white px-3 py-1.5 text-xs font-medium text-[#0b2a4a]"
-                >
-                  <Icon className="h-3.5 w-3.5" />
-                  {f}
-                </span>
-              );
-            })}
-          </div>
-        </div>
-        <div className="space-y-4">
-          <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-4">
-            <h4 className="flex items-center gap-2 text-sm font-semibold text-emerald-800">
-              <ShieldCheck className="h-4 w-4" />
-              {t("hero.script_heading") ? "Testing" : "Testing"}
-            </h4>
-            <p className="mt-2 text-sm text-emerald-900/90">{t("tabs.t1.testing_note")}</p>
-          </div>
-          <div className="rounded-xl border border-[#0b2a4a]/15 bg-white p-4">
-            <h4 className="flex items-center gap-2 text-sm font-semibold text-[#0b2a4a]">
-              <Sparkles className="h-4 w-4" />
-              Technical proof
-            </h4>
-            <p className="mt-2 text-sm text-slate-700">{t("tabs.t1.technical_proof")}</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  if (dictKey === "t2") {
-    const steps = list(t("tabs.t2.steps"));
-    return (
-      <div>
-        <h3 className="font-serif text-2xl font-bold text-[#0b2a4a]">{heading}</h3>
-        <p className="mt-3 max-w-3xl text-slate-700">{text1}</p>
-        <ol className="mt-6 grid gap-3 md:grid-cols-2">
-          {steps.map((step, i) => (
-            <li
-              key={step}
-              className="flex gap-3 rounded-xl border border-amber-200/60 bg-white p-4"
-            >
-              <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[#0b2a4a] text-sm font-bold text-amber-300">
-                {i + 1}
-              </div>
-              <span className="text-sm text-slate-800">{step}</span>
-            </li>
-          ))}
-        </ol>
-      </div>
-    );
-  }
-
-  if (dictKey === "t3") {
-    const roles = list(t("tabs.t3.roles"));
-    const roleIcons = [Wrench, Truck, HandHeart, Grad, Building2, ClipboardCheck, Briefcase, Users, Zap];
-    return (
-      <div>
-        <h3 className="font-serif text-2xl font-bold text-[#0b2a4a]">{heading}</h3>
-        <p className="mt-3 max-w-3xl text-slate-700">{text1}</p>
-        <div className="mt-6 grid gap-3 sm:grid-cols-2 md:grid-cols-3">
-          {roles.map((r, i) => {
-            const Icon = roleIcons[i % roleIcons.length];
-            return (
-              <div
-                key={r}
-                className="flex items-center gap-3 rounded-xl border border-[#0b2a4a]/10 bg-white p-3"
-              >
-                <Icon className="h-5 w-5 text-amber-500" />
-                <span className="text-sm font-medium text-[#0b2a4a]">{r}</span>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    );
-  }
-
-  // t4
-  const outcomes = list(t("tabs.t4.outcomes"));
+  const sizes = {
+    sm: "h-32 w-32",
+    md: "h-44 w-44 md:h-52 md:w-52",
+    lg: "h-56 w-56 md:h-72 md:w-72",
+    xl: "h-64 w-64 md:h-80 md:w-80 lg:h-96 lg:w-96",
+  } as const;
   return (
-    <div className="grid gap-6 md:grid-cols-2">
-      <div>
-        <h3 className="font-serif text-2xl font-bold text-[#0b2a4a]">{heading}</h3>
-        <p className="mt-3 text-slate-700">{text1}</p>
-      </div>
-      <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-        {outcomes.map((o) => (
-          <li
-            key={o}
-            className="flex items-start gap-2 rounded-lg border border-amber-200/60 bg-white p-3 text-sm text-slate-800"
-          >
-            <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald-600" />
-            {o}
-          </li>
-        ))}
-      </ul>
+    <div
+      className={cn(
+        "relative inline-flex items-center justify-center rounded-full p-3 shadow-2xl",
+        sizes[size],
+        className,
+      )}
+      style={{
+        background: bg,
+        boxShadow: `0 25px 60px -25px rgba(8,26,96,0.55), 0 0 0 6px ${ring}`,
+      }}
+    >
+      <img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        className="h-full w-full rounded-full object-contain p-2"
+        onError={(e) => {
+          (e.currentTarget as HTMLImageElement).style.visibility = "hidden";
+        }}
+      />
     </div>
   );
 }
 
-/* unused icon imports kept intentionally to avoid future churn */
-void Globe2;
-void Cloud;
+// ----------------------- Hero -----------------------
+
+function Hero({ t, goDonate }: { t: (k: string, fb?: string) => string; goDonate: (freq: "monthly" | "once") => void }) {
+  return (
+    <section
+      className="relative isolate overflow-hidden"
+      style={{
+        background: `linear-gradient(180deg, ${BLUE_DEEP} 0%, ${BLUE} 100%)`,
+      }}
+    >
+      {/* Decorative dots */}
+      <div
+        aria-hidden
+        className="absolute inset-0 opacity-[0.18]"
+        style={{
+          backgroundImage: `radial-gradient(${YELLOW} 1.2px, transparent 1.2px)`,
+          backgroundSize: "26px 26px",
+        }}
+      />
+      <div className="relative mx-auto max-w-6xl px-5 pb-16 pt-10 text-white md:px-8 md:pb-24 md:pt-16">
+        <Link
+          to="/projects"
+          className="inline-flex items-center gap-2 text-sm text-white/70 hover:text-white"
+        >
+          <ArrowLeft className="h-4 w-4" /> {t("hero.back", "All projects")}
+        </Link>
+
+        <div className="mt-8 grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr]">
+          <div>
+            <Script>{t("hero.script_heading")}</Script>
+            <h1
+              className="mt-3 text-4xl font-bold leading-[1.05] md:text-6xl"
+              style={{ fontFamily: SERIF }}
+            >
+              {t("hero.main_heading")}
+            </h1>
+            <p className="mt-5 max-w-xl text-lg text-white/90 md:text-xl" style={{ fontFamily: SERIF }}>
+              {t("hero.sub_heading")}
+            </p>
+            <p className="mt-5 max-w-2xl text-base text-white/80 md:text-lg">
+              {t("hero.text_long")}
+            </p>
+            <p className="mt-3 max-w-2xl text-sm text-white/70">{t("hero.text_small_line")}</p>
+
+            <div className="mt-7 flex flex-wrap gap-3">
+              <Button
+                size="lg"
+                onClick={() => goDonate("monthly")}
+                className="rounded-full px-6 text-base font-semibold"
+                style={{ background: YELLOW, color: BLUE_DEEP }}
+              >
+                <Heart className="mr-2 h-4 w-4 fill-current" />
+                {t("hero.cta.monthly")}
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                onClick={() => goDonate("once")}
+                className="rounded-full border-white/40 bg-white/5 px-6 text-base text-white hover:bg-white/10"
+              >
+                {t("hero.cta.once")}
+              </Button>
+            </div>
+
+            <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs text-white/85 ring-1 ring-white/15">
+              <ShieldCheck className="h-3.5 w-3.5" />
+              {t("hero.patent_trust_line")}
+            </div>
+          </div>
+
+          {/* Right: layered circular community art */}
+          <div className="relative hidden lg:block">
+            <div className="absolute -top-6 right-10">
+              <CircleArt src={`${ASSET_BASE}/pureflow-community.png`} alt="Community" size="lg" />
+            </div>
+            <div className="absolute right-44 top-40">
+              <CircleArt src={`${ASSET_BASE}/pureflow-cleanwater.png`} alt="Clean water" size="md" bg="#FBF6E9" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <WaveDivider from={BLUE} to={CREAM} />
+    </section>
+  );
+}
+
+// ----------------------- Pathway Stepper -----------------------
+
+const STEP_IDS = ["step-1", "step-2", "step-3", "step-4", "step-5", "step-6"] as const;
+
+function scrollToStep(id: string) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const y = el.getBoundingClientRect().top + window.scrollY - 80;
+  window.scrollTo({ top: y, behavior: "smooth" });
+}
+
+function PathwayStepper({ t }: { t: (k: string, fb?: string) => string }) {
+  const carouselRef = useRef<HTMLDivElement | null>(null);
+
+  const steps = [1, 2, 3, 4, 5, 6].map((n) => ({
+    num: t(`pathway.step${n}.num`, String(n).padStart(2, "0")),
+    title: t(`pathway.step${n}.title`),
+    desc: t(`pathway.step${n}.short_desc`),
+    id: STEP_IDS[n - 1],
+  }));
+
+  const scroll = (dir: 1 | -1) => {
+    const el = carouselRef.current;
+    if (!el) return;
+    el.scrollBy({ left: dir * (el.clientWidth * 0.8), behavior: "smooth" });
+  };
+
+  return (
+    <section style={{ background: CREAM }} className="relative">
+      <div className="mx-auto max-w-6xl px-5 py-14 md:px-8 md:py-20">
+        <div className="text-center">
+          <Script color={BLUE}>{t("pathway.script_heading")}</Script>
+          <h2 className="mt-2 text-3xl font-bold md:text-4xl" style={{ fontFamily: SERIF, color: BLUE_DEEP }}>
+            {t("pathway.main_heading")}
+          </h2>
+          <p className="mx-auto mt-3 max-w-2xl text-base text-slate-700 md:text-lg">
+            {t("pathway.sub_heading")}
+          </p>
+        </div>
+
+        {/* Desktop: 6-up grid */}
+        <ol className="mt-10 hidden grid-cols-6 gap-4 md:grid">
+          {steps.map((s, i) => (
+            <li key={s.id} className="relative">
+              <button
+                onClick={() => scrollToStep(s.id)}
+                className="group flex h-full w-full flex-col items-start rounded-2xl bg-white p-4 text-left shadow-sm ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-lg"
+              >
+                <span
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-full text-sm font-bold"
+                  style={{ background: YELLOW, color: BLUE_DEEP }}
+                >
+                  {s.num}
+                </span>
+                <span className="mt-3 text-sm font-semibold leading-tight" style={{ color: BLUE_DEEP, fontFamily: SERIF }}>
+                  {s.title}
+                </span>
+                <span className="mt-1 text-xs text-slate-600">{s.desc}</span>
+                <span
+                  className="mt-3 inline-flex items-center gap-1 text-xs font-semibold opacity-0 transition group-hover:opacity-100"
+                  style={{ color: BLUE }}
+                >
+                  Jump <ArrowRight className="h-3 w-3" />
+                </span>
+              </button>
+              {i < steps.length - 1 && (
+                <span
+                  aria-hidden
+                  className="absolute right-[-14px] top-1/2 hidden h-0.5 w-7 -translate-y-1/2 md:block"
+                  style={{ background: `${BLUE}33` }}
+                />
+              )}
+            </li>
+          ))}
+        </ol>
+
+        {/* Mobile: horizontal swipe */}
+        <div className="relative mt-8 md:hidden">
+          <div
+            ref={carouselRef}
+            className="flex snap-x snap-mandatory gap-3 overflow-x-auto pb-3 [-ms-overflow-style:none] [scrollbar-width:none]"
+            style={{ scrollbarWidth: "none" }}
+          >
+            {steps.map((s) => (
+              <button
+                key={s.id}
+                onClick={() => scrollToStep(s.id)}
+                className="min-w-[78%] shrink-0 snap-center rounded-2xl bg-white p-4 text-left shadow-sm ring-1 ring-black/5"
+              >
+                <span
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-full text-sm font-bold"
+                  style={{ background: YELLOW, color: BLUE_DEEP }}
+                >
+                  {s.num}
+                </span>
+                <p className="mt-3 text-base font-semibold" style={{ color: BLUE_DEEP, fontFamily: SERIF }}>
+                  {s.title}
+                </p>
+                <p className="mt-1 text-sm text-slate-600">{s.desc}</p>
+              </button>
+            ))}
+          </div>
+          <div className="mt-2 flex justify-end gap-2">
+            <button
+              aria-label="Previous"
+              onClick={() => scroll(-1)}
+              className="rounded-full bg-white p-2 shadow ring-1 ring-black/5"
+            >
+              <ChevronLeft className="h-4 w-4" style={{ color: BLUE_DEEP }} />
+            </button>
+            <button
+              aria-label="Next"
+              onClick={() => scroll(1)}
+              className="rounded-full bg-white p-2 shadow ring-1 ring-black/5"
+            >
+              <ChevronRight className="h-4 w-4" style={{ color: BLUE_DEEP }} />
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ----------------------- Showcase + Counters -----------------------
+
+function youtubeId(url: string): string | null {
+  const m = url.match(/(?:v=|youtu\.be\/|embed\/)([A-Za-z0-9_-]{11})/);
+  return m ? m[1] : null;
+}
+
+function Showcase({ t }: { t: (k: string, fb?: string) => string }) {
+  const [playing, setPlaying] = useState(false);
+  const videoUrl = t("showcase.video.url");
+  const vid = youtubeId(videoUrl);
+
+  const counters = [
+    { k: "households", v: t("impact.counters.households.value"), l: t("impact.counters.households.label") },
+    { k: "people", v: t("impact.counters.people.value"), l: t("impact.counters.people.label") },
+    { k: "litres", v: t("impact.counters.litres.value"), l: t("impact.counters.litres.label") },
+    { k: "co2", v: t("impact.counters.co2.value"), l: t("impact.counters.co2.label") },
+    { k: "firewood", v: t("impact.counters.firewood.value"), l: t("impact.counters.firewood.label") },
+    { k: "trees", v: t("impact.counters.trees.value"), l: t("impact.counters.trees.label") },
+  ];
+
+  return (
+    <section style={{ background: CREAM_WARM }} className="relative">
+      <div className="mx-auto max-w-6xl px-5 py-14 md:px-8 md:py-20">
+        <div className="text-center">
+          <Script color={BLUE}>{t("showcase.script_heading")}</Script>
+          <h2 className="mt-2 text-3xl font-bold md:text-4xl" style={{ fontFamily: SERIF, color: BLUE_DEEP }}>
+            {t("showcase.main_heading")}
+          </h2>
+          <p className="mx-auto mt-3 max-w-2xl text-base text-slate-700 md:text-lg">{t("showcase.text")}</p>
+        </div>
+
+        <div className="mt-10 grid items-stretch gap-8 lg:grid-cols-2">
+          {/* Video */}
+          <div className="overflow-hidden rounded-3xl bg-black/90 shadow-2xl ring-1 ring-black/10">
+            <div className="relative aspect-video w-full">
+              {vid && !playing && (
+                <button
+                  type="button"
+                  onClick={() => setPlaying(true)}
+                  className="group absolute inset-0 z-10"
+                  aria-label={t("showcase.video.title")}
+                >
+                  <img
+                    src={`https://i.ytimg.com/vi/${vid}/hqdefault.jpg`}
+                    alt={t("showcase.video.title")}
+                    className="h-full w-full object-cover"
+                  />
+                  <span className="absolute inset-0 flex items-center justify-center bg-black/30 transition group-hover:bg-black/40">
+                    <PlayCircle className="h-20 w-20" style={{ color: YELLOW }} />
+                  </span>
+                </button>
+              )}
+              {vid && playing && (
+                <iframe
+                  className="absolute inset-0 h-full w-full"
+                  src={`https://www.youtube.com/embed/${vid}?autoplay=1&rel=0`}
+                  title={t("showcase.video.title")}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              )}
+            </div>
+            <div className="bg-white px-5 py-4">
+              <p className="text-sm font-semibold" style={{ color: BLUE_DEEP, fontFamily: SERIF }}>
+                {t("showcase.video.title")}
+              </p>
+              <p className="mt-1 text-xs text-slate-600">{t("showcase.video.description")}</p>
+            </div>
+          </div>
+
+          {/* Counter matrix */}
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
+            {counters.map((c) => (
+              <div
+                key={c.k}
+                className="flex flex-col items-start justify-between rounded-2xl bg-white p-4 shadow-sm ring-1 ring-black/5"
+              >
+                <span
+                  className="text-2xl font-extrabold leading-tight md:text-3xl"
+                  style={{ color: BLUE_DEEP, fontFamily: SERIF }}
+                >
+                  {c.v}
+                </span>
+                <span className="mt-2 text-xs leading-snug text-slate-600">{c.l}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <p className="mx-auto mt-8 max-w-3xl text-center text-sm italic text-slate-600">
+          {t("impact.note")}
+        </p>
+      </div>
+    </section>
+  );
+}
+
+// ----------------------- Step Sheet (read more) -----------------------
+
+function ReadMoreSheet({
+  label,
+  title,
+  body,
+  tag,
+}: {
+  label: string;
+  title: string;
+  body: string;
+  tag: string;
+}) {
+  if (!label) return null;
+  return (
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button
+          variant="outline"
+          className="mt-5 rounded-full border-transparent px-5 font-semibold"
+          style={{ background: YELLOW, color: BLUE_DEEP }}
+        >
+          {label} <ArrowRight className="ml-1 h-4 w-4" />
+        </Button>
+      </SheetTrigger>
+      <SheetContent className="w-full max-w-lg overflow-y-auto sm:max-w-xl" style={{ background: CREAM }}>
+        <SheetHeader>
+          <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: BLUE }}>
+            {tag}
+          </p>
+          <SheetTitle style={{ fontFamily: SERIF, color: BLUE_DEEP }} className="text-2xl">
+            {title}
+          </SheetTitle>
+          <SheetDescription className="text-base leading-relaxed text-slate-700">{body}</SheetDescription>
+        </SheetHeader>
+      </SheetContent>
+    </Sheet>
+  );
+}
+
+// ----------------------- Step block -----------------------
+
+function StepBlock({
+  id,
+  num,
+  tag,
+  heading,
+  body,
+  ctaLabel,
+  reverse,
+  dark,
+  children,
+}: {
+  id: string;
+  num: string;
+  tag: string;
+  heading: string;
+  body: string;
+  ctaLabel: string;
+  reverse?: boolean;
+  dark?: boolean;
+  children: React.ReactNode;
+}) {
+  const textColor = dark ? "#FFFFFF" : BLUE_DEEP;
+  const bodyColor = dark ? "rgba(255,255,255,0.85)" : "#334155";
+  const tagBg = dark ? "rgba(255,255,255,0.12)" : "rgba(15,42,140,0.08)";
+  const tagFg = dark ? YELLOW : BLUE;
+  return (
+    <section
+      id={id}
+      className="relative scroll-mt-20"
+      style={{ background: dark ? BLUE : CREAM }}
+    >
+      <div className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-24">
+        <div
+          className={cn(
+            "grid items-center gap-10 lg:grid-cols-2",
+            reverse && "lg:[&>div:first-child]:order-2",
+          )}
+        >
+          <div>
+            <div className="flex items-center gap-3">
+              <span
+                className="inline-flex h-12 w-12 items-center justify-center rounded-full text-base font-extrabold"
+                style={{ background: YELLOW, color: BLUE_DEEP, fontFamily: SERIF }}
+              >
+                {num}
+              </span>
+              <span
+                className="rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wider"
+                style={{ background: tagBg, color: tagFg }}
+              >
+                {tag}
+              </span>
+            </div>
+            <h3
+              className="mt-5 text-3xl font-bold leading-tight md:text-4xl"
+              style={{ fontFamily: SERIF, color: textColor }}
+            >
+              {heading}
+            </h3>
+            <p className="mt-4 text-base leading-relaxed md:text-lg" style={{ color: bodyColor }}>
+              {body}
+            </p>
+            <ReadMoreSheet label={ctaLabel} title={heading} body={body} tag={tag} />
+          </div>
+          <div className="flex justify-center">{children}</div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ----------------------- 5-Step delivery loop -----------------------
+
+function DeliveryLoop({ t }: { t: (k: string, fb?: string) => string }) {
+  const items = [1, 2, 3, 4, 5].map((n) => ({
+    title: t(`step2.loop.${n}.title`),
+    desc: t(`step2.loop.${n}.desc`),
+  }));
+  return (
+    <div className="mt-10 rounded-3xl bg-white/95 p-6 shadow-xl ring-1 ring-black/5 md:p-8">
+      <h4 className="text-xl font-bold md:text-2xl" style={{ fontFamily: SERIF, color: BLUE_DEEP }}>
+        {t("step2.loop.heading")}
+      </h4>
+      <p className="mt-2 text-sm text-slate-600 md:text-base">{t("step2.loop.sub_heading")}</p>
+      <ol className="mt-6 space-y-4">
+        {items.map((it, i) => (
+          <li key={i} className="flex gap-4">
+            <span
+              className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-bold"
+              style={{ background: YELLOW, color: BLUE_DEEP }}
+            >
+              {i + 1}
+            </span>
+            <div>
+              <p className="text-base font-semibold" style={{ color: BLUE_DEEP, fontFamily: SERIF }}>
+                {it.title}
+              </p>
+              <p className="text-sm text-slate-600">{it.desc}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  );
+}
+
+// ----------------------- SDG Grid -----------------------
+
+const SDG_NUMS = [1, 3, 4, 5, 6, 8, 10, 11, 12, 13, 17] as const;
+const SDG_COLORS: Record<number, string> = {
+  1: "#E5243B",
+  3: "#4C9F38",
+  4: "#C5192D",
+  5: "#FF3A21",
+  6: "#26BDE2",
+  8: "#A21942",
+  10: "#DD1367",
+  11: "#FD9D24",
+  12: "#BF8B2E",
+  13: "#3F7E44",
+  17: "#19486A",
+};
+
+function SDGGrid({ t }: { t: (k: string, fb?: string) => string }) {
+  return (
+    <section style={{ background: CREAM }} className="relative">
+      <div className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-20">
+        <div className="text-center">
+          <Script color={BLUE}>SDG</Script>
+          <h2 className="mt-2 text-3xl font-bold md:text-4xl" style={{ fontFamily: SERIF, color: BLUE_DEEP }}>
+            {t("sdg.main_heading")}
+          </h2>
+          <p className="mx-auto mt-3 max-w-2xl text-base text-slate-700">{t("sdg.sub_heading")}</p>
+        </div>
+        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {SDG_NUMS.map((n) => (
+            <div
+              key={n}
+              className="group relative overflow-hidden rounded-2xl bg-white p-5 shadow-sm ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-md"
+            >
+              <span
+                aria-hidden
+                className="absolute left-0 top-0 h-full w-1.5"
+                style={{ background: SDG_COLORS[n] }}
+              />
+              <div className="flex items-start gap-3 pl-3">
+                <span
+                  className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-md text-sm font-bold text-white"
+                  style={{ background: SDG_COLORS[n] }}
+                >
+                  {n}
+                </span>
+                <div>
+                  <p className="text-sm font-semibold leading-snug" style={{ color: BLUE_DEEP, fontFamily: SERIF }}>
+                    {t(`sdg.${n}.title`)}
+                  </p>
+                  <p className="mt-1 text-xs leading-snug text-slate-600">{t(`sdg.${n}.desc`)}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ----------------------- Partners -----------------------
+
+function normalize(s: string) {
+  return s
+    .toLowerCase()
+    .replace(/['’`]/g, "")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+function PartnersStrip({ t }: { t: (k: string, fb?: string) => string }) {
+  const list = t("partners.list")
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean);
+
+  // Match v3 names against known partners with logos
+  const matched = list
+    .map((name) => {
+      const norm = normalize(name);
+      const found = allPartners.find((p) => {
+        const pn = normalize(p.name);
+        return pn === norm || pn.includes(norm) || norm.includes(pn);
+      });
+      return { name, partner: found };
+    })
+    .filter((x) => x.partner);
+
+  return (
+    <section style={{ background: CREAM_WARM }} className="relative">
+      <div className="mx-auto max-w-6xl px-5 py-14 md:px-8 md:py-20">
+        <div className="text-center">
+          <Script color={BLUE}>{t("partners.script_heading")}</Script>
+          <h2 className="mt-2 text-3xl font-bold md:text-4xl" style={{ fontFamily: SERIF, color: BLUE_DEEP }}>
+            {t("partners.main_heading")}
+          </h2>
+          <p className="mx-auto mt-3 max-w-2xl text-base text-slate-700">{t("partners.text")}</p>
+        </div>
+
+        {matched.length > 0 ? (
+          <div className="mt-10 grid grid-cols-2 items-center gap-x-6 gap-y-8 sm:grid-cols-3 md:grid-cols-4">
+            {matched.map(({ partner }) => (
+              <a
+                key={partner!.name}
+                href={partner!.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex h-24 items-center justify-center"
+                title={partner!.name}
+              >
+                <img
+                  src={partner!.logo}
+                  alt={`${partner!.name} logo`}
+                  loading="lazy"
+                  className={cn(
+                    "max-h-[90px] max-w-[200px] object-contain opacity-80 grayscale transition group-hover:opacity-100 group-hover:grayscale-0",
+                  )}
+                  onError={(e) => {
+                    (e.currentTarget.parentElement as HTMLElement).style.display = "none";
+                  }}
+                />
+              </a>
+            ))}
+          </div>
+        ) : (
+          <div className="mt-10 flex flex-wrap justify-center gap-3">
+            {list.map((n) => (
+              <span
+                key={n}
+                className="rounded-full bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm ring-1 ring-black/5"
+              >
+                {n}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
+// ----------------------- Donation Box -----------------------
+
+function DonationBox({ t, anchorRef }: { t: (k: string, fb?: string) => string; anchorRef: React.RefObject<HTMLDivElement | null> }) {
+  const [frequency, setFrequency] = useState<"monthly" | "once">("monthly");
+  const [selected, setSelected] = useState<number | "custom">(2);
+  const [customAmount, setCustomAmount] = useState("");
+
+  const sym = t("donation.currency.symbol", "€");
+  const tiers = [1, 2, 3, 4, 5].map((n) => ({
+    n,
+    value: t(`donation.amt.${n}`),
+    desc: t(`donation.amt.${n}_desc`),
+  }));
+
+  const trustPoints = t("donation.trust_points")
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean);
+
+  return (
+    <section ref={anchorRef as React.RefObject<HTMLDivElement>} id="donate" style={{ background: BLUE }} className="relative scroll-mt-20">
+      <div className="mx-auto max-w-5xl px-5 py-16 md:px-8 md:py-24">
+        <div className="text-center text-white">
+          <Script>{t("donation.script_heading")}</Script>
+          <h2 className="mt-2 text-3xl font-bold md:text-4xl" style={{ fontFamily: SERIF }}>
+            {t("donation.main_heading")}
+          </h2>
+          <p className="mx-auto mt-3 max-w-2xl text-base text-white/85 md:text-lg">
+            {t("donation.text_intro")}
+          </p>
+        </div>
+
+        <div className="mt-10 overflow-hidden rounded-3xl bg-white shadow-2xl ring-1 ring-black/5">
+          <div className="grid grid-cols-2 bg-slate-100 p-1 text-sm font-semibold">
+            {(["monthly", "once"] as const).map((f) => (
+              <button
+                key={f}
+                onClick={() => setFrequency(f)}
+                className={cn(
+                  "rounded-full py-2 transition",
+                  frequency === f ? "shadow" : "text-slate-600",
+                )}
+                style={frequency === f ? { background: YELLOW, color: BLUE_DEEP } : undefined}
+              >
+                {t(`donation.tab.${f}`)}
+              </button>
+            ))}
+          </div>
+
+          <div className="p-6 md:p-8">
+            <p className="text-sm font-semibold uppercase tracking-wider text-slate-500">
+              {t("donation.amount.heading")}
+            </p>
+            <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              {tiers.map((tier) => {
+                const active = selected === tier.n;
+                return (
+                  <button
+                    key={tier.n}
+                    onClick={() => setSelected(tier.n)}
+                    className={cn(
+                      "rounded-2xl border p-4 text-left transition",
+                      active
+                        ? "border-transparent shadow-md"
+                        : "border-slate-200 bg-white hover:border-slate-300",
+                    )}
+                    style={active ? { background: CREAM, borderColor: YELLOW } : undefined}
+                  >
+                    <div className="flex items-baseline gap-1">
+                      <span
+                        className="text-2xl font-extrabold"
+                        style={{ color: BLUE_DEEP, fontFamily: SERIF }}
+                      >
+                        {sym}
+                        {tier.value}
+                      </span>
+                      {frequency === "monthly" && (
+                        <span className="text-xs text-slate-500">/mo</span>
+                      )}
+                    </div>
+                    <p className="mt-2 text-xs leading-snug text-slate-600">{tier.desc}</p>
+                  </button>
+                );
+              })}
+              <button
+                onClick={() => setSelected("custom")}
+                className={cn(
+                  "rounded-2xl border p-4 text-left transition",
+                  selected === "custom"
+                    ? "border-transparent shadow-md"
+                    : "border-slate-200 bg-white hover:border-slate-300",
+                )}
+                style={selected === "custom" ? { background: CREAM, borderColor: YELLOW } : undefined}
+              >
+                <p className="text-sm font-semibold" style={{ color: BLUE_DEEP, fontFamily: SERIF }}>
+                  {t("donation.amt.custom")}
+                </p>
+                <div className="mt-2 flex items-center gap-2">
+                  <span className="text-sm text-slate-500">{sym}</span>
+                  <input
+                    inputMode="numeric"
+                    value={customAmount}
+                    onChange={(e) => {
+                      setCustomAmount(e.target.value.replace(/[^0-9]/g, ""));
+                      setSelected("custom");
+                    }}
+                    placeholder="0"
+                    className="w-full border-0 border-b border-slate-300 bg-transparent py-1 text-base focus:border-slate-500 focus:outline-none focus:ring-0"
+                  />
+                </div>
+              </button>
+            </div>
+
+            <div className="mt-6">
+              <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                {t("donation.payment.heading")}
+              </p>
+              <p className="mt-2 text-sm text-slate-600">{t("donation.payment.options")}</p>
+            </div>
+
+            <Button
+              asChild
+              size="lg"
+              className="mt-6 w-full rounded-full text-base font-semibold"
+              style={{ background: BLUE, color: "#FFFFFF" }}
+            >
+              <Link to="/donate">
+                {frequency === "monthly" ? t("donation.btn.monthly") : t("donation.btn.once")}
+              </Link>
+            </Button>
+
+            {trustPoints.length > 0 && (
+              <ul className="mt-5 flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs text-slate-500">
+                {trustPoints.map((p) => (
+                  <li key={p} className="inline-flex items-center gap-1.5">
+                    <Sparkles className="h-3 w-3" style={{ color: YELLOW }} />
+                    {p}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ----------------------- Closing -----------------------
+
+function Closing({ t, goDonate }: { t: (k: string, fb?: string) => string; goDonate: (f: "monthly" | "once") => void }) {
+  return (
+    <section className="relative" style={{ background: BLUE_DEEP }}>
+      <div className="mx-auto max-w-4xl px-5 py-20 text-center text-white md:px-8 md:py-28">
+        <h2 className="text-3xl font-bold md:text-5xl" style={{ fontFamily: SERIF }}>
+          {t("closing.main_heading")}
+        </h2>
+        <p className="mx-auto mt-5 max-w-2xl text-base text-white/85 md:text-lg">
+          {t("closing.text")}
+        </p>
+        <div className="mt-8 flex flex-wrap justify-center gap-3">
+          <Button
+            size="lg"
+            onClick={() => goDonate("monthly")}
+            className="rounded-full px-6 text-base font-semibold"
+            style={{ background: YELLOW, color: BLUE_DEEP }}
+          >
+            <Heart className="mr-2 h-4 w-4 fill-current" />
+            {t("closing.btn.monthly")}
+          </Button>
+          <Button
+            asChild
+            size="lg"
+            variant="outline"
+            className="rounded-full border-white/40 bg-white/5 px-6 text-base text-white hover:bg-white/10"
+          >
+            <Link to="/projects">{t("closing.btn.projects")}</Link>
+          </Button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ----------------------- Page -----------------------
+
+function PureFlowCompactPage() {
+  const { lang } = useLang();
+  const { t } = useProjectContent(lang);
+  const donationRef = useRef<HTMLDivElement | null>(null);
+
+  const goDonate = (_freq: "monthly" | "once") => {
+    const el = donationRef.current;
+    if (!el) return;
+    const y = el.getBoundingClientRect().top + window.scrollY - 60;
+    window.scrollTo({ top: y, behavior: "smooth" });
+  };
+
+  return (
+    <main className="overflow-x-hidden">
+      <Hero t={t} goDonate={goDonate} />
+      <PathwayStepper t={t} />
+
+      <WaveDivider from={CREAM} to={CREAM_WARM} />
+      <Showcase t={t} />
+
+      <WaveDivider from={CREAM_WARM} to={CREAM} />
+
+      {/* Step 01 — cream */}
+      <StepBlock
+        id="step-1"
+        num={t("step1.num", "01")}
+        tag={t("step1.tag")}
+        heading={t("step1.heading")}
+        body={t("step1.text_block")}
+        ctaLabel={t("step1.cta_label")}
+      >
+        <div className="relative h-[360px] w-full max-w-md">
+          <div className="absolute left-4 top-2">
+            <CircleArt src={`${ASSET_BASE}/pureflow-problem.png`} alt={t("step1.heading")} size="lg" />
+          </div>
+          <div className="absolute -right-2 top-24">
+            <CircleArt
+              src={`${ASSET_BASE}/pureflow-womentime-problem.png`}
+              alt="Firewood burden"
+              size="md"
+              ring="rgba(15,42,140,0.25)"
+              bg="#FFFFFF"
+            />
+          </div>
+          <div className="absolute bottom-0 left-16">
+            <CircleArt
+              src={`${ASSET_BASE}/pureflow-medical-problem.png`}
+              alt="Healthcare burden"
+              size="sm"
+              ring="rgba(249,115,22,0.45)"
+              bg="#FFFFFF"
+            />
+          </div>
+        </div>
+      </StepBlock>
+
+      <WaveDivider from={CREAM} to={BLUE} />
+
+      {/* Step 02 — dark blue */}
+      <StepBlock
+        id="step-2"
+        num={t("step2.num", "02")}
+        tag={t("step2.tag")}
+        heading={t("step2.heading")}
+        body={t("step2.text_block")}
+        ctaLabel={t("step2.cta_label")}
+        reverse
+        dark
+      >
+        <div className="w-full">
+          <div className="flex justify-center">
+            <CircleArt
+              src={`${ASSET_BASE}/pureflow-solution.png`}
+              alt={t("step2.heading")}
+              size="xl"
+              ring="rgba(251,191,36,0.85)"
+              bg="#FFFFFF"
+            />
+          </div>
+          <DeliveryLoop t={t} />
+        </div>
+      </StepBlock>
+
+      <WaveDivider from={BLUE} to={CREAM} />
+
+      {/* Step 03 — cream */}
+      <StepBlock
+        id="step-3"
+        num={t("step3.num", "03")}
+        tag={t("step3.tag")}
+        heading={t("step3.heading")}
+        body={t("step3.text_block")}
+        ctaLabel={t("step3.cta_label")}
+      >
+        <div className="relative h-[340px] w-full max-w-md">
+          <div className="absolute left-0 top-4">
+            <CircleArt src={`${ASSET_BASE}/pureflow-school.png`} alt="School" size="lg" />
+          </div>
+          <div className="absolute bottom-0 right-0">
+            <CircleArt
+              src={`${ASSET_BASE}/pureflow-ecd.png`}
+              alt="ECD"
+              size="md"
+              ring="rgba(20,184,166,0.5)"
+              bg="#FFFFFF"
+            />
+          </div>
+        </div>
+      </StepBlock>
+
+      <WaveDivider from={CREAM} to={BLUE} />
+
+      {/* Step 04 — dark blue */}
+      <StepBlock
+        id="step-4"
+        num={t("step4.num", "04")}
+        tag={t("step4.tag")}
+        heading={t("step4.heading")}
+        body={t("step4.text_block")}
+        ctaLabel={t("step4.cta_label")}
+        reverse
+        dark
+      >
+        <CircleArt
+          src={`${ASSET_BASE}/pureflow-wash.png`}
+          alt={t("step4.heading")}
+          size="xl"
+          ring="rgba(251,191,36,0.85)"
+          bg="#FFFFFF"
+        />
+      </StepBlock>
+
+      <WaveDivider from={BLUE} to={CREAM} />
+
+      {/* Step 05 — cream */}
+      <StepBlock
+        id="step-5"
+        num={t("step5.num", "05")}
+        tag={t("step5.tag")}
+        heading={t("step5.heading")}
+        body={t("step5.text_block")}
+        ctaLabel={t("step5.cta_label")}
+      >
+        <CircleArt
+          src={`${ASSET_BASE}/pureflow-jobs.png`}
+          alt={t("step5.heading")}
+          size="xl"
+          ring="rgba(251,191,36,0.85)"
+          bg="#FFFFFF"
+        />
+      </StepBlock>
+
+      <WaveDivider from={CREAM} to={BLUE} />
+
+      {/* Step 06 — dark blue */}
+      <StepBlock
+        id="step-6"
+        num={t("step6.num", "06")}
+        tag={t("step6.tag")}
+        heading={t("step6.heading")}
+        body={t("step6.text_block")}
+        ctaLabel={t("step6.cta_label")}
+        reverse
+        dark
+      >
+        <div className="relative h-[360px] w-full max-w-md">
+          <div className="absolute left-2 top-0">
+            <CircleArt src={`${ASSET_BASE}/pureflow-cleanwater.png`} alt="Clean water" size="md" bg="#FFFFFF" />
+          </div>
+          <div className="absolute -right-2 top-16">
+            <CircleArt src={`${ASSET_BASE}/pureflow-village.png`} alt="Village" size="lg" bg="#FFFFFF" />
+          </div>
+          <div className="absolute bottom-0 left-10">
+            <CircleArt src={`${ASSET_BASE}/pureflow-community.png`} alt="Community" size="md" bg="#FFFFFF" />
+          </div>
+        </div>
+      </StepBlock>
+
+      <WaveDivider from={BLUE} to={CREAM} />
+      <SDGGrid t={t} />
+
+      <WaveDivider from={CREAM} to={CREAM_WARM} />
+      <PartnersStrip t={t} />
+
+      <WaveDivider from={CREAM_WARM} to={BLUE} />
+      <DonationBox t={t} anchorRef={donationRef} />
+
+      <WaveDivider from={BLUE} to={BLUE_DEEP} />
+      <Closing t={t} goDonate={goDonate} />
+    </main>
+  );
+}
