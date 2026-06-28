@@ -1,0 +1,198 @@
+# ==========================================
+# PUREFLOW AMANZI PROJECT PAGE CONFIGURATION
+# LANGUAGE: ENGLISH (en)
+# VERSION: 2.2 (Optimized for Lovable UI Elements)
+# ==========================================
+
+# ------------------------------------------
+# 01. HERO SECTION
+# ------------------------------------------
+hero.script_heading: Safe Water
+hero.main_heading: PureFlow Amanzi
+hero.sub_heading: Safe water. Local employment. Stronger communities. Climate action.
+hero.text_long: A locally born safe-water solution bringing household filtration, WASH education, local employment and climate resilience to rural communities in South Africa.
+hero.text_small_line: A practical, gravity-fed water filtration system built for low-infrastructure communities.
+hero.patent_trust_line: Patent pending: South African Patent Application No. 2026/00975
+hero.cta.monthly: Donate Monthly to Support This Project
+hero.cta.once: Give Once
+
+# ------------------------------------------
+# 02. CONTEXT & CRISIS GRID (Merged Sections 1 & 4)
+# ------------------------------------------
+context.script_heading: The Reality & Focus
+context.main_heading: Unsafe water is part of daily life
+context.challenge_text: In many rural villages, unsafe water is an everyday crisis. Families collect water from untreated rivers, streams, and dams shared with livestock. This places a heavy burden on women and caregivers, causes children to miss school due to illness, forces families to carry clinic and medicine costs, and strains forests because firewood is used to boil water.
+context.snapshot_heading: At a glance
+context.snapshot_text: PureFlow Amanzi is a community-based safe-water programme supporting rural households, schools, ECD centres, clinics and vulnerable spaces with practical household filtration and long-term field support.
+context.value_money_line: The model can reach people at roughly R130 per person, or less than 15 cents per person per day over the life of the system.
+context.impact_summary_line: Unsafe water affects health, education, livelihoods, gender equality and the environment at the same time.
+
+# ------------------------------------------
+# 03. MAIN SHOWCASE & TRACK RECORD (Merged Sections 2 & 3)
+# ------------------------------------------
+showcase.script_heading: Watch & Verify
+showcase.main_heading: PureFlow Amanzi in action
+showcase.text: This short video and our real field data give an overview of the PureFlow Amanzi model in action—showing safe water systems, community rollout, WASH education, local teams and household-level impact.
+showcase.video.url: https://www.youtube.com/watch?v=IoRHLU5Cm7o
+showcase.video.title: PureFlow Amanzi overview
+showcase.video.description: An introduction to PureFlow Amanzi and the safe-water work being delivered in rural communities.
+
+impact.note: Every number represents more than distribution. It represents local teams, household training, WASH education, follow-up visits, data collection and community trust.
+impact.counters.households.value: 3,094
+impact.counters.households.label: Households reached
+impact.counters.people.value: 15,000+
+impact.counters.people.label: People reached with safer water access
+impact.counters.litres.value: 30M+
+impact.counters.litres.label: Litres of safe drinking water capacity delivered
+impact.counters.co2.value: 8,000+
+impact.counters.co2.label: Tonnes of CO₂e avoided or reduced (subject to verification)
+impact.counters.firewood.value: 4M+
+impact.counters.firewood.label: Kilograms of firewood use avoided or reduced (subject to verification)
+impact.counters.trees.value: 12,000+
+impact.counters.trees.label: Trees protected or equivalent impact (subject to verification)
+
+# ------------------------------------------
+# 04. DEEP DIVE TABS (Merged Sections 5, 6, 7, 8, 9)
+# UI Layout: Interactive tabbed container switcher
+# ------------------------------------------
+tabs.main_heading: Not just a filter. A last-mile delivery platform.
+tabs.sub_heading: Select a pillar below to explore how the ecosystem operates.
+
+# Tab 1: The Technology
+tabs.t1.title: The Technology
+tabs.t1.heading: Simple filtration built for rural use
+tabs.t1.text_1: PureFlow Amanzi uses gravity-fed ultra-filtration technology. Water passes through a membrane with ultra-fine pores of around 0.1 microns. Harmful bacteria and dirt are blocked, while cleaner water flows through instantly without electricity, chemicals, or boiling.
+tabs.t1.features: Gravity-powered, Electricity-free, Chemical-free, Portable, Easy to assemble, Simple to clean, Low-maintenance, Suitable for household use
+tabs.t1.testing_note: PureFlow Amanzi has been tested through independent laboratory processes, including SGS, UKZN-linked testing and SANAS-accredited water-quality testing through Yanka Labs for E. coli, total coliforms and faecal coliforms.
+tabs.t1.technical_proof: Independent testing confirms more than 99.9999% removal of E. coli and total coliforms. Developed with reference to safe drinking water principles, including WHO guidance and South African National Standard SANS 241 specifications.
+
+# Tab 2: The Delivery Model
+tabs.t2.title: The Delivery Platform
+tabs.t2.heading: Last-mile delivery built on trust
+tabs.t2.text_1: The real innovation is not only the filter; it is the implementation. We combine local assembly, community-based distribution, WASH education, safe-use training, follow-up visits, ongoing monitoring, and field data collection. This is not a once-off product handover.
+tabs.t2.steps: Community mobilisation (engaging traditional leadership), Local team training, Standardised system assembly, Organized community distribution events, Practical WASH education, Interactive safe-use training, Household follow-up visits, Data-driven reporting.
+
+# Tab 3: Local Employment
+tabs.t3.title: Local Employment
+tabs.t3.heading: Safe water also creates work
+tabs.t3.text_1: PureFlow Amanzi is designed to create local value, not only deliver a product. Local people, especially women and youth, are trained and paid to help assemble systems, run demonstrations, and collect field data. This creates practical green work opportunities linked to climate resilience.
+tabs.t3.roles: Filter assembly, Distribution support, WASH facilitation, Household demonstrations, Maintenance guidance, Follow-up tracking, Field data collection.
+
+# Tab 4: WASH Education
+tabs.t4.title: WASH Education
+tabs.t4.heading: Knowledge makes safe water stronger
+tabs.t4.text_1: WASH means water, sanitation and hygiene. The filter is the tool, but education is what helps families use it well, trust it, and keep it working. Families receive practical training on why safe water matters, how to clean the system, how to store water safely, and how to prevent contamination after filtration.
+tabs.t4.outcomes: Safe water handling, Correct filter care, Clean water storage, Hygiene awareness, Reduced contamination risk, Healthier home routines.
+
+# ------------------------------------------
+# 05. HUMAN ELEMENTS (Merged Sections 10 & 11)
+# ------------------------------------------
+human.script_heading: Daily Impact
+human.main_heading: Safe water changes the household routine
+human.schools_heading: Children first: Safe water where children learn
+human.schools_text: Schools and ECD centres need safer water because children are especially vulnerable to waterborne illness. Our "Little Water Champions" program gives children a hands-on way to learn about water safety, helping them carry healthy habits home.
+human.outcomes_heading: Visible changes in daily life
+human.outcomes_text: The impact of PureFlow Amanzi is not abstract—it is visible in daily life. Families who have received systems report practical, compounding outcomes across health, time, and finance.
+human.outcomes_list: Improved confidence in daily water use, Less diarrhoea and stomach pain, Fewer water-related health concerns, Less spending on clinic/medicine costs, Less smoke exposure in the home, Improved children’s mood and learning energy, Fewer school disruptions, Less time spent collecting firewood, More time for childcare, study or rest, Greater dignity and self-reliance.
+
+# ------------------------------------------
+# 06. CLIMATE & ENVIRONMENTAL IMPACT (Merged Sections 12, 13, 14)
+# ------------------------------------------
+climate.script_heading: Climate & Sustainability
+climate.main_heading: Future resilience through carbon reduction
+climate.text_1: PureFlow Amanzi is a climate resilience programme. Because the system works entirely without boiling, it lowers smoke exposure, reduces pressure on local forests, and cuts greenhouse gas emissions linked to open-fire water purification.
+climate.benefits_list: Reduced CO₂ emissions, Less firewood use, Less deforestation pressure, Improved indoor air quality, Less plastic waste from bottled water, Stronger resilience in off-grid or disaster-affected areas.
+climate.tracking_heading: Continuous monitoring & scale
+climate.tracking_text: Field teams conduct household spot checks to assess filter care and collect user feedback. Future verified carbon-credit revenue will help fund further rollouts, sustain local employment, and reduce long-term dependence on traditional donor funding.
+
+# ------------------------------------------
+# 07. GLOBAL FRAME: SDG ALIGNMENT (Section 15)
+# ------------------------------------------
+sdg.main_heading: One project, many layers of global impact
+sdg.sub_heading: PureFlow Amanzi directly supports several UN Sustainable Development Goals.
+sdg.fallback_note: Using polished branded iThemba Kuluntu style tiles until official SVG logos are verified.
+
+sdg.1.title: SDG 1: No Poverty
+sdg.1.desc: Reduces economic pressure on vulnerable households by lowering medical costs and supporting household resilience.
+sdg.3.title: SDG 3: Good Health and Well-being
+sdg.3.desc: Protects families from waterborne illness and reduces toxic indoor smoke inhalation.
+sdg.4.title: SDG 4: Quality Education
+sdg.4.desc: Children learn better when healthy and hydrated. Safe water and WASH education help reduce school disruption.
+sdg.5.title: SDG 5: Gender Equality
+sdg.5.desc: Relieves the disproportionate burden on women and girls tasked with gathering firewood and fetching water.
+sdg.6.title: SDG 6: Clean Water and Sanitation
+sdg.6.desc: The core focus. Provides accessible, household-level safe drinking water through filtration and follow-up.
+sdg.8.title: SDG 8: Decent Work and Economic Growth
+sdg.8.desc: Generates local green jobs via assembly, training, and data collection, prioritizing local youth and women.
+sdg.10.title: SDG 10: Reduced Inequalities
+sdg.10.desc: Reaches isolated rural communities, including Pondoland, where access to reliable safe-water infrastructure is limited.
+sdg.11.title: SDG 11: Sustainable Communities
+sdg.11.desc: Strengthens community self-reliance and emergency preparedness in off-grid regions.
+sdg.12.title: SDG 12: Responsible Consumption
+sdg.12.desc: Lowers environmental footprints by promoting sustainable local resources and skipping plastic bottled water.
+sdg.13.title: SDG 13: Climate Action
+sdg.13.desc: Directly avoids deforestation and cuts emissions by cutting out open-fire boiling wood requirements.
+sdg.17.title: SDG 17: Partnerships for the Goals
+sdg.17.desc: Built to scale through active co-financing between NGOs, corporate sponsors, public-sector stakeholders, and community leadership.
+
+# ------------------------------------------
+# 08. SUPPORTING VIDEOS & STAKEHOLDERS (Merged Sections 16 & 17)
+# ------------------------------------------
+media.script_heading: Multimedia and Partners
+media.main_heading: See the work in the field
+media.layout_note: Use tabbed layouts to divide narrative stories from technical guides.
+
+media.story1.title: Little ECD Water Champions
+media.story1.desc: Children at the ECD centre learn about safe water and carry WASH knowledge into their families.
+media.story1.url: https://www.youtube.com/watch?v=ZsCUcyV9MTg
+
+media.story2.title: Partnership model in practice
+media.story2.desc: A field example showing safe-water delivery, local ownership and partnership-based rollout.
+media.story2.url: https://www.youtube.com/watch?v=MJAD9N-oW3M
+
+media.guide1.title: Guide: How to Use
+media.guide1.url: https://www.youtube.com/watch?v=z4AekP8-Luc
+media.guide2.title: Guide: How to Clean / Backwashing
+media.guide2.url: https://www.youtube.com/watch?v=kz8EPC6FWUc
+media.guide3.title: Guide: How to Assemble
+media.guide3.url: https://www.youtube.com/watch?v=Ad3enwiOVI0
+
+partners.heading: A practical model for partners and funders
+partners.text: PureFlow Amanzi has shown that safe-water delivery can bring together community leadership, corporate supporters, NGO partners, public-sector stakeholders and local implementation teams. We feature logos only when fully verified.
+partners.list: Gift of the Givers, The Star Foundation, Nando's, LottoStar, OR Tambo District Municipality, Department of Health / OR Tambo District Health
+
+# ------------------------------------------
+# 09. CONVERSION & DONATION CARD (Merged Sections 18, 19, 20)
+# ------------------------------------------
+donation.script_heading: Your Support
+donation.main_heading: Help families access safer water
+donation.text_intro: Safe water needs consistency. Families do not need safer water only once. Monthly giving helps iThemba Kuluntu plan ahead, train local teams, maintain systems, and track data.
+donation.supports_list: Household water filters, Local assembly materials, WASH education toolkits, Field data logging, Schools & ECD support, Follow-up visits, Transport and rollout coordination.
+
+donation.card.heading: Support safe water
+donation.card.text: Help provide household filtration, WASH education, local delivery, safe-use training and follow-up support through PureFlow Amanzi.
+donation.tab.monthly: Give Monthly
+donation.tab.once: One-Time
+donation.amount.heading: Choose an amount
+
+# Currency definitions
+donation.currency.symbol: €
+donation.amt.1: 10
+donation.amt.2: 20
+donation.amt.3: 30
+donation.amt.4: 42
+donation.amt.5: 50
+donation.amt.6: 100
+donation.amt.7: 250
+donation.amt.custom: Custom Amount
+
+donation.payment.heading: Payment Method
+donation.payment.options: Card, PayPal, Bank Transfer
+donation.btn.monthly: Support safe water monthly
+donation.btn.once: Give once to PureFlow Amanzi
+
+donation.trust_points: Secure donation, Monthly giving options, Direct field impact, Transparent tracking
+
+# Closing Footer Segment
+donation.closing.heading: Local employment. Stronger communities. Climate action.
+donation.closing.text: PureFlow Amanzi exists because safe water changes daily life. It protects children, supports caregivers, creates local work and builds real resilience. Your support keeps this grassroots platform scaling properly.
