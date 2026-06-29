@@ -1331,24 +1331,6 @@ function Closing({ t, goDonate }: { t: (k: string, fb?: string) => string; goDon
 
 // ----------------------- Step 01 — Structural Problem (4-photo editorial collage) -----------------------
 
-const STEP1_PHOTOS = [
-  {
-    src: "/assets/photos/projects/pureflow/pureflow-step-01-structural-problem.jpg",
-    alt: "Women walking long distances to collect water in rural Pondoland",
-  },
-  {
-    src: "/assets/photos/projects/pureflow/pureflow-step-01-structural-problem-2.jpg",
-    alt: "Firewood burden carried by women in rural villages",
-  },
-  {
-    src: "/assets/photos/projects/pureflow/pureflow-step-01-structural-problem-3.jpg",
-    alt: "Distant clinic access challenges in remote Pondoland",
-  },
-  {
-    src: "/assets/photos/projects/pureflow/pureflow-step-01-structural-problem-4.jpg",
-    alt: "Daily household care burden carried by women",
-  },
-];
 
 function Step01Collage({ t }: { t: (k: string, fb?: string) => string }) {
   return (
