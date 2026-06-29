@@ -246,6 +246,7 @@ function PhotoFrame({
           alt={alt}
           loading="lazy"
           className="absolute inset-0 h-full w-full object-cover"
+          style={objectPosition ? { objectPosition } : undefined}
           onError={() => setErrored(true)}
         />
       )}
