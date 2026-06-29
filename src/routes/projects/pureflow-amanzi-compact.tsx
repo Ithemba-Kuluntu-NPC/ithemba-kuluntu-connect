@@ -835,8 +835,8 @@ function DeliveryLoop({ t }: { t: (k: string, fb?: string) => string }) {
       {/* Desktop / tablet: horizontal flow */}
       <ol className="relative mt-8 hidden grid-cols-9 items-start gap-0 md:grid">
         {items.map((it, i) => (
-          <>
-            <li key={`loop-${i}`} className="col-span-1 flex flex-col items-center px-1 text-center">
+          <Fragment key={`loop-${i}`}>
+            <li className="col-span-1 flex flex-col items-center px-1 text-center">
               <div
                 className="relative flex h-16 w-16 items-center justify-center rounded-full shadow-md"
                 style={{ background: BLUE, color: YELLOW, boxShadow: `0 0 0 4px rgba(251,191,36,0.25)` }}
@@ -855,11 +855,11 @@ function DeliveryLoop({ t }: { t: (k: string, fb?: string) => string }) {
               <p className="mt-1 text-[11px] leading-snug text-slate-600">{it.desc}</p>
             </li>
             {i < items.length - 1 && (
-              <li aria-hidden key={`loop-arrow-${i}`} className="col-span-1 flex justify-center pt-6">
+              <li aria-hidden className="col-span-1 flex justify-center pt-6">
                 <ArrowRight className="h-5 w-5" style={{ color: YELLOW }} strokeWidth={3} />
               </li>
             )}
-          </>
+          </Fragment>
         ))}
       </ol>
 
