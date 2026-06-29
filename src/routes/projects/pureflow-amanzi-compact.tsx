@@ -1432,7 +1432,7 @@ function PureFlowCompactPage() {
         body={t("step5.text_block")}
         ctaLabel={t("step5.cta_label")}
         photoAlt="Local team assembling and delivering PureFlow filters"
-        photoSrc="/assets/photos/pureflow/step-5.jpg"
+        photoSrc="/assets/photos/projects/pureflow/pureflow-step-05-wider-community-gains.jpeg"
         photoTone="warm"
         accentSrc={`${ASSET_BASE}/pureflow-jobs.png`}
       />
