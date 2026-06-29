@@ -210,6 +210,7 @@ function PhotoFrame({
   rounded = "rounded-3xl",
   tone = "ocean",
   children,
+  objectPosition,
 }: {
   src?: string;
   alt: string;
@@ -217,6 +218,7 @@ function PhotoFrame({
   rounded?: string;
   tone?: "ocean" | "earth" | "sun" | "warm" | "blue";
   children?: React.ReactNode;
+  objectPosition?: string;
 }) {
   const [errored, setErrored] = useState(!src);
   const tones: Record<string, string> = {
