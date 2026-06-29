@@ -1023,8 +1023,8 @@ function SDGGrid({ t }: { t: (k: string, fb?: string) => string }) {
           className="h-full w-full object-cover"
           onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = "none")}
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-[#FBF6E9]/95 via-[#FBF6E9]/92 to-[#F5EDD7]/95" />
-        <div className="absolute inset-0 bg-gradient-to-br from-[#081A60]/30 via-transparent to-[#081A60]/20 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#081A60]/35 via-[#081A60]/15 to-[#081A60]/35" />
+
       </div>
       <div className="mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
         <div className="text-center">
