@@ -748,6 +748,7 @@ function StepBlock({
   photoSrc?: string;
   photoAlt: string;
   photoTone?: "ocean" | "earth" | "sun" | "warm" | "blue";
+  photoObjectPosition?: string;
   accentSrc?: string;
   accentSrcSecondary?: string;
   children?: React.ReactNode;
