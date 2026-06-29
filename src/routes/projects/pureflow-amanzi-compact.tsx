@@ -110,8 +110,8 @@ const SERIF = '"Fraunces", "Georgia", serif';
 const SCRIPT = '"Caveat", "Kalam", cursive';
 
 const ASSET_BASE = "/assets/icons/projects/pureflow";
-const HERO_VIDEO = "/assets/videos/projects/pureflow-amanzi-hero.mp4";
-const HERO_POSTER = "/assets/photos/pureflow/hero.jpg";
+const HERO_VIDEO = "/assets/videos/projects/pureflow/pureflow-hero-loop.mp4";
+const HERO_POSTER = "/assets/photos/projects/pureflow-hero.jpg";
 
 // ----------------------- Reusable building blocks -----------------------
 
@@ -254,14 +254,29 @@ function PhotoFrame({
 
 // ----------------------- Hero (video background) -----------------------
 
+function useReducedMotion() {
+  const [reduced, setReduced] = useState(false);
+  useEffect(() => {
+    if (typeof window === "undefined" || !window.matchMedia) return;
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduced(mq.matches);
+    const onChange = (e: MediaQueryListEvent) => setReduced(e.matches);
+    mq.addEventListener?.("change", onChange);
+    return () => mq.removeEventListener?.("change", onChange);
+  }, []);
+  return reduced;
+}
+
 function Hero({ t, goDonate }: { t: (k: string, fb?: string) => string; goDonate: (freq: "monthly" | "once") => void }) {
   const [videoFailed, setVideoFailed] = useState(false);
+  const reduced = useReducedMotion();
+  const showVideo = !videoFailed && !reduced;
 
   return (
     <section className="relative isolate overflow-hidden" style={{ background: BLUE_DEEP }}>
       {/* Looping background video */}
       <div className="absolute inset-0 -z-10">
-        {!videoFailed && (
+        {showVideo ? (
           <video
             className="h-full w-full object-cover"
             autoPlay
@@ -271,30 +286,31 @@ function Hero({ t, goDonate }: { t: (k: string, fb?: string) => string; goDonate
             preload="metadata"
             poster={HERO_POSTER}
             onError={() => setVideoFailed(true)}
-            aria-hidden
+            aria-hidden="true"
           >
             <source src={HERO_VIDEO} type="video/mp4" />
           </video>
-        )}
-        {videoFailed && (
-          <div className="absolute inset-0 bg-gradient-to-br from-[#081A60] via-[#0F2A8C] to-[#1E40C8]" />
+        ) : (
+          <img
+            src={HERO_POSTER}
+            alt=""
+            className="h-full w-full object-cover"
+            aria-hidden="true"
+            onError={(e) => {
+              (e.currentTarget as HTMLImageElement).style.display = "none";
+            }}
+          />
         )}
         <div className="absolute inset-0 bg-gradient-to-br from-[#081A60]/92 via-[#0F2A8C]/82 to-[#0F2A8C]/55" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
         <div
-          aria-hidden
+          aria-hidden="true"
           className="absolute inset-0 opacity-[0.12]"
           style={{
             backgroundImage: `radial-gradient(${YELLOW} 1.2px, transparent 1.2px)`,
             backgroundSize: "26px 26px",
           }}
         />
-      </div>
-
-      {/* video placeholder badge */}
-      <div className="pointer-events-none absolute right-4 top-4 z-10 inline-flex items-center gap-2 rounded-full bg-black/40 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.14em] text-white/85 ring-1 ring-white/15 backdrop-blur">
-        <PlayCircle className="h-3.5 w-3.5 text-[var(--ithemba-yellow,#FBBF24)]" />
-        Hero video placeholder
       </div>
 
       <div className="relative mx-auto max-w-6xl px-5 pb-14 pt-8 text-white md:px-8 md:pb-20 md:pt-12">
@@ -305,7 +321,7 @@ function Hero({ t, goDonate }: { t: (k: string, fb?: string) => string; goDonate
           <ArrowLeft className="h-4 w-4" /> {t("hero.back", "All projects")}
         </Link>
 
-        <div className="mt-6 grid items-center gap-8 lg:grid-cols-[1.25fr_0.75fr]">
+        <div className="mt-6">
           <div className="min-w-0">
             <Script>{t("hero.script_heading")}</Script>
             <h1
@@ -345,16 +361,6 @@ function Hero({ t, goDonate }: { t: (k: string, fb?: string) => string; goDonate
             <div className="mt-5 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs text-white/85 ring-1 ring-white/15">
               <ShieldCheck className="h-3.5 w-3.5" />
               {t("hero.patent_trust_line")}
-            </div>
-          </div>
-
-          {/* Right: small decorative illustration cluster (subtle accents only) */}
-          <div className="relative hidden h-[260px] lg:block">
-            <div className="absolute right-6 top-2">
-              <CircleArt src={`${ASSET_BASE}/pureflow-community.png`} alt="Community" size="md" />
-            </div>
-            <div className="absolute right-40 top-28">
-              <CircleArt src={`${ASSET_BASE}/pureflow-cleanwater.png`} alt="Clean water" size="sm" bg="#FBF6E9" />
             </div>
           </div>
         </div>
