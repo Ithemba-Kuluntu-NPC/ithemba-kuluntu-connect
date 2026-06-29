@@ -731,6 +731,7 @@ function StepBlock({
   photoSrc,
   photoAlt,
   photoTone = "ocean",
+  photoObjectPosition,
   accentSrc,
   accentSrcSecondary,
   children,
