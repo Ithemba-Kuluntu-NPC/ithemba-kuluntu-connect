@@ -775,7 +775,8 @@ function StepBlock({
         </>
       )}
 
-      <div className="mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
+      <div className="relative mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
+
         <div
           className={cn(
             "grid items-center gap-8 lg:grid-cols-2 lg:gap-12",
