@@ -317,12 +317,21 @@ function Hero({ t, goDonate }: { t: (k: string, fb?: string) => string; goDonate
       </div>
 
       <div className="relative mx-auto max-w-6xl px-5 pb-14 pt-8 text-white md:px-8 md:pb-20 md:pt-12">
+        {/* PureFlow project logo — top right (consistent with other project pages) */}
+        <img
+          src="/assets/logos/pureflow-amanzi-logo.png"
+          alt="PureFlow Amanzi logo"
+          className="pointer-events-none absolute right-5 top-6 z-10 h-16 w-auto drop-shadow-[0_4px_18px_rgba(0,0,0,0.45)] md:right-8 md:top-10 md:h-24 lg:h-28"
+          onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = "none")}
+        />
+
         <Link
           to="/projects"
           className="inline-flex items-center gap-2 text-sm text-white/70 hover:text-white"
         >
           <ArrowLeft className="h-4 w-4" /> {t("hero.back", "All projects")}
         </Link>
+
 
         <div className="mt-6">
           <div className="min-w-0">
