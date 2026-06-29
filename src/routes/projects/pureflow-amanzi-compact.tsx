@@ -857,11 +857,45 @@ function StepBlock({
 
 function DeliveryLoop({ t }: { t: (k: string, fb?: string) => string }) {
   const ICONS = [Ear, Wrench, Truck, GraduationCap, HeartHandshake];
+  const SLUGS = ["listen", "assemble", "deliver", "teach", "stay"];
   const items = [1, 2, 3, 4, 5].map((n, i) => ({
     title: t(`step2.loop.${n}.title`),
     desc: t(`step2.loop.${n}.desc`),
     Icon: ICONS[i],
+    photo: `/assets/photos/projects/pureflow/pureflow-loop-${SLUGS[i]}.jpg`,
   }));
+
+  const LoopPhoto = ({ src, Icon, alt, size }: { src: string; Icon: typeof Ear; alt: string; size: "lg" | "sm" }) => {
+    const [errored, setErrored] = useState(false);
+    const box = size === "lg" ? "h-28 w-28 md:h-32 md:w-32" : "h-16 w-16";
+    const ring = size === "lg" ? "ring-[6px]" : "ring-[4px]";
+    return (
+      <div
+        className={`relative flex shrink-0 items-center justify-center overflow-hidden rounded-full ${box} ${ring}`}
+        style={{ background: BLUE, boxShadow: "0 12px 28px -12px rgba(8,26,96,0.45)", ["--tw-ring-color" as never]: CREAM }}
+      >
+        {!errored ? (
+          <img
+            src={src}
+            alt={alt}
+            loading="lazy"
+            className="h-full w-full object-cover"
+            onError={() => setErrored(true)}
+          />
+        ) : (
+          <>
+            <div
+              aria-hidden
+              className="absolute inset-0"
+              style={{ background: `radial-gradient(120% 80% at 30% 20%, ${YELLOW}33, transparent 60%), linear-gradient(135deg, ${BLUE} 0%, ${BLUE_DEEP} 100%)` }}
+            />
+            <Icon className={size === "lg" ? "relative h-10 w-10 md:h-12 md:w-12" : "relative h-6 w-6"} style={{ color: YELLOW }} strokeWidth={1.75} />
+          </>
+        )}
+      </div>
+    );
+  };
+
   return (
     <div className="mt-12 rounded-3xl bg-white/95 p-5 shadow-xl ring-1 ring-black/5 md:p-8">
       <div className="text-center">
@@ -872,29 +906,26 @@ function DeliveryLoop({ t }: { t: (k: string, fb?: string) => string }) {
       </div>
 
       {/* Desktop / tablet: horizontal flow */}
-      <ol className="relative mt-8 hidden grid-cols-9 items-start gap-0 md:grid">
+      <ol className="relative mt-10 hidden grid-cols-9 items-start gap-0 md:grid">
         {items.map((it, i) => (
           <Fragment key={`loop-${i}`}>
             <li className="col-span-1 flex flex-col items-center px-1 text-center">
-              <div
-                className="relative flex h-16 w-16 items-center justify-center rounded-full shadow-md"
-                style={{ background: BLUE, color: YELLOW, boxShadow: `0 0 0 4px rgba(251,191,36,0.25)` }}
-              >
-                <it.Icon className="h-7 w-7" strokeWidth={2} />
+              <div className="relative">
+                <LoopPhoto src={it.photo} Icon={it.Icon} alt={it.title} size="lg" />
                 <span
-                  className="absolute -bottom-1 -right-1 inline-flex h-6 w-6 items-center justify-center rounded-full text-[11px] font-extrabold ring-2 ring-white"
+                  className="absolute -bottom-1 -right-1 inline-flex h-7 w-7 items-center justify-center rounded-full text-xs font-extrabold ring-2 ring-white"
                   style={{ background: YELLOW, color: BLUE_DEEP }}
                 >
                   {i + 1}
                 </span>
               </div>
-              <p className="mt-3 text-sm font-semibold" style={{ color: BLUE_DEEP, fontFamily: SERIF }}>
+              <p className="mt-4 text-sm font-semibold" style={{ color: BLUE_DEEP, fontFamily: SERIF }}>
                 {it.title}
               </p>
               <p className="mt-1 text-[11px] leading-snug text-slate-600">{it.desc}</p>
             </li>
             {i < items.length - 1 && (
-              <li aria-hidden className="col-span-1 flex justify-center pt-6">
+              <li aria-hidden className="col-span-1 flex justify-center pt-12">
                 <ArrowRight className="h-5 w-5" style={{ color: YELLOW }} strokeWidth={3} />
               </li>
             )}
@@ -905,12 +936,15 @@ function DeliveryLoop({ t }: { t: (k: string, fb?: string) => string }) {
       {/* Mobile: stacked */}
       <ol className="mt-6 space-y-3 md:hidden">
         {items.map((it, i) => (
-          <li key={i} className="flex gap-3 rounded-xl bg-slate-50 p-3">
-            <div
-              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full"
-              style={{ background: BLUE, color: YELLOW }}
-            >
-              <it.Icon className="h-5 w-5" />
+          <li key={i} className="flex items-center gap-3 rounded-xl bg-slate-50 p-3">
+            <div className="relative">
+              <LoopPhoto src={it.photo} Icon={it.Icon} alt={it.title} size="sm" />
+              <span
+                className="absolute -bottom-1 -right-1 inline-flex h-5 w-5 items-center justify-center rounded-full text-[10px] font-extrabold ring-2 ring-white"
+                style={{ background: YELLOW, color: BLUE_DEEP }}
+              >
+                {i + 1}
+              </span>
             </div>
             <div className="min-w-0">
               <p className="text-sm font-semibold" style={{ color: BLUE_DEEP, fontFamily: SERIF }}>
@@ -923,6 +957,7 @@ function DeliveryLoop({ t }: { t: (k: string, fb?: string) => string }) {
       </ol>
     </div>
   );
+
 }
 
 // ----------------------- ECD YouTube Embed (for Step 03) -----------------------
