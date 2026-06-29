@@ -975,24 +975,35 @@ function SDGLogo({ n }: { n: number }) {
 
 function SDGGrid({ t }: { t: (k: string, fb?: string) => string }) {
   return (
-    <section style={{ background: CREAM }} className="relative">
+    <section className="relative isolate overflow-hidden">
+      <div className="absolute inset-0 -z-10">
+        <img
+          src="/assets/photos/pureflow/sdg-bg.jpg"
+          alt=""
+          aria-hidden
+          className="h-full w-full object-cover"
+          onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = "none")}
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#FBF6E9]/95 via-[#FBF6E9]/92 to-[#F5EDD7]/95" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#081A60]/30 via-transparent to-[#081A60]/20 mix-blend-multiply" />
+      </div>
       <div className="mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
         <div className="text-center">
           <Script color={BLUE}>SDG</Script>
           <h2 className="mt-1 text-3xl font-bold md:text-4xl" style={{ fontFamily: SERIF, color: BLUE_DEEP }}>
             {t("sdg.main_heading")}
           </h2>
-          <p className="mx-auto mt-2 max-w-2xl text-sm text-slate-700 md:text-base">{t("sdg.sub_heading")}</p>
+          <p className="mx-auto mt-2 max-w-2xl text-sm text-slate-800 md:text-base">{t("sdg.sub_heading")}</p>
         </div>
         <div className="mt-8 grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
           {SDG_NUMS.map((n) => (
-            <div key={n} className="flex items-start gap-4">
+            <div key={n} className="flex items-start gap-4 rounded-2xl bg-white/60 p-3 backdrop-blur-sm ring-1 ring-white/40">
               <SDGLogo n={n} />
               <div className="min-w-0">
                 <p className="text-sm font-bold leading-snug" style={{ color: BLUE_DEEP, fontFamily: SERIF }}>
                   <span style={{ color: SDG_COLORS[n] }}>SDG {n}</span> · {t(`sdg.${n}.title`)}
                 </p>
-                <p className="mt-1 text-xs leading-snug text-slate-600">{t(`sdg.${n}.desc`)}</p>
+                <p className="mt-1 text-xs leading-snug text-slate-700">{t(`sdg.${n}.desc`)}</p>
               </div>
             </div>
           ))}
