@@ -886,6 +886,50 @@ function DeliveryLoop({ t }: { t: (k: string, fb?: string) => string }) {
   );
 }
 
+// ----------------------- ECD YouTube Embed (for Step 03) -----------------------
+
+function EcdVideoEmbed() {
+  const [playing, setPlaying] = useState(false);
+  const vid = "0Y4YB7WniTw";
+  return (
+    <div className="mt-12 overflow-hidden rounded-3xl bg-black/90 shadow-xl ring-1 ring-black/10">
+      <div className="relative aspect-video w-full">
+        {!playing ? (
+          <button
+            type="button"
+            onClick={() => setPlaying(true)}
+            className="group absolute inset-0"
+            aria-label="Play PureFlow Amanzi at the ECD Centre"
+          >
+            <img
+              src={`https://i.ytimg.com/vi/${vid}/hqdefault.jpg`}
+              alt="PureFlow Amanzi at the ECD Centre"
+              className="h-full w-full object-cover"
+            />
+            <span className="absolute inset-0 flex items-center justify-center bg-black/30 transition group-hover:bg-black/40">
+              <PlayCircle className="h-20 w-20" style={{ color: YELLOW }} />
+            </span>
+          </button>
+        ) : (
+          <iframe
+            className="absolute inset-0 h-full w-full"
+            src={`https://www.youtube.com/embed/${vid}?autoplay=1&rel=0`}
+            title="PureFlow Amanzi at the ECD Centre"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        )}
+      </div>
+      <div className="bg-white/95 px-5 py-3 text-center">
+        <p className="text-sm font-semibold" style={{ color: BLUE_DEEP, fontFamily: SERIF }}>
+          PureFlow Amanzi at the No.1 ECD Centre
+        </p>
+        <p className="mt-0.5 text-xs text-slate-600">Safe water in action for early childhood learners.</p>
+      </div>
+    </div>
+  );
+}
+
 // ----------------------- SDG Grid (boxless, logo-ready) -----------------------
 
 const SDG_NUMS = [1, 3, 4, 5, 6, 8, 10, 11, 12, 13, 17] as const;
