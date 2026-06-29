@@ -1416,7 +1416,7 @@ function PureFlowCompactPage() {
         reverse
         dark
         photoAlt="WASH training session in a Pondoland village"
-        photoSrc="/assets/photos/pureflow/step-4.jpg"
+        photoSrc="/assets/photos/projects/pureflow/pureflow-step-04-system-shifts.jpg"
         photoTone="blue"
         accentSrc={`${ASSET_BASE}/pureflow-wash.png`}
       />
