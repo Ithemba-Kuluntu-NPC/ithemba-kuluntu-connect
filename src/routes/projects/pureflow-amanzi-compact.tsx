@@ -111,7 +111,7 @@ const SCRIPT = '"Caveat", "Kalam", cursive';
 
 const ASSET_BASE = "/assets/icons/projects/pureflow";
 const HERO_VIDEO = "/assets/videos/projects/pureflow/pureflow-hero-loop.mp4";
-const HERO_POSTER = "/assets/photos/projects/pureflow-hero.jpg";
+const HERO_POSTER = "/assets/photos/projects/pureflow/pureflow-hero-poster.jpg";
 
 // ----------------------- Reusable building blocks -----------------------
 
