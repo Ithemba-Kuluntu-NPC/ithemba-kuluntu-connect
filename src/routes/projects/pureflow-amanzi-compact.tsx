@@ -1254,31 +1254,45 @@ function DonationBox({ t, anchorRef }: { t: (k: string, fb?: string) => string; 
 function Closing({ t, goDonate }: { t: (k: string, fb?: string) => string; goDonate: (f: "monthly" | "once") => void }) {
   return (
     <section className="relative" style={{ background: BLUE_DEEP }}>
-      <div className="mx-auto max-w-4xl px-5 py-16 text-center text-white md:px-8 md:py-20">
-        <h2 className="text-3xl font-bold md:text-5xl" style={{ fontFamily: SERIF }}>
-          {t("closing.main_heading")}
-        </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-base text-white/85 md:text-lg">
-          {t("closing.text")}
-        </p>
-        <div className="mt-7 flex flex-wrap justify-center gap-3">
-          <Button
-            size="lg"
-            onClick={() => goDonate("monthly")}
-            className="rounded-full px-6 text-base font-semibold"
-            style={{ background: YELLOW, color: BLUE_DEEP }}
-          >
-            <Heart className="mr-2 h-4 w-4 fill-current" />
-            {t("closing.btn.monthly")}
-          </Button>
-          <Button
-            asChild
-            size="lg"
-            variant="outline"
-            className="rounded-full border-white/40 bg-white/5 px-6 text-base text-white hover:bg-white/10"
-          >
-            <Link to="/projects">{t("closing.btn.projects")}</Link>
-          </Button>
+      <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-14 text-white md:px-8 md:py-20 lg:grid-cols-[1.05fr_1fr] lg:gap-14">
+        <div className="relative">
+          <PhotoFrame
+            src="/assets/photos/pureflow/closing-group.jpg"
+            alt="Community group photo holding PureFlow Amanzi filters"
+            tone="ocean"
+            className="aspect-[5/4] w-full"
+            rounded="rounded-[2rem]"
+          />
+          <div className="absolute -bottom-6 -right-4 md:-bottom-8 md:-right-6">
+            <CircleArt src={`${ASSET_BASE}/pureflow-community.png`} alt="Community" size="sm" />
+          </div>
+        </div>
+        <div className="text-center lg:text-left">
+          <h2 className="text-3xl font-bold md:text-5xl" style={{ fontFamily: SERIF }}>
+            {t("closing.main_heading")}
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-base text-white/85 md:text-lg lg:mx-0">
+            {t("closing.text")}
+          </p>
+          <div className="mt-7 flex flex-wrap justify-center gap-3 lg:justify-start">
+            <Button
+              size="lg"
+              onClick={() => goDonate("monthly")}
+              className="rounded-full px-6 text-base font-semibold"
+              style={{ background: YELLOW, color: BLUE_DEEP }}
+            >
+              <Heart className="mr-2 h-4 w-4 fill-current" />
+              {t("closing.btn.monthly")}
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="rounded-full border-white/40 bg-white/5 px-6 text-base text-white hover:bg-white/10"
+            >
+              <Link to="/projects">{t("closing.btn.projects")}</Link>
+            </Button>
+          </div>
         </div>
       </div>
     </section>
