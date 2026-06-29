@@ -1347,21 +1347,9 @@ function PureFlowCompactPage() {
 
       <WaveDivider from={BLUE} to={CREAM} />
 
-      {/* Step 01 — cream */}
-      <StepBlock
-        id="step-1"
-        num={t("step1.num", "01")}
-        tag={t("step1.tag")}
-        heading={t("step1.heading")}
-        body={t("step1.text_block")}
-        ctaLabel={t("step1.cta_label")}
-        photoAlt="Women collecting water in rural Pondoland"
-        photoSrc="/assets/photos/projects/pureflow/pureflow-step-01-structural-problem.jpg"
-        photoTone="earth"
-        accentSrc={`${ASSET_BASE}/pureflow-problem.png`}
-        accentSrcSecondary={`${ASSET_BASE}/pureflow-womentime-problem.png`}
-        bgPhotoSrc="/assets/photos/projects/pureflow/pureflow-step-01-structural-problem-background.jpg"
-      />
+      {/* Step 01 — cream w/ 4-photo collage */}
+      <Step01Collage t={t} />
+
 
 
       <WaveDivider from={CREAM} to={BLUE} />
