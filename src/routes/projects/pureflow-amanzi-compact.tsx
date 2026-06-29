@@ -821,6 +821,7 @@ function StepBlock({
               alt={photoAlt}
               tone={photoTone}
               className="aspect-[4/3] w-full"
+              objectPosition={photoObjectPosition}
             />
             {/* Small illustration accent bubble (secondary) */}
             {accentSrc && (
