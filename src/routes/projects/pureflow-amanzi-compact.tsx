@@ -210,6 +210,7 @@ function PhotoFrame({
   rounded = "rounded-3xl",
   tone = "ocean",
   children,
+  objectPosition,
 }: {
   src?: string;
   alt: string;
@@ -217,6 +218,7 @@ function PhotoFrame({
   rounded?: string;
   tone?: "ocean" | "earth" | "sun" | "warm" | "blue";
   children?: React.ReactNode;
+  objectPosition?: string;
 }) {
   const [errored, setErrored] = useState(!src);
   const tones: Record<string, string> = {
@@ -729,6 +731,7 @@ function StepBlock({
   photoSrc,
   photoAlt,
   photoTone = "ocean",
+  photoObjectPosition,
   accentSrc,
   accentSrcSecondary,
   children,
@@ -745,6 +748,7 @@ function StepBlock({
   photoSrc?: string;
   photoAlt: string;
   photoTone?: "ocean" | "earth" | "sun" | "warm" | "blue";
+  photoObjectPosition?: string;
   accentSrc?: string;
   accentSrcSecondary?: string;
   children?: React.ReactNode;
@@ -817,6 +821,7 @@ function StepBlock({
               alt={photoAlt}
               tone={photoTone}
               className="aspect-[4/3] w-full"
+              objectPosition={photoObjectPosition}
             />
             {/* Small illustration accent bubble (secondary) */}
             {accentSrc && (
@@ -1554,6 +1559,7 @@ function PureFlowCompactPage() {
         photoAlt="Pondoland village community living with safe water"
         photoSrc="/assets/photos/projects/pureflow/pureflow-step-06-long-term-transformation.jpg"
         photoTone="ocean"
+        photoObjectPosition="top"
         accentSrc={`${ASSET_BASE}/pureflow-village.png`}
         accentSrcSecondary={`${ASSET_BASE}/pureflow-community.png`}
       />
