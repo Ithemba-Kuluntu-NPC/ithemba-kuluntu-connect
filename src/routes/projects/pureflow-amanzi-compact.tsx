@@ -1138,7 +1138,7 @@ function DonationBox({ t, anchorRef }: { t: (k: string, fb?: string) => string; 
     <section ref={anchorRef as React.RefObject<HTMLDivElement>} id="donate" className="relative isolate scroll-mt-20 overflow-hidden">
       <div className="absolute inset-0 -z-10">
         <img
-          src="/assets/photos/pureflow/donate-bg.jpg"
+          src="/assets/photos/projects/pureflow/pureflow-invest-transformation-bg.jpg"
           alt=""
           aria-hidden
           className="h-full w-full object-cover"
