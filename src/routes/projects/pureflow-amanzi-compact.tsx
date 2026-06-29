@@ -1111,7 +1111,17 @@ function DonationBox({ t, anchorRef }: { t: (k: string, fb?: string) => string; 
     .filter(Boolean);
 
   return (
-    <section ref={anchorRef as React.RefObject<HTMLDivElement>} id="donate" style={{ background: BLUE }} className="relative scroll-mt-20">
+    <section ref={anchorRef as React.RefObject<HTMLDivElement>} id="donate" className="relative isolate scroll-mt-20 overflow-hidden">
+      <div className="absolute inset-0 -z-10">
+        <img
+          src="/assets/photos/pureflow/donate-bg.jpg"
+          alt=""
+          aria-hidden
+          className="h-full w-full object-cover"
+          onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = "none")}
+        />
+        <div className="absolute inset-0" style={{ background: `linear-gradient(135deg, ${BLUE_DEEP}EE 0%, ${BLUE}E6 60%, ${BLUE}D9 100%)` }} />
+      </div>
       <div className="mx-auto max-w-5xl px-5 py-12 md:px-8 md:py-16">
         <div className="text-center text-white">
           <Script>{t("donation.script_heading")}</Script>
