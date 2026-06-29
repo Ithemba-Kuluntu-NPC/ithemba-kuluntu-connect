@@ -2,9 +2,9 @@
 //
 // Route: /projects/pureflow-amanzi-compact
 // Content is dynamically loaded at runtime from:
-//   - public/content/projects/pureflow-amanzi-en-v3.txt
-//   - public/content/projects/pureflow-amanzi-de-v3.txt
-//   - public/content/projects/pureflow-amanzi-nl-v3.txt
+//   - public/content/projects/pureflow-amanzi-en-v4.txt
+//   - public/content/projects/pureflow-amanzi-de-v4.txt
+//   - public/content/projects/pureflow-amanzi-nl-v4.txt
 // Language is driven by the global LanguageProvider (EN / DE / NL).
 
 import { createFileRoute, Link } from "@tanstack/react-router";
@@ -61,7 +61,7 @@ function useProjectContent(lang: Lang) {
 
   useEffect(() => {
     let cancelled = false;
-    fetch(`/content/projects/pureflow-amanzi-en-v3.txt`)
+    fetch(`/content/projects/pureflow-amanzi-en-v4.txt`)
       .then((r) => (r.ok ? r.text() : ""))
       .then((t) => !cancelled && setEnFallback(parseContent(t)))
       .catch(() => {});
@@ -72,7 +72,7 @@ function useProjectContent(lang: Lang) {
 
   useEffect(() => {
     let cancelled = false;
-    fetch(`/content/projects/pureflow-amanzi-${lang}-v3.txt`)
+    fetch(`/content/projects/pureflow-amanzi-${lang}-v4.txt`)
       .then((r) => (r.ok ? r.text() : ""))
       .then((t) => !cancelled && setDict(parseContent(t)))
       .catch(() => {});
