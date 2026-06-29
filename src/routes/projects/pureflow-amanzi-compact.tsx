@@ -1052,21 +1052,21 @@ function PartnersStrip({ t }: { t: (k: string, fb?: string) => string }) {
         </div>
 
         {matched.length > 0 ? (
-          <div className="mt-10 grid grid-cols-2 items-center gap-x-10 gap-y-10 sm:grid-cols-3 md:grid-cols-4">
+          <div className="mx-auto mt-10 flex max-w-5xl flex-wrap items-center justify-center gap-x-12 gap-y-8">
             {matched.map(({ partner }) => (
               <a
                 key={partner!.name}
                 href={partner!.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex h-32 items-center justify-center"
+                className="group flex h-28 w-[200px] items-center justify-center sm:w-[220px] md:h-32 md:w-[240px]"
                 title={partner!.name}
               >
                 <img
                   src={partner!.logo}
                   alt={`${partner!.name} logo`}
                   loading="lazy"
-                  className="max-h-[120px] max-w-[260px] object-contain transition group-hover:scale-105"
+                  className="max-h-[110px] max-w-full object-contain transition group-hover:scale-105"
                   onError={(e) => {
                     (e.currentTarget.parentElement as HTMLElement).style.display = "none";
                   }}
