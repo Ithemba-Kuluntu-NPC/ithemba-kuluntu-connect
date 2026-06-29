@@ -456,7 +456,7 @@ function PathwayStepper({ t }: { t: (k: string, fb?: string) => string }) {
                   <ArrowRight className="h-6 w-6" style={{ color: YELLOW }} strokeWidth={3} />
                 </li>
               )}
-            </>
+            </Fragment>
           ))}
         </ol>
 
