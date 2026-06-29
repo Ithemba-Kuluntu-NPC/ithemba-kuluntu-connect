@@ -1002,7 +1002,7 @@ function SDGGrid({ t }: { t: (k: string, fb?: string) => string }) {
     <section className="relative isolate overflow-hidden">
       <div className="absolute inset-0 -z-10">
         <img
-          src="/assets/photos/pureflow/sdg-bg.jpg"
+          src="/assets/photos/projects/pureflow/pureflow-sdg-background.jpg"
           alt=""
           aria-hidden
           className="h-full w-full object-cover"
