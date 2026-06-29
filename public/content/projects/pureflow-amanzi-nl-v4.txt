@@ -1,0 +1,251 @@
+# ==========================================
+
+# PUREFLOW AMANZI PROJECT PAGE CONFIGURATION
+
+# LANGUAGE: DUTCH (nl)
+
+# VERSION: 3.1 (The Transformation Pathway - Text Refined)
+
+# ==========================================
+
+# ------------------------------------------
+
+# 01. HERO SECTION
+
+# ------------------------------------------
+
+hero.script_heading: Veilig water, vrouwen versterken
+hero.main_heading: Het pad naar transformatie
+hero.sub_heading: Veilig water. Lokaal werk. Sterkere gemeenschappen. Klimaatactie.
+hero.text_long: Een geïntegreerd uitvoeringsmodel dat de dagelijkse watercrisis omzet in lokale groene banen, betere onderwijskansen en langdurige economische veerkracht voor vrouwen op het Zuid-Afrikaanse platteland.
+hero.text_small_line: Stroomvrije, zwaartekrachtgedreven filtratie verbonden met gemeenschapsgerichte last-mile ontwikkeling.
+hero.patent_trust_line: Patent aangevraagd: Zuid-Afrikaanse patentaanvraag nr. 2026/00975
+hero.cta.monthly: Steun veilig water en vrouwen maandelijks
+hero.cta.once: Eenmalig geven
+
+# ------------------------------------------
+
+# 02. THE PATHWAY AT A GLANCE (Navigation Stepper)
+
+# ------------------------------------------
+
+pathway.script_heading: Het model
+pathway.main_heading: Van huishoudelijke oplossing naar langdurige gemeenschapstransformatie
+pathway.sub_heading: Ons model volgt een duidelijke 6-stappenaanpak om structurele armoede op het platteland praktisch aan te pakken.
+
+pathway.step1.num: 01
+pathway.step1.title: Structureel probleem
+pathway.step1.short_desc: De gendergebonden last van onveilig water.
+
+pathway.step2.num: 02
+pathway.step2.title: PureFlow model
+pathway.step2.short_desc: Een volledig, lokaal opgebouwd uitvoeringsplatform.
+
+pathway.step3.num: 03
+pathway.step3.title: Direct publiek voordeel
+pathway.step3.short_desc: Veilig water, WASH-educatie en verlichting voor huishoudens en leeromgevingen.
+
+pathway.step4.num: 04
+pathway.step4.title: Systeemverschuivingen
+pathway.step4.short_desc: Acute noden worden omgezet in duurzame oplossingen op huishoudniveau.
+
+pathway.step5.num: 05
+pathway.step5.title: Bredere gemeenschapswinst
+pathway.step5.short_desc: Gezondheid, leren, huishoudelijke verlichting en bestaansmogelijkheden voor vrouwen versterken elkaar.
+
+pathway.step6.num: 06
+pathway.step6.title: Langdurige transformatie
+pathway.step6.short_desc: Fundamenten voor sterkere dorpsveerkracht en meer zelfredzaamheid in de gemeenschap.
+
+# ------------------------------------------
+
+# 03. SHOWCASE & FIELD DATA
+
+# ------------------------------------------
+
+showcase.script_heading: Bekijk en begrijp
+showcase.main_heading: PureFlow Amanzi in actie
+showcase.text: Deze korte video en onze veldgegevens laten zien hoe een gestructureerd uitvoeringsmodel meerdere noden op het platteland tegelijk aanpakt.
+showcase.video.url: https://www.youtube.com/watch?v=IoRHLU5Cm7o
+showcase.video.title: PureFlow Amanzi overzicht
+showcase.video.description: Praktische last-mile uitvoering en impacttracking uit het veld.
+
+impact.note: Elk cijfer staat voor geregistreerde huishoudintroductie, gedocumenteerde opvolgbezoeken en groeiend vertrouwen binnen de gemeenschap.
+impact.counters.households.value: 3,094
+impact.counters.households.label: Huishoudens bereikt met veiliger water
+impact.counters.people.value: 15,000+
+impact.counters.people.label: Mensen bereikt met veiliger water
+impact.counters.litres.value: 30M+
+impact.counters.litres.label: Liter veilige drinkwatercapaciteit mogelijk gemaakt
+impact.counters.co2.value: 8,000+
+impact.counters.co2.label: Ton CO₂e vermeden of verminderd, onder voorbehoud van verificatie
+impact.counters.firewood.value: 4M+
+impact.counters.firewood.label: Kilogram brandhoutgebruik vermeden of verminderd, onder voorbehoud van verificatie
+impact.counters.trees.value: 12,000+
+impact.counters.trees.label: Bomen beschermd of gelijkwaardige impact, onder voorbehoud van verificatie
+
+# ------------------------------------------
+
+# 04. THE 6 STEPS OF TRANSFORMATION
+
+# ------------------------------------------
+
+# STEP 01: Structural Problem
+
+step1.num: 01
+step1.tag: Structureel probleem
+step1.heading: Vrouwen en kinderen dragen de zwaarste last
+step1.text_block: In landelijke gemeenschappen is onveilig water ook een gendergebonden crisis. Vrouwen, grootmoeders en tienermeisjes dragen vaak de dagelijkse verantwoordelijkheid: water halen, het bos in gaan om brandhout te kappen en naar huis te dragen, water koken en kinderen verzorgen wanneer watergerelateerde ziekte het huishouden treft. Als kinderen ziek worden, missen zij school. Verzorgers moeten vaak lange afstanden afleggen naar klinieken, vaak zonder voldoende geld voor vervoer. Zo ontstaan vele uren onbetaald werk, gemiste leertijd, minder kansen op betaald werk en extra druk op huishoudens die al kwetsbaar zijn.
+step1.cta_label: Begrijp het volledige beeld
+step1.image_path: /pureflow problem.png
+
+# STEP 02: PureFlow Model
+
+step2.num: 02
+step2.tag: PureFlow model
+step2.heading: Een volledig uitvoeringsplatform, niet alleen een productoverdracht
+step2.text_block: PureFlow Amanzi combineert huishoudsystemen voor veilig water met WASH-educatie, lokale montage, gemeenschapsgerichte uitrol, training in veilig gebruik, opvolging en veldgegevens. De zwaartekrachtgedreven filter werkt zonder stroom, chemicaliën of koken en gebruikt 0,1 micron membraanfiltratie om schadelijke bacteriën uit drinkwater te verwijderen. De kracht van het model ligt in het systeem rond de filter: getrainde lokale teams, introductie in het huishouden, praktische demonstraties, onderhoudsbegeleiding en langdurige opvolging ondersteunen correct gebruik, vertrouwen en blijvende gedragsverandering.
+step2.cta_label: Bekijk het PureFlow model
+step2.image_path: /pureflow solution.png
+
+# Step 02 Sub-Section: Loop Elements
+
+step2.loop.heading: Van eerste gesprek naar blijvend gebruik
+step2.loop.sub_heading: Het PureFlow model volgt een vijfdelige uitvoeringscyclus, ontwikkeld rond echte landelijke omstandigheden en de mensen die er wonen.
+step2.loop.1.title: Luisteren
+step2.loop.1.desc: Samen zitten met lokale leiders en huishoudens. Gezamenlijk plannen.
+step2.loop.2.title: Monteren
+step2.loop.2.desc: Filters gebouwd en gecontroleerd door getrainde lokale handen.
+step2.loop.3.title: Leveren
+step2.loop.3.desc: Rechtstreeks geleverd aan landelijke huishoudens, ook in moeilijk bereikbare gebieden.
+step2.loop.4.title: Trainen
+step2.loop.4.desc: Praktische WASH-introductie, huishouden voor huishouden.
+step2.loop.5.title: Opvolgen
+step2.loop.5.desc: Opvolgbezoeken en monitoring vanuit de gemeenschap.
+
+# STEP 03: Immediate Public Benefit
+
+step3.num: 03
+step3.tag: Direct publiek voordeel
+step3.heading: Veilig water bereikt huishoudens, scholen en ECD-centra
+step3.text_block: Direct publiek voordeel ontstaat wanneer huishoudens, centra voor vroege kinderontwikkeling en landelijke scholen toegang krijgen tot veiliger water in het dagelijks leven. PureFlow Amanzi combineert filtratie met WASH-educatie, demonstraties voor veilig gebruik en praktische training, zodat gezinnen en onderwijspersoneel begrijpen hoe het systeem gebruikt, gereinigd en onderhouden wordt. Zo worden veilige watergewoonten vanaf het begin versterkt en worden kinderen beschermd op de plekken waar zij wonen, leren en opgroeien.
+step3.cta_label: Bekijk onze ECD-impact
+step3.image_path: /pureflow school.png
+
+# STEP 04: System Shifts
+
+step4.num: 04
+step4.tag: Systeemverschuivingen
+step4.heading: Van acute nood naar duurzame oplossingen in huis
+step4.text_block: Echte verandering ontstaat wanneer veilig water onderdeel wordt van de dagelijkse routine in het huishouden. Door WASH-educatie, training in veilig gebruik, reinigingsbegeleiding, praktische demonstraties en opvolgbezoeken leren gezinnen het systeem correct te onderhouden en herbesmetting na filtratie te voorkomen. Zo verschuift de aanpak van kortetermijnoverleving naar duurzame waterveiligheid in huis, sterkere opname en blijvende gedragsverandering.
+step4.cta_label: Bekijk ons monitoringmodel
+step4.image_path: /pureflow monitoring phone placeholder.png
+
+# STEP 05: Wider Community Gains
+
+step5.num: 05
+step5.tag: Bredere gemeenschapswinst
+step5.heading: Veilig water versterkt vrouwen en creëert bredere gemeenschapswinst
+step5.text_block: Het uitvoeringsmodel zet structurele wateronzekerheid om in betaalde lokale werkmogelijkheden voor vrouwen en jongeren. Via montage, ondersteuning bij uitrol, WASH-educatie, opvolgbezoeken aan huishoudens en veldgegevens bouwen vrouwen praktische vaardigheden, inkomen en leiderschapsrollen op binnen hun gemeenschap. Tegelijk kan veiliger water kosten voor kliniekbezoek, medicijnen en vervoer verlagen, schoolbezoek verbeteren en huishoudbudgetten ontlasten.
+step5.cta_label: Bekijk ons model voor groene banen
+step5.image_path: /pureflow local women jobs.png
+
+# STEP 06: Long-Term Transformation
+
+step6.num: 06
+step6.tag: Langdurige transformatie
+step6.heading: Fundamenten leggen voor toekomstige zelfredzaamheid
+step6.text_block: Na verloop van tijd kunnen voordelen op huishoudniveau uitgroeien tot sterkere dorpssystemen. Gezondere huishoudens, veiligere leeromgevingen, lokaal werk, betere veldgegevens en vertrouwde uitvoering vanuit de gemeenschap kunnen bredere ontwikkeling ondersteunen. Wanneer het model groeit, ontstaat praktische capaciteit in de gemeenschap die toekomstige initiatieven kan dragen, van ECD- en schoolgerichte ondersteuning tot jeugdvaardigheden, lokale bestaansmogelijkheden en sterkere dorpsveerkracht.
+step6.cta_label: Bekijk onze langetermijnvisie
+step6.image_path: /pureflow transformation landscape placeholder.png
+
+# ------------------------------------------
+
+# 05. BRANDED SDG ALIGNMENT GRID
+
+# ------------------------------------------
+
+sdg.main_heading: Een verbonden wereldwijd kader
+sdg.sub_heading: PureFlow Amanzi ondersteunt meerdere Duurzame Ontwikkelingsdoelen van de Verenigde Naties.
+
+sdg.1.title: SDG 1: Geen armoede
+sdg.1.desc: Vermindert economische druk op kwetsbare huishoudens door medische kosten te verlagen en veerkracht in het huishouden te versterken.
+sdg.3.title: SDG 3: Goede gezondheid en welzijn
+sdg.3.desc: Beschermt gezinnen tegen watergerelateerde ziekten en vermindert dagelijkse gezondheidsrisico’s door onveilig water.
+sdg.4.title: SDG 4: Kwaliteitsonderwijs
+sdg.4.desc: Kinderen leren beter wanneer zij gezond en gehydrateerd zijn. Veilig water en WASH-educatie helpen schoolonderbrekingen te verminderen.
+sdg.5.title: SDG 5: Gendergelijkheid
+sdg.5.desc: Verlicht de druk op vrouwen en meisjes die vaak verantwoordelijk zijn voor water halen, brandhout verzamelen en zorg wanneer kinderen ziek worden.
+sdg.6.title: SDG 6: Schoon water en sanitair
+sdg.6.desc: De kern van het programma. Biedt op huishoudniveau toegang tot veilig drinkwater via filtratie en opvolging.
+sdg.8.title: SDG 8: Waardig werk en economische groei
+sdg.8.desc: Creëert lokale groene werkmogelijkheden via montage, training en gegevensverzameling, met bijzondere aandacht voor lokale jongeren en vrouwen.
+sdg.10.title: SDG 10: Ongelijkheid verminderen
+sdg.10.desc: Bereikt afgelegen landelijke gemeenschappen, waaronder Pondoland, waar betrouwbare infrastructuur voor veilig water beperkt is.
+sdg.11.title: SDG 11: Duurzame steden en gemeenschappen
+sdg.11.desc: Versterkt zelfredzaamheid van gemeenschappen en voorbereiding op noodsituaties in afgelegen landelijke gebieden.
+sdg.12.title: SDG 12: Verantwoorde consumptie en productie
+sdg.12.desc: Vermindert ecologische druk door duurzamer gebruik van hulpbronnen en minder afhankelijkheid van water in plastic flessen.
+sdg.13.title: SDG 13: Klimaatactie
+sdg.13.desc: Vermindert emissies en druk op lokale bossen doordat minder water boven open vuur hoeft te worden gekookt.
+sdg.17.title: SDG 17: Partnerschap om doelstellingen te bereiken
+sdg.17.desc: Ontworpen om op te schalen via gezamenlijke financiering en samenwerking tussen NGO’s, bedrijfsleven, publieke partners en gemeenschapsleiders.
+
+# ------------------------------------------
+
+# 06. PARTNERSHIPS
+
+# ------------------------------------------
+
+partners.script_heading: Werk met ons samen
+partners.main_heading: Klaar voor grootschalige institutionele mobilisatie
+partners.text: PureFlow Amanzi is ontworpen om op te schalen samen met bedrijfspartners, non-profitnetwerken en traditionele leiderschapsstructuren. Partnerlogo’s worden helder en professioneel weergegeven zonder zware kaders.
+partners.list: Gift of the Givers, The Star Foundation, Nando's, LottoStar, OR Tambo District Municipality, Department of Health / OR Tambo District Health
+
+# ------------------------------------------
+
+# 07. PREMIUM DONATION BOX / CTA
+
+# ------------------------------------------
+
+donation.script_heading: Investeer in transformatie
+donation.main_heading: Steun waterzekerheid met vrouwen centraal
+donation.text_intro: Blijvende verandering vraagt om betrouwbare middelen. Uw maandelijkse steun helpt filteronderdelen, laboratoriumkwaliteitstesten, betaald lokaal werk voor vrouwen, WASH-educatie, opvolgbezoeken aan huishoudens en voortdurende monitoring in het veld mogelijk te maken.
+
+donation.card.heading: Steun veilig water
+donation.card.text: Help huishoudfiltratie, WASH-educatie, lokale levering, training in veilig gebruik en opvolging via PureFlow Amanzi mogelijk te maken.
+donation.tab.monthly: Maandelijks geven
+donation.tab.once: Eenmalig geven
+donation.amount.heading: Kies een bedrag
+
+# Currency definitions & tiers
+
+donation.currency.symbol: €
+donation.amt.1: 15
+donation.amt.1_desc: Financiering voor voortdurende veldopvolging en WASH-educatie in de gemeenschap.
+donation.amt.2: 30
+donation.amt.2_desc: Ondersteunt logistiek van onderdelen en betaalde montage door lokale vrouwen.
+donation.amt.3: 45
+donation.amt.3_desc: Ondersteunt langdurige veilige waterfiltratie voor een huishouden met hoge nood.
+donation.amt.4: 90
+donation.amt.4_desc: Ondersteunt waterfiltratie en WASH-educatie voor twee meer-generatiehuishoudens.
+donation.amt.5: 250
+donation.amt.5_desc: Versnelt bredere distributie via gemeenschapslocaties, klinieken en landelijke leeromgevingen.
+donation.amt.custom: Eigen bedrag
+
+donation.payment.heading: Betaalmethode
+donation.payment.options: Kaart, PayPal, Bankoverschrijving
+donation.btn.monthly: Steun veilig water en vrouwen maandelijks
+donation.btn.once: Eenmalig geven aan PureFlow Amanzi
+donation.trust_points: Veilige versleuteling, gerichte veldrapportage, gemonitorde sociaaleconomische impact, directe herinvestering in gemeenschappen
+
+# ------------------------------------------
+
+# 08. CLOSING BRAND SIGNATURE
+
+# ------------------------------------------
+
+closing.main_heading: Samen groeien we sterker
+closing.text: PureFlow Amanzi is meer dan een waterfilter. Het is een samenwerkingsplatform dat gezondheid, waardigheid en lokale kansen versterkt voor vrouwen, kinderen en families op het Zuid-Afrikaanse platteland. Uw steun helpt structurele problemen om te zetten in blijvende gemeenschapstransformatie.
+closing.btn.monthly: Steun veilig water en vrouwen maandelijks
+closing.btn.projects: Ontdek alle projecten
