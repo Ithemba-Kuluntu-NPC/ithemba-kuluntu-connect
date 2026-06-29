@@ -172,10 +172,10 @@ function CircleArt({
   bg?: string;
 }) {
   const sizes = {
-    xs: "h-20 w-20",
-    sm: "h-28 w-28",
-    md: "h-36 w-36 md:h-40 md:w-40",
-    lg: "h-48 w-48 md:h-56 md:w-56",
+    xs: "h-28 w-28",
+    sm: "h-36 w-36 md:h-40 md:w-40",
+    md: "h-44 w-44 md:h-52 md:w-52",
+    lg: "h-56 w-56 md:h-64 md:w-64",
   } as const;
   return (
     <div
