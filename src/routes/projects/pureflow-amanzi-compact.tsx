@@ -414,17 +414,17 @@ function PathwayStepper({ t }: { t: (k: string, fb?: string) => string }) {
         </div>
 
         {/* Desktop: horizontal 6-up flow with image bubbles + arrow connectors */}
-        <ol className="relative mt-10 hidden grid-cols-11 items-stretch gap-0 md:grid">
+        <ol className="relative mx-auto mt-10 hidden max-w-5xl grid-cols-11 items-stretch gap-0 md:grid">
           {steps.map((s, i) => (
             <Fragment key={s.id}>
-              <li key={s.id} className="col-span-1 flex">
+              <li className="col-span-1 flex">
                 <button
                   onClick={() => scrollToStep(s.id)}
                   className="group flex w-full flex-col items-center text-center transition hover:-translate-y-0.5"
                 >
                   <div className="relative">
                     <div
-                      className="flex h-24 w-24 items-center justify-center rounded-full bg-white shadow-lg ring-1 ring-black/5 lg:h-28 lg:w-28"
+                      className="flex h-32 w-32 items-center justify-center rounded-full bg-white shadow-lg ring-1 ring-black/5 lg:h-36 lg:w-36"
                       style={{ boxShadow: `0 18px 40px -20px rgba(8,26,96,0.45), 0 0 0 3px rgba(251,191,36,0.55)` }}
                     >
                       <img
@@ -452,8 +452,8 @@ function PathwayStepper({ t }: { t: (k: string, fb?: string) => string }) {
                 </button>
               </li>
               {i < steps.length - 1 && (
-                <li key={`arrow-${i}`} aria-hidden className="col-span-1 flex items-center justify-center pt-8">
-                  <ArrowRight className="h-6 w-6" style={{ color: YELLOW }} strokeWidth={3} />
+                <li key={`arrow-${i}`} aria-hidden className="col-span-1 flex items-center justify-center pt-12">
+                  <ArrowRight className="h-7 w-7" style={{ color: YELLOW }} strokeWidth={3} />
                 </li>
               )}
             </Fragment>
