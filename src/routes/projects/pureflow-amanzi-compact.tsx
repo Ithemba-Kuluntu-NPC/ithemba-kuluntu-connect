@@ -1028,15 +1028,16 @@ function SDGGrid({ t }: { t: (k: string, fb?: string) => string }) {
       </div>
       <div className="mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
         <div className="text-center">
-          <Script color={BLUE}>SDG</Script>
-          <h2 className="mt-1 text-3xl font-bold md:text-4xl" style={{ fontFamily: SERIF, color: BLUE_DEEP }}>
+          <Script color={YELLOW}>SDG</Script>
+          <h2 className="mt-1 text-3xl font-bold text-white md:text-4xl" style={{ fontFamily: SERIF }}>
             {t("sdg.main_heading")}
           </h2>
-          <p className="mx-auto mt-2 max-w-2xl text-sm text-slate-800 md:text-base">{t("sdg.sub_heading")}</p>
+          <p className="mx-auto mt-2 max-w-2xl text-sm text-white/90 md:text-base">{t("sdg.sub_heading")}</p>
         </div>
         <div className="mt-8 grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
           {SDG_NUMS.map((n) => (
-            <div key={n} className="flex items-start gap-4 rounded-2xl bg-white/60 p-3 backdrop-blur-sm ring-1 ring-white/40">
+            <div key={n} className="flex items-start gap-4 rounded-2xl bg-white/85 p-3 shadow-lg shadow-black/10 backdrop-blur-md ring-1 ring-white/50">
+
               <SDGLogo n={n} />
               <div className="min-w-0">
                 <p className="text-sm font-bold leading-snug" style={{ color: BLUE_DEEP, fontFamily: SERIF }}>
