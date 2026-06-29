@@ -1393,30 +1393,51 @@ function Step01Collage({ t }: { t: (k: string, fb?: string) => string }) {
             />
           </div>
 
-          {/* Editorial single-photo treatment */}
+          {/* Editorial 4-photo collage */}
           <div className="relative">
             <div
-              className="relative aspect-[4/5] overflow-hidden rounded-tl-[2.75rem] rounded-br-[2.75rem] rounded-tr-2xl rounded-bl-2xl ring-1 ring-black/10"
-              style={{ boxShadow: "0 28px 60px -28px rgba(8,26,96,0.55)" }}
+              className="relative grid aspect-[4/5] grid-cols-12 grid-rows-6 gap-2.5 md:gap-3"
+              style={{ filter: "drop-shadow(0 28px 60px rgba(8,26,96,0.45))" }}
             >
-              <img
-                src="/assets/photos/projects/pureflow/pureflow-step-01-structural-problem.jpg"
-                alt="Women in rural Pondoland carrying the daily burden of unsafe water"
-                loading="lazy"
-                className="h-full w-full object-cover"
-                style={{ objectPosition: "center 35%" }}
-              />
-              {/* soft inner vignette for depth */}
-              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_80%_at_30%_20%,transparent_55%,rgba(8,26,96,0.35)_100%)]" />
-              {/* caption chip */}
-              <div className="absolute bottom-4 left-4 right-4 flex items-center gap-2 rounded-full bg-black/45 px-3 py-1.5 backdrop-blur-md">
-                <span
-                  className="h-1.5 w-1.5 shrink-0 rounded-full"
-                  style={{ background: YELLOW }}
+              {/* main tall portrait, left */}
+              <div className="col-span-7 row-span-4 overflow-hidden rounded-tl-[2.5rem] rounded-br-2xl rounded-tr-xl rounded-bl-xl ring-1 ring-black/10">
+                <img
+                  src="/assets/photos/projects/pureflow/pureflow-step-01-structural-problem.jpg"
+                  alt="Women in rural Pondoland carrying the daily burden of unsafe water"
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                  style={{ objectPosition: "center 30%" }}
                 />
-                <span className="truncate text-[11px] font-medium uppercase tracking-[0.16em] text-white/95">
-                  {t("step1.tag")}
-                </span>
+              </div>
+              {/* top right */}
+              <div className="col-span-5 row-span-3 overflow-hidden rounded-tr-[2.5rem] rounded-bl-xl rounded-tl-xl rounded-br-xl ring-1 ring-black/10">
+                <img
+                  src="/assets/photos/projects/pureflow/pureflow-step-01-structural-problem-2.jpg"
+                  alt="Daily reality of collecting water in Pondoland"
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                  style={{ objectPosition: "center" }}
+                />
+              </div>
+              {/* mid right */}
+              <div className="col-span-5 row-span-3 overflow-hidden rounded-xl ring-1 ring-black/10">
+                <img
+                  src="/assets/photos/projects/pureflow/pureflow-step-01-structural-problem-3.jpg"
+                  alt="Unsafe water source serving rural households"
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                  style={{ objectPosition: "center" }}
+                />
+              </div>
+              {/* bottom wide */}
+              <div className="col-span-7 row-span-2 overflow-hidden rounded-bl-[2.5rem] rounded-tr-xl rounded-tl-xl rounded-br-xl ring-1 ring-black/10">
+                <img
+                  src="/assets/photos/projects/pureflow/pureflow-step-01-structural-problem-4.jpg"
+                  alt="Community context behind the water crisis"
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                  style={{ objectPosition: "center" }}
+                />
               </div>
             </div>
 
@@ -1426,9 +1447,15 @@ function Step01Collage({ t }: { t: (k: string, fb?: string) => string }) {
               style={{ background: YELLOW, boxShadow: "0 14px 28px -14px rgba(251,191,36,0.7)" }}
               aria-hidden
             />
-            {/* small illustration accent bottom-left */}
-            <div className="pointer-events-none absolute -bottom-5 -left-5 hidden md:block">
-              <CircleArt src={`${ASSET_BASE}/pureflow-problem.png`} alt="" size="xs" bg="#FFFFFF" />
+            {/* caption chip */}
+            <div className="mt-3 inline-flex items-center gap-2 rounded-full bg-[#081A60]/90 px-3 py-1.5 backdrop-blur-md">
+              <span
+                className="h-1.5 w-1.5 shrink-0 rounded-full"
+                style={{ background: YELLOW }}
+              />
+              <span className="truncate text-[11px] font-medium uppercase tracking-[0.16em] text-white">
+                {t("step1.tag")}
+              </span>
             </div>
           </div>
         </div>
@@ -1436,6 +1463,7 @@ function Step01Collage({ t }: { t: (k: string, fb?: string) => string }) {
     </section>
   );
 }
+
 
 
 
