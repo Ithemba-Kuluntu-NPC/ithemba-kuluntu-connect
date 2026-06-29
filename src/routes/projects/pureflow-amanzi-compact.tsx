@@ -110,8 +110,8 @@ const SERIF = '"Fraunces", "Georgia", serif';
 const SCRIPT = '"Caveat", "Kalam", cursive';
 
 const ASSET_BASE = "/assets/icons/projects/pureflow";
-const HERO_VIDEO = "/assets/videos/projects/pureflow-amanzi-hero.mp4";
-const HERO_POSTER = "/assets/photos/pureflow/hero.jpg";
+const HERO_VIDEO = "/assets/videos/projects/pureflow/pureflow-hero-loop.mp4";
+const HERO_POSTER = "/assets/photos/projects/pureflow-hero.jpg";
 
 // ----------------------- Reusable building blocks -----------------------
 
