@@ -1360,7 +1360,9 @@ function PureFlowCompactPage() {
         photoTone="earth"
         accentSrc={`${ASSET_BASE}/pureflow-problem.png`}
         accentSrcSecondary={`${ASSET_BASE}/pureflow-womentime-problem.png`}
+        bgPhotoSrc="/assets/photos/projects/pureflow/pureflow-step-01-structural-problem-background.jpg"
       />
+
 
       <WaveDivider from={CREAM} to={BLUE} />
 
