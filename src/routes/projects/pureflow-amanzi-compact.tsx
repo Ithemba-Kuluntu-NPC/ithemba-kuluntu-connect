@@ -317,12 +317,21 @@ function Hero({ t, goDonate }: { t: (k: string, fb?: string) => string; goDonate
       </div>
 
       <div className="relative mx-auto max-w-6xl px-5 pb-14 pt-8 text-white md:px-8 md:pb-20 md:pt-12">
+        {/* PureFlow project logo — top right (consistent with other project pages) */}
+        <img
+          src="/assets/logos/pureflow-amanzi-logo.png"
+          alt="PureFlow Amanzi logo"
+          className="pointer-events-none absolute right-5 top-6 z-10 h-16 w-auto drop-shadow-[0_4px_18px_rgba(0,0,0,0.45)] md:right-8 md:top-10 md:h-24 lg:h-28"
+          onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = "none")}
+        />
+
         <Link
           to="/projects"
           className="inline-flex items-center gap-2 text-sm text-white/70 hover:text-white"
         >
           <ArrowLeft className="h-4 w-4" /> {t("hero.back", "All projects")}
         </Link>
+
 
         <div className="mt-6">
           <div className="min-w-0">
@@ -848,11 +857,45 @@ function StepBlock({
 
 function DeliveryLoop({ t }: { t: (k: string, fb?: string) => string }) {
   const ICONS = [Ear, Wrench, Truck, GraduationCap, HeartHandshake];
+  const SLUGS = ["listen", "assemble", "deliver", "teach", "stay"];
   const items = [1, 2, 3, 4, 5].map((n, i) => ({
     title: t(`step2.loop.${n}.title`),
     desc: t(`step2.loop.${n}.desc`),
     Icon: ICONS[i],
+    photo: `/assets/photos/projects/pureflow/pureflow-loop-${SLUGS[i]}.jpg`,
   }));
+
+  const LoopPhoto = ({ src, Icon, alt, size }: { src: string; Icon: typeof Ear; alt: string; size: "lg" | "sm" }) => {
+    const [errored, setErrored] = useState(false);
+    const box = size === "lg" ? "h-28 w-28 md:h-32 md:w-32" : "h-16 w-16";
+    const ring = size === "lg" ? "ring-[6px]" : "ring-[4px]";
+    return (
+      <div
+        className={`relative flex shrink-0 items-center justify-center overflow-hidden rounded-full ${box} ${ring}`}
+        style={{ background: BLUE, boxShadow: "0 12px 28px -12px rgba(8,26,96,0.45)", ["--tw-ring-color" as never]: CREAM }}
+      >
+        {!errored ? (
+          <img
+            src={src}
+            alt={alt}
+            loading="lazy"
+            className="h-full w-full object-cover"
+            onError={() => setErrored(true)}
+          />
+        ) : (
+          <>
+            <div
+              aria-hidden
+              className="absolute inset-0"
+              style={{ background: `radial-gradient(120% 80% at 30% 20%, ${YELLOW}33, transparent 60%), linear-gradient(135deg, ${BLUE} 0%, ${BLUE_DEEP} 100%)` }}
+            />
+            <Icon className={size === "lg" ? "relative h-10 w-10 md:h-12 md:w-12" : "relative h-6 w-6"} style={{ color: YELLOW }} strokeWidth={1.75} />
+          </>
+        )}
+      </div>
+    );
+  };
+
   return (
     <div className="mt-12 rounded-3xl bg-white/95 p-5 shadow-xl ring-1 ring-black/5 md:p-8">
       <div className="text-center">
@@ -863,29 +906,26 @@ function DeliveryLoop({ t }: { t: (k: string, fb?: string) => string }) {
       </div>
 
       {/* Desktop / tablet: horizontal flow */}
-      <ol className="relative mt-8 hidden grid-cols-9 items-start gap-0 md:grid">
+      <ol className="relative mt-10 hidden grid-cols-9 items-start gap-0 md:grid">
         {items.map((it, i) => (
           <Fragment key={`loop-${i}`}>
             <li className="col-span-1 flex flex-col items-center px-1 text-center">
-              <div
-                className="relative flex h-16 w-16 items-center justify-center rounded-full shadow-md"
-                style={{ background: BLUE, color: YELLOW, boxShadow: `0 0 0 4px rgba(251,191,36,0.25)` }}
-              >
-                <it.Icon className="h-7 w-7" strokeWidth={2} />
+              <div className="relative">
+                <LoopPhoto src={it.photo} Icon={it.Icon} alt={it.title} size="lg" />
                 <span
-                  className="absolute -bottom-1 -right-1 inline-flex h-6 w-6 items-center justify-center rounded-full text-[11px] font-extrabold ring-2 ring-white"
+                  className="absolute -bottom-1 -right-1 inline-flex h-7 w-7 items-center justify-center rounded-full text-xs font-extrabold ring-2 ring-white"
                   style={{ background: YELLOW, color: BLUE_DEEP }}
                 >
                   {i + 1}
                 </span>
               </div>
-              <p className="mt-3 text-sm font-semibold" style={{ color: BLUE_DEEP, fontFamily: SERIF }}>
+              <p className="mt-4 text-sm font-semibold" style={{ color: BLUE_DEEP, fontFamily: SERIF }}>
                 {it.title}
               </p>
               <p className="mt-1 text-[11px] leading-snug text-slate-600">{it.desc}</p>
             </li>
             {i < items.length - 1 && (
-              <li aria-hidden className="col-span-1 flex justify-center pt-6">
+              <li aria-hidden className="col-span-1 flex justify-center pt-12">
                 <ArrowRight className="h-5 w-5" style={{ color: YELLOW }} strokeWidth={3} />
               </li>
             )}
@@ -896,12 +936,15 @@ function DeliveryLoop({ t }: { t: (k: string, fb?: string) => string }) {
       {/* Mobile: stacked */}
       <ol className="mt-6 space-y-3 md:hidden">
         {items.map((it, i) => (
-          <li key={i} className="flex gap-3 rounded-xl bg-slate-50 p-3">
-            <div
-              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full"
-              style={{ background: BLUE, color: YELLOW }}
-            >
-              <it.Icon className="h-5 w-5" />
+          <li key={i} className="flex items-center gap-3 rounded-xl bg-slate-50 p-3">
+            <div className="relative">
+              <LoopPhoto src={it.photo} Icon={it.Icon} alt={it.title} size="sm" />
+              <span
+                className="absolute -bottom-1 -right-1 inline-flex h-5 w-5 items-center justify-center rounded-full text-[10px] font-extrabold ring-2 ring-white"
+                style={{ background: YELLOW, color: BLUE_DEEP }}
+              >
+                {i + 1}
+              </span>
             </div>
             <div className="min-w-0">
               <p className="text-sm font-semibold" style={{ color: BLUE_DEEP, fontFamily: SERIF }}>
@@ -914,6 +957,7 @@ function DeliveryLoop({ t }: { t: (k: string, fb?: string) => string }) {
       </ol>
     </div>
   );
+
 }
 
 // ----------------------- ECD YouTube Embed (for Step 03) -----------------------
@@ -1014,20 +1058,21 @@ function SDGGrid({ t }: { t: (k: string, fb?: string) => string }) {
           className="h-full w-full object-cover"
           onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = "none")}
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-[#FBF6E9]/95 via-[#FBF6E9]/92 to-[#F5EDD7]/95" />
-        <div className="absolute inset-0 bg-gradient-to-br from-[#081A60]/30 via-transparent to-[#081A60]/20 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#081A60]/35 via-[#081A60]/15 to-[#081A60]/35" />
+
       </div>
       <div className="mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
         <div className="text-center">
-          <Script color={BLUE}>SDG</Script>
-          <h2 className="mt-1 text-3xl font-bold md:text-4xl" style={{ fontFamily: SERIF, color: BLUE_DEEP }}>
+          <Script color={YELLOW}>SDG</Script>
+          <h2 className="mt-1 text-3xl font-bold text-white md:text-4xl" style={{ fontFamily: SERIF }}>
             {t("sdg.main_heading")}
           </h2>
-          <p className="mx-auto mt-2 max-w-2xl text-sm text-slate-800 md:text-base">{t("sdg.sub_heading")}</p>
+          <p className="mx-auto mt-2 max-w-2xl text-sm text-white/90 md:text-base">{t("sdg.sub_heading")}</p>
         </div>
         <div className="mt-8 grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
           {SDG_NUMS.map((n) => (
-            <div key={n} className="flex items-start gap-4 rounded-2xl bg-white/60 p-3 backdrop-blur-sm ring-1 ring-white/40">
+            <div key={n} className="flex items-start gap-4 rounded-2xl bg-white/85 p-3 shadow-lg shadow-black/10 backdrop-blur-md ring-1 ring-white/50">
+
               <SDGLogo n={n} />
               <div className="min-w-0">
                 <p className="text-sm font-bold leading-snug" style={{ color: BLUE_DEEP, fontFamily: SERIF }}>
@@ -1383,30 +1428,51 @@ function Step01Collage({ t }: { t: (k: string, fb?: string) => string }) {
             />
           </div>
 
-          {/* Editorial single-photo treatment */}
+          {/* Editorial 4-photo collage */}
           <div className="relative">
             <div
-              className="relative aspect-[4/5] overflow-hidden rounded-tl-[2.75rem] rounded-br-[2.75rem] rounded-tr-2xl rounded-bl-2xl ring-1 ring-black/10"
-              style={{ boxShadow: "0 28px 60px -28px rgba(8,26,96,0.55)" }}
+              className="relative grid aspect-[4/5] grid-cols-12 grid-rows-6 gap-2.5 md:gap-3"
+              style={{ filter: "drop-shadow(0 28px 60px rgba(8,26,96,0.45))" }}
             >
-              <img
-                src="/assets/photos/projects/pureflow/pureflow-step-01-structural-problem.jpg"
-                alt="Women in rural Pondoland carrying the daily burden of unsafe water"
-                loading="lazy"
-                className="h-full w-full object-cover"
-                style={{ objectPosition: "center 35%" }}
-              />
-              {/* soft inner vignette for depth */}
-              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_80%_at_30%_20%,transparent_55%,rgba(8,26,96,0.35)_100%)]" />
-              {/* caption chip */}
-              <div className="absolute bottom-4 left-4 right-4 flex items-center gap-2 rounded-full bg-black/45 px-3 py-1.5 backdrop-blur-md">
-                <span
-                  className="h-1.5 w-1.5 shrink-0 rounded-full"
-                  style={{ background: YELLOW }}
+              {/* main tall portrait, left */}
+              <div className="col-span-7 row-span-4 overflow-hidden rounded-tl-[2.5rem] rounded-br-2xl rounded-tr-xl rounded-bl-xl ring-1 ring-black/10">
+                <img
+                  src="/assets/photos/projects/pureflow/pureflow-step-01-structural-problem.jpg"
+                  alt="Women in rural Pondoland carrying the daily burden of unsafe water"
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                  style={{ objectPosition: "center 30%" }}
                 />
-                <span className="truncate text-[11px] font-medium uppercase tracking-[0.16em] text-white/95">
-                  {t("step1.tag")}
-                </span>
+              </div>
+              {/* top right */}
+              <div className="col-span-5 row-span-3 overflow-hidden rounded-tr-[2.5rem] rounded-bl-xl rounded-tl-xl rounded-br-xl ring-1 ring-black/10">
+                <img
+                  src="/assets/photos/projects/pureflow/pureflow-step-01-structural-problem-2.jpg"
+                  alt="Daily reality of collecting water in Pondoland"
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                  style={{ objectPosition: "center" }}
+                />
+              </div>
+              {/* mid right */}
+              <div className="col-span-5 row-span-3 overflow-hidden rounded-xl ring-1 ring-black/10">
+                <img
+                  src="/assets/photos/projects/pureflow/pureflow-step-01-structural-problem-3.jpg"
+                  alt="Unsafe water source serving rural households"
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                  style={{ objectPosition: "center" }}
+                />
+              </div>
+              {/* bottom wide */}
+              <div className="col-span-7 row-span-2 overflow-hidden rounded-bl-[2.5rem] rounded-tr-xl rounded-tl-xl rounded-br-xl ring-1 ring-black/10">
+                <img
+                  src="/assets/photos/projects/pureflow/pureflow-step-01-structural-problem-4.jpg"
+                  alt="Community context behind the water crisis"
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                  style={{ objectPosition: "center" }}
+                />
               </div>
             </div>
 
@@ -1416,9 +1482,15 @@ function Step01Collage({ t }: { t: (k: string, fb?: string) => string }) {
               style={{ background: YELLOW, boxShadow: "0 14px 28px -14px rgba(251,191,36,0.7)" }}
               aria-hidden
             />
-            {/* small illustration accent bottom-left */}
-            <div className="pointer-events-none absolute -bottom-5 -left-5 hidden md:block">
-              <CircleArt src={`${ASSET_BASE}/pureflow-problem.png`} alt="" size="xs" bg="#FFFFFF" />
+            {/* caption chip */}
+            <div className="mt-3 inline-flex items-center gap-2 rounded-full bg-[#081A60]/90 px-3 py-1.5 backdrop-blur-md">
+              <span
+                className="h-1.5 w-1.5 shrink-0 rounded-full"
+                style={{ background: YELLOW }}
+              />
+              <span className="truncate text-[11px] font-medium uppercase tracking-[0.16em] text-white">
+                {t("step1.tag")}
+              </span>
             </div>
           </div>
         </div>
@@ -1426,6 +1498,7 @@ function Step01Collage({ t }: { t: (k: string, fb?: string) => string }) {
     </section>
   );
 }
+
 
 
 
