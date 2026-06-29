@@ -416,7 +416,7 @@ function PathwayStepper({ t }: { t: (k: string, fb?: string) => string }) {
         {/* Desktop: horizontal 6-up flow with image bubbles + arrow connectors */}
         <ol className="relative mt-10 hidden grid-cols-11 items-stretch gap-0 md:grid">
           {steps.map((s, i) => (
-            <>
+            <Fragment key={s.id}>
               <li key={s.id} className="col-span-1 flex">
                 <button
                   onClick={() => scrollToStep(s.id)}
