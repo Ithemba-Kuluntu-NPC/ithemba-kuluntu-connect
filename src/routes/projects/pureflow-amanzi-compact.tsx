@@ -1281,7 +1281,7 @@ function Closing({ t, goDonate }: { t: (k: string, fb?: string) => string; goDon
       <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-14 text-white md:px-8 md:py-20 lg:grid-cols-[1.05fr_1fr] lg:gap-14">
         <div className="relative">
           <PhotoFrame
-            src="/assets/photos/pureflow/closing-group.jpg"
+            src="/assets/photos/projects/pureflow/pureflow-closing-group-filters.jpg"
             alt="Community group photo holding PureFlow Amanzi filters"
             tone="ocean"
             className="aspect-[5/4] w-full"
@@ -1356,7 +1356,7 @@ function PureFlowCompactPage() {
         body={t("step1.text_block")}
         ctaLabel={t("step1.cta_label")}
         photoAlt="Women collecting water in rural Pondoland"
-        photoSrc="/assets/photos/pureflow/step-1.jpg"
+        photoSrc="/assets/photos/projects/pureflow/pureflow-step-01-structural-problem.jpg"
         photoTone="earth"
         accentSrc={`${ASSET_BASE}/pureflow-problem.png`}
         accentSrcSecondary={`${ASSET_BASE}/pureflow-womentime-problem.png`}
@@ -1375,7 +1375,7 @@ function PureFlowCompactPage() {
         reverse
         dark
         photoAlt="PureFlow Amanzi household filter installation"
-        photoSrc="/assets/photos/pureflow/step-2.jpg"
+        photoSrc="/assets/photos/projects/pureflow/pureflow-step-02-pureflow-model.jpg"
         photoTone="ocean"
         accentSrc={`${ASSET_BASE}/pureflow-solution.png`}
       >
@@ -1393,7 +1393,7 @@ function PureFlowCompactPage() {
         body={t("step3.text_block")}
         ctaLabel={t("step3.cta_label")}
         photoAlt="Children at the No.1 ECD Centre with safe drinking water"
-        photoSrc="/assets/photos/pureflow/step-3.jpg"
+        photoSrc="/assets/photos/projects/pureflow/pureflow-step-03-immediate-public-benefit.jpg"
         photoTone="sun"
         accentSrc={`${ASSET_BASE}/pureflow-school.png`}
         accentSrcSecondary={`${ASSET_BASE}/pureflow-ecd.png`}
