@@ -1323,7 +1323,121 @@ function Closing({ t, goDonate }: { t: (k: string, fb?: string) => string; goDon
   );
 }
 
-// ----------------------- Page -----------------------
+// ----------------------- Step 01 — Structural Problem (4-photo editorial collage) -----------------------
+
+const STEP1_PHOTOS = [
+  {
+    src: "/assets/photos/projects/pureflow/pureflow-step-01-structural-problem.jpg",
+    alt: "Women walking long distances to collect water in rural Pondoland",
+  },
+  {
+    src: "/assets/photos/projects/pureflow/pureflow-step-01-structural-problem-2.jpg",
+    alt: "Firewood burden carried by women in rural villages",
+  },
+  {
+    src: "/assets/photos/projects/pureflow/pureflow-step-01-structural-problem-3.jpg",
+    alt: "Distant clinic access challenges in remote Pondoland",
+  },
+  {
+    src: "/assets/photos/projects/pureflow/pureflow-step-01-structural-problem-4.jpg",
+    alt: "Daily household care burden carried by women",
+  },
+];
+
+function Step01Collage({ t }: { t: (k: string, fb?: string) => string }) {
+  return (
+    <section id="step-1" className="relative scroll-mt-20 isolate overflow-hidden" style={{ background: CREAM }}>
+      <img
+        src="/assets/photos/projects/pureflow/pureflow-step-01-structural-problem-background.jpg"
+        alt=""
+        aria-hidden
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+        onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = "none")}
+      />
+      <div className="pointer-events-none absolute inset-0" style={{ background: `${CREAM}CC` }} />
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{ background: `linear-gradient(135deg, ${CREAM}E6 0%, ${CREAM_WARM}B3 60%, ${CREAM}D9 100%)` }}
+      />
+
+      <div className="relative mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
+        <div className="grid items-center gap-8 lg:grid-cols-[1fr_1.05fr] lg:gap-12">
+          {/* Text */}
+          <div className="min-w-0">
+            <div className="flex items-center gap-3">
+              <span
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full text-base font-extrabold"
+                style={{ background: YELLOW, color: BLUE_DEEP, fontFamily: SERIF }}
+              >
+                {t("step1.num", "01")}
+              </span>
+              <span
+                className="rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wider"
+                style={{ background: "rgba(15,42,140,0.08)", color: BLUE }}
+              >
+                {t("step1.tag")}
+              </span>
+            </div>
+            <h3
+              className="mt-4 text-3xl font-bold leading-tight md:text-4xl"
+              style={{ fontFamily: SERIF, color: BLUE_DEEP }}
+            >
+              {t("step1.heading")}
+            </h3>
+            <p className="mt-3 text-base leading-relaxed md:text-lg" style={{ color: "#334155" }}>
+              {t("step1.text_block")}
+            </p>
+            <ReadMoreSheet
+              label={t("step1.cta_label")}
+              title={t("step1.heading")}
+              body={t("step1.text_block")}
+              tag={t("step1.tag")}
+            />
+          </div>
+
+          {/* 4-photo editorial collage */}
+          <div className="relative">
+            <div className="grid grid-cols-2 grid-rows-2 gap-3 sm:gap-4">
+              {STEP1_PHOTOS.map((p, i) => (
+                <div
+                  key={p.src}
+                  className={cn(
+                    "group relative overflow-hidden bg-slate-200 ring-1 ring-black/10 shadow-xl",
+                    i === 0 && "rounded-tl-[2.25rem] rounded-br-xl rounded-tr-xl rounded-bl-xl translate-y-2 sm:translate-y-3",
+                    i === 1 && "rounded-tr-[2.25rem] rounded-bl-xl rounded-tl-xl rounded-br-xl -translate-y-1 sm:-translate-y-2",
+                    i === 2 && "rounded-bl-[2.25rem] rounded-tr-xl rounded-tl-xl rounded-br-xl -translate-y-1 sm:-translate-y-2",
+                    i === 3 && "rounded-br-[2.25rem] rounded-tl-xl rounded-tr-xl rounded-bl-xl translate-y-2 sm:translate-y-3",
+                    "aspect-[4/5]",
+                  )}
+                  style={{ boxShadow: "0 18px 40px -22px rgba(8,26,96,0.45)" }}
+                >
+                  <img
+                    src={p.src}
+                    alt={p.alt}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+                    onError={(e) => {
+                      const el = e.currentTarget as HTMLImageElement;
+                      el.style.display = "none";
+                      (el.parentElement as HTMLElement).style.background =
+                        "linear-gradient(135deg, #C26A2A, #F0B870)";
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
+            {/* small secondary illustration accent */}
+            <div className="pointer-events-none absolute -bottom-5 -left-5 hidden md:block">
+              <CircleArt src={`${ASSET_BASE}/pureflow-problem.png`} alt="" size="xs" bg="#FFFFFF" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
 
 function PureFlowCompactPage() {
   const { lang } = useLang();
