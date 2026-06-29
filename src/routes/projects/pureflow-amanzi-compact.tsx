@@ -370,8 +370,8 @@ const STEP_IDS = ["step-1", "step-2", "step-3", "step-4", "step-5", "step-6"] as
 const PATHWAY_IMAGES = [
   "pureflow-problem.png",
   "pureflow-solution.png",
-  "pureflow-wash.png",
-  "pureflow-cleanwater.png",
+  "pureflow-school.png",
+  "pureflow-jobs.png",
   "pureflow-community.png",
   "pureflow-village.png",
 ];
