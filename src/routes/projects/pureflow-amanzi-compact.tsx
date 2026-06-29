@@ -1450,7 +1450,7 @@ function PureFlowCompactPage() {
         reverse
         dark
         photoAlt="Pondoland village community living with safe water"
-        photoSrc="/assets/photos/pureflow/step-6.jpg"
+        photoSrc="/assets/photos/projects/pureflow/pureflow-step-06-long-term-transformation.jpg"
         photoTone="ocean"
         accentSrc={`${ASSET_BASE}/pureflow-village.png`}
         accentSrcSecondary={`${ASSET_BASE}/pureflow-community.png`}
