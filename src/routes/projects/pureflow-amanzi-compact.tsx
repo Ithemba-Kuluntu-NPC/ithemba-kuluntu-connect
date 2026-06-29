@@ -172,10 +172,10 @@ function CircleArt({
   bg?: string;
 }) {
   const sizes = {
-    xs: "h-20 w-20",
-    sm: "h-28 w-28",
-    md: "h-36 w-36 md:h-40 md:w-40",
-    lg: "h-48 w-48 md:h-56 md:w-56",
+    xs: "h-28 w-28",
+    sm: "h-36 w-36 md:h-40 md:w-40",
+    md: "h-44 w-44 md:h-52 md:w-52",
+    lg: "h-56 w-56 md:h-64 md:w-64",
   } as const;
   return (
     <div
@@ -370,8 +370,8 @@ const STEP_IDS = ["step-1", "step-2", "step-3", "step-4", "step-5", "step-6"] as
 const PATHWAY_IMAGES = [
   "pureflow-problem.png",
   "pureflow-solution.png",
-  "pureflow-wash.png",
-  "pureflow-cleanwater.png",
+  "pureflow-school.png",
+  "pureflow-jobs.png",
   "pureflow-community.png",
   "pureflow-village.png",
 ];
@@ -414,17 +414,17 @@ function PathwayStepper({ t }: { t: (k: string, fb?: string) => string }) {
         </div>
 
         {/* Desktop: horizontal 6-up flow with image bubbles + arrow connectors */}
-        <ol className="relative mt-10 hidden grid-cols-11 items-stretch gap-0 md:grid">
+        <ol className="relative mx-auto mt-10 hidden max-w-5xl grid-cols-11 items-stretch gap-0 md:grid">
           {steps.map((s, i) => (
             <Fragment key={s.id}>
-              <li key={s.id} className="col-span-1 flex">
+              <li className="col-span-1 flex">
                 <button
                   onClick={() => scrollToStep(s.id)}
                   className="group flex w-full flex-col items-center text-center transition hover:-translate-y-0.5"
                 >
                   <div className="relative">
                     <div
-                      className="flex h-24 w-24 items-center justify-center rounded-full bg-white shadow-lg ring-1 ring-black/5 lg:h-28 lg:w-28"
+                      className="flex h-32 w-32 items-center justify-center rounded-full bg-white shadow-lg ring-1 ring-black/5 lg:h-36 lg:w-36"
                       style={{ boxShadow: `0 18px 40px -20px rgba(8,26,96,0.45), 0 0 0 3px rgba(251,191,36,0.55)` }}
                     >
                       <img
@@ -452,8 +452,8 @@ function PathwayStepper({ t }: { t: (k: string, fb?: string) => string }) {
                 </button>
               </li>
               {i < steps.length - 1 && (
-                <li key={`arrow-${i}`} aria-hidden className="col-span-1 flex items-center justify-center pt-8">
-                  <ArrowRight className="h-6 w-6" style={{ color: YELLOW }} strokeWidth={3} />
+                <li key={`arrow-${i}`} aria-hidden className="col-span-1 flex items-center justify-center pt-12">
+                  <ArrowRight className="h-7 w-7" style={{ color: YELLOW }} strokeWidth={3} />
                 </li>
               )}
             </Fragment>
@@ -886,6 +886,50 @@ function DeliveryLoop({ t }: { t: (k: string, fb?: string) => string }) {
   );
 }
 
+// ----------------------- ECD YouTube Embed (for Step 03) -----------------------
+
+function EcdVideoEmbed() {
+  const [playing, setPlaying] = useState(false);
+  const vid = "0Y4YB7WniTw";
+  return (
+    <div className="mt-12 overflow-hidden rounded-3xl bg-black/90 shadow-xl ring-1 ring-black/10">
+      <div className="relative aspect-video w-full">
+        {!playing ? (
+          <button
+            type="button"
+            onClick={() => setPlaying(true)}
+            className="group absolute inset-0"
+            aria-label="Play PureFlow Amanzi at the ECD Centre"
+          >
+            <img
+              src={`https://i.ytimg.com/vi/${vid}/hqdefault.jpg`}
+              alt="PureFlow Amanzi at the ECD Centre"
+              className="h-full w-full object-cover"
+            />
+            <span className="absolute inset-0 flex items-center justify-center bg-black/30 transition group-hover:bg-black/40">
+              <PlayCircle className="h-20 w-20" style={{ color: YELLOW }} />
+            </span>
+          </button>
+        ) : (
+          <iframe
+            className="absolute inset-0 h-full w-full"
+            src={`https://www.youtube.com/embed/${vid}?autoplay=1&rel=0`}
+            title="PureFlow Amanzi at the ECD Centre"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        )}
+      </div>
+      <div className="bg-white/95 px-5 py-3 text-center">
+        <p className="text-sm font-semibold" style={{ color: BLUE_DEEP, fontFamily: SERIF }}>
+          PureFlow Amanzi at the No.1 ECD Centre
+        </p>
+        <p className="mt-0.5 text-xs text-slate-600">Safe water in action for early childhood learners.</p>
+      </div>
+    </div>
+  );
+}
+
 // ----------------------- SDG Grid (boxless, logo-ready) -----------------------
 
 const SDG_NUMS = [1, 3, 4, 5, 6, 8, 10, 11, 12, 13, 17] as const;
@@ -931,24 +975,35 @@ function SDGLogo({ n }: { n: number }) {
 
 function SDGGrid({ t }: { t: (k: string, fb?: string) => string }) {
   return (
-    <section style={{ background: CREAM }} className="relative">
+    <section className="relative isolate overflow-hidden">
+      <div className="absolute inset-0 -z-10">
+        <img
+          src="/assets/photos/pureflow/sdg-bg.jpg"
+          alt=""
+          aria-hidden
+          className="h-full w-full object-cover"
+          onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = "none")}
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#FBF6E9]/95 via-[#FBF6E9]/92 to-[#F5EDD7]/95" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#081A60]/30 via-transparent to-[#081A60]/20 mix-blend-multiply" />
+      </div>
       <div className="mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
         <div className="text-center">
           <Script color={BLUE}>SDG</Script>
           <h2 className="mt-1 text-3xl font-bold md:text-4xl" style={{ fontFamily: SERIF, color: BLUE_DEEP }}>
             {t("sdg.main_heading")}
           </h2>
-          <p className="mx-auto mt-2 max-w-2xl text-sm text-slate-700 md:text-base">{t("sdg.sub_heading")}</p>
+          <p className="mx-auto mt-2 max-w-2xl text-sm text-slate-800 md:text-base">{t("sdg.sub_heading")}</p>
         </div>
         <div className="mt-8 grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
           {SDG_NUMS.map((n) => (
-            <div key={n} className="flex items-start gap-4">
+            <div key={n} className="flex items-start gap-4 rounded-2xl bg-white/60 p-3 backdrop-blur-sm ring-1 ring-white/40">
               <SDGLogo n={n} />
               <div className="min-w-0">
                 <p className="text-sm font-bold leading-snug" style={{ color: BLUE_DEEP, fontFamily: SERIF }}>
                   <span style={{ color: SDG_COLORS[n] }}>SDG {n}</span> · {t(`sdg.${n}.title`)}
                 </p>
-                <p className="mt-1 text-xs leading-snug text-slate-600">{t(`sdg.${n}.desc`)}</p>
+                <p className="mt-1 text-xs leading-snug text-slate-700">{t(`sdg.${n}.desc`)}</p>
               </div>
             </div>
           ))}
@@ -997,21 +1052,21 @@ function PartnersStrip({ t }: { t: (k: string, fb?: string) => string }) {
         </div>
 
         {matched.length > 0 ? (
-          <div className="mt-10 grid grid-cols-2 items-center gap-x-10 gap-y-10 sm:grid-cols-3 md:grid-cols-4">
+          <div className="mx-auto mt-10 flex max-w-5xl flex-wrap items-center justify-center gap-x-12 gap-y-8">
             {matched.map(({ partner }) => (
               <a
                 key={partner!.name}
                 href={partner!.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex h-32 items-center justify-center"
+                className="group flex h-28 w-[200px] items-center justify-center sm:w-[220px] md:h-32 md:w-[240px]"
                 title={partner!.name}
               >
                 <img
                   src={partner!.logo}
                   alt={`${partner!.name} logo`}
                   loading="lazy"
-                  className="max-h-[120px] max-w-[260px] object-contain transition group-hover:scale-105"
+                  className="max-h-[110px] max-w-full object-contain transition group-hover:scale-105"
                   onError={(e) => {
                     (e.currentTarget.parentElement as HTMLElement).style.display = "none";
                   }}
@@ -1056,7 +1111,17 @@ function DonationBox({ t, anchorRef }: { t: (k: string, fb?: string) => string; 
     .filter(Boolean);
 
   return (
-    <section ref={anchorRef as React.RefObject<HTMLDivElement>} id="donate" style={{ background: BLUE }} className="relative scroll-mt-20">
+    <section ref={anchorRef as React.RefObject<HTMLDivElement>} id="donate" className="relative isolate scroll-mt-20 overflow-hidden">
+      <div className="absolute inset-0 -z-10">
+        <img
+          src="/assets/photos/pureflow/donate-bg.jpg"
+          alt=""
+          aria-hidden
+          className="h-full w-full object-cover"
+          onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = "none")}
+        />
+        <div className="absolute inset-0" style={{ background: `linear-gradient(135deg, ${BLUE_DEEP}EE 0%, ${BLUE}E6 60%, ${BLUE}D9 100%)` }} />
+      </div>
       <div className="mx-auto max-w-5xl px-5 py-12 md:px-8 md:py-16">
         <div className="text-center text-white">
           <Script>{t("donation.script_heading")}</Script>
@@ -1189,31 +1254,45 @@ function DonationBox({ t, anchorRef }: { t: (k: string, fb?: string) => string; 
 function Closing({ t, goDonate }: { t: (k: string, fb?: string) => string; goDonate: (f: "monthly" | "once") => void }) {
   return (
     <section className="relative" style={{ background: BLUE_DEEP }}>
-      <div className="mx-auto max-w-4xl px-5 py-16 text-center text-white md:px-8 md:py-20">
-        <h2 className="text-3xl font-bold md:text-5xl" style={{ fontFamily: SERIF }}>
-          {t("closing.main_heading")}
-        </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-base text-white/85 md:text-lg">
-          {t("closing.text")}
-        </p>
-        <div className="mt-7 flex flex-wrap justify-center gap-3">
-          <Button
-            size="lg"
-            onClick={() => goDonate("monthly")}
-            className="rounded-full px-6 text-base font-semibold"
-            style={{ background: YELLOW, color: BLUE_DEEP }}
-          >
-            <Heart className="mr-2 h-4 w-4 fill-current" />
-            {t("closing.btn.monthly")}
-          </Button>
-          <Button
-            asChild
-            size="lg"
-            variant="outline"
-            className="rounded-full border-white/40 bg-white/5 px-6 text-base text-white hover:bg-white/10"
-          >
-            <Link to="/projects">{t("closing.btn.projects")}</Link>
-          </Button>
+      <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-14 text-white md:px-8 md:py-20 lg:grid-cols-[1.05fr_1fr] lg:gap-14">
+        <div className="relative">
+          <PhotoFrame
+            src="/assets/photos/pureflow/closing-group.jpg"
+            alt="Community group photo holding PureFlow Amanzi filters"
+            tone="ocean"
+            className="aspect-[5/4] w-full"
+            rounded="rounded-[2rem]"
+          />
+          <div className="absolute -bottom-6 -right-4 md:-bottom-8 md:-right-6">
+            <CircleArt src={`${ASSET_BASE}/pureflow-community.png`} alt="Community" size="sm" />
+          </div>
+        </div>
+        <div className="text-center lg:text-left">
+          <h2 className="text-3xl font-bold md:text-5xl" style={{ fontFamily: SERIF }}>
+            {t("closing.main_heading")}
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-base text-white/85 md:text-lg lg:mx-0">
+            {t("closing.text")}
+          </p>
+          <div className="mt-7 flex flex-wrap justify-center gap-3 lg:justify-start">
+            <Button
+              size="lg"
+              onClick={() => goDonate("monthly")}
+              className="rounded-full px-6 text-base font-semibold"
+              style={{ background: YELLOW, color: BLUE_DEEP }}
+            >
+              <Heart className="mr-2 h-4 w-4 fill-current" />
+              {t("closing.btn.monthly")}
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="rounded-full border-white/40 bg-white/5 px-6 text-base text-white hover:bg-white/10"
+            >
+              <Link to="/projects">{t("closing.btn.projects")}</Link>
+            </Button>
+          </div>
         </div>
       </div>
     </section>
@@ -1294,7 +1373,9 @@ function PureFlowCompactPage() {
         photoTone="sun"
         accentSrc={`${ASSET_BASE}/pureflow-school.png`}
         accentSrcSecondary={`${ASSET_BASE}/pureflow-ecd.png`}
-      />
+      >
+        <EcdVideoEmbed />
+      </StepBlock>
 
       <WaveDivider from={CREAM} to={BLUE} />
 
