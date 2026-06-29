@@ -246,6 +246,7 @@ function PhotoFrame({
           alt={alt}
           loading="lazy"
           className="absolute inset-0 h-full w-full object-cover"
+          style={objectPosition ? { objectPosition } : undefined}
           onError={() => setErrored(true)}
         />
       )}
@@ -1330,24 +1331,6 @@ function Closing({ t, goDonate }: { t: (k: string, fb?: string) => string; goDon
 
 // ----------------------- Step 01 — Structural Problem (4-photo editorial collage) -----------------------
 
-const STEP1_PHOTOS = [
-  {
-    src: "/assets/photos/projects/pureflow/pureflow-step-01-structural-problem.jpg",
-    alt: "Women walking long distances to collect water in rural Pondoland",
-  },
-  {
-    src: "/assets/photos/projects/pureflow/pureflow-step-01-structural-problem-2.jpg",
-    alt: "Firewood burden carried by women in rural villages",
-  },
-  {
-    src: "/assets/photos/projects/pureflow/pureflow-step-01-structural-problem-3.jpg",
-    alt: "Distant clinic access challenges in remote Pondoland",
-  },
-  {
-    src: "/assets/photos/projects/pureflow/pureflow-step-01-structural-problem-4.jpg",
-    alt: "Daily household care burden carried by women",
-  },
-];
 
 function Step01Collage({ t }: { t: (k: string, fb?: string) => string }) {
   return (
@@ -1400,38 +1383,40 @@ function Step01Collage({ t }: { t: (k: string, fb?: string) => string }) {
             />
           </div>
 
-          {/* 4-photo editorial collage */}
+          {/* Editorial single-photo treatment */}
           <div className="relative">
-            <div className="grid grid-cols-2 grid-rows-2 gap-3 sm:gap-4">
-              {STEP1_PHOTOS.map((p, i) => (
-                <div
-                  key={p.src}
-                  className={cn(
-                    "group relative overflow-hidden bg-slate-200 ring-1 ring-black/10 shadow-xl",
-                    i === 0 && "rounded-tl-[2.25rem] rounded-br-xl rounded-tr-xl rounded-bl-xl translate-y-2 sm:translate-y-3",
-                    i === 1 && "rounded-tr-[2.25rem] rounded-bl-xl rounded-tl-xl rounded-br-xl -translate-y-1 sm:-translate-y-2",
-                    i === 2 && "rounded-bl-[2.25rem] rounded-tr-xl rounded-tl-xl rounded-br-xl -translate-y-1 sm:-translate-y-2",
-                    i === 3 && "rounded-br-[2.25rem] rounded-tl-xl rounded-tr-xl rounded-bl-xl translate-y-2 sm:translate-y-3",
-                    "aspect-[4/5]",
-                  )}
-                  style={{ boxShadow: "0 18px 40px -22px rgba(8,26,96,0.45)" }}
-                >
-                  <img
-                    src={p.src}
-                    alt={p.alt}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
-                    onError={(e) => {
-                      const el = e.currentTarget as HTMLImageElement;
-                      el.style.display = "none";
-                      (el.parentElement as HTMLElement).style.background =
-                        "linear-gradient(135deg, #C26A2A, #F0B870)";
-                    }}
-                  />
-                </div>
-              ))}
+            <div
+              className="relative aspect-[4/5] overflow-hidden rounded-tl-[2.75rem] rounded-br-[2.75rem] rounded-tr-2xl rounded-bl-2xl ring-1 ring-black/10"
+              style={{ boxShadow: "0 28px 60px -28px rgba(8,26,96,0.55)" }}
+            >
+              <img
+                src="/assets/photos/projects/pureflow/pureflow-step-01-structural-problem.jpg"
+                alt="Women in rural Pondoland carrying the daily burden of unsafe water"
+                loading="lazy"
+                className="h-full w-full object-cover"
+                style={{ objectPosition: "center 35%" }}
+              />
+              {/* soft inner vignette for depth */}
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_80%_at_30%_20%,transparent_55%,rgba(8,26,96,0.35)_100%)]" />
+              {/* caption chip */}
+              <div className="absolute bottom-4 left-4 right-4 flex items-center gap-2 rounded-full bg-black/45 px-3 py-1.5 backdrop-blur-md">
+                <span
+                  className="h-1.5 w-1.5 shrink-0 rounded-full"
+                  style={{ background: YELLOW }}
+                />
+                <span className="truncate text-[11px] font-medium uppercase tracking-[0.16em] text-white/95">
+                  {t("step1.tag")}
+                </span>
+              </div>
             </div>
-            {/* small secondary illustration accent */}
+
+            {/* yellow framed accent block top-right */}
+            <div
+              className="pointer-events-none absolute -right-3 -top-3 hidden h-20 w-20 rounded-2xl md:block"
+              style={{ background: YELLOW, boxShadow: "0 14px 28px -14px rgba(251,191,36,0.7)" }}
+              aria-hidden
+            />
+            {/* small illustration accent bottom-left */}
             <div className="pointer-events-none absolute -bottom-5 -left-5 hidden md:block">
               <CircleArt src={`${ASSET_BASE}/pureflow-problem.png`} alt="" size="xs" bg="#FFFFFF" />
             </div>
@@ -1559,7 +1544,7 @@ function PureFlowCompactPage() {
         photoAlt="Pondoland village community living with safe water"
         photoSrc="/assets/photos/projects/pureflow/pureflow-step-06-long-term-transformation.jpg"
         photoTone="ocean"
-        photoObjectPosition="top"
+        photoObjectPosition="center 18%"
         accentSrc={`${ASSET_BASE}/pureflow-village.png`}
         accentSrcSecondary={`${ASSET_BASE}/pureflow-community.png`}
       />
