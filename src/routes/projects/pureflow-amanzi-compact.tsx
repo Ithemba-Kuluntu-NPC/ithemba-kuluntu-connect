@@ -732,6 +732,7 @@ function StepBlock({
   accentSrc,
   accentSrcSecondary,
   children,
+  bgPhotoSrc,
 }: {
   id: string;
   num: string;
@@ -747,6 +748,7 @@ function StepBlock({
   accentSrc?: string;
   accentSrcSecondary?: string;
   children?: React.ReactNode;
+  bgPhotoSrc?: string;
 }) {
   const textColor = dark ? "#FFFFFF" : BLUE_DEEP;
   const bodyColor = dark ? "rgba(255,255,255,0.85)" : "#334155";
@@ -758,6 +760,21 @@ function StepBlock({
       className="relative scroll-mt-20"
       style={{ background: dark ? BLUE : CREAM }}
     >
+      {bgPhotoSrc && !dark && (
+        <>
+          <img
+            src={bgPhotoSrc}
+            alt=""
+            aria-hidden
+            className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+          />
+          <div
+            className="pointer-events-none absolute inset-0"
+            style={{ background: `${CREAM}D9` }}
+          />
+        </>
+      )}
+
       <div className="mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
         <div
           className={cn(
