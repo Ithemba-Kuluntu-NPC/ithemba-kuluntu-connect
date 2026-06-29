@@ -1294,7 +1294,9 @@ function PureFlowCompactPage() {
         photoTone="sun"
         accentSrc={`${ASSET_BASE}/pureflow-school.png`}
         accentSrcSecondary={`${ASSET_BASE}/pureflow-ecd.png`}
-      />
+      >
+        <EcdVideoEmbed />
+      </StepBlock>
 
       <WaveDivider from={CREAM} to={BLUE} />
 
