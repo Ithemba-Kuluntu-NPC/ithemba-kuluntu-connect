@@ -1630,8 +1630,13 @@ function PureFlowCompactPage() {
         reverse
         dark
         photoAlt="PureFlow Amanzi household filter installation"
-        photoSrc="/assets/photos/projects/pureflow/pureflow-step-02-pureflow-model.jpg"
         photoTone="ocean"
+        collageVariant="B"
+        photoSrcs={[
+          { src: "/assets/photos/projects/pureflow/pureflow-step-02-pureflow-model.jpg", alt: "PureFlow filter installed in a household" },
+          { src: "/assets/photos/projects/pureflow/pureflow-step-02-pureflow-model-2.jpg", alt: "Assembly of a PureFlow bucket filter" },
+          { src: "/assets/photos/projects/pureflow/pureflow-step-02-pureflow-model-3.jpg", alt: "Family using safe water at home" },
+        ]}
         accentSrc={`${ASSET_BASE}/pureflow-solution.png`}
       >
         <DeliveryLoop t={t} />
@@ -1648,8 +1653,14 @@ function PureFlowCompactPage() {
         body={t("step3.text_block")}
         ctaLabel={t("step3.cta_label")}
         photoAlt="Children at the No.1 ECD Centre with safe drinking water"
-        photoSrc="/assets/photos/projects/pureflow/pureflow-step-03-immediate-public-benefit.jpg"
         photoTone="sun"
+        collageVariant="C"
+        photoSrcs={[
+          { src: "/assets/photos/projects/pureflow/pureflow-step-03-immediate-public-benefit.jpg", alt: "Children drinking safe water at the ECD centre" },
+          { src: "/assets/photos/projects/pureflow/pureflow-step-03-immediate-public-benefit-2.jpg", alt: "School classroom benefiting from PureFlow water" },
+          { src: "/assets/photos/projects/pureflow/pureflow-step-03-immediate-public-benefit-3.jpg", alt: "Clean drinking cups at the ECD centre" },
+          { src: "/assets/photos/projects/pureflow/pureflow-step-03-immediate-public-benefit-4.jpg", alt: "Educator supporting children with safe water" },
+        ]}
         accentSrc={`${ASSET_BASE}/pureflow-school.png`}
         accentSrcSecondary={`${ASSET_BASE}/pureflow-ecd.png`}
       >
@@ -1669,8 +1680,14 @@ function PureFlowCompactPage() {
         reverse
         dark
         photoAlt="WASH training session in a Pondoland village"
-        photoSrc="/assets/photos/projects/pureflow/pureflow-step-04-system-shifts.jpg"
         photoTone="blue"
+        collageVariant="A"
+        photoSrcs={[
+          { src: "/assets/photos/projects/pureflow/pureflow-step-04-system-shifts.jpg", alt: "WASH training session with community members" },
+          { src: "/assets/photos/projects/pureflow/pureflow-step-04-system-shifts-2.jpg", alt: "Hygiene demonstration in a village" },
+          { src: "/assets/photos/projects/pureflow/pureflow-step-04-system-shifts-3.jpg", alt: "Community health worker with a family" },
+          { src: "/assets/photos/projects/pureflow/pureflow-step-04-system-shifts-4.jpg", alt: "Village leaders reviewing water plans" },
+        ]}
         accentSrc={`${ASSET_BASE}/pureflow-wash.png`}
       />
 
@@ -1685,8 +1702,13 @@ function PureFlowCompactPage() {
         body={t("step5.text_block")}
         ctaLabel={t("step5.cta_label")}
         photoAlt="Local team assembling and delivering PureFlow filters"
-        photoSrc="/assets/photos/projects/pureflow/pureflow-step-05-wider-community-gains.jpeg"
         photoTone="warm"
+        collageVariant="B"
+        photoSrcs={[
+          { src: "/assets/photos/projects/pureflow/pureflow-step-05-wider-community-gains.jpeg", alt: "Local team assembling filters" },
+          { src: "/assets/photos/projects/pureflow/pureflow-step-05-wider-community-gains-2.jpg", alt: "Delivery day in a Pondoland village" },
+          { src: "/assets/photos/projects/pureflow/pureflow-step-05-wider-community-gains-3.jpg", alt: "New skills, new local income" },
+        ]}
         accentSrc={`${ASSET_BASE}/pureflow-jobs.png`}
       />
 
@@ -1703,12 +1725,18 @@ function PureFlowCompactPage() {
         reverse
         dark
         photoAlt="Pondoland village community living with safe water"
-        photoSrc="/assets/photos/projects/pureflow/pureflow-step-06-long-term-transformation.jpg"
         photoTone="ocean"
-        photoObjectPosition="center 18%"
+        collageVariant="C"
+        photoSrcs={[
+          { src: "/assets/photos/projects/pureflow/pureflow-step-06-long-term-transformation.jpg", objectPosition: "center 18%", alt: "Woman with lasting access to safe water" },
+          { src: "/assets/photos/projects/pureflow/pureflow-step-06-long-term-transformation-2.jpg", alt: "Children thriving in a healthier village" },
+          { src: "/assets/photos/projects/pureflow/pureflow-step-06-long-term-transformation-3.jpg", alt: "Village landscape shaped by clean water" },
+          { src: "/assets/photos/projects/pureflow/pureflow-step-06-long-term-transformation-4.jpg", alt: "Long-term community transformation" },
+        ]}
         accentSrc={`${ASSET_BASE}/pureflow-village.png`}
         accentSrcSecondary={`${ASSET_BASE}/pureflow-community.png`}
       />
+
 
       <WaveDivider from={BLUE} to={CREAM} />
       <SDGGrid t={t} />
