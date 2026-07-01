@@ -727,6 +727,80 @@ function ReadMoreSheet({
   );
 }
 
+// ----------------------- Editorial collage (3–4 photo placeholders) -----------------------
+
+function StepCollage({
+  photos,
+  variant = "A",
+  alt,
+  tone = "ocean",
+  accent = YELLOW,
+}: {
+  photos: Array<{ src?: string; objectPosition?: string; alt?: string }>;
+  variant?: "A" | "B" | "C";
+  alt: string;
+  tone?: "ocean" | "earth" | "sun" | "warm" | "blue";
+  accent?: string;
+}) {
+  // Ensure exactly 3 or 4 slots
+  const slots = photos.slice(0, 4);
+  while (slots.length < 3) slots.push({});
+
+  // Layout definitions map slot index → grid cell classes + rounded corners
+  const layouts: Record<"A" | "B" | "C", string[]> = {
+    // 4 photos — mirrors Step 01 (portrait main + top right + mid right + wide bottom)
+    A: [
+      "col-span-7 row-span-4 rounded-tl-[2.5rem] rounded-br-2xl rounded-tr-xl rounded-bl-xl",
+      "col-span-5 row-span-3 rounded-tr-[2.5rem] rounded-bl-xl rounded-tl-xl rounded-br-xl",
+      "col-span-5 row-span-3 rounded-xl",
+      "col-span-7 row-span-2 rounded-bl-[2.5rem] rounded-tr-xl rounded-tl-xl rounded-br-xl",
+    ],
+    // 3 photos — tall left, two stacked right
+    B: [
+      "col-span-7 row-span-6 rounded-tl-[2.5rem] rounded-bl-[2.5rem] rounded-tr-xl rounded-br-xl",
+      "col-span-5 row-span-3 rounded-tr-[2.5rem] rounded-bl-xl rounded-tl-xl rounded-br-xl",
+      "col-span-5 row-span-3 rounded-br-[2.5rem] rounded-tl-xl rounded-tr-xl rounded-bl-xl",
+    ],
+    // 4 photos — offset 2×2 with a hero cell
+    C: [
+      "col-span-6 row-span-3 rounded-tl-[2.5rem] rounded-br-2xl rounded-tr-xl rounded-bl-xl",
+      "col-span-6 row-span-3 rounded-tr-[2.5rem] rounded-bl-2xl rounded-tl-xl rounded-br-xl",
+      "col-span-7 row-span-3 rounded-bl-[2.5rem] rounded-tr-xl rounded-tl-xl rounded-br-xl",
+      "col-span-5 row-span-3 rounded-br-[2.5rem] rounded-tl-xl rounded-tr-xl rounded-bl-xl",
+    ],
+  };
+  const cells = layouts[variant];
+  const usable = slots.slice(0, cells.length);
+
+  return (
+    <div className="relative">
+      <div
+        className="relative grid aspect-[4/5] grid-cols-12 grid-rows-6 gap-2.5 md:gap-3"
+        style={{ filter: "drop-shadow(0 28px 60px rgba(8,26,96,0.35))" }}
+      >
+        {usable.map((p, i) => (
+          <div key={i} className={cn("overflow-hidden ring-1 ring-black/10", cells[i])}>
+            <PhotoFrame
+              src={p.src}
+              alt={p.alt ?? alt}
+              tone={tone}
+              rounded="rounded-none"
+              className="h-full w-full"
+              objectPosition={p.objectPosition}
+            />
+          </div>
+        ))}
+      </div>
+      {/* accent block */}
+      <div
+        className="pointer-events-none absolute -right-3 -top-3 hidden h-20 w-20 rounded-2xl md:block"
+        style={{ background: accent, boxShadow: `0 14px 28px -14px ${accent}B3` }}
+        aria-hidden
+      />
+    </div>
+  );
+}
+
 // ----------------------- Step block (photo-first with small illustration accent) -----------------------
 
 function StepBlock({
@@ -742,6 +816,8 @@ function StepBlock({
   photoAlt,
   photoTone = "ocean",
   photoObjectPosition,
+  photoSrcs,
+  collageVariant,
   accentSrc,
   accentSrcSecondary,
   children,
@@ -759,6 +835,8 @@ function StepBlock({
   photoAlt: string;
   photoTone?: "ocean" | "earth" | "sun" | "warm" | "blue";
   photoObjectPosition?: string;
+  photoSrcs?: Array<{ src?: string; objectPosition?: string; alt?: string }>;
+  collageVariant?: "A" | "B" | "C";
   accentSrc?: string;
   accentSrcSecondary?: string;
   children?: React.ReactNode;
@@ -824,15 +902,24 @@ function StepBlock({
             <ReadMoreSheet label={ctaLabel} title={heading} body={body} tag={tag} />
           </div>
 
-          {/* Photo-first visual */}
+          {/* Visual: editorial collage (preferred) or single photo fallback */}
           <div className="relative">
-            <PhotoFrame
-              src={photoSrc}
-              alt={photoAlt}
-              tone={photoTone}
-              className="aspect-[4/3] w-full"
-              objectPosition={photoObjectPosition}
-            />
+            {photoSrcs && photoSrcs.length > 0 ? (
+              <StepCollage
+                photos={photoSrcs}
+                variant={collageVariant ?? "A"}
+                alt={photoAlt}
+                tone={photoTone}
+              />
+            ) : (
+              <PhotoFrame
+                src={photoSrc}
+                alt={photoAlt}
+                tone={photoTone}
+                className="aspect-[4/3] w-full"
+                objectPosition={photoObjectPosition}
+              />
+            )}
             {/* Small illustration accent bubble (secondary) */}
             {accentSrc && (
               <div className="absolute -bottom-6 -left-4 md:-bottom-8 md:-left-8">
@@ -852,6 +939,7 @@ function StepBlock({
     </section>
   );
 }
+
 
 // ----------------------- Horizontal 5-step delivery loop (under Step 02) -----------------------
 
@@ -1542,8 +1630,13 @@ function PureFlowCompactPage() {
         reverse
         dark
         photoAlt="PureFlow Amanzi household filter installation"
-        photoSrc="/assets/photos/projects/pureflow/pureflow-step-02-pureflow-model.jpg"
         photoTone="ocean"
+        collageVariant="B"
+        photoSrcs={[
+          { src: "/assets/photos/projects/pureflow/pureflow-step-02-pureflow-model.jpg", alt: "PureFlow filter installed in a household" },
+          { src: "/assets/photos/projects/pureflow/pureflow-step-02-pureflow-model-2.jpg", alt: "Assembly of a PureFlow bucket filter" },
+          { src: "/assets/photos/projects/pureflow/pureflow-step-02-pureflow-model-3.jpg", alt: "Family using safe water at home" },
+        ]}
         accentSrc={`${ASSET_BASE}/pureflow-solution.png`}
       >
         <DeliveryLoop t={t} />
@@ -1560,8 +1653,14 @@ function PureFlowCompactPage() {
         body={t("step3.text_block")}
         ctaLabel={t("step3.cta_label")}
         photoAlt="Children at the No.1 ECD Centre with safe drinking water"
-        photoSrc="/assets/photos/projects/pureflow/pureflow-step-03-immediate-public-benefit.jpg"
         photoTone="sun"
+        collageVariant="C"
+        photoSrcs={[
+          { src: "/assets/photos/projects/pureflow/pureflow-step-03-immediate-public-benefit.jpg", alt: "Children drinking safe water at the ECD centre" },
+          { src: "/assets/photos/projects/pureflow/pureflow-step-03-immediate-public-benefit-2.jpg", alt: "School classroom benefiting from PureFlow water" },
+          { src: "/assets/photos/projects/pureflow/pureflow-step-03-immediate-public-benefit-3.jpg", alt: "Clean drinking cups at the ECD centre" },
+          { src: "/assets/photos/projects/pureflow/pureflow-step-03-immediate-public-benefit-4.jpg", alt: "Educator supporting children with safe water" },
+        ]}
         accentSrc={`${ASSET_BASE}/pureflow-school.png`}
         accentSrcSecondary={`${ASSET_BASE}/pureflow-ecd.png`}
       >
@@ -1581,8 +1680,14 @@ function PureFlowCompactPage() {
         reverse
         dark
         photoAlt="WASH training session in a Pondoland village"
-        photoSrc="/assets/photos/projects/pureflow/pureflow-step-04-system-shifts.jpg"
         photoTone="blue"
+        collageVariant="A"
+        photoSrcs={[
+          { src: "/assets/photos/projects/pureflow/pureflow-step-04-system-shifts.jpg", alt: "WASH training session with community members" },
+          { src: "/assets/photos/projects/pureflow/pureflow-step-04-system-shifts-2.jpg", alt: "Hygiene demonstration in a village" },
+          { src: "/assets/photos/projects/pureflow/pureflow-step-04-system-shifts-3.jpg", alt: "Community health worker with a family" },
+          { src: "/assets/photos/projects/pureflow/pureflow-step-04-system-shifts-4.jpg", alt: "Village leaders reviewing water plans" },
+        ]}
         accentSrc={`${ASSET_BASE}/pureflow-wash.png`}
       />
 
@@ -1597,8 +1702,13 @@ function PureFlowCompactPage() {
         body={t("step5.text_block")}
         ctaLabel={t("step5.cta_label")}
         photoAlt="Local team assembling and delivering PureFlow filters"
-        photoSrc="/assets/photos/projects/pureflow/pureflow-step-05-wider-community-gains.jpeg"
         photoTone="warm"
+        collageVariant="B"
+        photoSrcs={[
+          { src: "/assets/photos/projects/pureflow/pureflow-step-05-wider-community-gains.jpeg", alt: "Local team assembling filters" },
+          { src: "/assets/photos/projects/pureflow/pureflow-step-05-wider-community-gains-2.jpg", alt: "Delivery day in a Pondoland village" },
+          { src: "/assets/photos/projects/pureflow/pureflow-step-05-wider-community-gains-3.jpg", alt: "New skills, new local income" },
+        ]}
         accentSrc={`${ASSET_BASE}/pureflow-jobs.png`}
       />
 
@@ -1615,12 +1725,18 @@ function PureFlowCompactPage() {
         reverse
         dark
         photoAlt="Pondoland village community living with safe water"
-        photoSrc="/assets/photos/projects/pureflow/pureflow-step-06-long-term-transformation.jpg"
         photoTone="ocean"
-        photoObjectPosition="center 18%"
+        collageVariant="C"
+        photoSrcs={[
+          { src: "/assets/photos/projects/pureflow/pureflow-step-06-long-term-transformation.jpg", objectPosition: "center 18%", alt: "Woman with lasting access to safe water" },
+          { src: "/assets/photos/projects/pureflow/pureflow-step-06-long-term-transformation-2.jpg", alt: "Children thriving in a healthier village" },
+          { src: "/assets/photos/projects/pureflow/pureflow-step-06-long-term-transformation-3.jpg", alt: "Village landscape shaped by clean water" },
+          { src: "/assets/photos/projects/pureflow/pureflow-step-06-long-term-transformation-4.jpg", alt: "Long-term community transformation" },
+        ]}
         accentSrc={`${ASSET_BASE}/pureflow-village.png`}
         accentSrcSecondary={`${ASSET_BASE}/pureflow-community.png`}
       />
+
 
       <WaveDivider from={BLUE} to={CREAM} />
       <SDGGrid t={t} />
