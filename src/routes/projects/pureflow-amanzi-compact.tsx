@@ -1122,7 +1122,7 @@ function SDGIcon({ n }: { n: number }) {
   if (errored) {
     return (
       <div
-        className="flex h-24 w-24 items-center justify-center rounded-lg bg-slate-200 text-sm font-bold text-slate-500"
+        className="flex h-[85px] w-[85px] items-center justify-center rounded-lg bg-slate-200 text-sm font-bold text-slate-500 md:h-[100px] md:w-[100px] lg:h-[108px] lg:w-[108px]"
         aria-label={`SDG ${n}`}
       >
         SDG {n}
@@ -1135,7 +1135,7 @@ function SDGIcon({ n }: { n: number }) {
       alt={`SDG ${n}`}
       loading="lazy"
       onError={() => setErrored(true)}
-      className="h-auto w-24 object-contain md:w-28"
+      className="h-auto w-[85px] object-contain sm:w-[90px] md:w-[100px] lg:w-[108px]"
     />
   );
 }
