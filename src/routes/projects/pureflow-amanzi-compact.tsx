@@ -30,7 +30,7 @@ import {
   Briefcase,
   School,
   Presentation,
-  CheckCircle2,
+  
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -1619,20 +1619,16 @@ function Step01Collage({ t }: { t: (k: string, fb?: string) => string }) {
 // ----------------------- Climate Resilience & Sustainability -----------------------
 
 const CLIMATE_PHOTOS: Array<{ src?: string; objectPosition?: string; alt?: string }> = [
-  { src: "/assets/photos/projects/pureflow/pureflow-step-06-long-term-transformation-3.jpg", alt: "Rural Pondoland landscape" },
-  { src: "/assets/photos/projects/pureflow/pureflow-step-02-pureflow-model.jpg", alt: "PureFlow filter in household use" },
+  { src: "/assets/photos/projects/pureflow/pureflow-step-06-long-term-transformation.jpg", alt: "Rural landscape and village resilience" },
+  { src: "/assets/photos/projects/pureflow/pureflow-step-03-immediate-public-benefit.jpg", alt: "Safe water in households and schools" },
   { src: "/assets/photos/projects/pureflow/pureflow-step-05-wider-community-gains.jpeg", alt: "Local women in paid follow-up roles" },
-  { src: "/assets/photos/projects/pureflow/pureflow-step-04-system-shifts.jpg", alt: "WASH training reducing firewood use" },
+  { src: "/assets/photos/projects/pureflow/pureflow-step-04-system-shifts.jpg", alt: "WASH training and sustained household solutions" },
 ];
 
 function ClimateSection({ t }: { t: (k: string, fb?: string) => string }) {
   const paragraphs = t("climate.text_block")
     .split(/\n{2,}/)
     .map((p) => p.trim())
-    .filter(Boolean);
-  const benefits = t("climate.benefits_list")
-    .split(",")
-    .map((s) => s.trim())
     .filter(Boolean);
 
   return (
@@ -1667,38 +1663,6 @@ function ClimateSection({ t }: { t: (k: string, fb?: string) => string }) {
               ))}
             </div>
 
-            {benefits.length > 0 && (
-              <div className="mt-6">
-                <p className="text-xs font-bold uppercase tracking-wider" style={{ color: BLUE }}>
-                  {t("climate.benefits_heading", "What this supports")}
-                </p>
-                <ul className="mt-3 flex flex-wrap gap-2">
-                  {benefits.map((b) => (
-                    <li
-                      key={b}
-                      className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-xs font-medium shadow-sm ring-1 ring-black/5"
-                      style={{ color: BLUE_DEEP }}
-                    >
-                      <CheckCircle2 className="h-3.5 w-3.5" style={{ color: BLUE }} />
-                      {b}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
-            <div
-              className="mt-6 rounded-2xl p-5 shadow-sm ring-1 ring-black/5"
-              style={{ background: "#FFFFFF" }}
-            >
-              <p className="text-xs font-bold uppercase tracking-wider" style={{ color: BLUE }}>
-                {t("climate.future_heading", "From safe water to sustainable scale")}
-              </p>
-              <p className="mt-2 text-sm leading-relaxed text-slate-700 md:text-base">
-                {t("climate.future_text")}
-              </p>
-            </div>
-
             {t("climate.cta_label") && (
               <ReadMoreSheet
                 label={t("climate.cta_label")}
@@ -1717,9 +1681,6 @@ function ClimateSection({ t }: { t: (k: string, fb?: string) => string }) {
               alt="Climate resilience and sustainability"
               tone="ocean"
             />
-            <div className="absolute -bottom-6 -left-4 md:-bottom-8 md:-left-8">
-              <CircleArt src={`${ASSET_BASE}/pureflow-cleanwater.png`} alt="Clean water" size="sm" />
-            </div>
           </div>
         </div>
       </div>
