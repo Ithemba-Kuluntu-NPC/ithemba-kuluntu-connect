@@ -1570,6 +1570,15 @@ function Step01Collage({ t }: { t: (k: string, fb?: string) => string }) {
               style={{ background: YELLOW, boxShadow: "0 14px 28px -14px rgba(251,191,36,0.7)" }}
               aria-hidden
             />
+            {/* step icon bubble */}
+            <div className="absolute -bottom-6 -left-4 z-10 md:-bottom-8 md:-left-8">
+              <CircleArt
+                src={`${ASSET_BASE}/pureflow-problem.png`}
+                alt="Structural Problem"
+                size="sm"
+              />
+            </div>
+
             {/* caption chip */}
             <div className="mt-3 inline-flex items-center gap-2 rounded-full bg-[#081A60]/90 px-3 py-1.5 backdrop-blur-md">
               <span
