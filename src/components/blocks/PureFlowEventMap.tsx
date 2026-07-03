@@ -13,31 +13,21 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 const BLUE = "#0F2A8C";
 const BLUE_DEEP = "#081A60";
 const YELLOW = "#FBBF24";
-const CREAM = "#FBF6E9";
 const SERIF = '"Fraunces", "Georgia", serif';
 
 type PureFlowEvent = {
   id: string;
-  community_name: string;
-  event_date: string;
-  event_type: string;
-  households_reached: number;
-  people_reached: number;
-  partner_supporter: string;
-  latitude: number;
-  longitude: number;
+  community: string;
+  date: string;
+  eventType: string;
+  householdsReached: number;
+  peopleReached: number;
+  partnerSupporter: string;
+  description: string;
+  coordinates: { lat: number; lng: number };
   photos: string[];
 };
 
-const EVENT_TYPES = [
-  "All events",
-  "Community rollout event",
-  "WASH education",
-  "School / ECD event",
-  "Partner rollout",
-] as const;
-
-// Custom branded marker (SVG pin with yellow fill + deep-blue stroke).
 function makeMarkerIcon(selected: boolean, label: string): L.DivIcon {
   const fill = selected ? BLUE : YELLOW;
   const stroke = selected ? YELLOW : BLUE_DEEP;
@@ -144,12 +134,9 @@ function DetailPanel({ event }: { event: PureFlowEvent | null }) {
     return (
       <div
         className="flex h-full min-h-[280px] flex-col items-center justify-center rounded-3xl border border-dashed p-8 text-center"
-        style={{ borderColor: `${BLUE}33`, background: "#ffffff" }}
+        style={{ borderColor: `${YELLOW}66`, background: "#ffffff" }}
       >
-        <div
-          className="mb-3 h-2 w-16 rounded-full"
-          style={{ background: YELLOW }}
-        />
+        <div className="mb-3 h-2 w-16 rounded-full" style={{ background: YELLOW }} />
         <p className="text-sm font-semibold" style={{ color: BLUE_DEEP, fontFamily: SERIF }}>
           Select a location
         </p>
@@ -161,33 +148,30 @@ function DetailPanel({ event }: { event: PureFlowEvent | null }) {
   }
 
   const rows: Array<[string, string]> = [
-    ["Community", event.community_name],
-    ["Date", formatDate(event.event_date)],
-    ["Event type", event.event_type],
-    ["Households reached", event.households_reached.toLocaleString()],
-    ["People reached", event.people_reached.toLocaleString()],
-    ["Partner / supporter", event.partner_supporter],
+    ["Community", event.community],
+    ["Date", formatDate(event.date)],
+    ["Households reached", event.householdsReached.toLocaleString()],
+    ["People reached", event.peopleReached.toLocaleString()],
+    ["Partner / supporter", event.partnerSupporter],
   ];
 
   return (
-    <div
-      className="flex h-full flex-col overflow-hidden rounded-3xl bg-white shadow-[0_20px_60px_-30px_rgba(8,26,96,0.35)] ring-1 ring-black/5"
-    >
+    <div className="flex h-full flex-col overflow-hidden rounded-3xl bg-white shadow-[0_20px_60px_-30px_rgba(0,0,0,0.55)] ring-1 ring-black/5">
       <div className="p-4 md:p-5">
-        <EventPhotoCarousel photos={event.photos} alt={event.community_name} />
+        <EventPhotoCarousel photos={event.photos} alt={event.community} />
       </div>
       <div className="px-5 pb-6">
         <span
           className="inline-block rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em]"
           style={{ background: YELLOW, color: BLUE_DEEP }}
         >
-          {event.event_type}
+          {event.eventType}
         </span>
         <h3
           className="mt-2 text-xl font-bold leading-tight md:text-2xl"
           style={{ color: BLUE_DEEP, fontFamily: SERIF }}
         >
-          {event.community_name}
+          {event.community}
         </h3>
         <dl className="mt-4 divide-y divide-slate-100">
           {rows.map(([k, v]) => (
@@ -201,6 +185,16 @@ function DetailPanel({ event }: { event: PureFlowEvent | null }) {
             </div>
           ))}
         </dl>
+        {event.description && (
+          <div className="mt-4 border-t border-slate-100 pt-4">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">
+              Description
+            </p>
+            <p className="mt-1.5 text-sm leading-relaxed" style={{ color: BLUE_DEEP }}>
+              {event.description}
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -208,7 +202,6 @@ function DetailPanel({ event }: { event: PureFlowEvent | null }) {
 
 export default function PureFlowEventMap() {
   const [events, setEvents] = useState<PureFlowEvent[] | null>(null);
-  const [filter, setFilter] = useState<(typeof EVENT_TYPES)[number]>("All events");
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const detailRef = useRef<HTMLDivElement | null>(null);
 
@@ -217,7 +210,12 @@ export default function PureFlowEventMap() {
     fetch("/content/projects/pureflow-events.json")
       .then((r) => r.json())
       .then((data: PureFlowEvent[]) => {
-        if (!cancelled) setEvents(Array.isArray(data) ? data : []);
+        if (!cancelled) {
+          const cleaned = Array.isArray(data)
+            ? data.filter((e) => e && e.coordinates && typeof e.coordinates.lat === "number")
+            : [];
+          setEvents(cleaned);
+        }
       })
       .catch(() => {
         if (!cancelled) setEvents([]);
@@ -227,20 +225,14 @@ export default function PureFlowEventMap() {
     };
   }, []);
 
-  const filtered = useMemo(() => {
-    if (!events) return [];
-    if (filter === "All events") return events;
-    return events.filter((e) => e.event_type === filter);
-  }, [events, filter]);
-
+  const items = events ?? [];
   const selected = useMemo(
-    () => filtered.find((e) => e.id === selectedId) ?? null,
-    [filtered, selectedId],
+    () => items.find((e) => e.id === selectedId) ?? null,
+    [items, selectedId],
   );
 
   const handleSelect = (id: string) => {
     setSelectedId(id);
-    // On mobile, scroll to the detail panel below the map.
     if (typeof window !== "undefined" && window.innerWidth < 1024) {
       setTimeout(() => {
         detailRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -248,95 +240,60 @@ export default function PureFlowEventMap() {
     }
   };
 
-  // Default: Pondoland / Port St Johns
   const defaultCenter: [number, number] = [-31.62, 29.55];
   const defaultZoom = 8;
 
   return (
-    <div>
-      {/* Filters */}
-      <div className="mx-auto mb-6 flex max-w-4xl flex-wrap items-center justify-center gap-2">
-        {EVENT_TYPES.map((et) => {
-          const active = filter === et;
-          return (
-            <button
-              key={et}
-              type="button"
-              onClick={() => {
-                setFilter(et);
-                setSelectedId(null);
-              }}
-              aria-pressed={active}
-              className="rounded-full px-3.5 py-1.5 text-xs font-semibold transition"
-              style={
-                active
-                  ? { background: BLUE, color: "#fff", boxShadow: `0 0 0 2px ${YELLOW}` }
-                  : { background: "#fff", color: BLUE_DEEP, boxShadow: `inset 0 0 0 1px ${BLUE}33` }
-              }
-            >
-              {et}
-            </button>
-          );
-        })}
+    <div className="grid gap-6 lg:grid-cols-[1.55fr_1fr]">
+      <div className="overflow-hidden rounded-3xl bg-white shadow-[0_20px_60px_-30px_rgba(0,0,0,0.55)] ring-1 ring-white/10">
+        <div
+          role="region"
+          aria-label="PureFlow Amanzi rollout events map"
+          className="h-[360px] w-full sm:h-[440px] md:h-[500px] lg:h-[540px]"
+        >
+          <MapContainer
+            center={defaultCenter}
+            zoom={defaultZoom}
+            scrollWheelZoom
+            style={{ height: "100%", width: "100%" }}
+          >
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            {items.map((e) => (
+              <Marker
+                key={e.id}
+                position={[e.coordinates.lat, e.coordinates.lng]}
+                icon={makeMarkerIcon(e.id === selectedId, e.community)}
+                eventHandlers={{
+                  click: () => handleSelect(e.id),
+                  keydown: (ev) => {
+                    const key = (ev.originalEvent as KeyboardEvent).key;
+                    if (key === "Enter" || key === " ") handleSelect(e.id);
+                  },
+                }}
+                title={e.community}
+                alt={e.community}
+                keyboard
+              />
+            ))}
+            {selected && <FlyTo lat={selected.coordinates.lat} lng={selected.coordinates.lng} />}
+          </MapContainer>
+        </div>
+        <div
+          className="border-t px-4 py-2 text-[11px]"
+          style={{ borderColor: `${BLUE}22`, color: BLUE_DEEP }}
+        >
+          {items.length} event{items.length === 1 ? "" : "s"} shown ·{" "}
+          <span className="italic text-slate-500">
+            Demo data · replace with verified events before launch.
+          </span>
+        </div>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-[1.55fr_1fr]">
-        {/* Map card */}
-        <div
-          className="overflow-hidden rounded-3xl bg-white shadow-[0_20px_60px_-30px_rgba(8,26,96,0.35)] ring-1 ring-black/5"
-          style={{ background: CREAM }}
-        >
-          <div
-            role="region"
-            aria-label="PureFlow Amanzi rollout events map"
-            className="h-[360px] w-full sm:h-[440px] md:h-[500px] lg:h-[540px]"
-          >
-            <MapContainer
-              center={defaultCenter}
-              zoom={defaultZoom}
-              scrollWheelZoom
-              style={{ height: "100%", width: "100%" }}
-            >
-              <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              />
-              {filtered.map((e) => (
-                <Marker
-                  key={e.id}
-                  position={[e.latitude, e.longitude]}
-                  icon={makeMarkerIcon(e.id === selectedId, e.community_name)}
-                  eventHandlers={{
-                    click: () => handleSelect(e.id),
-                    keydown: (ev) => {
-                      const key = (ev.originalEvent as KeyboardEvent).key;
-                      if (key === "Enter" || key === " ") handleSelect(e.id);
-                    },
-                  }}
-                  title={e.community_name}
-                  alt={e.community_name}
-                  keyboard
-                />
-              ))}
-              {selected && <FlyTo lat={selected.latitude} lng={selected.longitude} />}
-            </MapContainer>
-          </div>
-          <div
-            className="border-t px-4 py-2 text-[11px]"
-            style={{ borderColor: `${BLUE}22`, color: BLUE_DEEP }}
-          >
-            {filtered.length} event{filtered.length === 1 ? "" : "s"} shown ·
-            {" "}
-            <span className="italic text-slate-500">
-              Demo data · replace with verified events before launch.
-            </span>
-          </div>
-        </div>
-
-        {/* Detail panel */}
-        <div ref={detailRef}>
-          <DetailPanel event={selected} />
-        </div>
+      <div ref={detailRef}>
+        <DetailPanel event={selected} />
       </div>
     </div>
   );

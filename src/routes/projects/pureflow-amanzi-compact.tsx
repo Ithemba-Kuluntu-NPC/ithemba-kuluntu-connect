@@ -1622,20 +1622,30 @@ function PureFlowCompactPage() {
       <WaveDivider from={CREAM} to={BLUE} />
       <Showcase t={t} lang={lang} />
 
-      <WaveDivider from={BLUE} to={CREAM} />
-
-      {/* Field Map — interactive Leaflet/OpenStreetMap of rollout events */}
-      <section id="event-map" className="relative scroll-mt-20" style={{ background: CREAM }}>
-        <div className="mx-auto max-w-7xl px-4 py-12 md:px-8 md:py-16">
+      {/* Field Map — interactive Leaflet/OpenStreetMap of rollout events.
+          Visually belongs with Watch & Verify → deep blue section. */}
+      <section
+        id="event-map"
+        className="relative scroll-mt-20 isolate overflow-hidden"
+        style={{ background: BLUE }}
+      >
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background: `radial-gradient(1200px 500px at 15% 0%, ${YELLOW}22 0%, transparent 60%), radial-gradient(900px 500px at 100% 100%, ${BLUE_DEEP} 0%, transparent 60%)`,
+          }}
+          aria-hidden
+        />
+        <div className="relative mx-auto max-w-7xl px-4 py-14 md:px-8 md:py-20">
           <div className="mx-auto max-w-3xl text-center">
-            <Script color={BLUE}>Field Map</Script>
+            <Script color={YELLOW}>Field Map</Script>
             <h2
               className="mt-1 text-3xl font-bold md:text-4xl"
-              style={{ fontFamily: SERIF, color: BLUE_DEEP }}
+              style={{ fontFamily: SERIF, color: "#ffffff" }}
             >
               PureFlow Amanzi rollout events
             </h2>
-            <p className="mx-auto mt-3 max-w-2xl text-sm md:text-base" style={{ color: BLUE_DEEP }}>
+            <p className="mx-auto mt-3 max-w-2xl text-sm md:text-base text-white/85">
               Explore where PureFlow Amanzi has been delivered through community rollout events,
               household onboarding, WASH education and local implementation support.
             </p>
@@ -1657,6 +1667,8 @@ function PureFlowCompactPage() {
           </div>
         </div>
       </section>
+
+      <WaveDivider from={BLUE} to={CREAM} />
 
       {/* Step 01 — cream w/ 4-photo collage */}
       <Step01Collage t={t} />
