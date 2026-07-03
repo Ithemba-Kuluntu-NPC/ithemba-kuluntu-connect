@@ -1905,36 +1905,46 @@ function PureFlowCompactPage() {
           </div>
 
           <div className="mt-8">
-            <Suspense
-              fallback={
-                <div
-                  className="grid h-[540px] place-items-center rounded-3xl text-sm"
-                  style={{ background: "#fff", color: BLUE_DEEP }}
-                >
-                  Loading map…
-                </div>
-              }
-            >
-              <PureFlowEventMap
-                labels={{
-                  photoFallback: t("fieldmap.card.photo_fallback", "PureFlow Amanzi · photo coming soon"),
-                  community: t("fieldmap.card.community_label", "Community"),
-                  date: t("fieldmap.card.date_label", "Date"),
-                  households: t("fieldmap.card.households_label", "Households reached"),
-                  people: t("fieldmap.card.people_label", "People reached"),
-                  partner: t("fieldmap.card.partner_label", "Partner / supporter"),
-                  description: t("fieldmap.card.description_label", "Description"),
-                  noSelection: t("fieldmap.all_events_label", "Select a location"),
-                  noSelectionHint: t("fieldmap.card.no_event_selected", "Tap any pin on the map to see details."),
-                  eventCountSuffix: t("fieldmap.event_count_suffix", "events shown"),
-                  demoNote: t("fieldmap.demo_note", "Demo data · replace with verified events before launch."),
-                  mapRegionLabel: t("fieldmap.map_label", "PureFlow Amanzi rollout events map"),
-                  prevPhoto: "‹",
-                  nextPhoto: "›",
-                }}
-              />
-            </Suspense>
+            {mapMounted ? (
+              <Suspense
+                fallback={
+                  <div
+                    className="grid h-[540px] place-items-center rounded-3xl text-sm"
+                    style={{ background: "#fff", color: BLUE_DEEP }}
+                  >
+                    Loading map…
+                  </div>
+                }
+              >
+                <PureFlowEventMap
+                  labels={{
+                    photoFallback: t("fieldmap.card.photo_fallback", "PureFlow Amanzi · photo coming soon"),
+                    community: t("fieldmap.card.community_label", "Community"),
+                    date: t("fieldmap.card.date_label", "Date"),
+                    households: t("fieldmap.card.households_label", "Households reached"),
+                    people: t("fieldmap.card.people_label", "People reached"),
+                    partner: t("fieldmap.card.partner_label", "Partner / supporter"),
+                    description: t("fieldmap.card.description_label", "Description"),
+                    noSelection: t("fieldmap.all_events_label", "Select a location"),
+                    noSelectionHint: t("fieldmap.card.no_event_selected", "Tap any pin on the map to see details."),
+                    eventCountSuffix: t("fieldmap.event_count_suffix", "events shown"),
+                    demoNote: t("fieldmap.demo_note", "Demo data · replace with verified events before launch."),
+                    mapRegionLabel: t("fieldmap.map_label", "PureFlow Amanzi rollout events map"),
+                    prevPhoto: "‹",
+                    nextPhoto: "›",
+                  }}
+                />
+              </Suspense>
+            ) : (
+              <div
+                className="grid h-[540px] place-items-center rounded-3xl text-sm"
+                style={{ background: "#fff", color: BLUE_DEEP }}
+              >
+                Loading map…
+              </div>
+            )}
           </div>
+
 
         </div>
       </section>
