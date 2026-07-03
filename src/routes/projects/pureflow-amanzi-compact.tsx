@@ -1624,8 +1624,43 @@ function PureFlowCompactPage() {
 
       <WaveDivider from={BLUE} to={CREAM} />
 
+      {/* Field Map — interactive Leaflet/OpenStreetMap of rollout events */}
+      <section id="event-map" className="relative scroll-mt-20" style={{ background: CREAM }}>
+        <div className="mx-auto max-w-7xl px-4 py-12 md:px-8 md:py-16">
+          <div className="mx-auto max-w-3xl text-center">
+            <Script color={BLUE}>Field Map</Script>
+            <h2
+              className="mt-1 text-3xl font-bold md:text-4xl"
+              style={{ fontFamily: SERIF, color: BLUE_DEEP }}
+            >
+              PureFlow Amanzi rollout events
+            </h2>
+            <p className="mx-auto mt-3 max-w-2xl text-sm md:text-base" style={{ color: BLUE_DEEP }}>
+              Explore where PureFlow Amanzi has been delivered through community rollout events,
+              household onboarding, WASH education and local implementation support.
+            </p>
+          </div>
+
+          <div className="mt-8">
+            <Suspense
+              fallback={
+                <div
+                  className="grid h-[540px] place-items-center rounded-3xl text-sm"
+                  style={{ background: "#fff", color: BLUE_DEEP }}
+                >
+                  Loading map…
+                </div>
+              }
+            >
+              <PureFlowEventMap />
+            </Suspense>
+          </div>
+        </div>
+      </section>
+
       {/* Step 01 — cream w/ 4-photo collage */}
       <Step01Collage t={t} />
+
 
 
 
