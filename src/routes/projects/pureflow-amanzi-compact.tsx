@@ -1112,35 +1112,20 @@ function EcdVideoEmbed() {
   );
 }
 
-// ----------------------- SDG Grid (boxless, logo-ready) -----------------------
+// ----------------------- SDG Grid -----------------------
 
 const SDG_NUMS = [1, 3, 4, 5, 6, 8, 10, 11, 12, 13, 17] as const;
-const SDG_COLORS: Record<number, string> = {
-  1: "#E5243B",
-  3: "#4C9F38",
-  4: "#C5192D",
-  5: "#FF3A21",
-  6: "#26BDE2",
-  8: "#A21942",
-  10: "#DD1367",
-  11: "#FD9D24",
-  12: "#BF8B2E",
-  13: "#3F7E44",
-  17: "#19486A",
-};
 
-function SDGLogo({ n }: { n: number }) {
+function SDGIcon({ n }: { n: number }) {
   const [errored, setErrored] = useState(false);
-  // Logo-ready path — designers can drop official assets here later.
-  const src = `/assets/logos/sdg/E-WEB-Goal-${String(n).padStart(2, "0")}.png`;
+  const src = `/assets/icons/SDG/E-WEB-Goal-${String(n).padStart(2, "0")}.png`;
   if (errored) {
     return (
       <div
-        className="flex h-16 w-16 items-center justify-center rounded-md text-xl font-extrabold text-white shadow-sm"
-        style={{ background: SDG_COLORS[n], fontFamily: SERIF }}
+        className="flex h-24 w-24 items-center justify-center rounded-lg bg-slate-200 text-sm font-bold text-slate-500"
         aria-label={`SDG ${n}`}
       >
-        {n}
+        SDG {n}
       </div>
     );
   }
@@ -1150,7 +1135,7 @@ function SDGLogo({ n }: { n: number }) {
       alt={`SDG ${n}`}
       loading="lazy"
       onError={() => setErrored(true)}
-      className="h-16 w-16 object-contain"
+      className="h-auto w-24 object-contain md:w-28"
     />
   );
 }
@@ -1166,8 +1151,7 @@ function SDGGrid({ t }: { t: (k: string, fb?: string) => string }) {
           className="h-full w-full object-cover"
           onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = "none")}
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-[#081A60]/35 via-[#081A60]/15 to-[#081A60]/35" />
-
+        <div className="absolute inset-0 bg-gradient-to-br from-[#081A60]/50 via-[#081A60]/30 to-[#081A60]/50" />
       </div>
       <div className="mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
         <div className="text-center">
@@ -1177,17 +1161,14 @@ function SDGGrid({ t }: { t: (k: string, fb?: string) => string }) {
           </h2>
           <p className="mx-auto mt-2 max-w-2xl text-sm text-white/90 md:text-base">{t("sdg.sub_heading")}</p>
         </div>
-        <div className="mt-8 grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {SDG_NUMS.map((n) => (
-            <div key={n} className="flex items-start gap-4 rounded-2xl bg-white/85 p-3 shadow-lg shadow-black/10 backdrop-blur-md ring-1 ring-white/50">
-
-              <SDGLogo n={n} />
-              <div className="min-w-0">
-                <p className="text-sm font-bold leading-snug" style={{ color: BLUE_DEEP, fontFamily: SERIF }}>
-                  <span style={{ color: SDG_COLORS[n] }}>SDG {n}</span> · {t(`sdg.${n}.title`)}
-                </p>
-                <p className="mt-1 text-xs leading-snug text-slate-700">{t(`sdg.${n}.desc`)}</p>
-              </div>
+            <div
+              key={n}
+              className="flex flex-col items-center rounded-2xl bg-white/92 p-5 text-center shadow-lg shadow-black/10 backdrop-blur-sm ring-1 ring-white/60"
+            >
+              <SDGIcon n={n} />
+              <p className="mt-3 text-sm leading-snug text-slate-700">{t(`sdg.${n}.desc`)}</p>
             </div>
           ))}
         </div>
