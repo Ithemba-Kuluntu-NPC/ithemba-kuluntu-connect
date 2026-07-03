@@ -2,75 +2,62 @@
   {
     "_comment": "Placeholder data for design preview only. Replace with verified PureFlow Amanzi event data before public launch.",
     "id": "event-001",
-    "community_name": "Cwebeni Village (demo)",
-    "event_date": "2026-01-15",
-    "event_type": "Community rollout event",
-    "households_reached": 24,
-    "people_reached": 132,
-    "partner_supporter": "To be confirmed",
-    "latitude": -31.6229,
-    "longitude": 29.5448,
-    "photos": [
-      "/assets/photos/projects/pureflow/pureflow-step-01-structural-problem.jpg",
-      "/assets/photos/projects/pureflow/pureflow-step-02-pureflow-model.jpg"
-    ]
+    "community": "Cwebeni Village (demo)",
+    "date": "2026-01-15",
+    "eventType": "Community rollout event",
+    "householdsReached": 24,
+    "peopleReached": 132,
+    "partnerSupporter": "To be confirmed",
+    "description": "Short editable description of the event. Replace this demo text with verified field information before launch.",
+    "coordinates": { "lat": -31.6229, "lng": 29.5448 },
+    "photos": []
   },
   {
     "id": "event-002",
-    "community_name": "Port St Johns area (demo)",
-    "event_date": "2026-02-08",
-    "event_type": "WASH education",
-    "households_reached": 18,
-    "people_reached": 96,
-    "partner_supporter": "To be confirmed",
-    "latitude": -31.6304,
-    "longitude": 29.5450,
-    "photos": [
-      "/assets/photos/projects/pureflow/pureflow-step-04-system-shifts.jpg"
-    ]
+    "community": "Port St Johns area (demo)",
+    "date": "2026-02-08",
+    "eventType": "WASH education",
+    "householdsReached": 18,
+    "peopleReached": 96,
+    "partnerSupporter": "To be confirmed",
+    "description": "Short editable description of the event. Replace this demo text with verified field information before launch.",
+    "coordinates": { "lat": -31.6304, "lng": 29.5450 },
+    "photos": []
   },
   {
     "id": "event-003",
-    "community_name": "No.1 ECD Centre (demo)",
-    "event_date": "2026-03-02",
-    "event_type": "School / ECD event",
-    "households_reached": 6,
-    "people_reached": 84,
-    "partner_supporter": "To be confirmed",
-    "latitude": -31.6410,
-    "longitude": 29.5610,
-    "photos": [
-      "/assets/photos/projects/pureflow/pureflow-step-03-immediate-public-benefit.jpg",
-      "/assets/photos/projects/pureflow/pureflow-step-03-immediate-public-benefit-2.jpg"
-    ]
+    "community": "No.1 ECD Centre (demo)",
+    "date": "2026-03-02",
+    "eventType": "School / ECD event",
+    "householdsReached": 6,
+    "peopleReached": 84,
+    "partnerSupporter": "To be confirmed",
+    "description": "Short editable description of the event. Replace this demo text with verified field information before launch.",
+    "coordinates": { "lat": -31.6410, "lng": 29.5610 },
+    "photos": []
   },
   {
     "id": "event-004",
-    "community_name": "Mthatha outskirts (demo)",
-    "event_date": "2026-04-19",
-    "event_type": "Partner rollout",
-    "households_reached": 42,
-    "people_reached": 231,
-    "partner_supporter": "To be confirmed",
-    "latitude": -31.5889,
-    "longitude": 28.7844,
-    "photos": [
-      "/assets/photos/projects/pureflow/pureflow-step-05-wider-community-gains-2.jpg"
-    ]
+    "community": "Mthatha outskirts (demo)",
+    "date": "2026-04-19",
+    "eventType": "Partner rollout",
+    "householdsReached": 42,
+    "peopleReached": 231,
+    "partnerSupporter": "To be confirmed",
+    "description": "Short editable description of the event. Replace this demo text with verified field information before launch.",
+    "coordinates": { "lat": -31.5889, "lng": 28.7844 },
+    "photos": []
   },
   {
     "id": "event-005",
-    "community_name": "Lusikisiki (demo)",
-    "event_date": "2026-05-11",
-    "event_type": "Community rollout event",
-    "households_reached": 30,
-    "people_reached": 168,
-    "partner_supporter": "To be confirmed",
-    "latitude": -31.3728,
-    "longitude": 29.5744,
-    "photos": [
-      "/assets/photos/projects/pureflow/pureflow-step-06-long-term-transformation.jpg",
-      "/assets/photos/projects/pureflow/pureflow-step-06-long-term-transformation-2.jpg"
-    ]
+    "community": "Lusikisiki (demo)",
+    "date": "2026-05-11",
+    "eventType": "Community rollout event",
+    "householdsReached": 30,
+    "peopleReached": 168,
+    "partnerSupporter": "To be confirmed",
+    "description": "Short editable description of the event. Replace this demo text with verified field information before launch.",
+    "coordinates": { "lat": -31.3728, "lng": 29.5744 },
+    "photos": []
   }
 ]
