@@ -54,7 +54,41 @@ function FlyTo({ lat, lng }: { lat: number; lng: number }) {
   return null;
 }
 
-function EventPhotoCarousel({ photos, alt }: { photos: string[]; alt: string }) {
+export type PureFlowEventMapLabels = {
+  photoFallback: string;
+  community: string;
+  date: string;
+  households: string;
+  people: string;
+  partner: string;
+  description: string;
+  noSelection: string;
+  noSelectionHint: string;
+  eventCountSuffix: string;
+  demoNote: string;
+  mapRegionLabel: string;
+  prevPhoto: string;
+  nextPhoto: string;
+};
+
+const DEFAULT_LABELS: PureFlowEventMapLabels = {
+  photoFallback: "PureFlow Amanzi · photo coming soon",
+  community: "Community",
+  date: "Date",
+  households: "Households reached",
+  people: "People reached",
+  partner: "Partner / supporter",
+  description: "Description",
+  noSelection: "Select a location",
+  noSelectionHint: "Tap any pin on the map to see details from that PureFlow Amanzi rollout event.",
+  eventCountSuffix: "events shown",
+  demoNote: "Demo data · replace with verified events before launch.",
+  mapRegionLabel: "PureFlow Amanzi rollout events map",
+  prevPhoto: "Previous photo",
+  nextPhoto: "Next photo",
+};
+
+function EventPhotoCarousel({ photos, alt, labels }: { photos: string[]; alt: string; labels: PureFlowEventMapLabels }) {
   const [idx, setIdx] = useState(0);
   const [errored, setErrored] = useState<Record<number, boolean>>({});
   useEffect(() => setIdx(0), [photos]);
@@ -85,7 +119,7 @@ function EventPhotoCarousel({ photos, alt }: { photos: string[]; alt: string }) 
               <span className="text-xl font-bold">PA</span>
             </div>
             <p className="mt-3 text-xs uppercase tracking-[0.14em] text-white/85">
-              PureFlow Amanzi · photo coming soon
+              {labels.photoFallback}
             </p>
           </div>
         </div>
@@ -95,7 +129,7 @@ function EventPhotoCarousel({ photos, alt }: { photos: string[]; alt: string }) 
         <>
           <button
             type="button"
-            aria-label="Previous photo"
+            aria-label={labels.prevPhoto}
             onClick={() => setIdx((i) => (i - 1 + photos.length) % photos.length)}
             className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/85 p-1.5 text-slate-800 shadow-md ring-1 ring-black/10 backdrop-blur hover:bg-white"
           >
@@ -103,7 +137,7 @@ function EventPhotoCarousel({ photos, alt }: { photos: string[]; alt: string }) 
           </button>
           <button
             type="button"
-            aria-label="Next photo"
+            aria-label={labels.nextPhoto}
             onClick={() => setIdx((i) => (i + 1) % photos.length)}
             className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/85 p-1.5 text-slate-800 shadow-md ring-1 ring-black/10 backdrop-blur hover:bg-white"
           >
@@ -129,7 +163,7 @@ function formatDate(iso: string) {
   return d.toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
 }
 
-function DetailPanel({ event }: { event: PureFlowEvent | null }) {
+function DetailPanel({ event, labels }: { event: PureFlowEvent | null; labels: PureFlowEventMapLabels }) {
   if (!event) {
     return (
       <div
@@ -138,27 +172,27 @@ function DetailPanel({ event }: { event: PureFlowEvent | null }) {
       >
         <div className="mb-3 h-2 w-16 rounded-full" style={{ background: YELLOW }} />
         <p className="text-sm font-semibold" style={{ color: BLUE_DEEP, fontFamily: SERIF }}>
-          Select a location
+          {labels.noSelection}
         </p>
         <p className="mt-1 max-w-xs text-xs text-slate-600">
-          Tap any pin on the map to see details from that PureFlow Amanzi rollout event.
+          {labels.noSelectionHint}
         </p>
       </div>
     );
   }
 
   const rows: Array<[string, string]> = [
-    ["Community", event.community],
-    ["Date", formatDate(event.date)],
-    ["Households reached", event.householdsReached.toLocaleString()],
-    ["People reached", event.peopleReached.toLocaleString()],
-    ["Partner / supporter", event.partnerSupporter],
+    [labels.community, event.community],
+    [labels.date, formatDate(event.date)],
+    [labels.households, event.householdsReached.toLocaleString()],
+    [labels.people, event.peopleReached.toLocaleString()],
+    [labels.partner, event.partnerSupporter],
   ];
 
   return (
     <div className="flex h-full flex-col overflow-hidden rounded-3xl bg-white shadow-[0_20px_60px_-30px_rgba(0,0,0,0.55)] ring-1 ring-black/5">
       <div className="p-4 md:p-5">
-        <EventPhotoCarousel photos={event.photos} alt={event.community} />
+        <EventPhotoCarousel photos={event.photos} alt={event.community} labels={labels} />
       </div>
       <div className="px-5 pb-6">
         <span
@@ -188,7 +222,7 @@ function DetailPanel({ event }: { event: PureFlowEvent | null }) {
         {event.description && (
           <div className="mt-4 border-t border-slate-100 pt-4">
             <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">
-              Description
+              {labels.description}
             </p>
             <p className="mt-1.5 text-sm leading-relaxed" style={{ color: BLUE_DEEP }}>
               {event.description}
@@ -200,7 +234,8 @@ function DetailPanel({ event }: { event: PureFlowEvent | null }) {
   );
 }
 
-export default function PureFlowEventMap() {
+export default function PureFlowEventMap({ labels: labelsProp }: { labels?: Partial<PureFlowEventMapLabels> } = {}) {
+  const labels: PureFlowEventMapLabels = { ...DEFAULT_LABELS, ...(labelsProp ?? {}) };
   const [events, setEvents] = useState<PureFlowEvent[] | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const detailRef = useRef<HTMLDivElement | null>(null);
@@ -248,7 +283,7 @@ export default function PureFlowEventMap() {
       <div className="overflow-hidden rounded-3xl bg-white shadow-[0_20px_60px_-30px_rgba(0,0,0,0.55)] ring-1 ring-white/10">
         <div
           role="region"
-          aria-label="PureFlow Amanzi rollout events map"
+          aria-label={labels.mapRegionLabel}
           className="h-[360px] w-full sm:h-[440px] md:h-[500px] lg:h-[540px]"
         >
           <MapContainer
@@ -285,15 +320,13 @@ export default function PureFlowEventMap() {
           className="border-t px-4 py-2 text-[11px]"
           style={{ borderColor: `${BLUE}22`, color: BLUE_DEEP }}
         >
-          {items.length} event{items.length === 1 ? "" : "s"} shown ·{" "}
-          <span className="italic text-slate-500">
-            Demo data · replace with verified events before launch.
-          </span>
+          {items.length} {labels.eventCountSuffix} ·{" "}
+          <span className="italic text-slate-500">{labels.demoNote}</span>
         </div>
       </div>
 
       <div ref={detailRef}>
-        <DetailPanel event={selected} />
+        <DetailPanel event={selected} labels={labels} />
       </div>
     </div>
   );

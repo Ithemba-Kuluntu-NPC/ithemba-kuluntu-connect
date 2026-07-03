@@ -2,9 +2,9 @@
 //
 // Route: /projects/pureflow-amanzi-compact
 // Content is dynamically loaded at runtime from:
-//   - public/content/projects/pureflow-amanzi-en-v4.txt
-//   - public/content/projects/pureflow-amanzi-de-v4.txt
-//   - public/content/projects/pureflow-amanzi-nl-v4.txt
+//   - public/content/projects/pureflow-amanzi-en-v4.4.txt
+//   - public/content/projects/pureflow-amanzi-de-v4.4.txt
+//   - public/content/projects/pureflow-amanzi-nl-v4.4.txt
 // Language is driven by the global LanguageProvider (EN / DE / NL).
 
 import { createFileRoute, Link } from "@tanstack/react-router";
@@ -26,9 +26,11 @@ import {
   Droplets,
   Users,
   Leaf,
-  Flame,
-  TreePine,
   Home as HomeIcon,
+  Briefcase,
+  School,
+  Presentation,
+  CheckCircle2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -57,15 +59,28 @@ type Dict = Record<string, string>;
 
 function parseContent(raw: string): Dict {
   const out: Dict = {};
+  let lastKey: string | null = null;
+  const keyLine = /^([a-zA-Z0-9_.]+)\s*:\s*(.*)$/;
   for (const lineRaw of raw.split(/\r?\n/)) {
-    const line = lineRaw.trim();
-    if (!line || line.startsWith("#")) continue;
-    const idx = line.indexOf(":");
-    if (idx === -1) continue;
-    const key = line.slice(0, idx).trim();
-    const value = line.slice(idx + 1).trim();
-    if (key) out[key] = value;
+    const trimmed = lineRaw.trim();
+    if (trimmed.startsWith("#")) {
+      lastKey = null;
+      continue;
+    }
+    if (!trimmed) {
+      if (lastKey) out[lastKey] += "\n\n";
+      continue;
+    }
+    const m = trimmed.match(keyLine);
+    if (m) {
+      lastKey = m[1];
+      out[lastKey] = m[2].trim();
+    } else if (lastKey) {
+      const cur = out[lastKey];
+      out[lastKey] = cur.endsWith("\n\n") || cur === "" ? cur + trimmed : cur + " " + trimmed;
+    }
   }
+  for (const k of Object.keys(out)) out[k] = out[k].trim();
   return out;
 }
 
@@ -75,7 +90,7 @@ function useProjectContent(lang: Lang) {
 
   useEffect(() => {
     let cancelled = false;
-    fetch(`/content/projects/pureflow-amanzi-en-v4.txt`)
+    fetch(`/content/projects/pureflow-amanzi-en-v4.4.txt`)
       .then((r) => (r.ok ? r.text() : ""))
       .then((t) => !cancelled && setEnFallback(parseContent(t)))
       .catch(() => {});
@@ -86,7 +101,7 @@ function useProjectContent(lang: Lang) {
 
   useEffect(() => {
     let cancelled = false;
-    fetch(`/content/projects/pureflow-amanzi-${lang}-v4.txt`)
+    fetch(`/content/projects/pureflow-amanzi-${lang}-v4.4.txt`)
       .then((r) => (r.ok ? r.text() : ""))
       .then((t) => !cancelled && setDict(parseContent(t)))
       .catch(() => {});
@@ -600,10 +615,12 @@ function Showcase({ t, lang }: { t: (k: string, fb?: string) => string; lang: La
   const counters = [
     { k: "households", icon: HomeIcon, v: t("impact.counters.households.value"), l: t("impact.counters.households.label") },
     { k: "people", icon: Users, v: t("impact.counters.people.value"), l: t("impact.counters.people.label") },
+    { k: "green_jobs", icon: Briefcase, v: t("impact.counters.green_jobs.value"), l: t("impact.counters.green_jobs.label") },
+    { k: "learning_sites", icon: School, v: t("impact.counters.learning_sites.value"), l: t("impact.counters.learning_sites.label") },
+    { k: "educators", icon: GraduationCap, v: t("impact.counters.educators.value"), l: t("impact.counters.educators.label") },
+    { k: "wash_events", icon: Presentation, v: t("impact.counters.wash_events.value"), l: t("impact.counters.wash_events.label") },
     { k: "litres", icon: Droplets, v: t("impact.counters.litres.value"), l: t("impact.counters.litres.label") },
     { k: "co2", icon: Leaf, v: t("impact.counters.co2.value"), l: t("impact.counters.co2.label") },
-    { k: "firewood", icon: Flame, v: t("impact.counters.firewood.value"), l: t("impact.counters.firewood.label") },
-    { k: "trees", icon: TreePine, v: t("impact.counters.trees.value"), l: t("impact.counters.trees.label") },
   ];
 
   return (
@@ -617,70 +634,68 @@ function Showcase({ t, lang }: { t: (k: string, fb?: string) => string; lang: La
           <p className="mx-auto mt-2 max-w-2xl text-sm text-white/80 md:text-base">{t("showcase.text")}</p>
         </div>
 
-        <div className="mt-8 grid items-start gap-8 lg:grid-cols-[1.05fr_1fr]">
-          {/* Video */}
-          <div className="overflow-hidden rounded-3xl bg-black/90 shadow-2xl ring-1 ring-white/10">
-            <div className="relative aspect-video w-full">
-              {vid && !playing && (
-                <button
-                  type="button"
-                  onClick={() => setPlaying(true)}
-                  className="group absolute inset-0 z-10"
-                  aria-label={t("showcase.video.title")}
-                >
-                  <img
-                    src={`https://i.ytimg.com/vi/${vid}/hqdefault.jpg`}
-                    alt={t("showcase.video.title")}
-                    className="h-full w-full object-cover"
-                  />
-                  <span className="absolute inset-0 flex items-center justify-center bg-black/30 transition group-hover:bg-black/40">
-                    <PlayCircle className="h-20 w-20" style={{ color: YELLOW }} />
-                  </span>
-                </button>
-              )}
-              {vid && playing && (
-                <iframe
-                  className="absolute inset-0 h-full w-full"
-                  src={`https://www.youtube.com/embed/${vid}?autoplay=1&rel=0`}
-                  title={t("showcase.video.title")}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
+        <div className="mx-auto mt-8 max-w-4xl overflow-hidden rounded-3xl bg-black/90 shadow-2xl ring-1 ring-white/10">
+          <div className="relative aspect-video w-full">
+            {vid && !playing && (
+              <button
+                type="button"
+                onClick={() => setPlaying(true)}
+                className="group absolute inset-0 z-10"
+                aria-label={t("showcase.video.title")}
+              >
+                <img
+                  src={`https://i.ytimg.com/vi/${vid}/hqdefault.jpg`}
+                  alt={t("showcase.video.title")}
+                  className="h-full w-full object-cover"
                 />
-              )}
-              {!vid && (
-                <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#081A60] to-[#1E40C8] text-white/70">
-                  <PlayCircle className="h-16 w-16" style={{ color: YELLOW }} />
-                </div>
-              )}
-            </div>
-            <div className="bg-white/95 px-5 py-3">
-              <p className="text-sm font-semibold" style={{ color: BLUE_DEEP, fontFamily: SERIF }}>
-                {t("showcase.video.title")}
-              </p>
-              <p className="mt-0.5 text-xs text-slate-600">{t("showcase.video.description")}</p>
-            </div>
+                <span className="absolute inset-0 flex items-center justify-center bg-black/30 transition group-hover:bg-black/40">
+                  <PlayCircle className="h-20 w-20" style={{ color: YELLOW }} />
+                </span>
+              </button>
+            )}
+            {vid && playing && (
+              <iframe
+                className="absolute inset-0 h-full w-full"
+                src={`https://www.youtube.com/embed/${vid}?autoplay=1&rel=0`}
+                title={t("showcase.video.title")}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            )}
+            {!vid && (
+              <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#081A60] to-[#1E40C8] text-white/70">
+                <PlayCircle className="h-16 w-16" style={{ color: YELLOW }} />
+              </div>
+            )}
           </div>
-
-          {/* Counter matrix — yellow icons, animated numbers, on blue */}
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
-            {counters.map((c) => {
-              const { value, suffix } = parseCounter(c.v);
-              const Icon = c.icon;
-              return (
-                <div key={c.k} className="flex flex-col items-center text-center">
-                  <Icon className="h-9 w-9 md:h-10 md:w-10" style={{ color: YELLOW }} strokeWidth={1.75} />
-                  <div
-                    className="mt-2 font-display text-2xl font-extrabold leading-none md:text-3xl"
-                    style={{ color: YELLOW, fontFamily: SERIF }}
-                  >
-                    <AnimatedNumber value={value} suffix={suffix} locale={locale} />
-                  </div>
-                  <p className="mt-2 max-w-[14rem] text-[11px] leading-snug text-white/80 md:text-xs">{c.l}</p>
-                </div>
-              );
-            })}
+          <div className="bg-white/95 px-5 py-3">
+            <p className="text-sm font-semibold" style={{ color: BLUE_DEEP, fontFamily: SERIF }}>
+              {t("showcase.video.title")}
+            </p>
+            <p className="mt-0.5 text-xs text-slate-600">{t("showcase.video.description")}</p>
           </div>
         </div>
+
+        {/* Counter matrix — yellow icons, animated numbers, on blue */}
+        <div className="mt-10 grid grid-cols-2 gap-x-5 gap-y-8 sm:grid-cols-4 lg:grid-cols-4">
+          {counters.map((c) => {
+            const { value, suffix } = parseCounter(c.v);
+            const Icon = c.icon;
+            return (
+              <div key={c.k} className="flex flex-col items-center text-center">
+                <Icon className="h-9 w-9 md:h-10 md:w-10" style={{ color: YELLOW }} strokeWidth={1.75} />
+                <div
+                  className="mt-2 font-display text-2xl font-extrabold leading-none md:text-3xl"
+                  style={{ color: YELLOW, fontFamily: SERIF }}
+                >
+                  <AnimatedNumber value={value} suffix={suffix} locale={locale} />
+                </div>
+                <p className="mt-2 max-w-[15rem] text-[11px] leading-snug text-white/80 md:text-xs">{c.l}</p>
+              </div>
+            );
+          })}
+        </div>
+
 
         <p className="mx-auto mt-8 max-w-3xl text-center text-xs italic text-white/65 md:text-sm">
           {t("impact.note")}
@@ -1601,11 +1616,244 @@ function Step01Collage({ t }: { t: (k: string, fb?: string) => string }) {
 
 
 
+// ----------------------- Climate Resilience & Sustainability -----------------------
+
+const CLIMATE_PHOTOS: Array<{ src?: string; objectPosition?: string; alt?: string }> = [
+  { src: "/assets/photos/projects/pureflow/pureflow-step-06-long-term-transformation-3.jpg", alt: "Rural Pondoland landscape" },
+  { src: "/assets/photos/projects/pureflow/pureflow-step-02-pureflow-model.jpg", alt: "PureFlow filter in household use" },
+  { src: "/assets/photos/projects/pureflow/pureflow-step-05-wider-community-gains.jpeg", alt: "Local women in paid follow-up roles" },
+  { src: "/assets/photos/projects/pureflow/pureflow-step-04-system-shifts.jpg", alt: "WASH training reducing firewood use" },
+];
+
+function ClimateSection({ t }: { t: (k: string, fb?: string) => string }) {
+  const paragraphs = t("climate.text_block")
+    .split(/\n{2,}/)
+    .map((p) => p.trim())
+    .filter(Boolean);
+  const benefits = t("climate.benefits_list")
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean);
+
+  return (
+    <section id="climate" className="relative scroll-mt-20" style={{ background: CREAM }}>
+      <div className="relative mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
+        <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+          {/* Text side */}
+          <div className="min-w-0">
+            <div className="flex items-center gap-3">
+              <span
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full"
+                style={{ background: YELLOW, color: BLUE_DEEP }}
+              >
+                <Leaf className="h-5 w-5" strokeWidth={2.2} />
+              </span>
+              <span
+                className="rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wider"
+                style={{ background: "rgba(15,42,140,0.08)", color: BLUE }}
+              >
+                {t("climate.script_heading", "Climate Resilience")}
+              </span>
+            </div>
+            <h3
+              className="mt-4 text-3xl font-bold leading-tight md:text-4xl"
+              style={{ fontFamily: SERIF, color: BLUE_DEEP }}
+            >
+              {t("climate.main_heading")}
+            </h3>
+            <div className="mt-4 space-y-4 text-base leading-relaxed text-slate-700 md:text-lg">
+              {paragraphs.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </div>
+
+            {benefits.length > 0 && (
+              <div className="mt-6">
+                <p className="text-xs font-bold uppercase tracking-wider" style={{ color: BLUE }}>
+                  {t("climate.benefits_heading", "What this supports")}
+                </p>
+                <ul className="mt-3 flex flex-wrap gap-2">
+                  {benefits.map((b) => (
+                    <li
+                      key={b}
+                      className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-xs font-medium shadow-sm ring-1 ring-black/5"
+                      style={{ color: BLUE_DEEP }}
+                    >
+                      <CheckCircle2 className="h-3.5 w-3.5" style={{ color: BLUE }} />
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            <div
+              className="mt-6 rounded-2xl p-5 shadow-sm ring-1 ring-black/5"
+              style={{ background: "#FFFFFF" }}
+            >
+              <p className="text-xs font-bold uppercase tracking-wider" style={{ color: BLUE }}>
+                {t("climate.future_heading", "From safe water to sustainable scale")}
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-slate-700 md:text-base">
+                {t("climate.future_text")}
+              </p>
+            </div>
+
+            {t("climate.cta_label") && (
+              <ReadMoreSheet
+                label={t("climate.cta_label")}
+                title={t("climate.main_heading")}
+                body={paragraphs.join("\n\n") + "\n\n" + t("climate.future_text")}
+                tag={t("climate.script_heading", "Climate Resilience")}
+              />
+            )}
+          </div>
+
+          {/* Collage side */}
+          <div className="relative">
+            <StepCollage
+              photos={CLIMATE_PHOTOS}
+              variant="A"
+              alt="Climate resilience and sustainability"
+              tone="ocean"
+            />
+            <div className="absolute -bottom-6 -left-4 md:-bottom-8 md:-left-8">
+              <CircleArt src={`${ASSET_BASE}/pureflow-cleanwater.png`} alt="Clean water" size="sm" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ----------------------- Video Library -----------------------
+
+function VideoCard({ url, title, size = "md" }: { url: string; title: string; size?: "md" | "sm" }) {
+  const [playing, setPlaying] = useState(false);
+  const vid = youtubeId(url);
+  return (
+    <div className="overflow-hidden rounded-2xl bg-black/90 shadow-xl ring-1 ring-white/10">
+      <div className="relative aspect-video w-full">
+        {vid && !playing && (
+          <button
+            type="button"
+            onClick={() => setPlaying(true)}
+            className="group absolute inset-0"
+            aria-label={title}
+          >
+            <img
+              src={`https://i.ytimg.com/vi/${vid}/hqdefault.jpg`}
+              alt={title}
+              loading="lazy"
+              className="h-full w-full object-cover"
+            />
+            <span className="absolute inset-0 flex items-center justify-center bg-black/30 transition group-hover:bg-black/40">
+              <PlayCircle className={size === "sm" ? "h-12 w-12" : "h-16 w-16"} style={{ color: YELLOW }} />
+            </span>
+          </button>
+        )}
+        {vid && playing && (
+          <iframe
+            className="absolute inset-0 h-full w-full"
+            src={`https://www.youtube.com/embed/${vid}?autoplay=1&rel=0`}
+            title={title}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        )}
+        {!vid && (
+          <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#081A60] to-[#1E40C8] text-white/70">
+            <PlayCircle className="h-12 w-12" style={{ color: YELLOW }} />
+          </div>
+        )}
+      </div>
+      <div className="bg-white/95 px-4 py-3">
+        <p
+          className={cn("font-semibold", size === "sm" ? "text-xs" : "text-sm")}
+          style={{ color: BLUE_DEEP, fontFamily: SERIF }}
+        >
+          {title}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function VideoLibrary({ t }: { t: (k: string, fb?: string) => string }) {
+  const fieldVideos = [1, 2, 3, 4]
+    .map((n) => ({ title: t(`videos.field.${n}.title`), url: t(`videos.field.${n}.url`) }))
+    .filter((v) => v.url);
+  const guideVideos = [1, 2, 3]
+    .map((n) => ({ title: t(`videos.guide.${n}.title`), url: t(`videos.guide.${n}.url`) }))
+    .filter((v) => v.url);
+
+  return (
+    <section id="videos" className="relative isolate overflow-hidden scroll-mt-20" style={{ background: BLUE }}>
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background: `radial-gradient(1000px 500px at 85% 10%, ${YELLOW}1A 0%, transparent 60%), radial-gradient(900px 500px at 10% 100%, ${BLUE_DEEP} 0%, transparent 60%)`,
+        }}
+      />
+      <div className="relative mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
+        <div className="text-center text-white">
+          <Script color={YELLOW}>{t("videos.script_heading", "Watch More")}</Script>
+          <h2 className="mt-1 text-3xl font-bold md:text-4xl" style={{ fontFamily: SERIF }}>
+            {t("videos.main_heading")}
+          </h2>
+          <p className="mx-auto mt-3 max-w-2xl text-sm text-white/85 md:text-base">
+            {t("videos.text")}
+          </p>
+        </div>
+
+        {/* Primary group */}
+        <div className="mt-10">
+          <div className="mb-4 flex flex-col items-start gap-1 md:flex-row md:items-baseline md:justify-between md:gap-4">
+            <h3 className="text-xl font-bold text-white md:text-2xl" style={{ fontFamily: SERIF }}>
+              {t("videos.category1.title")}
+            </h3>
+            <p className="text-xs text-white/70 md:max-w-md md:text-right md:text-sm">
+              {t("videos.category1.desc")}
+            </p>
+          </div>
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {fieldVideos.map((v) => (
+              <VideoCard key={v.url} url={v.url} title={v.title} />
+            ))}
+          </div>
+        </div>
+
+        {/* Secondary group */}
+        <div className="mt-12">
+          <div className="mb-4 flex flex-col items-start gap-1 md:flex-row md:items-baseline md:justify-between md:gap-4">
+            <h3 className="text-lg font-bold text-white md:text-xl" style={{ fontFamily: SERIF }}>
+              {t("videos.category2.title")}
+            </h3>
+            <p className="text-xs text-white/70 md:max-w-md md:text-right md:text-sm">
+              {t("videos.category2.desc")}
+            </p>
+          </div>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {guideVideos.map((v) => (
+              <VideoCard key={v.url} url={v.url} title={v.title} size="sm" />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 
 function PureFlowCompactPage() {
   const { lang } = useLang();
   const { t } = useProjectContent(lang);
   const donationRef = useRef<HTMLDivElement | null>(null);
+  const [mapMounted, setMapMounted] = useState(false);
+  useEffect(() => setMapMounted(true), []);
+
 
   const goDonate = (_freq: "monthly" | "once") => {
     const el = donationRef.current;
@@ -1644,33 +1892,60 @@ function PureFlowCompactPage() {
             aria-hidden
           />
           <div className="mx-auto max-w-3xl text-center">
-            <Script color={YELLOW}>Field Map</Script>
+            <Script color={YELLOW}>{t("fieldmap.script_heading", "Field Map")}</Script>
             <h2
               className="mt-1 text-3xl font-bold md:text-4xl"
               style={{ fontFamily: SERIF, color: "#ffffff" }}
             >
-              PureFlow Amanzi rollout events
+              {t("fieldmap.main_heading", "PureFlow Amanzi rollout events")}
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-sm md:text-base text-white/85">
-              Explore where PureFlow Amanzi has been delivered through community rollout events,
-              household onboarding, WASH education and local implementation support.
+              {t("fieldmap.intro")}
             </p>
           </div>
 
           <div className="mt-8">
-            <Suspense
-              fallback={
-                <div
-                  className="grid h-[540px] place-items-center rounded-3xl text-sm"
-                  style={{ background: "#fff", color: BLUE_DEEP }}
-                >
-                  Loading map…
-                </div>
-              }
-            >
-              <PureFlowEventMap />
-            </Suspense>
+            {mapMounted ? (
+              <Suspense
+                fallback={
+                  <div
+                    className="grid h-[540px] place-items-center rounded-3xl text-sm"
+                    style={{ background: "#fff", color: BLUE_DEEP }}
+                  >
+                    Loading map…
+                  </div>
+                }
+              >
+                <PureFlowEventMap
+                  labels={{
+                    photoFallback: t("fieldmap.card.photo_fallback", "PureFlow Amanzi · photo coming soon"),
+                    community: t("fieldmap.card.community_label", "Community"),
+                    date: t("fieldmap.card.date_label", "Date"),
+                    households: t("fieldmap.card.households_label", "Households reached"),
+                    people: t("fieldmap.card.people_label", "People reached"),
+                    partner: t("fieldmap.card.partner_label", "Partner / supporter"),
+                    description: t("fieldmap.card.description_label", "Description"),
+                    noSelection: t("fieldmap.all_events_label", "Select a location"),
+                    noSelectionHint: t("fieldmap.card.no_event_selected", "Tap any pin on the map to see details."),
+                    eventCountSuffix: t("fieldmap.event_count_suffix", "events shown"),
+                    demoNote: t("fieldmap.demo_note", "Demo data · replace with verified events before launch."),
+                    mapRegionLabel: t("fieldmap.map_label", "PureFlow Amanzi rollout events map"),
+                    prevPhoto: "‹",
+                    nextPhoto: "›",
+                  }}
+                />
+              </Suspense>
+            ) : (
+              <div
+                className="grid h-[540px] place-items-center rounded-3xl text-sm"
+                style={{ background: "#fff", color: BLUE_DEEP }}
+              >
+                Loading map…
+              </div>
+            )}
           </div>
+
+
         </div>
       </section>
 
@@ -1804,10 +2079,16 @@ function PureFlowCompactPage() {
 
 
       <WaveDivider from={BLUE} to={CREAM} />
+      <ClimateSection t={t} />
+
       <SDGGrid t={t} />
 
-      <WaveDivider from={CREAM} to={CREAM_WARM} />
+      <WaveDivider from={CREAM} to={BLUE} />
+      <VideoLibrary t={t} />
+
+      <WaveDivider from={BLUE} to={CREAM_WARM} />
       <PartnersStrip t={t} />
+
 
       <WaveDivider from={CREAM_WARM} to={BLUE} />
       <DonationBox t={t} anchorRef={donationRef} />
