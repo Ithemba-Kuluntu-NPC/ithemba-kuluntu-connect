@@ -2,9 +2,9 @@
 //
 // Route: /projects/pureflow-amanzi-compact
 // Content is dynamically loaded at runtime from:
-//   - public/content/projects/pureflow-amanzi-en-v4.txt
-//   - public/content/projects/pureflow-amanzi-de-v4.txt
-//   - public/content/projects/pureflow-amanzi-nl-v4.txt
+//   - public/content/projects/pureflow-amanzi-en-v4.4.txt
+//   - public/content/projects/pureflow-amanzi-de-v4.4.txt
+//   - public/content/projects/pureflow-amanzi-nl-v4.4.txt
 // Language is driven by the global LanguageProvider (EN / DE / NL).
 
 import { createFileRoute, Link } from "@tanstack/react-router";
