@@ -2066,10 +2066,16 @@ function PureFlowCompactPage() {
 
 
       <WaveDivider from={BLUE} to={CREAM} />
+      <ClimateSection t={t} />
+
       <SDGGrid t={t} />
 
-      <WaveDivider from={CREAM} to={CREAM_WARM} />
+      <WaveDivider from={CREAM} to={BLUE} />
+      <VideoLibrary t={t} />
+
+      <WaveDivider from={BLUE} to={CREAM_WARM} />
       <PartnersStrip t={t} />
+
 
       <WaveDivider from={CREAM_WARM} to={BLUE} />
       <DonationBox t={t} anchorRef={donationRef} />
