@@ -1851,6 +1851,9 @@ function PureFlowCompactPage() {
   const { lang } = useLang();
   const { t } = useProjectContent(lang);
   const donationRef = useRef<HTMLDivElement | null>(null);
+  const [mapMounted, setMapMounted] = useState(false);
+  useEffect(() => setMapMounted(true), []);
+
 
   const goDonate = (_freq: "monthly" | "once") => {
     const el = donationRef.current;
