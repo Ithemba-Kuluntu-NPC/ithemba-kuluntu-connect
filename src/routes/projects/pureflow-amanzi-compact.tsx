@@ -57,15 +57,28 @@ type Dict = Record<string, string>;
 
 function parseContent(raw: string): Dict {
   const out: Dict = {};
+  let lastKey: string | null = null;
+  const keyLine = /^([a-zA-Z0-9_.]+)\s*:\s*(.*)$/;
   for (const lineRaw of raw.split(/\r?\n/)) {
-    const line = lineRaw.trim();
-    if (!line || line.startsWith("#")) continue;
-    const idx = line.indexOf(":");
-    if (idx === -1) continue;
-    const key = line.slice(0, idx).trim();
-    const value = line.slice(idx + 1).trim();
-    if (key) out[key] = value;
+    const trimmed = lineRaw.trim();
+    if (trimmed.startsWith("#")) {
+      lastKey = null;
+      continue;
+    }
+    if (!trimmed) {
+      if (lastKey) out[lastKey] += "\n\n";
+      continue;
+    }
+    const m = trimmed.match(keyLine);
+    if (m) {
+      lastKey = m[1];
+      out[lastKey] = m[2].trim();
+    } else if (lastKey) {
+      const cur = out[lastKey];
+      out[lastKey] = cur.endsWith("\n\n") || cur === "" ? cur + trimmed : cur + " " + trimmed;
+    }
   }
+  for (const k of Object.keys(out)) out[k] = out[k].trim();
   return out;
 }
 
@@ -75,7 +88,7 @@ function useProjectContent(lang: Lang) {
 
   useEffect(() => {
     let cancelled = false;
-    fetch(`/content/projects/pureflow-amanzi-en-v4.txt`)
+    fetch(`/content/projects/pureflow-amanzi-en-v4.4.txt`)
       .then((r) => (r.ok ? r.text() : ""))
       .then((t) => !cancelled && setEnFallback(parseContent(t)))
       .catch(() => {});
@@ -86,7 +99,7 @@ function useProjectContent(lang: Lang) {
 
   useEffect(() => {
     let cancelled = false;
-    fetch(`/content/projects/pureflow-amanzi-${lang}-v4.txt`)
+    fetch(`/content/projects/pureflow-amanzi-${lang}-v4.4.txt`)
       .then((r) => (r.ok ? r.text() : ""))
       .then((t) => !cancelled && setDict(parseContent(t)))
       .catch(() => {});
