@@ -54,7 +54,41 @@ function FlyTo({ lat, lng }: { lat: number; lng: number }) {
   return null;
 }
 
-function EventPhotoCarousel({ photos, alt }: { photos: string[]; alt: string }) {
+export type PureFlowEventMapLabels = {
+  photoFallback: string;
+  community: string;
+  date: string;
+  households: string;
+  people: string;
+  partner: string;
+  description: string;
+  noSelection: string;
+  noSelectionHint: string;
+  eventCountSuffix: string;
+  demoNote: string;
+  mapRegionLabel: string;
+  prevPhoto: string;
+  nextPhoto: string;
+};
+
+const DEFAULT_LABELS: PureFlowEventMapLabels = {
+  photoFallback: "PureFlow Amanzi · photo coming soon",
+  community: "Community",
+  date: "Date",
+  households: "Households reached",
+  people: "People reached",
+  partner: "Partner / supporter",
+  description: "Description",
+  noSelection: "Select a location",
+  noSelectionHint: "Tap any pin on the map to see details from that PureFlow Amanzi rollout event.",
+  eventCountSuffix: "events shown",
+  demoNote: "Demo data · replace with verified events before launch.",
+  mapRegionLabel: "PureFlow Amanzi rollout events map",
+  prevPhoto: "Previous photo",
+  nextPhoto: "Next photo",
+};
+
+function EventPhotoCarousel({ photos, alt, labels }: { photos: string[]; alt: string; labels: PureFlowEventMapLabels }) {
   const [idx, setIdx] = useState(0);
   const [errored, setErrored] = useState<Record<number, boolean>>({});
   useEffect(() => setIdx(0), [photos]);
@@ -85,7 +119,7 @@ function EventPhotoCarousel({ photos, alt }: { photos: string[]; alt: string }) 
               <span className="text-xl font-bold">PA</span>
             </div>
             <p className="mt-3 text-xs uppercase tracking-[0.14em] text-white/85">
-              PureFlow Amanzi · photo coming soon
+              {labels.photoFallback}
             </p>
           </div>
         </div>
@@ -95,7 +129,7 @@ function EventPhotoCarousel({ photos, alt }: { photos: string[]; alt: string }) 
         <>
           <button
             type="button"
-            aria-label="Previous photo"
+            aria-label={labels.prevPhoto}
             onClick={() => setIdx((i) => (i - 1 + photos.length) % photos.length)}
             className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/85 p-1.5 text-slate-800 shadow-md ring-1 ring-black/10 backdrop-blur hover:bg-white"
           >
@@ -103,7 +137,7 @@ function EventPhotoCarousel({ photos, alt }: { photos: string[]; alt: string }) 
           </button>
           <button
             type="button"
-            aria-label="Next photo"
+            aria-label={labels.nextPhoto}
             onClick={() => setIdx((i) => (i + 1) % photos.length)}
             className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/85 p-1.5 text-slate-800 shadow-md ring-1 ring-black/10 backdrop-blur hover:bg-white"
           >
