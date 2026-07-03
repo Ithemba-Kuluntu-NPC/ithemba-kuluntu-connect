@@ -615,10 +615,12 @@ function Showcase({ t, lang }: { t: (k: string, fb?: string) => string; lang: La
   const counters = [
     { k: "households", icon: HomeIcon, v: t("impact.counters.households.value"), l: t("impact.counters.households.label") },
     { k: "people", icon: Users, v: t("impact.counters.people.value"), l: t("impact.counters.people.label") },
+    { k: "green_jobs", icon: Briefcase, v: t("impact.counters.green_jobs.value"), l: t("impact.counters.green_jobs.label") },
+    { k: "learning_sites", icon: School, v: t("impact.counters.learning_sites.value"), l: t("impact.counters.learning_sites.label") },
+    { k: "educators", icon: GraduationCap, v: t("impact.counters.educators.value"), l: t("impact.counters.educators.label") },
+    { k: "wash_events", icon: Presentation, v: t("impact.counters.wash_events.value"), l: t("impact.counters.wash_events.label") },
     { k: "litres", icon: Droplets, v: t("impact.counters.litres.value"), l: t("impact.counters.litres.label") },
     { k: "co2", icon: Leaf, v: t("impact.counters.co2.value"), l: t("impact.counters.co2.label") },
-    { k: "firewood", icon: Flame, v: t("impact.counters.firewood.value"), l: t("impact.counters.firewood.label") },
-    { k: "trees", icon: TreePine, v: t("impact.counters.trees.value"), l: t("impact.counters.trees.label") },
   ];
 
   return (
