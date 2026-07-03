@@ -634,70 +634,68 @@ function Showcase({ t, lang }: { t: (k: string, fb?: string) => string; lang: La
           <p className="mx-auto mt-2 max-w-2xl text-sm text-white/80 md:text-base">{t("showcase.text")}</p>
         </div>
 
-        <div className="mt-8 grid items-start gap-8 lg:grid-cols-[1.05fr_1fr]">
-          {/* Video */}
-          <div className="overflow-hidden rounded-3xl bg-black/90 shadow-2xl ring-1 ring-white/10">
-            <div className="relative aspect-video w-full">
-              {vid && !playing && (
-                <button
-                  type="button"
-                  onClick={() => setPlaying(true)}
-                  className="group absolute inset-0 z-10"
-                  aria-label={t("showcase.video.title")}
-                >
-                  <img
-                    src={`https://i.ytimg.com/vi/${vid}/hqdefault.jpg`}
-                    alt={t("showcase.video.title")}
-                    className="h-full w-full object-cover"
-                  />
-                  <span className="absolute inset-0 flex items-center justify-center bg-black/30 transition group-hover:bg-black/40">
-                    <PlayCircle className="h-20 w-20" style={{ color: YELLOW }} />
-                  </span>
-                </button>
-              )}
-              {vid && playing && (
-                <iframe
-                  className="absolute inset-0 h-full w-full"
-                  src={`https://www.youtube.com/embed/${vid}?autoplay=1&rel=0`}
-                  title={t("showcase.video.title")}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
+        <div className="mx-auto mt-8 max-w-4xl overflow-hidden rounded-3xl bg-black/90 shadow-2xl ring-1 ring-white/10">
+          <div className="relative aspect-video w-full">
+            {vid && !playing && (
+              <button
+                type="button"
+                onClick={() => setPlaying(true)}
+                className="group absolute inset-0 z-10"
+                aria-label={t("showcase.video.title")}
+              >
+                <img
+                  src={`https://i.ytimg.com/vi/${vid}/hqdefault.jpg`}
+                  alt={t("showcase.video.title")}
+                  className="h-full w-full object-cover"
                 />
-              )}
-              {!vid && (
-                <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#081A60] to-[#1E40C8] text-white/70">
-                  <PlayCircle className="h-16 w-16" style={{ color: YELLOW }} />
-                </div>
-              )}
-            </div>
-            <div className="bg-white/95 px-5 py-3">
-              <p className="text-sm font-semibold" style={{ color: BLUE_DEEP, fontFamily: SERIF }}>
-                {t("showcase.video.title")}
-              </p>
-              <p className="mt-0.5 text-xs text-slate-600">{t("showcase.video.description")}</p>
-            </div>
+                <span className="absolute inset-0 flex items-center justify-center bg-black/30 transition group-hover:bg-black/40">
+                  <PlayCircle className="h-20 w-20" style={{ color: YELLOW }} />
+                </span>
+              </button>
+            )}
+            {vid && playing && (
+              <iframe
+                className="absolute inset-0 h-full w-full"
+                src={`https://www.youtube.com/embed/${vid}?autoplay=1&rel=0`}
+                title={t("showcase.video.title")}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            )}
+            {!vid && (
+              <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#081A60] to-[#1E40C8] text-white/70">
+                <PlayCircle className="h-16 w-16" style={{ color: YELLOW }} />
+              </div>
+            )}
           </div>
-
-          {/* Counter matrix — yellow icons, animated numbers, on blue */}
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
-            {counters.map((c) => {
-              const { value, suffix } = parseCounter(c.v);
-              const Icon = c.icon;
-              return (
-                <div key={c.k} className="flex flex-col items-center text-center">
-                  <Icon className="h-9 w-9 md:h-10 md:w-10" style={{ color: YELLOW }} strokeWidth={1.75} />
-                  <div
-                    className="mt-2 font-display text-2xl font-extrabold leading-none md:text-3xl"
-                    style={{ color: YELLOW, fontFamily: SERIF }}
-                  >
-                    <AnimatedNumber value={value} suffix={suffix} locale={locale} />
-                  </div>
-                  <p className="mt-2 max-w-[14rem] text-[11px] leading-snug text-white/80 md:text-xs">{c.l}</p>
-                </div>
-              );
-            })}
+          <div className="bg-white/95 px-5 py-3">
+            <p className="text-sm font-semibold" style={{ color: BLUE_DEEP, fontFamily: SERIF }}>
+              {t("showcase.video.title")}
+            </p>
+            <p className="mt-0.5 text-xs text-slate-600">{t("showcase.video.description")}</p>
           </div>
         </div>
+
+        {/* Counter matrix — yellow icons, animated numbers, on blue */}
+        <div className="mt-10 grid grid-cols-2 gap-x-5 gap-y-8 sm:grid-cols-4 lg:grid-cols-4">
+          {counters.map((c) => {
+            const { value, suffix } = parseCounter(c.v);
+            const Icon = c.icon;
+            return (
+              <div key={c.k} className="flex flex-col items-center text-center">
+                <Icon className="h-9 w-9 md:h-10 md:w-10" style={{ color: YELLOW }} strokeWidth={1.75} />
+                <div
+                  className="mt-2 font-display text-2xl font-extrabold leading-none md:text-3xl"
+                  style={{ color: YELLOW, fontFamily: SERIF }}
+                >
+                  <AnimatedNumber value={value} suffix={suffix} locale={locale} />
+                </div>
+                <p className="mt-2 max-w-[15rem] text-[11px] leading-snug text-white/80 md:text-xs">{c.l}</p>
+              </div>
+            );
+          })}
+        </div>
+
 
         <p className="mx-auto mt-8 max-w-3xl text-center text-xs italic text-white/65 md:text-sm">
           {t("impact.note")}
