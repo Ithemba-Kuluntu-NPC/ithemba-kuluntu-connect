@@ -8,7 +8,7 @@
 // Language is driven by the global LanguageProvider (EN / DE / NL).
 
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Fragment, useEffect, useMemo, useRef, useState } from "react";
+import { Fragment, Suspense, lazy, useEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowLeft,
   ArrowRight,
