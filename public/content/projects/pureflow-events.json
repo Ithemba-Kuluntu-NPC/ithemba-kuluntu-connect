@@ -1,6 +1,6 @@
 [
   {
-    "_comment": "Placeholder data for design preview only. Replace with verified PureFlow Amanzi event data before public launch.",
+    "_comment": "Placeholder data for design preview only. Replace with verified PureFlow Amanzi event data and event-specific photos before public launch.",
     "id": "event-001",
     "community": "Cwebeni Village (demo)",
     "date": "2026-01-15",
@@ -10,7 +10,11 @@
     "partnerSupporter": "To be confirmed",
     "description": "Short editable description of the event. Replace this demo text with verified field information before launch.",
     "coordinates": { "lat": -31.6229, "lng": 29.5448 },
-    "photos": []
+    "photos": [
+      "/assets/photos/projects/pureflow/pureflow-watch-verify.jpeg",
+      "/assets/photos/projects/pureflow/pureflow-step-01-structural-problem.jpg",
+      "/assets/photos/projects/pureflow/pureflow-step-02-pureflow-model.jpg"
+    ]
   },
   {
     "id": "event-002",
@@ -22,7 +26,10 @@
     "partnerSupporter": "To be confirmed",
     "description": "Short editable description of the event. Replace this demo text with verified field information before launch.",
     "coordinates": { "lat": -31.6304, "lng": 29.5450 },
-    "photos": []
+    "photos": [
+      "/assets/photos/projects/pureflow/pureflow-step-03-immediate-public-benefit.jpg",
+      "/assets/photos/projects/pureflow/pureflow-step-04-system-shifts.jpg"
+    ]
   },
   {
     "id": "event-003",
@@ -34,7 +41,11 @@
     "partnerSupporter": "To be confirmed",
     "description": "Short editable description of the event. Replace this demo text with verified field information before launch.",
     "coordinates": { "lat": -31.6410, "lng": 29.5610 },
-    "photos": []
+    "photos": [
+      "/assets/photos/projects/pureflow/pureflow-step-05-wider-community-gains.jpeg",
+      "/assets/photos/projects/pureflow/pureflow-step-06-long-term-transformation.jpg",
+      "/assets/photos/projects/pureflow/pureflow-closing-group-filters.jpg"
+    ]
   },
   {
     "id": "event-004",
@@ -46,7 +57,11 @@
     "partnerSupporter": "To be confirmed",
     "description": "Short editable description of the event. Replace this demo text with verified field information before launch.",
     "coordinates": { "lat": -31.5889, "lng": 28.7844 },
-    "photos": []
+    "photos": [
+      "/assets/photos/projects/pureflow/pureflow-step-01-structural-problem-2.jpg",
+      "/assets/photos/projects/pureflow/pureflow-step-01-structural-problem-3.jpg",
+      "/assets/photos/projects/pureflow/pureflow-step-01-structural-problem-4.jpg"
+    ]
   },
   {
     "id": "event-005",
@@ -58,6 +73,9 @@
     "partnerSupporter": "To be confirmed",
     "description": "Short editable description of the event. Replace this demo text with verified field information before launch.",
     "coordinates": { "lat": -31.3728, "lng": 29.5744 },
-    "photos": []
+    "photos": [
+      "/assets/photos/projects/pureflow/pureflow-sdg-background.jpg",
+      "/assets/photos/projects/pureflow/pureflow-watch-verify.jpeg"
+    ]
   }
 ]

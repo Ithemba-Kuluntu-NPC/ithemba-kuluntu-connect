@@ -608,7 +608,7 @@ function Showcase({ t, lang }: { t: (k: string, fb?: string) => string; lang: La
 
   return (
     <section style={{ background: BLUE }} className="relative">
-      <div className="mx-auto max-w-7xl px-4 py-12 md:px-8 md:py-16">
+      <div className="mx-auto max-w-7xl px-4 pt-12 pb-6 md:px-8 md:pt-16 md:pb-8">
         <div className="text-center text-white">
           <Script>{t("showcase.script_heading")}</Script>
           <h2 className="mt-1 text-3xl font-bold md:text-4xl" style={{ fontFamily: SERIF }}>
@@ -1636,7 +1636,13 @@ function PureFlowCompactPage() {
           }}
           aria-hidden
         />
-        <div className="relative mx-auto max-w-7xl px-4 py-14 md:px-8 md:py-20">
+        <div className="relative mx-auto max-w-7xl px-4 pt-4 pb-14 md:px-8 md:pt-6 md:pb-20">
+          {/* subtle hairline separator to signal a new subsection within the same deep-blue block */}
+          <div
+            className="mx-auto mb-8 h-px w-24 md:mb-10"
+            style={{ background: `${YELLOW}66` }}
+            aria-hidden
+          />
           <div className="mx-auto max-w-3xl text-center">
             <Script color={YELLOW}>Field Map</Script>
             <h2
