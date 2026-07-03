@@ -30,7 +30,7 @@ import {
   Briefcase,
   School,
   Presentation,
-  
+  CircleDollarSign,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
