@@ -1153,7 +1153,7 @@ function SDGGrid({ t }: { t: (k: string, fb?: string) => string }) {
         />
         <div className="absolute inset-0 bg-gradient-to-br from-[#081A60]/50 via-[#081A60]/30 to-[#081A60]/50" />
       </div>
-      <div className="mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
+      <div className="mx-auto max-w-6xl px-5 py-10 md:px-8 md:py-12">
         <div className="text-center">
           <Script color={YELLOW}>SDG</Script>
           <h2 className="mt-1 text-3xl font-bold text-white md:text-4xl" style={{ fontFamily: SERIF }}>
@@ -1161,14 +1161,14 @@ function SDGGrid({ t }: { t: (k: string, fb?: string) => string }) {
           </h2>
           <p className="mx-auto mt-2 max-w-2xl text-sm text-white/90 md:text-base">{t("sdg.sub_heading")}</p>
         </div>
-        <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {SDG_NUMS.map((n) => (
             <div
               key={n}
-              className="flex flex-col items-center rounded-2xl bg-white/92 p-5 text-center shadow-lg shadow-black/10 backdrop-blur-sm ring-1 ring-white/60"
+              className="flex flex-col items-center rounded-2xl bg-white/92 p-5 text-center shadow-lg shadow-black/10 backdrop-blur-sm ring-1 ring-white/60 md:p-6"
             >
               <SDGIcon n={n} />
-              <p className="mt-3 text-sm leading-snug text-slate-700">{t(`sdg.${n}.desc`)}</p>
+              <p className="mt-2 text-[14px] leading-[1.4] text-slate-700 md:text-[15px]">{t(`sdg.${n}.desc`)}</p>
             </div>
           ))}
         </div>
