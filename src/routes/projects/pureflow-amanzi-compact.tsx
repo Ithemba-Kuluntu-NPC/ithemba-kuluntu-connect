@@ -26,9 +26,11 @@ import {
   Droplets,
   Users,
   Leaf,
-  Flame,
-  TreePine,
   Home as HomeIcon,
+  Briefcase,
+  School,
+  Presentation,
+  CheckCircle2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
