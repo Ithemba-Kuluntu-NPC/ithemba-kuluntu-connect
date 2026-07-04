@@ -1122,7 +1122,7 @@ function SDGIcon({ n }: { n: number }) {
   if (errored) {
     return (
       <div
-        className="flex h-[85px] w-[85px] items-center justify-center rounded-lg bg-slate-200 text-sm font-bold text-slate-500 md:h-[100px] md:w-[100px] lg:h-[108px] lg:w-[108px]"
+        className="flex h-[65px] w-[65px] items-center justify-center rounded-lg bg-slate-200 text-sm font-bold text-slate-500 sm:h-[70px] sm:w-[70px] md:h-[75px] md:w-[75px] lg:h-[80px] lg:w-[80px]"
         aria-label={`SDG ${n}`}
       >
         SDG {n}
