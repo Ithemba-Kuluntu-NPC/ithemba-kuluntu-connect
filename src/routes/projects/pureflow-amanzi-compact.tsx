@@ -1161,14 +1161,14 @@ function SDGGrid({ t }: { t: (k: string, fb?: string) => string }) {
           </h2>
           <p className="mx-auto mt-2 max-w-2xl text-sm text-white/90 md:text-base">{t("sdg.sub_heading")}</p>
         </div>
-        <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {SDG_NUMS.map((n) => (
             <div
               key={n}
-              className="flex flex-col items-center rounded-2xl bg-white/92 p-5 text-center shadow-lg shadow-black/10 backdrop-blur-sm ring-1 ring-white/60 md:p-6"
+              className="flex flex-col items-center rounded-xl bg-white/92 p-4 text-center shadow-md shadow-black/5 backdrop-blur-sm ring-1 ring-white/60"
             >
               <SDGIcon n={n} />
-              <p className="mt-2 text-[14px] leading-[1.4] text-slate-700 md:text-[15px]">{t(`sdg.${n}.desc`)}</p>
+              <p className="mt-1.5 text-[13px] leading-[1.3] text-slate-700">{t(`sdg.${n}.desc`)}</p>
             </div>
           ))}
         </div>
