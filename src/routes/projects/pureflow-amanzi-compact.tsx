@@ -1135,7 +1135,7 @@ function SDGIcon({ n }: { n: number }) {
       alt={`SDG ${n}`}
       loading="lazy"
       onError={() => setErrored(true)}
-      className="h-auto w-[85px] object-contain sm:w-[90px] md:w-[100px] lg:w-[108px]"
+      className="h-auto w-[65px] object-contain sm:w-[70px] md:w-[75px] lg:w-[80px]"
     />
   );
 }
