@@ -1122,7 +1122,7 @@ function SDGIcon({ n }: { n: number }) {
   if (errored) {
     return (
       <div
-        className="flex h-[65px] w-[65px] items-center justify-center rounded-lg bg-slate-200 text-sm font-bold text-slate-500 sm:h-[70px] sm:w-[70px] md:h-[75px] md:w-[75px] lg:h-[80px] lg:w-[80px]"
+        className="flex h-[58px] w-[58px] items-center justify-center rounded-lg bg-slate-200 text-[10px] font-bold text-slate-500 sm:h-[62px] sm:w-[62px] md:h-[68px] md:w-[68px] lg:h-[72px] lg:w-[72px]"
         aria-label={`SDG ${n}`}
       >
         SDG {n}
@@ -1135,7 +1135,7 @@ function SDGIcon({ n }: { n: number }) {
       alt={`SDG ${n}`}
       loading="lazy"
       onError={() => setErrored(true)}
-      className="h-auto w-[65px] object-contain sm:w-[70px] md:w-[75px] lg:w-[80px]"
+      className="h-auto w-[58px] object-contain sm:w-[62px] md:w-[68px] lg:w-[72px]"
     />
   );
 }
@@ -1161,16 +1161,22 @@ function SDGGrid({ t }: { t: (k: string, fb?: string) => string }) {
           </h2>
           <p className="mx-auto mt-2 max-w-2xl text-sm text-white/90 md:text-base">{t("sdg.sub_heading")}</p>
         </div>
-        <div className="mt-5 grid grid-cols-1 items-start gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {SDG_NUMS.map((n) => (
-            <div
-              key={n}
-              className="flex flex-col items-center rounded-xl bg-white/92 p-4 text-center shadow-md shadow-black/5 backdrop-blur-sm ring-1 ring-white/60"
-            >
-              <SDGIcon n={n} />
-              <p className="mt-1.5 text-[13px] leading-[1.3] text-slate-700">{t(`sdg.${n}.desc`)}</p>
-            </div>
-          ))}
+
+        {/* Single translucent panel containing all SDG items */}
+        <div
+          className="mx-auto mt-6 rounded-[28px] border border-white/45 p-6 shadow-lg backdrop-blur-sm sm:p-8 md:mt-8 md:p-10 lg:max-w-[1180px]"
+          style={{ background: "rgba(255, 255, 255, 0.82)" }}
+        >
+          <div className="grid grid-cols-2 gap-x-6 gap-y-5 sm:gap-x-8 sm:gap-y-6 md:grid-cols-3 md:gap-x-8 md:gap-y-7 lg:grid-cols-4 lg:gap-x-10 lg:gap-y-8">
+            {SDG_NUMS.map((n) => (
+              <div key={n} className="flex flex-col items-center text-center">
+                <SDGIcon n={n} />
+                <p className="mt-1.5 max-w-[220px] text-[12px] leading-[1.3] text-slate-800 md:text-[13px]">
+                  {t(`sdg.${n}.desc`)}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
