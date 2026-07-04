@@ -1161,7 +1161,7 @@ function SDGGrid({ t }: { t: (k: string, fb?: string) => string }) {
           </h2>
           <p className="mx-auto mt-2 max-w-2xl text-sm text-white/90 md:text-base">{t("sdg.sub_heading")}</p>
         </div>
-        <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="mt-5 grid grid-cols-1 items-start gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {SDG_NUMS.map((n) => (
             <div
               key={n}
