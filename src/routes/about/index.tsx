@@ -839,36 +839,6 @@ function Governance({ c }: { c: AboutContent }) {
             </div>
           </div>
         </div>
-
-        {/* Trust pills */}
-        <div className="mt-10">
-          <h3 className="text-center text-xs font-semibold uppercase tracking-[0.18em] text-[var(--ithemba-yellow)]">
-            {g.trustHeading}
-          </h3>
-          <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {g.trustPoints.map((p) => (
-              <div
-                key={p}
-                className="flex items-start gap-3 rounded-2xl border border-[var(--ithemba-blue)]/10 bg-white px-4 py-3 shadow-sm"
-              >
-                <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[var(--ithemba-blue)]" />
-                <span className="text-sm font-medium text-foreground/90">{p}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Downloads — placeholders for missing assets */}
-        <div className="mt-8 rounded-3xl bg-white p-6 ring-1 ring-[var(--ithemba-blue)]/10 md:p-8">
-          <div className="flex items-center gap-3">
-            <Download className="h-5 w-5 text-[var(--ithemba-blue)]" />
-            <h3 className="font-display text-lg font-bold text-[var(--ithemba-blue-dark)]">Documents</h3>
-          </div>
-          <div className="mt-3 space-y-1">
-            <Placeholder text="downloadable certificates" />
-            <Placeholder text="annual report download" />
-          </div>
-        </div>
       </div>
     </section>
   );
