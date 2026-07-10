@@ -907,7 +907,11 @@ function HowItWorks({ c }: { c: Copy }) {
         <div className="mt-14">
           <div className="grid gap-6 md:grid-cols-4 md:gap-4">
             {c.how.steps.map((s, i) => (
-              <div key={s.title} className="relative rounded-3xl bg-white/10 p-6 ring-1 ring-white/15 backdrop-blur">
+              <div
+                key={s.title}
+                className="relative rounded-3xl bg-white/10 p-6 ring-1 ring-white/15 backdrop-blur"
+                style={{ zIndex: c.how.steps.length - i }}
+              >
                 <div className="flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--ithemba-yellow)] text-[var(--ithemba-brown)] font-display text-base font-extrabold">
                     {i + 1}
@@ -917,16 +921,16 @@ function HowItWorks({ c }: { c: Copy }) {
                 <p className="mt-3 text-sm leading-snug text-white/85">{s.text}</p>
                 {i < c.how.steps.length - 1 && (
                   <>
-                    {/* desktop: right arrow, sits in the gutter low on the card */}
+                    {/* desktop: right arrow, sits in the gutter vertically centered */}
                     <ArrowRight
                       aria-hidden
-                      className="pointer-events-none absolute -right-6 bottom-5 z-10 hidden h-9 w-9 text-[var(--ithemba-yellow)] md:block"
+                      className="pointer-events-none absolute -right-6 top-1/2 z-20 hidden h-9 w-9 -translate-y-1/2 text-[var(--ithemba-yellow)] md:block"
                       strokeWidth={3.5}
                     />
                     {/* mobile: down arrow between stacked cards */}
                     <ArrowDown
                       aria-hidden
-                      className="pointer-events-none absolute -bottom-6 left-1/2 z-10 h-8 w-8 -translate-x-1/2 text-[var(--ithemba-yellow)] md:hidden"
+                      className="pointer-events-none absolute -bottom-6 left-1/2 z-20 h-8 w-8 -translate-x-1/2 text-[var(--ithemba-yellow)] md:hidden"
                       strokeWidth={3.5}
                     />
                   </>
