@@ -14,8 +14,6 @@ import {
   Network,
   Globe2,
   Building2,
-  CheckCircle2,
-  Download,
   GraduationCap,
   Droplets,
   Utensils,
@@ -24,7 +22,7 @@ import {
   LifeBuoy,
 } from "lucide-react";
 import { useLang } from "@/components/site/LanguageProvider";
-import { Placeholder } from "@/components/site/MissingInfo";
+
 import { SmartImage, SmartLogo } from "@/components/site/Asset";
 import { assets } from "@/data/assets";
 import type { Lang } from "@/data/content";
@@ -777,7 +775,7 @@ function WhatGuidesUs({ c }: { c: AboutContent }) {
 function Governance({ c }: { c: AboutContent }) {
   const g = c.governance;
   return (
-    <section className="relative isolate overflow-hidden bg-[var(--ithemba-blue-deepest)] py-16 text-white md:py-20">
+    <section className="relative isolate overflow-hidden bg-[var(--ithemba-blue-deepest)] pt-16 pb-12 text-white md:pt-20 md:pb-14">
       <div className="absolute inset-0 -z-10 opacity-50">
         <div className="absolute -left-24 top-10 h-72 w-72 rounded-full bg-[var(--ithemba-blue)]/40 blur-3xl" />
         <div className="absolute right-0 bottom-0 h-80 w-80 rounded-full bg-[var(--ithemba-yellow)]/15 blur-3xl" />
@@ -839,36 +837,6 @@ function Governance({ c }: { c: AboutContent }) {
                 <Row label="Steuernummer" value="338/5953/0753" />
               </dl>
             </div>
-          </div>
-        </div>
-
-        {/* Trust pills */}
-        <div className="mt-10">
-          <h3 className="text-center text-xs font-semibold uppercase tracking-[0.18em] text-[var(--ithemba-yellow)]">
-            {g.trustHeading}
-          </h3>
-          <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {g.trustPoints.map((p) => (
-              <div
-                key={p}
-                className="flex items-start gap-3 rounded-2xl border border-[var(--ithemba-blue)]/10 bg-white px-4 py-3 shadow-sm"
-              >
-                <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[var(--ithemba-blue)]" />
-                <span className="text-sm font-medium text-foreground/90">{p}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Downloads — placeholders for missing assets */}
-        <div className="mt-8 rounded-3xl bg-white p-6 ring-1 ring-[var(--ithemba-blue)]/10 md:p-8">
-          <div className="flex items-center gap-3">
-            <Download className="h-5 w-5 text-[var(--ithemba-blue)]" />
-            <h3 className="font-display text-lg font-bold text-[var(--ithemba-blue-dark)]">Documents</h3>
-          </div>
-          <div className="mt-3 space-y-1">
-            <Placeholder text="downloadable certificates" />
-            <Placeholder text="annual report download" />
           </div>
         </div>
       </div>
