@@ -775,7 +775,7 @@ function WhatGuidesUs({ c }: { c: AboutContent }) {
 function Governance({ c }: { c: AboutContent }) {
   const g = c.governance;
   return (
-    <section className="relative isolate overflow-hidden bg-[var(--ithemba-blue-deepest)] py-16 text-white md:py-20">
+    <section className="relative isolate overflow-hidden bg-[var(--ithemba-blue-deepest)] pt-16 pb-12 text-white md:pt-20 md:pb-14">
       <div className="absolute inset-0 -z-10 opacity-50">
         <div className="absolute -left-24 top-10 h-72 w-72 rounded-full bg-[var(--ithemba-blue)]/40 blur-3xl" />
         <div className="absolute right-0 bottom-0 h-80 w-80 rounded-full bg-[var(--ithemba-yellow)]/15 blur-3xl" />
