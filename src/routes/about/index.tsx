@@ -14,8 +14,6 @@ import {
   Network,
   Globe2,
   Building2,
-  CheckCircle2,
-  Download,
   GraduationCap,
   Droplets,
   Utensils,
@@ -24,7 +22,7 @@ import {
   LifeBuoy,
 } from "lucide-react";
 import { useLang } from "@/components/site/LanguageProvider";
-import { Placeholder } from "@/components/site/MissingInfo";
+
 import { SmartImage, SmartLogo } from "@/components/site/Asset";
 import { assets } from "@/data/assets";
 import type { Lang } from "@/data/content";
