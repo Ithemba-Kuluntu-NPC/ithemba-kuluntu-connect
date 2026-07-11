@@ -156,6 +156,7 @@ const COPY: Record<"en" | "de" | "nl", Copy> = {
     },
     details: {
       heading: "Kontakt",
+      mainHeading: "Wir freuen uns, von Ihnen zu hören",
       intro:
         "Für Partnerschaften, Förderer, Medienanfragen, Spenden oder Projektunterstützung nutzen Sie bitte das Formular oder kontaktieren Sie uns direkt.",
       emailLabel: "E-Mail",
