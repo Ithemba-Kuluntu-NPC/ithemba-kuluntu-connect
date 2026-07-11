@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
+import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
   ArrowLeft,
@@ -24,7 +25,7 @@ import {
   Building2,
   Award,
   Cookie,
-  
+  ChevronDown,
   PlayCircle,
 } from "lucide-react";
 import { useLang } from "@/components/site/LanguageProvider";
@@ -118,6 +119,10 @@ type Copy = {
     intro: string;
     items: RhythmItem[];
     outro: string;
+    closedTitle: string;
+    closedIntro: string;
+    openButton: string;
+    closeButton: string;
   };
   nutrition: {
     eyebrow: string;
@@ -281,6 +286,11 @@ const COPY: Record<Lang, Copy> = {
       ],
       outro:
         "The rhythm is simple, but powerful. Children know what to expect. Teachers can guide learning by age and need. Meals and rest are part of the programme, not an afterthought. Every part of the day helps children feel safe, seen and ready to grow.",
+      closedTitle: "A day at No.1 ECD",
+      closedIntro:
+        "Children thrive through rhythm, care and routine. Our daily schedule gives each child a predictable day with meals, play, learning, rest and care.",
+      openButton: "View the daily rhythm",
+      closeButton: "Hide daily rhythm",
     },
     nutrition: {
       eyebrow: "More than learning",
@@ -473,6 +483,11 @@ const COPY: Record<Lang, Copy> = {
       ],
       outro:
         "Der Tagesrhythmus ist einfach, aber wirkungsvoll. Kinder wissen, was sie erwartet. Lehrkräfte können Lernen nach Alter und Bedarf begleiten. Mahlzeiten und Ruhezeiten sind Teil des pädagogischen Alltags, nicht nur Ergänzung. Jeder Abschnitt des Tages hilft Kindern, sich sicher, gesehen und bereit zum Wachsen zu fühlen.",
+      closedTitle: "Ein Tag im No.1 ECD",
+      closedIntro:
+        "Kinder gedeihen durch Rhythmus, Fürsorge und verlässliche Routinen. Unser Tagesplan gibt jedem Kind einen vorhersehbaren Tag mit Mahlzeiten, Spiel, Lernen, Ruhe und Zuwendung.",
+      openButton: "Tagesrhythmus anzeigen",
+      closeButton: "Tagesrhythmus ausblenden",
     },
     nutrition: {
       eyebrow: "Mehr als Lernen",
@@ -665,6 +680,11 @@ const COPY: Record<Lang, Copy> = {
       ],
       outro:
         "Het dagritme is eenvoudig, maar krachtig. Kinderen weten wat zij kunnen verwachten. Leerkrachten kunnen leren begeleiden op basis van leeftijd en behoefte. Maaltijden en rustmomenten zijn onderdeel van het programma, geen bijzaak. Elk moment van de dag helpt kinderen zich veilig, gezien en klaar om te groeien te voelen.",
+      closedTitle: "Een dag in No.1 ECD",
+      closedIntro:
+        "Kinderen gedijen door ritme, zorg en routine. Ons dagschema geeft elk kind een voorspelbare dag met maaltijden, spel, leren, rust en zorg.",
+      openButton: "Dagritme bekijken",
+      closeButton: "Dagritme verbergen",
     },
     nutrition: {
       eyebrow: "Meer dan leren",
@@ -1409,6 +1429,20 @@ const RHYTHM_BLOBS = [
 ];
 
 function Rhythm({ c }: { c: Copy }) {
+  const [open, setOpen] = useState(false);
+  const [contentHeight, setContentHeight] = useState(0);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = contentRef.current;
+    if (!el) return;
+    const update = () => setContentHeight(el.scrollHeight);
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
   const rhythmPhotoLabels = [
     "Children arriving at the ECD Centre",
     "Children at free and guided play",
@@ -1423,6 +1457,113 @@ function Rhythm({ c }: { c: Copy }) {
     "Afternoon play and calm activities",
     "Goodbye circle and prayer",
   ];
+
+  const timeline = (
+    <>
+      {/* central dotted vertical path */}
+      <div className="relative mt-8">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute left-4 top-2 bottom-2 w-px md:left-1/2 md:-translate-x-1/2"
+          style={{
+            backgroundImage:
+              "repeating-linear-gradient(to bottom, var(--ithemba-yellow) 0 6px, transparent 6px 12px)",
+          }}
+        />
+        <ol className="relative space-y-5 md:space-y-7">
+          {c.rhythm.items.map((r, i) => {
+            const iconSrc = RHYTHM_ICONS[i] ?? RHYTHM_ICONS[0];
+            const tone = RHYTHM_TONES[i % RHYTHM_TONES.length];
+            const blob = RHYTHM_BLOBS[i % RHYTHM_BLOBS.length];
+            const isLeft = i % 2 === 0;
+
+            const photo = (
+              <div className={isLeft ? "md:justify-self-end md:pr-8" : "md:justify-self-start md:pl-8"}>
+                <div className="relative w-20 sm:w-24 md:w-28">
+                  <SmartImage
+                    src={`/assets/photos/ecd/rhythm-${i + 1}.jpg`}
+                    label={rhythmPhotoLabels[i]}
+                    className="aspect-square w-full"
+                    rounded={blob}
+                    tone={tone}
+                    showMissingBadge={false}
+                  />
+                  <div className="absolute -right-1 -top-1 hidden md:block">
+                    <SparkleDoodle className="h-4 w-4 text-[var(--ithemba-yellow)]" />
+                  </div>
+                </div>
+              </div>
+            );
+            const text = (
+              <div className={isLeft ? "md:pl-8 md:text-left" : "md:pr-8 md:text-right"}>
+                <div className={`inline-flex items-center gap-2 ${isLeft ? "" : "md:flex-row-reverse"}`}>
+                  <EcdIcon src={iconSrc} alt={r.time} className="h-8 w-8 md:h-10 md:w-10" />
+                  <div className="font-display text-sm font-bold text-[var(--ithemba-yellow)] md:text-base">
+                    {r.time}
+                  </div>
+                </div>
+                <div className="mt-1 text-sm leading-snug text-white/95 md:text-[15px]">
+                  {r.what}
+                </div>
+              </div>
+            );
+
+            return (
+              <li key={i} className="relative">
+                {/* timeline dot on the path */}
+                <div className="absolute left-4 top-4 z-10 h-3 w-3 -translate-x-1/2 rounded-full bg-[var(--ithemba-yellow)] ring-4 ring-[var(--ithemba-blue-dark)] md:left-1/2 md:top-6 md:h-3.5 md:w-3.5" />
+
+                {/* mobile: photo + text side-by-side as one connected unit */}
+                <div className="flex items-center gap-3 pl-10 md:hidden">
+                  <div className="shrink-0">
+                    <div className="relative w-16">
+                      <SmartImage
+                        src={`/assets/photos/ecd/rhythm-${i + 1}.jpg`}
+                        label={rhythmPhotoLabels[i]}
+                        className="aspect-square w-full"
+                        rounded={blob}
+                        tone={tone}
+                        showMissingBadge={false}
+                      />
+                    </div>
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <div className="inline-flex items-center gap-2">
+                      <EcdIcon src={iconSrc} alt={r.time} className="h-7 w-7" />
+                      <div className="font-display text-sm font-bold text-[var(--ithemba-yellow)]">
+                        {r.time}
+                      </div>
+                    </div>
+                    <div className="mt-0.5 text-sm leading-snug text-white/95">{r.what}</div>
+                  </div>
+                </div>
+
+                {/* desktop: alternating two-column */}
+                <div className="hidden md:grid md:grid-cols-2 md:items-center md:gap-6">
+                  {isLeft ? (
+                    <>
+                      {photo}
+                      {text}
+                    </>
+                  ) : (
+                    <>
+                      {text}
+                      {photo}
+                    </>
+                  )}
+                </div>
+              </li>
+            );
+          })}
+        </ol>
+      </div>
+
+      <p className="mx-auto mt-8 max-w-3xl text-center text-base leading-relaxed text-white/85">
+        {c.rhythm.outro}
+      </p>
+    </>
+  );
+
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-[var(--ithemba-blue-dark)] via-[var(--ithemba-blue)] to-[var(--ithemba-blue-dark)] py-12 text-white md:py-16">
       <div className="pointer-events-none absolute left-[-6rem] top-[-6rem] h-[24rem] w-[24rem] sun-glow" />
@@ -1440,114 +1581,44 @@ function Rhythm({ c }: { c: Copy }) {
       <div className="relative mx-auto max-w-5xl px-4 lg:px-8">
         <div className="text-center">
           <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)]">{c.rhythm.eyebrow}</div>
-          <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.rhythm.title}</h2>
-          <p className="mx-auto mt-3 max-w-2xl text-base text-white/90 md:text-lg">{c.rhythm.intro}</p>
+          <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">
+            {open ? c.rhythm.title : c.rhythm.closedTitle}
+          </h2>
+          <p className="mx-auto mt-3 max-w-2xl text-base text-white/90 md:text-lg">
+            {open ? c.rhythm.intro : c.rhythm.closedIntro}
+          </p>
         </div>
 
-        {/* central dotted vertical path */}
-        <div className="relative mt-8">
-          <div
-            aria-hidden
-            className="pointer-events-none absolute left-4 top-2 bottom-2 w-px md:left-1/2 md:-translate-x-1/2"
-            style={{
-              backgroundImage:
-                "repeating-linear-gradient(to bottom, var(--ithemba-yellow) 0 6px, transparent 6px 12px)",
-            }}
-          />
-          <ol className="relative space-y-5 md:space-y-7">
-            {c.rhythm.items.map((r, i) => {
-              const iconSrc = RHYTHM_ICONS[i] ?? RHYTHM_ICONS[0];
-              const tone = RHYTHM_TONES[i % RHYTHM_TONES.length];
-              const blob = RHYTHM_BLOBS[i % RHYTHM_BLOBS.length];
-              const isLeft = i % 2 === 0;
-
-              const photo = (
-                <div className={isLeft ? "md:justify-self-end md:pr-8" : "md:justify-self-start md:pl-8"}>
-                  <div className="relative w-20 sm:w-24 md:w-28">
-                    <SmartImage
-                      src={`/assets/photos/ecd/rhythm-${i + 1}.jpg`}
-                      label={rhythmPhotoLabels[i]}
-                      className="aspect-square w-full"
-                      rounded={blob}
-                      tone={tone}
-                      showMissingBadge={false}
-                    />
-                    <div className="absolute -right-1 -top-1 hidden md:block">
-                      <SparkleDoodle className="h-4 w-4 text-[var(--ithemba-yellow)]" />
-                    </div>
-                  </div>
-                </div>
-              );
-              const text = (
-                <div className={isLeft ? "md:pl-8 md:text-left" : "md:pr-8 md:text-right"}>
-                  <div className={`inline-flex items-center gap-2 ${isLeft ? "" : "md:flex-row-reverse"}`}>
-                    <EcdIcon src={iconSrc} alt={r.time} className="h-8 w-8 md:h-10 md:w-10" />
-                    <div className="font-display text-sm font-bold text-[var(--ithemba-yellow)] md:text-base">
-                      {r.time}
-                    </div>
-                  </div>
-                  <div className="mt-1 text-sm leading-snug text-white/95 md:text-[15px]">
-                    {r.what}
-                  </div>
-                </div>
-              );
-
-              return (
-                <li key={i} className="relative">
-                  {/* timeline dot on the path */}
-                  <div className="absolute left-4 top-4 z-10 h-3 w-3 -translate-x-1/2 rounded-full bg-[var(--ithemba-yellow)] ring-4 ring-[var(--ithemba-blue-dark)] md:left-1/2 md:top-6 md:h-3.5 md:w-3.5" />
-
-                  {/* mobile: photo + text side-by-side as one connected unit */}
-                  <div className="flex items-center gap-3 pl-10 md:hidden">
-                    <div className="shrink-0">
-                      <div className="relative w-16">
-                        <SmartImage
-                          src={`/assets/photos/ecd/rhythm-${i + 1}.jpg`}
-                          label={rhythmPhotoLabels[i]}
-                          className="aspect-square w-full"
-                          rounded={blob}
-                          tone={tone}
-                          showMissingBadge={false}
-                        />
-                      </div>
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <div className="inline-flex items-center gap-2">
-                        <EcdIcon src={iconSrc} alt={r.time} className="h-7 w-7" />
-                        <div className="font-display text-sm font-bold text-[var(--ithemba-yellow)]">
-                          {r.time}
-                        </div>
-                      </div>
-                      <div className="mt-0.5 text-sm leading-snug text-white/95">{r.what}</div>
-                    </div>
-                  </div>
-
-                  {/* desktop: alternating two-column */}
-                  <div className="hidden md:grid md:grid-cols-2 md:items-center md:gap-6">
-                    {isLeft ? (
-                      <>
-                        {photo}
-                        {text}
-                      </>
-                    ) : (
-                      <>
-                        {text}
-                        {photo}
-                      </>
-                    )}
-                  </div>
-                </li>
-              );
-            })}
-          </ol>
+        <div className="mt-6 flex justify-center">
+          <Button
+            onClick={() => setOpen((v) => !v)}
+            aria-expanded={open}
+            aria-controls="rhythm-panel"
+            className="group inline-flex items-center gap-2 rounded-full border-2 border-[var(--ithemba-yellow)] bg-[var(--ithemba-cream)] px-6 py-5 text-base font-bold text-[var(--ithemba-blue-dark)] shadow-[var(--shadow-soft)] transition-all hover:bg-[var(--ithemba-yellow)] hover:text-[var(--ithemba-blue-dark)] active:scale-95 md:px-8 md:py-6 md:text-lg"
+          >
+            {open ? c.rhythm.closeButton : c.rhythm.openButton}
+            <ChevronDown
+              className={cn(
+                "h-5 w-5 transition-transform duration-300",
+                open ? "rotate-180" : ""
+              )}
+            />
+          </Button>
         </div>
 
-        <p className="mx-auto mt-8 max-w-3xl text-center text-base leading-relaxed text-white/85">
-          {c.rhythm.outro}
-        </p>
+        <div
+          id="rhythm-panel"
+          className="overflow-hidden transition-[max-height] duration-500 ease-in-out"
+          style={{
+            maxHeight: open ? contentHeight : 0,
+          }}
+        >
+          <div ref={contentRef}>
+            {timeline}
+          </div>
+        </div>
       </div>
     </section>
-
   );
 }
 
