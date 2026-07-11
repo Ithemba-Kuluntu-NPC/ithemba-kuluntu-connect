@@ -84,6 +84,8 @@
 
   --shadow-soft: 0 10px 40px -12px rgb(15 42 140 / 0.18);
   --shadow-lifted: 0 24px 60px -20px rgb(15 42 140 / 0.25);
+
+  --header-height: 5.25rem;
 }
 
 html, body {
