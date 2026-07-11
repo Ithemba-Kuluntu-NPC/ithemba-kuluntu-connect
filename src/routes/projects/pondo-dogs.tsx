@@ -90,33 +90,27 @@ function PdIcon({
   );
 }
 
-/* ---------- yellow paw accent (replaces yellow square from PureFlow collages) ---------- */
-function PawAccent({
+/* ---------- collage icon badge (polished circular accent for section icon) ---------- */
+function CollageIconBadge({
+  src,
+  alt = "",
   className = "",
-  size = 88,
+  size = 64,
 }: {
+  src: string;
+  alt?: string;
   className?: string;
   size?: number;
 }) {
   return (
     <div
-      aria-hidden
-      className={`pointer-events-none absolute z-10 ${className}`}
+      className={`pointer-events-none absolute z-10 flex items-center justify-center rounded-full bg-white/95 shadow-lg ring-1 ring-[var(--ithemba-yellow)]/40 backdrop-blur ${className}`}
       style={{
         width: size,
         height: size,
-        filter: "drop-shadow(0 10px 22px rgba(251,191,36,0.55))",
       }}
     >
-      <svg viewBox="0 0 100 100" className="h-full w-full">
-        <g fill="var(--ithemba-yellow)">
-          <ellipse cx="50" cy="66" rx="22" ry="20" />
-          <ellipse cx="22" cy="46" rx="10" ry="13" transform="rotate(-18 22 46)" />
-          <ellipse cx="78" cy="46" rx="10" ry="13" transform="rotate(18 78 46)" />
-          <ellipse cx="36" cy="22" rx="8.5" ry="11" transform="rotate(-8 36 22)" />
-          <ellipse cx="64" cy="22" rx="8.5" ry="11" transform="rotate(8 64 22)" />
-        </g>
-      </svg>
+      <PdIcon src={src} alt={alt} className="h-9 w-9" />
     </div>
   );
 }
@@ -131,12 +125,14 @@ type CollageSlot = {
 function PhotoCollage({
   photos,
   variant = "A",
-  pawCorner = "tr",
+  iconCorner = "tr",
+  icon,
   className = "",
 }: {
   photos: CollageSlot[];
   variant?: "A" | "B" | "C";
-  pawCorner?: "tl" | "tr" | "bl" | "br";
+  iconCorner?: "tl" | "tr" | "bl" | "br";
+  icon?: string;
   className?: string;
 }) {
   const slots = photos.slice(0, 4);
@@ -166,11 +162,11 @@ function PhotoCollage({
   };
   const cells = layouts[variant];
   const usable = slots.slice(0, cells.length);
-  const pawPos: Record<string, string> = {
-    tl: "-left-4 -top-4",
-    tr: "-right-4 -top-4",
-    bl: "-left-4 -bottom-4",
-    br: "-right-4 -bottom-4",
+  const iconPos: Record<string, string> = {
+    tl: "-left-3 -top-3",
+    tr: "-right-3 -top-3",
+    bl: "-left-3 -bottom-3",
+    br: "-right-3 -bottom-3",
   };
 
   return (
@@ -192,7 +188,7 @@ function PhotoCollage({
           </div>
         ))}
       </div>
-      <PawAccent className={`${pawPos[pawCorner]} rotate-[8deg]`} size={92} />
+      {icon && <CollageIconBadge src={icon} alt="" className={`${iconPos[iconCorner]} rotate-[8deg]`} size={64} />}
     </div>
   );
 }
