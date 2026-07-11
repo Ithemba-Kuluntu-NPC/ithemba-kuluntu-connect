@@ -795,6 +795,107 @@ function EcdIcon({
   );
 }
 
+/* ---------- Collage icon badge + photo collage (matches Pondo Dogs / PureFlow compact) ---------- */
+function CollageIconBadge({
+  src,
+  alt = "",
+  className = "",
+  size = 64,
+}: {
+  src: string;
+  alt?: string;
+  className?: string;
+  size?: number;
+}) {
+  return (
+    <div
+      className={`pointer-events-none absolute z-10 flex items-center justify-center rounded-full bg-white/95 shadow-lg ring-1 ring-[var(--ithemba-yellow)]/40 backdrop-blur ${className}`}
+      style={{ width: size, height: size }}
+    >
+      <EcdIcon src={src} alt={alt} className="h-9 w-9" />
+    </div>
+  );
+}
+
+type EcdCollageSlot = {
+  src?: string;
+  label: string;
+  tone?: "warm" | "blue" | "earth" | "sun" | "ocean" | "green";
+};
+
+function PhotoCollage({
+  photos,
+  variant = "A",
+  iconCorner = "tr",
+  icon,
+  className = "",
+}: {
+  photos: EcdCollageSlot[];
+  variant?: "A" | "B" | "C";
+  iconCorner?: "tl" | "tr" | "bl" | "br";
+  icon?: string;
+  className?: string;
+}) {
+  const layouts: Record<"A" | "B" | "C", string[]> = {
+    A: [
+      "col-span-7 row-span-4 rounded-tl-[2.5rem] rounded-br-2xl rounded-tr-xl rounded-bl-xl",
+      "col-span-5 row-span-3 rounded-tr-[2.5rem] rounded-bl-xl rounded-tl-xl rounded-br-xl",
+      "col-span-5 row-span-3 rounded-xl",
+      "col-span-7 row-span-2 rounded-bl-[2.5rem] rounded-tr-xl rounded-tl-xl rounded-br-xl",
+    ],
+    B: [
+      "col-span-7 row-span-6 rounded-tl-[2.5rem] rounded-bl-[2.5rem] rounded-tr-xl rounded-br-xl",
+      "col-span-5 row-span-3 rounded-tr-[2.5rem] rounded-bl-xl rounded-tl-xl rounded-br-xl",
+      "col-span-5 row-span-3 rounded-br-[2.5rem] rounded-tl-xl rounded-tr-xl rounded-bl-xl",
+    ],
+    C: [
+      "col-span-6 row-span-3 rounded-tl-[2.5rem] rounded-br-2xl rounded-tr-xl rounded-bl-xl",
+      "col-span-6 row-span-3 rounded-tr-[2.5rem] rounded-bl-2xl rounded-tl-xl rounded-br-xl",
+      "col-span-7 row-span-3 rounded-bl-[2.5rem] rounded-tr-xl rounded-tl-xl rounded-br-xl",
+      "col-span-5 row-span-3 rounded-br-[2.5rem] rounded-tl-xl rounded-tr-xl rounded-bl-xl",
+    ],
+  };
+  const cells = layouts[variant];
+  const usable = photos.slice(0, cells.length);
+  const iconPos: Record<string, string> = {
+    tl: "-left-3 -top-3",
+    tr: "-right-3 -top-3",
+    bl: "-left-3 -bottom-3",
+    br: "-right-3 -bottom-3",
+  };
+  return (
+    <div className={`relative ${className}`}>
+      <div
+        className="relative grid aspect-[4/5] grid-cols-12 grid-rows-6 gap-2.5 md:gap-3"
+        style={{ filter: "drop-shadow(0 22px 50px rgba(30,60,90,0.28))" }}
+      >
+        {usable.map((p, i) => (
+          <div key={i} className={`overflow-hidden ring-1 ring-black/10 ${cells[i]}`}>
+            <SmartImage
+              src={p.src ?? ""}
+              label={p.label}
+              tone={p.tone ?? "warm"}
+              rounded="rounded-none"
+              className="h-full w-full"
+              showMissingBadge={false}
+            />
+          </div>
+        ))}
+      </div>
+      {icon && (
+        <CollageIconBadge
+          src={icon}
+          alt=""
+          className={`${iconPos[iconCorner]} rotate-[8deg]`}
+          size={64}
+        />
+      )}
+    </div>
+  );
+}
+
+
+
 /* Per-section icon orderings — index-aligned with COPY arrays. */
 const SNAPSHOT_ICONS = [
   ECD_ICONS.opened,
