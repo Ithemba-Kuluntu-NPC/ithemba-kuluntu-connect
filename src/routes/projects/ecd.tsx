@@ -123,6 +123,10 @@ type Copy = {
     intro: string;
     items: RhythmItem[];
     outro: string;
+    closedTitle: string;
+    closedIntro: string;
+    openButton: string;
+    closeButton: string;
   };
   nutrition: {
     eyebrow: string;
