@@ -1324,20 +1324,16 @@ function Who({ c }: { c: Copy }) {
   return (
     <section className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
       <div className="grid items-center gap-12 md:grid-cols-2">
-        <div className="relative">
-          <div className="absolute -left-6 -top-6 h-24 w-24 blob bg-[var(--ithemba-yellow)]/35 -z-10" />
-          <SmartImage
-            src={PHOTO_COMMUNITY}
-            label="Dogs and people in a Pondoland community"
-            className="aspect-[4/5] w-full"
-            rounded="rounded-[55%_45%_60%_40%/45%_55%_45%_55%]"
-            tone="earth"
-            showMissingBadge={false}
-          />
-          <div className="absolute -bottom-5 -right-5 hidden h-24 w-24 items-center justify-center rounded-full bg-[var(--ithemba-yellow)] text-[var(--ithemba-brown)] shadow-xl md:flex">
-            <PawPrint className="h-9 w-9" />
-          </div>
-        </div>
+        <PhotoCollage
+          variant="A"
+          pawCorner="tr"
+          photos={[
+            { src: PHOTO_COMMUNITY, label: "Dogs and people in a Pondoland community", tone: "earth" },
+            { src: PHOTO_HERO, label: "Local community team in Pondoland", tone: "warm" },
+            { src: PHOTO_CARE, label: "Owner and dog together at home", tone: "sun" },
+            { src: PHOTO_COMMUNITY, label: "Everyday life with animals in Pondoland", tone: "earth" },
+          ]}
+        />
         <div>
           <SectionHeading eyebrow={c.who.eyebrow} title={c.who.title} />
           <div className="mt-5 space-y-4 text-lg leading-relaxed text-foreground/85">
