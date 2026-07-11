@@ -1557,13 +1557,15 @@ function Nutrition({ c }: { c: Copy }) {
     <section className="mx-auto grid max-w-7xl gap-10 px-4 py-20 md:grid-cols-2 lg:px-8">
       <div className="relative">
         <div className="absolute -right-8 -top-8 h-28 w-28 blob bg-[var(--ithemba-yellow)]/40 -z-10" />
-        <SmartImage
-          src={PHOTO_MEAL}
-          label="Daily meals at the ECD Centre"
-          className="aspect-[4/5] w-full"
-          rounded="rounded-[2.5rem]"
-          tone="warm"
-          showMissingBadge={false}
+        <PhotoCollage
+          variant="B"
+          iconCorner="tl"
+          icon={ECD_ICONS.meals}
+          photos={[
+            { src: PHOTO_MEAL, label: "Daily meals at the ECD Centre", tone: "warm" },
+            { src: PHOTO_CHILD, label: "Children enjoying a meal", tone: "sun" },
+            { src: PHOTO_CLASSROOM, label: "Snack time in the classroom", tone: "earth" },
+          ]}
         />
       </div>
       <div className="flex flex-col justify-center">
