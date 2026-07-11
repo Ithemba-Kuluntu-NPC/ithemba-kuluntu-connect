@@ -701,7 +701,7 @@ function MediaPage() {
       {/* FEATURED */}
       {show.featured && (
         <section style={{ background: blueDeep }} className="text-white">
-          <div className="mx-auto max-w-6xl px-5 py-10 md:px-8 md:py-12 lg:pb-16">
+          <div className="mx-auto max-w-6xl px-5 py-10 pb-20 md:px-8 md:py-12 md:pb-24 lg:pb-20">
             <p className="text-3xl" style={{ color: yellow, fontFamily: script }}>
               {c.featured.eyebrow}
             </p>
