@@ -1322,7 +1322,8 @@ function Who({ c }: { c: Copy }) {
       <div className="grid items-center gap-12 md:grid-cols-2">
         <PhotoCollage
           variant="A"
-          pawCorner="tr"
+          iconCorner="tr"
+          icon={ICON.project}
           photos={[
             { src: PHOTO_COMMUNITY, label: "Dogs and people in a Pondoland community", tone: "earth" },
             { src: PHOTO_HERO, label: "Local community team in Pondoland", tone: "warm" },
@@ -1478,6 +1479,7 @@ function CareSection({
   outro,
   photo,
   photoLabel,
+  icon,
   reversed = false,
   background = "cream",
 }: {
@@ -1488,6 +1490,7 @@ function CareSection({
   outro?: string;
   photo: string;
   photoLabel: string;
+  icon: string;
   reversed?: boolean;
   background?: "cream" | "white" | "blue";
 }) {
@@ -1512,7 +1515,8 @@ function CareSection({
         <div className={`grid items-center gap-10 md:grid-cols-2 ${reversed ? "md:[&>*:first-child]:order-2" : ""}`}>
           <PhotoCollage
             variant={reversed ? "C" : "A"}
-            pawCorner={reversed ? "tl" : "tr"}
+            iconCorner={reversed ? "tl" : "tr"}
+            icon={icon}
             photos={[
               { src: photo, label: photoLabel, tone: "earth" },
               { src: PHOTO_CARE, label: `${photoLabel} — moment two`, tone: "warm" },
@@ -1582,7 +1586,8 @@ function Sterilisation({ c }: { c: Copy }) {
           <div className="relative">
             <PhotoCollage
               variant="A"
-              pawCorner="tl"
+              iconCorner="tl"
+              icon={ICON.sterilisation}
               photos={[
                 { src: PHOTO_CARE, label: "Animal welfare team preparing a sterilisation campaign", tone: "earth" },
                 { src: PHOTO_COMMUNITY, label: "Sterilisation campaign day in Pondoland", tone: "warm" },
@@ -1653,7 +1658,8 @@ function Education({ c }: { c: Copy }) {
         <div className="grid gap-10 md:grid-cols-2 md:items-center">
           <PhotoCollage
             variant="B"
-            pawCorner="tr"
+            iconCorner="tr"
+            icon={ICON.ownerEducation}
             photos={[
               { src: PHOTO_COMMUNITY, label: "Owner education in the community", tone: "earth" },
               { src: PHOTO_CARE, label: "Practical guidance with a local family", tone: "warm" },
