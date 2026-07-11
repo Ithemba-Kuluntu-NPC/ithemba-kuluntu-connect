@@ -84,7 +84,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <LanguageProvider>
-        <div className="flex min-h-screen flex-col">
+        <div className="flex min-h-[calc(100vh-var(--header-height))] flex-col pt-[var(--header-height)]">
           <Header />
           <main className="flex-1">
             <Outlet />

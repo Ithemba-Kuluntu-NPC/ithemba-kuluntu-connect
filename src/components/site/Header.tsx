@@ -56,12 +56,29 @@ export function Header() {
   const { lang, setLang, t: tr } = useLang();
   const path = useRouterState({ select: (s) => s.location.pathname });
   const menuRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
+  const barRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const on = () => setScrolled(window.scrollY > 12);
     on();
     window.addEventListener("scroll", on, { passive: true });
     return () => window.removeEventListener("scroll", on);
+  }, []);
+
+  // Measure header bar height so the root layout can reserve correct space.
+  // We measure the inner bar (not the full header with mobile menu) so the
+  // mobile menu can overlay content instead of pushing it down.
+  useEffect(() => {
+    const bar = barRef.current;
+    if (!bar) return;
+    const setHeight = () => {
+      document.documentElement.style.setProperty("--header-height", `${bar.offsetHeight}px`);
+    };
+    setHeight();
+    const observer = new ResizeObserver(setHeight);
+    observer.observe(bar);
+    return () => observer.disconnect();
   }, []);
 
   // Close dropdown on outside click / escape
@@ -84,13 +101,14 @@ export function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-40 w-full transition-all ${
+      ref={headerRef}
+      className={`fixed top-0 left-0 right-0 z-50 w-full transition-all ${
         scrolled
           ? "border-b border-black/5 bg-white/85 backdrop-blur-md shadow-[0_1px_0_rgba(0,0,0,0.04)]"
           : "bg-white/40 backdrop-blur"
       }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2.5 lg:px-8">
+      <div ref={barRef} className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2.5 lg:px-8">
         {/* Logo as home link — full uncropped logo, larger */}
         <Link to="/" className="flex shrink-0 items-center" aria-label="iThemba Kuluntu — home">
           <SmartLogo
