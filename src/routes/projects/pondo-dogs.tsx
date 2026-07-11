@@ -1582,19 +1582,20 @@ function Sterilisation({ c }: { c: Copy }) {
 
       <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
         <div className="grid items-center gap-12 md:grid-cols-2">
-          {/* photo bubble */}
+          {/* photo collage */}
           <div className="relative">
-            <div className="pointer-events-none absolute -left-6 -top-6 -z-10 h-28 w-28 blob bg-[var(--ithemba-yellow)]/25" />
-            <SmartImage
-              src={PHOTO_CARE}
-              label="Animal welfare team preparing a sterilisation campaign"
-              className="aspect-[4/5] w-full"
-              rounded="rounded-[55%_45%_60%_40%/45%_55%_45%_55%]"
-              tone="earth"
-              showMissingBadge={false}
+            <PhotoCollage
+              variant="A"
+              pawCorner="tl"
+              photos={[
+                { src: PHOTO_CARE, label: "Animal welfare team preparing a sterilisation campaign", tone: "earth" },
+                { src: PHOTO_COMMUNITY, label: "Sterilisation campaign day in Pondoland", tone: "warm" },
+                { src: PHOTO_HERO, label: "Recovery and follow-up care", tone: "sun" },
+                { src: PHOTO_CARE, label: "Veterinary support with local partners", tone: "earth" },
+              ]}
             />
             {/* clean icon badge */}
-            <div className="absolute -bottom-4 -right-2 flex items-center gap-2 rounded-full bg-white/95 px-3 py-2 text-[var(--ithemba-blue-dark)] shadow-lg ring-1 ring-[var(--ithemba-yellow)]/40 backdrop-blur">
+            <div className="absolute -bottom-4 -right-2 z-20 flex items-center gap-2 rounded-full bg-white/95 px-3 py-2 text-[var(--ithemba-blue-dark)] shadow-lg ring-1 ring-[var(--ithemba-yellow)]/40 backdrop-blur">
               <PdIcon src={ICON.sterilisation} className="h-7 w-7" />
               <span className="pr-1 text-xs font-semibold uppercase tracking-wide">
                 {c.sterilisation.eyebrow}
