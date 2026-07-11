@@ -290,6 +290,11 @@ const COPY: Record<Lang, Copy> = {
       ],
       outro:
         "The rhythm is simple, but powerful. Children know what to expect. Teachers can guide learning by age and need. Meals and rest are part of the programme, not an afterthought. Every part of the day helps children feel safe, seen and ready to grow.",
+      closedTitle: "A day at No.1 ECD",
+      closedIntro:
+        "Children thrive through rhythm, care and routine. Our daily schedule gives each child a predictable day with meals, play, learning, rest and care.",
+      openButton: "View the daily rhythm",
+      closeButton: "Hide daily rhythm",
     },
     nutrition: {
       eyebrow: "More than learning",
