@@ -1514,17 +1514,16 @@ function CareSection({
       )}
       <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
         <div className={`grid items-center gap-10 md:grid-cols-2 ${reversed ? "md:[&>*:first-child]:order-2" : ""}`}>
-          <div className="relative">
-            <div className={`absolute -left-6 -top-6 -z-10 h-24 w-24 blob ${isBlue ? "bg-[var(--ithemba-yellow)]/20" : "bg-[var(--ithemba-yellow)]/30"}`} />
-            <SmartImage
-              src={photo}
-              label={photoLabel}
-              className="aspect-[4/5] w-full"
-              rounded="rounded-[55%_45%_60%_40%/45%_55%_45%_55%]"
-              tone="earth"
-              showMissingBadge={false}
-            />
-          </div>
+          <PhotoCollage
+            variant={reversed ? "C" : "A"}
+            pawCorner={reversed ? "tl" : "tr"}
+            photos={[
+              { src: photo, label: photoLabel, tone: "earth" },
+              { src: PHOTO_CARE, label: `${photoLabel} — moment two`, tone: "warm" },
+              { src: PHOTO_COMMUNITY, label: `${photoLabel} — moment three`, tone: "sun" },
+              { src: PHOTO_HERO, label: `${photoLabel} — moment four`, tone: "earth" },
+            ]}
+          />
           <div>
             {isBlue ? (
               <>
