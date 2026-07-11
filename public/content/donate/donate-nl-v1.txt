@@ -1,0 +1,127 @@
+# ==========================================
+
+# DONATIEPAGINA CONFIGURATIE
+
+# TAAL: NEDERLANDS (nl)
+
+# VERSION: 1.1 (Maandelijks geven aangescherpt & danksectie toegevoegd)
+
+# ==========================================
+
+# ------------------------------------------
+
+# 01. HERO-SECTIE
+
+# ------------------------------------------
+
+hero.script_heading: Maandelijks geven
+hero.main_heading: Help sterke plattelandsgemeenschappen opbouwen
+hero.sub_heading: Met je maandelijkse donatie help je veilig water, vroege ontwikkeling, voedselzekerheid, dierenwelzijn en noodhulp duurzaam mogelijk te maken.
+
+# ------------------------------------------
+
+# 02. DONATIEFORMULIER
+
+# ------------------------------------------
+
+donation.tabs.monthly: Maandelijks
+donation.tabs.once: Eenmalig
+
+donation.amount.heading: Kies een bedrag
+donation.amount.1: €10
+donation.amount.2: €25
+donation.amount.3: €50
+donation.amount.4: €100
+donation.amount.5: €250
+donation.amount.custom: Eigen bedrag
+
+donation.direction.heading: Bestem je gift
+donation.direction.general: Waar de steun het hardst nodig is
+donation.direction.education: Onderwijs
+donation.direction.safe_water: Veilig water
+donation.direction.food_security: Voedselzekerheid
+donation.direction.animal_welfare: Dierenwelzijn
+donation.direction.disaster_relief: Noodhulp
+
+donation.fields.name: Naam
+donation.fields.email: E-mailadres
+donation.fields.country: Land
+
+donation.payment.heading: Betaalmethode
+donation.payment.card: Kaart
+donation.payment.paypal: PayPal
+donation.payment.bank_transfer: Bankoverschrijving
+
+donation.verify_note: Controleren vóór lancering: definitieve donatievaluta en bedragen
+
+donation.button.monthly: Doneer maandelijks €25
+
+# ------------------------------------------
+
+# 03. WAT MAANDELIJKS GEVEN MOGELIJK MAAKT
+
+# ------------------------------------------
+
+support.heading: Wat maandelijks geven mogelijk maakt
+
+support.item.1: Gratis, brede ECD-zorg voor 120 kinderen op het platteland
+support.item.2: Veilig water, WASH-educatie en opvolging bij huishoudens
+support.item.3: Dagelijkse voeding, leren en bescherming voor jonge kinderen
+support.item.4: Voedselhulp voor kwetsbare gezinnen die honger of crisis ervaren
+support.item.5: Dierenwelzijn op het platteland via outreach en zorg van Pondo Dogs
+support.item.6: Snelle noodhulp bij rampen, branden en acute tegenslag
+
+# ------------------------------------------
+
+# 04. VERTROUWENSPUNTEN
+
+# ------------------------------------------
+
+trust.item.1: Geregistreerde non-profitorganisatie
+trust.item.2: Geregistreerd als PBO en NPO
+trust.item.3: Transparante verslaggeving
+trust.item.4: Geworteld in de gemeenschap
+
+# ------------------------------------------
+
+# 05. DONATIE-INTEGRATIES
+
+# ------------------------------------------
+
+integrations.heading: Donatie-integraties
+
+integrations.missing.monthly_provider: Ontbrekende info: betaalprovider voor maandelijkse donaties
+integrations.missing.once_provider: Ontbrekende info: betaalprovider voor eenmalige donaties
+integrations.missing.german_iban: Ontbrekende info: Duitse IBAN
+integrations.missing.german_bic: Ontbrekende info: Duitse BIC
+integrations.missing.south_african_bank: Ontbrekende info: Zuid-Afrikaanse bankgegevens
+integrations.missing.paypal_link: Ontbrekende info: PayPal-donatielink
+integrations.missing.stripe_link: Ontbrekende info: Stripe-betaallink
+integrations.missing.receipt_process: Ontbrekende info: proces voor donatiebewijzen
+integrations.missing.section18a_wording: Ontbrekende info: formulering voor Section 18A-belastingcertificaat
+integrations.missing.german_receipt_wording: Ontbrekende info: formulering voor Duits donatiebewijs
+integrations.missing.cancellation_process: Ontbrekende info: opzegproces voor maandelijkse donaties
+
+# ------------------------------------------
+
+# 06. VERTROUWENSPUNTEN ONDER HET FORMULIER
+
+# ------------------------------------------
+
+form_trust.item.1: Veilige donatie
+form_trust.item.2: Maandelijkse steun
+form_trust.item.3: Transparante rapportage
+form_trust.item.4: Impact vanuit de gemeenschap
+
+# ------------------------------------------
+
+# 07. DANKSECTIE
+
+# ------------------------------------------
+
+thankyou.script_heading: Dank je wel
+thankyou.main_heading: Jouw steun houdt praktische zorg in beweging
+thankyou.text: Elke maandelijkse donatie helpt om gemeenschapsgericht werk betrouwbaar voort te zetten en kinderen, gezinnen, huishoudens en dieren te bereiken waar steun het hardst nodig is. Dank je wel dat je iThemba Kuluntu helpt om dit werk met continuïteit, zorg en vertrouwen voort te zetten.
+
+thankyou.cta.monthly: Maandelijks doneren
+thankyou.cta.once: Eenmalig doneren

@@ -1,0 +1,127 @@
+# ==========================================
+
+# KONFIGURATION DER SPENDENSEITE
+
+# SPRACHE: DEUTSCH (de)
+
+# VERSION: 1.1 (Monatliches Spenden überarbeitet & Dankesbereich hinzugefügt)
+
+# ==========================================
+
+# ------------------------------------------
+
+# 01. HERO-BEREICH
+
+# ------------------------------------------
+
+hero.script_heading: Monatlich geben
+hero.main_heading: Starke ländliche Gemeinschaften mit aufbauen
+hero.sub_heading: Deine monatliche Spende hilft, sicheres Wasser, frühe Förderung, Ernährungssicherheit, Tierschutz und Nothilfe verlässlich weiterzutragen.
+
+# ------------------------------------------
+
+# 02. SPENDENFORMULAR
+
+# ------------------------------------------
+
+donation.tabs.monthly: Monatlich
+donation.tabs.once: Einmalig
+
+donation.amount.heading: Betrag auswählen
+donation.amount.1: 10 €
+donation.amount.2: 25 €
+donation.amount.3: 50 €
+donation.amount.4: 100 €
+donation.amount.5: 250 €
+donation.amount.custom: Eigener Betrag
+
+donation.direction.heading: Spende zuordnen
+donation.direction.general: Dort, wo Hilfe am dringendsten gebraucht wird
+donation.direction.education: Bildung
+donation.direction.safe_water: Sicheres Wasser
+donation.direction.food_security: Ernährungssicherheit
+donation.direction.animal_welfare: Tierschutz
+donation.direction.disaster_relief: Nothilfe
+
+donation.fields.name: Name
+donation.fields.email: E-Mail
+donation.fields.country: Land
+
+donation.payment.heading: Zahlungsart
+donation.payment.card: Karte
+donation.payment.paypal: PayPal
+donation.payment.bank_transfer: Banküberweisung
+
+donation.verify_note: Vor dem Start prüfen: endgültige Spendenwährung und Beträge
+
+donation.button.monthly: 25 € monatlich spenden
+
+# ------------------------------------------
+
+# 03. WAS MONATLICHE SPENDEN ERMÖGLICHEN
+
+# ------------------------------------------
+
+support.heading: Was monatliche Spenden ermöglichen
+
+support.item.1: Kostenfreie ganzheitliche ECD-Betreuung für 120 Kinder im ländlichen Raum
+support.item.2: Sicheres Wasser, WASH-Bildung und Nachbetreuung in Haushalten
+support.item.3: Tägliche Mahlzeiten, Lernen und Schutz für kleine Kinder
+support.item.4: Ernährungshilfe für Familien, die von Hunger oder Krisen betroffen sind
+support.item.5: Tierschutz auf dem Land durch aufsuchende Arbeit und Versorgung von Pondo Dogs
+support.item.6: Schnelle Nothilfe bei Katastrophen, Bränden und akuter Not
+
+# ------------------------------------------
+
+# 04. VERTRAUENSPUNKTE
+
+# ------------------------------------------
+
+trust.item.1: Eingetragene gemeinnützige Organisation
+trust.item.2: PBO- und NPO-registriert
+trust.item.3: Transparente Berichterstattung
+trust.item.4: In der Gemeinschaft verwurzelt
+
+# ------------------------------------------
+
+# 05. SPENDEN-INTEGRATIONEN
+
+# ------------------------------------------
+
+integrations.heading: Spenden-Integrationen
+
+integrations.missing.monthly_provider: Fehlende Info: Zahlungsanbieter für monatliche Spenden
+integrations.missing.once_provider: Fehlende Info: Zahlungsanbieter für einmalige Spenden
+integrations.missing.german_iban: Fehlende Info: deutsche IBAN
+integrations.missing.german_bic: Fehlende Info: deutsche BIC
+integrations.missing.south_african_bank: Fehlende Info: südafrikanische Bankverbindung
+integrations.missing.paypal_link: Fehlende Info: PayPal-Spendenlink
+integrations.missing.stripe_link: Fehlende Info: Stripe-Zahlungslink
+integrations.missing.receipt_process: Fehlende Info: Ablauf für Spendenbescheinigungen
+integrations.missing.section18a_wording: Fehlende Info: Formulierung für Section-18A-Spendenbescheinigung
+integrations.missing.german_receipt_wording: Fehlende Info: Formulierung für deutsche Spendenbescheinigung
+integrations.missing.cancellation_process: Fehlende Info: Kündigungsprozess für monatliche Spenden
+
+# ------------------------------------------
+
+# 06. VERTRAUENSPUNKTE IM FORMULAR-FUSS
+
+# ------------------------------------------
+
+form_trust.item.1: Sichere Spende
+form_trust.item.2: Monatliche Unterstützung
+form_trust.item.3: Transparente Berichte
+form_trust.item.4: Gemeinschaftsverwurzelte Wirkung
+
+# ------------------------------------------
+
+# 07. DANKESBEREICH
+
+# ------------------------------------------
+
+thankyou.script_heading: Danke
+thankyou.main_heading: Deine Unterstützung hält praktische Hilfe in Bewegung
+thankyou.text: Jede monatliche Spende hilft, gemeinschaftsverwurzelte Arbeit verlässlich weiterzutragen und Kinder, Familien, Haushalte und Tiere dort zu erreichen, wo Unterstützung am dringendsten gebraucht wird. Danke, dass du iThemba Kuluntu dabei hilfst, diese Arbeit mit Beständigkeit, Fürsorge und Vertrauen fortzuführen.
+
+thankyou.cta.monthly: Monatlich spenden
+thankyou.cta.once: Einmalig spenden

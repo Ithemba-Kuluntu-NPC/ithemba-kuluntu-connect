@@ -1,0 +1,127 @@
+# ==========================================
+
+# DONATE PAGE CONFIGURATION
+
+# LANGUAGE: ENGLISH (en)
+
+# VERSION: 1.1 (Updated Monthly Giving Text & Thank You Section Added)
+
+# ==========================================
+
+# ------------------------------------------
+
+# 01. HERO SECTION
+
+# ------------------------------------------
+
+hero.script_heading: Give monthly
+hero.main_heading: Help build stronger rural communities
+hero.sub_heading: Your monthly donation helps sustain safe water, early learning, food security, animal welfare and emergency support.
+
+# ------------------------------------------
+
+# 02. DONATION FORM
+
+# ------------------------------------------
+
+donation.tabs.monthly: Monthly
+donation.tabs.once: One-time
+
+donation.amount.heading: Choose an amount
+donation.amount.1: €10
+donation.amount.2: €25
+donation.amount.3: €50
+donation.amount.4: €100
+donation.amount.5: €250
+donation.amount.custom: Custom
+
+donation.direction.heading: Direct your gift
+donation.direction.general: Where needed most
+donation.direction.education: Education
+donation.direction.safe_water: Safe Water
+donation.direction.food_security: Food Security
+donation.direction.animal_welfare: Animal Welfare
+donation.direction.disaster_relief: Disaster Relief
+
+donation.fields.name: Name
+donation.fields.email: Email
+donation.fields.country: Country
+
+donation.payment.heading: Payment Method
+donation.payment.card: Card
+donation.payment.paypal: PayPal
+donation.payment.bank_transfer: Bank Transfer
+
+donation.verify_note: Verify before launch: final donation currency and amounts
+
+donation.button.monthly: Donate €25 monthly
+
+# ------------------------------------------
+
+# 03. WHAT MONTHLY GIVING SUPPORTS
+
+# ------------------------------------------
+
+support.heading: What monthly giving supports
+
+support.item.1: Free holistic ECD care for 120 rural children
+support.item.2: Safe water access, WASH education and household follow-up
+support.item.3: Daily nutrition, learning and protection for young children
+support.item.4: Food support for vulnerable families facing hunger or crisis
+support.item.5: Rural animal welfare through Pondo Dogs outreach and care
+support.item.6: Rapid emergency relief when disasters or hardship hit
+
+# ------------------------------------------
+
+# 04. TRUST POINTS
+
+# ------------------------------------------
+
+trust.item.1: Registered nonprofit
+trust.item.2: PBO & NPO registered
+trust.item.3: Transparent reporting
+trust.item.4: Community-rooted
+
+# ------------------------------------------
+
+# 05. DONATION INTEGRATIONS
+
+# ------------------------------------------
+
+integrations.heading: Donation integrations
+
+integrations.missing.monthly_provider: Missing info: monthly donation payment provider
+integrations.missing.once_provider: Missing info: one-time donation payment provider
+integrations.missing.german_iban: Missing info: German IBAN
+integrations.missing.german_bic: Missing info: German BIC
+integrations.missing.south_african_bank: Missing info: South African bank account details
+integrations.missing.paypal_link: Missing info: PayPal donation link
+integrations.missing.stripe_link: Missing info: Stripe payment link
+integrations.missing.receipt_process: Missing info: donation receipt process
+integrations.missing.section18a_wording: Missing info: Section 18A tax certificate wording
+integrations.missing.german_receipt_wording: Missing info: German donation receipt wording
+integrations.missing.cancellation_process: Missing info: monthly donation cancellation process
+
+# ------------------------------------------
+
+# 06. FORM FOOTER TRUST POINTS
+
+# ------------------------------------------
+
+form_trust.item.1: Secure donation
+form_trust.item.2: Monthly giving
+form_trust.item.3: Transparent reporting
+form_trust.item.4: Community-rooted impact
+
+# ------------------------------------------
+
+# 07. THANK YOU SECTION
+
+# ------------------------------------------
+
+thankyou.script_heading: Thank you
+thankyou.main_heading: Your support helps keep practical care moving
+thankyou.text: Every monthly gift helps sustain community-rooted work that reaches children, families, households and animals where support is needed most. Thank you for helping iThemba Kuluntu continue this work with consistency, care and trust.
+
+thankyou.cta.monthly: Donate Monthly
+thankyou.cta.once: Give Once
