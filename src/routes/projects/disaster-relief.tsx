@@ -117,7 +117,7 @@ const COPY: Record<Lang, Copy> = {
   en: {
     back: "All projects",
     hero: {
-      eyebrow: "Disaster Relief",
+      eyebrow: "When Crisis Hits",
       title: "Disaster Relief",
       text:
         "Practical emergency support for families in Cwebeni and surrounding communities when crisis hits, from floods, fires and sudden hardship to urgent household needs, medical situations and recovery support.",
