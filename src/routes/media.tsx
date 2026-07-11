@@ -430,9 +430,9 @@ function FeaturedCard({
   const thumbSrc = yt ? ytThumb(yt) : null;
   const typeLabel = isVideo ? c.type.video : c.type.article;
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-[1.75rem] bg-white shadow-[0_14px_50px_-18px_rgb(15_42_140/0.28)] ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-xl">
+    <article className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-[0_10px_36px_-14px_rgb(15_42_140/0.26)] ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-xl">
       <ExternalA href={item.url} ariaLabel={item.title} className="relative block">
-        <div className="relative aspect-[16/9] w-full overflow-hidden bg-[color:var(--ithemba-cream,#fdf7ed)]">
+        <div className="relative h-32 w-full overflow-hidden bg-[color:var(--ithemba-cream,#fdf7ed)] sm:h-28 lg:h-24">
           <ThumbWithFallback
             src={thumbSrc}
             alt=""
@@ -442,28 +442,28 @@ function FeaturedCard({
           />
           {isVideo && (
             <span className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-90 transition group-hover:opacity-100">
-              <PlayCircle className="h-16 w-16 text-white drop-shadow-lg" />
+              <PlayCircle className="h-10 w-10 text-white drop-shadow-lg" />
             </span>
           )}
-          <span className="absolute left-3 top-3">
+          <span className="absolute left-2.5 top-2.5">
             <TypeBadge label={typeLabel} tone={isVideo ? "yellow" : "blue"} />
           </span>
         </div>
       </ExternalA>
-      <div className="flex flex-1 flex-col gap-2 p-5">
-        <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[color:var(--ithemba-blue,#1d4e89)]">
-          <span>{item.publisher}</span>
+      <div className="flex flex-1 flex-col gap-1.5 p-4">
+        <div className="flex flex-wrap items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-[color:var(--ithemba-blue,#1d4e89)]">
+          <span className="truncate max-w-[40%]">{item.publisher}</span>
           <span className="h-1 w-1 rounded-full bg-[color:var(--ithemba-blue,#1d4e89)]/40" />
           <span className="text-foreground/60">{item.tag}</span>
         </div>
-        <h3 className="font-display text-xl font-bold leading-snug text-[color:var(--ithemba-blue-deepest,#0b2545)] md:text-2xl">
+        <h3 className="line-clamp-3 font-display text-sm font-bold leading-snug text-[color:var(--ithemba-blue-deepest,#0b2545)] md:text-[15px]">
           {item.title}
         </h3>
         <div className="mt-auto pt-2">
-          <Button asChild size="sm" className="rounded-full">
+          <Button asChild size="sm" className="h-8 rounded-full text-xs">
             <ExternalA href={item.url}>
               {isVideo ? c.featured.watch : c.featured.read}
-              <ExternalLink className="ml-1.5 h-3.5 w-3.5" />
+              <ExternalLink className="ml-1 h-3 w-3" />
             </ExternalA>
           </Button>
         </div>
