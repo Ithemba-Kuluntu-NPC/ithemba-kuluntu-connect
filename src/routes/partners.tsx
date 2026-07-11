@@ -120,7 +120,7 @@ const COPY: Record<"en" | "de" | "nl", Copy> = {
         { badge: "education", label: "Early childhood development" },
         { badge: "safe-water", label: "Safe water and WASH education" },
         { badge: "food-security", label: "Food security" },
-        { badge: "none", label: "Greenhouse and local nutrition", icon: "Sparkles" },
+        
         { badge: "animal-welfare", label: "Animal welfare" },
         { badge: "disaster-relief", label: "Disaster relief" },
         { badge: "community-health", label: "Community health" },
@@ -209,7 +209,7 @@ const COPY: Record<"en" | "de" | "nl", Copy> = {
         { badge: "education", label: "Frühkindliche Bildung" },
         { badge: "safe-water", label: "Sicheres Wasser und WASH-Bildung" },
         { badge: "food-security", label: "Ernährungssicherheit" },
-        { badge: "none", label: "Gewächshaus und lokale Ernährung", icon: "Sparkles" },
+        
         { badge: "animal-welfare", label: "Tierschutz" },
         { badge: "disaster-relief", label: "Katastrophenhilfe" },
         { badge: "community-health", label: "Gemeindegesundheit" },
@@ -298,7 +298,7 @@ const COPY: Record<"en" | "de" | "nl", Copy> = {
         { badge: "education", label: "Vroege kinderontwikkeling" },
         { badge: "safe-water", label: "Veilig water en WASH-educatie" },
         { badge: "food-security", label: "Voedselzekerheid" },
-        { badge: "none", label: "Greenhouse en lokale voeding", icon: "Sparkles" },
+        
         { badge: "animal-welfare", label: "Dierenwelzijn" },
         { badge: "disaster-relief", label: "Noodhulp" },
         { badge: "community-health", label: "Gemeenschapsgezondheid" },
