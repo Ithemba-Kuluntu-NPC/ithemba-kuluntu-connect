@@ -696,15 +696,16 @@ function MediaPage() {
           </div>
         </div>
       </section>
+      {show.featured && <Wave from={cream} to={blueDeep} />}
 
       {/* FEATURED */}
       {show.featured && (
-        <section style={{ background: cream }}>
+        <section style={{ background: blueDeep }} className="text-white">
           <div className="mx-auto max-w-6xl px-5 py-10 md:px-8 md:py-14">
-            <p className="text-3xl" style={{ color: blue, fontFamily: script }}>
+            <p className="text-3xl" style={{ color: yellow, fontFamily: script }}>
               {c.featured.eyebrow}
             </p>
-            <h2 className="mt-1 font-display text-3xl font-bold text-[color:var(--ithemba-blue-deepest,#0b2545)] md:text-4xl">
+            <h2 className="mt-1 font-display text-3xl font-bold text-white md:text-4xl">
               {c.featured.title}
             </h2>
             <div className="mt-7 grid gap-5 md:grid-cols-2">
@@ -716,7 +717,7 @@ function MediaPage() {
         </section>
       )}
 
-      {show.featured && show.broadcast && <Wave from={cream} to="#ffffff" />}
+      {show.featured && show.broadcast && <Wave from={blueDeep} to="#ffffff" />}
 
       {/* BROADCAST */}
       {show.broadcast && (
