@@ -487,6 +487,11 @@ const COPY: Record<Lang, Copy> = {
       ],
       outro:
         "Der Tagesrhythmus ist einfach, aber wirkungsvoll. Kinder wissen, was sie erwartet. Lehrkräfte können Lernen nach Alter und Bedarf begleiten. Mahlzeiten und Ruhezeiten sind Teil des pädagogischen Alltags, nicht nur Ergänzung. Jeder Abschnitt des Tages hilft Kindern, sich sicher, gesehen und bereit zum Wachsen zu fühlen.",
+      closedTitle: "Ein Tag im No.1 ECD",
+      closedIntro:
+        "Kinder gedeihen durch Rhythmus, Fürsorge und verlässliche Routinen. Unser Tagesplan gibt jedem Kind einen vorhersehbaren Tag mit Mahlzeiten, Spiel, Lernen, Ruhe und Zuwendung.",
+      openButton: "Tagesrhythmus anzeigen",
+      closeButton: "Tagesrhythmus ausblenden",
     },
     nutrition: {
       eyebrow: "Mehr als Lernen",
