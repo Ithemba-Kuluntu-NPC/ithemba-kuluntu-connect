@@ -610,17 +610,14 @@ function Hero({ c }: { c: Copy }) {
             <source src={HERO_VIDEO} type="video/mp4" />
           </video>
         ) : (
-          <SmartImage
+          <img
             src={HERO_POSTER}
-            label="Food Security — community food support in Cwebeni"
-            className="h-full w-full"
-            rounded="rounded-none"
-            tone="warm"
-            showMissingBadge={false}
+            alt="Food Security — community food support in Cwebeni"
+            className="h-full w-full object-cover"
+            onError={(e) => {
+              e.currentTarget.src = FALLBACK_POSTER;
+            }}
           />
-        )}
-        {!showVideo && (
-          <img src={FALLBACK_POSTER} alt="" aria-hidden className="absolute inset-0 h-full w-full object-cover -z-10" />
         )}
         <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/85 via-[var(--ithemba-blue-dark)]/65 to-[var(--ithemba-blue)]/40" />
         <div className="absolute right-[-6rem] top-[-6rem] h-[28rem] w-[28rem] sun-glow" />
