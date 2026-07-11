@@ -2092,6 +2092,7 @@ function PondoDogsPage() {
         items={c.medical.items}
         photo={PHOTO_CARE}
         photoLabel="Caring for a sick or injured animal"
+        icon={ICON.medicalCare}
         background="blue"
       />
       <CareSection
@@ -2101,6 +2102,7 @@ function PondoDogsPage() {
         items={c.preventive.items}
         photo={PHOTO_COMMUNITY}
         photoLabel="Preventive care for animals"
+        icon={ICON.preventiveCare}
         reversed
         background="white"
       />
@@ -2113,6 +2115,7 @@ function PondoDogsPage() {
         outro={c.home.outro}
         photo={PHOTO_COMMUNITY}
         photoLabel="Home visit in a Pondoland village"
+        icon={ICON.homeBased}
         background="cream"
       />
       <CareSection
@@ -2121,6 +2124,7 @@ function PondoDogsPage() {
         body={c.food.body}
         photo={PHOTO_CARE}
         photoLabel="Food and shelter support for animals"
+        icon={ICON.foodAndShelter}
         reversed
         background="blue"
       />
