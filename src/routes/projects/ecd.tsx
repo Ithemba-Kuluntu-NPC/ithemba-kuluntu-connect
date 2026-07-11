@@ -1242,13 +1242,16 @@ function Building({ c }: { c: Copy }) {
         </div>
         <div className="relative">
           <div className="absolute -right-6 -top-6 h-24 w-24 blob-3 bg-[var(--ithemba-blue)]/15 -z-10" />
-          <SmartImage
-            src={PHOTO_CLASSROOM}
-            label="No.1 ECD Centre — classroom"
-            className="aspect-[4/3] w-full"
-            rounded="rounded-[2.5rem]"
-            tone="blue"
-            showMissingBadge={false}
+          <PhotoCollage
+            variant="C"
+            iconCorner="tr"
+            icon={ECD_ICONS.builtWith}
+            photos={[
+              { src: PHOTO_CLASSROOM, label: "Completed ECD classroom", tone: "blue" },
+              { src: PHOTO_CHILD, label: "Children at the new centre", tone: "sun" },
+              { src: PHOTO_CLASSROOM, label: "Inside the ECD building", tone: "warm" },
+              { src: PHOTO_MEAL, label: "Daily care in the centre", tone: "earth" },
+            ]}
           />
         </div>
       </div>
