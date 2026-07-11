@@ -1608,12 +1608,12 @@ function Rhythm({ c }: { c: Copy }) {
 
         <div
           id="rhythm-panel"
-          className="grid overflow-hidden transition-all duration-500 ease-in-out"
+          className="overflow-hidden transition-[max-height] duration-500 ease-in-out"
           style={{
-            gridTemplateRows: open ? "1fr" : "0fr",
+            maxHeight: open ? contentHeight : 0,
           }}
         >
-          <div className="min-h-0 overflow-hidden">
+          <div ref={contentRef}>
             {timeline}
           </div>
         </div>
