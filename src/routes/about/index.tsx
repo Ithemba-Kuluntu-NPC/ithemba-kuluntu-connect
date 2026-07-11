@@ -565,7 +565,7 @@ function HeroVideo({ c }: { c: AboutContent }) {
       </div>
 
       {/* wave divider */}
-      <svg className="block w-full" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden>
+      <svg className="block w-full -mb-px" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden>
         <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="var(--background)" />
       </svg>
     </section>
