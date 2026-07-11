@@ -1,7 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Instagram, Facebook, Youtube, Mail, Phone, MapPin } from "lucide-react";
 import { useState } from "react";
-import { Placeholder } from "./MissingInfo";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useLang } from "./LanguageProvider";
@@ -101,7 +100,6 @@ export function Footer() {
               {sent ? (lang === "en" ? "Thank you!" : "Danke!") : (lang === "en" ? "Subscribe" : "Abonnieren")}
             </Button>
           </form>
-          <Placeholder text="newsletter platform" />
 
           <div className="mt-5 flex flex-wrap gap-3">
             <a
