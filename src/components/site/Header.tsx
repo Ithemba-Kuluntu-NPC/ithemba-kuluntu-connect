@@ -72,13 +72,20 @@ export function Header() {
   useEffect(() => {
     const bar = barRef.current;
     if (!bar) return;
+    let raf = 0;
     const setHeight = () => {
-      document.documentElement.style.setProperty("--header-height", `${bar.offsetHeight}px`);
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        document.documentElement.style.setProperty("--header-height", `${bar.getBoundingClientRect().height}px`);
+      });
     };
     setHeight();
     const observer = new ResizeObserver(setHeight);
     observer.observe(bar);
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(raf);
+    };
   }, []);
 
   // Close dropdown on outside click / escape

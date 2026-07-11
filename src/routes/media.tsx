@@ -179,7 +179,7 @@ type Copy = {
 const COPY: Record<Lang, Copy> = {
   en: {
     hero: {
-      eyebrow: "Media",
+      eyebrow: "In the News",
       title: "Media and Stories",
       text: "News coverage, video features and stories from iThemba Kuluntu’s work in rural South Africa.",
     },
