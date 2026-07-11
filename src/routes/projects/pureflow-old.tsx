@@ -63,7 +63,7 @@ import { ImpactCounters } from "@/components/blocks/ImpactCounters";
 import { assets } from "@/data/assets";
 import type { Lang } from "@/data/content";
 
-export const Route = createFileRoute("/projects/pureflow")({
+export const Route = createFileRoute("/projects/pureflow-old")({
   component: PureFlowPage,
 });
 
