@@ -66,16 +66,18 @@ export function Header() {
     return () => window.removeEventListener("scroll", on);
   }, []);
 
-  // Measure header height so the root layout can reserve correct space
+  // Measure header bar height so the root layout can reserve correct space.
+  // We measure the inner bar (not the full header with mobile menu) so the
+  // mobile menu can overlay content instead of pushing it down.
   useEffect(() => {
-    const header = headerRef.current;
-    if (!header) return;
+    const bar = barRef.current;
+    if (!bar) return;
     const setHeight = () => {
-      document.documentElement.style.setProperty("--header-height", `${header.offsetHeight}px`);
+      document.documentElement.style.setProperty("--header-height", `${bar.offsetHeight}px`);
     };
     setHeight();
     const observer = new ResizeObserver(setHeight);
-    observer.observe(header);
+    observer.observe(bar);
     return () => observer.disconnect();
   }, []);
 
