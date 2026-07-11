@@ -504,13 +504,13 @@ function HeroVideo({ c }: { c: AboutContent }) {
             <source src={HERO_VIDEO} type="video/mp4" />
           </video>
         ) : (
-          <SmartImage
+          <img
             src={HERO_POSTER}
-            label="iThemba Kuluntu team — community hero"
-            className="h-full w-full"
-            rounded="rounded-none"
-            tone="earth"
-            showMissingBadge={false}
+            alt="iThemba Kuluntu team — community hero"
+            className="h-full w-full object-cover"
+            onError={(e) => {
+              e.currentTarget.src = assets.photos.about.hero;
+            }}
           />
         )}
         {/* Deep-blue overlays for legibility */}
