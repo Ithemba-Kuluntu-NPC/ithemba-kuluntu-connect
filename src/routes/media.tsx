@@ -555,34 +555,57 @@ function VideoCard({
   );
 }
 
-function ArticleRow({ a, label, typeLabel }: { a: ArticleItem; label: string; typeLabel: string }) {
+function publisherBadgeLabel(name: string) {
+  const map: Record<string, string> = {
+    "News24": "N24",
+    "Daily Dispatch": "DD",
+    "GoodThingsGuy": "GTG",
+    "Daily Maverick": "DM",
+    "UNICEF South Africa": "US",
+    "South African Human Rights Commission": "SAHRC",
+  };
+  return map[name] || publisherInitials(name);
+}
+
+function ArticleCard({ a, label, typeLabel }: { a: ArticleItem; label: string; typeLabel: string }) {
+  const badge = publisherBadgeLabel(a.publisher);
+  const longBadge = badge.length > 4;
   return (
-    <li className="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-[0_6px_24px_-12px_rgb(15_42_140/0.18)] ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-md md:flex-row md:items-stretch">
-      <ExternalA href={a.url} ariaLabel={a.title} className="relative block md:w-52 md:flex-none">
-        <div className="relative aspect-[16/9] w-full overflow-hidden md:h-full">
-          <BrandedFallback publisher={a.publisher} typeLabel={typeLabel} tone="cream" />
-          <span className="absolute left-2 top-2">
-            <TypeBadge label={typeLabel} tone="blue" />
-          </span>
+    <li className="group flex flex-col rounded-2xl bg-white p-4 shadow-[0_6px_20px_-12px_rgb(15_42_140/0.18)] ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-md">
+      <div className="flex items-start gap-3">
+        <div
+          className="flex h-10 w-10 flex-none items-center justify-center rounded-full"
+          style={{ background: blueDeep, color: "#fff" }}
+          aria-label={typeLabel}
+        >
+          {longBadge ? (
+            <Newspaper className="h-5 w-5" />
+          ) : (
+            <span className="text-[10px] font-bold uppercase leading-none">{badge}</span>
+          )}
         </div>
-      </ExternalA>
-      <div className="flex flex-1 flex-col gap-2 p-4 md:flex-row md:items-center md:gap-6">
-        <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-[color:var(--ithemba-blue,#1d4e89)] md:w-40 md:flex-none">
-          {a.date && <span className="whitespace-nowrap">{a.date}</span>}
-          {a.date && <span className="h-1 w-1 rounded-full bg-[color:var(--ithemba-blue,#1d4e89)]/40" />}
-          <span className="truncate">{a.publisher}</span>
+        <div className="flex-1 min-w-0">
+          <div className="flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-[color:var(--ithemba-blue,#1d4e89)]">
+            <span className="truncate">{a.publisher}</span>
+            {a.date && (
+              <>
+                <span className="h-1 w-1 rounded-full bg-[color:var(--ithemba-blue,#1d4e89)]/40" />
+                <span className="whitespace-nowrap text-foreground/60">{a.date}</span>
+              </>
+            )}
+          </div>
+          <h3 className="mt-1 font-display text-[15px] font-semibold leading-snug text-[color:var(--ithemba-blue-deepest,#0b2545)] md:text-base">
+            {a.title}
+          </h3>
         </div>
-        <h3 className="flex-1 font-display text-[15px] font-semibold leading-snug text-[color:var(--ithemba-blue-deepest,#0b2545)] md:text-base">
-          {a.title}
-        </h3>
-        <div className="md:flex-none">
-          <Button asChild size="sm" variant="outline" className="rounded-full">
-            <ExternalA href={a.url}>
-              {label}
-              <ExternalLink className="ml-1.5 h-3.5 w-3.5" />
-            </ExternalA>
-          </Button>
-        </div>
+      </div>
+      <div className="mt-3">
+        <Button asChild size="sm" variant="outline" className="rounded-full">
+          <ExternalA href={a.url}>
+            {label}
+            <ExternalLink className="ml-1.5 h-3.5 w-3.5" />
+          </ExternalA>
+        </Button>
       </div>
     </li>
   );
@@ -673,15 +696,16 @@ function MediaPage() {
           </div>
         </div>
       </section>
+      {show.featured && <Wave from={cream} to={blueDeep} />}
 
       {/* FEATURED */}
       {show.featured && (
-        <section style={{ background: cream }}>
+        <section style={{ background: blueDeep }} className="text-white">
           <div className="mx-auto max-w-6xl px-5 py-10 md:px-8 md:py-14">
-            <p className="text-3xl" style={{ color: blue, fontFamily: script }}>
+            <p className="text-3xl" style={{ color: yellow, fontFamily: script }}>
               {c.featured.eyebrow}
             </p>
-            <h2 className="mt-1 font-display text-3xl font-bold text-[color:var(--ithemba-blue-deepest,#0b2545)] md:text-4xl">
+            <h2 className="mt-1 font-display text-3xl font-bold text-white md:text-4xl">
               {c.featured.title}
             </h2>
             <div className="mt-7 grid gap-5 md:grid-cols-2">
@@ -693,7 +717,7 @@ function MediaPage() {
         </section>
       )}
 
-      {show.featured && show.broadcast && <Wave from={cream} to="#ffffff" />}
+      {show.featured && show.broadcast && <Wave from={blueDeep} to="#ffffff" />}
 
       {/* BROADCAST */}
       {show.broadcast && (
@@ -726,9 +750,9 @@ function MediaPage() {
             <h2 className="mt-1 font-display text-3xl font-bold text-[color:var(--ithemba-blue-deepest,#0b2545)] md:text-4xl">
               {c.articles.title}
             </h2>
-            <ul className="mt-7 flex flex-col gap-3">
+            <ul className="mt-7 grid gap-3 md:grid-cols-2">
               {ARTICLES.map((a) => (
-                <ArticleRow key={a.url} a={a} label={c.articles.read} typeLabel={c.type.article} />
+                <ArticleCard key={a.url} a={a} label={c.articles.read} typeLabel={c.type.article} />
               ))}
             </ul>
           </div>
