@@ -120,7 +120,7 @@ const COPY: Record<"en" | "de" | "nl", Copy> = {
         { badge: "education", label: "Early childhood development" },
         { badge: "safe-water", label: "Safe water and WASH education" },
         { badge: "food-security", label: "Food security" },
-        { badge: "none", label: "Greenhouse and local nutrition", icon: "Sparkles" },
+        
         { badge: "animal-welfare", label: "Animal welfare" },
         { badge: "disaster-relief", label: "Disaster relief" },
         { badge: "community-health", label: "Community health" },
@@ -209,7 +209,7 @@ const COPY: Record<"en" | "de" | "nl", Copy> = {
         { badge: "education", label: "Frühkindliche Bildung" },
         { badge: "safe-water", label: "Sicheres Wasser und WASH-Bildung" },
         { badge: "food-security", label: "Ernährungssicherheit" },
-        { badge: "none", label: "Gewächshaus und lokale Ernährung", icon: "Sparkles" },
+        
         { badge: "animal-welfare", label: "Tierschutz" },
         { badge: "disaster-relief", label: "Katastrophenhilfe" },
         { badge: "community-health", label: "Gemeindegesundheit" },
@@ -298,7 +298,7 @@ const COPY: Record<"en" | "de" | "nl", Copy> = {
         { badge: "education", label: "Vroege kinderontwikkeling" },
         { badge: "safe-water", label: "Veilig water en WASH-educatie" },
         { badge: "food-security", label: "Voedselzekerheid" },
-        { badge: "none", label: "Greenhouse en lokale voeding", icon: "Sparkles" },
+        
         { badge: "animal-welfare", label: "Dierenwelzijn" },
         { badge: "disaster-relief", label: "Noodhulp" },
         { badge: "community-health", label: "Gemeenschapsgezondheid" },
@@ -427,24 +427,28 @@ function PartnersPage() {
     <main>
       {/* ============ HERO ============ */}
       <section className="relative isolate overflow-hidden">
-        <div className="relative h-[78vh] min-h-[520px] w-full">
+        <div className="relative h-[72vh] min-h-[500px] w-full">
           <HeroVideo />
-          {/* overlays */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/70" />
           <div
             className="absolute inset-0"
-            style={{ background: "radial-gradient(60% 80% at 20% 30%, rgba(11,37,69,0.45), transparent 70%)" }}
+            style={{ background: "radial-gradient(60% 80% at 20% 30%, rgba(11,37,69,0.5), transparent 70%)" }}
           />
-          {/* content */}
-          <div className="relative z-10 mx-auto flex h-full max-w-6xl flex-col justify-end px-5 pb-16 pt-24 md:px-8 md:pb-24">
+          <div className="relative z-10 mx-auto flex h-full max-w-6xl flex-col justify-end px-5 pb-14 pt-24 md:px-8 md:pb-20">
             <p
               className="text-2xl text-[var(--ithemba-yellow,#f5c64a)] md:text-3xl"
               style={{ fontFamily: '"Caveat", "Kalam", cursive' }}
             >
               {c.hero.eyebrow}
             </p>
-            <h1 className="mt-1 max-w-3xl font-display text-4xl font-bold leading-tight text-white md:text-6xl">
-              {c.hero.title}
+            <h1 className="mt-2 max-w-4xl font-display text-4xl font-bold leading-tight text-white md:text-6xl">
+              <span className="block">{c.hero.title.replace(/\s*iThemba Kuluntu\s*/i, "").trim()}</span>
+              <img
+                src="/assets/logos/ithemba-text-white.png"
+                alt="iThemba Kuluntu"
+                className="mt-3 h-12 w-auto md:h-20"
+                loading="eager"
+              />
             </h1>
             <p className="mt-5 max-w-2xl text-base text-white/90 md:text-lg">{c.hero.text}</p>
             <div className="mt-7 flex flex-wrap gap-3">
@@ -463,34 +467,34 @@ function PartnersPage() {
             </div>
           </div>
         </div>
-        <Wave from="rgba(0,0,0,0)" to={cream} />
+        <Wave from="rgba(0,0,0,0)" to={blueDeep} />
       </section>
 
-      {/* ============ WHY ============ */}
-      <section style={{ background: cream }} className="relative">
-        <div className="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28">
+      {/* ============ WHY — deep blue ============ */}
+      <section style={{ background: blueDeep }} className="text-white">
+        <div className="mx-auto max-w-6xl px-5 py-14 md:px-8 md:py-20">
           <p
-            className="text-3xl text-[color:var(--ithemba-blue,#1d4e89)]"
+            className="text-3xl text-[var(--ithemba-yellow,#f5c64a)]"
             style={{ fontFamily: '"Caveat", "Kalam", cursive' }}
           >
             {c.why.eyebrow}
           </p>
-          <h2 className="mt-1 max-w-3xl font-display text-3xl font-bold text-[color:var(--ithemba-blue-deepest,#0b2545)] md:text-4xl">
+          <h2 className="mt-1 max-w-3xl font-display text-3xl font-bold md:text-4xl">
             {c.why.title}
           </h2>
-          <div className="mt-5 grid max-w-3xl gap-4 text-[15px] leading-relaxed text-foreground/85 md:text-base">
+          <div className="mt-4 grid max-w-3xl gap-3 text-[15px] leading-relaxed text-white/85 md:text-base">
             {c.why.body.map((p, i) => (<p key={i}>{p}</p>))}
           </div>
 
-          <ul className="mt-10 grid gap-x-8 gap-y-6 md:grid-cols-2">
+          <ul className="mt-8 grid gap-x-6 gap-y-3 sm:grid-cols-2 lg:grid-cols-3">
             {c.why.points.map((pt) => {
               const Icon = WHY_ICONS[pt.icon];
               return (
-                <li key={pt.label} className="flex items-start gap-4">
-                  <span className="mt-0.5 flex h-11 w-11 flex-none items-center justify-center rounded-full bg-[color:var(--ithemba-blue,#1d4e89)]/10 text-[color:var(--ithemba-blue,#1d4e89)]">
+                <li key={pt.label} className="flex items-start gap-3">
+                  <span className="mt-0.5 flex h-10 w-10 flex-none items-center justify-center rounded-full border border-[var(--ithemba-yellow,#f5c64a)]/50 text-[var(--ithemba-yellow,#f5c64a)]">
                     <Icon className="h-5 w-5" />
                   </span>
-                  <span className="pt-1.5 text-[15px] font-medium text-foreground md:text-base">{pt.label}</span>
+                  <span className="pt-1.5 text-[15px] font-medium text-white/95">{pt.label}</span>
                 </li>
               );
             })}
@@ -498,48 +502,48 @@ function PartnersPage() {
         </div>
       </section>
 
+      <Wave from={blueDeep} to={cream} />
+
       {/* ============ OPPORTUNITIES ============ */}
       <section style={{ background: cream }} className="relative">
-        <div className="mx-auto max-w-6xl px-5 pb-20 md:px-8 md:pb-28">
-          <div className="border-t border-[color:var(--ithemba-blue-deepest,#0b2545)]/10 pt-16">
-            <p
-              className="text-3xl text-[color:var(--ithemba-blue,#1d4e89)]"
-              style={{ fontFamily: '"Caveat", "Kalam", cursive' }}
-            >
-              {c.opportunities.eyebrow}
-            </p>
-            <h2 className="mt-1 max-w-3xl font-display text-3xl font-bold text-[color:var(--ithemba-blue-deepest,#0b2545)] md:text-4xl">
-              {c.opportunities.title}
-            </h2>
-            <p className="mt-4 max-w-2xl text-[15px] text-foreground/80 md:text-base">{c.opportunities.intro}</p>
+        <div className="mx-auto max-w-6xl px-5 py-14 md:px-8 md:py-20">
+          <p
+            className="text-3xl text-[color:var(--ithemba-blue,#1d4e89)]"
+            style={{ fontFamily: '"Caveat", "Kalam", cursive' }}
+          >
+            {c.opportunities.eyebrow}
+          </p>
+          <h2 className="mt-1 max-w-3xl font-display text-3xl font-bold text-[color:var(--ithemba-blue-deepest,#0b2545)] md:text-4xl">
+            {c.opportunities.title}
+          </h2>
+          <p className="mt-3 max-w-2xl text-[15px] text-foreground/80 md:text-base">{c.opportunities.intro}</p>
 
-            <ul className="mt-10 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 lg:grid-cols-4">
-              {c.opportunities.items.map((it) => {
-                const meta = it.badge !== "none" ? focusAreaBadgeMeta[it.badge] : null;
-                const Fallback = it.icon ? OPP_FALLBACK_ICONS[it.icon] : Sparkles;
-                return (
-                  <li key={it.label} className="flex flex-col items-center text-center">
-                    {meta ? (
-                      <img
-                        src={meta.src}
-                        alt=""
-                        aria-hidden
-                        className="h-16 w-16 object-contain drop-shadow-[0_2px_6px_rgba(0,0,0,0.18)] md:h-20 md:w-20"
-                        loading="lazy"
-                      />
-                    ) : (
-                      <span className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-emerald-700 text-white shadow-md md:h-20 md:w-20">
-                        <Fallback className="h-8 w-8" />
-                      </span>
-                    )}
-                    <span className="mt-3 text-sm font-medium text-foreground md:text-[15px]">{it.label}</span>
-                  </li>
-                );
-              })}
-            </ul>
+          <ul className="mt-8 grid grid-cols-3 gap-x-4 gap-y-6 sm:grid-cols-4 lg:grid-cols-7">
+            {c.opportunities.items.map((it) => {
+              const meta = it.badge !== "none" ? focusAreaBadgeMeta[it.badge] : null;
+              const Fallback = it.icon ? OPP_FALLBACK_ICONS[it.icon] : Sparkles;
+              return (
+                <li key={it.label} className="flex flex-col items-center text-center">
+                  {meta ? (
+                    <img
+                      src={meta.src}
+                      alt=""
+                      aria-hidden
+                      className="h-14 w-14 object-contain md:h-16 md:w-16"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <span className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-emerald-700 text-white md:h-16 md:w-16">
+                      <Fallback className="h-7 w-7" />
+                    </span>
+                  )}
+                  <span className="mt-2 text-xs font-medium leading-snug text-foreground md:text-[13px]">{it.label}</span>
+                </li>
+              );
+            })}
+          </ul>
 
-            <p className="mt-10 max-w-2xl text-[15px] text-foreground/80 md:text-base">{c.opportunities.outro}</p>
-          </div>
+          <p className="mt-8 max-w-2xl text-[15px] text-foreground/80 md:text-base">{c.opportunities.outro}</p>
         </div>
       </section>
 
@@ -547,7 +551,7 @@ function PartnersPage() {
 
       {/* ============ CURRENT PARTNERS ============ */}
       <section className="bg-white">
-        <div className="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28">
+        <div className="mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
           <p
             className="text-3xl text-[color:var(--ithemba-blue,#1d4e89)]"
             style={{ fontFamily: '"Caveat", "Kalam", cursive' }}
@@ -557,9 +561,9 @@ function PartnersPage() {
           <h2 className="mt-1 max-w-3xl font-display text-3xl font-bold text-[color:var(--ithemba-blue-deepest,#0b2545)] md:text-4xl">
             {c.partners.title}
           </h2>
-          <p className="mt-4 max-w-3xl text-[15px] text-foreground/80 md:text-base">{c.partners.intro}</p>
+          <p className="mt-3 max-w-3xl text-[15px] text-foreground/80 md:text-base">{c.partners.intro}</p>
 
-          <div className="mt-12 grid grid-cols-2 items-center gap-x-10 gap-y-12 sm:grid-cols-3 lg:grid-cols-4">
+          <div className="mt-8 grid grid-cols-2 items-center gap-x-8 gap-y-8 sm:grid-cols-3 lg:grid-cols-4">
             {partners.map((p) => (
               <a
                 key={p.name}
@@ -568,18 +572,17 @@ function PartnersPage() {
                 rel="noopener noreferrer"
                 aria-label={p.name}
                 title={p.name}
-                className="group flex h-28 items-center justify-center md:h-36"
+                className="group flex h-24 items-center justify-center md:h-28"
               >
                 <img
                   src={p.logo}
                   alt={`${p.name} logo`}
                   loading="lazy"
-                  className={`object-contain opacity-90 transition group-hover:opacity-100 group-hover:scale-[1.04] ${p.sizeClass ?? "max-h-[120px] max-w-[240px]"}`}
+                  className={`object-contain opacity-90 transition group-hover:opacity-100 group-hover:scale-[1.04] ${p.sizeClass ?? "max-h-[110px] max-w-[220px]"}`}
                 />
               </a>
             ))}
-            {/* Küstenhund e.V. — logo pending placeholder, no fake logo */}
-            <div className="flex h-28 flex-col items-center justify-center text-center md:h-36">
+            <div className="flex h-24 flex-col items-center justify-center text-center md:h-28">
               <span className="font-display text-lg font-semibold text-[color:var(--ithemba-blue-deepest,#0b2545)]">
                 Küstenhund e.V.
               </span>
@@ -589,7 +592,7 @@ function PartnersPage() {
             </div>
           </div>
 
-          <p className="mt-14 max-w-3xl text-[15px] text-foreground/80 md:text-base">{c.partners.outro}</p>
+          <p className="mt-8 max-w-3xl text-[15px] text-foreground/80 md:text-base">{c.partners.outro}</p>
         </div>
       </section>
 
@@ -597,7 +600,7 @@ function PartnersPage() {
 
       {/* ============ HOW IT WORKS ============ */}
       <section style={{ background: blueDeep }} className="text-white">
-        <div className="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28">
+        <div className="mx-auto max-w-6xl px-5 py-14 md:px-8 md:py-20">
           <p
             className="text-3xl text-[var(--ithemba-yellow,#f5c64a)]"
             style={{ fontFamily: '"Caveat", "Kalam", cursive' }}
@@ -605,59 +608,63 @@ function PartnersPage() {
             {c.how.eyebrow}
           </p>
           <h2 className="mt-1 max-w-3xl font-display text-3xl font-bold md:text-4xl">{c.how.title}</h2>
-          <p className="mt-4 max-w-3xl text-[15px] text-white/85 md:text-base">{c.how.intro}</p>
+          <p className="mt-3 max-w-3xl text-[15px] text-white/85 md:text-base">{c.how.intro}</p>
 
-          <ul className="mt-12 grid grid-cols-1 gap-x-10 gap-y-7 sm:grid-cols-2 lg:grid-cols-2">
+          <ul className="mt-8 grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-2 lg:grid-cols-3">
             {c.how.items.map((it) => {
               const Icon = HOW_ICONS[it.icon];
               return (
-                <li key={it.label} className="flex items-start gap-4">
-                  <span className="mt-0.5 flex h-12 w-12 flex-none items-center justify-center rounded-full border border-[var(--ithemba-yellow,#f5c64a)]/40 text-[var(--ithemba-yellow,#f5c64a)]">
-                    <Icon className="h-6 w-6" />
+                <li key={it.label} className="flex items-start gap-3">
+                  <span className="mt-0.5 flex h-10 w-10 flex-none items-center justify-center rounded-full border border-[var(--ithemba-yellow,#f5c64a)]/50 text-[var(--ithemba-yellow,#f5c64a)]">
+                    <Icon className="h-5 w-5" />
                   </span>
-                  <span className="pt-2 text-[15px] font-medium text-white md:text-base">{it.label}</span>
+                  <span className="pt-1.5 text-[15px] font-medium text-white md:text-base">{it.label}</span>
                 </li>
               );
             })}
           </ul>
 
-          <p className="mt-12 max-w-3xl text-[15px] text-white/80 md:text-base">{c.how.outro}</p>
+          <p className="mt-8 max-w-3xl text-[15px] text-white/80 md:text-base">{c.how.outro}</p>
         </div>
       </section>
 
-      <Wave from={blueDeep} to={cream} />
-
-      {/* ============ WHAT PARTNERS CAN EXPECT ============ */}
-      <section style={{ background: cream }}>
-        <div className="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28">
+      {/* ============ TRUST — photo bg ============ */}
+      <section className="relative isolate overflow-hidden text-white">
+        <img
+          src="/assets/photos/partners/partners-trust-handshake.jpg"
+          alt=""
+          aria-hidden
+          className="absolute inset-0 h-full w-full object-cover"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0b2545]/92 via-[#0b2545]/85 to-[#1d4e89]/85" />
+        <div className="relative mx-auto max-w-6xl px-5 py-14 md:px-8 md:py-20">
           <p
-            className="text-3xl text-[color:var(--ithemba-blue,#1d4e89)]"
+            className="text-3xl text-[var(--ithemba-yellow,#f5c64a)]"
             style={{ fontFamily: '"Caveat", "Kalam", cursive' }}
           >
             {c.expect.eyebrow}
           </p>
-          <h2 className="mt-1 max-w-3xl font-display text-3xl font-bold text-[color:var(--ithemba-blue-deepest,#0b2545)] md:text-4xl">
+          <h2 className="mt-1 max-w-3xl font-display text-3xl font-bold md:text-4xl">
             {c.expect.title}
           </h2>
-          <p className="mt-4 max-w-3xl text-[15px] text-foreground/80 md:text-base">{c.expect.intro}</p>
+          <p className="mt-3 max-w-3xl text-[15px] text-white/85 md:text-base">{c.expect.intro}</p>
 
-          <ul className="mt-10 grid gap-x-10 gap-y-5 md:grid-cols-2">
+          <ul className="mt-8 grid gap-x-6 gap-y-4 sm:grid-cols-2 lg:grid-cols-3">
             {c.expect.items.map((it) => {
               const Icon = EXPECT_ICONS[it.icon];
               return (
-                <li key={it.label} className="flex items-start gap-4">
-                  <span className="mt-0.5 flex h-10 w-10 flex-none items-center justify-center rounded-full bg-[color:var(--ithemba-blue,#1d4e89)] text-white">
+                <li key={it.label} className="flex items-start gap-3">
+                  <span className="mt-0.5 flex h-10 w-10 flex-none items-center justify-center rounded-full bg-[var(--ithemba-yellow,#f5c64a)]/15 text-[var(--ithemba-yellow,#f5c64a)] ring-1 ring-[var(--ithemba-yellow,#f5c64a)]/40">
                     <Icon className="h-5 w-5" />
                   </span>
-                  <span className="pt-1.5 text-[15px] font-medium text-foreground md:text-base">{it.label}</span>
+                  <span className="pt-1.5 text-[15px] font-medium text-white/95 md:text-base">{it.label}</span>
                 </li>
               );
             })}
           </ul>
         </div>
       </section>
-
-      <Wave from={cream} to={blueDeep} />
 
       {/* ============ CLOSING CTA ============ */}
       <section className="relative isolate overflow-hidden text-white" style={{ background: blueDeep }}>
@@ -667,8 +674,8 @@ function PartnersPage() {
           aria-hidden
           className="absolute inset-0 h-full w-full object-cover opacity-30"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0b2545]/85 via-[#0b2545]/80 to-[#0b2545]/95" />
-        <div className="relative mx-auto max-w-5xl px-5 py-24 text-center md:px-8 md:py-32">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0b2545]/90 via-[#0b2545]/85 to-[#0b2545]/95" />
+        <div className="relative mx-auto max-w-5xl px-5 py-16 text-center md:px-8 md:py-24">
           <p
             className="text-3xl text-[var(--ithemba-yellow,#f5c64a)] md:text-4xl"
             style={{ fontFamily: '"Caveat", "Kalam", cursive' }}
@@ -676,10 +683,10 @@ function PartnersPage() {
             {c.cta.eyebrow}
           </p>
           <h2 className="mt-2 font-display text-3xl font-bold md:text-5xl">{c.cta.title}</h2>
-          <div className="mx-auto mt-6 max-w-2xl space-y-4 text-[15px] text-white/85 md:text-base">
+          <div className="mx-auto mt-5 max-w-2xl space-y-3 text-[15px] text-white/85 md:text-base">
             {c.cta.body.map((p, i) => (<p key={i}>{p}</p>))}
           </div>
-          <div className="mt-10 flex flex-wrap justify-center gap-3">
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Button asChild size="lg" className="bg-[var(--ithemba-yellow,#f5c64a)] text-[#0b2545] hover:bg-[var(--ithemba-yellow,#f5c64a)]/90">
               <Link to="/contact">
                 <Handshake className="mr-2 h-5 w-5" />
@@ -701,3 +708,4 @@ function PartnersPage() {
     </main>
   );
 }
+
