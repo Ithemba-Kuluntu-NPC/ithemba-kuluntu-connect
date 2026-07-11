@@ -90,6 +90,113 @@ function PdIcon({
   );
 }
 
+/* ---------- yellow paw accent (replaces yellow square from PureFlow collages) ---------- */
+function PawAccent({
+  className = "",
+  size = 88,
+}: {
+  className?: string;
+  size?: number;
+}) {
+  return (
+    <div
+      aria-hidden
+      className={`pointer-events-none absolute z-10 ${className}`}
+      style={{
+        width: size,
+        height: size,
+        filter: "drop-shadow(0 10px 22px rgba(251,191,36,0.55))",
+      }}
+    >
+      <svg viewBox="0 0 100 100" className="h-full w-full">
+        <g fill="var(--ithemba-yellow)">
+          <ellipse cx="50" cy="66" rx="22" ry="20" />
+          <ellipse cx="22" cy="46" rx="10" ry="13" transform="rotate(-18 22 46)" />
+          <ellipse cx="78" cy="46" rx="10" ry="13" transform="rotate(18 78 46)" />
+          <ellipse cx="36" cy="22" rx="8.5" ry="11" transform="rotate(-8 36 22)" />
+          <ellipse cx="64" cy="22" rx="8.5" ry="11" transform="rotate(8 64 22)" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+/* ---------- Editorial photo collage (matches PureFlow compact StepCollage style) ---------- */
+type CollageSlot = {
+  src?: string;
+  label: string;
+  tone?: "warm" | "blue" | "earth" | "sun" | "ocean" | "green";
+};
+
+function PhotoCollage({
+  photos,
+  variant = "A",
+  pawCorner = "tr",
+  className = "",
+}: {
+  photos: CollageSlot[];
+  variant?: "A" | "B" | "C";
+  pawCorner?: "tl" | "tr" | "bl" | "br";
+  className?: string;
+}) {
+  const slots = photos.slice(0, 4);
+  while (slots.length < 3) slots.push({ label: "Pondo Dogs", tone: "earth" });
+
+  const layouts: Record<"A" | "B" | "C", string[]> = {
+    // 4 photos — portrait main + top right + mid right + wide bottom
+    A: [
+      "col-span-7 row-span-4 rounded-tl-[2.5rem] rounded-br-2xl rounded-tr-xl rounded-bl-xl",
+      "col-span-5 row-span-3 rounded-tr-[2.5rem] rounded-bl-xl rounded-tl-xl rounded-br-xl",
+      "col-span-5 row-span-3 rounded-xl",
+      "col-span-7 row-span-2 rounded-bl-[2.5rem] rounded-tr-xl rounded-tl-xl rounded-br-xl",
+    ],
+    // 3 photos — tall left, two stacked right
+    B: [
+      "col-span-7 row-span-6 rounded-tl-[2.5rem] rounded-bl-[2.5rem] rounded-tr-xl rounded-br-xl",
+      "col-span-5 row-span-3 rounded-tr-[2.5rem] rounded-bl-xl rounded-tl-xl rounded-br-xl",
+      "col-span-5 row-span-3 rounded-br-[2.5rem] rounded-tl-xl rounded-tr-xl rounded-bl-xl",
+    ],
+    // 4 photos — 2x2 with a hero cell
+    C: [
+      "col-span-6 row-span-3 rounded-tl-[2.5rem] rounded-br-2xl rounded-tr-xl rounded-bl-xl",
+      "col-span-6 row-span-3 rounded-tr-[2.5rem] rounded-bl-2xl rounded-tl-xl rounded-br-xl",
+      "col-span-7 row-span-3 rounded-bl-[2.5rem] rounded-tr-xl rounded-tl-xl rounded-br-xl",
+      "col-span-5 row-span-3 rounded-br-[2.5rem] rounded-tl-xl rounded-tr-xl rounded-bl-xl",
+    ],
+  };
+  const cells = layouts[variant];
+  const usable = slots.slice(0, cells.length);
+  const pawPos: Record<string, string> = {
+    tl: "-left-4 -top-4",
+    tr: "-right-4 -top-4",
+    bl: "-left-4 -bottom-4",
+    br: "-right-4 -bottom-4",
+  };
+
+  return (
+    <div className={`relative ${className}`}>
+      <div
+        className="relative grid aspect-[4/5] grid-cols-12 grid-rows-6 gap-2.5 md:gap-3"
+        style={{ filter: "drop-shadow(0 22px 50px rgba(60,30,10,0.32))" }}
+      >
+        {usable.map((p, i) => (
+          <div key={i} className={`overflow-hidden ring-1 ring-black/10 ${cells[i]}`}>
+            <SmartImage
+              src={p.src ?? ""}
+              label={p.label}
+              tone={p.tone ?? "earth"}
+              rounded="rounded-none"
+              className="h-full w-full"
+              showMissingBadge={false}
+            />
+          </div>
+        ))}
+      </div>
+      <PawAccent className={`${pawPos[pawCorner]} rotate-[8deg]`} size={92} />
+    </div>
+  );
+}
+
 /* ---------- reduced motion ---------- */
 function useReducedMotion() {
   const [reduced, setReduced] = useState(false);
@@ -1217,20 +1324,16 @@ function Who({ c }: { c: Copy }) {
   return (
     <section className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
       <div className="grid items-center gap-12 md:grid-cols-2">
-        <div className="relative">
-          <div className="absolute -left-6 -top-6 h-24 w-24 blob bg-[var(--ithemba-yellow)]/35 -z-10" />
-          <SmartImage
-            src={PHOTO_COMMUNITY}
-            label="Dogs and people in a Pondoland community"
-            className="aspect-[4/5] w-full"
-            rounded="rounded-[55%_45%_60%_40%/45%_55%_45%_55%]"
-            tone="earth"
-            showMissingBadge={false}
-          />
-          <div className="absolute -bottom-5 -right-5 hidden h-24 w-24 items-center justify-center rounded-full bg-[var(--ithemba-yellow)] text-[var(--ithemba-brown)] shadow-xl md:flex">
-            <PawPrint className="h-9 w-9" />
-          </div>
-        </div>
+        <PhotoCollage
+          variant="A"
+          pawCorner="tr"
+          photos={[
+            { src: PHOTO_COMMUNITY, label: "Dogs and people in a Pondoland community", tone: "earth" },
+            { src: PHOTO_HERO, label: "Local community team in Pondoland", tone: "warm" },
+            { src: PHOTO_CARE, label: "Owner and dog together at home", tone: "sun" },
+            { src: PHOTO_COMMUNITY, label: "Everyday life with animals in Pondoland", tone: "earth" },
+          ]}
+        />
         <div>
           <SectionHeading eyebrow={c.who.eyebrow} title={c.who.title} />
           <div className="mt-5 space-y-4 text-lg leading-relaxed text-foreground/85">
@@ -1411,17 +1514,16 @@ function CareSection({
       )}
       <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
         <div className={`grid items-center gap-10 md:grid-cols-2 ${reversed ? "md:[&>*:first-child]:order-2" : ""}`}>
-          <div className="relative">
-            <div className={`absolute -left-6 -top-6 -z-10 h-24 w-24 blob ${isBlue ? "bg-[var(--ithemba-yellow)]/20" : "bg-[var(--ithemba-yellow)]/30"}`} />
-            <SmartImage
-              src={photo}
-              label={photoLabel}
-              className="aspect-[4/5] w-full"
-              rounded="rounded-[55%_45%_60%_40%/45%_55%_45%_55%]"
-              tone="earth"
-              showMissingBadge={false}
-            />
-          </div>
+          <PhotoCollage
+            variant={reversed ? "C" : "A"}
+            pawCorner={reversed ? "tl" : "tr"}
+            photos={[
+              { src: photo, label: photoLabel, tone: "earth" },
+              { src: PHOTO_CARE, label: `${photoLabel} — moment two`, tone: "warm" },
+              { src: PHOTO_COMMUNITY, label: `${photoLabel} — moment three`, tone: "sun" },
+              { src: PHOTO_HERO, label: `${photoLabel} — moment four`, tone: "earth" },
+            ]}
+          />
           <div>
             {isBlue ? (
               <>
@@ -1480,19 +1582,20 @@ function Sterilisation({ c }: { c: Copy }) {
 
       <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
         <div className="grid items-center gap-12 md:grid-cols-2">
-          {/* photo bubble */}
+          {/* photo collage */}
           <div className="relative">
-            <div className="pointer-events-none absolute -left-6 -top-6 -z-10 h-28 w-28 blob bg-[var(--ithemba-yellow)]/25" />
-            <SmartImage
-              src={PHOTO_CARE}
-              label="Animal welfare team preparing a sterilisation campaign"
-              className="aspect-[4/5] w-full"
-              rounded="rounded-[55%_45%_60%_40%/45%_55%_45%_55%]"
-              tone="earth"
-              showMissingBadge={false}
+            <PhotoCollage
+              variant="A"
+              pawCorner="tl"
+              photos={[
+                { src: PHOTO_CARE, label: "Animal welfare team preparing a sterilisation campaign", tone: "earth" },
+                { src: PHOTO_COMMUNITY, label: "Sterilisation campaign day in Pondoland", tone: "warm" },
+                { src: PHOTO_HERO, label: "Recovery and follow-up care", tone: "sun" },
+                { src: PHOTO_CARE, label: "Veterinary support with local partners", tone: "earth" },
+              ]}
             />
             {/* clean icon badge */}
-            <div className="absolute -bottom-4 -right-2 flex items-center gap-2 rounded-full bg-white/95 px-3 py-2 text-[var(--ithemba-blue-dark)] shadow-lg ring-1 ring-[var(--ithemba-yellow)]/40 backdrop-blur">
+            <div className="absolute -bottom-4 -right-2 z-20 flex items-center gap-2 rounded-full bg-white/95 px-3 py-2 text-[var(--ithemba-blue-dark)] shadow-lg ring-1 ring-[var(--ithemba-yellow)]/40 backdrop-blur">
               <PdIcon src={ICON.sterilisation} className="h-7 w-7" />
               <span className="pr-1 text-xs font-semibold uppercase tracking-wide">
                 {c.sterilisation.eyebrow}
@@ -1552,16 +1655,15 @@ function Education({ c }: { c: Copy }) {
       <div className="pointer-events-none absolute -left-16 top-16 h-48 w-48 blob bg-[var(--ithemba-yellow)]/20" />
       <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
         <div className="grid gap-10 md:grid-cols-2 md:items-center">
-          <div className="relative">
-            <SmartImage
-              src={PHOTO_COMMUNITY}
-              label="Owner education in the community"
-              className="aspect-[4/5] w-full"
-              rounded="rounded-[60%_40%_45%_55%/50%_60%_40%_50%]"
-              tone="earth"
-              showMissingBadge={false}
-            />
-          </div>
+          <PhotoCollage
+            variant="B"
+            pawCorner="tr"
+            photos={[
+              { src: PHOTO_COMMUNITY, label: "Owner education in the community", tone: "earth" },
+              { src: PHOTO_CARE, label: "Practical guidance with a local family", tone: "warm" },
+              { src: PHOTO_HERO, label: "Children learning kind handling", tone: "sun" },
+            ]}
+          />
           <div>
             <SectionHeading eyebrow={c.education.eyebrow} title={c.education.title} />
             <div className="mt-5 space-y-4 text-lg leading-relaxed text-foreground/85">
