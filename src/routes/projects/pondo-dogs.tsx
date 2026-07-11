@@ -1655,16 +1655,15 @@ function Education({ c }: { c: Copy }) {
       <div className="pointer-events-none absolute -left-16 top-16 h-48 w-48 blob bg-[var(--ithemba-yellow)]/20" />
       <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
         <div className="grid gap-10 md:grid-cols-2 md:items-center">
-          <div className="relative">
-            <SmartImage
-              src={PHOTO_COMMUNITY}
-              label="Owner education in the community"
-              className="aspect-[4/5] w-full"
-              rounded="rounded-[60%_40%_45%_55%/50%_60%_40%_50%]"
-              tone="earth"
-              showMissingBadge={false}
-            />
-          </div>
+          <PhotoCollage
+            variant="B"
+            pawCorner="tr"
+            photos={[
+              { src: PHOTO_COMMUNITY, label: "Owner education in the community", tone: "earth" },
+              { src: PHOTO_CARE, label: "Practical guidance with a local family", tone: "warm" },
+              { src: PHOTO_HERO, label: "Children learning kind handling", tone: "sun" },
+            ]}
+          />
           <div>
             <SectionHeading eyebrow={c.education.eyebrow} title={c.education.title} />
             <div className="mt-5 space-y-4 text-lg leading-relaxed text-foreground/85">
