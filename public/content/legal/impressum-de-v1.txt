@@ -1,0 +1,166 @@
+# ==========================================
+
+# IMPRESSUM PAGE CONFIGURATION
+
+# LANGUAGE: GERMAN (de)
+
+# VERSION: 1.0
+
+# ==========================================
+
+# ------------------------------------------
+
+# 01. PAGE HEADER
+
+# ------------------------------------------
+
+impressum.script_heading: Rechtliches
+impressum.main_heading: Impressum
+impressum.intro: Angaben gemäß den gesetzlichen Informationspflichten für digitale Dienste.
+
+# ------------------------------------------
+
+# 02. ANBIETER
+
+# ------------------------------------------
+
+provider.heading: Anbieter dieser Website
+
+provider.name: iThemba Kuluntu e.V.
+provider.address.line1: Am Emberg 20
+provider.address.line2: 57399 Kirchhundem
+provider.address.line3: Deutschland
+
+provider.email.label: E-Mail
+provider.email: [info@ithembakuluntu.org](mailto:info@ithembakuluntu.org)
+
+# ------------------------------------------
+
+# 03. VEREINSANGABEN
+
+# ------------------------------------------
+
+association.heading: Vereinsangaben
+
+association.register_court.label: Registergericht
+association.register_court: Amtsgericht Siegen
+
+association.register_number.label: Vereinsregister
+association.register_number: VR 6845
+
+association.tax_number.label: Steuernummer
+association.tax_number: 338/5953/0753
+
+association.represented_by.label: Vertreten durch
+association.represented_by: Heltraut Hamers, 1. Vorsitzende
+
+# ------------------------------------------
+
+# 04. GEMEINNÜTZIGKEIT UND SPENDENBESCHEINIGUNGEN
+
+# ------------------------------------------
+
+donation_receipts.heading: Gemeinnützigkeit und Zuwendungsbescheinigungen
+
+donation_receipts.text: iThemba Kuluntu e.V. unterstützt die gemeinnützige Arbeit von iThemba Kuluntu in Südafrika. Für steuerlich abzugsfähige Spenden können Zuwendungsbescheinigungen ausgestellt werden, soweit die gesetzlichen Voraussetzungen erfüllt sind.
+
+# ------------------------------------------
+
+# 05. BANKVERBINDUNG
+
+# ------------------------------------------
+
+bank.heading: Bankverbindung
+
+bank.account_holder.label: Kontoinhaber
+bank.account_holder: iThemba Kuluntu e.V.
+
+bank.iban.label: IBAN
+bank.iban: DE52 8306 5408 0005 4056 96
+
+bank.bic.label: BIC
+bank.bic: GENODEF1SLR
+
+# ------------------------------------------
+
+# 06. SÜDAFRIKANISCHE PARTNERORGANISATION
+
+# ------------------------------------------
+
+south_africa.heading: Südafrikanische Partnerorganisation
+
+south_africa.name: iThemba Kuluntu NPC
+
+south_africa.registration.label: Registration
+south_africa.registration: 2023/199348/08
+
+south_africa.pbo.label: PBO
+south_africa.pbo: 930081177
+
+south_africa.npo.label: NPO
+south_africa.npo: 300-700
+
+south_africa.vat.label: VAT
+south_africa.vat: 4430318792
+
+south_africa.address.line1: Flat Rock Cottage, Cwebeni Beach
+south_africa.address.line2: Port St Johns, Eastern Cape
+south_africa.address.line3: South Africa, 5090
+
+south_africa.email.label: E-Mail
+south_africa.email: [info@ithembakuluntu.org](mailto:info@ithembakuluntu.org)
+
+south_africa.text: Die operative Projektarbeit in Südafrika wird durch iThemba Kuluntu NPC durchgeführt. iThemba Kuluntu e.V. unterstützt diese Arbeit durch Spenden, Partnerschaften, Kommunikation und Fördermittelarbeit.
+
+# ------------------------------------------
+
+# 07. VERANTWORTLICH FÜR DEN INHALT
+
+# ------------------------------------------
+
+content_responsibility.heading: Verantwortlich für den Inhalt
+
+content_responsibility.text: Verantwortlich für den Inhalt dieser Website ist iThemba Kuluntu e.V., vertreten durch Heltraut Hamers, 1. Vorsitzende, Anschrift wie oben.
+
+# ------------------------------------------
+
+# 08. HAFTUNG FÜR INHALTE
+
+# ------------------------------------------
+
+liability_content.heading: Haftung für Inhalte
+
+liability_content.text: Die Inhalte dieser Website wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte übernehmen wir jedoch keine Gewähr. Als Diensteanbieter sind wir für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.
+
+# ------------------------------------------
+
+# 09. HAFTUNG FÜR LINKS
+
+# ------------------------------------------
+
+liability_links.heading: Haftung für Links
+
+liability_links.text: Diese Website kann Links zu externen Websites Dritter enthalten, auf deren Inhalte wir keinen Einfluss haben. Für diese fremden Inhalte übernehmen wir keine Gewähr. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.
+
+# ------------------------------------------
+
+# 10. URHEBERRECHT
+
+# ------------------------------------------
+
+copyright.heading: Urheberrecht
+
+copyright.text: Die auf dieser Website veröffentlichten Inhalte, Texte, Bilder, Grafiken und sonstigen Materialien unterliegen dem Urheberrecht. Eine Vervielfältigung, Bearbeitung, Verbreitung oder sonstige Nutzung außerhalb der Grenzen des Urheberrechts bedarf der vorherigen schriftlichen Zustimmung, soweit keine gesetzliche Erlaubnis besteht.
+
+# ------------------------------------------
+
+# 11. DATENSCHUTZ
+
+# ------------------------------------------
+
+privacy.heading: Datenschutz
+
+privacy.text: Informationen zur Verarbeitung personenbezogener Daten finden Sie in unserer Datenschutzerklärung.
+
+privacy.link_label: Datenschutzerklärung
+privacy.link_url: /datenschutz
