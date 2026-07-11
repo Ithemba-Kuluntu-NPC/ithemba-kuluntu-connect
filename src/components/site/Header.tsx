@@ -98,7 +98,8 @@ export function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-40 w-full transition-all ${
+      ref={headerRef}
+      className={`fixed top-0 left-0 right-0 z-50 w-full transition-all ${
         scrolled
           ? "border-b border-black/5 bg-white/85 backdrop-blur-md shadow-[0_1px_0_rgba(0,0,0,0.04)]"
           : "bg-white/40 backdrop-blur"
