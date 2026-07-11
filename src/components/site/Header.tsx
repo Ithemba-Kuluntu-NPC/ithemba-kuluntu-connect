@@ -65,6 +65,19 @@ export function Header() {
     return () => window.removeEventListener("scroll", on);
   }, []);
 
+  // Measure header height so the root layout can reserve correct space
+  useEffect(() => {
+    const header = headerRef.current;
+    if (!header) return;
+    const setHeight = () => {
+      document.documentElement.style.setProperty("--header-height", `${header.offsetHeight}px`);
+    };
+    setHeight();
+    const observer = new ResizeObserver(setHeight);
+    observer.observe(header);
+    return () => observer.disconnect();
+  }, []);
+
   // Close dropdown on outside click / escape
   useEffect(() => {
     if (!openMenu) return;
