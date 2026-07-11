@@ -1430,6 +1430,19 @@ const RHYTHM_BLOBS = [
 
 function Rhythm({ c }: { c: Copy }) {
   const [open, setOpen] = useState(false);
+  const [contentHeight, setContentHeight] = useState(0);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = contentRef.current;
+    if (!el) return;
+    const update = () => setContentHeight(el.scrollHeight);
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
   const rhythmPhotoLabels = [
     "Children arriving at the ECD Centre",
     "Children at free and guided play",
