@@ -394,52 +394,52 @@ function ContactPage() {
       </section>
 
       {/* ============ DETAILS + FORM ============ */}
-      <section style={{ background: cream }}>
+      <section className="text-white" style={{ background: blueDeep }}>
         <div className="mx-auto grid max-w-6xl gap-8 px-5 py-10 md:px-8 md:py-14 lg:grid-cols-[0.95fr_1.05fr] lg:gap-12">
           {/* Left — details */}
           <div>
             <p
               className="text-3xl"
-              style={{ fontFamily: '"Caveat", "Kalam", cursive', color: blue }}
+              style={{ fontFamily: '"Caveat", "Kalam", cursive', color: yellow }}
             >
               {c.details.heading}
             </p>
-            <h2 className="mt-1 font-display text-3xl font-bold text-[color:var(--ithemba-blue-deepest,#0b2545)] md:text-4xl">
-              {c.details.heading}
+            <h2 className="mt-1 font-display text-3xl font-bold text-white md:text-4xl">
+              {c.details.mainHeading}
             </h2>
-            <p className="mt-3 max-w-md text-[15px] text-foreground/80">{c.details.intro}</p>
+            <p className="mt-3 max-w-md text-[15px] text-white/85">{c.details.intro}</p>
 
             <ul className="mt-6 space-y-4">
 
               <li className="flex items-start gap-4">
-                <span className="mt-0.5 flex h-11 w-11 flex-none items-center justify-center rounded-full bg-[color:var(--ithemba-blue,#1d4e89)]/10 text-[color:var(--ithemba-blue,#1d4e89)]" aria-hidden>
+                <span className="mt-0.5 flex h-11 w-11 flex-none items-center justify-center rounded-full bg-white/10 text-[color:var(--ithemba-yellow,#f5c64a)]" aria-hidden>
                   <Mail className="h-5 w-5" />
                 </span>
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-wide text-foreground/55">{c.details.emailLabel}</p>
-                  <a href={`mailto:${EMAIL}`} className="text-[15px] font-medium text-[color:var(--ithemba-blue-deepest,#0b2545)] underline-offset-4 hover:underline md:text-base">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-white/60">{c.details.emailLabel}</p>
+                  <a href={`mailto:${EMAIL}`} className="text-[15px] font-medium text-white underline-offset-4 hover:underline md:text-base">
                     {EMAIL}
                   </a>
                 </div>
               </li>
               <li className="flex items-start gap-4">
-                <span className="mt-0.5 flex h-11 w-11 flex-none items-center justify-center rounded-full bg-[color:var(--ithemba-blue,#1d4e89)]/10 text-[color:var(--ithemba-blue,#1d4e89)]" aria-hidden>
+                <span className="mt-0.5 flex h-11 w-11 flex-none items-center justify-center rounded-full bg-white/10 text-[color:var(--ithemba-yellow,#f5c64a)]" aria-hidden>
                   <Phone className="h-5 w-5" />
                 </span>
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-wide text-foreground/55">{c.details.phoneLabel}</p>
-                  <a href={`tel:${PHONE.replace(/\s+/g, "")}`} className="text-[15px] font-medium text-[color:var(--ithemba-blue-deepest,#0b2545)] underline-offset-4 hover:underline md:text-base">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-white/60">{c.details.phoneLabel}</p>
+                  <a href={`tel:${PHONE.replace(/\s+/g, "")}`} className="text-[15px] font-medium text-white underline-offset-4 hover:underline md:text-base">
                     {PHONE}
                   </a>
                 </div>
               </li>
               <li className="flex items-start gap-4">
-                <span className="mt-0.5 flex h-11 w-11 flex-none items-center justify-center rounded-full bg-[color:var(--ithemba-blue,#1d4e89)]/10 text-[color:var(--ithemba-blue,#1d4e89)]" aria-hidden>
+                <span className="mt-0.5 flex h-11 w-11 flex-none items-center justify-center rounded-full bg-white/10 text-[color:var(--ithemba-yellow,#f5c64a)]" aria-hidden>
                   <MessageCircle className="h-5 w-5" />
                 </span>
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-wide text-foreground/55">{c.details.whatsappLabel}</p>
-                  <a href={WHATSAPP_HREF} target="_blank" rel="noopener noreferrer" className="text-[15px] font-medium text-[color:var(--ithemba-blue-deepest,#0b2545)] underline-offset-4 hover:underline md:text-base">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-white/60">{c.details.whatsappLabel}</p>
+                  <a href={WHATSAPP_HREF} target="_blank" rel="noopener noreferrer" className="text-[15px] font-medium text-white underline-offset-4 hover:underline md:text-base">
                     {WHATSAPP}
                   </a>
                 </div>
@@ -447,7 +447,7 @@ function ContactPage() {
             </ul>
 
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
-              <div className="rounded-2xl bg-white p-5 ring-1 ring-[color:var(--ithemba-blue,#1d4e89)]/10">
+              <div className="rounded-2xl bg-[color:var(--ithemba-cream,#fdf7ed)] p-5 text-[color:var(--ithemba-blue-deepest,#0b2545)] ring-1 ring-white/10">
                 <div className="flex items-center gap-2 text-[color:var(--ithemba-blue,#1d4e89)]">
                   <MapPin className="h-4 w-4" aria-hidden />
                   <p className="text-xs font-semibold uppercase tracking-wide">{c.details.saLabel}</p>
@@ -456,7 +456,7 @@ function ContactPage() {
                   {SA_ADDRESS.map((line) => (<div key={line}>{line}</div>))}
                 </address>
               </div>
-              <div className="rounded-2xl bg-white p-5 ring-1 ring-[color:var(--ithemba-blue,#1d4e89)]/10">
+              <div className="rounded-2xl bg-[color:var(--ithemba-cream,#fdf7ed)] p-5 text-[color:var(--ithemba-blue-deepest,#0b2545)] ring-1 ring-white/10">
                 <div className="flex items-center gap-2 text-[color:var(--ithemba-blue,#1d4e89)]">
                   <MapPin className="h-4 w-4" aria-hidden />
                   <p className="text-xs font-semibold uppercase tracking-wide">{c.details.deLabel}</p>
@@ -467,16 +467,20 @@ function ContactPage() {
               </div>
             </div>
 
-            <div className="mt-6 flex items-center gap-2">
-              <a
-                href="https://www.instagram.com/ithemba.kuluntu/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-[color:var(--ithemba-blue,#1d4e89)] text-white transition hover:bg-[color:var(--ithemba-blue-deepest,#0b2545)]"
-              >
-                <Instagram className="h-4 w-4" aria-hidden />
-              </a>
+            <div className="mt-6 flex flex-wrap items-center gap-3">
+              {socialLinks.map(({ href, label, Icon }) => (
+                <a
+                  key={href}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  title={label}
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-[color:var(--ithemba-blue-deepest,#0b2545)] transition hover:bg-[color:var(--ithemba-yellow,#f5c64a)] hover:text-[color:var(--ithemba-brown,#6b4423)]"
+                >
+                  <Icon className="h-4 w-4" />
+                </a>
+              ))}
             </div>
           </div>
 
@@ -485,7 +489,7 @@ function ContactPage() {
         </div>
       </section>
 
-      <Wave from={cream} to="#ffffff" />
+      <Wave from={blueDeep} to="#ffffff" />
 
       {/* ============ HOW WE CAN HELP ============ */}
       <section className="bg-white">
