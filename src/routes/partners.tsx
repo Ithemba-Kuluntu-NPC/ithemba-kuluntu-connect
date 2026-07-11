@@ -359,7 +359,7 @@ const COPY: Record<"en" | "de" | "nl", Copy> = {
 /* ---------- wave divider ---------- */
 function Wave({ from, to, flip = false }: { from: string; to: string; flip?: boolean }) {
   return (
-    <div className="relative" style={{ background: from, lineHeight: 0 }}>
+    <div className="relative -mb-px" style={{ background: from, lineHeight: 0 }}>
       <svg
         viewBox="0 0 1440 90"
         preserveAspectRatio="none"
@@ -426,7 +426,7 @@ function PartnersPage() {
   return (
     <main>
       {/* ============ HERO ============ */}
-      <section className="relative isolate overflow-hidden">
+      <section className="relative isolate">
         <div className="relative h-[72vh] min-h-[500px] w-full">
           <HeroVideo />
           <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/70" />
