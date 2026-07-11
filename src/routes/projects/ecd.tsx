@@ -684,6 +684,11 @@ const COPY: Record<Lang, Copy> = {
       ],
       outro:
         "Het dagritme is eenvoudig, maar krachtig. Kinderen weten wat zij kunnen verwachten. Leerkrachten kunnen leren begeleiden op basis van leeftijd en behoefte. Maaltijden en rustmomenten zijn onderdeel van het programma, geen bijzaak. Elk moment van de dag helpt kinderen zich veilig, gezien en klaar om te groeien te voelen.",
+      closedTitle: "Een dag in No.1 ECD",
+      closedIntro:
+        "Kinderen gedijen door ritme, zorg en routine. Ons dagschema geeft elk kind een voorspelbare dag met maaltijden, spel, leren, rust en zorg.",
+      openButton: "Dagritme bekijken",
+      closeButton: "Dagritme verbergen",
     },
     nutrition: {
       eyebrow: "Meer dan leren",
