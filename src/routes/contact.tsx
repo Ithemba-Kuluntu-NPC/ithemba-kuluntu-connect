@@ -105,6 +105,7 @@ const COPY: Record<"en" | "de" | "nl", Copy> = {
     },
     details: {
       heading: "Get in touch",
+      mainHeading: "We'd love to hear from you",
       intro:
         "For partnerships, funders, media, donations or project support, please use the form or contact us directly.",
       emailLabel: "Email",
