@@ -1600,8 +1600,7 @@ function Rhythm({ c }: { c: Copy }) {
 
           <CollapsibleContent
             className={cn(
-              "grid overflow-hidden transition-all",
-              reduced ? "duration-0" : "duration-500 ease-in-out"
+              "grid overflow-hidden transition-all duration-500 ease-in-out"
             )}
             data-state={open ? "open" : "closed"}
             style={{
