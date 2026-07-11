@@ -90,6 +90,113 @@ function PdIcon({
   );
 }
 
+/* ---------- yellow paw accent (replaces yellow square from PureFlow collages) ---------- */
+function PawAccent({
+  className = "",
+  size = 88,
+}: {
+  className?: string;
+  size?: number;
+}) {
+  return (
+    <div
+      aria-hidden
+      className={`pointer-events-none absolute z-10 ${className}`}
+      style={{
+        width: size,
+        height: size,
+        filter: "drop-shadow(0 10px 22px rgba(251,191,36,0.55))",
+      }}
+    >
+      <svg viewBox="0 0 100 100" className="h-full w-full">
+        <g fill="var(--ithemba-yellow)">
+          <ellipse cx="50" cy="66" rx="22" ry="20" />
+          <ellipse cx="22" cy="46" rx="10" ry="13" transform="rotate(-18 22 46)" />
+          <ellipse cx="78" cy="46" rx="10" ry="13" transform="rotate(18 78 46)" />
+          <ellipse cx="36" cy="22" rx="8.5" ry="11" transform="rotate(-8 36 22)" />
+          <ellipse cx="64" cy="22" rx="8.5" ry="11" transform="rotate(8 64 22)" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+/* ---------- Editorial photo collage (matches PureFlow compact StepCollage style) ---------- */
+type CollageSlot = {
+  src?: string;
+  label: string;
+  tone?: "warm" | "blue" | "earth" | "sun" | "ocean" | "green";
+};
+
+function PhotoCollage({
+  photos,
+  variant = "A",
+  pawCorner = "tr",
+  className = "",
+}: {
+  photos: CollageSlot[];
+  variant?: "A" | "B" | "C";
+  pawCorner?: "tl" | "tr" | "bl" | "br";
+  className?: string;
+}) {
+  const slots = photos.slice(0, 4);
+  while (slots.length < 3) slots.push({ label: "Pondo Dogs", tone: "earth" });
+
+  const layouts: Record<"A" | "B" | "C", string[]> = {
+    // 4 photos — portrait main + top right + mid right + wide bottom
+    A: [
+      "col-span-7 row-span-4 rounded-tl-[2.5rem] rounded-br-2xl rounded-tr-xl rounded-bl-xl",
+      "col-span-5 row-span-3 rounded-tr-[2.5rem] rounded-bl-xl rounded-tl-xl rounded-br-xl",
+      "col-span-5 row-span-3 rounded-xl",
+      "col-span-7 row-span-2 rounded-bl-[2.5rem] rounded-tr-xl rounded-tl-xl rounded-br-xl",
+    ],
+    // 3 photos — tall left, two stacked right
+    B: [
+      "col-span-7 row-span-6 rounded-tl-[2.5rem] rounded-bl-[2.5rem] rounded-tr-xl rounded-br-xl",
+      "col-span-5 row-span-3 rounded-tr-[2.5rem] rounded-bl-xl rounded-tl-xl rounded-br-xl",
+      "col-span-5 row-span-3 rounded-br-[2.5rem] rounded-tl-xl rounded-tr-xl rounded-bl-xl",
+    ],
+    // 4 photos — 2x2 with a hero cell
+    C: [
+      "col-span-6 row-span-3 rounded-tl-[2.5rem] rounded-br-2xl rounded-tr-xl rounded-bl-xl",
+      "col-span-6 row-span-3 rounded-tr-[2.5rem] rounded-bl-2xl rounded-tl-xl rounded-br-xl",
+      "col-span-7 row-span-3 rounded-bl-[2.5rem] rounded-tr-xl rounded-tl-xl rounded-br-xl",
+      "col-span-5 row-span-3 rounded-br-[2.5rem] rounded-tl-xl rounded-tr-xl rounded-bl-xl",
+    ],
+  };
+  const cells = layouts[variant];
+  const usable = slots.slice(0, cells.length);
+  const pawPos: Record<string, string> = {
+    tl: "-left-4 -top-4",
+    tr: "-right-4 -top-4",
+    bl: "-left-4 -bottom-4",
+    br: "-right-4 -bottom-4",
+  };
+
+  return (
+    <div className={`relative ${className}`}>
+      <div
+        className="relative grid aspect-[4/5] grid-cols-12 grid-rows-6 gap-2.5 md:gap-3"
+        style={{ filter: "drop-shadow(0 22px 50px rgba(60,30,10,0.32))" }}
+      >
+        {usable.map((p, i) => (
+          <div key={i} className={`overflow-hidden ring-1 ring-black/10 ${cells[i]}`}>
+            <SmartImage
+              src={p.src ?? ""}
+              label={p.label}
+              tone={p.tone ?? "earth"}
+              rounded="rounded-none"
+              className="h-full w-full"
+              showMissingBadge={false}
+            />
+          </div>
+        ))}
+      </div>
+      <PawAccent className={`${pawPos[pawCorner]} rotate-[8deg]`} size={92} />
+    </div>
+  );
+}
+
 /* ---------- reduced motion ---------- */
 function useReducedMotion() {
   const [reduced, setReduced] = useState(false);
