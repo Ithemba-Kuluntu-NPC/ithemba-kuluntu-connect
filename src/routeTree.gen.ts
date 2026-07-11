@@ -23,6 +23,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProjectsIndexRouteImport } from './routes/projects/index'
 import { Route as AboutIndexRouteImport } from './routes/about/index'
+import { Route as ProjectsPureflowOldRouteImport } from './routes/projects/pureflow-old'
 import { Route as ProjectsPureflowAmanziCompactRouteImport } from './routes/projects/pureflow-amanzi-compact'
 import { Route as ProjectsPureflowRouteImport } from './routes/projects/pureflow'
 import { Route as ProjectsPondoDogsRouteImport } from './routes/projects/pondo-dogs'
@@ -102,6 +103,11 @@ const AboutIndexRoute = AboutIndexRouteImport.update({
   path: '/about/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProjectsPureflowOldRoute = ProjectsPureflowOldRouteImport.update({
+  id: '/projects/pureflow-old',
+  path: '/projects/pureflow-old',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProjectsPureflowAmanziCompactRoute =
   ProjectsPureflowAmanziCompactRouteImport.update({
     id: '/projects/pureflow-amanzi-compact',
@@ -165,6 +171,7 @@ export interface FileRoutesByFullPath {
   '/projects/pondo-dogs': typeof ProjectsPondoDogsRoute
   '/projects/pureflow': typeof ProjectsPureflowRoute
   '/projects/pureflow-amanzi-compact': typeof ProjectsPureflowAmanziCompactRoute
+  '/projects/pureflow-old': typeof ProjectsPureflowOldRoute
   '/about/': typeof AboutIndexRoute
   '/projects/': typeof ProjectsIndexRoute
 }
@@ -189,6 +196,7 @@ export interface FileRoutesByTo {
   '/projects/pondo-dogs': typeof ProjectsPondoDogsRoute
   '/projects/pureflow': typeof ProjectsPureflowRoute
   '/projects/pureflow-amanzi-compact': typeof ProjectsPureflowAmanziCompactRoute
+  '/projects/pureflow-old': typeof ProjectsPureflowOldRoute
   '/about': typeof AboutIndexRoute
   '/projects': typeof ProjectsIndexRoute
 }
@@ -214,6 +222,7 @@ export interface FileRoutesById {
   '/projects/pondo-dogs': typeof ProjectsPondoDogsRoute
   '/projects/pureflow': typeof ProjectsPureflowRoute
   '/projects/pureflow-amanzi-compact': typeof ProjectsPureflowAmanziCompactRoute
+  '/projects/pureflow-old': typeof ProjectsPureflowOldRoute
   '/about/': typeof AboutIndexRoute
   '/projects/': typeof ProjectsIndexRoute
 }
@@ -240,6 +249,7 @@ export interface FileRouteTypes {
     | '/projects/pondo-dogs'
     | '/projects/pureflow'
     | '/projects/pureflow-amanzi-compact'
+    | '/projects/pureflow-old'
     | '/about/'
     | '/projects/'
   fileRoutesByTo: FileRoutesByTo
@@ -264,6 +274,7 @@ export interface FileRouteTypes {
     | '/projects/pondo-dogs'
     | '/projects/pureflow'
     | '/projects/pureflow-amanzi-compact'
+    | '/projects/pureflow-old'
     | '/about'
     | '/projects'
   id:
@@ -288,6 +299,7 @@ export interface FileRouteTypes {
     | '/projects/pondo-dogs'
     | '/projects/pureflow'
     | '/projects/pureflow-amanzi-compact'
+    | '/projects/pureflow-old'
     | '/about/'
     | '/projects/'
   fileRoutesById: FileRoutesById
@@ -313,6 +325,7 @@ export interface RootRouteChildren {
   ProjectsPondoDogsRoute: typeof ProjectsPondoDogsRoute
   ProjectsPureflowRoute: typeof ProjectsPureflowRoute
   ProjectsPureflowAmanziCompactRoute: typeof ProjectsPureflowAmanziCompactRoute
+  ProjectsPureflowOldRoute: typeof ProjectsPureflowOldRoute
   AboutIndexRoute: typeof AboutIndexRoute
   ProjectsIndexRoute: typeof ProjectsIndexRoute
 }
@@ -417,6 +430,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/projects/pureflow-old': {
+      id: '/projects/pureflow-old'
+      path: '/projects/pureflow-old'
+      fullPath: '/projects/pureflow-old'
+      preLoaderRoute: typeof ProjectsPureflowOldRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/projects/pureflow-amanzi-compact': {
       id: '/projects/pureflow-amanzi-compact'
       path: '/projects/pureflow-amanzi-compact'
@@ -497,6 +517,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProjectsPondoDogsRoute: ProjectsPondoDogsRoute,
   ProjectsPureflowRoute: ProjectsPureflowRoute,
   ProjectsPureflowAmanziCompactRoute: ProjectsPureflowAmanziCompactRoute,
+  ProjectsPureflowOldRoute: ProjectsPureflowOldRoute,
   AboutIndexRoute: AboutIndexRoute,
   ProjectsIndexRoute: ProjectsIndexRoute,
 }
