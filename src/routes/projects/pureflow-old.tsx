@@ -65,6 +65,12 @@ import type { Lang } from "@/data/content";
 
 export const Route = createFileRoute("/projects/pureflow-old")({
   component: PureFlowPage,
+  head: () => ({
+    meta: [
+      { title: "PureFlow Amanzi (archived) — iThemba Kuluntu" },
+      { name: "robots", content: "noindex, nofollow" },
+    ],
+  }),
 });
 
 /* ============================== ASSETS ============================== */
