@@ -749,9 +749,9 @@ function MediaPage() {
             <h2 className="mt-1 font-display text-3xl font-bold text-[color:var(--ithemba-blue-deepest,#0b2545)] md:text-4xl">
               {c.articles.title}
             </h2>
-            <ul className="mt-7 flex flex-col gap-3">
+            <ul className="mt-7 grid gap-3 md:grid-cols-2">
               {ARTICLES.map((a) => (
-                <ArticleRow key={a.url} a={a} label={c.articles.read} typeLabel={c.type.article} />
+                <ArticleCard key={a.url} a={a} label={c.articles.read} typeLabel={c.type.article} />
               ))}
             </ul>
           </div>
