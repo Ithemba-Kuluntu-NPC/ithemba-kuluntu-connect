@@ -108,7 +108,7 @@ export function Header() {
           : "bg-white/40 backdrop-blur"
       }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2.5 lg:px-8">
+      <div ref={barRef} className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2.5 lg:px-8">
         {/* Logo as home link — full uncropped logo, larger */}
         <Link to="/" className="flex shrink-0 items-center" aria-label="iThemba Kuluntu — home">
           <SmartLogo
