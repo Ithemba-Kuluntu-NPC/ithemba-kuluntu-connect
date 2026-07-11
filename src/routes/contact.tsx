@@ -390,7 +390,7 @@ function ContactPage() {
             <p className="mt-5 max-w-2xl text-base text-white/90 md:text-lg">{c.hero.text}</p>
           </div>
         </div>
-        <Wave from="rgba(0,0,0,0)" to={cream} />
+        <Wave from="rgba(0,0,0,0)" to={blueDeep} />
       </section>
 
       {/* ============ DETAILS + FORM ============ */}
