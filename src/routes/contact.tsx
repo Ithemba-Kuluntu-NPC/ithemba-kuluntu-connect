@@ -7,6 +7,8 @@ import {
   MessageCircle,
   MapPin,
   Instagram,
+  Facebook,
+  Youtube,
   HandHeart,
   Handshake,
   Megaphone,
