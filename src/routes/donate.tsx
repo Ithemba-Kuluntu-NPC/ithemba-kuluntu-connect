@@ -169,9 +169,7 @@ function DonatePage() {
           aria-hidden
         />
         <div className="relative mx-auto max-w-3xl px-4 py-20 text-center lg:px-8">
-          <p className="font-script text-3xl text-[var(--ithemba-yellow)] md:text-4xl">
-            {c.thankyou.script}
-          </p>
+          <p className="hand-eyebrow-lg text-[var(--ithemba-yellow)]">{c.thankyou.script}</p>
           <h2 className="mt-2 font-display text-3xl font-bold text-white md:text-4xl">
             {c.thankyou.title}
           </h2>
