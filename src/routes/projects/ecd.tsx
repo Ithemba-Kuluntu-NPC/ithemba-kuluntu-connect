@@ -1435,7 +1435,6 @@ const RHYTHM_BLOBS = [
 
 function Rhythm({ c }: { c: Copy }) {
   const [open, setOpen] = useState(false);
-  const reduced = useReducedMotion();
   const rhythmPhotoLabels = [
     "Children arriving at the ECD Centre",
     "Children at free and guided play",
