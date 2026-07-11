@@ -1141,6 +1141,7 @@ function SDGIcon({ n }: { n: number }) {
 }
 
 function SDGGrid({ t }: { t: (k: string, fb?: string) => string }) {
+  const [selected, setSelected] = useState<number>(6);
   return (
     <section className="relative isolate overflow-hidden">
       <div className="absolute inset-0 -z-10">
@@ -1151,7 +1152,7 @@ function SDGGrid({ t }: { t: (k: string, fb?: string) => string }) {
           className="h-full w-full object-cover"
           onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = "none")}
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-[#081A60]/50 via-[#081A60]/30 to-[#081A60]/50" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#081A60]/55 via-[#081A60]/35 to-[#081A60]/55" />
       </div>
       <div className="mx-auto max-w-6xl px-5 py-10 md:px-8 md:py-12">
         <div className="text-center">
@@ -1162,20 +1163,57 @@ function SDGGrid({ t }: { t: (k: string, fb?: string) => string }) {
           <p className="mx-auto mt-2 max-w-2xl text-sm text-white/90 md:text-base">{t("sdg.sub_heading")}</p>
         </div>
 
-        {/* Single translucent panel containing all SDG items */}
+        {/* Compact icon grid */}
         <div
-          className="mx-auto mt-6 rounded-[28px] border border-white/45 p-6 shadow-lg backdrop-blur-sm sm:p-8 md:mt-8 md:p-10 lg:max-w-[1180px]"
-          style={{ background: "rgba(255, 255, 255, 0.82)" }}
+          role="tablist"
+          aria-label="Sustainable Development Goals"
+          className="mx-auto mt-6 grid max-w-3xl grid-cols-3 justify-items-center gap-3 sm:grid-cols-4 sm:gap-4 md:mt-8 md:max-w-4xl md:grid-cols-6 lg:grid-cols-6"
         >
-          <div className="grid grid-cols-2 gap-x-6 gap-y-5 sm:gap-x-8 sm:gap-y-6 md:grid-cols-3 md:gap-x-8 md:gap-y-7 lg:grid-cols-4 lg:gap-x-10 lg:gap-y-8">
-            {SDG_NUMS.map((n) => (
-              <div key={n} className="flex flex-col items-center text-center">
+          {SDG_NUMS.map((n) => {
+            const isActive = selected === n;
+            return (
+              <button
+                key={n}
+                type="button"
+                role="tab"
+                aria-selected={isActive}
+                aria-label={`${t(`sdg.${n}.title`)}`}
+                onClick={() => setSelected(n)}
+                onMouseEnter={() => setSelected(n)}
+                onFocus={() => setSelected(n)}
+                className={`group rounded-xl p-1.5 outline-none transition-all duration-200 focus-visible:ring-2 focus-visible:ring-[${YELLOW}] focus-visible:ring-offset-2 focus-visible:ring-offset-[#081A60] ${
+                  isActive
+                    ? "scale-105 ring-2 ring-[#FFC629] ring-offset-2 ring-offset-transparent"
+                    : "opacity-80 hover:opacity-100 hover:scale-105"
+                }`}
+              >
                 <SDGIcon n={n} />
-                <p className="mt-1.5 max-w-[220px] text-[12px] leading-[1.3] text-slate-800 md:text-[13px]">
-                  {t(`sdg.${n}.desc`)}
-                </p>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Detail panel for selected SDG */}
+        <div
+          className="mx-auto mt-6 max-w-3xl rounded-2xl border border-white/40 p-5 shadow-lg backdrop-blur-md sm:p-6 md:mt-8"
+          style={{ background: "rgba(255, 251, 240, 0.94)" }}
+          aria-live="polite"
+        >
+          <div className="flex flex-col items-center gap-4 text-center sm:flex-row sm:items-center sm:text-left">
+            <div className="shrink-0">
+              <SDGIcon n={selected} />
+            </div>
+            <div>
+              <div className="text-xs font-semibold uppercase tracking-wider text-[#FFC629]" style={{ color: "#B8860B" }}>
+                SDG {selected}
               </div>
-            ))}
+              <h3 className="mt-0.5 text-lg font-bold text-[#081A60] md:text-xl" style={{ fontFamily: SERIF }}>
+                {t(`sdg.${selected}.title`)}
+              </h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-slate-800 md:text-[15px]">
+                {t(`sdg.${selected}.desc`)}
+              </p>
+            </div>
           </div>
         </div>
       </div>
