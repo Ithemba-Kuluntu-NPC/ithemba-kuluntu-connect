@@ -101,7 +101,6 @@ export function Footer() {
               {sent ? (lang === "en" ? "Thank you!" : "Danke!") : (lang === "en" ? "Subscribe" : "Abonnieren")}
             </Button>
           </form>
-          <Placeholder text="newsletter platform" />
 
           <div className="mt-5 flex flex-wrap gap-3">
             <a
