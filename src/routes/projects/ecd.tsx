@@ -1146,17 +1146,17 @@ function Why({ c }: { c: Copy }) {
     <section className="mx-auto grid max-w-7xl gap-10 px-4 py-20 md:grid-cols-2 lg:px-8">
       <div className="relative">
         <div className="absolute -left-6 -top-6 h-24 w-24 blob bg-[var(--ithemba-yellow)]/35 -z-10" />
-        <SmartImage
-          src={PHOTO_CHILD}
-          label="Children at the No.1 ECD Centre"
-          className="aspect-[4/5] w-full"
-          rounded="rounded-[2.5rem]"
-          tone="sun"
-          showMissingBadge={false}
+        <PhotoCollage
+          variant="A"
+          iconCorner="br"
+          icon={ECD_ICONS.brain}
+          photos={[
+            { src: PHOTO_CHILD, label: "Child playing at the ECD Centre", tone: "sun" },
+            { src: PHOTO_CLASSROOM, label: "Classroom activities", tone: "warm" },
+            { src: PHOTO_MEAL, label: "Shared meal at the centre", tone: "earth" },
+            { src: PHOTO_CHILD, label: "Learning through play", tone: "sun" },
+          ]}
         />
-        <div className="absolute -bottom-5 -right-5 hidden h-24 w-24 items-center justify-center rounded-full bg-[var(--ithemba-yellow)] text-[var(--ithemba-brown)] shadow-xl md:flex">
-          <Heart className="h-9 w-9 fill-current" />
-        </div>
       </div>
       <div className="flex flex-col justify-center">
         <SectionHeading eyebrow={c.why.eyebrow} title={c.why.title} />
