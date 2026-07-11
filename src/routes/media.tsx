@@ -701,14 +701,14 @@ function MediaPage() {
       {/* FEATURED */}
       {show.featured && (
         <section style={{ background: blueDeep }} className="text-white">
-          <div className="mx-auto max-w-6xl px-5 py-10 md:px-8 md:py-14">
+          <div className="mx-auto max-w-6xl px-5 py-10 md:px-8 md:py-12 lg:pb-16">
             <p className="text-3xl" style={{ color: yellow, fontFamily: script }}>
               {c.featured.eyebrow}
             </p>
             <h2 className="mt-1 font-display text-3xl font-bold text-white md:text-4xl">
               {c.featured.title}
             </h2>
-            <div className="mt-7 grid gap-5 md:grid-cols-2">
+            <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {FEATURED.map((item) => (
                 <FeaturedCard key={item.url} item={item} c={c} />
               ))}
