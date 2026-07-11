@@ -1436,7 +1436,11 @@ function Rhythm({ c }: { c: Copy }) {
   useEffect(() => {
     const el = contentRef.current;
     if (!el) return;
-    const update = () => setContentHeight(el.scrollHeight);
+    const update = () => {
+      const next = el.scrollHeight;
+      console.log("[RHYTHM] measured", next);
+      setContentHeight(next);
+    };
     update();
     const ro = new ResizeObserver(update);
     ro.observe(el);
