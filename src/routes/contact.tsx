@@ -52,6 +52,7 @@ type Copy = {
   hero: { eyebrow: string; title: string; text: string };
   details: {
     heading: string;
+    mainHeading: string;
     intro: string;
     emailLabel: string;
     phoneLabel: string;
