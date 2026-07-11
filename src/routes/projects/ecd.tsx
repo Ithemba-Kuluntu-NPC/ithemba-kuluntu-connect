@@ -2,6 +2,11 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
+import {
   ArrowLeft,
   Heart,
   Sparkles,
@@ -24,7 +29,7 @@ import {
   Building2,
   Award,
   Cookie,
-  
+  ChevronDown,
   PlayCircle,
 } from "lucide-react";
 import { useLang } from "@/components/site/LanguageProvider";
