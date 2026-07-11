@@ -57,6 +57,7 @@ export function Header() {
   const path = useRouterState({ select: (s) => s.location.pathname });
   const menuRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLElement>(null);
+  const barRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const on = () => setScrolled(window.scrollY > 12);
