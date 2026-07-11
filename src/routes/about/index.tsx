@@ -504,13 +504,13 @@ function HeroVideo({ c }: { c: AboutContent }) {
             <source src={HERO_VIDEO} type="video/mp4" />
           </video>
         ) : (
-          <SmartImage
+          <img
             src={HERO_POSTER}
-            label="iThemba Kuluntu team — community hero"
-            className="h-full w-full"
-            rounded="rounded-none"
-            tone="earth"
-            showMissingBadge={false}
+            alt="iThemba Kuluntu team — community hero"
+            className="h-full w-full object-cover"
+            onError={(e) => {
+              e.currentTarget.src = assets.photos.about.hero;
+            }}
           />
         )}
         {/* Deep-blue overlays for legibility */}
@@ -565,7 +565,7 @@ function HeroVideo({ c }: { c: AboutContent }) {
       </div>
 
       {/* wave divider */}
-      <svg className="block w-full" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden>
+      <svg className="block w-full -mb-px" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden>
         <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="var(--background)" />
       </svg>
     </section>
@@ -574,7 +574,7 @@ function HeroVideo({ c }: { c: AboutContent }) {
 
 function WhoWeAre({ c }: { c: AboutContent }) {
   return (
-    <section className="mx-auto max-w-7xl px-4 py-16 md:py-20 lg:px-8">
+    <section className="relative mx-auto max-w-7xl bg-[var(--background)] px-4 py-16 md:py-20 lg:px-8">
       <div className="grid items-center gap-10 md:grid-cols-2">
         <div className="relative">
           <div className="absolute -inset-4 -z-10 blob bg-[var(--ithemba-yellow)]/20" aria-hidden />
