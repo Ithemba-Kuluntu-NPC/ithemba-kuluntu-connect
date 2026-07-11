@@ -1429,7 +1429,6 @@ const RHYTHM_BLOBS = [
 ];
 
 function Rhythm({ c }: { c: Copy }) {
-  console.log("[RHYTHM] render");
   const [open, setOpen] = useState(false);
   const [contentHeight, setContentHeight] = useState(0);
   const contentRef = useRef<HTMLDivElement>(null);
