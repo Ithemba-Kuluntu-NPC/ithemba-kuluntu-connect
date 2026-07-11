@@ -90,33 +90,27 @@ function PdIcon({
   );
 }
 
-/* ---------- yellow paw accent (replaces yellow square from PureFlow collages) ---------- */
-function PawAccent({
+/* ---------- collage icon badge (polished circular accent for section icon) ---------- */
+function CollageIconBadge({
+  src,
+  alt = "",
   className = "",
-  size = 88,
+  size = 64,
 }: {
+  src: string;
+  alt?: string;
   className?: string;
   size?: number;
 }) {
   return (
     <div
-      aria-hidden
-      className={`pointer-events-none absolute z-10 ${className}`}
+      className={`pointer-events-none absolute z-10 flex items-center justify-center rounded-full bg-white/95 shadow-lg ring-1 ring-[var(--ithemba-yellow)]/40 backdrop-blur ${className}`}
       style={{
         width: size,
         height: size,
-        filter: "drop-shadow(0 10px 22px rgba(251,191,36,0.55))",
       }}
     >
-      <svg viewBox="0 0 100 100" className="h-full w-full">
-        <g fill="var(--ithemba-yellow)">
-          <ellipse cx="50" cy="66" rx="22" ry="20" />
-          <ellipse cx="22" cy="46" rx="10" ry="13" transform="rotate(-18 22 46)" />
-          <ellipse cx="78" cy="46" rx="10" ry="13" transform="rotate(18 78 46)" />
-          <ellipse cx="36" cy="22" rx="8.5" ry="11" transform="rotate(-8 36 22)" />
-          <ellipse cx="64" cy="22" rx="8.5" ry="11" transform="rotate(8 64 22)" />
-        </g>
-      </svg>
+      <PdIcon src={src} alt={alt} className="h-9 w-9" />
     </div>
   );
 }
@@ -131,12 +125,14 @@ type CollageSlot = {
 function PhotoCollage({
   photos,
   variant = "A",
-  pawCorner = "tr",
+  iconCorner = "tr",
+  icon,
   className = "",
 }: {
   photos: CollageSlot[];
   variant?: "A" | "B" | "C";
-  pawCorner?: "tl" | "tr" | "bl" | "br";
+  iconCorner?: "tl" | "tr" | "bl" | "br";
+  icon?: string;
   className?: string;
 }) {
   const slots = photos.slice(0, 4);
@@ -166,11 +162,11 @@ function PhotoCollage({
   };
   const cells = layouts[variant];
   const usable = slots.slice(0, cells.length);
-  const pawPos: Record<string, string> = {
-    tl: "-left-4 -top-4",
-    tr: "-right-4 -top-4",
-    bl: "-left-4 -bottom-4",
-    br: "-right-4 -bottom-4",
+  const iconPos: Record<string, string> = {
+    tl: "-left-3 -top-3",
+    tr: "-right-3 -top-3",
+    bl: "-left-3 -bottom-3",
+    br: "-right-3 -bottom-3",
   };
 
   return (
@@ -192,7 +188,7 @@ function PhotoCollage({
           </div>
         ))}
       </div>
-      <PawAccent className={`${pawPos[pawCorner]} rotate-[8deg]`} size={92} />
+      {icon && <CollageIconBadge src={icon} alt="" className={`${iconPos[iconCorner]} rotate-[8deg]`} size={64} />}
     </div>
   );
 }
@@ -1326,7 +1322,8 @@ function Who({ c }: { c: Copy }) {
       <div className="grid items-center gap-12 md:grid-cols-2">
         <PhotoCollage
           variant="A"
-          pawCorner="tr"
+          iconCorner="tr"
+          icon={ICON.project}
           photos={[
             { src: PHOTO_COMMUNITY, label: "Dogs and people in a Pondoland community", tone: "earth" },
             { src: PHOTO_HERO, label: "Local community team in Pondoland", tone: "warm" },
@@ -1482,6 +1479,7 @@ function CareSection({
   outro,
   photo,
   photoLabel,
+  icon,
   reversed = false,
   background = "cream",
 }: {
@@ -1492,6 +1490,7 @@ function CareSection({
   outro?: string;
   photo: string;
   photoLabel: string;
+  icon: string;
   reversed?: boolean;
   background?: "cream" | "white" | "blue";
 }) {
@@ -1516,7 +1515,8 @@ function CareSection({
         <div className={`grid items-center gap-10 md:grid-cols-2 ${reversed ? "md:[&>*:first-child]:order-2" : ""}`}>
           <PhotoCollage
             variant={reversed ? "C" : "A"}
-            pawCorner={reversed ? "tl" : "tr"}
+            iconCorner={reversed ? "tl" : "tr"}
+            icon={icon}
             photos={[
               { src: photo, label: photoLabel, tone: "earth" },
               { src: PHOTO_CARE, label: `${photoLabel} — moment two`, tone: "warm" },
@@ -1586,7 +1586,8 @@ function Sterilisation({ c }: { c: Copy }) {
           <div className="relative">
             <PhotoCollage
               variant="A"
-              pawCorner="tl"
+              iconCorner="tl"
+              icon={ICON.sterilisation}
               photos={[
                 { src: PHOTO_CARE, label: "Animal welfare team preparing a sterilisation campaign", tone: "earth" },
                 { src: PHOTO_COMMUNITY, label: "Sterilisation campaign day in Pondoland", tone: "warm" },
@@ -1657,7 +1658,8 @@ function Education({ c }: { c: Copy }) {
         <div className="grid gap-10 md:grid-cols-2 md:items-center">
           <PhotoCollage
             variant="B"
-            pawCorner="tr"
+            iconCorner="tr"
+            icon={ICON.ownerEducation}
             photos={[
               { src: PHOTO_COMMUNITY, label: "Owner education in the community", tone: "earth" },
               { src: PHOTO_CARE, label: "Practical guidance with a local family", tone: "warm" },
@@ -2090,6 +2092,7 @@ function PondoDogsPage() {
         items={c.medical.items}
         photo={PHOTO_CARE}
         photoLabel="Caring for a sick or injured animal"
+        icon={ICON.medicalCare}
         background="blue"
       />
       <CareSection
@@ -2099,6 +2102,7 @@ function PondoDogsPage() {
         items={c.preventive.items}
         photo={PHOTO_COMMUNITY}
         photoLabel="Preventive care for animals"
+        icon={ICON.preventiveCare}
         reversed
         background="white"
       />
@@ -2111,6 +2115,7 @@ function PondoDogsPage() {
         outro={c.home.outro}
         photo={PHOTO_COMMUNITY}
         photoLabel="Home visit in a Pondoland village"
+        icon={ICON.homeBased}
         background="cream"
       />
       <CareSection
@@ -2119,6 +2124,7 @@ function PondoDogsPage() {
         body={c.food.body}
         photo={PHOTO_CARE}
         photoLabel="Food and shelter support for animals"
+        icon={ICON.foodAndShelter}
         reversed
         background="blue"
       />
