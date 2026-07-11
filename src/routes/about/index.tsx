@@ -574,7 +574,7 @@ function HeroVideo({ c }: { c: AboutContent }) {
 
 function WhoWeAre({ c }: { c: AboutContent }) {
   return (
-    <section className="mx-auto max-w-7xl px-4 py-16 md:py-20 lg:px-8">
+    <section className="relative mx-auto max-w-7xl bg-[var(--background)] px-4 py-16 md:py-20 lg:px-8">
       <div className="grid items-center gap-10 md:grid-cols-2">
         <div className="relative">
           <div className="absolute -inset-4 -z-10 blob bg-[var(--ithemba-yellow)]/20" aria-hidden />
