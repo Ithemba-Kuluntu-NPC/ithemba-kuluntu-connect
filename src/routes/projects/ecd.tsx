@@ -1571,47 +1571,44 @@ function Rhythm({ c }: { c: Copy }) {
       <div className="pointer-events-none absolute right-16 top-1/3"><Heart className="h-5 w-5 text-[var(--ithemba-yellow)]/40 fill-current" /></div>
 
       <div className="relative mx-auto max-w-5xl px-4 lg:px-8">
-        <Collapsible open={open} onOpenChange={setOpen}>
-          <div className="text-center">
-            <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)]">{c.rhythm.eyebrow}</div>
-            <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">
-              {open ? c.rhythm.title : c.rhythm.closedTitle}
-            </h2>
-            <p className="mx-auto mt-3 max-w-2xl text-base text-white/90 md:text-lg">
-              {open ? c.rhythm.intro : c.rhythm.closedIntro}
-            </p>
-          </div>
+        <div className="text-center">
+          <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)]">{c.rhythm.eyebrow}</div>
+          <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">
+            {open ? c.rhythm.title : c.rhythm.closedTitle}
+          </h2>
+          <p className="mx-auto mt-3 max-w-2xl text-base text-white/90 md:text-lg">
+            {open ? c.rhythm.intro : c.rhythm.closedIntro}
+          </p>
+        </div>
 
-          <div className="mt-6 flex justify-center">
-            <CollapsibleTrigger asChild>
-              <Button
-                className="group inline-flex items-center gap-2 rounded-full border-2 border-[var(--ithemba-yellow)] bg-[var(--ithemba-cream)] px-6 py-5 text-base font-bold text-[var(--ithemba-blue-dark)] shadow-[var(--shadow-soft)] transition-all hover:bg-[var(--ithemba-yellow)] hover:text-[var(--ithemba-blue-dark)] active:scale-95 md:px-8 md:py-6 md:text-lg"
-              >
-                {open ? c.rhythm.closeButton : c.rhythm.openButton}
-                <ChevronDown
-                  className={cn(
-                    "h-5 w-5 transition-transform duration-300",
-                    open ? "rotate-180" : ""
-                  )}
-                />
-              </Button>
-            </CollapsibleTrigger>
-          </div>
-
-          <CollapsibleContent
-            className={cn(
-              "grid overflow-hidden transition-all duration-500 ease-in-out"
-            )}
-            data-state={open ? "open" : "closed"}
-            style={{
-              gridTemplateRows: open ? "1fr" : "0fr",
-            }}
+        <div className="mt-6 flex justify-center">
+          <Button
+            onClick={() => setOpen((v) => !v)}
+            aria-expanded={open}
+            aria-controls="rhythm-panel"
+            className="group inline-flex items-center gap-2 rounded-full border-2 border-[var(--ithemba-yellow)] bg-[var(--ithemba-cream)] px-6 py-5 text-base font-bold text-[var(--ithemba-blue-dark)] shadow-[var(--shadow-soft)] transition-all hover:bg-[var(--ithemba-yellow)] hover:text-[var(--ithemba-blue-dark)] active:scale-95 md:px-8 md:py-6 md:text-lg"
           >
-            <div className="min-h-0 overflow-hidden">
-              {timeline}
-            </div>
-          </CollapsibleContent>
-        </Collapsible>
+            {open ? c.rhythm.closeButton : c.rhythm.openButton}
+            <ChevronDown
+              className={cn(
+                "h-5 w-5 transition-transform duration-300",
+                open ? "rotate-180" : ""
+              )}
+            />
+          </Button>
+        </div>
+
+        <div
+          id="rhythm-panel"
+          className="grid overflow-hidden transition-all duration-500 ease-in-out"
+          style={{
+            gridTemplateRows: open ? "1fr" : "0fr",
+          }}
+        >
+          <div className="min-h-0 overflow-hidden">
+            {timeline}
+          </div>
+        </div>
       </div>
     </section>
   );
