@@ -24,6 +24,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProjectsIndexRouteImport } from './routes/projects/index'
 import { Route as AboutIndexRouteImport } from './routes/about/index'
 import { Route as ProjectsPureflowOldRouteImport } from './routes/projects/pureflow-old'
+import { Route as ProjectsPureflowAmanziCompactRouteImport } from './routes/projects/pureflow-amanzi-compact'
 import { Route as ProjectsPureflowRouteImport } from './routes/projects/pureflow'
 import { Route as ProjectsPondoDogsRouteImport } from './routes/projects/pondo-dogs'
 import { Route as ProjectsGreenhouseRouteImport } from './routes/projects/greenhouse'
@@ -107,6 +108,12 @@ const ProjectsPureflowOldRoute = ProjectsPureflowOldRouteImport.update({
   path: '/projects/pureflow-old',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProjectsPureflowAmanziCompactRoute =
+  ProjectsPureflowAmanziCompactRouteImport.update({
+    id: '/projects/pureflow-amanzi-compact',
+    path: '/projects/pureflow-amanzi-compact',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ProjectsPureflowRoute = ProjectsPureflowRouteImport.update({
   id: '/projects/pureflow',
   path: '/projects/pureflow',
@@ -163,6 +170,7 @@ export interface FileRoutesByFullPath {
   '/projects/greenhouse': typeof ProjectsGreenhouseRoute
   '/projects/pondo-dogs': typeof ProjectsPondoDogsRoute
   '/projects/pureflow': typeof ProjectsPureflowRoute
+  '/projects/pureflow-amanzi-compact': typeof ProjectsPureflowAmanziCompactRoute
   '/projects/pureflow-old': typeof ProjectsPureflowOldRoute
   '/about/': typeof AboutIndexRoute
   '/projects/': typeof ProjectsIndexRoute
@@ -187,6 +195,7 @@ export interface FileRoutesByTo {
   '/projects/greenhouse': typeof ProjectsGreenhouseRoute
   '/projects/pondo-dogs': typeof ProjectsPondoDogsRoute
   '/projects/pureflow': typeof ProjectsPureflowRoute
+  '/projects/pureflow-amanzi-compact': typeof ProjectsPureflowAmanziCompactRoute
   '/projects/pureflow-old': typeof ProjectsPureflowOldRoute
   '/about': typeof AboutIndexRoute
   '/projects': typeof ProjectsIndexRoute
@@ -212,6 +221,7 @@ export interface FileRoutesById {
   '/projects/greenhouse': typeof ProjectsGreenhouseRoute
   '/projects/pondo-dogs': typeof ProjectsPondoDogsRoute
   '/projects/pureflow': typeof ProjectsPureflowRoute
+  '/projects/pureflow-amanzi-compact': typeof ProjectsPureflowAmanziCompactRoute
   '/projects/pureflow-old': typeof ProjectsPureflowOldRoute
   '/about/': typeof AboutIndexRoute
   '/projects/': typeof ProjectsIndexRoute
@@ -238,6 +248,7 @@ export interface FileRouteTypes {
     | '/projects/greenhouse'
     | '/projects/pondo-dogs'
     | '/projects/pureflow'
+    | '/projects/pureflow-amanzi-compact'
     | '/projects/pureflow-old'
     | '/about/'
     | '/projects/'
@@ -262,6 +273,7 @@ export interface FileRouteTypes {
     | '/projects/greenhouse'
     | '/projects/pondo-dogs'
     | '/projects/pureflow'
+    | '/projects/pureflow-amanzi-compact'
     | '/projects/pureflow-old'
     | '/about'
     | '/projects'
@@ -286,6 +298,7 @@ export interface FileRouteTypes {
     | '/projects/greenhouse'
     | '/projects/pondo-dogs'
     | '/projects/pureflow'
+    | '/projects/pureflow-amanzi-compact'
     | '/projects/pureflow-old'
     | '/about/'
     | '/projects/'
@@ -311,6 +324,7 @@ export interface RootRouteChildren {
   ProjectsGreenhouseRoute: typeof ProjectsGreenhouseRoute
   ProjectsPondoDogsRoute: typeof ProjectsPondoDogsRoute
   ProjectsPureflowRoute: typeof ProjectsPureflowRoute
+  ProjectsPureflowAmanziCompactRoute: typeof ProjectsPureflowAmanziCompactRoute
   ProjectsPureflowOldRoute: typeof ProjectsPureflowOldRoute
   AboutIndexRoute: typeof AboutIndexRoute
   ProjectsIndexRoute: typeof ProjectsIndexRoute
@@ -423,6 +437,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectsPureflowOldRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/projects/pureflow-amanzi-compact': {
+      id: '/projects/pureflow-amanzi-compact'
+      path: '/projects/pureflow-amanzi-compact'
+      fullPath: '/projects/pureflow-amanzi-compact'
+      preLoaderRoute: typeof ProjectsPureflowAmanziCompactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/projects/pureflow': {
       id: '/projects/pureflow'
       path: '/projects/pureflow'
@@ -495,6 +516,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProjectsGreenhouseRoute: ProjectsGreenhouseRoute,
   ProjectsPondoDogsRoute: ProjectsPondoDogsRoute,
   ProjectsPureflowRoute: ProjectsPureflowRoute,
+  ProjectsPureflowAmanziCompactRoute: ProjectsPureflowAmanziCompactRoute,
   ProjectsPureflowOldRoute: ProjectsPureflowOldRoute,
   AboutIndexRoute: AboutIndexRoute,
   ProjectsIndexRoute: ProjectsIndexRoute,
