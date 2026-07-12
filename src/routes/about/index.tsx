@@ -749,6 +749,13 @@ function WhatMakesDifferent({ c }: { c: AboutContent }) {
   );
 }
 
+const GUIDES_ICONS = [
+  "/assets/icons/about-us/about-long-term-care.png",
+  "/assets/icons/about-us/about-local-ownership.png",
+  "/assets/icons/about-us/about-practical-delivery.png",
+  "/assets/icons/about-us/about-long-term-trust.png",
+];
+
 function WhatGuidesUs({ c }: { c: AboutContent }) {
   return (
     <section className="mx-auto max-w-7xl px-4 py-16 md:py-20 lg:px-8">
@@ -765,8 +772,8 @@ function WhatGuidesUs({ c }: { c: AboutContent }) {
             className="relative overflow-hidden rounded-3xl border border-[var(--ithemba-blue)]/10 bg-[var(--ithemba-cream)] p-6 shadow-sm"
           >
             <div className="absolute -right-6 -top-6 h-20 w-20 rounded-full bg-[var(--ithemba-yellow)]/30 blur-xl" aria-hidden />
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white text-[var(--ithemba-blue-dark)] ring-1 ring-[var(--ithemba-blue)]/15">
-              <Heart className="h-5 w-5 fill-[var(--ithemba-yellow)] text-[var(--ithemba-yellow-warm)]" />
+            <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white ring-1 ring-[var(--ithemba-blue)]/15">
+              <img src={GUIDES_ICONS[i] ?? "/assets/icons/about-us/about-long-term-care.png"} alt="" className="h-5 w-5 object-contain" />
             </span>
             <h3 className="mt-4 font-display text-lg font-bold text-[var(--ithemba-blue-dark)]">
               <span className="relative inline-block">
