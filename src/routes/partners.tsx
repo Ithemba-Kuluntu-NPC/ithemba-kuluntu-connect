@@ -622,14 +622,6 @@ function PartnersPage() {
                 />
               </a>
             ))}
-            <div className="flex h-24 flex-col items-center justify-center text-center md:h-28">
-              <span className="font-display text-lg font-semibold text-[color:var(--ithemba-blue-deepest,#0b2545)]">
-                Küstenhund e.V.
-              </span>
-              <span className="mt-1 text-xs uppercase tracking-wide text-foreground/55">
-                {c.partners.placeholderSuffix}
-              </span>
-            </div>
           </div>
 
           <p className="mt-8 max-w-3xl text-[15px] text-foreground/80 md:text-base">{c.partners.outro}</p>
