@@ -681,10 +681,14 @@ function Showcase({ t, lang }: { t: (k: string, fb?: string) => string; lang: La
         <div className="mt-10 grid grid-cols-2 gap-x-5 gap-y-8 sm:grid-cols-4 lg:grid-cols-4">
           {counters.map((c) => {
             const { value, suffix } = parseCounter(c.v);
-            const Icon = c.icon;
             return (
               <div key={c.k} className="flex flex-col items-center text-center">
-                <Icon className="h-9 w-9 md:h-10 md:w-10" style={{ color: YELLOW }} strokeWidth={1.75} />
+                <img
+                  src={c.iconSrc}
+                  alt=""
+                  aria-hidden
+                  className="h-14 w-14 object-contain md:h-16 md:w-16"
+                />
                 <div
                   className="mt-2 font-display text-2xl font-extrabold leading-none md:text-3xl"
                   style={{ color: YELLOW, fontFamily: SERIF }}
@@ -695,6 +699,7 @@ function Showcase({ t, lang }: { t: (k: string, fb?: string) => string; lang: La
               </div>
             );
           })}
+
         </div>
 
 
