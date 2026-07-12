@@ -5,6 +5,7 @@ import {
   Heart,
   ArrowRight,
   MapPin,
+  Users,
   Sparkles,
   ShieldCheck,
   Handshake,
