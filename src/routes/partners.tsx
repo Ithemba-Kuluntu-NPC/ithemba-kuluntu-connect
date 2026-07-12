@@ -86,6 +86,35 @@ const EXPECT_ICONS = {
   Target, Users, MapPin, Camera, MessageCircle, HeartHandshake, Compass,
 } as const;
 
+// Custom PNG icon map — null means the mapped file is not yet uploaded; keep Lucide fallback.
+const WHY_ICON_PNG: Record<keyof typeof WHY_ICONS, string | null> = {
+  Anchor: "/assets/icons/partners/partner-local-trust-grounded-delivery.png",
+  Users: "/assets/icons/about-us/about-local-leadership.png",
+  ShieldCheck: "/assets/icons/about-us/about-trust-accountability.png",
+  Network: "/assets/icons/about-us/about-connected-response.png",
+  Activity: "/assets/icons/partners/partner-proven-response-capacity.png",
+  MapPin: null, // MISSING: /assets/icons/projects/pureflow/pureflow-location-pin.png
+};
+const HOW_ICON_PNG: Record<keyof typeof HOW_ICONS, string | null> = {
+  Handshake: "/assets/icons/about-us/about-long-term-trust.png",
+  Repeat: "/assets/icons/partners/partner-recurring-support.png",
+  Building2: "/assets/icons/partners/partner-corporate-social-investment.png",
+  PackageOpen: null, // MISSING: /assets/icons/projects/pureflow/pureflow-core-support-box.png
+  Wrench: null, // MISSING: /assets/icons/projects/pureflow/pureflow-wrench-maintenance.png
+  Siren: "/assets/icons/partners/partner-emergency-response-support.png",
+  Megaphone: "/assets/icons/partners/partner-awareness-media-collaboration.png",
+  UserCheck: "/assets/icons/partners/partner-volunteer-skills-support.png",
+};
+const EXPECT_ICON_PNG: Record<keyof typeof EXPECT_ICONS, string | null> = {
+  Target: "/assets/icons/partners/partner-clear-project-focus.png",
+  Users: "/assets/icons/about-us/about-local-leadership.png",
+  MapPin: null, // MISSING: /assets/icons/projects/pureflow/pureflow-location-pin.png
+  Camera: "/assets/icons/partners/partner-photos-stories-reports.png",
+  MessageCircle: "/assets/icons/partners/partner-honest-communication.png",
+  HeartHandshake: null, // MISSING: /assets/icons/projects/pureflow/pureflow-hand-heart-followup.png
+  Compass: "/assets/icons/about-us/about-long-term-trust.png",
+};
+
 const COPY: Record<"en" | "de" | "nl", Copy> = {
   en: {
     hero: {
