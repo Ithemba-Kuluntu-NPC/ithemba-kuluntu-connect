@@ -1624,7 +1624,12 @@ function Sterilisation({ c }: { c: Copy }) {
 
             {/* Partner card — discreet, references partner without over-emphasis */}
             <div className="mt-8 flex flex-wrap items-center gap-4 rounded-3xl bg-white/10 p-5 ring-1 ring-white/20 backdrop-blur">
-              <PdIcon src={ICON.sterilisation} className="h-12 w-12" />
+              <img
+                src="/assets/logos/partners/kuestenhund-ev-partner-logo.png"
+                alt="Küstenhunde e.V. logo"
+                loading="lazy"
+                className="h-16 w-auto max-w-[140px] object-contain"
+              />
               <div className="flex-1 min-w-[200px]">
                 <div className="text-xs font-semibold uppercase tracking-wide text-white/70">
                   Partner
