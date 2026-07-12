@@ -731,9 +731,11 @@ function WhatMakesDifferent({ c }: { c: AboutContent }) {
                 key={i}
                 className="group relative overflow-hidden rounded-3xl bg-white/[0.06] p-6 ring-1 ring-white/10 backdrop-blur-sm transition hover:bg-white/[0.1] hover:ring-[var(--ithemba-yellow)]/40"
               >
-                <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--ithemba-yellow)]/20">
-                  <img src={iconSrc} alt="" className="h-6 w-6 object-contain" />
-                </span>
+                <img
+                  src={iconSrc}
+                  alt=""
+                  className="h-16 w-16 object-contain md:h-20 md:w-20"
+                />
                 <h3 className="mt-4 font-display text-lg font-bold">{card.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-white/80">{card.text}</p>
               </div>
