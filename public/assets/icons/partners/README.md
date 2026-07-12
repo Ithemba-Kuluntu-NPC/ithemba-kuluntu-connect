@@ -1,0 +1,1 @@
+parners page icons
