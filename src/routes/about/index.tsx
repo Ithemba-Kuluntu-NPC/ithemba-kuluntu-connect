@@ -764,26 +764,28 @@ function WhatGuidesUs({ c }: { c: AboutContent }) {
         </h2>
       </div>
       <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        {c.guides.cards.map((card, i) => (
-          <div
-            key={i}
-            className="relative overflow-hidden rounded-3xl border border-[var(--ithemba-blue)]/10 bg-[var(--ithemba-cream)] p-6 shadow-sm"
-          >
-            <div className="absolute -right-6 -top-6 h-20 w-20 rounded-full bg-[var(--ithemba-yellow)]/30 blur-xl" aria-hidden />
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white ring-1 ring-[var(--ithemba-blue)]/15">
-              <img src={GUIDES_ICONS[i] ?? "/assets/icons/about-us/about-long-term-care.png"} alt="" className="h-5 w-5 object-contain" />
-            </span>
-            <h3 className="mt-4 font-display text-lg font-bold text-[var(--ithemba-blue-dark)]">
-              <span className="relative inline-block">
-                {card.title}
-                <svg className="absolute -bottom-1 left-0 w-full" height="6" viewBox="0 0 100 6" preserveAspectRatio="none" aria-hidden>
-                  <path d="M1,3 C25,1 60,5 99,2" stroke="var(--ithemba-yellow)" strokeWidth="2.5" strokeLinecap="round" fill="none" />
-                </svg>
-              </span>
-            </h3>
-            <p className="mt-2 text-sm leading-relaxed text-foreground/85">{card.text}</p>
-          </div>
-        ))}
+          {c.guides.cards.map((card, i) => (
+            <div
+              key={i}
+              className="relative overflow-hidden rounded-3xl border border-[var(--ithemba-blue)]/10 bg-[var(--ithemba-cream)] p-6 shadow-sm"
+            >
+              <div className="absolute -right-6 -top-6 h-20 w-20 rounded-full bg-[var(--ithemba-yellow)]/30 blur-xl" aria-hidden />
+              <img
+                src={GUIDES_ICONS[i] ?? "/assets/icons/about-us/about-long-term-care.png"}
+                alt=""
+                className="relative h-16 w-16 object-contain md:h-20 md:w-20"
+              />
+              <h3 className="mt-4 font-display text-lg font-bold text-[var(--ithemba-blue-dark)]">
+                <span className="relative inline-block">
+                  {card.title}
+                  <svg className="absolute -bottom-1 left-0 w-full" height="6" viewBox="0 0 100 6" preserveAspectRatio="none" aria-hidden>
+                    <path d="M1,3 C25,1 60,5 99,2" stroke="var(--ithemba-yellow)" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+                  </svg>
+                </span>
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-foreground/85">{card.text}</p>
+            </div>
+          ))}
       </div>
     </section>
   );
