@@ -653,12 +653,23 @@ function PartnersPage() {
           <ul className="mt-8 grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-2 lg:grid-cols-3">
             {c.how.items.map((it) => {
               const Icon = HOW_ICONS[it.icon];
+              const png = HOW_ICON_PNG[it.icon];
               return (
-                <li key={it.label} className="flex items-start gap-3">
-                  <span className="mt-0.5 flex h-10 w-10 flex-none items-center justify-center rounded-full border border-[var(--ithemba-yellow,#f5c64a)]/50 text-[var(--ithemba-yellow,#f5c64a)]">
-                    <Icon className="h-5 w-5" />
-                  </span>
-                  <span className="pt-1.5 text-[15px] font-medium text-white md:text-base">{it.label}</span>
+                <li key={it.label} className="flex items-center gap-4">
+                  {png ? (
+                    <img
+                      src={png}
+                      alt=""
+                      aria-hidden
+                      loading="lazy"
+                      className="h-12 w-12 flex-none object-contain md:h-16 md:w-16"
+                    />
+                  ) : (
+                    <span className="flex h-10 w-10 flex-none items-center justify-center rounded-full border border-[var(--ithemba-yellow,#f5c64a)]/50 text-[var(--ithemba-yellow,#f5c64a)]">
+                      <Icon className="h-5 w-5" />
+                    </span>
+                  )}
+                  <span className="text-[15px] font-medium text-white md:text-base">{it.label}</span>
                 </li>
               );
             })}
