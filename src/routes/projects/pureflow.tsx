@@ -322,8 +322,8 @@ function Hero({ t, goDonate }: { t: (k: string, fb?: string) => string; goDonate
             }}
           />
         )}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#081A60]/85 via-[#0F2A8C]/72 to-[#0F2A8C]/45" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#081A60]/[0.60] via-[#0F2A8C]/[0.48] to-[#0F2A8C]/[0.35] md:from-[#081A60]/[0.48] md:via-[#0F2A8C]/[0.40] md:to-[#0F2A8C]/[0.28]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#081A60]/[0.45] via-transparent to-transparent md:from-[#081A60]/[0.32]" />
         <div
           aria-hidden="true"
           className="absolute inset-0 opacity-[0.12]"
