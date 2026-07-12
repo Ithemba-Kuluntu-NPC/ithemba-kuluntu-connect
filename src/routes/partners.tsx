@@ -86,6 +86,35 @@ const EXPECT_ICONS = {
   Target, Users, MapPin, Camera, MessageCircle, HeartHandshake, Compass,
 } as const;
 
+// Custom PNG icon map — null means the mapped file is not yet uploaded; keep Lucide fallback.
+const WHY_ICON_PNG: Record<keyof typeof WHY_ICONS, string | null> = {
+  Anchor: "/assets/icons/partners/partner-local-trust-grounded-delivery.png",
+  Users: "/assets/icons/about-us/about-local-leadership.png",
+  ShieldCheck: "/assets/icons/about-us/about-trust-accountability.png",
+  Network: "/assets/icons/about-us/about-connected-response.png",
+  Activity: "/assets/icons/partners/partner-proven-response-capacity.png",
+  MapPin: null, // MISSING: /assets/icons/projects/pureflow/pureflow-location-pin.png
+};
+const HOW_ICON_PNG: Record<keyof typeof HOW_ICONS, string | null> = {
+  Handshake: "/assets/icons/about-us/about-long-term-trust.png",
+  Repeat: "/assets/icons/partners/partner-recurring-support.png",
+  Building2: "/assets/icons/partners/partner-corporate-social-investment.png",
+  PackageOpen: null, // MISSING: /assets/icons/projects/pureflow/pureflow-core-support-box.png
+  Wrench: null, // MISSING: /assets/icons/projects/pureflow/pureflow-wrench-maintenance.png
+  Siren: "/assets/icons/partners/partner-emergency-response-support.png",
+  Megaphone: "/assets/icons/partners/partner-awareness-media-collaboration.png",
+  UserCheck: "/assets/icons/partners/partner-volunteer-skills-support.png",
+};
+const EXPECT_ICON_PNG: Record<keyof typeof EXPECT_ICONS, string | null> = {
+  Target: "/assets/icons/partners/partner-clear-project-focus.png",
+  Users: "/assets/icons/about-us/about-local-leadership.png",
+  MapPin: null, // MISSING: /assets/icons/projects/pureflow/pureflow-location-pin.png
+  Camera: "/assets/icons/partners/partner-photos-stories-reports.png",
+  MessageCircle: "/assets/icons/partners/partner-honest-communication.png",
+  HeartHandshake: null, // MISSING: /assets/icons/projects/pureflow/pureflow-hand-heart-followup.png
+  Compass: "/assets/icons/about-us/about-long-term-trust.png",
+};
+
 const COPY: Record<"en" | "de" | "nl", Copy> = {
   en: {
     hero: {
@@ -486,15 +515,26 @@ function PartnersPage() {
             {c.why.body.map((p, i) => (<p key={i}>{p}</p>))}
           </div>
 
-          <ul className="mt-8 grid gap-x-6 gap-y-3 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-8 grid gap-x-6 gap-y-4 sm:grid-cols-2 lg:grid-cols-3">
             {c.why.points.map((pt) => {
               const Icon = WHY_ICONS[pt.icon];
+              const png = WHY_ICON_PNG[pt.icon];
               return (
-                <li key={pt.label} className="flex items-start gap-3">
-                  <span className="mt-0.5 flex h-10 w-10 flex-none items-center justify-center rounded-full border border-[var(--ithemba-yellow,#f5c64a)]/50 text-[var(--ithemba-yellow,#f5c64a)]">
-                    <Icon className="h-5 w-5" />
-                  </span>
-                  <span className="pt-1.5 text-[15px] font-medium text-white/95">{pt.label}</span>
+                <li key={pt.label} className="flex items-center gap-4">
+                  {png ? (
+                    <img
+                      src={png}
+                      alt=""
+                      aria-hidden
+                      loading="lazy"
+                      className="h-12 w-12 flex-none object-contain md:h-16 md:w-16"
+                    />
+                  ) : (
+                    <span className="flex h-10 w-10 flex-none items-center justify-center rounded-full border border-[var(--ithemba-yellow,#f5c64a)]/50 text-[var(--ithemba-yellow,#f5c64a)]">
+                      <Icon className="h-5 w-5" />
+                    </span>
+                  )}
+                  <span className="text-[15px] font-medium text-white/95">{pt.label}</span>
                 </li>
               );
             })}
@@ -613,12 +653,23 @@ function PartnersPage() {
           <ul className="mt-8 grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-2 lg:grid-cols-3">
             {c.how.items.map((it) => {
               const Icon = HOW_ICONS[it.icon];
+              const png = HOW_ICON_PNG[it.icon];
               return (
-                <li key={it.label} className="flex items-start gap-3">
-                  <span className="mt-0.5 flex h-10 w-10 flex-none items-center justify-center rounded-full border border-[var(--ithemba-yellow,#f5c64a)]/50 text-[var(--ithemba-yellow,#f5c64a)]">
-                    <Icon className="h-5 w-5" />
-                  </span>
-                  <span className="pt-1.5 text-[15px] font-medium text-white md:text-base">{it.label}</span>
+                <li key={it.label} className="flex items-center gap-4">
+                  {png ? (
+                    <img
+                      src={png}
+                      alt=""
+                      aria-hidden
+                      loading="lazy"
+                      className="h-12 w-12 flex-none object-contain md:h-16 md:w-16"
+                    />
+                  ) : (
+                    <span className="flex h-10 w-10 flex-none items-center justify-center rounded-full border border-[var(--ithemba-yellow,#f5c64a)]/50 text-[var(--ithemba-yellow,#f5c64a)]">
+                      <Icon className="h-5 w-5" />
+                    </span>
+                  )}
+                  <span className="text-[15px] font-medium text-white md:text-base">{it.label}</span>
                 </li>
               );
             })}
@@ -653,12 +704,23 @@ function PartnersPage() {
           <ul className="mt-8 grid gap-x-6 gap-y-4 sm:grid-cols-2 lg:grid-cols-3">
             {c.expect.items.map((it) => {
               const Icon = EXPECT_ICONS[it.icon];
+              const png = EXPECT_ICON_PNG[it.icon];
               return (
-                <li key={it.label} className="flex items-start gap-3">
-                  <span className="mt-0.5 flex h-10 w-10 flex-none items-center justify-center rounded-full bg-[var(--ithemba-yellow,#f5c64a)]/15 text-[var(--ithemba-yellow,#f5c64a)] ring-1 ring-[var(--ithemba-yellow,#f5c64a)]/40">
-                    <Icon className="h-5 w-5" />
-                  </span>
-                  <span className="pt-1.5 text-[15px] font-medium text-white/95 md:text-base">{it.label}</span>
+                <li key={it.label} className="flex items-center gap-4">
+                  {png ? (
+                    <img
+                      src={png}
+                      alt=""
+                      aria-hidden
+                      loading="lazy"
+                      className="h-12 w-12 flex-none object-contain md:h-16 md:w-16"
+                    />
+                  ) : (
+                    <span className="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-[var(--ithemba-yellow,#f5c64a)]/15 text-[var(--ithemba-yellow,#f5c64a)] ring-1 ring-[var(--ithemba-yellow,#f5c64a)]/40">
+                      <Icon className="h-5 w-5" />
+                    </span>
+                  )}
+                  <span className="text-[15px] font-medium text-white/95 md:text-base">{it.label}</span>
                 </li>
               );
             })}
