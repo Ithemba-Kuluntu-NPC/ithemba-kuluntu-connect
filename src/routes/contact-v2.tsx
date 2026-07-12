@@ -252,9 +252,9 @@ function ContactV2Page() {
       />
 
       {/* Content */}
-      <div className="mx-auto grid min-h-[calc(100vh-var(--header-height))] max-w-6xl items-center gap-6 px-5 py-8 md:grid-cols-[1fr_1.05fr] md:gap-10 md:px-8 md:py-10">
-        {/* Left — heading, details, social */}
-        <div className="text-white">
+      <div className="mx-auto grid min-h-[calc(100vh-var(--header-height))] max-w-6xl grid-cols-1 items-center gap-6 px-5 py-8 md:grid-cols-[1fr_1.05fr] md:gap-10 md:px-8 md:py-10">
+        {/* Heading */}
+        <div className="order-1 text-white md:col-start-1">
           <p
             className="text-2xl md:text-3xl"
             style={{ fontFamily: '"Caveat", "Kalam", cursive', color: yellow }}
@@ -267,8 +267,16 @@ function ContactV2Page() {
           <p className="mt-3 max-w-md text-[15px] leading-relaxed text-white/85 md:text-base">
             {c.intro}
           </p>
+        </div>
 
-          <ul className="mt-5 space-y-3">
+        {/* Form — right column on desktop, after heading on mobile */}
+        <div className="order-2 md:col-start-2 md:row-span-2">
+          <ContactFormCard copy={c.form} />
+        </div>
+
+        {/* Details — below form on mobile, left column on desktop */}
+        <div className="order-3 text-white md:col-start-1">
+          <ul className="space-y-3">
             <li className="flex items-start gap-3">
               <span
                 className="mt-0.5 flex h-9 w-9 flex-none items-center justify-center rounded-full bg-white/10 text-[color:var(--ithemba-yellow,#f5c64a)]"
@@ -365,9 +373,6 @@ function ContactV2Page() {
             ))}
           </div>
         </div>
-
-        {/* Right — form */}
-        <ContactFormCard copy={c.form} />
       </div>
     </main>
   );
