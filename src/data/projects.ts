@@ -190,6 +190,8 @@ export const partners: Partner[] = [
   { name: "Star Foundation", logo: "/assets/logos/partners/star-foundation-logo.png", url: "https://thestarfoundation.co.za/", sizeClass: "max-h-[120px] max-w-[240px]" },
   { name: "Tzu Chi Foundation", logo: "/assets/logos/partners/tzu-chi-transparent-logo.png", url: "https://global.tzuchi.org/", sizeClass: "max-h-[130px] max-w-[260px]", note: "[[VERIFY BEFORE LAUNCH: confirm if a South Africa-specific Tzu Chi URL should be used instead]]" },
   { name: "SA Harvest", logo: "/assets/logos/partners/sa-harvest-logo.png", url: "https://saharvest.org/", sizeClass: "max-h-[110px] max-w-[300px]" },
+  { name: "Küstenhunde e.V.", logo: "/assets/logos/partners/kuestenhund-ev-partner-logo.png", url: "https://kuestenhund.com/", sizeClass: "max-h-[120px] max-w-[240px]" },
+  { name: "Lingham Foundation", logo: "/assets/logos/partners/lingham-foundation-partner-logo.png", url: "#", sizeClass: "max-h-[120px] max-w-[240px]" },
 ];
 
 export const mediaItems = [
