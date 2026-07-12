@@ -687,15 +687,15 @@ function Showcase({ t, lang }: { t: (k: string, fb?: string) => string; lang: La
                   src={c.iconSrc}
                   alt=""
                   aria-hidden
-                  className="h-14 w-14 object-contain md:h-16 md:w-16"
+                  className="h-16 w-16 object-contain sm:h-[72px] sm:w-[72px] md:h-[84px] md:w-[84px]"
                 />
                 <div
-                  className="mt-2 font-display text-2xl font-extrabold leading-none md:text-3xl"
+                  className="mt-4 font-display text-2xl font-extrabold leading-none md:text-3xl"
                   style={{ color: YELLOW, fontFamily: SERIF }}
                 >
                   <AnimatedNumber value={value} suffix={suffix} locale={locale} />
                 </div>
-                <p className="mt-2 max-w-[15rem] text-[11px] leading-snug text-white/80 md:text-xs">{c.l}</p>
+                <p className="mt-3 max-w-[15rem] text-[11px] leading-snug text-white/80 md:text-xs">{c.l}</p>
               </div>
             );
           })}
