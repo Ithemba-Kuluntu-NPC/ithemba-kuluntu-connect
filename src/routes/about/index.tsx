@@ -9,8 +9,6 @@ import {
   Sparkles,
   ShieldCheck,
   Handshake,
-  Globe2,
-  Building2,
   GraduationCap,
   Droplets,
   Utensils,
