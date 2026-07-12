@@ -1,0 +1,330 @@
+# ==========================================
+
+# DONATION TERMS PAGE CONFIGURATION
+
+# LANGUAGE: ENGLISH (en)
+
+# VERSION: 1.0
+
+# ==========================================
+
+# ------------------------------------------
+
+# 01. PAGE HEADER
+
+# ------------------------------------------
+
+donation_terms.script_heading: Legal
+donation_terms.main_heading: Donation Terms
+donation_terms.intro: These Donation Terms explain how donations to iThemba Kuluntu are received, allocated, receipted and managed.
+
+donation_terms.last_updated_label: Last updated
+donation_terms.last_updated: July 2026
+
+# ------------------------------------------
+
+# 02. ABOUT THESE DONATION TERMS
+
+# ------------------------------------------
+
+about.heading: About these Donation Terms
+
+about.text: These Donation Terms apply to donations made through or in connection with the iThemba Kuluntu website, including monthly donations, one-time donations, bank transfers and other donation methods made available from time to time.
+
+about.text_2: By making a donation, you agree that your donation will be used to support the charitable and community-rooted work of iThemba Kuluntu, subject to these Donation Terms and any applicable legal, tax and payment-processing requirements.
+
+# ------------------------------------------
+
+# 03. ORGANISATIONS RECEIVING AND USING DONATIONS
+
+# ------------------------------------------
+
+organisations.heading: Organisations receiving and using donations
+
+organisations.text: Donations may be received by iThemba Kuluntu e.V. in Germany and/or iThemba Kuluntu NPC in South Africa, depending on the donation method, donor location, payment channel and intended use of funds.
+
+organisations.text_2: iThemba Kuluntu e.V. supports the work of iThemba Kuluntu in South Africa through donations, partnerships, communication and fundraising. The operational project work in South Africa is carried out by iThemba Kuluntu NPC.
+
+organisations.text_3: Legal provider details are available in the Impressum.
+
+organisations.link_label: View Impressum
+organisations.link_url: /impressum
+
+# ------------------------------------------
+
+# 04. NATURE OF DONATIONS
+
+# ------------------------------------------
+
+nature.heading: Nature of donations
+
+nature.text: Donations are voluntary contributions made to support the charitable, community-development and public-benefit work of iThemba Kuluntu.
+
+nature.text_2: A donation does not create ownership, control, voting rights, delivery rights or a right to receive goods or services in return. Donations are not payments for a product or service.
+
+nature.text_3: Where a donor receives general updates, newsletters, project reports or thank-you communication, these are provided for transparency and relationship-building and do not constitute a commercial benefit.
+
+# ------------------------------------------
+
+# 05. MONTHLY DONATIONS
+
+# ------------------------------------------
+
+monthly.heading: Monthly donations
+
+monthly.text: Monthly donations are recurring donations that help iThemba Kuluntu plan and sustain ongoing work with more stability.
+
+monthly.text_2: The selected donation amount will be charged according to the recurring payment method chosen by the donor, where recurring payments are available.
+
+monthly.text_3: A donor may cancel a monthly donation by using the cancellation tools provided by the relevant payment provider, where available, or by contacting iThemba Kuluntu directly.
+
+monthly.text_4: Cancellation requests should be made before the next scheduled payment date. Depending on the payment provider or banking process, a cancellation may take a reasonable processing time before it becomes effective.
+
+monthly.contact_label: Contact for monthly donation changes
+monthly.contact_email: [info@ithembakuluntu.org](mailto:info@ithembakuluntu.org)
+
+# ------------------------------------------
+
+# 06. ONE-TIME DONATIONS
+
+# ------------------------------------------
+
+one_time.heading: One-time donations
+
+one_time.text: One-time donations are processed once for the amount selected by the donor.
+
+one_time.text_2: One-time donations may be directed to a project area where this option is available, or may be given where support is needed most.
+
+# ------------------------------------------
+
+# 07. DONATION ALLOCATION
+
+# ------------------------------------------
+
+allocation.heading: Donation allocation
+
+allocation.text: Donors may be able to indicate a preferred project area, such as early childhood development, safe water, food security, animal welfare, disaster relief or general support.
+
+allocation.text_2: We make reasonable efforts to respect donor preferences. However, unless a separate written agreement applies, iThemba Kuluntu may allocate donations where they are most needed within its charitable and public-benefit purposes.
+
+allocation.text_3: This flexibility helps us respond responsibly to changing community needs, emergencies, project timing, implementation costs, field realities and funding gaps.
+
+allocation.text_4: If a selected project is fully funded, delayed, completed, changed or no longer able to receive funds in the expected way, the donation may be used for a closely related project area or for the wider charitable work of iThemba Kuluntu.
+
+# ------------------------------------------
+
+# 08. DONATION RECEIPTS AND TAX CERTIFICATES
+
+# ------------------------------------------
+
+receipts.heading: Donation receipts and tax certificates
+
+receipts.text: Donation receipts, tax certificates and donation confirmations are issued where applicable and where the relevant legal, tax and organisational requirements are met.
+
+receipts.text_2: Donors are responsible for providing accurate information needed to issue a donation receipt or tax certificate, including name, address, email address and any additional information required by law or by the relevant tax authority.
+
+receipts.text_3: iThemba Kuluntu cannot guarantee that every donation will be tax-deductible for every donor. Tax treatment depends on the donor’s country, tax residence, personal or organisational circumstances, donation method and applicable law.
+
+receipts.text_4: Donors should seek their own tax advice where needed.
+
+# ------------------------------------------
+
+# 09. GERMANY: ZUWENDUNGSBESCHEINIGUNGEN
+
+# ------------------------------------------
+
+germany.heading: Donations through iThemba Kuluntu e.V. in Germany
+
+germany.text: iThemba Kuluntu e.V. is registered in Germany and can issue Zuwendungsbescheinigungen for eligible donations where the legal requirements are met.
+
+germany.text_2: Zuwendungsbescheinigungen are issued based on the applicable German nonprofit and tax requirements, the donor information provided and the donation records available to iThemba Kuluntu e.V.
+
+germany.text_3: Donors who require a Zuwendungsbescheinigung should ensure that their full name, address and contact details are provided correctly.
+
+germany.text_4: For bank transfers, the donor should use a clear payment reference where possible, such as the donor name and intended donation purpose.
+
+# ------------------------------------------
+
+# 10. SOUTH AFRICA: SECTION 18A CERTIFICATES
+
+# ------------------------------------------
+
+south_africa.heading: Donations through iThemba Kuluntu NPC in South Africa
+
+south_africa.text: iThemba Kuluntu NPC has Public Benefit Organisation status in South Africa and can issue Section 18A certificates for eligible donations where the legal requirements are met.
+
+south_africa.text_2: Section 18A certificates are issued based on the applicable South African tax requirements, the donor information provided and the donation records available to iThemba Kuluntu NPC.
+
+south_africa.text_3: Donors who require a Section 18A certificate should provide the information required for certificate issuing, including their correct legal name, address, contact details and any other information required by applicable law.
+
+south_africa.text_4: Not every payment, sponsorship, grant, in-kind contribution or project support arrangement automatically qualifies for a Section 18A certificate. Eligibility depends on the nature of the contribution and applicable requirements.
+
+# ------------------------------------------
+
+# 11. INTERNATIONAL DONORS
+
+# ------------------------------------------
+
+international.heading: International donors
+
+international.text: Donors outside Germany and South Africa are responsible for checking whether their donation is tax-deductible in their own country.
+
+international.text_2: iThemba Kuluntu may provide donation confirmations where appropriate, but cannot guarantee recognition by foreign tax authorities.
+
+# ------------------------------------------
+
+# 12. PAYMENT PROVIDERS AND BANK TRANSFERS
+
+# ------------------------------------------
+
+payments.heading: Payment providers and bank transfers
+
+payments.text: Donations may be processed through external payment providers, banking platforms, PayPal, card providers, bank transfer or other donation systems made available on the website.
+
+payments.text_2: External payment providers may apply their own terms, fees, processing times, refund rules, security measures and privacy practices.
+
+payments.text_3: iThemba Kuluntu is not responsible for technical failures, delays, declined payments, provider fees or service interruptions caused by third-party payment systems.
+
+payments.text_4: Bank transfer donations are recorded once received and identified in the relevant account.
+
+# ------------------------------------------
+
+# 13. REFUNDS AND PAYMENT ERRORS
+
+# ------------------------------------------
+
+refunds.heading: Refunds and payment errors
+
+refunds.text: Donations are generally final once processed.
+
+refunds.text_2: If a donation was made in error, duplicated, processed incorrectly or appears to be unauthorised, the donor should contact iThemba Kuluntu as soon as possible.
+
+refunds.text_3: Refund requests will be reviewed case by case. Where a refund is approved, processing times and any payment provider limitations may apply.
+
+refunds.text_4: iThemba Kuluntu may be unable to refund donations that have already been allocated, spent, receipted for tax purposes or transferred to project implementation, unless required by law.
+
+refunds.contact_label: Contact for donation errors or refund requests
+refunds.contact_email: [info@ithembakuluntu.org](mailto:info@ithembakuluntu.org)
+
+# ------------------------------------------
+
+# 14. CORPORATE, FOUNDATION AND RESTRICTED FUNDING
+
+# ------------------------------------------
+
+restricted.heading: Corporate, foundation and restricted funding
+
+restricted.text: Corporate donations, foundation grants, project sponsorships and restricted funding arrangements may be governed by separate written agreements, grant letters, partnership terms or reporting requirements.
+
+restricted.text_2: Where a separate written agreement exists, that agreement will apply in addition to these Donation Terms. If there is a conflict, the written agreement will usually take priority for that specific funding arrangement.
+
+# ------------------------------------------
+
+# 15. IN-KIND DONATIONS
+
+# ------------------------------------------
+
+in_kind.heading: In-kind donations
+
+in_kind.text: In-kind donations, such as goods, materials, equipment or services, are accepted only where they are suitable for the work and can be received, stored, used or distributed responsibly.
+
+in_kind.text_2: iThemba Kuluntu may decline in-kind donations that are unsuitable, unsafe, impractical, expired, damaged, too costly to transport or not aligned with current needs.
+
+in_kind.text_3: Tax treatment of in-kind donations depends on applicable law and the documentation available.
+
+# ------------------------------------------
+
+# 16. PROJECT UPDATES AND REPORTING
+
+# ------------------------------------------
+
+reporting.heading: Project updates and reporting
+
+reporting.text: iThemba Kuluntu aims to communicate openly about its work through updates, stories, photos, reports, newsletters or direct donor communication where appropriate.
+
+reporting.text_2: General donors may receive public or general updates. Detailed reporting may be provided for larger donations, project sponsorships, grants or formal partnerships where agreed.
+
+reporting.text_3: Project updates may depend on field access, connectivity, consent, staff capacity, reporting timelines and the safety and dignity of community members.
+
+# ------------------------------------------
+
+# 17. NO GUARANTEE OF SPECIFIC OUTCOMES
+
+# ------------------------------------------
+
+outcomes.heading: No guarantee of specific outcomes
+
+outcomes.text: Donations support practical community work, but iThemba Kuluntu cannot guarantee a specific individual outcome, project result, timeline or beneficiary allocation unless this is agreed in writing.
+
+outcomes.text_2: Field conditions, emergencies, weather, access, supply chains, community needs, funding levels and other practical realities can affect implementation.
+
+# ------------------------------------------
+
+# 18. DONOR COMMUNICATION
+
+# ------------------------------------------
+
+communication.heading: Donor communication
+
+communication.text: Donors may receive communication related to their donation, receipts, reporting, project updates or future support opportunities.
+
+communication.text_2: Donors can contact iThemba Kuluntu if they need their details updated, want to change their communication preferences or wish to ask a question about their donation.
+
+communication.contact_email: [info@ithembakuluntu.org](mailto:info@ithembakuluntu.org)
+
+# ------------------------------------------
+
+# 19. DATA PROTECTION
+
+# ------------------------------------------
+
+data_protection.heading: Data protection
+
+data_protection.text: Personal information provided in connection with donations is used to process donations, issue receipts or certificates, communicate with donors and meet legal, tax, accounting and reporting obligations.
+
+data_protection.text_2: Further information about data processing will be provided in the Privacy Policy.
+
+data_protection.link_label: Privacy Policy
+data_protection.link_url: /datenschutz
+
+# ------------------------------------------
+
+# 20. CHANGES TO THESE DONATION TERMS
+
+# ------------------------------------------
+
+changes.heading: Changes to these Donation Terms
+
+changes.text: iThemba Kuluntu may update these Donation Terms from time to time.
+
+changes.text_2: The latest version will be published on this page with the most recent update date.
+
+# ------------------------------------------
+
+# 21. CONTACT
+
+# ------------------------------------------
+
+contact.heading: Contact
+
+contact.text: For questions about donations, receipts, certificates, monthly giving or these Donation Terms, please contact us.
+
+contact.email_label: E-mail
+contact.email: [info@ithembakuluntu.org](mailto:info@ithembakuluntu.org)
+
+# ------------------------------------------
+
+# 22. RELATED LEGAL PAGES
+
+# ------------------------------------------
+
+related.heading: Related legal pages
+
+related.impressum_label: Impressum
+related.impressum_url: /impressum
+
+related.terms_label: Terms of Use
+related.terms_url: /terms
+
+related.privacy_label: Privacy Policy
+related.privacy_url: /datenschutz

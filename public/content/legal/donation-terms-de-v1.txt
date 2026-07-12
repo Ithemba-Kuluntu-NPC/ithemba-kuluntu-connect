@@ -1,0 +1,330 @@
+# ==========================================
+
+# SPENDENBEDINGUNGEN SEITENKONFIGURATION
+
+# SPRACHE: DEUTSCH (de)
+
+# VERSION: 1.0
+
+# ==========================================
+
+# ------------------------------------------
+
+# 01. SEITENKOPF
+
+# ------------------------------------------
+
+donation_terms.script_heading: Rechtliches
+donation_terms.main_heading: Spendenbedingungen
+donation_terms.intro: Diese Spendenbedingungen erklären, wie Spenden an iThemba Kuluntu entgegengenommen, zugeordnet, bestätigt und verwaltet werden.
+
+donation_terms.last_updated_label: Zuletzt aktualisiert
+donation_terms.last_updated: Juli 2026
+
+# ------------------------------------------
+
+# 02. ÜBER DIESE SPENDENBEDINGUNGEN
+
+# ------------------------------------------
+
+about.heading: Über diese Spendenbedingungen
+
+about.text: Diese Spendenbedingungen gelten für Spenden, die über die Website von iThemba Kuluntu oder im Zusammenhang mit ihr geleistet werden. Dazu gehören monatliche Spenden, einmalige Spenden, Banküberweisungen und weitere Spendenwege, die von Zeit zu Zeit angeboten werden.
+
+about.text_2: Mit einer Spende erklären Sie sich damit einverstanden, dass Ihre Spende zur Unterstützung der gemeinnützigen und gemeinschaftsverwurzelten Arbeit von iThemba Kuluntu verwendet wird, vorbehaltlich dieser Spendenbedingungen sowie der jeweils geltenden rechtlichen, steuerlichen und zahlungsbezogenen Anforderungen.
+
+# ------------------------------------------
+
+# 03. ORGANISATIONEN, DIE SPENDEN ENTGEGENNEHMEN UND VERWENDEN
+
+# ------------------------------------------
+
+organisations.heading: Organisationen, die Spenden entgegennehmen und verwenden
+
+organisations.text: Spenden können je nach Spendenweg, Standort der Spenderin oder des Spenders, Zahlungskanal und vorgesehenem Verwendungszweck von iThemba Kuluntu e.V. in Deutschland und/oder iThemba Kuluntu NPC in Südafrika entgegengenommen werden.
+
+organisations.text_2: iThemba Kuluntu e.V. unterstützt die Arbeit von iThemba Kuluntu in Südafrika durch Spenden, Partnerschaften, Kommunikation und Fördermittelarbeit. Die operative Projektarbeit in Südafrika wird von iThemba Kuluntu NPC durchgeführt.
+
+organisations.text_3: Die rechtlichen Anbieterangaben finden Sie im Impressum.
+
+organisations.link_label: Impressum ansehen
+organisations.link_url: /impressum
+
+# ------------------------------------------
+
+# 04. ART DER SPENDE
+
+# ------------------------------------------
+
+nature.heading: Art der Spende
+
+nature.text: Spenden sind freiwillige Zuwendungen zur Unterstützung der gemeinnützigen, gemeinschaftsorientierten und dem öffentlichen Wohl dienenden Arbeit von iThemba Kuluntu.
+
+nature.text_2: Eine Spende begründet kein Eigentum, keine Kontrolle, keine Stimmrechte, keinen Anspruch auf Lieferung und keinen Anspruch auf Waren oder Dienstleistungen als Gegenleistung. Spenden sind keine Zahlungen für ein Produkt oder eine Dienstleistung.
+
+nature.text_3: Wenn Spenderinnen und Spender allgemeine Updates, Newsletter, Projektberichte oder Dankesnachrichten erhalten, dienen diese der Transparenz und Beziehungspflege und stellen keinen kommerziellen Vorteil dar.
+
+# ------------------------------------------
+
+# 05. MONATLICHE SPENDEN
+
+# ------------------------------------------
+
+monthly.heading: Monatliche Spenden
+
+monthly.text: Monatliche Spenden sind wiederkehrende Spenden, die iThemba Kuluntu helfen, laufende Arbeit stabiler zu planen und verlässlich fortzuführen.
+
+monthly.text_2: Der gewählte Spendenbetrag wird entsprechend der von der Spenderin oder dem Spender ausgewählten wiederkehrenden Zahlungsmethode abgebucht, sofern wiederkehrende Zahlungen verfügbar sind.
+
+monthly.text_3: Eine monatliche Spende kann über die vom jeweiligen Zahlungsanbieter bereitgestellten Kündigungsfunktionen beendet werden, sofern diese verfügbar sind, oder durch direkte Kontaktaufnahme mit iThemba Kuluntu.
+
+monthly.text_4: Kündigungswünsche sollten vor dem nächsten geplanten Abbuchungstermin mitgeteilt werden. Je nach Zahlungsanbieter oder Bankprozess kann eine Kündigung eine angemessene Bearbeitungszeit benötigen, bevor sie wirksam wird.
+
+monthly.contact_label: Kontakt für Änderungen an monatlichen Spenden
+monthly.contact_email: [info@ithembakuluntu.org](mailto:info@ithembakuluntu.org)
+
+# ------------------------------------------
+
+# 06. EINMALIGE SPENDEN
+
+# ------------------------------------------
+
+one_time.heading: Einmalige Spenden
+
+one_time.text: Einmalige Spenden werden einmalig in der von der Spenderin oder dem Spender ausgewählten Höhe verarbeitet.
+
+one_time.text_2: Einmalige Spenden können einem Projektbereich zugeordnet werden, sofern diese Option verfügbar ist, oder dort eingesetzt werden, wo Unterstützung am dringendsten gebraucht wird.
+
+# ------------------------------------------
+
+# 07. ZUORDNUNG VON SPENDEN
+
+# ------------------------------------------
+
+allocation.heading: Zuordnung von Spenden
+
+allocation.text: Spenderinnen und Spender können gegebenenfalls einen bevorzugten Projektbereich angeben, zum Beispiel frühe Kindheit, sicheres Wasser, Ernährungssicherheit, Tierschutz, Nothilfe oder allgemeine Unterstützung.
+
+allocation.text_2: Wir bemühen uns, solche Wünsche nach Möglichkeit zu berücksichtigen. Sofern keine gesonderte schriftliche Vereinbarung besteht, kann iThemba Kuluntu Spenden jedoch innerhalb der gemeinnützigen und dem öffentlichen Wohl dienenden Zwecke dort einsetzen, wo sie am dringendsten gebraucht werden.
+
+allocation.text_3: Diese Flexibilität hilft uns, verantwortungsvoll auf veränderte Bedarfe in den Gemeinschaften, Notfälle, Projektzeiträume, Umsetzungskosten, Feldrealitäten und Finanzierungslücken zu reagieren.
+
+allocation.text_4: Wenn ein ausgewähltes Projekt vollständig finanziert, verzögert, abgeschlossen, verändert oder nicht mehr wie erwartet finanzierbar ist, kann die Spende für einen eng verwandten Projektbereich oder für die weitere gemeinnützige Arbeit von iThemba Kuluntu verwendet werden.
+
+# ------------------------------------------
+
+# 08. SPENDENBESTÄTIGUNGEN UND STEUERBESCHEINIGUNGEN
+
+# ------------------------------------------
+
+receipts.heading: Spendenbestätigungen und Steuerbescheinigungen
+
+receipts.text: Spendenbestätigungen, Steuerbescheinigungen und Zuwendungsbescheinigungen werden ausgestellt, soweit dies anwendbar ist und die jeweiligen rechtlichen, steuerlichen und organisatorischen Voraussetzungen erfüllt sind.
+
+receipts.text_2: Spenderinnen und Spender sind dafür verantwortlich, die für eine Spendenbestätigung oder Steuerbescheinigung erforderlichen Angaben korrekt bereitzustellen, einschließlich Name, Anschrift, E-Mail-Adresse und weiterer gesetzlich oder steuerlich erforderlicher Informationen.
+
+receipts.text_3: iThemba Kuluntu kann nicht garantieren, dass jede Spende für jede Spenderin oder jeden Spender steuerlich abzugsfähig ist. Die steuerliche Behandlung hängt vom Land, steuerlichen Wohnsitz, persönlichen oder organisatorischen Umständen, Spendenweg und geltendem Recht ab.
+
+receipts.text_4: Spenderinnen und Spender sollten bei Bedarf eigene steuerliche Beratung einholen.
+
+# ------------------------------------------
+
+# 09. DEUTSCHLAND: ZUWENDUNGSBESCHEINIGUNGEN
+
+# ------------------------------------------
+
+germany.heading: Spenden über iThemba Kuluntu e.V. in Deutschland
+
+germany.text: iThemba Kuluntu e.V. ist in Deutschland registriert und kann für abzugsfähige Spenden Zuwendungsbescheinigungen ausstellen, soweit die gesetzlichen Voraussetzungen erfüllt sind.
+
+germany.text_2: Zuwendungsbescheinigungen werden auf Grundlage der geltenden deutschen gemeinnützigkeits- und steuerrechtlichen Anforderungen, der von der Spenderin oder dem Spender bereitgestellten Angaben und der bei iThemba Kuluntu e.V. vorhandenen Spendennachweise ausgestellt.
+
+germany.text_3: Spenderinnen und Spender, die eine Zuwendungsbescheinigung benötigen, sollten sicherstellen, dass ihr vollständiger Name, ihre Anschrift und ihre Kontaktdaten korrekt angegeben sind.
+
+germany.text_4: Bei Banküberweisungen sollte nach Möglichkeit ein klarer Verwendungszweck angegeben werden, zum Beispiel der Name der Spenderin oder des Spenders und der gewünschte Spendenzweck.
+
+# ------------------------------------------
+
+# 10. SÜDAFRIKA: SECTION 18A CERTIFICATES
+
+# ------------------------------------------
+
+south_africa.heading: Spenden über iThemba Kuluntu NPC in Südafrika
+
+south_africa.text: iThemba Kuluntu NPC verfügt in Südafrika über den Status einer Public Benefit Organisation und kann für abzugsfähige Spenden Section 18A Certificates ausstellen, soweit die gesetzlichen Voraussetzungen erfüllt sind.
+
+south_africa.text_2: Section 18A Certificates werden auf Grundlage der geltenden südafrikanischen steuerrechtlichen Anforderungen, der von der Spenderin oder dem Spender bereitgestellten Angaben und der bei iThemba Kuluntu NPC vorhandenen Spendennachweise ausgestellt.
+
+south_africa.text_3: Spenderinnen und Spender, die ein Section 18A Certificate benötigen, sollten die für die Ausstellung erforderlichen Angaben bereitstellen, einschließlich korrektem rechtlichen Namen, Anschrift, Kontaktdaten und weiteren gesetzlich erforderlichen Informationen.
+
+south_africa.text_4: Nicht jede Zahlung, Förderung, Sachleistung, Projektunterstützung oder Partnerschaftsleistung qualifiziert automatisch für ein Section 18A Certificate. Die Berechtigung hängt von der Art der Zuwendung und den geltenden Anforderungen ab.
+
+# ------------------------------------------
+
+# 11. INTERNATIONALE SPENDERINNEN UND SPENDER
+
+# ------------------------------------------
+
+international.heading: Internationale Spenderinnen und Spender
+
+international.text: Spenderinnen und Spender außerhalb Deutschlands und Südafrikas sind selbst dafür verantwortlich zu prüfen, ob ihre Spende in ihrem Land steuerlich abzugsfähig ist.
+
+international.text_2: iThemba Kuluntu kann gegebenenfalls Spendenbestätigungen bereitstellen, kann jedoch keine Anerkennung durch ausländische Steuerbehörden garantieren.
+
+# ------------------------------------------
+
+# 12. ZAHLUNGSANBIETER UND BANKÜBERWEISUNGEN
+
+# ------------------------------------------
+
+payments.heading: Zahlungsanbieter und Banküberweisungen
+
+payments.text: Spenden können über externe Zahlungsanbieter, Bankplattformen, PayPal, Kartenanbieter, Banküberweisung oder andere auf der Website angebotene Spendensysteme abgewickelt werden.
+
+payments.text_2: Externe Zahlungsanbieter können eigene Bedingungen, Gebühren, Bearbeitungszeiten, Erstattungsregeln, Sicherheitsmaßnahmen und Datenschutzpraktiken anwenden.
+
+payments.text_3: iThemba Kuluntu ist nicht verantwortlich für technische Ausfälle, Verzögerungen, abgelehnte Zahlungen, Anbietergebühren oder Unterbrechungen, die durch Zahlungssysteme Dritter verursacht werden.
+
+payments.text_4: Spenden per Banküberweisung werden erfasst, sobald sie eingegangen und dem jeweiligen Konto zugeordnet werden konnten.
+
+# ------------------------------------------
+
+# 13. RÜCKERSTATTUNGEN UND ZAHLUNGSFEHLER
+
+# ------------------------------------------
+
+refunds.heading: Rückerstattungen und Zahlungsfehler
+
+refunds.text: Spenden sind nach der Verarbeitung grundsätzlich endgültig.
+
+refunds.text_2: Wenn eine Spende versehentlich, doppelt, fehlerhaft oder offenbar unautorisiert erfolgt ist, sollte die Spenderin oder der Spender iThemba Kuluntu so schnell wie möglich kontaktieren.
+
+refunds.text_3: Rückerstattungsanfragen werden im Einzelfall geprüft. Wenn eine Rückerstattung genehmigt wird, können Bearbeitungszeiten und Einschränkungen des Zahlungsanbieters gelten.
+
+refunds.text_4: iThemba Kuluntu kann möglicherweise keine Spenden zurückerstatten, die bereits zugeordnet, verwendet, steuerlich bescheinigt oder in die Projektumsetzung weitergeleitet wurden, sofern keine gesetzliche Pflicht zur Rückerstattung besteht.
+
+refunds.contact_label: Kontakt bei Zahlungsfehlern oder Rückerstattungsanfragen
+refunds.contact_email: [info@ithembakuluntu.org](mailto:info@ithembakuluntu.org)
+
+# ------------------------------------------
+
+# 14. UNTERNEHMEN, STIFTUNGEN UND ZWECKGEBUNDENE FÖRDERUNG
+
+# ------------------------------------------
+
+restricted.heading: Unternehmensspenden, Stiftungen und zweckgebundene Förderung
+
+restricted.text: Unternehmensspenden, Stiftungsförderungen, Projektsponsorings und zweckgebundene Fördervereinbarungen können durch gesonderte schriftliche Vereinbarungen, Förderzusagen, Partnerschaftsbedingungen oder Berichtspflichten geregelt werden.
+
+restricted.text_2: Wenn eine gesonderte schriftliche Vereinbarung besteht, gilt diese zusätzlich zu diesen Spendenbedingungen. Bei Widersprüchen hat die schriftliche Vereinbarung für die jeweilige Förderung in der Regel Vorrang.
+
+# ------------------------------------------
+
+# 15. SACHSPENDEN
+
+# ------------------------------------------
+
+in_kind.heading: Sachspenden
+
+in_kind.text: Sachspenden, zum Beispiel Waren, Materialien, Ausrüstung oder Dienstleistungen, werden nur angenommen, wenn sie für die Arbeit geeignet sind und verantwortungsvoll entgegengenommen, gelagert, genutzt oder weitergegeben werden können.
+
+in_kind.text_2: iThemba Kuluntu kann Sachspenden ablehnen, wenn sie ungeeignet, unsicher, unpraktisch, abgelaufen, beschädigt, zu teuer im Transport oder nicht mit aktuellen Bedarfen vereinbar sind.
+
+in_kind.text_3: Die steuerliche Behandlung von Sachspenden hängt vom geltenden Recht und den verfügbaren Nachweisen ab.
+
+# ------------------------------------------
+
+# 16. PROJEKTUPDATES UND BERICHTERSTATTUNG
+
+# ------------------------------------------
+
+reporting.heading: Projektupdates und Berichterstattung
+
+reporting.text: iThemba Kuluntu bemüht sich, offen über die Arbeit zu berichten, etwa durch Updates, Geschichten, Fotos, Berichte, Newsletter oder direkte Spenderkommunikation, sofern dies angemessen ist.
+
+reporting.text_2: Allgemeine Spenderinnen und Spender können öffentliche oder allgemeine Updates erhalten. Detailliertere Berichte können bei größeren Spenden, Projektsponsorings, Förderungen oder formellen Partnerschaften bereitgestellt werden, sofern dies vereinbart wurde.
+
+reporting.text_3: Projektupdates können von Feldzugang, Konnektivität, Einwilligungen, Personalkapazitäten, Berichtszeiträumen sowie der Sicherheit und Würde der Gemeindemitglieder abhängen.
+
+# ------------------------------------------
+
+# 17. KEINE GARANTIE FÜR BESTIMMTE ERGEBNISSE
+
+# ------------------------------------------
+
+outcomes.heading: Keine Garantie für bestimmte Ergebnisse
+
+outcomes.text: Spenden unterstützen praktische Arbeit in Gemeinschaften. iThemba Kuluntu kann jedoch kein bestimmtes individuelles Ergebnis, Projektergebnis, keinen bestimmten Zeitplan und keine bestimmte Zuordnung zu einzelnen Begünstigten garantieren, sofern dies nicht schriftlich vereinbart wurde.
+
+outcomes.text_2: Feldbedingungen, Notfälle, Wetter, Zugang, Lieferketten, Bedarfe in den Gemeinschaften, Finanzierungshöhe und weitere praktische Realitäten können die Umsetzung beeinflussen.
+
+# ------------------------------------------
+
+# 18. SPENDERKOMMUNIKATION
+
+# ------------------------------------------
+
+communication.heading: Spenderkommunikation
+
+communication.text: Spenderinnen und Spender können Kommunikation im Zusammenhang mit ihrer Spende, Spendenbestätigungen, Bescheinigungen, Berichten, Projektupdates oder künftigen Unterstützungsmöglichkeiten erhalten.
+
+communication.text_2: Spenderinnen und Spender können iThemba Kuluntu kontaktieren, wenn sie ihre Daten aktualisieren möchten, ihre Kommunikationseinstellungen ändern wollen oder Fragen zu ihrer Spende haben.
+
+communication.contact_email: [info@ithembakuluntu.org](mailto:info@ithembakuluntu.org)
+
+# ------------------------------------------
+
+# 19. DATENSCHUTZ
+
+# ------------------------------------------
+
+data_protection.heading: Datenschutz
+
+data_protection.text: Personenbezogene Daten, die im Zusammenhang mit Spenden bereitgestellt werden, werden verwendet, um Spenden zu verarbeiten, Spendenbestätigungen oder Bescheinigungen auszustellen, mit Spenderinnen und Spendern zu kommunizieren und rechtliche, steuerliche, buchhalterische und berichtsbezogene Pflichten zu erfüllen.
+
+data_protection.text_2: Weitere Informationen zur Verarbeitung personenbezogener Daten werden in der Datenschutzerklärung bereitgestellt.
+
+data_protection.link_label: Datenschutzerklärung
+data_protection.link_url: /datenschutz
+
+# ------------------------------------------
+
+# 20. ÄNDERUNGEN DIESER SPENDENBEDINGUNGEN
+
+# ------------------------------------------
+
+changes.heading: Änderungen dieser Spendenbedingungen
+
+changes.text: iThemba Kuluntu kann diese Spendenbedingungen von Zeit zu Zeit aktualisieren.
+
+changes.text_2: Die jeweils aktuelle Fassung wird auf dieser Seite mit dem Datum der letzten Aktualisierung veröffentlicht.
+
+# ------------------------------------------
+
+# 21. KONTAKT
+
+# ------------------------------------------
+
+contact.heading: Kontakt
+
+contact.text: Bei Fragen zu Spenden, Spendenbestätigungen, Bescheinigungen, monatlichen Spenden oder diesen Spendenbedingungen kontaktieren Sie uns bitte.
+
+contact.email_label: E-Mail
+contact.email: [info@ithembakuluntu.org](mailto:info@ithembakuluntu.org)
+
+# ------------------------------------------
+
+# 22. VERWANDTE RECHTLICHE SEITEN
+
+# ------------------------------------------
+
+related.heading: Weitere rechtliche Seiten
+
+related.impressum_label: Impressum
+related.impressum_url: /impressum
+
+related.terms_label: Nutzungsbedingungen
+related.terms_url: /terms
+
+related.privacy_label: Datenschutzerklärung
+related.privacy_url: /datenschutz

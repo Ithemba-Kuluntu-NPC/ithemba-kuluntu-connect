@@ -1,0 +1,330 @@
+# ==========================================
+
+# DONATIEVOORWAARDEN PAGINA CONFIGURATIE
+
+# TAAL: NEDERLANDS (nl)
+
+# VERSION: 1.0
+
+# ==========================================
+
+# ------------------------------------------
+
+# 01. PAGINAKOP
+
+# ------------------------------------------
+
+donation_terms.script_heading: Juridisch
+donation_terms.main_heading: Donatievoorwaarden
+donation_terms.intro: Deze donatievoorwaarden leggen uit hoe donaties aan iThemba Kuluntu worden ontvangen, toegewezen, bevestigd en beheerd.
+
+donation_terms.last_updated_label: Laatst bijgewerkt
+donation_terms.last_updated: juli 2026
+
+# ------------------------------------------
+
+# 02. OVER DEZE DONATIEVOORWAARDEN
+
+# ------------------------------------------
+
+about.heading: Over deze donatievoorwaarden
+
+about.text: Deze donatievoorwaarden gelden voor donaties die via de website van iThemba Kuluntu of in verband daarmee worden gedaan. Dit omvat maandelijkse donaties, eenmalige donaties, bankoverschrijvingen en andere donatiemethoden die van tijd tot tijd beschikbaar worden gesteld.
+
+about.text_2: Door een donatie te doen, gaat u ermee akkoord dat uw donatie wordt gebruikt ter ondersteuning van het liefdadige en gemeenschapsgerichte werk van iThemba Kuluntu, met inachtneming van deze donatievoorwaarden en de toepasselijke wettelijke, fiscale en betalingsverwerkingsvereisten.
+
+# ------------------------------------------
+
+# 03. ORGANISATIES DIE DONATIES ONTVANGEN EN GEBRUIKEN
+
+# ------------------------------------------
+
+organisations.heading: Organisaties die donaties ontvangen en gebruiken
+
+organisations.text: Donaties kunnen worden ontvangen door iThemba Kuluntu e.V. in Duitsland en/of iThemba Kuluntu NPC in Zuid-Afrika, afhankelijk van de donatiemethode, de locatie van de donateur, het betaalkanaal en het beoogde gebruik van de middelen.
+
+organisations.text_2: iThemba Kuluntu e.V. ondersteunt het werk van iThemba Kuluntu in Zuid-Afrika via donaties, partnerschappen, communicatie en fondsenwerving. De operationele projectuitvoering in Zuid-Afrika wordt verzorgd door iThemba Kuluntu NPC.
+
+organisations.text_3: Juridische gegevens van de aanbieder vindt u in het Impressum.
+
+organisations.link_label: Impressum bekijken
+organisations.link_url: /impressum
+
+# ------------------------------------------
+
+# 04. AARD VAN DONATIES
+
+# ------------------------------------------
+
+nature.heading: Aard van donaties
+
+nature.text: Donaties zijn vrijwillige bijdragen ter ondersteuning van het liefdadige, gemeenschapsgerichte en algemeen nuttige werk van iThemba Kuluntu.
+
+nature.text_2: Een donatie geeft geen eigendom, zeggenschap, stemrecht, recht op levering of recht op goederen of diensten in ruil voor de donatie. Donaties zijn geen betalingen voor een product of dienst.
+
+nature.text_3: Wanneer donateurs algemene updates, nieuwsbrieven, projectverslagen of bedankberichten ontvangen, dienen deze voor transparantie en relatiebeheer en vormen zij geen commerciële tegenprestatie.
+
+# ------------------------------------------
+
+# 05. MAANDELIJKSE DONATIES
+
+# ------------------------------------------
+
+monthly.heading: Maandelijkse donaties
+
+monthly.text: Maandelijkse donaties zijn terugkerende bijdragen die iThemba Kuluntu helpen om lopend werk stabieler te plannen en duurzaam voort te zetten.
+
+monthly.text_2: Het gekozen donatiebedrag wordt afgeschreven volgens de terugkerende betaalmethode die de donateur heeft gekozen, voor zover terugkerende betalingen beschikbaar zijn.
+
+monthly.text_3: Een donateur kan een maandelijkse donatie stopzetten via de annuleringsmogelijkheden van de betreffende betaalprovider, indien beschikbaar, of door rechtstreeks contact op te nemen met iThemba Kuluntu.
+
+monthly.text_4: Annuleringsverzoeken moeten bij voorkeur vóór de volgende geplande betaaldatum worden doorgegeven. Afhankelijk van de betaalprovider of bankprocedure kan het enige verwerkingstijd kosten voordat de annulering ingaat.
+
+monthly.contact_label: Contact voor wijzigingen in maandelijkse donaties
+monthly.contact_email: [info@ithembakuluntu.org](mailto:info@ithembakuluntu.org)
+
+# ------------------------------------------
+
+# 06. EENMALIGE DONATIES
+
+# ------------------------------------------
+
+one_time.heading: Eenmalige donaties
+
+one_time.text: Eenmalige donaties worden één keer verwerkt voor het bedrag dat de donateur heeft gekozen.
+
+one_time.text_2: Eenmalige donaties kunnen aan een projectgebied worden toegewezen wanneer die optie beschikbaar is, of worden gegeven voor waar steun het hardst nodig is.
+
+# ------------------------------------------
+
+# 07. TOEWIJZING VAN DONATIES
+
+# ------------------------------------------
+
+allocation.heading: Toewijzing van donaties
+
+allocation.text: Donateurs kunnen, waar beschikbaar, een voorkeur aangeven voor een projectgebied, zoals vroege kinderontwikkeling, veilig water, voedselzekerheid, dierenwelzijn, noodhulp of algemene ondersteuning.
+
+allocation.text_2: Wij doen redelijke inspanningen om voorkeuren van donateurs te respecteren. Tenzij er een aparte schriftelijke overeenkomst bestaat, mag iThemba Kuluntu donaties echter inzetten waar zij het hardst nodig zijn binnen haar liefdadige en algemeen nuttige doelen.
+
+allocation.text_3: Deze flexibiliteit helpt ons verantwoord te reageren op veranderende behoeften in gemeenschappen, noodsituaties, projecttiming, uitvoeringskosten, veldrealiteiten en financieringstekorten.
+
+allocation.text_4: Als een gekozen project volledig gefinancierd, vertraagd, afgerond, gewijzigd of niet langer op de verwachte manier uitvoerbaar is, kan de donatie worden gebruikt voor een nauw verwant projectgebied of voor het bredere liefdadige werk van iThemba Kuluntu.
+
+# ------------------------------------------
+
+# 08. DONATIEBEWIJZEN EN FISCALE CERTIFICATEN
+
+# ------------------------------------------
+
+receipts.heading: Donatiebewijzen en fiscale certificaten
+
+receipts.text: Donatiebewijzen, fiscale certificaten en donatiebevestigingen worden verstrekt waar van toepassing en waar aan de relevante wettelijke, fiscale en organisatorische voorwaarden is voldaan.
+
+receipts.text_2: Donateurs zijn verantwoordelijk voor het correct verstrekken van de gegevens die nodig zijn om een donatiebewijs of fiscaal certificaat uit te geven, waaronder naam, adres, e-mailadres en eventuele aanvullende gegevens die wettelijk of door de betreffende belastingdienst worden vereist.
+
+receipts.text_3: iThemba Kuluntu kan niet garanderen dat elke donatie voor elke donateur fiscaal aftrekbaar is. De fiscale behandeling hangt af van het land, de fiscale woonplaats, persoonlijke of organisatorische omstandigheden, de donatiemethode en het toepasselijke recht.
+
+receipts.text_4: Donateurs dienen waar nodig zelf fiscaal advies in te winnen.
+
+# ------------------------------------------
+
+# 09. DUITSLAND: ZUWENDUNGSBESCHEINIGUNGEN
+
+# ------------------------------------------
+
+germany.heading: Donaties via iThemba Kuluntu e.V. in Duitsland
+
+germany.text: iThemba Kuluntu e.V. is geregistreerd in Duitsland en kan Zuwendungsbescheinigungen uitgeven voor daarvoor in aanmerking komende donaties, wanneer aan de wettelijke voorwaarden is voldaan.
+
+germany.text_2: Zuwendungsbescheinigungen worden uitgegeven op basis van de toepasselijke Duitse non-profit- en belastingregels, de gegevens die door de donateur zijn verstrekt en de donatieadministratie die beschikbaar is bij iThemba Kuluntu e.V.
+
+germany.text_3: Donateurs die een Zuwendungsbescheinigung nodig hebben, moeten ervoor zorgen dat hun volledige naam, adres en contactgegevens correct zijn opgegeven.
+
+germany.text_4: Bij bankoverschrijvingen moet de donateur waar mogelijk een duidelijke betalingsomschrijving gebruiken, zoals de naam van de donateur en het beoogde donatiedoel.
+
+# ------------------------------------------
+
+# 10. ZUID-AFRIKA: SECTION 18A-CERTIFICATEN
+
+# ------------------------------------------
+
+south_africa.heading: Donaties via iThemba Kuluntu NPC in Zuid-Afrika
+
+south_africa.text: iThemba Kuluntu NPC heeft in Zuid-Afrika de status van Public Benefit Organisation en kan Section 18A-certificaten uitgeven voor daarvoor in aanmerking komende donaties, wanneer aan de wettelijke voorwaarden is voldaan.
+
+south_africa.text_2: Section 18A-certificaten worden uitgegeven op basis van de toepasselijke Zuid-Afrikaanse belastingregels, de gegevens die door de donateur zijn verstrekt en de donatieadministratie die beschikbaar is bij iThemba Kuluntu NPC.
+
+south_africa.text_3: Donateurs die een Section 18A-certificaat nodig hebben, moeten de gegevens verstrekken die nodig zijn voor de uitgifte van het certificaat, waaronder hun correcte wettelijke naam, adres, contactgegevens en eventuele andere gegevens die volgens het toepasselijke recht vereist zijn.
+
+south_africa.text_4: Niet elke betaling, sponsoring, subsidie, bijdrage in natura of projectondersteuning komt automatisch in aanmerking voor een Section 18A-certificaat. De geschiktheid hangt af van de aard van de bijdrage en de toepasselijke vereisten.
+
+# ------------------------------------------
+
+# 11. INTERNATIONALE DONATEURS
+
+# ------------------------------------------
+
+international.heading: Internationale donateurs
+
+international.text: Donateurs buiten Duitsland en Zuid-Afrika zijn zelf verantwoordelijk om na te gaan of hun donatie in hun eigen land fiscaal aftrekbaar is.
+
+international.text_2: iThemba Kuluntu kan waar passend donatiebevestigingen verstrekken, maar kan niet garanderen dat deze door buitenlandse belastingdiensten worden erkend.
+
+# ------------------------------------------
+
+# 12. BETAALPROVIDERS EN BANKOVERSCHRIJVINGEN
+
+# ------------------------------------------
+
+payments.heading: Betaalproviders en bankoverschrijvingen
+
+payments.text: Donaties kunnen worden verwerkt via externe betaalproviders, bankplatforms, PayPal, kaartaanbieders, bankoverschrijving of andere donatiesystemen die op de website beschikbaar worden gesteld.
+
+payments.text_2: Externe betaalproviders kunnen hun eigen voorwaarden, kosten, verwerkingstijden, terugbetalingsregels, beveiligingsmaatregelen en privacypraktijken hanteren.
+
+payments.text_3: iThemba Kuluntu is niet verantwoordelijk voor technische storingen, vertragingen, geweigerde betalingen, providerkosten of dienstonderbrekingen die worden veroorzaakt door betalingssystemen van derden.
+
+payments.text_4: Donaties via bankoverschrijving worden geregistreerd zodra zij zijn ontvangen en aan de juiste rekening of donatie kunnen worden gekoppeld.
+
+# ------------------------------------------
+
+# 13. TERUGBETALINGEN EN BETALINGSFOUTEN
+
+# ------------------------------------------
+
+refunds.heading: Terugbetalingen en betalingsfouten
+
+refunds.text: Donaties zijn in beginsel definitief zodra zij zijn verwerkt.
+
+refunds.text_2: Als een donatie per ongeluk is gedaan, dubbel is verwerkt, onjuist is verwerkt of ongeautoriseerd lijkt te zijn, moet de donateur zo snel mogelijk contact opnemen met iThemba Kuluntu.
+
+refunds.text_3: Verzoeken om terugbetaling worden per geval beoordeeld. Wanneer een terugbetaling wordt goedgekeurd, kunnen verwerkingstijden en beperkingen van de betaalprovider van toepassing zijn.
+
+refunds.text_4: iThemba Kuluntu kan mogelijk geen donaties terugbetalen die al zijn toegewezen, besteed, fiscaal bevestigd of overgedragen aan projectuitvoering, tenzij dit wettelijk verplicht is.
+
+refunds.contact_label: Contact voor betalingsfouten of terugbetalingsverzoeken
+refunds.contact_email: [info@ithembakuluntu.org](mailto:info@ithembakuluntu.org)
+
+# ------------------------------------------
+
+# 14. BEDRIJVEN, FONDSEN EN BESTEMDE FINANCIERING
+
+# ------------------------------------------
+
+restricted.heading: Bedrijven, fondsen en bestemde financiering
+
+restricted.text: Bedrijfsdonaties, subsidies van fondsen, projectsponsoring en bestemde financieringsafspraken kunnen worden geregeld via aparte schriftelijke overeenkomsten, subsidiebeschikkingen, partnerschapsvoorwaarden of rapportageverplichtingen.
+
+restricted.text_2: Wanneer er een aparte schriftelijke overeenkomst bestaat, geldt die naast deze donatievoorwaarden. Bij tegenstrijdigheid heeft de schriftelijke overeenkomst meestal voorrang voor die specifieke financieringsafspraak.
+
+# ------------------------------------------
+
+# 15. DONATIES IN NATURA
+
+# ------------------------------------------
+
+in_kind.heading: Donaties in natura
+
+in_kind.text: Donaties in natura, zoals goederen, materialen, apparatuur of diensten, worden alleen geaccepteerd wanneer zij geschikt zijn voor het werk en verantwoord kunnen worden ontvangen, opgeslagen, gebruikt of verdeeld.
+
+in_kind.text_2: iThemba Kuluntu kan donaties in natura weigeren wanneer zij ongeschikt, onveilig, onpraktisch, verlopen, beschadigd, te duur om te vervoeren of niet in lijn met de actuele behoeften zijn.
+
+in_kind.text_3: De fiscale behandeling van donaties in natura hangt af van het toepasselijke recht en de beschikbare documentatie.
+
+# ------------------------------------------
+
+# 16. PROJECTUPDATES EN RAPPORTAGE
+
+# ------------------------------------------
+
+reporting.heading: Projectupdates en rapportage
+
+reporting.text: iThemba Kuluntu streeft ernaar open te communiceren over haar werk via updates, verhalen, foto’s, rapporten, nieuwsbrieven of directe communicatie met donateurs waar dat passend is.
+
+reporting.text_2: Algemene donateurs kunnen openbare of algemene updates ontvangen. Gedetailleerdere rapportage kan worden verstrekt bij grotere donaties, projectsponsoring, subsidies of formele partnerschappen wanneer dit is afgesproken.
+
+reporting.text_3: Projectupdates kunnen afhankelijk zijn van toegang tot het veld, verbinding, toestemming, personele capaciteit, rapportagetermijnen en de veiligheid en waardigheid van leden van de gemeenschap.
+
+# ------------------------------------------
+
+# 17. GEEN GARANTIE OP SPECIFIEKE RESULTATEN
+
+# ------------------------------------------
+
+outcomes.heading: Geen garantie op specifieke resultaten
+
+outcomes.text: Donaties ondersteunen praktisch gemeenschapswerk, maar iThemba Kuluntu kan geen specifiek individueel resultaat, projectresultaat, tijdspad of toewijzing aan een specifieke begunstigde garanderen, tenzij dit schriftelijk is overeengekomen.
+
+outcomes.text_2: Veldomstandigheden, noodsituaties, weer, toegang, toeleveringsketens, behoeften in gemeenschappen, financieringsniveaus en andere praktische realiteiten kunnen de uitvoering beïnvloeden.
+
+# ------------------------------------------
+
+# 18. COMMUNICATIE MET DONATEURS
+
+# ------------------------------------------
+
+communication.heading: Communicatie met donateurs
+
+communication.text: Donateurs kunnen communicatie ontvangen over hun donatie, donatiebewijzen, certificaten, rapportage, projectupdates of toekomstige mogelijkheden om te steunen.
+
+communication.text_2: Donateurs kunnen contact opnemen met iThemba Kuluntu als zij hun gegevens willen bijwerken, hun communicatievoorkeuren willen wijzigen of een vraag hebben over hun donatie.
+
+communication.contact_email: [info@ithembakuluntu.org](mailto:info@ithembakuluntu.org)
+
+# ------------------------------------------
+
+# 19. GEGEVENSBESCHERMING
+
+# ------------------------------------------
+
+data_protection.heading: Gegevensbescherming
+
+data_protection.text: Persoonsgegevens die in verband met donaties worden verstrekt, worden gebruikt om donaties te verwerken, donatiebewijzen of certificaten uit te geven, met donateurs te communiceren en te voldoen aan wettelijke, fiscale, boekhoudkundige en rapportageverplichtingen.
+
+data_protection.text_2: Meer informatie over de verwerking van persoonsgegevens wordt opgenomen in de Privacyverklaring.
+
+data_protection.link_label: Privacyverklaring
+data_protection.link_url: /datenschutz
+
+# ------------------------------------------
+
+# 20. WIJZIGINGEN VAN DEZE DONATIEVOORWAARDEN
+
+# ------------------------------------------
+
+changes.heading: Wijzigingen van deze donatievoorwaarden
+
+changes.text: iThemba Kuluntu kan deze donatievoorwaarden van tijd tot tijd bijwerken.
+
+changes.text_2: De meest recente versie wordt op deze pagina gepubliceerd met de datum van de laatste update.
+
+# ------------------------------------------
+
+# 21. CONTACT
+
+# ------------------------------------------
+
+contact.heading: Contact
+
+contact.text: Neem contact met ons op als u vragen heeft over donaties, donatiebewijzen, certificaten, maandelijks geven of deze donatievoorwaarden.
+
+contact.email_label: E-mail
+contact.email: [info@ithembakuluntu.org](mailto:info@ithembakuluntu.org)
+
+# ------------------------------------------
+
+# 22. GERELATEERDE JURIDISCHE PAGINA’S
+
+# ------------------------------------------
+
+related.heading: Gerelateerde juridische pagina’s
+
+related.impressum_label: Impressum
+related.impressum_url: /impressum
+
+related.terms_label: Gebruiksvoorwaarden
+related.terms_url: /terms
+
+related.privacy_label: Privacyverklaring
+related.privacy_url: /datenschutz
