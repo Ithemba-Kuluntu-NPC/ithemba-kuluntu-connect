@@ -729,14 +729,14 @@ function WhatMakesDifferent({ c }: { c: AboutContent }) {
         </div>
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {c.different.cards.map((card, i) => {
-            const Icon = DIFFERENT_ICONS[i] ?? Heart;
+            const iconSrc = DIFFERENT_ICONS[i] ?? "/assets/icons/about-us/about-local-leadership.png";
             return (
               <div
                 key={i}
                 className="group relative overflow-hidden rounded-3xl bg-white/[0.06] p-6 ring-1 ring-white/10 backdrop-blur-sm transition hover:bg-white/[0.1] hover:ring-[var(--ithemba-yellow)]/40"
               >
-                <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--ithemba-yellow)]/20 text-[var(--ithemba-yellow)]">
-                  <Icon className="h-6 w-6" />
+                <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--ithemba-yellow)]/20">
+                  <img src={iconSrc} alt="" className="h-6 w-6 object-contain" />
                 </span>
                 <h3 className="mt-4 font-display text-lg font-bold">{card.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-white/80">{card.text}</p>
