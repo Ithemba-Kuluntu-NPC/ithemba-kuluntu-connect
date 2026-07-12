@@ -19,7 +19,6 @@ import { Route as DonationTermsRouteImport } from './routes/donation-terms'
 import { Route as DonateRouteImport } from './routes/donate'
 import { Route as DatenschutzRouteImport } from './routes/datenschutz'
 import { Route as CookiePolicyRouteImport } from './routes/cookie-policy'
-import { Route as ContactV2RouteImport } from './routes/contact-v2'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProjectsIndexRouteImport } from './routes/projects/index'
@@ -82,11 +81,6 @@ const DatenschutzRoute = DatenschutzRouteImport.update({
 const CookiePolicyRoute = CookiePolicyRouteImport.update({
   id: '/cookie-policy',
   path: '/cookie-policy',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContactV2Route = ContactV2RouteImport.update({
-  id: '/contact-v2',
-  path: '/contact-v2',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -159,7 +153,6 @@ const AboutTeamRoute = AboutTeamRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
-  '/contact-v2': typeof ContactV2Route
   '/cookie-policy': typeof CookiePolicyRoute
   '/datenschutz': typeof DatenschutzRoute
   '/donate': typeof DonateRoute
@@ -185,7 +178,6 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
-  '/contact-v2': typeof ContactV2Route
   '/cookie-policy': typeof CookiePolicyRoute
   '/datenschutz': typeof DatenschutzRoute
   '/donate': typeof DonateRoute
@@ -212,7 +204,6 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
-  '/contact-v2': typeof ContactV2Route
   '/cookie-policy': typeof CookiePolicyRoute
   '/datenschutz': typeof DatenschutzRoute
   '/donate': typeof DonateRoute
@@ -240,7 +231,6 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/contact'
-    | '/contact-v2'
     | '/cookie-policy'
     | '/datenschutz'
     | '/donate'
@@ -266,7 +256,6 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/contact'
-    | '/contact-v2'
     | '/cookie-policy'
     | '/datenschutz'
     | '/donate'
@@ -292,7 +281,6 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/contact'
-    | '/contact-v2'
     | '/cookie-policy'
     | '/datenschutz'
     | '/donate'
@@ -319,7 +307,6 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ContactRoute: typeof ContactRoute
-  ContactV2Route: typeof ContactV2Route
   CookiePolicyRoute: typeof CookiePolicyRoute
   DatenschutzRoute: typeof DatenschutzRoute
   DonateRoute: typeof DonateRoute
@@ -413,13 +400,6 @@ declare module '@tanstack/react-router' {
       path: '/cookie-policy'
       fullPath: '/cookie-policy'
       preLoaderRoute: typeof CookiePolicyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contact-v2': {
-      id: '/contact-v2'
-      path: '/contact-v2'
-      fullPath: '/contact-v2'
-      preLoaderRoute: typeof ContactV2RouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -519,7 +499,6 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ContactRoute: ContactRoute,
-  ContactV2Route: ContactV2Route,
   CookiePolicyRoute: CookiePolicyRoute,
   DatenschutzRoute: DatenschutzRoute,
   DonateRoute: DonateRoute,
