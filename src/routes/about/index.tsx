@@ -659,14 +659,12 @@ function Structures({ c }: { c: AboutContent }) {
         <div className="grid items-stretch gap-6 md:grid-cols-2">
           <article className="relative overflow-hidden rounded-3xl bg-white p-7 shadow-sm ring-1 ring-[var(--ithemba-blue)]/10">
             <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-[var(--ithemba-blue)]/10 blur-2xl" aria-hidden />
-            <div className="flex items-center gap-3">
-              <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[var(--ithemba-blue)]/10">
-                <img
-                  src="/assets/icons/about-us/about-sa-project-delivery.png"
-                  alt=""
-                  className="h-5 w-5 object-contain"
-                />
-              </span>
+            <div className="flex items-start gap-4">
+              <img
+                src="/assets/icons/about-us/about-sa-project-delivery.png"
+                alt=""
+                className="h-16 w-16 flex-shrink-0 object-contain md:h-18 md:w-18"
+              />
               <div>
                 <div className="text-xs font-semibold uppercase tracking-wider text-[var(--ithemba-blue)]">
                   {c.structures.npcLabel}
@@ -679,14 +677,12 @@ function Structures({ c }: { c: AboutContent }) {
 
           <article className="relative overflow-hidden rounded-3xl bg-white p-7 shadow-sm ring-1 ring-[var(--ithemba-blue)]/10">
             <div className="absolute -left-8 -bottom-8 h-32 w-32 rounded-full bg-[var(--ithemba-yellow)]/30 blur-2xl" aria-hidden />
-            <div className="flex items-center gap-3">
-              <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[var(--ithemba-yellow)]/25">
-                <img
-                  src="/assets/icons/about-us/about-germany-awareness-support.png"
-                  alt=""
-                  className="h-5 w-5 object-contain"
-                />
-              </span>
+            <div className="flex items-start gap-4">
+              <img
+                src="/assets/icons/about-us/about-germany-awareness-support.png"
+                alt=""
+                className="h-16 w-16 flex-shrink-0 object-contain md:h-18 md:w-18"
+              />
               <div>
                 <div className="text-xs font-semibold uppercase tracking-wider text-[var(--ithemba-yellow-warm)]">
                   {c.structures.evLabel}
