@@ -1,0 +1,216 @@
+# ==========================================
+
+# GEBRUIKSVOORWAARDEN PAGINA CONFIGURATIE
+
+# TAAL: NEDERLANDS (nl)
+
+# VERSION: 1.0
+
+# ==========================================
+
+# ------------------------------------------
+
+# 01. PAGINAKOP
+
+# ------------------------------------------
+
+terms.script_heading: Juridisch
+terms.main_heading: Gebruiksvoorwaarden
+terms.intro: Deze gebruiksvoorwaarden leggen uit hoe bezoekers de website van iThemba Kuluntu mogen gebruiken.
+
+terms.last_updated_label: Laatst bijgewerkt
+terms.last_updated: juli 2026
+
+# ------------------------------------------
+
+# 02. OVER DEZE WEBSITE
+
+# ------------------------------------------
+
+about.heading: Over deze website
+
+about.text: Deze website geeft informatie over iThemba Kuluntu, onze projecten die geworteld zijn in de gemeenschap, partnerschappen, media-aandacht, donatiemogelijkheden en ons werk van algemeen belang in Zuid-Afrika en Duitsland.
+
+about.text_2: Door deze website te gebruiken, gaat u ermee akkoord de website rechtmatig, respectvol en alleen voor het bedoelde doel te gebruiken.
+
+# ------------------------------------------
+
+# 03. AANBIEDER VAN DE WEBSITE
+
+# ------------------------------------------
+
+provider.heading: Aanbieder van de website
+
+provider.text: Deze website wordt beheerd in verband met iThemba Kuluntu e.V. in Duitsland en iThemba Kuluntu NPC in Zuid-Afrika. De juridische gegevens van de aanbieder vindt u in het Impressum.
+
+provider.link_label: Impressum bekijken
+provider.link_url: /impressum
+
+# ------------------------------------------
+
+# 04. GEBRUIK VAN WEBSITE-INHOUD
+
+# ------------------------------------------
+
+content_use.heading: Gebruik van website-inhoud
+
+content_use.text: De inhoud van deze website is bedoeld voor algemene informatie, bewustwording, communicatie met donateurs en het aangaan van partnerschappen.
+
+content_use.text_2: Bezoekers mogen openbaar toegankelijke pagina’s op een respectvolle en correcte manier lezen, delen en ernaar linken. Inhoud van deze website mag niet worden gekopieerd, gewijzigd, opnieuw gepubliceerd, verkeerd voorgesteld of gebruikt voor commerciële doeleinden, fondsenwerving of promotie zonder schriftelijke toestemming van iThemba Kuluntu.
+
+# ------------------------------------------
+
+# 05. PROJECTINFORMATIE EN IMPACTGEGEVENS
+
+# ------------------------------------------
+
+project_data.heading: Projectinformatie en impactgegevens
+
+project_data.text: Wij doen redelijke inspanningen om projectinformatie, impactcijfers, partnerinformatie en programma-updates nauwkeurig en actueel te houden. Projectdetails kunnen echter veranderen wanneer behoeften in de gemeenschap, financiering, veldomstandigheden, uitvoeringstermijnen of rapportageprocessen veranderen.
+
+project_data.text_2: Impactcijfers, veldgegevens, klimaatgerelateerde schattingen en programma-informatie worden te goeder trouw gedeeld en kunnen in de loop van de tijd worden bijgewerkt, geverifieerd of gecorrigeerd.
+
+# ------------------------------------------
+
+# 06. DONATIES
+
+# ------------------------------------------
+
+donations.heading: Donaties
+
+donations.text: Donaties die via of in verband met deze website worden gedaan, ondersteunen het liefdadige en gemeenschapsgerichte werk van iThemba Kuluntu.
+
+donations.text_2: Donatiebetalingen kunnen worden verwerkt via externe betaalproviders, bankplatforms of andere diensten van derden. De beschikbaarheid van specifieke betaalmethoden kan afhangen van de locatie van de donateur, de valuta en de technische systemen die op de website actief zijn.
+
+donations.text_3: Donatiebewijzen, belastingcertificaten en Zuwendungsbescheinigungen worden afgegeven waar van toepassing en in overeenstemming met de relevante wettelijke, organisatorische en fiscale vereisten.
+
+donations.text_4: Als een donatie per ongeluk is gedaan of als een donateur een vraag heeft over een donatie, neem dan zo snel mogelijk contact met ons op.
+
+donations.contact_label: Contact voor donatievragen
+donations.contact_email: [info@ithembakuluntu.org](mailto:info@ithembakuluntu.org)
+
+# ------------------------------------------
+
+# 07. LINKS EN DIENSTEN VAN DERDEN
+
+# ------------------------------------------
+
+third_party.heading: Links en diensten van derden
+
+third_party.text: Deze website kan links bevatten naar externe websites, media-artikelen, YouTube-video’s, socialmediaplatforms, partnerwebsites, donatieplatforms of betaalproviders.
+
+third_party.text_2: Wij zijn niet verantwoordelijk voor de inhoud, beschikbaarheid, beveiliging, privacypraktijken of gebruiksvoorwaarden van externe websites of diensten van derden. Bezoekers dienen de betreffende voorwaarden en privacy-informatie van deze derden te bekijken voordat zij deze gebruiken.
+
+# ------------------------------------------
+
+# 08. TOEGESTAAN GEBRUIK
+
+# ------------------------------------------
+
+acceptable_use.heading: Toegestaan gebruik
+
+acceptable_use.text: Bezoekers mogen deze website niet misbruiken of proberen de goede werking ervan te verstoren.
+
+acceptable_use.list: Probeer geen ongeautoriseerde toegang te krijgen tot de website of de systemen ervan; Upload of verzend geen schadelijke code, spam of beledigende inhoud; Gebruik de website niet op een misleidende, frauduleuze of onrechtmatige manier; Kopieer of hergebruik geen websitemateriaal op een manier die iThemba Kuluntu, ons werk, onze partners, donateurs of gemeenschappen verkeerd weergeeft; Gebruik projectverhalen, beelden of informatie uit gemeenschappen niet op een respectloze, uitbuitende of contextloze manier.
+
+# ------------------------------------------
+
+# 09. INTELLECTUEEL EIGENDOM
+
+# ------------------------------------------
+
+intellectual_property.heading: Intellectueel eigendom
+
+intellectual_property.text: Tenzij anders vermeld, behoren de teksten, foto’s, video’s, grafische elementen, logo’s, projectmaterialen, designelementen en andere inhoud op deze website toe aan iThemba Kuluntu of worden zij met toestemming gebruikt.
+
+intellectual_property.text_2: Deze materialen mogen niet worden gekopieerd, gereproduceerd, aangepast, verspreid of voor andere doeleinden gebruikt zonder voorafgaande schriftelijke toestemming, behalve waar dit wettelijk is toegestaan.
+
+# ------------------------------------------
+
+# 10. FOTO’S EN VERHALEN UIT DE GEMEENSCHAP
+
+# ------------------------------------------
+
+community_stories.heading: Foto’s en verhalen uit de gemeenschap
+
+community_stories.text: Deze website kan foto’s, video’s en verhalen bevatten uit gemeenschapsgericht werk. Deze materialen worden gedeeld om het werk van iThemba Kuluntu respectvol en transparant te communiceren.
+
+community_stories.text_2: Bezoekers mogen beelden uit gemeenschappen, foto’s van kinderen, verhalen van begunstigden of veldmaterialen niet downloaden, hergebruiken, bewerken of delen op een manier die misleidend, schadelijk, uitbuitend of losgekoppeld van de oorspronkelijke context is.
+
+# ------------------------------------------
+
+# 11. GEEN PROFESSIONEEL ADVIES
+
+# ------------------------------------------
+
+professional_advice.heading: Geen professioneel advies
+
+professional_advice.text: De informatie op deze website is bedoeld voor algemene bewustwording en communicatie. Zij vormt geen juridisch, medisch, financieel, fiscaal, milieu-, technisch of ander professioneel advies.
+
+professional_advice.text_2: Bezoekers dienen passend professioneel advies in te winnen voordat zij website-informatie gebruiken voor juridische, financiële, fiscale, compliancegerelateerde of technische beslissingen.
+
+# ------------------------------------------
+
+# 12. BESCHIKBAARHEID VAN DE WEBSITE
+
+# ------------------------------------------
+
+availability.heading: Beschikbaarheid van de website
+
+availability.text: Wij streven ernaar de website toegankelijk en goed werkend te houden, maar wij garanderen niet dat deze altijd beschikbaar, ononderbroken, foutloos of vrij van technische problemen zal zijn.
+
+availability.text_2: Wij kunnen delen van de website op elk moment bijwerken, wijzigen, tijdelijk opschorten of verwijderen.
+
+# ------------------------------------------
+
+# 13. BEPERKING VAN AANSPRAKELIJKHEID
+
+# ------------------------------------------
+
+liability.heading: Beperking van aansprakelijkheid
+
+liability.text: Wij zijn niet aansprakelijk voor verliezen of schade die voortkomen uit het gebruik van deze website, het vertrouwen op website-inhoud, tijdelijke onbeschikbaarheid van de website, externe links of diensten van derden, behalve waar aansprakelijkheid wettelijk niet kan worden uitgesloten.
+
+liability.text_2: Niets in deze gebruiksvoorwaarden sluit aansprakelijkheid uit waar uitsluiting volgens toepasselijk recht niet is toegestaan.
+
+# ------------------------------------------
+
+# 14. WIJZIGINGEN VAN DEZE VOORWAARDEN
+
+# ------------------------------------------
+
+changes.heading: Wijzigingen van deze voorwaarden
+
+changes.text: Wij kunnen deze gebruiksvoorwaarden van tijd tot tijd bijwerken. De bijgewerkte versie wordt op deze pagina gepubliceerd met de laatste datum van wijziging.
+
+changes.text_2: Als bezoekers de website blijven gebruiken nadat wijzigingen zijn gepubliceerd, betekent dit dat zij de bijgewerkte gebruiksvoorwaarden accepteren.
+
+# ------------------------------------------
+
+# 15. CONTACT
+
+# ------------------------------------------
+
+contact.heading: Contact
+
+contact.text: Neem contact met ons op als u vragen heeft over deze gebruiksvoorwaarden.
+
+contact.email_label: E-mail
+contact.email: [info@ithembakuluntu.org](mailto:info@ithembakuluntu.org)
+
+# ------------------------------------------
+
+# 16. GERELATEERDE JURIDISCHE PAGINA’S
+
+# ------------------------------------------
+
+related.heading: Gerelateerde juridische pagina’s
+
+related.impressum_label: Impressum
+related.impressum_url: /impressum
+
+related.privacy_label: Privacyverklaring
+related.privacy_url: /datenschutz
+
+related.cookie_label: Cookiebeleid
+related.cookie_url: /cookie-policy

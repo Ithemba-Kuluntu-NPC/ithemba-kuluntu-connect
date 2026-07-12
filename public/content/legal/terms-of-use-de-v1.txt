@@ -1,0 +1,216 @@
+# ==========================================
+
+# NUTZUNGSBEDINGUNGEN SEITENKONFIGURATION
+
+# SPRACHE: DEUTSCH (de)
+
+# VERSION: 1.0
+
+# ==========================================
+
+# ------------------------------------------
+
+# 01. SEITENKOPF
+
+# ------------------------------------------
+
+terms.script_heading: Rechtliches
+terms.main_heading: Nutzungsbedingungen
+terms.intro: Diese Nutzungsbedingungen erklären, wie Besucherinnen und Besucher die Website von iThemba Kuluntu nutzen dürfen.
+
+terms.last_updated_label: Zuletzt aktualisiert
+terms.last_updated: Juli 2026
+
+# ------------------------------------------
+
+# 02. ÜBER DIESE WEBSITE
+
+# ------------------------------------------
+
+about.heading: Über diese Website
+
+about.text: Diese Website informiert über iThemba Kuluntu, unsere gemeinschaftsverwurzelten Projekte, Partnerschaften, Medienberichte, Spendenmöglichkeiten und unsere gemeinnützige Arbeit in Südafrika und Deutschland.
+
+about.text_2: Mit der Nutzung dieser Website erklären Sie sich damit einverstanden, sie rechtmäßig, respektvoll und nur für den vorgesehenen Zweck zu nutzen.
+
+# ------------------------------------------
+
+# 03. ANBIETER DER WEBSITE
+
+# ------------------------------------------
+
+provider.heading: Anbieter der Website
+
+provider.text: Diese Website wird im Zusammenhang mit iThemba Kuluntu e.V. in Deutschland und iThemba Kuluntu NPC in Südafrika betrieben. Die rechtlichen Anbieterangaben finden Sie im Impressum.
+
+provider.link_label: Impressum ansehen
+provider.link_url: /impressum
+
+# ------------------------------------------
+
+# 04. NUTZUNG DER WEBSITE-INHALTE
+
+# ------------------------------------------
+
+content_use.heading: Nutzung der Website-Inhalte
+
+content_use.text: Die Inhalte dieser Website dienen der allgemeinen Information, Öffentlichkeitsarbeit, Spenderkommunikation und Partnerschaftsanbahnung.
+
+content_use.text_2: Besucherinnen und Besucher dürfen öffentlich zugängliche Seiten respektvoll und sachlich korrekt lesen, teilen und verlinken. Inhalte dieser Website dürfen ohne vorherige schriftliche Zustimmung von iThemba Kuluntu nicht kopiert, verändert, erneut veröffentlicht, falsch dargestellt oder für kommerzielle Zwecke, Fundraising oder Werbung genutzt werden.
+
+# ------------------------------------------
+
+# 05. PROJEKTINFORMATIONEN UND WIRKUNGSDATEN
+
+# ------------------------------------------
+
+project_data.heading: Projektinformationen und Wirkungsdaten
+
+project_data.text: Wir bemühen uns, Projektinformationen, Wirkungszahlen, Partnerangaben und Programmupdates sorgfältig, korrekt und aktuell zu halten. Gleichzeitig können sich Projektdetails verändern, wenn sich Bedarfe in den Gemeinschaften, Finanzierungen, Feldbedingungen, Umsetzungszeiträume oder Berichtsprozesse ändern.
+
+project_data.text_2: Wirkungszahlen, Felddaten, klimabezogene Schätzungen und Programminformationen werden nach bestem Wissen und Gewissen veröffentlicht und können im Laufe der Zeit aktualisiert, überprüft oder korrigiert werden.
+
+# ------------------------------------------
+
+# 06. SPENDEN
+
+# ------------------------------------------
+
+donations.heading: Spenden
+
+donations.text: Spenden, die über diese Website oder im Zusammenhang mit dieser Website geleistet werden, unterstützen die gemeinnützige und gemeinschaftsverwurzelte Arbeit von iThemba Kuluntu.
+
+donations.text_2: Spendenzahlungen können über externe Zahlungsanbieter, Bankplattformen oder andere Drittanbieter abgewickelt werden. Welche Zahlungsarten verfügbar sind, kann vom Standort der Spenderin oder des Spenders, der Währung und den jeweils aktiven technischen Systemen der Website abhängen.
+
+donations.text_3: Spendenbescheinigungen, Steuerbescheinigungen und Zuwendungsbescheinigungen werden ausgestellt, soweit dies anwendbar ist und den jeweiligen rechtlichen, organisatorischen und steuerlichen Anforderungen entspricht.
+
+donations.text_4: Wenn eine Spende versehentlich erfolgt ist oder Fragen zu einer Spende bestehen, kontaktieren Sie uns bitte so schnell wie möglich.
+
+donations.contact_label: Kontakt für Spendenfragen
+donations.contact_email: [info@ithembakuluntu.org](mailto:info@ithembakuluntu.org)
+
+# ------------------------------------------
+
+# 07. LINKS UND DIENSTE DRITTER
+
+# ------------------------------------------
+
+third_party.heading: Links und Dienste Dritter
+
+third_party.text: Diese Website kann Links zu externen Websites, Medienartikeln, YouTube-Videos, Social-Media-Plattformen, Partnerwebsites, Spendenplattformen oder Zahlungsanbietern enthalten.
+
+third_party.text_2: Für Inhalte, Verfügbarkeit, Sicherheit, Datenschutzpraktiken oder Nutzungsbedingungen externer Websites und Drittanbieter übernehmen wir keine Verantwortung. Besucherinnen und Besucher sollten die jeweiligen Nutzungsbedingungen und Datenschutzhinweise dieser Anbieter prüfen, bevor sie deren Dienste nutzen.
+
+# ------------------------------------------
+
+# 08. ZULÄSSIGE NUTZUNG
+
+# ------------------------------------------
+
+acceptable_use.heading: Zulässige Nutzung
+
+acceptable_use.text: Besucherinnen und Besucher dürfen diese Website nicht missbräuchlich nutzen und nicht versuchen, ihre ordnungsgemäße Funktion zu beeinträchtigen.
+
+acceptable_use.list: Versuchen Sie nicht, unbefugten Zugriff auf die Website oder ihre Systeme zu erlangen; Laden Sie keinen schädlichen Code, Spam oder beleidigende Inhalte hoch und übertragen Sie solche Inhalte nicht; Nutzen Sie die Website nicht irreführend, betrügerisch oder rechtswidrig; Kopieren oder verwenden Sie Website-Materialien nicht in einer Weise, die iThemba Kuluntu, unsere Arbeit, Partner, Spenderinnen und Spender oder Gemeinschaften falsch darstellt; Verwenden Sie Projektgeschichten, Bilder oder Informationen aus der Gemeinschaft nicht respektlos, ausbeuterisch oder aus dem Zusammenhang gerissen.
+
+# ------------------------------------------
+
+# 09. GEISTIGES EIGENTUM
+
+# ------------------------------------------
+
+intellectual_property.heading: Geistiges Eigentum
+
+intellectual_property.text: Soweit nicht anders angegeben, gehören Texte, Fotografien, Videos, Grafiken, Logos, Projektmaterialien, Designelemente und sonstige Inhalte dieser Website iThemba Kuluntu oder werden mit entsprechender Erlaubnis verwendet.
+
+intellectual_property.text_2: Diese Materialien dürfen ohne vorherige schriftliche Zustimmung nicht kopiert, vervielfältigt, angepasst, verbreitet oder für andere Zwecke genutzt werden, außer soweit dies gesetzlich erlaubt ist.
+
+# ------------------------------------------
+
+# 10. FOTOS UND GESCHICHTEN AUS DER GEMEINSCHAFT
+
+# ------------------------------------------
+
+community_stories.heading: Fotos und Geschichten aus der Gemeinschaft
+
+community_stories.text: Diese Website kann Fotografien, Videos und Geschichten aus der gemeinschaftsbasierten Arbeit enthalten. Diese Materialien werden veröffentlicht, um die Arbeit von iThemba Kuluntu respektvoll und transparent zu kommunizieren.
+
+community_stories.text_2: Besucherinnen und Besucher dürfen Bilder aus der Gemeinschaft, Kinderbilder, Geschichten von Begünstigten oder Materialien aus der Feldarbeit nicht herunterladen, weiterverwenden, bearbeiten oder teilen, wenn dies irreführend, schädlich, ausbeuterisch oder vom ursprünglichen Zusammenhang gelöst geschieht.
+
+# ------------------------------------------
+
+# 11. KEINE PROFESSIONELLE BERATUNG
+
+# ------------------------------------------
+
+professional_advice.heading: Keine professionelle Beratung
+
+professional_advice.text: Die Informationen auf dieser Website dienen der allgemeinen Information und Kommunikation. Sie stellen keine rechtliche, medizinische, finanzielle, steuerliche, ökologische, technische oder sonstige professionelle Beratung dar.
+
+professional_advice.text_2: Besucherinnen und Besucher sollten geeignete fachliche Beratung einholen, bevor sie Website-Informationen für rechtliche, finanzielle, steuerliche, Compliance-bezogene oder technische Entscheidungen nutzen.
+
+# ------------------------------------------
+
+# 12. VERFÜGBARKEIT DER WEBSITE
+
+# ------------------------------------------
+
+availability.heading: Verfügbarkeit der Website
+
+availability.text: Wir bemühen uns, die Website zugänglich und funktionsfähig zu halten. Wir können jedoch nicht garantieren, dass sie jederzeit verfügbar, unterbrechungsfrei, fehlerfrei oder frei von technischen Problemen ist.
+
+availability.text_2: Wir können Teile der Website jederzeit aktualisieren, ändern, vorübergehend aussetzen oder entfernen.
+
+# ------------------------------------------
+
+# 13. HAFTUNGSBESCHRÄNKUNG
+
+# ------------------------------------------
+
+liability.heading: Haftungsbeschränkung
+
+liability.text: Wir haften nicht für Verluste oder Schäden, die durch die Nutzung dieser Website, das Vertrauen auf Website-Inhalte, eine vorübergehende Nichtverfügbarkeit der Website, externe Links oder Dienste Dritter entstehen, außer soweit eine Haftung gesetzlich nicht ausgeschlossen werden kann.
+
+liability.text_2: Nichts in diesen Nutzungsbedingungen schließt eine Haftung aus, soweit ein solcher Ausschluss nach geltendem Recht nicht zulässig ist.
+
+# ------------------------------------------
+
+# 14. ÄNDERUNGEN DIESER NUTZUNGSBEDINGUNGEN
+
+# ------------------------------------------
+
+changes.heading: Änderungen dieser Nutzungsbedingungen
+
+changes.text: Wir können diese Nutzungsbedingungen von Zeit zu Zeit aktualisieren. Die jeweils aktuelle Fassung wird auf dieser Seite mit dem Datum der letzten Aktualisierung veröffentlicht.
+
+changes.text_2: Wenn Besucherinnen und Besucher die Website nach Veröffentlichung von Änderungen weiter nutzen, gilt dies als Zustimmung zu den aktualisierten Nutzungsbedingungen.
+
+# ------------------------------------------
+
+# 15. KONTAKT
+
+# ------------------------------------------
+
+contact.heading: Kontakt
+
+contact.text: Bei Fragen zu diesen Nutzungsbedingungen kontaktieren Sie uns bitte.
+
+contact.email_label: E-Mail
+contact.email: [info@ithembakuluntu.org](mailto:info@ithembakuluntu.org)
+
+# ------------------------------------------
+
+# 16. VERWANDTE RECHTLICHE SEITEN
+
+# ------------------------------------------
+
+related.heading: Weitere rechtliche Seiten
+
+related.impressum_label: Impressum
+related.impressum_url: /impressum
+
+related.privacy_label: Datenschutzerklärung
+related.privacy_url: /datenschutz
+
+related.cookie_label: Cookie-Richtlinie
+related.cookie_url: /cookie-policy
