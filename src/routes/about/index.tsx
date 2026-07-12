@@ -659,14 +659,12 @@ function Structures({ c }: { c: AboutContent }) {
         <div className="grid items-stretch gap-6 md:grid-cols-2">
           <article className="relative overflow-hidden rounded-3xl bg-white p-7 shadow-sm ring-1 ring-[var(--ithemba-blue)]/10">
             <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-[var(--ithemba-blue)]/10 blur-2xl" aria-hidden />
-            <div className="flex items-center gap-3">
-              <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[var(--ithemba-blue)]/10">
-                <img
-                  src="/assets/icons/about-us/about-sa-project-delivery.png"
-                  alt=""
-                  className="h-5 w-5 object-contain"
-                />
-              </span>
+            <div className="flex items-start gap-4">
+              <img
+                src="/assets/icons/about-us/about-sa-project-delivery.png"
+                alt=""
+                className="h-16 w-16 flex-shrink-0 object-contain md:h-[72px] md:w-[72px]"
+              />
               <div>
                 <div className="text-xs font-semibold uppercase tracking-wider text-[var(--ithemba-blue)]">
                   {c.structures.npcLabel}
@@ -679,14 +677,12 @@ function Structures({ c }: { c: AboutContent }) {
 
           <article className="relative overflow-hidden rounded-3xl bg-white p-7 shadow-sm ring-1 ring-[var(--ithemba-blue)]/10">
             <div className="absolute -left-8 -bottom-8 h-32 w-32 rounded-full bg-[var(--ithemba-yellow)]/30 blur-2xl" aria-hidden />
-            <div className="flex items-center gap-3">
-              <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[var(--ithemba-yellow)]/25">
-                <img
-                  src="/assets/icons/about-us/about-germany-awareness-support.png"
-                  alt=""
-                  className="h-5 w-5 object-contain"
-                />
-              </span>
+            <div className="flex items-start gap-4">
+              <img
+                src="/assets/icons/about-us/about-germany-awareness-support.png"
+                alt=""
+                className="h-16 w-16 flex-shrink-0 object-contain md:h-[72px] md:w-[72px]"
+              />
               <div>
                 <div className="text-xs font-semibold uppercase tracking-wider text-[var(--ithemba-yellow-warm)]">
                   {c.structures.evLabel}
@@ -735,9 +731,11 @@ function WhatMakesDifferent({ c }: { c: AboutContent }) {
                 key={i}
                 className="group relative overflow-hidden rounded-3xl bg-white/[0.06] p-6 ring-1 ring-white/10 backdrop-blur-sm transition hover:bg-white/[0.1] hover:ring-[var(--ithemba-yellow)]/40"
               >
-                <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--ithemba-yellow)]/20">
-                  <img src={iconSrc} alt="" className="h-6 w-6 object-contain" />
-                </span>
+                <img
+                  src={iconSrc}
+                  alt=""
+                  className="h-16 w-16 object-contain md:h-20 md:w-20"
+                />
                 <h3 className="mt-4 font-display text-lg font-bold">{card.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-white/80">{card.text}</p>
               </div>
@@ -772,9 +770,11 @@ function WhatGuidesUs({ c }: { c: AboutContent }) {
             className="relative overflow-hidden rounded-3xl border border-[var(--ithemba-blue)]/10 bg-[var(--ithemba-cream)] p-6 shadow-sm"
           >
             <div className="absolute -right-6 -top-6 h-20 w-20 rounded-full bg-[var(--ithemba-yellow)]/30 blur-xl" aria-hidden />
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white ring-1 ring-[var(--ithemba-blue)]/15">
-              <img src={GUIDES_ICONS[i] ?? "/assets/icons/about-us/about-long-term-care.png"} alt="" className="h-5 w-5 object-contain" />
-            </span>
+            <img
+              src={GUIDES_ICONS[i] ?? "/assets/icons/about-us/about-long-term-care.png"}
+              alt=""
+              className="relative h-16 w-16 object-contain md:h-20 md:w-20"
+            />
             <h3 className="mt-4 font-display text-lg font-bold text-[var(--ithemba-blue-dark)]">
               <span className="relative inline-block">
                 {card.title}
