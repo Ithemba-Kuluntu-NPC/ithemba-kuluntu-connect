@@ -813,10 +813,12 @@ function Governance({ c }: { c: AboutContent }) {
         {/* Two countries */}
         <div className="mt-10 grid gap-6 md:grid-cols-2">
           <div className="rounded-3xl bg-white p-7 shadow-sm ring-1 ring-[var(--ithemba-blue)]/10">
-            <div className="flex items-center gap-3">
-              <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[var(--ithemba-blue)]/10 text-[var(--ithemba-blue-dark)]">
-                <Globe2 className="h-5 w-5" />
-              </span>
+            <div className="flex items-start gap-4">
+              <img
+                src="/assets/icons/about-us/about-sa-project-delivery.png"
+                alt=""
+                className="h-16 w-16 flex-shrink-0 object-contain md:h-[72px] md:w-[72px]"
+              />
               <h3 className="font-display text-xl font-bold">{g.saHeading}</h3>
             </div>
             <p className="mt-3 text-sm leading-relaxed text-foreground/85">{g.saText}</p>
@@ -838,10 +840,12 @@ function Governance({ c }: { c: AboutContent }) {
           </div>
 
           <div className="rounded-3xl bg-white p-7 shadow-sm ring-1 ring-[var(--ithemba-blue)]/10">
-            <div className="flex items-center gap-3">
-              <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[var(--ithemba-yellow)]/25 text-[var(--ithemba-blue-dark)]">
-                <Building2 className="h-5 w-5" />
-              </span>
+            <div className="flex items-start gap-4">
+              <img
+                src="/assets/icons/about-us/about-germany-awareness-support.png"
+                alt=""
+                className="h-16 w-16 flex-shrink-0 object-contain md:h-[72px] md:w-[72px]"
+              />
               <h3 className="font-display text-xl font-bold">{g.deHeading}</h3>
             </div>
             <p className="mt-3 text-sm leading-relaxed text-foreground/85">{g.deText}</p>
