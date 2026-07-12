@@ -663,7 +663,7 @@ function Structures({ c }: { c: AboutContent }) {
               <img
                 src="/assets/icons/about-us/about-sa-project-delivery.png"
                 alt=""
-                className="h-16 w-16 flex-shrink-0 object-contain md:h-18 md:w-18"
+                className="h-16 w-16 flex-shrink-0 object-contain md:h-[72px] md:w-[72px]"
               />
               <div>
                 <div className="text-xs font-semibold uppercase tracking-wider text-[var(--ithemba-blue)]">
@@ -681,7 +681,7 @@ function Structures({ c }: { c: AboutContent }) {
               <img
                 src="/assets/icons/about-us/about-germany-awareness-support.png"
                 alt=""
-                className="h-16 w-16 flex-shrink-0 object-contain md:h-18 md:w-18"
+                className="h-16 w-16 flex-shrink-0 object-contain md:h-[72px] md:w-[72px]"
               />
               <div>
                 <div className="text-xs font-semibold uppercase tracking-wider text-[var(--ithemba-yellow-warm)]">
