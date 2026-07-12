@@ -6,12 +6,9 @@ import {
   ArrowRight,
   MapPin,
   Users,
-  HandHeart,
   Sparkles,
   ShieldCheck,
   Handshake,
-  Briefcase,
-  Network,
   Globe2,
   Building2,
   GraduationCap,
@@ -663,8 +660,12 @@ function Structures({ c }: { c: AboutContent }) {
           <article className="relative overflow-hidden rounded-3xl bg-white p-7 shadow-sm ring-1 ring-[var(--ithemba-blue)]/10">
             <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-[var(--ithemba-blue)]/10 blur-2xl" aria-hidden />
             <div className="flex items-center gap-3">
-              <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[var(--ithemba-blue)]/10 text-[var(--ithemba-blue-dark)]">
-                <Globe2 className="h-5 w-5" />
+              <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[var(--ithemba-blue)]/10">
+                <img
+                  src="/assets/icons/about-us/about-sa-project-delivery.png"
+                  alt=""
+                  className="h-5 w-5 object-contain"
+                />
               </span>
               <div>
                 <div className="text-xs font-semibold uppercase tracking-wider text-[var(--ithemba-blue)]">
@@ -679,8 +680,12 @@ function Structures({ c }: { c: AboutContent }) {
           <article className="relative overflow-hidden rounded-3xl bg-white p-7 shadow-sm ring-1 ring-[var(--ithemba-blue)]/10">
             <div className="absolute -left-8 -bottom-8 h-32 w-32 rounded-full bg-[var(--ithemba-yellow)]/30 blur-2xl" aria-hidden />
             <div className="flex items-center gap-3">
-              <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[var(--ithemba-yellow)]/25 text-[var(--ithemba-blue-dark)]">
-                <Building2 className="h-5 w-5" />
+              <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[var(--ithemba-yellow)]/25">
+                <img
+                  src="/assets/icons/about-us/about-germany-awareness-support.png"
+                  alt=""
+                  className="h-5 w-5 object-contain"
+                />
               </span>
               <div>
                 <div className="text-xs font-semibold uppercase tracking-wider text-[var(--ithemba-yellow-warm)]">
@@ -697,7 +702,14 @@ function Structures({ c }: { c: AboutContent }) {
   );
 }
 
-const DIFFERENT_ICONS = [Users, HandHeart, Network, Heart, Briefcase, ShieldCheck];
+const DIFFERENT_ICONS = [
+  "/assets/icons/about-us/about-local-leadership.png",
+  "/assets/icons/about-us/about-practical-delivery.png",
+  "/assets/icons/about-us/about-connected-response.png",
+  "/assets/icons/about-us/about-long-term-care.png",
+  "/assets/icons/about-us/about-local-employment.png",
+  "/assets/icons/about-us/about-trust-accountability.png",
+];
 
 function WhatMakesDifferent({ c }: { c: AboutContent }) {
   return (
@@ -717,14 +729,14 @@ function WhatMakesDifferent({ c }: { c: AboutContent }) {
         </div>
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {c.different.cards.map((card, i) => {
-            const Icon = DIFFERENT_ICONS[i] ?? Heart;
+            const iconSrc = DIFFERENT_ICONS[i] ?? "/assets/icons/about-us/about-local-leadership.png";
             return (
               <div
                 key={i}
                 className="group relative overflow-hidden rounded-3xl bg-white/[0.06] p-6 ring-1 ring-white/10 backdrop-blur-sm transition hover:bg-white/[0.1] hover:ring-[var(--ithemba-yellow)]/40"
               >
-                <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--ithemba-yellow)]/20 text-[var(--ithemba-yellow)]">
-                  <Icon className="h-6 w-6" />
+                <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--ithemba-yellow)]/20">
+                  <img src={iconSrc} alt="" className="h-6 w-6 object-contain" />
                 </span>
                 <h3 className="mt-4 font-display text-lg font-bold">{card.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-white/80">{card.text}</p>
@@ -736,6 +748,13 @@ function WhatMakesDifferent({ c }: { c: AboutContent }) {
     </section>
   );
 }
+
+const GUIDES_ICONS = [
+  "/assets/icons/about-us/about-long-term-care.png",
+  "/assets/icons/about-us/about-local-ownership.png",
+  "/assets/icons/about-us/about-practical-delivery.png",
+  "/assets/icons/about-us/about-long-term-trust.png",
+];
 
 function WhatGuidesUs({ c }: { c: AboutContent }) {
   return (
@@ -753,8 +772,8 @@ function WhatGuidesUs({ c }: { c: AboutContent }) {
             className="relative overflow-hidden rounded-3xl border border-[var(--ithemba-blue)]/10 bg-[var(--ithemba-cream)] p-6 shadow-sm"
           >
             <div className="absolute -right-6 -top-6 h-20 w-20 rounded-full bg-[var(--ithemba-yellow)]/30 blur-xl" aria-hidden />
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white text-[var(--ithemba-blue-dark)] ring-1 ring-[var(--ithemba-blue)]/15">
-              <Heart className="h-5 w-5 fill-[var(--ithemba-yellow)] text-[var(--ithemba-yellow-warm)]" />
+            <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white ring-1 ring-[var(--ithemba-blue)]/15">
+              <img src={GUIDES_ICONS[i] ?? "/assets/icons/about-us/about-long-term-care.png"} alt="" className="h-5 w-5 object-contain" />
             </span>
             <h3 className="mt-4 font-display text-lg font-bold text-[var(--ithemba-blue-dark)]">
               <span className="relative inline-block">
