@@ -515,15 +515,26 @@ function PartnersPage() {
             {c.why.body.map((p, i) => (<p key={i}>{p}</p>))}
           </div>
 
-          <ul className="mt-8 grid gap-x-6 gap-y-3 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-8 grid gap-x-6 gap-y-4 sm:grid-cols-2 lg:grid-cols-3">
             {c.why.points.map((pt) => {
               const Icon = WHY_ICONS[pt.icon];
+              const png = WHY_ICON_PNG[pt.icon];
               return (
-                <li key={pt.label} className="flex items-start gap-3">
-                  <span className="mt-0.5 flex h-10 w-10 flex-none items-center justify-center rounded-full border border-[var(--ithemba-yellow,#f5c64a)]/50 text-[var(--ithemba-yellow,#f5c64a)]">
-                    <Icon className="h-5 w-5" />
-                  </span>
-                  <span className="pt-1.5 text-[15px] font-medium text-white/95">{pt.label}</span>
+                <li key={pt.label} className="flex items-center gap-4">
+                  {png ? (
+                    <img
+                      src={png}
+                      alt=""
+                      aria-hidden
+                      loading="lazy"
+                      className="h-12 w-12 flex-none object-contain md:h-16 md:w-16"
+                    />
+                  ) : (
+                    <span className="flex h-10 w-10 flex-none items-center justify-center rounded-full border border-[var(--ithemba-yellow,#f5c64a)]/50 text-[var(--ithemba-yellow,#f5c64a)]">
+                      <Icon className="h-5 w-5" />
+                    </span>
+                  )}
+                  <span className="text-[15px] font-medium text-white/95">{pt.label}</span>
                 </li>
               );
             })}
