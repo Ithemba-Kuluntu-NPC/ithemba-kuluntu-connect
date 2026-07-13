@@ -1,8 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { PageHeader } from "@/components/blocks/LegalPage";
 import { DonationWidget } from "@/components/blocks/DonationWidget";
 import { useLang } from "@/components/site/LanguageProvider";
-import { Shield, Repeat, FileText, Heart, Award } from "lucide-react";
+import { Shield, Repeat, FileText, Heart, Award, Check } from "lucide-react";
 
 /* ---------- content (verbatim from /public/content/donate) ---------- */
 const COPY = {
@@ -105,6 +104,7 @@ const COPY = {
 } as const;
 
 const TRUST_ICONS = [Shield, Award, FileText, Heart];
+const HERO_PHOTO = "/assets/photos/home/home-hero-community.jpg";
 
 function DonatePage() {
   const { lang } = useLang();
@@ -117,66 +117,82 @@ function DonatePage() {
 
   return (
     <>
-      <PageHeader
-        eyebrow={c.hero.eyebrow}
-        title={c.hero.title}
-        subtitle={c.hero.subtitle}
-        accent="var(--ithemba-blue)"
-      />
+      {/* Unified donation section: photo + blue overlay, form + copy side by side */}
+      <section className="relative overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${HERO_PHOTO})` }}
+          aria-hidden
+        />
+        <div
+          className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-dark)]/90 via-[var(--ithemba-blue-dark)]/80 to-[var(--ithemba-blue)]/70"
+          aria-hidden
+        />
 
-      <section
-        id="donate-form"
-        className="mx-auto grid max-w-7xl gap-10 px-4 py-14 lg:grid-cols-[1.1fr_1fr] lg:px-8"
-      >
-        <DonationWidget />
-        <div className="space-y-4">
-          <h2 className="font-display text-2xl font-bold text-[var(--ithemba-blue-dark)]">
-            {c.support.heading}
-          </h2>
-          <ul className="grid gap-2 text-sm">
-            {c.support.items.map((item) => (
-              <li
-                key={item}
-                className="flex items-start gap-2 rounded-2xl bg-white p-3 ring-1 ring-[var(--ithemba-blue)]/10"
-              >
-                <Heart className="mt-0.5 h-4 w-4 shrink-0 fill-[var(--ithemba-yellow)] text-[var(--ithemba-yellow)]" />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-          <div className="grid grid-cols-2 gap-2 pt-2 text-xs text-muted-foreground">
-            {c.trust.map((label, i) => {
-              const Icon = TRUST_ICONS[i] ?? Heart;
-              return (
-                <div key={label} className="flex items-center gap-1.5">
-                  <Icon className="h-4 w-4 text-[var(--ithemba-blue)]" /> {label}
-                </div>
-              );
-            })}
+        <div className="relative mx-auto grid max-w-7xl gap-8 px-4 py-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:gap-12 lg:px-8 lg:py-14">
+          {/* LEFT on desktop: copy. On mobile: renders first. */}
+          <div className="order-1 text-white lg:order-1">
+            <p className="hand-eyebrow-lg text-[var(--ithemba-yellow)]">{c.hero.eyebrow}</p>
+            <h1 className="mt-2 font-display text-3xl font-bold leading-tight md:text-4xl lg:text-5xl">
+              {c.hero.title}
+            </h1>
+            <p className="mt-4 max-w-xl text-base leading-relaxed text-white/90 md:text-lg">
+              {c.hero.subtitle}
+            </p>
+
+            <div className="mt-6 rounded-2xl bg-white/10 p-5 ring-1 ring-white/15 backdrop-blur-sm">
+              <h2 className="font-display text-lg font-semibold text-white md:text-xl">
+                {c.support.heading}
+              </h2>
+              <ul className="mt-3 grid gap-2 text-sm text-white/95">
+                {c.support.items.map((item) => (
+                  <li key={item} className="flex items-start gap-2">
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-[var(--ithemba-yellow)]" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="mt-5 grid grid-cols-2 gap-2 text-xs text-white/85 md:grid-cols-4">
+              {c.trust.map((label, i) => {
+                const Icon = TRUST_ICONS[i] ?? Heart;
+                return (
+                  <div key={label} className="flex items-center gap-1.5">
+                    <Icon className="h-4 w-4 text-[var(--ithemba-yellow)]" /> {label}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* RIGHT on desktop: form. On mobile: renders after copy but before support list would... we keep order simple. */}
+          <div id="donate-form" className="order-2 lg:order-2">
+            <DonationWidget />
           </div>
         </div>
       </section>
 
-      {/* Thank You closing section */}
+      {/* Thank You closing section — compact */}
       <section className="relative overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url(/assets/photos/home/home-hero-community.jpg)" }}
+          style={{ backgroundImage: `url(${HERO_PHOTO})` }}
           aria-hidden
         />
         <div
           className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-dark)]/95 via-[var(--ithemba-blue-dark)]/90 to-[var(--ithemba-blue)]/85"
           aria-hidden
         />
-        <div className="relative mx-auto max-w-3xl px-4 py-20 text-center lg:px-8">
+        <div className="relative mx-auto max-w-3xl px-4 py-12 text-center lg:px-8 lg:py-14">
           <p className="hand-eyebrow-lg text-[var(--ithemba-yellow)]">{c.thankyou.script}</p>
-          <h2 className="mt-2 font-display text-3xl font-bold text-white md:text-4xl">
+          <h2 className="mt-2 font-display text-2xl font-bold text-white md:text-3xl">
             {c.thankyou.title}
           </h2>
-          <p className="mt-4 text-base leading-relaxed text-white/90 md:text-lg">
+          <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-white/90 md:text-base">
             {c.thankyou.text}
           </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
             <button
               type="button"
               onClick={scrollToForm}
@@ -198,4 +214,24 @@ function DonatePage() {
   );
 }
 
-export const Route = createFileRoute("/donate")({ component: DonatePage });
+export const Route = createFileRoute("/donate")({
+  component: DonatePage,
+  head: () => ({
+    meta: [
+      { title: "Donate — iThemba Kuluntu" },
+      {
+        name: "description",
+        content:
+          "Give monthly to sustain safe water, early learning, food security, animal welfare and emergency support in rural Pondoland.",
+      },
+      { property: "og:title", content: "Donate — iThemba Kuluntu" },
+      {
+        property: "og:description",
+        content:
+          "Your monthly donation helps sustain community-rooted work across Pondoland.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+});
