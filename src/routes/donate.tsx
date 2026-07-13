@@ -117,7 +117,7 @@ function DonatePage() {
 
   return (
     <>
-      {/* Unified donation section: photo + blue overlay, form + copy side by side */}
+      {/* Compact two-column donation section */}
       <section className="relative overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
@@ -125,53 +125,52 @@ function DonatePage() {
           aria-hidden
         />
         <div
-          className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-dark)]/90 via-[var(--ithemba-blue-dark)]/80 to-[var(--ithemba-blue)]/70"
+          className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-dark)]/88 via-[var(--ithemba-blue-dark)]/78 to-[var(--ithemba-blue)]/68"
           aria-hidden
         />
 
-        <div className="relative mx-auto grid max-w-7xl gap-8 px-4 py-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:gap-12 lg:px-8 lg:py-14">
-          {/* LEFT on desktop: copy. On mobile: renders first. */}
-          <div className="order-1 text-white lg:order-1">
+        <div className="relative mx-auto grid max-w-6xl gap-6 px-4 py-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,620px)] lg:items-start lg:gap-10 lg:px-8 lg:py-10">
+          {/* LEFT: compact copy */}
+          <div className="text-white">
             <p className="hand-eyebrow-lg text-[var(--ithemba-yellow)]">{c.hero.eyebrow}</p>
-            <h1 className="mt-2 font-display text-3xl font-bold leading-tight md:text-4xl lg:text-5xl">
+            <h1 className="mt-1 font-display text-2xl font-bold leading-tight md:text-3xl lg:text-4xl">
               {c.hero.title}
             </h1>
-            <p className="mt-4 max-w-xl text-base leading-relaxed text-white/90 md:text-lg">
+            <p className="mt-3 max-w-md text-sm leading-relaxed text-white/90 md:text-base">
               {c.hero.subtitle}
             </p>
 
-            <div className="mt-6 rounded-2xl bg-white/10 p-5 ring-1 ring-white/15 backdrop-blur-sm">
-              <h2 className="font-display text-lg font-semibold text-white md:text-xl">
-                {c.support.heading}
-              </h2>
-              <ul className="mt-3 grid gap-2 text-sm text-white/95">
-                {c.support.items.map((item) => (
-                  <li key={item} className="flex items-start gap-2">
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-[var(--ithemba-yellow)]" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <h2 className="mt-5 text-xs font-semibold uppercase tracking-wide text-[var(--ithemba-yellow)]">
+              {c.support.heading}
+            </h2>
+            <ul className="mt-2 grid gap-1.5 text-sm text-white/95">
+              {c.support.items.map((item) => (
+                <li key={item} className="flex items-start gap-2">
+                  <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[var(--ithemba-yellow)]" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
 
-            <div className="mt-5 grid grid-cols-2 gap-2 text-xs text-white/85 md:grid-cols-4">
+            <div className="mt-5 flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-white/85">
               {c.trust.map((label, i) => {
                 const Icon = TRUST_ICONS[i] ?? Heart;
                 return (
                   <div key={label} className="flex items-center gap-1.5">
-                    <Icon className="h-4 w-4 text-[var(--ithemba-yellow)]" /> {label}
+                    <Icon className="h-3.5 w-3.5 text-[var(--ithemba-yellow)]" /> {label}
                   </div>
                 );
               })}
             </div>
           </div>
 
-          {/* RIGHT on desktop: form. On mobile: renders after copy but before support list would... we keep order simple. */}
-          <div id="donate-form" className="order-2 lg:order-2">
+          {/* RIGHT: compact donation form */}
+          <div id="donate-form" className="w-full lg:justify-self-end">
             <DonationWidget />
           </div>
         </div>
       </section>
+
 
       {/* Thank You closing section — compact */}
       <section className="relative overflow-hidden">
