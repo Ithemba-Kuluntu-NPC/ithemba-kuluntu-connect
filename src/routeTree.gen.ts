@@ -32,6 +32,7 @@ import { Route as ProjectsFoodSecurityRouteImport } from './routes/projects/food
 import { Route as ProjectsEcdRouteImport } from './routes/projects/ecd'
 import { Route as ProjectsDisasterReliefRouteImport } from './routes/projects/disaster-relief'
 import { Route as AboutTeamRouteImport } from './routes/about/team'
+import { Route as ProjectsPureflowIndexRouteImport } from './routes/projects/pureflow.index'
 import { Route as ProjectsPureflowStructuralProblemRouteImport } from './routes/projects/pureflow.structural-problem'
 
 const TermsRoute = TermsRouteImport.update({
@@ -150,6 +151,11 @@ const AboutTeamRoute = AboutTeamRouteImport.update({
   path: '/about/team',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProjectsPureflowIndexRoute = ProjectsPureflowIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ProjectsPureflowRoute,
+} as any)
 const ProjectsPureflowStructuralProblemRoute =
   ProjectsPureflowStructuralProblemRouteImport.update({
     id: '/structural-problem',
@@ -182,6 +188,7 @@ export interface FileRoutesByFullPath {
   '/about/': typeof AboutIndexRoute
   '/projects/': typeof ProjectsIndexRoute
   '/projects/pureflow/structural-problem': typeof ProjectsPureflowStructuralProblemRoute
+  '/projects/pureflow/': typeof ProjectsPureflowIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -202,12 +209,12 @@ export interface FileRoutesByTo {
   '/projects/food-security': typeof ProjectsFoodSecurityRoute
   '/projects/greenhouse': typeof ProjectsGreenhouseRoute
   '/projects/pondo-dogs': typeof ProjectsPondoDogsRoute
-  '/projects/pureflow': typeof ProjectsPureflowRouteWithChildren
   '/projects/pureflow-amanzi-compact': typeof ProjectsPureflowAmanziCompactRoute
   '/projects/pureflow-old': typeof ProjectsPureflowOldRoute
   '/about': typeof AboutIndexRoute
   '/projects': typeof ProjectsIndexRoute
   '/projects/pureflow/structural-problem': typeof ProjectsPureflowStructuralProblemRoute
+  '/projects/pureflow': typeof ProjectsPureflowIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -235,6 +242,7 @@ export interface FileRoutesById {
   '/about/': typeof AboutIndexRoute
   '/projects/': typeof ProjectsIndexRoute
   '/projects/pureflow/structural-problem': typeof ProjectsPureflowStructuralProblemRoute
+  '/projects/pureflow/': typeof ProjectsPureflowIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -263,6 +271,7 @@ export interface FileRouteTypes {
     | '/about/'
     | '/projects/'
     | '/projects/pureflow/structural-problem'
+    | '/projects/pureflow/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -283,12 +292,12 @@ export interface FileRouteTypes {
     | '/projects/food-security'
     | '/projects/greenhouse'
     | '/projects/pondo-dogs'
-    | '/projects/pureflow'
     | '/projects/pureflow-amanzi-compact'
     | '/projects/pureflow-old'
     | '/about'
     | '/projects'
     | '/projects/pureflow/structural-problem'
+    | '/projects/pureflow'
   id:
     | '__root__'
     | '/'
@@ -315,6 +324,7 @@ export interface FileRouteTypes {
     | '/about/'
     | '/projects/'
     | '/projects/pureflow/structural-problem'
+    | '/projects/pureflow/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -506,6 +516,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutTeamRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/projects/pureflow/': {
+      id: '/projects/pureflow/'
+      path: '/'
+      fullPath: '/projects/pureflow/'
+      preLoaderRoute: typeof ProjectsPureflowIndexRouteImport
+      parentRoute: typeof ProjectsPureflowRoute
+    }
     '/projects/pureflow/structural-problem': {
       id: '/projects/pureflow/structural-problem'
       path: '/structural-problem'
@@ -518,11 +535,13 @@ declare module '@tanstack/react-router' {
 
 interface ProjectsPureflowRouteChildren {
   ProjectsPureflowStructuralProblemRoute: typeof ProjectsPureflowStructuralProblemRoute
+  ProjectsPureflowIndexRoute: typeof ProjectsPureflowIndexRoute
 }
 
 const ProjectsPureflowRouteChildren: ProjectsPureflowRouteChildren = {
   ProjectsPureflowStructuralProblemRoute:
     ProjectsPureflowStructuralProblemRoute,
+  ProjectsPureflowIndexRoute: ProjectsPureflowIndexRoute,
 }
 
 const ProjectsPureflowRouteWithChildren =
@@ -556,3 +575,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
