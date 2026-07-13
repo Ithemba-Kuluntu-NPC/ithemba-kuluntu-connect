@@ -1,0 +1,636 @@
+content_file: pureflow-structural-problem-nl-v1
+language: nl
+project: PureFlow Amanzi
+page_type: deep_dive
+step: 01
+route: /projects/pureflow/structural-problem
+back_url: /projects/pureflow#structural-problem
+next_url: /projects/pureflow/model
+status: draft_for_github
+
+page_title: Structureel probleem
+seo_title: Het structurele probleem rond toegang tot veilig water | PureFlow Amanzi
+seo_description: Een visuele deep dive in de kloof tussen gerapporteerde toegang tot water en de dagelijkse realiteit van rurale huishoudens, scholen en klinieken in Zuid-Afrika.
+
+core_thesis:
+Het probleem is niet alleen of waterinfrastructuur bestaat. Het probleem is of veilig water het huishouden betrouwbaar bereikt.
+
+editorial_note:
+Deze pagina mag niet leunen op Census-statistieken over watertoegang als belangrijkste bewijs van het probleem. Gebruik officiële statistieken voorzichtig, als indicatie van gerapporteerde toegang of systeemprestaties. De kern van de pagina is de kloof tussen gerapporteerde toegang en functionele toegang.
+
+visual_style:
+Premium visuele documentaire. Sterke typografie. Diepblauw, wit en geel. Respectvolle veldfotografie. Korte tekstblokken. Grote statistiekkaarten. Fotocollages. Duidelijke beweging van harde realiteit naar praktische respons. Laat het niet voelen als een lang rapport.
+
+# -------------------------------------------------------------------
+# SECTION 01: HERO
+# -------------------------------------------------------------------
+
+hero.small_heading:
+Stap 01 // Structureel probleem
+
+hero.main_heading:
+De kloof tussen de spreadsheet en de beker
+
+hero.hook:
+Officiële rapporten kunnen een kraan, tank of pijpleiding als toegang meetellen. Maar een kraan die al jaren droog staat, geeft een kind niets te drinken.
+
+hero.intro:
+Zuid-Afrika kan er op papier sterker uitzien dan het in rurale huishoudens voelt. Een dorp kan geregistreerd staan als een plek met waterinfrastructuur omdat er gemeenschappelijke kranen langs de weg staan. Maar als die kranen niet werken, lopen gezinnen nog steeds naar beken, rivieren, bronnen, gedeelde tanks en open containers. PureFlow Amanzi begint precies in die kloof: de afstand tussen wat het systeem rapporteert en wat huishoudens werkelijk moeten drinken.
+
+hero.proof_line:
+De officiële vraag is vaak: bestaat er infrastructuur? De vraag in het huishouden is anders: kan mijn kind dit water vandaag veilig drinken?
+
+hero.primary_cta_label:
+Bekijk de realiteit
+
+hero.primary_cta_target:
+#reported-vs-functional-access
+
+hero.secondary_cta_label:
+Terug naar PureFlow Amanzi
+
+hero.secondary_cta_url:
+/projects/pureflow#structural-problem
+
+hero.visual_direction:
+Gebruik een full-width of asymmetrische hero. Linkerkant: diepblauw vlak met gele scriptkop en grote witte serif-heading. Rechterkant: een sobere, respectvolle veldfoto van een droge gemeenschappelijke kraan, een leeg verzamelpunt, emmers of een rurale waterbron bij een huishouden. Houd het beeld echt en menselijk, niet sensationeel.
+
+# -------------------------------------------------------------------
+# SECTION 02: REPORTED ACCESS VS FUNCTIONAL ACCESS
+# -------------------------------------------------------------------
+
+section_02.anchor:
+reported-vs-functional-access
+
+section_02.small_heading:
+De verborgen kloof
+
+section_02.main_heading:
+Een kraan op papier is nog geen water in een beker
+
+section_02.copy:
+Officiële cijfers over watertoegang registreren vaak of een huishouden of gemeenschap gekoppeld is aan een gerapporteerde waterbron. Dat is relevant, maar het laat niet altijd zien of er vandaag daadwerkelijk water beschikbaar is: veilig, dichtbij, betrouwbaar en bruikbaar.
+
+Een gemeenschappelijke standpijp kan als infrastructuur worden meegeteld, ook als er geen water uit komt. Een regenwatertank kan als opslag worden geregistreerd, ook als het water erin onbehandeld is. Een huishouden kan worden gemarkeerd als een huishouden met toegang, terwijl vrouwen en kinderen nog steeds naar onveilige bronnen lopen om water te halen.
+
+PureFlow Amanzi kijkt naar functionele toegang. Functionele toegang betekent dat water beschikbaar is wanneer het nodig is, dichtbij genoeg is om te gebruiken, veilig genoeg is om te drinken, door het huishouden wordt begrepen en niet afhankelijk is van uren onbetaalde arbeid.
+
+section_02.pull_quote:
+Infrastructuur kan bestaan terwijl veilig water ontbreekt.
+
+section_02.visual_direction:
+Maak een split comparison graphic.
+
+section_02.graphic_left_heading:
+Gerapporteerde toegang
+
+section_02.graphic_left_items:
+Kraan bestaat
+Tank bestaat
+Bron geregistreerd
+Infrastructuur meegeteld
+Huishoudcategorie vastgelegd
+
+section_02.graphic_right_heading:
+Functionele toegang
+
+section_02.graphic_right_items:
+Water stroomt echt
+Water is dichtbij genoeg
+Water is veilig om te drinken
+Water kan veilig worden opgeslagen
+Het huishouden kan het elke dag gebruiken
+
+section_02.source_note:
+Stats SA registreert nationale categorieën voor huishoudelijke voorzieningen, maar Census 2022 gebruikte meerdere dataverzamelingsmethoden en werd beïnvloed door onder meer COVID-19-lockdowns, rellen en overstromingen. Gebruik officiële toegangscijfers voorzichtig en maak onderscheid tussen gerapporteerde toegang en geleefde toegang.
+
+section_02.source_label:
+Stats SA Census 2022 media release
+
+section_02.source_url:
+https://www.statssa.gov.za/?p=16716
+
+# -------------------------------------------------------------------
+# SECTION 03: SYSTEM FAILURE STATS GRID
+# -------------------------------------------------------------------
+
+section_03.small_heading:
+Systeemdruk
+
+section_03.main_heading:
+Zelfs het officiële systeem laat diepe tekortkomingen zien
+
+section_03.copy:
+De meest bruikbare officiële cijfers zijn niet alleen huishoudelijke toegangscijfers. Het zijn cijfers over systeemprestaties. De eigen waterregulator van Zuid-Afrika laat zien dat gemeentelijke waterdiensten onder zware druk staan.
+
+section_03.visual_direction:
+Gebruik een high-impact bento-style statistiekgrid. Diepblauwe kaarten, grote gele cijfers, witte labels. Houd de tekst kort. Deze sectie moet vooral visueel werken.
+
+stat_card_01.number:
+958
+stat_card_01.label:
+Watervoorzieningssystemen beoordeeld in het Blue Drop Report 2023
+stat_card_01.source_label:
+Department of Water and Sanitation, 2023 Blue Drop Report release
+stat_card_01.source_url:
+https://www.gov.za/news/media-statements/water-and-sanitation-releases-2023-full-blue-drop-report-05-dec-2023
+
+stat_card_02.number:
+277
+stat_card_02.label:
+Watervoorzieningssystemen aangemerkt als systemen in kritieke prestatieconditie
+stat_card_02.sub_label:
+29% van de beoordeelde systemen
+stat_card_02.source_label:
+Department of Water and Sanitation, 2023 Blue Drop Report release
+stat_card_02.source_url:
+https://www.gov.za/news/media-statements/water-and-sanitation-releases-2023-full-blue-drop-report-05-dec-2023
+
+stat_card_03.number:
+46%
+stat_card_03.label:
+Watervoorzieningssystemen met slechte of zeer slechte microbiologische waterkwaliteitsnaleving
+stat_card_03.source_label:
+Department of Water and Sanitation, 2023 Blue Drop Report release
+stat_card_03.source_url:
+https://www.gov.za/news/media-statements/water-and-sanitation-releases-2023-full-blue-drop-report-05-dec-2023
+
+stat_card_04.number:
+47%
+stat_card_04.label:
+Nationaal niet-geregistreerd of niet-gefactureerd water in 2023
+stat_card_04.sub_label:
+Water dat verloren gaat of niet wordt betaald door lekken, meters, illegale aansluitingen, factureringsproblemen en zwakke inning
+stat_card_04.source_label:
+Department of Water and Sanitation, 2023 No Drop findings release
+stat_card_04.source_url:
+https://www.gov.za/news/media-statements/water-and-sanitation-releases-2023-full-blue-drop-report-05-dec-2023
+
+stat_card_05.number:
+64%
+stat_card_05.label:
+Afvalwaterzuiveringsinstallaties met hoog of kritiek risico op lozing van gedeeltelijk behandeld of onbehandeld water in rivieren en het milieu
+stat_card_05.source_label:
+Department of Water and Sanitation, 2023 Green Drop Progress Assessment release
+stat_card_05.source_url:
+https://www.gov.za/news/media-statements/water-and-sanitation-releases-2023-full-blue-drop-report-05-dec-2023
+
+stat_card_06.number:
+25% / 46%
+stat_card_06.label:
+Aandeel staatsscholen en klinieken dat volgens WaterCAN geen stromend water heeft
+stat_card_06.sub_label:
+Gebruik dit als geciteerde mediabron, niet als iThemba-veldstatistiek
+stat_card_06.source_label:
+Financial Times citing Water Community Action Network
+stat_card_06.source_url:
+https://www.ft.com/content/9b673228-7d54-4663-8aa3-912ecdcb8108
+
+section_03.close_copy:
+Het probleem is niet alleen droogte. Het gaat ook om zwak onderhoud, slechte uitvoering, verwaarloosde infrastructuur, gebrek aan vaardigheden, financieel wanbeheer en op sommige plekken corruptie. Voor huishoudens is de uitkomst eenvoudig: de kraan staat er, maar er komt geen water uit.
+
+# -------------------------------------------------------------------
+# SECTION 04: THE TRUE SOURCE
+# -------------------------------------------------------------------
+
+section_04.small_heading:
+De echte bron
+
+section_04.main_heading:
+Als kranen droog staan, hebben gezinnen nog steeds water nodig
+
+section_04.copy:
+Wanneer gemeentelijke infrastructuur faalt, verdwijnt de behoefte aan water niet. Gezinnen passen zich aan.
+
+In veel rurale dorpen halen gezinnen water uit rivieren, beken, bronnen, open verzamelpunten, gedeelde tanks en huishoudelijke containers. Deze bronnen zijn vaak onbeschermd. Ze kunnen worden blootgesteld aan vee, afstromend vuil, vervuilde containers, menselijk contact en onveilige opslag.
+
+Het water kan helder lijken. Maar helder water is niet hetzelfde als veilig water.
+
+section_04.supporting_copy:
+WHO rapporteert dat wereldwijd minstens 1,7 miljard mensen een drinkwaterbron gebruiken die met ontlasting is besmet. WHO benoemt microbiologische besmetting door ontlasting als het grootste risico voor drinkwaterveiligheid en merkt op dat besmet drinkwater ziekten kan overdragen, waaronder diarree, cholera, dysenterie, tyfus en polio.
+
+section_04.visual_direction:
+Gebruik een sterke split-screen fotolay-out. Links: een open rurale waterbron, beek, rivier, bron of gedeeld verzamelpunt. Rechts: een hand die een emmer vult, een container die wordt gedragen of een watercontainer bij een huishouden. Vermijd geënsceneerde beelden. Houd het documentair en respectvol.
+
+section_04.source_label:
+WHO drinking-water fact sheet
+
+section_04.source_url:
+https://www.who.int/news-room/fact-sheets/detail/drinking-water
+
+# -------------------------------------------------------------------
+# SECTION 05: LOCAL FIELD REALITY
+# -------------------------------------------------------------------
+
+section_05.small_heading:
+Veldrealiteit
+
+section_05.main_heading:
+Pondoland: waar infrastructuur op papier niet overeenkomt met het leven op de grond
+
+section_05.copy:
+In Cwebeni en omliggende rurale dorpen in de Eastern Cape waar iThemba Kuluntu werkt, staan gemeenschappelijke standpijpen langs wegen en nederzettingen. Op papier kan dit lijken op toegang. In werkelijkheid hebben veel van deze kranen al jaren geen betrouwbare watertoevoer meer geleverd. In delen van het dorp melden bewoners dat er al meer dan tien jaar geen water uit de gemeenschappelijke kranen is gekomen.
+
+Huishoudens overleven met wat er beschikbaar is: beken, bronnen, rivieren, gedeelde tanks, regenwater van daken, emmers en containers. Sommige gezinnen hebben JoJo-tanks. Veel gezinnen niet. En zelfs wanneer er een tank is, is opgeslagen regenwater niet automatisch veilig drinkwater.
+
+Daarom begint PureFlow Amanzi niet bij aannames uit een spreadsheet. Het begint bij wat gezinnen daadwerkelijk drinken.
+
+section_05.field_note_title:
+Lokale veldobservatie
+
+section_05.field_note_copy:
+De vraag in onze veldgebieden is niet of waterinfrastructuur op een gemeentelijke kaart voorkomt. De vraag is of veilig water de beker in het huishouden bereikt.
+
+section_05.visual_direction:
+Gebruik een donkerblauw of diep aardekleurig field-dispatch panel om het paginaritme te doorbreken. Voeg een klein locatie-icoon toe en een fotocollage van lokale wateromstandigheden, droge kranen, tanks, emmers of huishoudelijke wateropslag.
+
+# -------------------------------------------------------------------
+# SECTION 06: RAINWATER AND STORAGE
+# -------------------------------------------------------------------
+
+section_06.small_heading:
+Opslag is geen veiligheid
+
+section_06.main_heading:
+Een watertank betekent niet automatisch veilig drinkwater
+
+section_06.copy:
+Regenwateropvang kan gezinnen helpen overleven, maar het is geen eerlijke of universele oplossing. Het hangt af van dingen die arme huishoudens vaak niet hebben: een stevig dak, goede dakgoten, een schoon opvangoppervlak, een tank, veilige aansluitingen, onderhoudskennis en geld voor reparaties.
+
+Ook wanneer er een tank aanwezig is, kan water vervuild raken voordat het de tank bereikt en opnieuw wanneer het wordt opgeschept, overgeschonken of opgeslagen. Daken verzamelen stof, bladeren, insecten, vogelpoep en dierlijk afval. Tanks kunnen open, gebarsten of zelden schoongemaakt zijn. Water wordt vaak behandeld met emmers en containers die voor veel huishoudelijke taken worden gebruikt.
+
+Een tank kan water opslaan. Dat garandeert geen veilig water.
+
+section_06.visual_direction:
+Gebruik een eenvoudige water-route graphic met iconen, geen lange tekstsectie.
+
+section_06.graphic_path:
+Dak -> dakgoot -> tank -> emmer -> beker
+
+section_06.graphic_risks:
+Stof en uitwerpselen -> bladeren en vuil -> open deksel of stilstaand water -> vervuilde container -> onveilig drinkwater
+
+section_06.source_label:
+WHO diarrhoeal disease fact sheet, unsafe domestic water storage and handling
+
+section_06.source_url:
+https://www.who.int/news-room/fact-sheets/detail/diarrhoeal-disease
+
+# -------------------------------------------------------------------
+# SECTION 07: POVERTY AND WATER CHOICES
+# -------------------------------------------------------------------
+
+section_07.small_heading:
+Armoede en toegang
+
+section_07.main_heading:
+De armste huishoudens hebben de minste veilige waterkeuzes
+
+section_07.copy:
+Wanneer gemeentelijk water uitvalt, bepaalt geld welke opties een huishouden heeft.
+
+Een huishouden met middelen kan dakgoten installeren, een tank kopen, leidingen repareren, betalen voor waterlevering, flessenwater kopen, gas of elektriciteit gebruiken om water te koken, of water elders ophalen met vervoer.
+
+Een arm ruraal huishouden kan dat vaak niet. De beschikbare opties zijn meestal de zwaarste en minst veilige: naar een beek lopen, water bergop dragen, wachten op een watertanker, water delen met een buur, opgeslagen regenwater drinken, open containers gebruiken of water boven brandhout koken wanneer er hout beschikbaar is.
+
+Onveilig water is daarom niet alleen een infrastructuurprobleem. Het is ook een armoedeprobleem. Gezinnen met het minste geld worden naar de meest risicovolle waterbronnen geduwd en dragen vervolgens de gevolgen via ziekte, verloren tijd, schoolverzuim en huishoudelijke stress.
+
+section_07.visual_direction:
+Gebruik een tweekoloms vergelijkingsgraphic.
+
+section_07.left_heading:
+Huishouden met middelen
+section_07.left_items:
+Stevig dak
+Dakgoten
+Tank
+Vervoer
+Betaald water
+Elektriciteit of gas
+
+section_07.right_heading:
+Arm ruraal huishouden
+section_07.right_items:
+Droge kranen
+Geen tank of onveilige tank
+Beek of rivier
+Emmers
+Brandhout
+Onbetaalde arbeid
+
+section_07.pull_quote:
+Armoede verlaagt niet alleen inkomen. Het verkleint ook het aantal veilige waterkeuzes dat een huishouden heeft.
+
+# -------------------------------------------------------------------
+# SECTION 08: WOMEN AND CHILDREN
+# -------------------------------------------------------------------
+
+section_08.small_heading:
+Gendergebonden last
+
+section_08.main_heading:
+Onveilig water wordt onbetaalde arbeid
+
+section_08.copy:
+Wanneer water niet thuis beschikbaar is, moet iemand het vinden, dragen, opslaan, bruikbaar maken en voor het huishouden zorgen wanneer het ziekte veroorzaakt.
+
+In rurale gemeenschappen rust dit werk zwaar op vrouwen, grootmoeders, tienermeisjes en kinderen. Een container van 20 liter weegt ongeveer 20 kilogram, nog zonder het gewicht van de emmer zelf. Water dragen over ruwe paden en lange afstanden belast rug, nek, schouders, heupen en knieën. Voor kinderen neemt het ook tijd weg van rust, spel, schoolwerk en kind-zijn.
+
+Water halen is zelden één taak. Het is deel van een dagelijkse keten: lopen, wachten, vullen, dragen, opslaan, brandhout verzamelen, vuur maken, water verwarmen, laten afkoelen, overschenken, containers schoonmaken, herhalen.
+
+section_08.supporting_copy:
+Internationale berichtgeving over het UN World Water Development Report 2026 waarschuwde dat vrouwen in meer dan 70% van de rurale huishoudens zonder leidingwater in ontwikkelingslanden water halen, en dat vrouwen en meisjes samen elke dag 250 miljoen uur besteden aan water halen.
+
+section_08.visual_direction:
+Gebruik een horizontale tijdlast-tijdlijn met iconen en korte labels. Houd het visueel.
+
+section_08.timeline_items:
+Naar de bron lopen
+Wachten en vullen
+Water naar huis dragen
+Brandhout verzamelen
+Water verwarmen
+Voor zieke kinderen zorgen
+School of werk missen
+Morgen opnieuw beginnen
+
+section_08.source_label:
+The Guardian reporting on the UN World Water Development Report 2026
+
+section_08.source_url:
+https://www.theguardian.com/society/2026/mar/19/women-and-girls-bearing-brunt-of-water-shortages-globally-un-warns
+
+# -------------------------------------------------------------------
+# SECTION 09: JUST BOIL IT
+# -------------------------------------------------------------------
+
+section_09.small_heading:
+De kost van koken
+
+section_09.main_heading:
+“Je moet het gewoon koken” schuift de last door naar het huishouden
+
+section_09.copy:
+Water koken kan biologische risico’s verminderen wanneer het correct gebeurt. Maar rurale huishoudens zeggen dat ze water “gewoon moeten koken” negeert de arbeid achter dat koken.
+
+Iemand moet brandhout verzamelen, het naar huis dragen, vuur maken, wachten tot het water heet is, het veilig laten afkoelen en het veilig opslaan. Als het water daarna in vuile containers wordt gegoten of met onveilige gebruiksvoorwerpen wordt aangeraakt, kan het opnieuw besmet raken.
+
+Voor huishoudens zonder betrouwbare elektriciteit of gas is koken geen snelle veiligheidsstap. Het is een extra dagelijkse last. Het kost tijd, brandstof, fysieke inspanning en aandacht, en het komt vaak terecht bij dezelfde vrouwen en meisjes die al verantwoordelijk zijn voor water halen, koken, kinderzorg en huishoudelijke zorg.
+
+PureFlow Amanzi bestaat omdat huishoudens een veiligere optie nodig hebben die niet afhankelijk is van elektriciteit, chemicaliën, dagelijkse brandhoutverzameling of koken.
+
+section_09.visual_direction:
+Gebruik een compacte callout box met de titel “De brandhoutbelasting”. Voeg een eenvoudige before-and-after graphic toe.
+
+section_09.before_heading:
+Vóór filtratie
+section_09.before_items:
+Water halen
+Hout verzamelen
+Vuur maken
+Water verwarmen
+Water laten afkoelen
+Water opslaan
+Risico op herbesmetting
+
+section_09.after_heading:
+Met PureFlow Amanzi
+section_09.after_items:
+Systeem vullen
+Water filteren
+Veiliger water gebruiken
+Reinigen en onderhouden
+Veilig gebruik blijven toepassen
+
+# -------------------------------------------------------------------
+# SECTION 10: HEALTH AND LEARNING
+# -------------------------------------------------------------------
+
+section_10.small_heading:
+Gezondheid en leren
+
+section_10.main_heading:
+Als kinderen ziek worden, betaalt het hele huishouden de prijs
+
+section_10.copy:
+Onveilig water veroorzaakt niet alleen ziekte. Het verandert het ritme van een huishouden.
+
+Wanneer een kind ziek wordt, moet iemand thuisblijven. Iemand moet taxigeld vinden. Iemand moet naar een kliniek reizen, wachten, uitleg geven, medicijnen ophalen als die beschikbaar zijn, en weer naar huis. In rurale gebieden kan dit lange afstanden, beperkte vervoersmogelijkheden, overvolle zorgfaciliteiten en wisselende kwaliteit van zorg betekenen.
+
+Voor kinderen kan herhaalde ziekte leiden tot schoolverzuim, weinig energie, slechte concentratie en zwakkere leerresultaten. Voor zorgverleners betekent het verloren tijd, stress en extra kosten. Voor huishoudens die al op de rand leven, kan één ziekteperiode gevolgen hebben voor voedselgeld, transportgeld, schoolbenodigdheden en dagelijkse overleving.
+
+section_10.supporting_copy:
+WHO benoemt diarree als de derde belangrijkste doodsoorzaak bij kinderen van 1 tot 59 maanden. WHO schat dat diarree jaarlijks ongeveer 443.832 kinderen onder vijf jaar doodt en stelt dat een aanzienlijk deel van diarreeziekten kan worden voorkomen door veilig drinkwater, sanitaire voorzieningen en hygiëne.
+
+section_10.visual_direction:
+Gebruik drie gekoppelde kaarten in plaats van een lange paragraaf.
+
+section_10.card_01_title:
+Ziekte
+section_10.card_01_items:
+Diarree
+Uitdroging
+Zwakte
+Risico op herhaalde infecties
+
+section_10.card_02_title:
+Kosten voor het huishouden
+section_10.card_02_items:
+Taxigeld
+Kliniekbezoek
+Gemist werk
+Kosten voor medicijnen en zorg
+
+section_10.card_03_title:
+Kosten voor leren
+section_10.card_03_items:
+Schoolverzuim
+Weinig energie
+Slechte concentratie
+Zwakkere resultaten
+
+section_10.source_label:
+WHO diarrhoeal disease fact sheet
+
+section_10.source_url:
+https://www.who.int/news-room/fact-sheets/detail/diarrhoeal-disease
+
+# -------------------------------------------------------------------
+# SECTION 11: SCHOOLS AND CLINICS
+# -------------------------------------------------------------------
+
+section_11.small_heading:
+Voorbij het huishouden
+
+section_11.main_heading:
+De crisis bereikt ook scholen en klinieken
+
+section_11.copy:
+De watercrisis stopt niet bij de deur van het huishouden. Ze bereikt de plekken waar kinderen leren en waar gezinnen zorg zoeken.
+
+Wanneer een school geen betrouwbaar water heeft, kunnen kinderen hygiëne niet consequent oefenen en wordt WASH-educatie moeilijker om te vertalen naar dagelijks gedrag. Wanneer een kliniek droogvalt, komen infectiepreventie, basishygiëne en waardige patiëntenzorg onder druk te staan.
+
+Daarom moet veilig water worden begrepen als een kwestie van volksgezondheid, onderwijs en gemeenschapsweerbaarheid, niet alleen als huishoudelijk gemak.
+
+section_11.stat_line:
+WaterCAN heeft gerapporteerd dat 25% van de staatsscholen en 46% van de klinieken geen stromend water heeft, zoals geciteerd door de Financial Times.
+
+section_11.visual_direction:
+Gebruik een asymmetrisch tweekoloms paneel: één kant met school/ECD-beeld, één kant met kliniek/zorgbeeld of eenvoudige institutionele iconen. Houd het respectvol en niet te vol.
+
+section_11.source_label:
+Financial Times citing Water Community Action Network
+
+section_11.source_url:
+https://www.ft.com/content/9b673228-7d54-4663-8aa3-912ecdcb8108
+
+# -------------------------------------------------------------------
+# SECTION 12: SYSTEMIC FAILURE
+# -------------------------------------------------------------------
+
+section_12.small_heading:
+Niet één kapotte kraan
+
+section_12.main_heading:
+Dit is een systeemprobleem, geen huishoudelijk falen
+
+section_12.copy:
+De gezinnen die onveilig water drinken, falen niet. Het systeem om hen heen faalt.
+
+Een grootmoeder heeft de kapotte kraan niet veroorzaakt. Een kind heeft er niet voor gekozen om uit een beek te drinken. Een moeder heeft de onderhoudsachterstand, het gebrek aan waterkwaliteitstesten, de droge standpijp, het verloren behandelde water of het gemeentelijk falen daarachter niet gecreëerd.
+
+Het Department of Water and Sanitation heeft gesteld dat, ondanks ondersteuning aan gemeenten, waterdiensten blijven achteruitgaan en dat fundamentele hervorming nodig is om de daling in gemeentelijke water- en sanitaire dienstverlening te stoppen en om te keren.
+
+section_12.pull_quote:
+Het huishouden is waar het risico wordt gevoeld. Maar het falen begint veel hoger.
+
+section_12.visual_direction:
+Gebruik een layered systems graphic.
+
+section_12.outer_layer:
+Overheids- en gemeentelijke systemen
+section_12.middle_layer:
+Infrastructuur, onderhoud, testen en levering
+section_12.household_layer:
+Vrouwen, kinderen, opslagcontainers en dagelijks gebruik
+section_12.core:
+Veilig water in de beker
+
+section_12.source_label:
+Department of Water and Sanitation, 2023 Blue Drop Report release
+
+section_12.source_url:
+https://www.gov.za/news/media-statements/water-and-sanitation-releases-2023-full-blue-drop-report-05-dec-2023
+
+# -------------------------------------------------------------------
+# SECTION 13: PUREFLOW RESPONSE
+# -------------------------------------------------------------------
+
+section_13.small_heading:
+De respons
+
+section_13.main_heading:
+Wij wachten niet tot de infrastructuur zichzelf herstelt
+
+section_13.copy:
+PureFlow Amanzi doet niet alsof een huishoudelijk implementatiemodel de Zuid-Afrikaanse waterinfrastructuur van de ene dag op de andere repareert. Het doet iets onmiddellijks en praktisch: het helpt gezinnen beschermen terwijl het grotere systeem onbetrouwbaar blijft.
+
+Door gravity-fed, elektriciteitsvrije filtratie in huizen, scholen en ECD-centra te plaatsen, versterkt het programma de laatste verdedigingslijn: de beker in het huishouden.
+
+Maar dit is niet alleen een filter. PureFlow Amanzi combineert filtratie met WASH-educatie, huishoudelijke onboarding, lokale door vrouwen geleide distributie, follow-up en veldmonitoring. Het helpt gezinnen begrijpen dat helder water niet altijd veilig water is, en dat veilige opslag, behandeling, reiniging en blijvend gebruik ertoe doen.
+
+Het doel is praktisch: dagelijks risico verlagen, onbetaalde arbeid verminderen, kinderen beschermen, zorgverleners ondersteunen en een laag van veiligheid opbouwen waar formele infrastructuur nog niet betrouwbaar reikt.
+
+section_13.closing_line:
+Veilig water is geen gemak. Het is de eerste laag van gezondheid, leren, waardigheid en kansen.
+
+section_13.visual_direction:
+Ga over naar een schonere, hoopvollere lay-out. Gebruik een fotocollage met het PureFlow-filter, WASH-educatie, lokale medewerkers, huishoudelijke onboarding en een kind dat veilig water drinkt.
+
+section_13.button_01_label:
+Terug naar PureFlow Amanzi
+section_13.button_01_url:
+/projects/pureflow#structural-problem
+
+section_13.button_02_label:
+Stap 02: Ontdek het PureFlow-model
+section_13.button_02_url:
+/projects/pureflow/model
+
+# -------------------------------------------------------------------
+# OPTIONAL VIDEO BLOCK
+# -------------------------------------------------------------------
+
+video_block.display:
+optional
+
+video_block.placement:
+Plaats na de sectie Local Field Reality of binnen de PureFlow Response-sectie.
+
+video_block.heading:
+Bekijk de veldrealiteit
+
+video_block.copy:
+Gebruik een korte programmavideo als die beschikbaar is. Houd het videoblok compact en documentair, niet als een tweede full hero.
+
+video_block.preferred_video:
+Gebruik een bestaande PureFlow Amanzi veld- of WASH-video uit de website media library als die al beschikbaar is.
+
+# -------------------------------------------------------------------
+# SOURCE LIST FOR FOOTNOTE / SMALL “SOURCES” ACCORDION
+# -------------------------------------------------------------------
+
+sources.display_style:
+Kleine accordion of compacte bronnenrij onderaan de pagina. Laat de bronnen de pagina niet domineren.
+
+source_01.label:
+Department of Water and Sanitation, 2023 Blue Drop, No Drop and Green Drop findings
+source_01.url:
+https://www.gov.za/news/media-statements/water-and-sanitation-releases-2023-full-blue-drop-report-05-dec-2023
+
+source_02.label:
+WHO drinking-water fact sheet
+source_02.url:
+https://www.who.int/news-room/fact-sheets/detail/drinking-water
+
+source_03.label:
+WHO diarrhoeal disease fact sheet
+source_03.url:
+https://www.who.int/news-room/fact-sheets/detail/diarrhoeal-disease
+
+source_04.label:
+Stats SA Census 2022 media release
+source_04.url:
+https://www.statssa.gov.za/?p=16716
+
+source_05.label:
+Financial Times citing Water Community Action Network on schools and clinics without running water
+source_05.url:
+https://www.ft.com/content/9b673228-7d54-4663-8aa3-912ecdcb8108
+
+source_06.label:
+The Guardian reporting on the UN World Water Development Report 2026 gender and water-collection burden
+source_06.url:
+https://www.theguardian.com/society/2026/mar/19/women-and-girls-bearing-brunt-of-water-shortages-globally-un-warns
+
+# -------------------------------------------------------------------
+# BUILD NOTES FOR LOVABLE
+# -------------------------------------------------------------------
+
+build_note_01:
+Bouw dit als een volledige deep-dive pagina, niet als een side drawer.
+
+build_note_02:
+Gebruik de huidige iThemba Kuluntu-website stijl: diepblauwe secties, gele handgeschreven/script labels, witte serif-headings op donkere secties, blauwe serif-headings op lichte secties, warme crèmekleurige achtergronden, zachte wave transitions, afgeronde kaarten en organische fotocollages.
+
+build_note_03:
+Vermijd dichte paragrafen. De meeste secties moeten bestaan uit één sterke heading, één korte paragraaf en een visueel element.
+
+build_note_04:
+Gebruik de niet-onderbouwde claim dat “meer dan 10 miljoen Zuid-Afrikanen geen veilig water hebben” niet, tenzij er een betrouwbare bron wordt toegevoegd. Gebruik in plaats daarvan de geverifieerde DWS- en WHO-cijfers hierboven.
+
+build_note_05:
+Gebruik geen niet-onderbouwde claims over rookinhalatie of giftige rook. Houd de “Just boil it”-sectie gericht op tijd, brandstof, brandhout, arbeid en risico op herbesmetting.
+
+build_note_06:
+Gebruik waar mogelijk bestaande PureFlow Amanzi-foto’s en iconen uit de repository. Asset paths moeten runtime verwijzen naar /assets/..., niet naar public/assets/...
