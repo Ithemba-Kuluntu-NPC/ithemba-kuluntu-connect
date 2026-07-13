@@ -1,9 +1,11 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { Heart } from "lucide-react";
 import { useLang } from "./LanguageProvider";
 
 export function FloatingDonate() {
   const { lang } = useLang();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  if (pathname === "/donate") return null;
   return (
     <Link
       to="/donate"
