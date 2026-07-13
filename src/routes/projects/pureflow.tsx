@@ -1518,7 +1518,7 @@ function Closing({ t, goDonate }: { t: (k: string, fb?: string) => string; goDon
 
 function Step01Collage({ t }: { t: (k: string, fb?: string) => string }) {
   return (
-    <section id="step-1" className="relative scroll-mt-20 isolate overflow-hidden" style={{ background: CREAM }}>
+    <section id="structural-problem" className="relative isolate overflow-hidden" style={{ background: CREAM, scrollMarginTop: "calc(var(--header-height, 80px) + 16px)" }}>
       <img
         src="/assets/photos/projects/pureflow/pureflow-step-01-structural-problem-background.jpg"
         alt=""
