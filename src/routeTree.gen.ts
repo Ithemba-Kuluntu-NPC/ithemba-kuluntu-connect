@@ -25,6 +25,7 @@ import { Route as ProjectsIndexRouteImport } from './routes/projects/index'
 import { Route as AboutIndexRouteImport } from './routes/about/index'
 import { Route as ProjectsPureflowOldRouteImport } from './routes/projects/pureflow-old'
 import { Route as ProjectsPureflowAmanziCompactRouteImport } from './routes/projects/pureflow-amanzi-compact'
+import { Route as ProjectsPureflowRouteImport } from './routes/projects/pureflow'
 import { Route as ProjectsPondoDogsRouteImport } from './routes/projects/pondo-dogs'
 import { Route as ProjectsGreenhouseRouteImport } from './routes/projects/greenhouse'
 import { Route as ProjectsFoodSecurityRouteImport } from './routes/projects/food-security'
@@ -115,6 +116,11 @@ const ProjectsPureflowAmanziCompactRoute =
     path: '/projects/pureflow-amanzi-compact',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ProjectsPureflowRoute = ProjectsPureflowRouteImport.update({
+  id: '/projects/pureflow',
+  path: '/projects/pureflow',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProjectsPondoDogsRoute = ProjectsPondoDogsRouteImport.update({
   id: '/projects/pondo-dogs',
   path: '/projects/pondo-dogs',
@@ -146,15 +152,15 @@ const AboutTeamRoute = AboutTeamRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProjectsPureflowIndexRoute = ProjectsPureflowIndexRouteImport.update({
-  id: '/projects/pureflow/',
-  path: '/projects/pureflow/',
-  getParentRoute: () => rootRouteImport,
+  id: '/',
+  path: '/',
+  getParentRoute: () => ProjectsPureflowRoute,
 } as any)
 const ProjectsPureflowStructuralProblemRoute =
   ProjectsPureflowStructuralProblemRouteImport.update({
-    id: '/projects/pureflow/structural-problem',
-    path: '/projects/pureflow/structural-problem',
-    getParentRoute: () => rootRouteImport,
+    id: '/structural-problem',
+    path: '/structural-problem',
+    getParentRoute: () => ProjectsPureflowRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
@@ -176,6 +182,7 @@ export interface FileRoutesByFullPath {
   '/projects/food-security': typeof ProjectsFoodSecurityRoute
   '/projects/greenhouse': typeof ProjectsGreenhouseRoute
   '/projects/pondo-dogs': typeof ProjectsPondoDogsRoute
+  '/projects/pureflow': typeof ProjectsPureflowRouteWithChildren
   '/projects/pureflow-amanzi-compact': typeof ProjectsPureflowAmanziCompactRoute
   '/projects/pureflow-old': typeof ProjectsPureflowOldRoute
   '/about/': typeof AboutIndexRoute
@@ -229,6 +236,7 @@ export interface FileRoutesById {
   '/projects/food-security': typeof ProjectsFoodSecurityRoute
   '/projects/greenhouse': typeof ProjectsGreenhouseRoute
   '/projects/pondo-dogs': typeof ProjectsPondoDogsRoute
+  '/projects/pureflow': typeof ProjectsPureflowRouteWithChildren
   '/projects/pureflow-amanzi-compact': typeof ProjectsPureflowAmanziCompactRoute
   '/projects/pureflow-old': typeof ProjectsPureflowOldRoute
   '/about/': typeof AboutIndexRoute
@@ -257,6 +265,7 @@ export interface FileRouteTypes {
     | '/projects/food-security'
     | '/projects/greenhouse'
     | '/projects/pondo-dogs'
+    | '/projects/pureflow'
     | '/projects/pureflow-amanzi-compact'
     | '/projects/pureflow-old'
     | '/about/'
@@ -309,6 +318,7 @@ export interface FileRouteTypes {
     | '/projects/food-security'
     | '/projects/greenhouse'
     | '/projects/pondo-dogs'
+    | '/projects/pureflow'
     | '/projects/pureflow-amanzi-compact'
     | '/projects/pureflow-old'
     | '/about/'
@@ -336,12 +346,11 @@ export interface RootRouteChildren {
   ProjectsFoodSecurityRoute: typeof ProjectsFoodSecurityRoute
   ProjectsGreenhouseRoute: typeof ProjectsGreenhouseRoute
   ProjectsPondoDogsRoute: typeof ProjectsPondoDogsRoute
+  ProjectsPureflowRoute: typeof ProjectsPureflowRouteWithChildren
   ProjectsPureflowAmanziCompactRoute: typeof ProjectsPureflowAmanziCompactRoute
   ProjectsPureflowOldRoute: typeof ProjectsPureflowOldRoute
   AboutIndexRoute: typeof AboutIndexRoute
   ProjectsIndexRoute: typeof ProjectsIndexRoute
-  ProjectsPureflowStructuralProblemRoute: typeof ProjectsPureflowStructuralProblemRoute
-  ProjectsPureflowIndexRoute: typeof ProjectsPureflowIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -458,6 +467,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectsPureflowAmanziCompactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/projects/pureflow': {
+      id: '/projects/pureflow'
+      path: '/projects/pureflow'
+      fullPath: '/projects/pureflow'
+      preLoaderRoute: typeof ProjectsPureflowRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/projects/pondo-dogs': {
       id: '/projects/pondo-dogs'
       path: '/projects/pondo-dogs'
@@ -502,20 +518,34 @@ declare module '@tanstack/react-router' {
     }
     '/projects/pureflow/': {
       id: '/projects/pureflow/'
-      path: '/projects/pureflow'
+      path: '/'
       fullPath: '/projects/pureflow/'
       preLoaderRoute: typeof ProjectsPureflowIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof ProjectsPureflowRoute
     }
     '/projects/pureflow/structural-problem': {
       id: '/projects/pureflow/structural-problem'
-      path: '/projects/pureflow/structural-problem'
+      path: '/structural-problem'
       fullPath: '/projects/pureflow/structural-problem'
       preLoaderRoute: typeof ProjectsPureflowStructuralProblemRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof ProjectsPureflowRoute
     }
   }
 }
+
+interface ProjectsPureflowRouteChildren {
+  ProjectsPureflowStructuralProblemRoute: typeof ProjectsPureflowStructuralProblemRoute
+  ProjectsPureflowIndexRoute: typeof ProjectsPureflowIndexRoute
+}
+
+const ProjectsPureflowRouteChildren: ProjectsPureflowRouteChildren = {
+  ProjectsPureflowStructuralProblemRoute:
+    ProjectsPureflowStructuralProblemRoute,
+  ProjectsPureflowIndexRoute: ProjectsPureflowIndexRoute,
+}
+
+const ProjectsPureflowRouteWithChildren =
+  ProjectsPureflowRoute._addFileChildren(ProjectsPureflowRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -536,14 +566,22 @@ const rootRouteChildren: RootRouteChildren = {
   ProjectsFoodSecurityRoute: ProjectsFoodSecurityRoute,
   ProjectsGreenhouseRoute: ProjectsGreenhouseRoute,
   ProjectsPondoDogsRoute: ProjectsPondoDogsRoute,
+  ProjectsPureflowRoute: ProjectsPureflowRouteWithChildren,
   ProjectsPureflowAmanziCompactRoute: ProjectsPureflowAmanziCompactRoute,
   ProjectsPureflowOldRoute: ProjectsPureflowOldRoute,
   AboutIndexRoute: AboutIndexRoute,
   ProjectsIndexRoute: ProjectsIndexRoute,
-  ProjectsPureflowStructuralProblemRoute:
-    ProjectsPureflowStructuralProblemRoute,
-  ProjectsPureflowIndexRoute: ProjectsPureflowIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
