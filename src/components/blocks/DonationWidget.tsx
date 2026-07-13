@@ -54,7 +54,7 @@ export function DonationWidget({ defaultProject }: { defaultProject?: string } =
   }
 
   return (
-    <div className="rounded-3xl bg-white p-6 shadow-xl ring-1 ring-[var(--ithemba-blue)]/15 md:p-8">
+    <div className="rounded-3xl bg-white p-5 shadow-xl ring-1 ring-[var(--ithemba-blue)]/15 md:p-6">
       {/* Frequency toggle */}
       <div className="grid grid-cols-2 rounded-full bg-muted p-1">
         <button
