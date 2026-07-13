@@ -1518,7 +1518,7 @@ function Closing({ t, goDonate }: { t: (k: string, fb?: string) => string; goDon
 
 function Step01Collage({ t }: { t: (k: string, fb?: string) => string }) {
   return (
-    <section id="step-1" className="relative scroll-mt-20 isolate overflow-hidden" style={{ background: CREAM }}>
+    <section id="structural-problem" className="relative isolate overflow-hidden" style={{ background: CREAM, scrollMarginTop: "calc(var(--header-height, 80px) + 16px)" }}>
       <img
         src="/assets/photos/projects/pureflow/pureflow-step-01-structural-problem-background.jpg"
         alt=""
@@ -1559,12 +1559,15 @@ function Step01Collage({ t }: { t: (k: string, fb?: string) => string }) {
             <p className="mt-3 text-base leading-relaxed md:text-lg" style={{ color: "#334155" }}>
               {t("step1.text_block")}
             </p>
-            <ReadMoreSheet
-              label={t("step1.cta_label")}
-              title={t("step1.heading")}
-              body={t("step1.text_block")}
-              tag={t("step1.tag")}
-            />
+            <Link
+              to="/projects/pureflow/structural-problem"
+              className="mt-6 inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold shadow-md transition hover:shadow-lg"
+              style={{ background: BLUE_DEEP, color: "#FFFFFF" }}
+            >
+              {t("step1.cta_label", "Read the Full Picture")}
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+
           </div>
 
           {/* Editorial 4-photo collage */}
