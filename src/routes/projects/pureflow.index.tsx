@@ -49,7 +49,7 @@ import type { Lang } from "@/data/content";
 // Lazy-loaded, client-only Leaflet map (Leaflet touches `window` at import).
 const PureFlowEventMap = lazy(() => import("@/components/blocks/PureFlowEventMap"));
 
-export const Route = createFileRoute("/projects/pureflow")({
+export const Route = createFileRoute("/projects/pureflow/")({
   component: PureFlowCompactPage,
 });
 
