@@ -1,0 +1,590 @@
+content_file: pureflow-structural-problem-de-v2
+language: de
+project: PureFlow Amanzi
+page_type: deep_dive
+step: 01
+route: /projects/pureflow/structural-problem
+back_url: /projects/pureflow#structural-problem
+next_url: /projects/pureflow/model
+status: revised_draft_for_github
+
+page_title: Strukturelles Problem
+seo_title: Das strukturelle Problem hinter sicherem Wasser | PureFlow Amanzi
+seo_description: Eine visuelle Vertiefungsseite über die Lücke zwischen gemeldetem Wasserzugang und der Realität von ländlichen Haushalten, Frauen, Kindern, Schulen und ECD-Zentren in Südafrika.
+
+core_thesis:
+Die Frage ist nicht nur, ob Wasserinfrastruktur existiert. Die Frage ist, ob sicheres Wasser zuverlässig beim Haushalt, in der Schule, im ECD-Zentrum und beim Kind ankommt.
+
+editorial_note:
+Diese Seite soll Census-Zahlen zum Wasserzugang nicht als Hauptbeweis verwenden. Offizielle Statistiken sollen vorsichtig eingesetzt werden, als Hinweise auf gemeldeten Zugang oder auf die Leistungsfähigkeit des Systems. Der Kern der Seite ist die Lücke zwischen gemeldetem Zugang und funktionierendem Zugang sowie die Last, die besonders Frauen und Kinder tragen.
+
+visual_style:
+Premium Visual Documentary. Starke Typografie. Tiefblau, Weiß und Gelb. Respektvolle Feldfotografie. Kurze Textblöcke. Große Statistik-Karten. Fotocollagen. Klare Bewegung von harter Realität über menschliche Belastung hin zur praktischen Antwort. Die Seite darf sich nicht wie ein langer Bericht anfühlen.
+
+# -------------------------------------------------------------------
+# SECTION 01: HERO
+# -------------------------------------------------------------------
+
+hero.small_heading:
+Schritt 01 // Strukturelles Problem
+
+hero.main_heading:
+Die Lücke zwischen der Tabelle und dem Becher
+
+hero.hook:
+Offizielle Berichte können einen Wasserhahn, einen Tank oder eine Leitung als Zugang zählen. Aber ein Hahn, der seit Jahren trocken ist, gibt einem Kind nichts zu trinken.
+
+hero.intro:
+Südafrika kann auf dem Papier stärker wirken, als es sich in ländlichen Haushalten anfühlt. Ein Dorf kann als versorgt gelten, weil entlang der Straße gemeinschaftliche Wasserhähne stehen. Wenn diese Hähne aber nicht funktionieren, laufen Familien weiterhin zu Bächen, Flüssen, Quellen, geteilten Wasserstellen und offenen Behältern. PureFlow Amanzi beginnt genau in dieser Lücke: zwischen dem, was das System meldet, und dem, was Haushalte tatsächlich trinken müssen.
+
+hero.proof_line:
+Die offizielle Frage lautet oft: Existiert Infrastruktur? Die Frage im Haushalt ist eine andere: Kann mein Kind dieses Wasser heute sicher trinken?
+
+hero.primary_cta_label:
+Die Realität sehen
+
+hero.primary_cta_target:
+#reported-vs-functional-access
+
+hero.secondary_cta_label:
+Zurück zu PureFlow Amanzi
+
+hero.secondary_cta_url:
+/projects/pureflow#structural-problem
+
+hero.visual_direction:
+Nutze einen vollflächigen oder asymmetrischen Hero-Bereich. Linke Seite: tiefblaues Panel mit gelber Script-Überschrift und großer weißer Serif-Headline. Rechte Seite: ein starkes, respektvolles Feldfoto von einem trockenen Gemeinschaftshahn, einer leeren Wasserstelle, Eimern, Frauen beim Wassertragen oder einer ländlichen Haushaltswasserquelle. Das Bild soll echt und menschlich wirken, nicht sensationsorientiert.
+
+# -------------------------------------------------------------------
+# SECTION 02: REPORTED ACCESS VS FUNCTIONAL ACCESS
+# -------------------------------------------------------------------
+
+section_02.anchor:
+reported-vs-functional-access
+
+section_02.small_heading:
+Die versteckte Lücke
+
+section_02.main_heading:
+Ein Hahn auf dem Papier ist noch kein Wasser im Becher
+
+section_02.copy:
+Offizielle Daten zum Wasserzugang erfassen oft, ob ein Haushalt oder eine Gemeinde mit einer gemeldeten Wasserquelle verbunden ist. Das ist wichtig, zeigt aber nicht immer, ob Wasser heute tatsächlich verfügbar, sicher, nah genug, zuverlässig und nutzbar ist.
+
+Ein Gemeinschaftshahn kann als Infrastruktur gezählt werden, auch wenn kein Wasser herauskommt. Ein Haushalt kann als versorgt gelten, obwohl Frauen und Kinder weiterhin loslaufen, um Wasser aus unsicheren Quellen zu holen.
+
+PureFlow Amanzi konzentriert sich auf funktionierenden Zugang. Funktionierender Zugang bedeutet: Wasser ist verfügbar, wenn es gebraucht wird, nah genug für den Alltag, sicher genug zum Trinken, für den Haushalt verständlich und nicht abhängig von stundenlanger unbezahlter Arbeit.
+
+section_02.pull_quote:
+Infrastruktur kann existieren, während sicheres Wasser fehlt.
+
+section_02.visual_direction:
+Erstelle eine geteilte Vergleichsgrafik.
+
+section_02.graphic_left_heading:
+Gemeldeter Zugang
+
+section_02.graphic_left_items:
+Hahn existiert
+Quelle erfasst
+Infrastruktur gezählt
+Haushaltskategorie dokumentiert
+Zugang auf dem Papier markiert
+
+section_02.graphic_right_heading:
+Funktionierender Zugang
+
+section_02.graphic_right_items:
+Wasser fließt tatsächlich
+Wasser ist nah genug
+Wasser ist sicher zum Trinken
+Wasser kann täglich genutzt werden
+Frauen und Kinder tragen nicht die Hauptlast
+
+section_02.source_note:
+Stats SA erfasst nationale Haushaltskategorien, aber Census 2022 nutzte mehrere Erhebungsmethoden und war unter anderem durch COVID-19-Lockdowns, Unruhen und Überschwemmungen beeinflusst. Offizielle Zugangszahlen sollen daher vorsichtig genutzt und klar von gelebtem Zugang unterschieden werden.
+
+section_02.source_label:
+Stats SA Census 2022 media release
+
+section_02.source_url:
+https://www.statssa.gov.za/?p=16716
+
+# -------------------------------------------------------------------
+# SECTION 03: SYSTEM FAILURE STATS GRID
+# -------------------------------------------------------------------
+
+section_03.small_heading:
+System unter Druck
+
+section_03.main_heading:
+Selbst die offiziellen Systemdaten zeigen tiefes Versagen
+
+section_03.copy:
+Die hilfreichsten offiziellen Zahlen sind nicht nur Haushaltszahlen zum Zugang. Besonders wichtig sind Daten zur Leistungsfähigkeit des Systems. Südafrikas eigene Wasseraufsicht zeigt, dass kommunale Wasserdienste massiv unter Druck stehen.
+
+section_03.visual_direction:
+Nutze ein starkes Bento-Statistikraster. Tiefblaue Karten, große gelbe Zahlen, weiße Labels. Halte die Texte kurz. Dieser Abschnitt soll vor allem visuell wirken.
+
+stat_card_01.number:
+958
+stat_card_01.label:
+Wasserversorgungssysteme wurden im Blue Drop Report 2023 bewertet
+stat_card_01.source_label:
+Department of Water and Sanitation, 2023 Blue Drop Report release
+stat_card_01.source_url:
+https://www.gov.za/news/media-statements/water-and-sanitation-releases-2023-full-blue-drop-report-05-dec-2023
+
+stat_card_02.number:
+277
+stat_card_02.label:
+Wasserversorgungssysteme wurden als kritisch in ihrer Leistungsfähigkeit eingestuft
+stat_card_02.sub_label:
+29% der bewerteten Systeme
+stat_card_02.source_label:
+Department of Water and Sanitation, 2023 Blue Drop Report release
+stat_card_02.source_url:
+https://www.gov.za/news/media-statements/water-and-sanitation-releases-2023-full-blue-drop-report-05-dec-2023
+
+stat_card_03.number:
+46%
+stat_card_03.label:
+Wasserversorgungssysteme mit schlechter oder sehr schlechter mikrobiologischer Wasserqualitäts-Compliance
+stat_card_03.source_label:
+Department of Water and Sanitation, 2023 Blue Drop Report release
+stat_card_03.source_url:
+https://www.gov.za/news/media-statements/water-and-sanitation-releases-2023-full-blue-drop-report-05-dec-2023
+
+stat_card_04.number:
+47%
+stat_card_04.label:
+Nationales Non-Revenue Water im Jahr 2023
+stat_card_04.sub_label:
+Wasser, das durch Lecks, Zählerprobleme, illegale Anschlüsse, Abrechnungsfehler und schlechte Einnahmenerfassung verloren geht oder nicht bezahlt wird
+stat_card_04.source_label:
+Department of Water and Sanitation, 2023 No Drop findings release
+stat_card_04.source_url:
+https://www.gov.za/news/media-statements/water-and-sanitation-releases-2023-full-blue-drop-report-05-dec-2023
+
+stat_card_05.number:
+64%
+stat_card_05.label:
+Kläranlagen mit hohem oder kritischem Risiko, teilweise behandeltes oder unbehandeltes Abwasser in Flüsse und die Umwelt einzuleiten
+stat_card_05.source_label:
+Department of Water and Sanitation, 2023 Green Drop Progress Assessment release
+stat_card_05.source_url:
+https://www.gov.za/news/media-statements/water-and-sanitation-releases-2023-full-blue-drop-report-05-dec-2023
+
+stat_card_06.number:
+25% / 46%
+stat_card_06.label:
+Anteil staatlicher Schulen und Kliniken, die laut WaterCAN über kein fließendes Wasser verfügen
+stat_card_06.sub_label:
+Als zitierte Medienquelle nutzen, nicht als iThemba-Feldstatistik
+stat_card_06.source_label:
+Financial Times citing Water Community Action Network
+stat_card_06.source_url:
+https://www.ft.com/content/9b673228-7d54-4663-8aa3-912ecdcb8108
+
+section_03.close_copy:
+Das Problem ist nicht nur Dürre. Es sind schwache Wartung, schlechte Abläufe, vernachlässigte Infrastruktur, fehlende Fachkenntnisse, finanzielles Missmanagement und an manchen Orten Korruption. Für Haushalte ist das Ergebnis einfach: Der Hahn steht da, aber es kommt kein Wasser heraus.
+
+# -------------------------------------------------------------------
+# SECTION 04: THE TRUE SOURCE
+# -------------------------------------------------------------------
+
+section_04.small_heading:
+Die wirkliche Quelle
+
+section_04.main_heading:
+Wenn Hähne trocken bleiben, brauchen Familien trotzdem Wasser
+
+section_04.copy:
+Wenn kommunale Infrastruktur versagt, hört der Wasserbedarf nicht auf. Haushalte passen sich an.
+
+In vielen ländlichen Dörfern holen Familien Wasser aus Flüssen, Bächen, Quellen, offenen Wasserstellen, geteilten Quellen und Haushaltsbehältern. Diese Quellen sind oft ungeschützt. Sie können mit Vieh, Oberflächenabfluss, schmutzigen Behältern, menschlicher Handhabung und unsicherer Lagerung in Kontakt kommen.
+
+Das Wasser kann sauber aussehen. Aber klares Wasser ist nicht automatisch sicheres Wasser.
+
+section_04.supporting_copy:
+Die WHO berichtet, dass weltweit mindestens 1,7 Milliarden Menschen eine Trinkwasserquelle nutzen, die mit Fäkalien verunreinigt ist. Die WHO beschreibt mikrobiologische Verunreinigung durch Fäkalien als größtes Risiko für Trinkwassersicherheit und weist darauf hin, dass verunreinigtes Trinkwasser Krankheiten wie Durchfall, Cholera, Dysenterie, Typhus und Polio übertragen kann.
+
+section_04.visual_direction:
+Nutze ein starkes Split-Screen-Fotolayout. Links: eine offene ländliche Wasserquelle, ein Bach, Fluss, eine Quelle oder ein geteilter Sammelpunkt. Rechts: eine Hand, die einen Eimer füllt, ein getragener Kanister oder ein Wasserbehälter im Haushalt. Keine gestellten Bilder. Dokumentarisch und respektvoll.
+
+section_04.source_label:
+WHO drinking-water fact sheet
+
+section_04.source_url:
+https://www.who.int/news-room/fact-sheets/detail/drinking-water
+
+# -------------------------------------------------------------------
+# SECTION 05: LOCAL FIELD REALITY
+# -------------------------------------------------------------------
+
+section_05.small_heading:
+Feldrealität
+
+section_05.main_heading:
+Pondoland: wo Infrastruktur auf dem Papier nicht zum Leben vor Ort passt
+
+section_05.copy:
+In Cwebeni und den umliegenden ländlichen Dörfern der Eastern Cape, in denen iThemba Kuluntu arbeitet, stehen gemeinschaftliche Standrohre entlang von Straßen und Siedlungsbereichen. Auf dem Papier kann das wie Zugang aussehen. In der Realität haben viele dieser Hähne seit Jahren keine verlässliche Wasserversorgung mehr geliefert. In Teilen des Dorfes berichten Gemeindemitglieder, dass seit mehr als zehn Jahren kein Wasser aus den Gemeinschaftshähnen geflossen ist.
+
+Haushalte überleben mit dem, was verfügbar ist: Bächen, Quellen, Flüssen, geteilten Wasserstellen, Dachabfluss, Eimern und Behältern. Einige Familien haben Wasserspeicher. Viele haben keine. Und gespeichertes Wasser darf ohne geeignete Filtration, Behandlung und sichere Handhabung niemals automatisch als sicheres Trinkwasser betrachtet werden.
+
+Deshalb beginnt PureFlow Amanzi nicht mit Annahmen aus einer Tabelle. Es beginnt mit dem, was Familien tatsächlich trinken.
+
+section_05.field_note_title:
+Lokale Feldbeobachtung
+
+section_05.field_note_copy:
+Die Frage in unseren Einsatzgebieten ist nicht, ob Wasserinfrastruktur auf einer kommunalen Karte erscheint. Die Frage ist, ob sicheres Wasser im Becher des Haushalts ankommt.
+
+section_05.visual_direction:
+Nutze ein dunkelblaues oder erdfarbenes Field-Dispatch-Panel, um den Seitenrhythmus zu brechen. Ergänze ein kleines Standort-Icon und eine Fotocollage mit lokalen Wasserbedingungen, trockenen Hähnen, Bächen, Eimern, Behältern oder Wasserspeicherung im Haushalt.
+
+# -------------------------------------------------------------------
+# SECTION 06: WOMEN, CHILDREN AND UNPAID LABOUR
+# -------------------------------------------------------------------
+
+section_06.small_heading:
+Frauen tragen das System
+
+section_06.main_heading:
+Wenn Wasser versagt, tragen Frauen und Kinder die Last
+
+section_06.copy:
+Wasserversagen ist nie geschlechtsneutral.
+
+Wenn sicheres Wasser zu Hause nicht verfügbar ist, muss jemand das System trotzdem zum Funktionieren bringen. In ländlichen Haushalten fällt diese Arbeit besonders auf Frauen, Großmütter, Teenager-Mädchen und Kinder.
+
+Sie laufen zur Wasserquelle. Sie warten. Sie füllen Eimer und Kanister. Sie tragen das Gewicht nach Hause. Sie lagern das Wasser. Sie entscheiden, ob es abgekocht werden muss. Sie sammeln Feuerholz. Sie machen Feuer. Sie erhitzen das Wasser. Sie lassen es abkühlen. Sie füllen es in Haushaltsbehälter. Sie reinigen die Behälter. Sie kümmern sich um Kinder, wenn das Wasser sie krank macht.
+
+Das ist nicht eine Aufgabe. Es ist eine Kette unbezahlter Arbeit, die sich immer wiederholt.
+
+section_06.supporting_copy:
+Internationale Berichterstattung zum UN World Water Development Report 2026 warnte, dass Frauen in mehr als 70% der ländlichen Haushalte ohne Leitungswasser in Entwicklungsländern Wasser holen und dass Frauen und Mädchen zusammen täglich 250 Millionen Stunden mit Wasserholen verbringen.
+
+section_06.visual_direction:
+Dies sollte einer der stärksten visuellen Abschnitte der Seite sein. Nutze einen vollbreiten tiefblauen Bereich mit horizontaler oder kreisförmiger Zeitlast-Grafik. Arbeite mit Icons und kurzen Labels. Ergänze ein respektvolles Foto von Frauen, Großmüttern oder Mädchen, die Wasser tragen, bei Behältern stehen, Wasser vorbereiten oder Kinder unterstützen.
+
+section_06.timeline_title:
+Die versteckte Wasserarbeit
+
+section_06.timeline_items:
+Zur Quelle laufen
+Warten und füllen
+Wasser nach Hause tragen
+Wasser lagern
+Feuerholz sammeln
+Feuer machen
+Wasser erhitzen
+Abkühlen und umfüllen
+Behälter reinigen
+Kranke Kinder versorgen
+Arbeit, Ruhe oder Schule verpassen
+Morgen wiederholen
+
+section_06.body_burden_heading:
+Auch der Körper zahlt den Preis
+
+section_06.body_burden_copy:
+Ein 20-Liter-Behälter wiegt rund 20 Kilogramm, noch ohne das Gewicht des Eimers selbst. Wasser über unebene Wege und lange Strecken zu tragen, belastet Rücken, Nacken, Schultern, Hüften und Knie immer wieder. Kindern nimmt es außerdem Zeit für Ruhe, Spiel, Schulaufgaben und Kindheit.
+
+section_06.firewood_tax_heading:
+Die Feuerholz-Steuer
+
+section_06.firewood_tax_copy:
+Wasser abzukochen kann biologische Risiken verringern, wenn es richtig gemacht wird. Aber ländlichen Haushalten zu sagen, sie sollen Wasser „einfach abkochen“, ignoriert die Arbeit dahinter. Für Haushalte ohne verlässlichen Strom oder Gas bedeutet Abkochen: Holz sammeln, nach Hause tragen, Feuer machen, Wasser erhitzen, abkühlen lassen, sicher lagern und versuchen, erneute Verunreinigung zu vermeiden.
+
+section_06.firewood_tax_note:
+Abkochen ist kein einfacher Sicherheitsschritt, wenn der Haushalt bereits die Kosten versagender Infrastruktur trägt.
+
+section_06.source_label:
+The Guardian reporting on the UN World Water Development Report 2026
+
+section_06.source_url:
+https://www.theguardian.com/society/2026/mar/19/women-and-girls-bearing-brunt-of-water-shortages-globally-un-warns
+
+# -------------------------------------------------------------------
+# SECTION 07: POVERTY AND ACCESS
+# -------------------------------------------------------------------
+
+section_07.small_heading:
+Armut und Zugang
+
+section_07.main_heading:
+Die ärmsten Haushalte bleiben mit den unsichersten Optionen zurück
+
+section_07.copy:
+Wenn öffentliche Wassersysteme ausfallen, entscheidet Armut darüber, was eine Familie als Nächstes tun kann.
+
+Ein Haushalt mit Geld kann Wasser kaufen, Transport bezahlen, kaputte Leitungen reparieren, private Systeme installieren, Strom oder Gas zum Erhitzen von Wasser nutzen oder eine andere bezahlte Lösung finden. Ein armer ländlicher Haushalt kann das oft nicht. Wenn kein Geld da ist, bleiben meist die härtesten, langsamsten und unsichersten Optionen: zu einem Bach laufen, Wasser aus einer offenen Quelle holen, Wasser bergauf tragen, auf einen unzuverlässigen Wassertankwagen warten, Wasser von Nachbarn teilen, offene Behälter nutzen oder Wasser über Feuerholz abkochen, wenn Holz verfügbar ist.
+
+Deshalb ist unsicheres Wasser nicht nur ein Infrastrukturproblem. Es ist ein Armutsproblem. Die Familien mit den wenigsten Ressourcen werden zu den riskantesten Wasserquellen gedrängt und tragen die Folgen dann durch Krankheit, verlorene Zeit, Schulunterbrechungen und Stress im Haushalt.
+
+section_07.supporting_copy:
+Armut macht Wasser zu einer täglichen Abwägung: Wie weit muss jemand laufen, wie viel kann getragen werden, reicht das Geld für Transport, gibt es Holz zum Abkochen, sieht das Wasser sauber genug aus und kann der Haushalt es riskieren, es heute zu trinken?
+
+section_07.pull_quote:
+Armut reduziert nicht nur Einkommen. Sie reduziert die Anzahl sicherer Entscheidungen, die ein Haushalt treffen kann.
+
+section_07.visual_direction:
+Verwende hier keine Vergleichsgrafik mit Regenwassertank.
+
+Nutze stattdessen eine kompakte visuelle Sequenz oder gestapelte Karten, die zeigen, wie Armut Wasseroptionen immer weiter verengt.
+
+Suggested visual:
+Ein nach unten laufender Funnel oder eine gestufte Kartenfolge mit dem Titel „Wenn kein Geld für eine sicherere Option da ist“.
+
+Card 1:
+Keine verlässliche öffentliche Wasserversorgung
+
+Card 2:
+Keine bezahlte Alternative
+
+Card 3:
+Offene oder geteilte Quelle
+
+Card 4:
+Unsicheres Wasser gelangt ins Haus
+
+Card 5:
+Krankheit, Zeitverlust und zusätzliche Kosten folgen
+
+Halte die Grafik auf Armut, unsichere Quellen, Zeitbelastung und Haushaltsfolgen fokussiert. Regenwassertanks oder Haushaltsinfrastruktur dürfen nicht im Mittelpunkt stehen.
+
+# -------------------------------------------------------------------
+# SECTION 08: HEALTH AND LEARNING
+# -------------------------------------------------------------------
+
+section_08.small_heading:
+Gesundheit und Lernen
+
+section_08.main_heading:
+Wenn Kinder krank werden, zahlt der ganze Haushalt den Preis
+
+section_08.copy:
+Unsicheres Wasser verursacht nicht nur Krankheit. Es verändert den Rhythmus eines Haushalts.
+
+Wenn ein Kind krank wird, muss jemand zu Hause bleiben. Jemand muss Taxigeld finden. Jemand muss zu einer Klinik fahren, warten, erklären, Medikamente abholen, falls sie verfügbar sind, und wieder nach Hause zurückkehren. In ländlichen Gebieten kann das lange Wege, schlechte Transportmöglichkeiten, überfüllte Einrichtungen und ungleichmäßige Versorgung bedeuten.
+
+Für Kinder kann wiederholte Krankheit Schulfehltage, wenig Energie, schwache Konzentration und schlechteres Lernen bedeuten. Für Betreuungspersonen bedeutet es verlorene Zeit, Stress und zusätzliche Kosten. Für Haushalte, die ohnehin am Limit leben, kann eine einzige Krankheitsphase Geld für Essen, Transport, Schulbedarf und den Alltag gefährden.
+
+section_08.supporting_copy:
+Die WHO nennt Durchfallerkrankungen als dritthäufigste Todesursache bei Kindern im Alter von 1 bis 59 Monaten. Sie schätzt, dass Durchfall jährlich rund 443.832 Kinder unter fünf Jahren tötet, und sagt, dass ein erheblicher Anteil von Durchfallerkrankungen durch sicheres Trinkwasser, Sanitärversorgung und Hygiene verhindert werden kann.
+
+section_08.visual_direction:
+Nutze drei verbundene Karten statt eines langen Absatzes.
+
+section_08.card_01_title:
+Krankheit
+
+section_08.card_01_items:
+Durchfall
+Dehydrierung
+Schwäche
+Risiko wiederholter Infektionen
+
+section_08.card_02_title:
+Kosten für den Haushalt
+
+section_08.card_02_items:
+Taxigeld
+Klinikbesuch
+Verpasste Arbeit
+Medizin- und Pflegekosten
+Stress für Betreuungspersonen
+
+section_08.card_03_title:
+Kosten fürs Lernen
+
+section_08.card_03_items:
+Schulfehltage
+Wenig Energie
+Schwache Konzentration
+Schlechtere Ergebnisse
+Weniger Chancen
+
+section_08.source_label:
+WHO diarrhoeal disease fact sheet
+
+section_08.source_url:
+https://www.who.int/news-room/fact-sheets/detail/diarrhoeal-disease
+
+# -------------------------------------------------------------------
+# SECTION 09: BEYOND THE HOUSEHOLD
+# -------------------------------------------------------------------
+
+section_09.small_heading:
+Über den Haushalt hinaus
+
+section_09.main_heading:
+Die Krise erreicht auch Schulen und ECD-Zentren
+
+section_09.copy:
+Die Wasserkrise endet nicht an der Haustür. Sie erreicht die Orte, an denen Kinder lernen, essen, spielen und betreut werden.
+
+Einige Schulen, ECD-Zentren und Kliniken haben überhaupt kein verlässliches fließendes Wasser. Andere haben zwar Wasser vor Ort, aber das bedeutet nicht, dass es sicher zum Trinken ist. In vielen ländlichen Bildungseinrichtungen wird von Kindern und Jugendlichen weiterhin erwartet, Wasser zu trinken, das aus denselben unsicheren Quellen stammt wie zu Hause: gespeichertes Wasser, Eimer, unbehandeltes Leitungswasser, Bäche oder andere nicht überprüfte Quellen.
+
+Wenn Lernorte kein sicheres Trinkwasser haben, wird WASH-Bildung schwerer umzusetzen. Handwaschroutinen werden unterbrochen. Kinder trinken weniger, trinken unsicheres Wasser oder bringen unsicheres Wasser von zu Hause mit. Für kleine Kinder in ECD-Zentren entsteht dadurch ein tägliches Gesundheitsrisiko in genau den Räumen, die sie eigentlich schützen und vorbereiten sollen.
+
+Sicheres Wasser in Schulen und ECD-Zentren ist kein Extra. Es ist Teil einer sicheren Lernumgebung.
+
+section_09.stat_line:
+WaterCAN hat berichtet, dass 25% der staatlichen Schulen und 46% der Kliniken kein fließendes Wasser haben, wie von der Financial Times zitiert. Die Feldrealität geht aber weiter: Selbst dort, wo Wasser vorhanden ist, ist die Trinkwassersicherheit oft nicht garantiert.
+
+section_09.visual_direction:
+Nutze ein asymmetrisches Zwei-Spalten-Panel: eine Seite mit Schul- oder ECD-Bildmaterial, die andere mit Haushalts- oder Kinder-Trinkwasserbild. Warm und geerdet halten. Nutze Icons für Schule, ECD, Händewaschen, Trinkwasser und Gesundheit.
+
+section_09.card_01_title:
+In der Schule
+
+section_09.card_01_copy:
+Kinder brauchen den ganzen Tag über sicheres Trinkwasser, nicht nur Wasser für Toiletten oder Reinigung.
+
+section_09.card_02_title:
+In ECD-Zentren
+
+section_09.card_02_copy:
+Kleine Kinder sind besonders verletzlich, wenn Wasser unsicher oder unzuverlässig ist. Krankheit, Dehydrierung und unterbrochene Routinen treffen sie schneller.
+
+section_09.card_03_title:
+In Kliniken
+
+section_09.card_03_copy:
+Wasserausfälle schwächen Hygiene, Infektionsprävention und eine würdevolle Versorgung von Patientinnen und Patienten.
+
+section_09.source_label:
+Financial Times citing Water Community Action Network
+
+section_09.source_url:
+https://www.ft.com/content/9b673228-7d54-4663-8aa3-912ecdcb8108
+
+# -------------------------------------------------------------------
+# SECTION 10: PUREFLOW RESPONSE
+# -------------------------------------------------------------------
+
+section_10.small_heading:
+Die Antwort
+
+section_10.main_heading:
+Sicheres Wasser muss dort ankommen, wo Leben stattfindet
+
+section_10.copy:
+PureFlow Amanzi beginnt mit einer einfachen praktischen Wahrheit: Menschen können nicht warten, bis kaputte Systeme irgendwann zuverlässig funktionieren, bevor Kinder sichereres Wasser trinken können.
+
+Das Programm bringt ein lokal entwickeltes, schwerkraftbasiertes, stromfreies Filtersystem in Haushalte, Schulen und ECD-Zentren. Aber der Filter ist nur ein Teil des Modells. Jede Umsetzung wird durch lokale Montage, Haushalts-Onboarding, WASH-Bildung, Schulung zur sicheren Nutzung, Nachbetreuung und Feldmonitoring begleitet.
+
+Das ist wichtig, weil unsicheres Wasser nicht nur ein technisches Problem ist. Es betrifft die Zeit von Frauen, die Gesundheit von Kindern, Schulreife, Haushaltskosten und die Widerstandskraft von Gemeinden.
+
+PureFlow Amanzi macht sicheres Wasser zu einem praktischen Ausgangspunkt für weitergehende Veränderung: gesündere Haushalte, sicherere Lernumgebungen, lokale Arbeitsmöglichkeiten, stärkere ländliche Unterstützungssysteme und eine klarere Datengrundlage dafür, womit Gemeinden tatsächlich konfrontiert sind.
+
+section_10.closing_line:
+Sicheres Wasser ist die erste Schicht. Von dort aus werden Gesundheit, Lernen, Würde und Chancen möglich.
+
+section_10.visual_direction:
+Wechsle zu einem klareren, hoffnungsvolleren Layout. Nutze eine Fotocollage mit dem PureFlow-Filter, WASH-Bildung, lokalen Mitarbeitenden, Haushalts-Onboarding und Kindern, die sicher Wasser trinken. Dieser Abschnitt soll wie eine Brücke zu Schritt 02 wirken, nicht wie eine vollständige Erklärung des gesamten Modells.
+
+section_10.button_01_label:
+Zurück zu PureFlow Amanzi
+
+section_10.button_01_url:
+/projects/pureflow#structural-problem
+
+section_10.button_02_label:
+Schritt 02: Das PureFlow-Modell entdecken
+
+section_10.button_02_url:
+/projects/pureflow/model
+
+# -------------------------------------------------------------------
+# OPTIONAL VIDEO BLOCK
+# -------------------------------------------------------------------
+
+video_block.display:
+optional
+
+video_block.placement:
+Nach dem Abschnitt Local Field Reality oder innerhalb des PureFlow Response Abschnitts platzieren.
+
+video_block.heading:
+Die Feldrealität sehen
+
+video_block.copy:
+Nutze ein kurzes Programmvideo, falls verfügbar. Halte den Videoblock kompakt und dokumentarisch, nicht wie einen zweiten Full Hero.
+
+video_block.preferred_video:
+Nutze ein bestehendes PureFlow Amanzi Feld- oder WASH-Video aus der Website-Mediathek, falls bereits vorhanden.
+
+# -------------------------------------------------------------------
+# SOURCE LIST FOR FOOTNOTE / SMALL “SOURCES” ACCORDION
+# -------------------------------------------------------------------
+
+sources.display_style:
+Kleines Accordion oder kompakte Quellenzeile nahe am Seitenende. Die Quellen sollen die Seite nicht dominieren.
+
+source_01.label:
+Department of Water and Sanitation, 2023 Blue Drop, No Drop and Green Drop findings
+source_01.url:
+https://www.gov.za/news/media-statements/water-and-sanitation-releases-2023-full-blue-drop-report-05-dec-2023
+
+source_02.label:
+WHO drinking-water fact sheet
+source_02.url:
+https://www.who.int/news-room/fact-sheets/detail/drinking-water
+
+source_03.label:
+WHO diarrhoeal disease fact sheet
+source_03.url:
+https://www.who.int/news-room/fact-sheets/detail/diarrhoeal-disease
+
+source_04.label:
+Stats SA Census 2022 media release
+source_04.url:
+https://www.statssa.gov.za/?p=16716
+
+source_05.label:
+Financial Times citing Water Community Action Network on schools and clinics without running water
+source_05.url:
+https://www.ft.com/content/9b673228-7d54-4663-8aa3-912ecdcb8108
+
+source_06.label:
+The Guardian reporting on the UN World Water Development Report 2026 gender and water-collection burden
+source_06.url:
+https://www.theguardian.com/society/2026/mar/19/women-and-girls-bearing-brunt-of-water-shortages-globally-un-warns
+
+# -------------------------------------------------------------------
+# BUILD NOTES FOR LOVABLE
+# -------------------------------------------------------------------
+
+build_note_01:
+Diese Seite als vollständige Deep-Dive-Seite bauen, nicht als Side Drawer.
+
+build_note_02:
+Den aktuellen Stil der iThemba Kuluntu Website verwenden: tiefblaue Sektionen, gelbe handschriftliche Script-Labels, weiße Serif-Headings auf dunklen Sektionen, blaue Serif-Headings auf hellen Sektionen, warme Creme-Hintergründe, weiche Wave-Übergänge, abgerundete Karten und organische Fotocollagen.
+
+build_note_03:
+Dichte Textblöcke vermeiden. Die meisten Abschnitte sollen aus einer starken Heading, einem kurzen Absatz und einem visuellen Element bestehen.
+
+build_note_04:
+Die nicht belegte Aussage „über 10 Millionen Südafrikaner haben kein sicheres Wasser“ nicht verwenden, außer es wird eine verlässliche Quelle ergänzt. Stattdessen die oben aufgeführten verifizierten DWS- und WHO-Zahlen nutzen.
+
+build_note_05:
+Keine unbelegten Aussagen über Rauchinhalation oder giftigen Rauch machen. Den Feuerholz-Abschnitt auf Zeit, Brennstoff, Feuerholz, Arbeit und Risiko erneuter Verunreinigung fokussieren.
+
+build_note_06:
+Den früheren eigenständigen Abschnitt „Storage is not safety“ entfernen. Speicherung kann nur kurz erwähnt werden, wo sie relevant ist, aber Tanks oder Regenwassernutzung dürfen nicht zum Schwerpunkt werden.
+
+build_note_07:
+Den früheren eigenständigen Abschnitt „Not one broken tap“ oder „Systemic Failure“ entfernen. Das Systemproblem wird bereits durch die Reported-Access-Framing, offizielle Leistungsdaten und die Feldrealität deutlich.
+
+build_note_08:
+Frauen und Kinder nach der Field Reality zum emotionalen und strukturellen Zentrum der Seite machen. Der Abschnitt zu Frauen und unbezahlter Arbeit soll wie ein zentraler Feature-Abschnitt wirken, nicht wie ein kleiner Nebenblock.
+
+build_note_09:
+Die frühere zweispaltige Vergleichsgrafik „Household with resources / Poor rural household“ nicht verwenden. Stattdessen den Poverty Funnel oder die gestuften Konsequenzkarten aus section_07.visual_direction nutzen.
+
+build_note_10:
+Wo möglich bestehende PureFlow Amanzi Fotos und Icons aus dem Repository verwenden. Asset paths müssen zur Laufzeit auf /assets/... verweisen, nicht auf public/assets/...

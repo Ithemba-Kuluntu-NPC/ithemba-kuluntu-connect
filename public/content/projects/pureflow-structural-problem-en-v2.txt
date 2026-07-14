@@ -1,0 +1,590 @@
+content_file: pureflow-structural-problem-en-v2
+language: en
+project: PureFlow Amanzi
+page_type: deep_dive
+step: 01
+route: /projects/pureflow/structural-problem
+back_url: /projects/pureflow#structural-problem
+next_url: /projects/pureflow/model
+status: revised_draft_for_github
+
+page_title: Structural Problem
+seo_title: The Structural Water Access Problem | PureFlow Amanzi
+seo_description: A visual deep-dive into the gap between reported water access and the lived reality of rural households, women, children, schools and early childhood centres in South Africa.
+
+core_thesis:
+The problem is not only whether water infrastructure exists. The problem is whether safe water reliably reaches the household, the school, the ECD centre and the child.
+
+editorial_note:
+This page should not rely on Census water-access statistics as the main proof of the problem. Use official statistics carefully as reported access or system-performance evidence. The core framing is the gap between reported access and functional access, and the gendered burden carried by women and children.
+
+visual_style:
+Premium visual documentary. Strong typography. Deep blue, white and yellow. Respectful field photography. Short text blocks. Large statistic cards. Photo collages. Clear movement from harsh reality to human burden to practical response. Do not make it feel like a long report.
+
+# -------------------------------------------------------------------
+# SECTION 01: HERO
+# -------------------------------------------------------------------
+
+hero.small_heading:
+Step 01 // Structural Problem
+
+hero.main_heading:
+The gap between the spreadsheet and the cup
+
+hero.hook:
+Official reports can count a tap, tank or pipeline as access. But a tap that has been dry for years gives a child nothing to drink.
+
+hero.intro:
+South Africa can look stronger on paper than it feels in rural homes. A village may be recorded as having water infrastructure because communal taps exist along the road. But if those taps do not work, families still walk to streams, rivers, springs, shared collection points and open containers. PureFlow Amanzi begins in this gap: the distance between what is reported by the system and what households are actually forced to drink.
+
+hero.proof_line:
+The official question is often: does infrastructure exist? The household question is different: can my child safely drink this water today?
+
+hero.primary_cta_label:
+See the reality
+
+hero.primary_cta_target:
+#reported-vs-functional-access
+
+hero.secondary_cta_label:
+Back to PureFlow Amanzi
+
+hero.secondary_cta_url:
+/projects/pureflow#structural-problem
+
+hero.visual_direction:
+Use a full-width or asymmetric hero. Left side: deep blue panel with yellow script heading and large white serif heading. Right side: stark, respectful field photo of a dry communal tap, empty collection point, buckets, women carrying water, or a rural household water source. Keep the image real and human, not sensational.
+
+# -------------------------------------------------------------------
+# SECTION 02: REPORTED ACCESS VS FUNCTIONAL ACCESS
+# -------------------------------------------------------------------
+
+section_02.anchor:
+reported-vs-functional-access
+
+section_02.small_heading:
+The hidden gap
+
+section_02.main_heading:
+A tap on paper is not water in a cup
+
+section_02.copy:
+Official water-access data often records whether a household or community is linked to a reported water source. That matters, but it does not always show whether water is actually available, safe, close, reliable or usable today.
+
+A communal standpipe can be counted as infrastructure even when no water comes out. A household can be marked as having access even when women and children still walk to collect water from unsafe sources.
+
+PureFlow Amanzi focuses on functional access. Functional access means the water is available when needed, close enough to use, safe enough to drink, understood by the household, and not dependent on hours of unpaid labour.
+
+section_02.pull_quote:
+Infrastructure can exist while safe water does not.
+
+section_02.visual_direction:
+Create a split comparison graphic.
+
+section_02.graphic_left_heading:
+Reported access
+
+section_02.graphic_left_items:
+Tap exists
+Source recorded
+Infrastructure counted
+Household category captured
+Access marked on paper
+
+section_02.graphic_right_heading:
+Functional access
+
+section_02.graphic_right_items:
+Water actually flows
+Water is close enough
+Water is safe to drink
+Water can be used every day
+Women and children are not forced to carry the burden
+
+section_02.source_note:
+Stats SA records national household service categories, but Census 2022 used multiple collection modes and was affected by challenges including COVID-19 lockdowns, riots and flooding. Use official access statistics carefully and distinguish reported access from lived access.
+
+section_02.source_label:
+Stats SA Census 2022 media release
+
+section_02.source_url:
+https://www.statssa.gov.za/?p=16716
+
+# -------------------------------------------------------------------
+# SECTION 03: SYSTEM FAILURE STATS GRID
+# -------------------------------------------------------------------
+
+section_03.small_heading:
+System pressure
+
+section_03.main_heading:
+Even the official system shows deep failure
+
+section_03.copy:
+The most useful official numbers are not only household access numbers. They are system-performance numbers. South Africa's own water regulator shows that municipal water services are under severe pressure.
+
+section_03.visual_direction:
+Use a high-impact bento-style statistics grid. Deep blue cards, large yellow numbers, white labels. Keep text short. This section should be mostly visual.
+
+stat_card_01.number:
+958
+stat_card_01.label:
+Water supply systems assessed in the 2023 Blue Drop Report
+stat_card_01.source_label:
+Department of Water and Sanitation, 2023 Blue Drop Report release
+stat_card_01.source_url:
+https://www.gov.za/news/media-statements/water-and-sanitation-releases-2023-full-blue-drop-report-05-dec-2023
+
+stat_card_02.number:
+277
+stat_card_02.label:
+Water supply systems identified as being in critical performance condition
+stat_card_02.sub_label:
+29% of assessed systems
+stat_card_02.source_label:
+Department of Water and Sanitation, 2023 Blue Drop Report release
+stat_card_02.source_url:
+https://www.gov.za/news/media-statements/water-and-sanitation-releases-2023-full-blue-drop-report-05-dec-2023
+
+stat_card_03.number:
+46%
+stat_card_03.label:
+Water supply systems with poor or bad microbiological water-quality compliance
+stat_card_03.source_label:
+Department of Water and Sanitation, 2023 Blue Drop Report release
+stat_card_03.source_url:
+https://www.gov.za/news/media-statements/water-and-sanitation-releases-2023-full-blue-drop-report-05-dec-2023
+
+stat_card_04.number:
+47%
+stat_card_04.label:
+National non-revenue water in 2023
+stat_card_04.sub_label:
+Water lost or not paid for through leaks, meters, illegal connections, billing failures and poor revenue collection
+stat_card_04.source_label:
+Department of Water and Sanitation, 2023 No Drop findings release
+stat_card_04.source_url:
+https://www.gov.za/news/media-statements/water-and-sanitation-releases-2023-full-blue-drop-report-05-dec-2023
+
+stat_card_05.number:
+64%
+stat_card_05.label:
+Wastewater treatment works at high or critical risk of discharging partially treated or untreated water into rivers and the environment
+stat_card_05.source_label:
+Department of Water and Sanitation, 2023 Green Drop Progress Assessment release
+stat_card_05.source_url:
+https://www.gov.za/news/media-statements/water-and-sanitation-releases-2023-full-blue-drop-report-05-dec-2023
+
+stat_card_06.number:
+25% / 46%
+stat_card_06.label:
+Share of state schools and clinics reported by WaterCAN as having no running water
+stat_card_06.sub_label:
+Use as cited media source, not as an iThemba field statistic
+stat_card_06.source_label:
+Financial Times citing Water Community Action Network
+stat_card_06.source_url:
+https://www.ft.com/content/9b673228-7d54-4663-8aa3-912ecdcb8108
+
+section_03.close_copy:
+The problem is not only drought. It is weak maintenance, poor operations, infrastructure neglect, lack of skills, financial mismanagement and, in some places, corruption. For households, the result is simple: the tap is there, but no water comes out.
+
+# -------------------------------------------------------------------
+# SECTION 04: THE TRUE SOURCE
+# -------------------------------------------------------------------
+
+section_04.small_heading:
+The true source
+
+section_04.main_heading:
+When taps run dry, families still need water
+
+section_04.copy:
+When municipal infrastructure fails, households do not stop needing water. They adapt.
+
+In many rural villages, families collect water from rivers, streams, springs, open collection points, shared sources and household containers. These sources are often unprotected. They may be exposed to livestock, environmental runoff, dirty containers, human handling and unsafe storage.
+
+The water may look clean. But clear water is not the same as safe water.
+
+section_04.supporting_copy:
+Globally, WHO reports that at least 1.7 billion people use a drinking-water source contaminated with faeces. WHO also identifies microbial contamination from faeces as the greatest risk to drinking-water safety, and notes that contaminated drinking water can transmit diseases including diarrhoea, cholera, dysentery, typhoid and polio.
+
+section_04.visual_direction:
+Use a strong split-screen photo layout. Left: an open rural water source, stream, river, spring or shared collection point. Right: a hand filling a bucket, a container being carried, or a household water container. Avoid staged imagery. Keep it documentary and respectful.
+
+section_04.source_label:
+WHO drinking-water fact sheet
+
+section_04.source_url:
+https://www.who.int/news-room/fact-sheets/detail/drinking-water
+
+# -------------------------------------------------------------------
+# SECTION 05: LOCAL FIELD REALITY
+# -------------------------------------------------------------------
+
+section_05.small_heading:
+Field reality
+
+section_05.main_heading:
+Pondoland: where infrastructure on paper does not match life on the ground
+
+section_05.copy:
+In Cwebeni and surrounding rural Eastern Cape villages where iThemba Kuluntu works, communal standpipes line roads and settlement areas. On paper, this can look like access. In reality, many of these taps have not provided reliable water for years. In some parts of the village, community members report that no water has flowed from the communal taps for more than a decade.
+
+Households survive through whatever source is available: streams, springs, rivers, shared water points, roof runoff, buckets and containers. Some families have water storage. Many do not. And stored water should never be treated as safe drinking water without proper filtration, treatment and safe handling.
+
+This is why PureFlow Amanzi does not begin with assumptions from a spreadsheet. It begins with what families are actually drinking.
+
+section_05.field_note_title:
+Local field observation
+
+section_05.field_note_copy:
+The question in our field areas is not whether water infrastructure appears on a municipal map. The question is whether safe water reaches the household cup.
+
+section_05.visual_direction:
+Use a dark blue or deep earth-toned field-dispatch panel to break the page rhythm. Add a small location marker icon and a photo collage of local water conditions, dry taps, streams, buckets, containers or household water storage.
+
+# -------------------------------------------------------------------
+# SECTION 06: WOMEN, CHILDREN AND UNPAID LABOUR
+# -------------------------------------------------------------------
+
+section_06.small_heading:
+Women carry the system
+
+section_06.main_heading:
+When water fails, women and children carry the burden
+
+section_06.copy:
+Water failure is never gender-neutral.
+
+When safe water is not available at home, someone must make the system work anyway. In rural households, that work falls heavily on women, grandmothers, teenage girls and children.
+
+They walk to the water source. They wait. They fill buckets and containers. They carry the weight home. They store the water. They decide whether it needs to be boiled. They collect firewood. They make the fire. They heat the water. They cool it. They pour it into household containers. They clean the containers. They care for children when the water makes them sick.
+
+This is not one task. It is a chain of unpaid labour repeated again and again.
+
+section_06.supporting_copy:
+Global reporting on the 2026 UN World Water Development Report warned that women collect water in more than 70% of rural households without mains water across the developing world, and that women and girls collectively spend 250 million hours every day collecting water.
+
+section_06.visual_direction:
+This should be one of the strongest visual sections on the page. Use a full-width deep blue section with a horizontal or circular time-burden graphic. Use icons and short labels. Add one respectful photo of women, grandmothers or girls carrying water, standing near containers, preparing water or supporting children.
+
+section_06.timeline_title:
+The hidden water work
+
+section_06.timeline_items:
+Walk to the source
+Wait and fill
+Carry water home
+Store the water
+Collect firewood
+Make the fire
+Heat the water
+Cool and pour
+Clean containers
+Care for sick children
+Miss work, rest or school
+Repeat tomorrow
+
+section_06.body_burden_heading:
+The body pays too
+
+section_06.body_burden_copy:
+A 20-litre container weighs around 20 kilograms, before the weight of the bucket itself. Carrying water over rough paths and long distances places repeated strain on the back, neck, shoulders, hips and knees. For children, it also takes time away from rest, play, schoolwork and childhood.
+
+section_06.firewood_tax_heading:
+The firewood tax
+
+section_06.firewood_tax_copy:
+Boiling water can reduce biological risk when done correctly. But telling rural households to “just boil water” ignores the work behind it. For homes without reliable electricity or gas, boiling means collecting wood, carrying it home, making a fire, heating water, cooling it, storing it safely and trying to prevent recontamination.
+
+section_06.firewood_tax_note:
+Boiling is not a simple safety step when the household already carries the cost of failed infrastructure.
+
+section_06.source_label:
+The Guardian reporting on the UN World Water Development Report 2026
+
+section_06.source_url:
+https://www.theguardian.com/society/2026/mar/19/women-and-girls-bearing-brunt-of-water-shortages-globally-un-warns
+
+# -------------------------------------------------------------------
+# SECTION 07: POVERTY AND ACCESS
+# -------------------------------------------------------------------
+
+section_07.small_heading:
+Poverty and access
+
+section_07.main_heading:
+The poorest households are left with the least safe options
+
+section_07.copy:
+When public water systems fail, poverty decides what a family can do next.
+
+A household with money can buy water, pay for transport, repair broken pipes, install private systems, use electricity or gas to heat water, or find another paid solution. A poor rural household often cannot. When there is no money, the only options left are usually the hardest, slowest and least safe: walking to a stream, collecting from an open source, carrying water uphill, waiting for an unreliable tanker, sharing from a neighbour, using open containers, or boiling water over firewood when wood is available.
+
+This is why unsafe water is not only an infrastructure issue. It is a poverty issue. The families with the fewest resources are pushed toward the highest-risk water sources, then carry the consequences through illness, lost time, school disruption and household stress.
+
+section_07.supporting_copy:
+Poverty turns water into a daily calculation: how far to walk, how much to carry, whether there is money for transport, whether there is wood to boil, whether the water looks clean enough, and whether the household can risk drinking it today.
+
+section_07.pull_quote:
+Poverty does not only reduce income. It reduces the number of safe choices a household has.
+
+section_07.visual_direction:
+Do not use a rainwater tank comparison graphic here.
+
+Instead, use a compact visual sequence or stacked cards showing how poverty narrows water choices.
+
+Suggested visual:
+A downward funnel or stepped card sequence titled “When there is no money for a safer option.”
+
+Card 1:
+No reliable public water
+
+Card 2:
+No paid alternative
+
+Card 3:
+Open source or shared source
+
+Card 4:
+Unsafe water enters the home
+
+Card 5:
+Illness, time loss and extra costs follow
+
+Keep the visual focused on poverty, unsafe sources, time burden and household consequences. Do not make rainwater tanks or household infrastructure the focus.
+
+# -------------------------------------------------------------------
+# SECTION 08: HEALTH AND LEARNING
+# -------------------------------------------------------------------
+
+section_08.small_heading:
+Health and learning
+
+section_08.main_heading:
+When children get sick, the whole household pays
+
+section_08.copy:
+Unsafe water does not only cause illness. It changes the rhythm of the household.
+
+When a child gets sick, someone must stay home. Someone must find taxi money. Someone must travel to a clinic, wait, explain, collect medicine if available, and return home. In rural areas, this can mean long distances, poor transport access, overcrowded facilities and inconsistent care.
+
+For children, repeated illness can mean missed school, low energy, poor concentration and weaker learning. For caregivers, it means lost time, stress and extra costs. For households already living close to the edge, one illness can affect food money, transport money, school needs and daily survival.
+
+section_08.supporting_copy:
+WHO identifies diarrhoeal disease as the third leading cause of death in children aged 1 to 59 months. It estimates that diarrhoea kills around 443,832 children under five each year, and says a significant proportion of diarrhoeal disease can be prevented through safe drinking water, sanitation and hygiene.
+
+section_08.visual_direction:
+Use three linked cards instead of a long paragraph.
+
+section_08.card_01_title:
+Illness
+
+section_08.card_01_items:
+Diarrhoea
+Dehydration
+Weakness
+Repeated infection risk
+
+section_08.card_02_title:
+Household cost
+
+section_08.card_02_items:
+Taxi fare
+Clinic visit
+Missed work
+Medicine and care costs
+Caregiver stress
+
+section_08.card_03_title:
+Learning cost
+
+section_08.card_03_items:
+Missed school
+Low energy
+Poor concentration
+Weaker outcomes
+Reduced opportunity
+
+section_08.source_label:
+WHO diarrhoeal disease fact sheet
+
+section_08.source_url:
+https://www.who.int/news-room/fact-sheets/detail/diarrhoeal-disease
+
+# -------------------------------------------------------------------
+# SECTION 09: BEYOND THE HOUSEHOLD
+# -------------------------------------------------------------------
+
+section_09.small_heading:
+Beyond the household
+
+section_09.main_heading:
+The crisis reaches schools and ECD centres too
+
+section_09.copy:
+The water crisis does not stop at the household gate. It reaches the places where children learn, eat, play and receive care.
+
+Some schools, ECD centres and clinics have no reliable running water at all. Others may have water on site, but that does not mean the water is safe for drinking. In many rural education settings, children and teenagers are still expected to drink from the same unsafe sources used at home: stored water, buckets, untreated tap water, streams or other unverified sources.
+
+When learning spaces do not have safe drinking water, WASH education becomes harder to practise. Handwashing routines are interrupted. Children drink less, drink unsafe water, or bring unsafe water from home. For young children in ECD centres, this creates a daily health risk inside the very spaces meant to protect and prepare them.
+
+Safe water in schools and ECD centres is not an extra. It is part of a safe learning environment.
+
+section_09.stat_line:
+WaterCAN has reported that 25% of state schools and 46% of clinics do not have running water, as cited by the Financial Times. But the field reality goes further: even where water is present, drinking-water safety is often not guaranteed.
+
+section_09.visual_direction:
+Use an asymmetric two-column panel: one side school/ECD imagery, one side household or child drinking-water imagery. Keep it warm and grounded. Use icons for school, ECD, handwashing, drinking water and health.
+
+section_09.card_01_title:
+At school
+
+section_09.card_01_copy:
+Children need safe drinking water throughout the day, not only water for toilets or cleaning.
+
+section_09.card_02_title:
+At ECD centres
+
+section_09.card_02_copy:
+Young children are more vulnerable to illness, dehydration and disrupted routines when water is unsafe or unreliable.
+
+section_09.card_03_title:
+At clinics
+
+section_09.card_03_copy:
+Water failures weaken hygiene, infection prevention and dignified patient care.
+
+section_09.source_label:
+Financial Times citing Water Community Action Network
+
+section_09.source_url:
+https://www.ft.com/content/9b673228-7d54-4663-8aa3-912ecdcb8108
+
+# -------------------------------------------------------------------
+# SECTION 10: PUREFLOW RESPONSE
+# -------------------------------------------------------------------
+
+section_10.small_heading:
+The response
+
+section_10.main_heading:
+Safe water must reach the places where life happens
+
+section_10.copy:
+PureFlow Amanzi starts with a simple practical truth: people cannot wait for broken systems to become reliable before children can drink safer water.
+
+The programme brings a locally developed, gravity-fed, non-electric filtration system into households, schools and early childhood centres. But the filter is only one part of the model. Each rollout is supported by local assembly, household onboarding, WASH education, safe-use training, follow-up and field monitoring.
+
+This matters because unsafe water is not only a technical problem. It affects women’s time, children’s health, school readiness, household costs and community resilience.
+
+PureFlow Amanzi turns safe water into a practical entry point for wider change: healthier homes, safer learning environments, local work opportunities, stronger rural support systems and a clearer evidence base for what communities are actually facing.
+
+section_10.closing_line:
+Safe water is the first layer. From there, health, learning, dignity and opportunity become possible.
+
+section_10.visual_direction:
+Transition to a cleaner, hopeful layout. Use a photo collage showing the PureFlow filter, WASH education, local workers, household onboarding and children safely drinking water. This section should feel like a bridge into Step 02, not a full explanation of the whole model.
+
+section_10.button_01_label:
+Back to PureFlow Amanzi
+
+section_10.button_01_url:
+/projects/pureflow#structural-problem
+
+section_10.button_02_label:
+Step 02: Explore the PureFlow Model
+
+section_10.button_02_url:
+/projects/pureflow/model
+
+# -------------------------------------------------------------------
+# OPTIONAL VIDEO BLOCK
+# -------------------------------------------------------------------
+
+video_block.display:
+optional
+
+video_block.placement:
+Place after the Local Field Reality section or inside the PureFlow Response section.
+
+video_block.heading:
+See the field reality
+
+video_block.copy:
+Use a short programme video if available. Keep the video block compact and documentary-style, not another full hero.
+
+video_block.preferred_video:
+Use an existing PureFlow Amanzi field or WASH video from the website media library if already available.
+
+# -------------------------------------------------------------------
+# SOURCE LIST FOR FOOTNOTE / SMALL “SOURCES” ACCORDION
+# -------------------------------------------------------------------
+
+sources.display_style:
+Small accordion or compact source row near the bottom of the page. Do not make sources dominate the page.
+
+source_01.label:
+Department of Water and Sanitation, 2023 Blue Drop, No Drop and Green Drop findings
+source_01.url:
+https://www.gov.za/news/media-statements/water-and-sanitation-releases-2023-full-blue-drop-report-05-dec-2023
+
+source_02.label:
+WHO drinking-water fact sheet
+source_02.url:
+https://www.who.int/news-room/fact-sheets/detail/drinking-water
+
+source_03.label:
+WHO diarrhoeal disease fact sheet
+source_03.url:
+https://www.who.int/news-room/fact-sheets/detail/diarrhoeal-disease
+
+source_04.label:
+Stats SA Census 2022 media release
+source_04.url:
+https://www.statssa.gov.za/?p=16716
+
+source_05.label:
+Financial Times citing Water Community Action Network on schools and clinics without running water
+source_05.url:
+https://www.ft.com/content/9b673228-7d54-4663-8aa3-912ecdcb8108
+
+source_06.label:
+The Guardian reporting on the UN World Water Development Report 2026 gender and water-collection burden
+source_06.url:
+https://www.theguardian.com/society/2026/mar/19/women-and-girls-bearing-brunt-of-water-shortages-globally-un-warns
+
+# -------------------------------------------------------------------
+# BUILD NOTES FOR LOVABLE
+# -------------------------------------------------------------------
+
+build_note_01:
+Build this as a full deep-dive page, not a side drawer.
+
+build_note_02:
+Use the current iThemba Kuluntu website style: deep blue sections, yellow handwritten/script labels, white serif headings on dark sections, blue serif headings on light sections, warm cream backgrounds, soft wave transitions, rounded cards and organic photo collages.
+
+build_note_03:
+Avoid dense paragraphs. Most sections should use one strong heading, one short paragraph and a visual device.
+
+build_note_04:
+Do not use the unsupported claim that “over 10 million South Africans lack safe water” unless a reliable source is added. Use the verified DWS and WHO numbers above instead.
+
+build_note_05:
+Do not make unsupported claims about smoke inhalation or toxic smoke. Keep the firewood section focused on time, fuel, firewood, labour and recontamination risk.
+
+build_note_06:
+Remove the previous standalone “Storage is not safety” section. Storage can be mentioned briefly only where relevant, but do not make tanks or rainwater harvesting a focus.
+
+build_note_07:
+Remove the previous standalone “Not one broken tap” or “Systemic Failure” section. The systemic issue is already clear through the reported-access framing, official system-performance data and field reality.
+
+build_note_08:
+Make women and children the emotional and structural centre of the page after Field Reality. The women/unpaid labour section should feel like a major feature section, not a small supporting block.
+
+build_note_09:
+Do not use the previous two-column “Household with resources / Poor rural household” visual comparison. Replace it with the poverty funnel or stepped consequence cards described in section_07.visual_direction.
+
+build_note_10:
+Where possible, use existing PureFlow Amanzi photos and icons from the repository. Asset paths should reference /assets/... at runtime, not public/assets/...
