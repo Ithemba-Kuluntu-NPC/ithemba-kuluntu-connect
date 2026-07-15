@@ -29,16 +29,18 @@ hero.small_heading:
 Schritt 01 // Strukturelles Problem
 
 hero.main_heading:
-Die Lücke zwischen der Tabelle und dem Becher
+Die ländliche Wasserkrise hinter den offiziellen Zahlen
 
 hero.hook:
-Offizielle Berichte können einen Wasserhahn, einen Tank oder eine Leitung als Zugang zählen. Aber ein Hahn, der seit Jahren trocken ist, gibt einem Kind nichts zu trinken.
+In ganz Südafrika können sich Millionen Menschen noch immer nicht darauf verlassen, zu Hause, in der Schule oder in ihrer Gemeinde sicheres Wasser zu haben. In ländlichen Dörfern tragen Frauen und Kinder die schwerste Last.
 
 hero.intro:
-Südafrika kann auf dem Papier stärker wirken, als es sich in ländlichen Haushalten anfühlt. Ein Dorf kann als versorgt gelten, weil entlang der Straße gemeinschaftliche Wasserhähne stehen. Wenn diese Hähne aber nicht funktionieren, laufen Familien weiterhin zu Bächen, Flüssen, Quellen, geteilten Wasserstellen und offenen Behältern. PureFlow Amanzi beginnt genau in dieser Lücke: zwischen dem, was das System meldet, und dem, was Haushalte tatsächlich trinken müssen.
+Offizielle Berichte können Wasserhähne, Tanks oder Leitungen als Wasserzugang zählen. Aber ein Hahn, der seit Jahren trocken ist, gibt einem Kind nichts zu trinken. Wenn öffentliche Wassersysteme versagen, müssen Familien trotzdem irgendwo Wasser finden. Frauen, Großmütter, Teenager-Mädchen und Kinder laufen zu Bächen, Flüssen, Quellen, geteilten Wasserstellen und offenen Behältern, oft für Wasser, das nie getestet, behandelt oder sicher gemacht wurde.
+
+PureFlow Amanzi beginnt genau in dieser Lücke: zwischen dem, was das System meldet, und dem, was Haushalte tatsächlich trinken müssen.
 
 hero.proof_line:
-Die offizielle Frage lautet oft: Existiert Infrastruktur? Die Frage im Haushalt ist eine andere: Kann mein Kind dieses Wasser heute sicher trinken?
+Die eigentliche Frage ist nicht, ob Infrastruktur existiert. Die eigentliche Frage ist, ob ein Kind dieses Wasser heute sicher trinken kann.
 
 hero.primary_cta_label:
 Die Realität sehen
