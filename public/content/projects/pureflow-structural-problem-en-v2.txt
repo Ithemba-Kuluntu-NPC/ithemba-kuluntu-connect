@@ -29,16 +29,18 @@ hero.small_heading:
 Step 01 // Structural Problem
 
 hero.main_heading:
-The gap between the spreadsheet and the cup
+The rural water crisis behind the official numbers
 
 hero.hook:
-Official reports can count a tap, tank or pipeline as access. But a tap that has been dry for years gives a child nothing to drink.
+Across South Africa, millions of people still cannot rely on safe water at home, at school or in their community. In rural villages, the burden is carried most heavily by women and children.
 
 hero.intro:
-South Africa can look stronger on paper than it feels in rural homes. A village may be recorded as having water infrastructure because communal taps exist along the road. But if those taps do not work, families still walk to streams, rivers, springs, shared collection points and open containers. PureFlow Amanzi begins in this gap: the distance between what is reported by the system and what households are actually forced to drink.
+Official reports can count taps, tanks or pipelines as water access. But a tap that has been dry for years gives a child nothing to drink. When public water systems fail, families still have to find water somewhere. Women, grandmothers, teenage girls and children walk to streams, rivers, springs, shared collection points and open containers, often drinking water that has never been tested, treated or made safe.
+
+PureFlow Amanzi begins in this gap: between what is reported by the system and what households are actually forced to drink.
 
 hero.proof_line:
-The official question is often: does infrastructure exist? The household question is different: can my child safely drink this water today?
+The real question is not whether infrastructure exists. The real question is whether a child can safely drink the water today.
 
 hero.primary_cta_label:
 See the reality
