@@ -29,16 +29,18 @@ hero.small_heading:
 Stap 01 // Structureel probleem
 
 hero.main_heading:
-De kloof tussen de spreadsheet en de beker
+De rurale watercrisis achter de officiële cijfers
 
 hero.hook:
-Officiële rapporten kunnen een kraan, tank of pijpleiding als toegang meetellen. Maar een kraan die al jaren droog staat, geeft een kind niets te drinken.
+In heel Zuid-Afrika kunnen miljoenen mensen nog steeds niet vertrouwen op veilig water thuis, op school of in hun gemeenschap. In rurale dorpen wordt die last het zwaarst gedragen door vrouwen en kinderen.
 
 hero.intro:
-Zuid-Afrika kan er op papier sterker uitzien dan het in rurale huishoudens voelt. Een dorp kan als voorzien worden geregistreerd omdat er gemeenschappelijke kranen langs de weg staan. Maar als die kranen niet werken, lopen gezinnen nog steeds naar beken, rivieren, bronnen, gedeelde waterpunten en open containers. PureFlow Amanzi begint precies in die kloof: tussen wat het systeem rapporteert en wat huishoudens daadwerkelijk moeten drinken.
+Officiële rapporten kunnen kranen, tanks of pijpleidingen als wateraccess tellen. Maar een kraan die al jaren droog staat, geeft een kind niets te drinken. Wanneer publieke watersystemen falen, moeten families toch ergens water vinden. Vrouwen, grootmoeders, tienermeisjes en kinderen lopen naar beken, rivieren, bronnen, gedeelde waterpunten en open containers, vaak voor water dat nooit getest, behandeld of veilig gemaakt is.
+
+PureFlow Amanzi begint precies in die kloof: tussen wat het systeem rapporteert en wat huishoudens daadwerkelijk moeten drinken.
 
 hero.proof_line:
-De officiële vraag is vaak: bestaat er infrastructuur? De vraag in het huishouden is anders: kan mijn kind dit water vandaag veilig drinken?
+De echte vraag is niet of infrastructuur bestaat. De echte vraag is of een kind dit water vandaag veilig kan drinken.
 
 hero.primary_cta_label:
 Bekijk de realiteit
