@@ -45,6 +45,7 @@ function Home() {
         items={impactCounters}
         title={impactTitle}
         backgroundImage="/assets/photos/home/main-impact-background-2.jpeg"
+        softOverlay
       />
 
       {/* Who we are — editorial split with layered photos */}
