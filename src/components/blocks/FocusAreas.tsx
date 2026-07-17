@@ -52,9 +52,9 @@ export function FocusAreas() {
           tone="warm"
           showMissingBadge={false}
         />
-        {/* Layered overlay: deep blue with warm cream wash for a rich, readable backdrop */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[var(--ithemba-blue-deepest)]/88 via-[var(--ithemba-blue-dark)]/78 to-[var(--ithemba-blue-deepest)]/90" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,var(--ithemba-yellow)/15,transparent_55%)] opacity-60" />
+        {/* Soft overlay: light blue wash that lets the photo breathe while keeping text readable */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[var(--ithemba-blue-deepest)]/40 via-[var(--ithemba-blue-dark)]/30 to-[var(--ithemba-blue-deepest)]/42" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,var(--ithemba-yellow)/12,transparent_50%)] opacity-60" />
       </div>
 
       {/* Decorative accents */}
@@ -66,10 +66,10 @@ export function FocusAreas() {
           <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)]">
             {lang === "en" ? "Our" : lang === "de" ? "Unsere" : "Onze"}
           </div>
-          <h2 className="-mt-2 font-display text-4xl font-bold md:text-5xl">
+          <h2 className="-mt-2 font-display text-4xl font-bold md:text-5xl [text-shadow:0_2px_24px_rgba(8,26,96,0.55)]">
             {lang === "en" ? "focus areas" : lang === "de" ? "Schwerpunkte" : "speerpunten"}
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-white/85">
+          <p className="mx-auto mt-4 max-w-xl text-white/85 [text-shadow:0_1px_16px_rgba(8,26,96,0.45)]">
             {lang === "en"
               ? "Seven connected ways we walk alongside rural communities in Pondoland."
               : lang === "de"

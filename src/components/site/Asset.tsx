@@ -14,6 +14,7 @@ export function SmartImage({
   label,
   className = "",
   imgClassName = "",
+  objectPosition,
   tone = "warm",
   rounded = "rounded-[2rem]",
   showMissingBadge = true,
@@ -24,6 +25,7 @@ export function SmartImage({
   label: string;
   className?: string;
   imgClassName?: string;
+  objectPosition?: string;
   tone?: "warm" | "blue" | "earth" | "sun" | "ocean" | "green";
   rounded?: string;
   showMissingBadge?: boolean;
@@ -59,6 +61,7 @@ export function SmartImage({
         src={src}
         alt={label}
         className={`h-full w-full object-cover ${imgClassName}`}
+        style={objectPosition ? { objectPosition } : undefined}
         onError={() => setErrored(true)}
         loading="lazy"
       />

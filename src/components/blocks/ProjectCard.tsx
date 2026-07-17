@@ -23,7 +23,7 @@ const projectLogo: Record<string, string | undefined> = {
   "pondo-dogs": assets.logos.pondoDogs,
 };
 
-export function ProjectCard({ project, heroImage }: { project: Project; heroImage?: string }) {
+export function ProjectCard({ project, heroImage, objectPosition }: { project: Project; heroImage?: string; objectPosition?: string }) {
   const { t: tr } = useLang();
   const tone = toneMap[project.slug] ?? "warm";
   const hero = heroImage ?? projectHeroPhoto[project.slug];
@@ -40,6 +40,7 @@ export function ProjectCard({ project, heroImage }: { project: Project; heroImag
           rounded="rounded-none"
           tone={tone}
           showMissingBadge={false}
+          objectPosition={objectPosition}
         />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/60 via-black/15 to-transparent" />
 
