@@ -16,6 +16,15 @@ import { assets } from "@/data/assets";
 
 export const Route = createFileRoute("/")({ component: Home });
 
+const homeProjectHeroes: Record<string, string> = {
+  ecd: "/assets/photos/home/main-ECD-project-title.jpeg",
+  pureflow: "/assets/photos/home/main-pure-flow-project-title.jpg",
+  greenhouse: "/assets/photos/home/main-greenhouse-project-title.jpeg",
+  "food-security": "/assets/photos/home/main-food-security-project-title.jpeg",
+  "pondo-dogs": "/assets/photos/home/main-pondo-dogs-project-title.jpg",
+  "disaster-relief": "/assets/photos/home/main-disaster-relief-project-title.jpeg",
+};
+
 function pick<T>(lang: string, en: T, de: T, nl: T): T {
   return lang === "en" ? en : lang === "de" ? de : nl;
 }
