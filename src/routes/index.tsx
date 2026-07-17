@@ -17,12 +17,12 @@ import { assets } from "@/data/assets";
 export const Route = createFileRoute("/")({ component: Home });
 
 const homeProjectHeroes: Record<string, string> = {
-  ecd: "/assets/photos/home/main-ECD-project-title.jpeg",
-  pureflow: "/assets/photos/home/main-pure-flow-project-title.jpg",
+  ecd: "/assets/photos/home/main-ecd-project-title-2.jpg",
+  pureflow: "/assets/photos/home/main-pureflow-project-title-3.jpg",
   greenhouse: "/assets/photos/home/main-greenhouse-project-title.jpeg",
   "food-security": "/assets/photos/home/main-food-security-project-title.jpeg",
-  "pondo-dogs": "/assets/photos/home/main-pondo-dogs-project-title.jpg",
-  "disaster-relief": "/assets/photos/home/main-disaster-relief-project-title.jpeg",
+  "pondo-dogs": "/assets/photos/home/main-pondo-dogs-project-title-2.jpg",
+  "disaster-relief": "/assets/photos/home/main-disaster-relief-project-title (2).jpeg",
 };
 
 function pick<T>(lang: string, en: T, de: T, nl: T): T {
@@ -99,6 +99,7 @@ function Home() {
             rounded="rounded-none"
             tone="earth"
             showMissingBadge={false}
+            objectPosition="center 30%"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[var(--ithemba-blue-deepest)]/35 via-[var(--ithemba-blue-dark)]/28 to-[var(--ithemba-blue-deepest)]/38" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,transparent_40%,var(--ithemba-blue-deepest)/25_100%)]" />
