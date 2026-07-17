@@ -45,7 +45,7 @@ export function FocusAreas() {
       <div className="absolute inset-0 -z-10">
 
         <SmartImage
-          src={assets.photos.home.impact}
+          src="/assets/photos/home/main-focus-areas-background.jpg"
           label="Community impact in Pondoland"
           className="h-full w-full"
           rounded="rounded-none"

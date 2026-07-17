@@ -50,10 +50,12 @@ export function ImpactCounters({
   items,
   title,
   compact = false,
+  backgroundImage,
 }: {
   items: CounterItem[];
   title?: string;
   compact?: boolean;
+  backgroundImage?: string;
 }) {
   const { t, lang } = useLang();
 
@@ -62,7 +64,7 @@ export function ImpactCounters({
       {/* photo background — uses real image when present, otherwise tonal placeholder */}
       <div className="absolute inset-0 -z-10">
         <SmartImage
-          src={assets.photos.home.impact}
+          src={backgroundImage ?? assets.photos.home.impact}
           label="community work background"
           className="h-full w-full"
           rounded="rounded-none"
