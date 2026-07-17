@@ -32,7 +32,11 @@ function Home() {
     <>
       <Hero />
 
-      <ImpactCounters items={impactCounters} title={impactTitle} />
+      <ImpactCounters
+        items={impactCounters}
+        title={impactTitle}
+        backgroundImage="/assets/photos/home/main-impact-background-2.jpeg"
+      />
 
       {/* Who we are — editorial split with layered photos */}
       <section className="relative overflow-hidden py-20 md:py-28">
@@ -40,7 +44,7 @@ function Home() {
         <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 md:grid-cols-2 lg:px-8">
           <div className="relative">
             <SmartImage
-              src={assets.photos.home.aboutTeam}
+              src="/assets/photos/home/main-who-we-are-2.jpeg"
               label="women-led iThemba team — community photo"
               className="aspect-[4/5] w-full"
               tone="warm"
@@ -79,7 +83,7 @@ function Home() {
       <section className="relative isolate overflow-hidden">
         <div className="absolute inset-0 -z-10">
           <SmartImage
-            src={assets.photos.about.hero}
+            src="/assets/photos/home/main-what-guides-us-background-2.jpeg"
             label="Pondoland landscape and community"
             className="h-full w-full"
             rounded="rounded-none"
@@ -170,7 +174,13 @@ function Home() {
           </Link>
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.map((p) => <ProjectCard key={p.slug} project={p} />)}
+          {projects.map((p) => (
+            <ProjectCard
+              key={p.slug}
+              project={p}
+              heroImage={homeProjectHeroes[p.slug]}
+            />
+          ))}
         </div>
       </section>
 
@@ -231,7 +241,7 @@ function Home() {
       <section id="donate" className="relative isolate overflow-hidden py-20 md:py-28">
         <div className="absolute inset-0 -z-10">
           <SmartImage
-            src={assets.photos.home.donation}
+            src="/assets/photos/home/main-give-monthly-background.jpeg"
             label="Donation background — community moment"
             tone="sun"
             rounded="rounded-none"
