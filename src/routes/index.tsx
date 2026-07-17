@@ -22,7 +22,7 @@ const homeProjectHeroes: Record<string, string> = {
   greenhouse: "/assets/photos/home/main-greenhouse-project-title.jpeg",
   "food-security": "/assets/photos/home/main-food-security-project-title.jpeg",
   "pondo-dogs": "/assets/photos/home/main-pondo-dogs-project-title-2.jpg",
-  "disaster-relief": "/assets/photos/home/main-disaster-relief-project-title (2).jpeg",
+  "disaster-relief": "/assets/photos/home/main-disaster-relief-project-title-2.jpeg",
 };
 
 function pick<T>(lang: string, en: T, de: T, nl: T): T {
