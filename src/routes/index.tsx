@@ -99,14 +99,15 @@ function Home() {
             tone="earth"
             showMissingBadge={false}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[var(--ithemba-blue-deepest)]/85 via-[var(--ithemba-blue-dark)]/72 to-[var(--ithemba-blue-deepest)]/88" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[var(--ithemba-blue-deepest)]/35 via-[var(--ithemba-blue-dark)]/28 to-[var(--ithemba-blue-deepest)]/38" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,transparent_40%,var(--ithemba-blue-deepest)/25_100%)]" />
         </div>
         <div className="mx-auto max-w-7xl px-4 py-24 lg:px-8">
           <div className="mx-auto max-w-2xl text-center text-white">
             <div className="hand-eyebrow !text-[var(--ithemba-yellow)]">
               {pick(lang, "What guides us", "Was uns leitet", "Wat ons leidt")}
             </div>
-            <h2 className="mt-1 font-display text-3xl font-bold md:text-4xl">
+            <h2 className="mt-1 font-display text-3xl font-bold md:text-4xl [text-shadow:0_2px_24px_rgba(8,26,96,0.55)]">
               {pick(
                 lang,
                 "A women-led story of practical hope",
@@ -188,6 +189,7 @@ function Home() {
               key={p.slug}
               project={p}
               heroImage={homeProjectHeroes[p.slug]}
+              objectPosition={p.slug === "pondo-dogs" ? "center 60%" : undefined}
             />
           ))}
         </div>
@@ -257,7 +259,7 @@ function Home() {
             className="h-full w-full"
             showMissingBadge={false}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[var(--ithemba-blue-deepest)]/92 via-[var(--ithemba-blue-dark)]/82 to-[var(--ithemba-blue-dark)]/45" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[var(--ithemba-blue-deepest)]/48 via-[var(--ithemba-blue-dark)]/36 to-[var(--ithemba-blue-dark)]/20" />
         </div>
 
         <div className="mx-auto grid max-w-7xl gap-12 px-4 md:grid-cols-[1.05fr_1fr] lg:px-8">
@@ -265,10 +267,10 @@ function Home() {
             <div className="hand-eyebrow-lg">
               {pick(lang, "Give monthly", "Monatlich geben", "Maandelijks geven")}
             </div>
-            <h2 className="-mt-2 font-display text-4xl font-extrabold leading-tight md:text-6xl">
+            <h2 className="-mt-2 font-display text-4xl font-extrabold leading-tight md:text-6xl [text-shadow:0_2px_24px_rgba(8,26,96,0.55)]">
               {tr(t.home.monthlyTitle)}
             </h2>
-            <p className="mt-5 max-w-md text-lg text-white/90">{tr(t.home.monthlyText)}</p>
+            <p className="mt-5 max-w-md text-lg text-white/90 [text-shadow:0_1px_16px_rgba(8,26,96,0.45)]">{tr(t.home.monthlyText)}</p>
             <ul className="mt-7 space-y-3">
               {pick(
                 lang,

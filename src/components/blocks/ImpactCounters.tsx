@@ -71,7 +71,8 @@ export function ImpactCounters({
           tone="blue"
           showMissingBadge={false}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[var(--ithemba-blue-deepest)]/92 via-[var(--ithemba-blue-dark)]/88 to-[var(--ithemba-blue-deepest)]/95" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[var(--ithemba-blue-deepest)]/38 via-[var(--ithemba-blue-dark)]/28 to-[var(--ithemba-blue-deepest)]/42" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,transparent_40%,var(--ithemba-blue-deepest)/32_100%)]" />
       </div>
 
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
@@ -80,12 +81,12 @@ export function ImpactCounters({
             {lang === "en" ? "Together" : lang === "de" ? "Gemeinsam" : "Samen"}
             <span aria-hidden className="ml-1 inline-block translate-y-[2px]">✦</span>
           </div>
-          {title && (
-            <h2 className="mt-1 font-display text-3xl font-bold text-white md:text-4xl">
+            {title && (
+              <h2 className="mt-1 font-display text-3xl font-bold text-white md:text-4xl [text-shadow:0_2px_24px_rgba(8,26,96,0.55)]">
               {title}
             </h2>
           )}
-          <p className="mt-3 text-sm text-white/75 md:text-base">
+          <p className="mt-3 text-sm text-white/75 md:text-base [text-shadow:0_1px_16px_rgba(8,26,96,0.45)]">
             {lang === "en"
               ? "Real numbers from communities we walk with, built through practical care, local trust and long-term commitment."
               : lang === "de"
