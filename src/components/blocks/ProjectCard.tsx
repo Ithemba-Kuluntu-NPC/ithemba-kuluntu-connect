@@ -23,10 +23,10 @@ const projectLogo: Record<string, string | undefined> = {
   "pondo-dogs": assets.logos.pondoDogs,
 };
 
-export function ProjectCard({ project }: { project: Project }) {
+export function ProjectCard({ project, heroImage }: { project: Project; heroImage?: string }) {
   const { t: tr } = useLang();
   const tone = toneMap[project.slug] ?? "warm";
-  const hero = projectHeroPhoto[project.slug];
+  const hero = heroImage ?? projectHeroPhoto[project.slug];
 
   return (
     <article
