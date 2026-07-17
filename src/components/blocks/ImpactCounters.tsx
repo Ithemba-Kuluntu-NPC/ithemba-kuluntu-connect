@@ -73,8 +73,8 @@ export function ImpactCounters({
           tone="blue"
           showMissingBadge={false}
         />
-        <div className={`absolute inset-0 bg-gradient-to-b ${softOverlay ? "from-[var(--ithemba-blue-deepest)]/38 via-[var(--ithemba-blue-dark)]/28 to-[var(--ithemba-blue-deepest)]/42" : "from-[var(--ithemba-blue-deepest)]/88 via-[var(--ithemba-blue-dark)]/78 to-[var(--ithemba-blue-deepest)]/90"}`} />
-        <div className={`absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,transparent_40%,var(--ithemba-blue-deepest)/32_100%)] ${softOverlay ? "opacity-100" : "opacity-80"}`} />
+        <div className={`absolute inset-0 bg-gradient-to-b ${softOverlay ? "from-[var(--ithemba-blue-deepest)]/38 via-[var(--ithemba-blue-dark)]/28 to-[var(--ithemba-blue-deepest)]/42" : "from-[var(--ithemba-blue-deepest)]/92 via-[var(--ithemba-blue-dark)]/88 to-[var(--ithemba-blue-deepest)]/95"}`} />
+        <div className={`absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,transparent_40%,var(--ithemba-blue-deepest)/40_100%)] ${softOverlay ? "opacity-100" : "opacity-100"}`} />
       </div>
 
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
