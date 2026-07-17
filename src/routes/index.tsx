@@ -99,6 +99,7 @@ function Home() {
             rounded="rounded-none"
             tone="earth"
             showMissingBadge={false}
+            objectPosition="center 30%"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[var(--ithemba-blue-deepest)]/35 via-[var(--ithemba-blue-dark)]/28 to-[var(--ithemba-blue-deepest)]/38" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,transparent_40%,var(--ithemba-blue-deepest)/25_100%)]" />
