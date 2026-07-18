@@ -650,13 +650,6 @@ function WhereWeWork({ c }: { c: AboutContent }) {
               tone="ocean"
               showMissingBadge={false}
             />
-            <SmartImage
-              src="/assets/photos/about/about-where-we-work-1-collage.jpeg"
-              label=""
-              className="hidden"
-              rounded=""
-              showMissingBadge={false}
-            />
           </div>
         </div>
       </div>
