@@ -412,8 +412,8 @@ function pick(lang: Lang): AboutContent {
 
 /* ---------- Helpers ---------- */
 
-const HERO_VIDEO = "/assets/videos/about/about-hero-team.mp4";
-const HERO_POSTER = "/assets/photos/about/about-hero-poster.jpg";
+const HERO_VIDEO = "/assets/photos/about/about-hero-video.mp4";
+const HERO_POSTER = "/assets/photos/about/about-who-we-are.jpeg";
 
 function useReducedMotion() {
   const [reduced, setReduced] = useState(false);
