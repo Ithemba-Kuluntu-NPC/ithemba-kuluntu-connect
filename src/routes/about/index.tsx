@@ -412,8 +412,8 @@ function pick(lang: Lang): AboutContent {
 
 /* ---------- Helpers ---------- */
 
-const HERO_VIDEO = "/assets/videos/about/about-hero-team.mp4";
-const HERO_POSTER = "/assets/photos/about/about-hero-poster.jpg";
+const HERO_VIDEO = "/assets/photos/about/about-hero-video.mp4";
+const HERO_POSTER = "/assets/photos/about/about-who-we-are.jpeg";
 
 function useReducedMotion() {
   const [reduced, setReduced] = useState(false);
@@ -504,13 +504,13 @@ function HeroVideo({ c }: { c: AboutContent }) {
             alt="iThemba Kuluntu team — community hero"
             className="h-full w-full object-cover"
             onError={(e) => {
-              e.currentTarget.src = assets.photos.about.hero;
+              e.currentTarget.src = "/assets/photos/about/about-who-we-are.jpeg";
             }}
           />
         )}
-        {/* Deep-blue overlays for legibility */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/85 via-[var(--ithemba-blue-dark)]/70 to-[var(--ithemba-blue)]/55" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+        {/* Softer blue overlays for legibility while keeping video visible */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/60 via-[var(--ithemba-blue-dark)]/40 to-[var(--ithemba-blue)]/25" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
         <div className="absolute right-[-6rem] top-[-6rem] h-[28rem] w-[28rem] sun-glow" />
       </div>
 
@@ -574,7 +574,7 @@ function WhoWeAre({ c }: { c: AboutContent }) {
         <div className="relative">
           <div className="absolute -inset-4 -z-10 blob bg-[var(--ithemba-yellow)]/20" aria-hidden />
           <SmartImage
-            src={assets.photos.about.hero}
+            src="/assets/photos/about/about-who-we-are.jpeg"
             label="iThemba Kuluntu community — listening, learning, building together"
             className="aspect-[4/5] w-full"
             rounded="rounded-[2rem]"
@@ -624,14 +624,33 @@ function WhereWeWork({ c }: { c: AboutContent }) {
         </div>
         <div className="relative">
           <div className="absolute -inset-4 -z-10 blob-2 bg-[var(--ithemba-blue)]/15" aria-hidden />
-          <SmartImage
-            src={assets.photos.about.cwebeni}
-            label="Wild Coast landscape — Cwebeni, Pondoland"
-            className="aspect-[4/3] w-full"
-            rounded="rounded-[2rem]"
-            tone="earth"
-            showMissingBadge={false}
-          />
+          {/* Organic 3-photo collage */}
+          <div className="relative grid grid-cols-5 grid-rows-6 gap-3 sm:gap-4">
+            <SmartImage
+              src="/assets/photos/about/about-where-we-work-1-collage.jpeg"
+              label="Pondoland landscape — Wild Coast near Cwebeni"
+              className="col-span-3 row-span-4 w-full h-full min-h-[220px] shadow-[0_20px_50px_-20px_rgb(15_42_140/0.35)] ring-1 ring-black/5"
+              rounded="rounded-[1.75rem]"
+              tone="earth"
+              showMissingBadge={false}
+            />
+            <SmartImage
+              src="/assets/photos/about/about-where-we-work-2-collage.jpeg"
+              label="Community life in Cwebeni, Port St Johns"
+              className="col-span-2 row-span-3 w-full h-full min-h-[140px] mt-6 shadow-[0_20px_50px_-20px_rgb(15_42_140/0.35)] ring-1 ring-black/5"
+              rounded="rounded-[1.5rem]"
+              tone="warm"
+              showMissingBadge={false}
+            />
+            <SmartImage
+              src="/assets/photos/about/about-where-we-work-3-collage.jpeg"
+              label="Families and daily life along the Wild Coast"
+              className="col-span-3 col-start-3 row-span-3 row-start-4 w-full h-full min-h-[140px] shadow-[0_20px_50px_-20px_rgb(15_42_140/0.35)] ring-1 ring-black/5"
+              rounded="rounded-[1.5rem]"
+              tone="ocean"
+              showMissingBadge={false}
+            />
+          </div>
         </div>
       </div>
     </section>
