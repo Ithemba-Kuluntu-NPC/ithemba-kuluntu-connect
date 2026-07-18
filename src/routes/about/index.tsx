@@ -574,7 +574,7 @@ function WhoWeAre({ c }: { c: AboutContent }) {
         <div className="relative">
           <div className="absolute -inset-4 -z-10 blob bg-[var(--ithemba-yellow)]/20" aria-hidden />
           <SmartImage
-            src={assets.photos.about.hero}
+            src="/assets/photos/about/about-who-we-are.jpeg"
             label="iThemba Kuluntu community — listening, learning, building together"
             className="aspect-[4/5] w-full"
             rounded="rounded-[2rem]"
