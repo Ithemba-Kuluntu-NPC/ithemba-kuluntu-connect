@@ -624,14 +624,40 @@ function WhereWeWork({ c }: { c: AboutContent }) {
         </div>
         <div className="relative">
           <div className="absolute -inset-4 -z-10 blob-2 bg-[var(--ithemba-blue)]/15" aria-hidden />
-          <SmartImage
-            src={assets.photos.about.cwebeni}
-            label="Wild Coast landscape — Cwebeni, Pondoland"
-            className="aspect-[4/3] w-full"
-            rounded="rounded-[2rem]"
-            tone="earth"
-            showMissingBadge={false}
-          />
+          {/* Organic 3-photo collage */}
+          <div className="relative grid grid-cols-5 grid-rows-6 gap-3 sm:gap-4">
+            <SmartImage
+              src="/assets/photos/about/about-where-we-work-1-collage.jpeg"
+              label="Pondoland landscape — Wild Coast near Cwebeni"
+              className="col-span-3 row-span-4 w-full h-full min-h-[220px] shadow-[0_20px_50px_-20px_rgb(15_42_140/0.35)] ring-1 ring-black/5"
+              rounded="rounded-[1.75rem]"
+              tone="earth"
+              showMissingBadge={false}
+            />
+            <SmartImage
+              src="/assets/photos/about/about-where-we-work-2-collage.jpeg"
+              label="Community life in Cwebeni, Port St Johns"
+              className="col-span-2 row-span-3 w-full h-full min-h-[140px] mt-6 shadow-[0_20px_50px_-20px_rgb(15_42_140/0.35)] ring-1 ring-black/5"
+              rounded="rounded-[1.5rem]"
+              tone="warm"
+              showMissingBadge={false}
+            />
+            <SmartImage
+              src="/assets/photos/about/about-where-we-work-3-collage.jpeg"
+              label="Families and daily life along the Wild Coast"
+              className="col-span-3 col-start-3 row-span-3 row-start-4 w-full h-full min-h-[140px] shadow-[0_20px_50px_-20px_rgb(15_42_140/0.35)] ring-1 ring-black/5"
+              rounded="rounded-[1.5rem]"
+              tone="ocean"
+              showMissingBadge={false}
+            />
+            <SmartImage
+              src="/assets/photos/about/about-where-we-work-1-collage.jpeg"
+              label=""
+              className="hidden"
+              rounded=""
+              showMissingBadge={false}
+            />
+          </div>
         </div>
       </div>
     </section>
