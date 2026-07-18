@@ -504,13 +504,13 @@ function HeroVideo({ c }: { c: AboutContent }) {
             alt="iThemba Kuluntu team — community hero"
             className="h-full w-full object-cover"
             onError={(e) => {
-              e.currentTarget.src = assets.photos.about.hero;
+              e.currentTarget.src = "/assets/photos/about/about-who-we-are.jpeg";
             }}
           />
         )}
-        {/* Deep-blue overlays for legibility */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/85 via-[var(--ithemba-blue-dark)]/70 to-[var(--ithemba-blue)]/55" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+        {/* Softer blue overlays for legibility while keeping video visible */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/60 via-[var(--ithemba-blue-dark)]/40 to-[var(--ithemba-blue)]/25" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
         <div className="absolute right-[-6rem] top-[-6rem] h-[28rem] w-[28rem] sun-glow" />
       </div>
 
