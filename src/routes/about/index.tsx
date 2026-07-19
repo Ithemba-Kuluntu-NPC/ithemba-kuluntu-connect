@@ -622,41 +622,40 @@ function WhereWeWork({ c }: { c: AboutContent }) {
             Cwebeni · Port St Johns · Wild Coast · Pondoland · Eastern Cape · South Africa
           </div>
         </div>
-        {/* Unified 3-photo collage (one framed composition, no floating cards / background blob) */}
+        {/* Premium editorial 3-photo collage: top landscape + two portraits below */}
         <div className="relative">
-          <div
-            className="relative grid aspect-[4/5] grid-cols-12 grid-rows-6 gap-2 md:gap-3"
-            style={{ filter: "drop-shadow(0 24px 50px rgba(15,42,140,0.30))" }}
-          >
-            <div className="col-span-7 row-span-6 overflow-hidden rounded-tl-[2.5rem] rounded-bl-[2.5rem] rounded-tr-xl rounded-br-xl ring-1 ring-black/10">
-              <SmartImage
-                src="/assets/photos/about/about-where-we-work-1-collage.jpeg"
-                label="Pondoland landscape — Wild Coast near Cwebeni"
-                className="h-full w-full"
-                rounded="rounded-none"
-                tone="earth"
-                showMissingBadge={false}
-              />
-            </div>
-            <div className="col-span-5 row-span-3 overflow-hidden rounded-tr-[2.5rem] rounded-bl-xl rounded-tl-xl rounded-br-xl ring-1 ring-black/10">
-              <SmartImage
-                src="/assets/photos/about/about-where-we-work-2-collage.jpeg"
-                label="Community life in Cwebeni, Port St Johns"
-                className="h-full w-full"
-                rounded="rounded-none"
-                tone="warm"
-                showMissingBadge={false}
-              />
-            </div>
-            <div className="col-span-5 row-span-3 overflow-hidden rounded-br-[2.5rem] rounded-tl-xl rounded-tr-xl rounded-bl-xl ring-1 ring-black/10">
-              <SmartImage
-                src="/assets/photos/about/about-where-we-work-3-collage.jpeg"
-                label="Families and daily life along the Wild Coast"
-                className="h-full w-full"
-                rounded="rounded-none"
-                tone="ocean"
-                showMissingBadge={false}
-              />
+          <div className="overflow-hidden rounded-[2.5rem] bg-white p-2 shadow-[0_24px_60px_-20px_rgba(15,42,140,0.25)]">
+            <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+              <div className="col-span-1 aspect-[16/9] overflow-hidden rounded-2xl md:col-span-2">
+                <SmartImage
+                  src="/assets/photos/about/about-where-we-work-3-collage.jpeg"
+                  label="Wild Coast landscape near Cwebeni, Port St Johns"
+                  className="h-full w-full"
+                  rounded="rounded-none"
+                  tone="ocean"
+                  showMissingBadge={false}
+                />
+              </div>
+              <div className="col-span-1 aspect-[3/4] overflow-hidden rounded-2xl">
+                <SmartImage
+                  src="/assets/photos/about/about-where-we-work-2-collage.jpeg"
+                  label="Community life in Cwebeni, Port St Johns"
+                  className="h-full w-full"
+                  rounded="rounded-none"
+                  tone="warm"
+                  showMissingBadge={false}
+                />
+              </div>
+              <div className="col-span-1 aspect-[3/4] overflow-hidden rounded-2xl">
+                <SmartImage
+                  src="/assets/photos/about/about-where-we-work-1-collage.jpeg"
+                  label="Families and daily life along the Wild Coast"
+                  className="h-full w-full"
+                  rounded="rounded-none"
+                  tone="earth"
+                  showMissingBadge={false}
+                />
+              </div>
             </div>
           </div>
         </div>
