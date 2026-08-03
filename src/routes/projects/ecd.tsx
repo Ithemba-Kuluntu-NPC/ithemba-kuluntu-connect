@@ -38,13 +38,75 @@ import type { Lang } from "@/data/content";
 
 export const Route = createFileRoute("/projects/ecd")({ component: EcdPage });
 
-/* ---------- assets ---------- */
-const HERO_VIDEO = "/assets/videos/projects/no1-ecd-centre-hero.mp4";
-const HERO_POSTER = "/assets/photos/projects/no1-ecd-centre-hero-poster.jpg";
-const FALLBACK_POSTER = assets.photos.projects.ecdHero;
-const PHOTO_CLASSROOM = assets.photos.ecd.classroom;
-const PHOTO_CHILD = assets.photos.ecd.childPlaying;
-const PHOTO_MEAL = assets.photos.ecd.meal;
+/* ---------- assets (final ECD media) ---------- */
+const ECD_MEDIA = "/assets/photos/projects/ECD";
+const HERO_VIDEO = `${ECD_MEDIA}/ECD-video-hero.mp4`;
+const HERO_POSTER = `${ECD_MEDIA}/ECD-main-project-photo.jpeg`;
+
+const P = {
+  main: `${ECD_MEDIA}/ECD-main-project-photo.jpeg`,
+  morningCircle: `${ECD_MEDIA}/ECD-morning-circle.jpeg`,
+  eatingCircle: `${ECD_MEDIA}/ECD-eating-together-circle.jpeg`,
+  outdoorToddlers: `${ECD_MEDIA}/ECD-classroom-outdoor-toddlers-0to2.jpeg`,
+  freePlayOutdoor: `${ECD_MEDIA}/ECD-free-play-outdoor.jpeg`,
+  freePlayLego: `${ECD_MEDIA}/ECD-free-play-lego.jpeg`,
+  class23Activity: `${ECD_MEDIA}/ECD-classroom-2to3-activity.jpeg`,
+  class23Activity2: `${ECD_MEDIA}/ECD-classroom-2to3-activity-2.jpeg`,
+  class23Arts: `${ECD_MEDIA}/ECD-classroom-2to3-artsandcrafts.jpeg`,
+  class23Thabo: `${ECD_MEDIA}/ECD-classroom-2to3-findingthabo-game.jpeg`,
+  class23Animals: `${ECD_MEDIA}/ECD-classroom-2to3-teaching-animals.jpeg`,
+  class23Shapes: `${ECD_MEDIA}/ECD-classroom-2to3-teaching-shapes.jpeg`,
+  class45Singing: `${ECD_MEDIA}/ECD-classroom-4to5-activity-singing.jpeg`,
+  class45Arts: `${ECD_MEDIA}/ECD-classroom-4to5-artsandcrafts.jpeg`,
+  class45Math: `${ECD_MEDIA}/ECD-classroom-4to5-math-activity.jpeg`,
+  class45Teachers: `${ECD_MEDIA}/ECD-classroom-4to5-proud-teachers.jpeg`,
+  napTime: `${ECD_MEDIA}/ECD-nap-time.jpeg`,
+  napTime2: `${ECD_MEDIA}/ECD-nap-time-2.jpeg`,
+  breakfastTogether: `${ECD_MEDIA}/ECD-breakfast-together.jpeg`,
+  breakfastFeeding: `${ECD_MEDIA}/ECD-breakfast-teacher-feeding.jpeg`,
+  food: `${ECD_MEDIA}/ECD-food.jpeg`,
+  foodBowls: `${ECD_MEDIA}/ECD-food-bowls-with-food.jpeg`,
+  foodLunch: `${ECD_MEDIA}/ECD-food-kids-eating-lunch.jpeg`,
+  foodBreakfastTogether: `${ECD_MEDIA}/ECD-food-kids-eating-together-breakfast.jpeg`,
+  lunchMain: `${ECD_MEDIA}/ECD-lunch-main.jpeg`,
+  greenhousePlanting: `${ECD_MEDIA}/ECD-greenhouse-kids-planting-spinach.jpeg`,
+  plantingTeacher: `${ECD_MEDIA}/ECD-food-kids-planting-with-teacher.jpeg`,
+  building1: `${ECD_MEDIA}/ECD-building-phase.jpeg`,
+  building2: `${ECD_MEDIA}/ECD-building-phase-2.jpeg`,
+  building3: `${ECD_MEDIA}/ECD-building-phase-3.jpeg`,
+  building4: `${ECD_MEDIA}/ECD-building-phase-4.jpeg`,
+} as const;
+
+/** Small connected photo strip used to keep sections compact. */
+function PhotoStrip({
+  photos,
+  className = "",
+  aspect = "aspect-[4/3]",
+}: {
+  photos: Array<{ src: string; label: string; position?: string }>;
+  className?: string;
+  aspect?: string;
+}) {
+  return (
+    <div
+      className={`grid gap-2 overflow-hidden rounded-[1.75rem] ring-1 ring-white/15 ${className}`}
+      style={{ filter: "drop-shadow(0 18px 40px rgba(10,30,60,0.35))" }}
+    >
+      {photos.map((p, i) => (
+        <div key={i} className={`${aspect} overflow-hidden rounded-xl`}>
+          <img
+            src={p.src}
+            alt={p.label}
+            loading="lazy"
+            className="h-full w-full object-cover"
+            style={p.position ? { objectPosition: p.position } : undefined}
+          />
+        </div>
+      ))}
+    </div>
+  );
+}
+
 
 /* ---------- reduced motion ---------- */
 function useReducedMotion() {
