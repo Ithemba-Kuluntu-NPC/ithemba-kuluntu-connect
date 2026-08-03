@@ -26,7 +26,6 @@ import {
   Award,
   Cookie,
   ChevronDown,
-  PlayCircle,
 } from "lucide-react";
 import { useLang } from "@/components/site/LanguageProvider";
 import { SmartImage, SmartLogo } from "@/components/site/Asset";
