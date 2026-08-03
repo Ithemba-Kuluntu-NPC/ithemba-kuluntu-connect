@@ -1834,15 +1834,15 @@ function Monthly({ c }: { c: Copy }) {
   return (
     <section className="relative isolate overflow-hidden py-20">
       <div className="absolute inset-0 -z-10">
-        <SmartImage
-          src={PHOTO_CHILD}
-          label="Support the No.1 ECD Centre monthly"
-          className="h-full w-full"
-          rounded="rounded-none"
-          tone="sun"
-          showMissingBadge={false}
+        <img
+          src={P.foodBreakfastTogether}
+          alt="Children sharing breakfast at the No.1 ECD Centre"
+          loading="lazy"
+          className="h-full w-full object-cover"
+          style={{ objectPosition: "center 45%" }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[var(--ithemba-blue-deepest)]/92 via-[var(--ithemba-blue-dark)]/80 to-[var(--ithemba-blue-dark)]/45" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[var(--ithemba-blue-deepest)]/78 via-[var(--ithemba-blue-dark)]/58 to-[var(--ithemba-blue-dark)]/30" />
+
         <div className="absolute right-[-6rem] top-[-6rem] h-[28rem] w-[28rem] sun-glow" />
       </div>
       <div className="mx-auto grid max-w-7xl gap-10 px-4 md:grid-cols-2 lg:px-8">
