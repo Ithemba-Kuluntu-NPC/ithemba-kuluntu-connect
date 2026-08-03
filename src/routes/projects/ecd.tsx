@@ -1244,15 +1244,15 @@ function Importance({ c }: { c: Copy }) {
   return (
     <section className="relative isolate overflow-hidden py-20 text-white md:py-24">
       <div className="absolute inset-0 -z-10">
-        <SmartImage
-          src={PHOTO_CHILD}
-          label="Young children learning at the No.1 ECD Centre"
-          className="h-full w-full"
-          rounded="rounded-none"
-          tone="sun"
-          showMissingBadge={false}
+        <img
+          src={P.main}
+          alt="Young children at the No.1 ECD Centre"
+          loading="lazy"
+          className="h-full w-full object-cover"
+          style={{ objectPosition: "center 40%" }}
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/92 via-[var(--ithemba-blue-dark)]/82 to-[var(--ithemba-blue)]/55" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/82 via-[var(--ithemba-blue-dark)]/68 to-[var(--ithemba-blue)]/45" />
+
         <div className="absolute inset-0 bg-gradient-to-t from-[var(--ithemba-blue-deepest)]/70 via-transparent to-transparent" />
         <div className="absolute right-[-6rem] top-[-6rem] h-[28rem] w-[28rem] sun-glow" />
       </div>
