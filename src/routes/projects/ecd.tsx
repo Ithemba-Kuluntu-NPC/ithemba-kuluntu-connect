@@ -1676,18 +1676,31 @@ function Nutrition({ c }: { c: Copy }) {
   return (
     <section className="mx-auto grid max-w-7xl gap-10 px-4 py-20 md:grid-cols-2 lg:px-8">
       <div className="relative">
-        <div className="absolute -right-8 -top-8 h-28 w-28 blob bg-[var(--ithemba-yellow)]/40 -z-10" />
-        <PhotoCollage
-          variant="B"
-          iconCorner="tl"
-          icon={ECD_ICONS.meals}
-          photos={[
-            { src: PHOTO_MEAL, label: "Daily meals at the ECD Centre", tone: "warm" },
-            { src: PHOTO_CHILD, label: "Children enjoying a meal", tone: "sun" },
-            { src: PHOTO_CLASSROOM, label: "Snack time in the classroom", tone: "earth" },
-          ]}
-        />
+        <div
+          className="grid grid-cols-3 grid-rows-3 gap-2 overflow-hidden rounded-[2rem]"
+          style={{ filter: "drop-shadow(0 22px 50px rgba(30,60,90,0.28))" }}
+        >
+          <div className="col-span-2 row-span-2 overflow-hidden rounded-2xl">
+            <img src={P.lunchMain} alt="A warm lunch served at the ECD Centre" loading="lazy" className="h-full w-full object-cover" />
+          </div>
+          <div className="overflow-hidden rounded-2xl">
+            <img src={P.food} alt="Food prepared in the ECD kitchen" loading="lazy" className="h-full w-full object-cover" />
+          </div>
+          <div className="overflow-hidden rounded-2xl">
+            <img src={P.foodBowls} alt="Bowls filled with food for the children" loading="lazy" className="h-full w-full object-cover" />
+          </div>
+          <div className="overflow-hidden rounded-2xl">
+            <img src={P.breakfastTogether} alt="Children eating breakfast together" loading="lazy" className="h-full w-full object-cover" style={{ objectPosition: "center 40%" }} />
+          </div>
+          <div className="overflow-hidden rounded-2xl">
+            <img src={P.foodLunch} alt="Children eating lunch" loading="lazy" className="h-full w-full object-cover" style={{ objectPosition: "center 40%" }} />
+          </div>
+          <div className="overflow-hidden rounded-2xl">
+            <img src={P.foodBreakfastTogether} alt="Children sharing breakfast" loading="lazy" className="h-full w-full object-cover" style={{ objectPosition: "center 40%" }} />
+          </div>
+        </div>
       </div>
+
       <div className="flex flex-col justify-center">
         <SectionHeading eyebrow={c.nutrition.eyebrow} title={c.nutrition.title} />
         <div className="mt-5 space-y-4 text-lg leading-relaxed text-foreground/85">
