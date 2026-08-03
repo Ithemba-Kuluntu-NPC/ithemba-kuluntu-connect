@@ -1723,15 +1723,15 @@ function Focus({ c }: { c: Copy }) {
   return (
     <section className="relative isolate overflow-hidden py-20 text-white md:py-24">
       <div className="absolute inset-0 -z-10">
-        <SmartImage
-          src={PHOTO_CHILD}
-          label="One centre, many layers of impact — community connection"
-          className="h-full w-full"
-          rounded="rounded-none"
-          tone="ocean"
-          showMissingBadge={false}
+        <img
+          src={P.greenhousePlanting}
+          alt="One centre, many layers of impact — children growing food"
+          loading="lazy"
+          className="h-full w-full object-cover"
+          style={{ objectPosition: "center 45%" }}
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/92 via-[var(--ithemba-blue-dark)]/82 to-[var(--ithemba-blue)]/55" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/82 via-[var(--ithemba-blue-dark)]/68 to-[var(--ithemba-blue)]/45" />
+
         <div className="absolute inset-0 bg-gradient-to-t from-[var(--ithemba-blue-deepest)]/70 via-transparent to-transparent" />
         <div className="absolute left-[-6rem] top-[-6rem] h-[24rem] w-[24rem] sun-glow" />
       </div>
