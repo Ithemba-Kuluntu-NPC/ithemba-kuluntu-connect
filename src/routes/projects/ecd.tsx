@@ -1473,16 +1473,12 @@ const RHYTHM_ICONS = [
 const RHYTHM_PHOTOS = [
   P.class23Thabo,
   P.freePlayOutdoor,
-  P.breakfastTogether,
-  P.class23Activity,
-  P.morningCircle,
-  P.class23Shapes,
-  P.napTime,
-  P.class23Animals,
-  P.foodLunch,
-  P.napTime2,
-  P.freePlayLego,
   P.class23Arts,
+  P.class23Shapes,
+  P.class23Animals,
+  P.freePlayLego,
+  P.napTime,
+  P.napTime2,
 ];
 const RHYTHM_BLOBS = [
   "rounded-[55%_45%_60%_40%/45%_55%_45%_55%]",
