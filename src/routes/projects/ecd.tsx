@@ -26,7 +26,6 @@ import {
   Award,
   Cookie,
   ChevronDown,
-  PlayCircle,
 } from "lucide-react";
 import { useLang } from "@/components/site/LanguageProvider";
 import { SmartImage, SmartLogo } from "@/components/site/Asset";
@@ -38,13 +37,75 @@ import type { Lang } from "@/data/content";
 
 export const Route = createFileRoute("/projects/ecd")({ component: EcdPage });
 
-/* ---------- assets ---------- */
-const HERO_VIDEO = "/assets/videos/projects/no1-ecd-centre-hero.mp4";
-const HERO_POSTER = "/assets/photos/projects/no1-ecd-centre-hero-poster.jpg";
-const FALLBACK_POSTER = assets.photos.projects.ecdHero;
-const PHOTO_CLASSROOM = assets.photos.ecd.classroom;
-const PHOTO_CHILD = assets.photos.ecd.childPlaying;
-const PHOTO_MEAL = assets.photos.ecd.meal;
+/* ---------- assets (final ECD media) ---------- */
+const ECD_MEDIA = "/assets/photos/projects/ECD";
+const HERO_VIDEO = `${ECD_MEDIA}/ECD-video-hero.mp4`;
+const HERO_POSTER = `${ECD_MEDIA}/ECD-main-project-photo.jpeg`;
+
+const P = {
+  main: `${ECD_MEDIA}/ECD-main-project-photo.jpeg`,
+  morningCircle: `${ECD_MEDIA}/ECD-morning-circle.jpeg`,
+  eatingCircle: `${ECD_MEDIA}/ECD-eating-together-circle.jpeg`,
+  outdoorToddlers: `${ECD_MEDIA}/ECD-classroom-outdoor-toddlers-0to2.jpeg`,
+  freePlayOutdoor: `${ECD_MEDIA}/ECD-free-play-outdoor.jpeg`,
+  freePlayLego: `${ECD_MEDIA}/ECD-free-play-lego.jpeg`,
+  class23Activity: `${ECD_MEDIA}/ECD-classroom-2to3-activity.jpeg`,
+  class23Activity2: `${ECD_MEDIA}/ECD-classroom-2to3-activity-2.jpeg`,
+  class23Arts: `${ECD_MEDIA}/ECD-classroom-2to3-artsandcrafts.jpeg`,
+  class23Thabo: `${ECD_MEDIA}/ECD-classroom-2to3-findingthabo-game.jpeg`,
+  class23Animals: `${ECD_MEDIA}/ECD-classroom-2to3-teaching-animals.jpeg`,
+  class23Shapes: `${ECD_MEDIA}/ECD-classroom-2to3-teaching-shapes.jpeg`,
+  class45Singing: `${ECD_MEDIA}/ECD-classroom-4to5-activity-singing.jpeg`,
+  class45Arts: `${ECD_MEDIA}/ECD-classroom-4to5-artsandcrafts.jpeg`,
+  class45Math: `${ECD_MEDIA}/ECD-classroom-4to5-math-activity.jpeg`,
+  class45Teachers: `${ECD_MEDIA}/ECD-classroom-4to5-proud-teachers.jpeg`,
+  napTime: `${ECD_MEDIA}/ECD-nap-time.jpeg`,
+  napTime2: `${ECD_MEDIA}/ECD-nap-time-2.jpeg`,
+  breakfastTogether: `${ECD_MEDIA}/ECD-breakfast-together.jpeg`,
+  breakfastFeeding: `${ECD_MEDIA}/ECD-breakfast-teacher-feeding.jpeg`,
+  food: `${ECD_MEDIA}/ECD-food.jpeg`,
+  foodBowls: `${ECD_MEDIA}/ECD-food-bowls-with-food.jpeg`,
+  foodLunch: `${ECD_MEDIA}/ECD-food-kids-eating-lunch.jpeg`,
+  foodBreakfastTogether: `${ECD_MEDIA}/ECD-food-kids-eating-together-breakfast.jpeg`,
+  lunchMain: `${ECD_MEDIA}/ECD-lunch-main.jpeg`,
+  greenhousePlanting: `${ECD_MEDIA}/ECD-greenhouse-kids-planting-spinach.jpeg`,
+  plantingTeacher: `${ECD_MEDIA}/ECD-food-kids-planting-with-teacher.jpeg`,
+  building1: `${ECD_MEDIA}/ECD-building-phase.jpeg`,
+  building2: `${ECD_MEDIA}/ECD-building-phase-2.jpeg`,
+  building3: `${ECD_MEDIA}/ECD-building-phase-3.jpeg`,
+  building4: `${ECD_MEDIA}/ECD-building-phase-4.jpeg`,
+} as const;
+
+/** Small connected photo strip used to keep sections compact. */
+function PhotoStrip({
+  photos,
+  className = "",
+  aspect = "aspect-[4/3]",
+}: {
+  photos: Array<{ src: string; label: string; position?: string }>;
+  className?: string;
+  aspect?: string;
+}) {
+  return (
+    <div
+      className={`grid gap-2 overflow-hidden rounded-[1.75rem] ring-1 ring-white/15 ${className}`}
+      style={{ filter: "drop-shadow(0 18px 40px rgba(10,30,60,0.35))" }}
+    >
+      {photos.map((p, i) => (
+        <div key={i} className={`${aspect} overflow-hidden rounded-xl`}>
+          <img
+            src={p.src}
+            alt={p.label}
+            loading="lazy"
+            className="h-full w-full object-cover"
+            style={p.position ? { objectPosition: p.position } : undefined}
+          />
+        </div>
+      ))}
+    </div>
+  );
+}
+
 
 /* ---------- reduced motion ---------- */
 function useReducedMotion() {
@@ -993,25 +1054,12 @@ function Hero({ c }: { c: Copy }) {
             showMissingBadge={false}
           />
         )}
-        {/* on poster fallback fall back to existing ecd hero so something always shows */}
-        {!showVideo && (
-          <img
-            src={FALLBACK_POSTER}
-            alt=""
-            aria-hidden
-            className="absolute inset-0 h-full w-full object-cover -z-10"
-          />
-        )}
-        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/80 via-[var(--ithemba-blue-dark)]/60 to-[var(--ithemba-blue)]/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/55 via-[var(--ithemba-blue-dark)]/38 to-[var(--ithemba-blue)]/25" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
         <div className="absolute right-[-6rem] top-[-6rem] h-[28rem] w-[28rem] sun-glow" />
       </div>
 
-      {/* Placeholder badge */}
-      <div className="pointer-events-none absolute right-4 top-4 z-10 inline-flex items-center gap-2 rounded-full bg-black/40 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.14em] text-white/85 ring-1 ring-white/15 backdrop-blur">
-        <PlayCircle className="h-3.5 w-3.5 text-[var(--ithemba-yellow)]" />
-        {c.hero.placeholder}
-      </div>
+
 
       {/* Logo */}
       <div className="absolute right-4 top-14 z-10 md:right-8 md:top-16">
@@ -1165,19 +1213,18 @@ function Why({ c }: { c: Copy }) {
   return (
     <section className="mx-auto grid max-w-7xl gap-10 px-4 py-20 md:grid-cols-2 lg:px-8">
       <div className="relative">
-        <div className="absolute -left-6 -top-6 h-24 w-24 blob bg-[var(--ithemba-yellow)]/35 -z-10" />
         <PhotoCollage
-          variant="A"
+          variant="B"
           iconCorner="br"
           icon={ECD_ICONS.brain}
           photos={[
-            { src: PHOTO_CHILD, label: "Child playing at the ECD Centre", tone: "sun" },
-            { src: PHOTO_CLASSROOM, label: "Classroom activities", tone: "warm" },
-            { src: PHOTO_MEAL, label: "Shared meal at the centre", tone: "earth" },
-            { src: PHOTO_CHILD, label: "Learning through play", tone: "sun" },
+            { src: P.outdoorToddlers, label: "Toddlers learning outdoors at the ECD Centre", tone: "sun" },
+            { src: P.freePlayOutdoor, label: "Children at free play outdoors", tone: "warm" },
+            { src: P.class23Activity2, label: "Classroom activity with 2 to 3 year olds", tone: "earth" },
           ]}
         />
       </div>
+
       <div className="flex flex-col justify-center">
         <SectionHeading eyebrow={c.why.eyebrow} title={c.why.title} />
         <div className="mt-5 space-y-4 text-lg leading-relaxed text-foreground/85">
@@ -1195,15 +1242,15 @@ function Importance({ c }: { c: Copy }) {
   return (
     <section className="relative isolate overflow-hidden py-20 text-white md:py-24">
       <div className="absolute inset-0 -z-10">
-        <SmartImage
-          src={PHOTO_CHILD}
-          label="Young children learning at the No.1 ECD Centre"
-          className="h-full w-full"
-          rounded="rounded-none"
-          tone="sun"
-          showMissingBadge={false}
+        <img
+          src={P.main}
+          alt="Young children at the No.1 ECD Centre"
+          loading="lazy"
+          className="h-full w-full object-cover"
+          style={{ objectPosition: "center 40%" }}
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/92 via-[var(--ithemba-blue-dark)]/82 to-[var(--ithemba-blue)]/55" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/82 via-[var(--ithemba-blue-dark)]/68 to-[var(--ithemba-blue)]/45" />
+
         <div className="absolute inset-0 bg-gradient-to-t from-[var(--ithemba-blue-deepest)]/70 via-transparent to-transparent" />
         <div className="absolute right-[-6rem] top-[-6rem] h-[28rem] w-[28rem] sun-glow" />
       </div>
@@ -1222,6 +1269,18 @@ function Importance({ c }: { c: Copy }) {
             <p key={i}>{p}</p>
           ))}
         </div>
+
+        <PhotoStrip
+          className="mt-8 grid-cols-2 md:grid-cols-4"
+          aspect="aspect-[4/5]"
+          photos={[
+            { src: P.main, label: "Children of the No.1 ECD Centre together", position: "center 40%" },
+            { src: P.morningCircle, label: "Morning circle at the centre", position: "center 40%" },
+            { src: P.class23Activity, label: "Classroom life at the centre", position: "center 40%" },
+            { src: P.eatingCircle, label: "Children eating together in a circle", position: "center 40%" },
+          ]}
+        />
+
 
         {/* Six development areas — below the text, large icons, no boxes */}
         <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 md:grid-cols-6">
@@ -1261,19 +1320,19 @@ function Building({ c }: { c: Copy }) {
           </div>
         </div>
         <div className="relative">
-          <div className="absolute -right-6 -top-6 h-24 w-24 blob-3 bg-[var(--ithemba-blue)]/15 -z-10" />
           <PhotoCollage
             variant="C"
             iconCorner="tr"
             icon={ECD_ICONS.builtWith}
             photos={[
-              { src: PHOTO_CLASSROOM, label: "Completed ECD classroom", tone: "blue" },
-              { src: PHOTO_CHILD, label: "Children at the new centre", tone: "sun" },
-              { src: PHOTO_CLASSROOM, label: "Inside the ECD building", tone: "warm" },
-              { src: PHOTO_MEAL, label: "Daily care in the centre", tone: "earth" },
+              { src: P.building1, label: "Construction phase one of the ECD building", tone: "blue" },
+              { src: P.building2, label: "Construction phase two of the ECD building", tone: "sun" },
+              { src: P.building3, label: "Construction phase three of the ECD building", tone: "warm" },
+              { src: P.building4, label: "The completed No.1 ECD Centre building", tone: "earth" },
             ]}
           />
         </div>
+
       </div>
 
       {/* Timeline */}
@@ -1337,15 +1396,15 @@ function Women({ c }: { c: Copy }) {
   return (
     <section className="relative isolate overflow-hidden py-20 text-white md:py-24">
       <div className="absolute inset-0 -z-10">
-        <SmartImage
-          src={PHOTO_CLASSROOM}
-          label="Local women caring and teaching at the ECD Centre"
-          className="h-full w-full"
-          rounded="rounded-none"
-          tone="warm"
-          showMissingBadge={false}
+        <img
+          src={P.class45Teachers}
+          alt="Local women teaching and caring at the ECD Centre"
+          loading="lazy"
+          className="h-full w-full object-cover"
+          style={{ objectPosition: "center 35%" }}
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/92 via-[var(--ithemba-blue-dark)]/82 to-[var(--ithemba-blue)]/55" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/82 via-[var(--ithemba-blue-dark)]/68 to-[var(--ithemba-blue)]/45" />
+
         <div className="absolute inset-0 bg-gradient-to-t from-[var(--ithemba-blue-deepest)]/70 via-transparent to-transparent" />
         <div className="absolute right-[-6rem] bottom-[-6rem] h-[24rem] w-[24rem] sun-glow" />
       </div>
@@ -1361,6 +1420,15 @@ function Women({ c }: { c: Copy }) {
             <p key={i}>{p}</p>
           ))}
         </div>
+        <PhotoStrip
+          className="mt-8 max-w-3xl grid-cols-3"
+          aspect="aspect-[4/5]"
+          photos={[
+            { src: P.class45Teachers, label: "Teachers with their class at the ECD Centre", position: "center 35%" },
+            { src: P.breakfastFeeding, label: "A teacher feeding a child at breakfast", position: "center 35%" },
+            { src: P.main, label: "The No.1 ECD Centre team and children", position: "center 40%" },
+          ]}
+        />
         <div className="mt-8 flex flex-wrap gap-2">
           {c.women.roles.map((r) => (
             <span
@@ -1371,6 +1439,7 @@ function Women({ c }: { c: Copy }) {
             </span>
           ))}
         </div>
+
       </div>
     </section>
   );
@@ -1420,6 +1489,16 @@ const RHYTHM_ICONS = [
   ECD_ICONS.rest,
   ECD_ICONS.playSongs,
   ECD_ICONS.responsive,
+];
+const RHYTHM_PHOTOS = [
+  P.class23Thabo,
+  P.freePlayOutdoor,
+  P.class23Arts,
+  P.class23Shapes,
+  P.class23Animals,
+  P.freePlayLego,
+  P.napTime,
+  P.napTime2,
 ];
 const RHYTHM_BLOBS = [
   "rounded-[55%_45%_60%_40%/45%_55%_45%_55%]",
@@ -1481,7 +1560,7 @@ function Rhythm({ c }: { c: Copy }) {
               <div className={isLeft ? "md:justify-self-end md:pr-8" : "md:justify-self-start md:pl-8"}>
                 <div className="relative w-20 sm:w-24 md:w-28">
                   <SmartImage
-                    src={`/assets/photos/ecd/rhythm-${i + 1}.jpg`}
+                    src={RHYTHM_PHOTOS[i % RHYTHM_PHOTOS.length]}
                     label={rhythmPhotoLabels[i]}
                     className="aspect-square w-full"
                     rounded={blob}
@@ -1518,7 +1597,7 @@ function Rhythm({ c }: { c: Copy }) {
                   <div className="shrink-0">
                     <div className="relative w-16">
                       <SmartImage
-                        src={`/assets/photos/ecd/rhythm-${i + 1}.jpg`}
+                        src={RHYTHM_PHOTOS[i % RHYTHM_PHOTOS.length]}
                         label={rhythmPhotoLabels[i]}
                         className="aspect-square w-full"
                         rounded={blob}
@@ -1627,18 +1706,31 @@ function Nutrition({ c }: { c: Copy }) {
   return (
     <section className="mx-auto grid max-w-7xl gap-10 px-4 py-20 md:grid-cols-2 lg:px-8">
       <div className="relative">
-        <div className="absolute -right-8 -top-8 h-28 w-28 blob bg-[var(--ithemba-yellow)]/40 -z-10" />
-        <PhotoCollage
-          variant="B"
-          iconCorner="tl"
-          icon={ECD_ICONS.meals}
-          photos={[
-            { src: PHOTO_MEAL, label: "Daily meals at the ECD Centre", tone: "warm" },
-            { src: PHOTO_CHILD, label: "Children enjoying a meal", tone: "sun" },
-            { src: PHOTO_CLASSROOM, label: "Snack time in the classroom", tone: "earth" },
-          ]}
-        />
+        <div
+          className="grid grid-cols-3 grid-rows-3 gap-2 overflow-hidden rounded-[2rem]"
+          style={{ filter: "drop-shadow(0 22px 50px rgba(30,60,90,0.28))" }}
+        >
+          <div className="col-span-2 row-span-2 overflow-hidden rounded-2xl">
+            <img src={P.lunchMain} alt="A warm lunch served at the ECD Centre" loading="lazy" className="h-full w-full object-cover" />
+          </div>
+          <div className="overflow-hidden rounded-2xl">
+            <img src={P.food} alt="Food prepared in the ECD kitchen" loading="lazy" className="h-full w-full object-cover" />
+          </div>
+          <div className="overflow-hidden rounded-2xl">
+            <img src={P.foodBowls} alt="Bowls filled with food for the children" loading="lazy" className="h-full w-full object-cover" />
+          </div>
+          <div className="overflow-hidden rounded-2xl">
+            <img src={P.breakfastTogether} alt="Children eating breakfast together" loading="lazy" className="h-full w-full object-cover" style={{ objectPosition: "center 40%" }} />
+          </div>
+          <div className="overflow-hidden rounded-2xl">
+            <img src={P.foodLunch} alt="Children eating lunch" loading="lazy" className="h-full w-full object-cover" style={{ objectPosition: "center 40%" }} />
+          </div>
+          <div className="overflow-hidden rounded-2xl">
+            <img src={P.foodBreakfastTogether} alt="Children sharing breakfast" loading="lazy" className="h-full w-full object-cover" style={{ objectPosition: "center 40%" }} />
+          </div>
+        </div>
       </div>
+
       <div className="flex flex-col justify-center">
         <SectionHeading eyebrow={c.nutrition.eyebrow} title={c.nutrition.title} />
         <div className="mt-5 space-y-4 text-lg leading-relaxed text-foreground/85">
@@ -1674,15 +1766,15 @@ function Focus({ c }: { c: Copy }) {
   return (
     <section className="relative isolate overflow-hidden py-20 text-white md:py-24">
       <div className="absolute inset-0 -z-10">
-        <SmartImage
-          src={PHOTO_CHILD}
-          label="One centre, many layers of impact — community connection"
-          className="h-full w-full"
-          rounded="rounded-none"
-          tone="ocean"
-          showMissingBadge={false}
+        <img
+          src={P.greenhousePlanting}
+          alt="One centre, many layers of impact — children growing food"
+          loading="lazy"
+          className="h-full w-full object-cover"
+          style={{ objectPosition: "center 45%" }}
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/92 via-[var(--ithemba-blue-dark)]/82 to-[var(--ithemba-blue)]/55" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/82 via-[var(--ithemba-blue-dark)]/68 to-[var(--ithemba-blue)]/45" />
+
         <div className="absolute inset-0 bg-gradient-to-t from-[var(--ithemba-blue-deepest)]/70 via-transparent to-transparent" />
         <div className="absolute left-[-6rem] top-[-6rem] h-[24rem] w-[24rem] sun-glow" />
       </div>
@@ -1698,7 +1790,17 @@ function Focus({ c }: { c: Copy }) {
             <p key={i}>{p}</p>
           ))}
         </div>
+        <PhotoStrip
+          className="mt-8 max-w-3xl grid-cols-3"
+          aspect="aspect-[4/5]"
+          photos={[
+            { src: P.greenhousePlanting, label: "Children planting spinach in the greenhouse", position: "center 40%" },
+            { src: P.plantingTeacher, label: "Children planting with their teacher", position: "center 40%" },
+            { src: P.breakfastFeeding, label: "A teacher feeding a child at breakfast", position: "center 35%" },
+          ]}
+        />
         <div className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-5">
+
           {items.map(([badge, label]) => {
             const meta = focusAreaBadgeMeta[badge];
             return (
@@ -1785,15 +1887,15 @@ function Monthly({ c }: { c: Copy }) {
   return (
     <section className="relative isolate overflow-hidden py-20">
       <div className="absolute inset-0 -z-10">
-        <SmartImage
-          src={PHOTO_CHILD}
-          label="Support the No.1 ECD Centre monthly"
-          className="h-full w-full"
-          rounded="rounded-none"
-          tone="sun"
-          showMissingBadge={false}
+        <img
+          src={P.foodBreakfastTogether}
+          alt="Children sharing breakfast at the No.1 ECD Centre"
+          loading="lazy"
+          className="h-full w-full object-cover"
+          style={{ objectPosition: "center 45%" }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[var(--ithemba-blue-deepest)]/92 via-[var(--ithemba-blue-dark)]/80 to-[var(--ithemba-blue-dark)]/45" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[var(--ithemba-blue-deepest)]/78 via-[var(--ithemba-blue-dark)]/58 to-[var(--ithemba-blue-dark)]/30" />
+
         <div className="absolute right-[-6rem] top-[-6rem] h-[28rem] w-[28rem] sun-glow" />
       </div>
       <div className="mx-auto grid max-w-7xl gap-10 px-4 md:grid-cols-2 lg:px-8">
@@ -1858,6 +1960,17 @@ function Closing({ c }: { c: Copy }) {
             <p key={i}>{p}</p>
           ))}
         </div>
+        <PhotoStrip
+          className="mt-8 grid-cols-2 md:grid-cols-4"
+          aspect="aspect-[3/4]"
+          photos={[
+            { src: P.class45Singing, label: "Older children singing together", position: "center 35%" },
+            { src: P.class45Arts, label: "Arts and crafts with 4 to 5 year olds", position: "center 40%" },
+            { src: P.class45Math, label: "Early numeracy activity", position: "center 40%" },
+            { src: P.class45Teachers, label: "Proud teachers with their class", position: "center 35%" },
+          ]}
+        />
+
         <div className="mt-7 flex flex-wrap justify-center gap-2">
           <Link to="/donate">
             <Button
