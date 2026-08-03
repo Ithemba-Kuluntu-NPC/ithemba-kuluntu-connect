@@ -1055,25 +1055,12 @@ function Hero({ c }: { c: Copy }) {
             showMissingBadge={false}
           />
         )}
-        {/* on poster fallback fall back to existing ecd hero so something always shows */}
-        {!showVideo && (
-          <img
-            src={FALLBACK_POSTER}
-            alt=""
-            aria-hidden
-            className="absolute inset-0 h-full w-full object-cover -z-10"
-          />
-        )}
-        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/80 via-[var(--ithemba-blue-dark)]/60 to-[var(--ithemba-blue)]/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/55 via-[var(--ithemba-blue-dark)]/38 to-[var(--ithemba-blue)]/25" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
         <div className="absolute right-[-6rem] top-[-6rem] h-[28rem] w-[28rem] sun-glow" />
       </div>
 
-      {/* Placeholder badge */}
-      <div className="pointer-events-none absolute right-4 top-4 z-10 inline-flex items-center gap-2 rounded-full bg-black/40 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.14em] text-white/85 ring-1 ring-white/15 backdrop-blur">
-        <PlayCircle className="h-3.5 w-3.5 text-[var(--ithemba-yellow)]" />
-        {c.hero.placeholder}
-      </div>
+
 
       {/* Logo */}
       <div className="absolute right-4 top-14 z-10 md:right-8 md:top-16">
