@@ -1907,6 +1907,17 @@ function Closing({ c }: { c: Copy }) {
             <p key={i}>{p}</p>
           ))}
         </div>
+        <PhotoStrip
+          className="mt-8 grid-cols-2 md:grid-cols-4"
+          aspect="aspect-[3/4]"
+          photos={[
+            { src: P.class45Singing, label: "Older children singing together", position: "center 35%" },
+            { src: P.class45Arts, label: "Arts and crafts with 4 to 5 year olds", position: "center 40%" },
+            { src: P.class45Math, label: "Early numeracy activity", position: "center 40%" },
+            { src: P.class45Teachers, label: "Proud teachers with their class", position: "center 35%" },
+          ]}
+        />
+
         <div className="mt-7 flex flex-wrap justify-center gap-2">
           <Link to="/donate">
             <Button
