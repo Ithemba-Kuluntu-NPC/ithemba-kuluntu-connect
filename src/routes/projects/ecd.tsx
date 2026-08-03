@@ -1271,6 +1271,18 @@ function Importance({ c }: { c: Copy }) {
           ))}
         </div>
 
+        <PhotoStrip
+          className="mt-8 grid-cols-2 md:grid-cols-4"
+          aspect="aspect-[4/5]"
+          photos={[
+            { src: P.main, label: "Children of the No.1 ECD Centre together", position: "center 40%" },
+            { src: P.morningCircle, label: "Morning circle at the centre", position: "center 40%" },
+            { src: P.class23Activity, label: "Classroom life at the centre", position: "center 40%" },
+            { src: P.eatingCircle, label: "Children eating together in a circle", position: "center 40%" },
+          ]}
+        />
+
+
         {/* Six development areas — below the text, large icons, no boxes */}
         <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 md:grid-cols-6">
           {c.importance.pillars.map((p, i) => (
