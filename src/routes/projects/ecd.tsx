@@ -1410,6 +1410,15 @@ function Women({ c }: { c: Copy }) {
             <p key={i}>{p}</p>
           ))}
         </div>
+        <PhotoStrip
+          className="mt-8 max-w-3xl grid-cols-3"
+          aspect="aspect-[4/5]"
+          photos={[
+            { src: P.class45Teachers, label: "Teachers with their class at the ECD Centre", position: "center 35%" },
+            { src: P.breakfastFeeding, label: "A teacher feeding a child at breakfast", position: "center 35%" },
+            { src: P.main, label: "The No.1 ECD Centre team and children", position: "center 40%" },
+          ]}
+        />
         <div className="mt-8 flex flex-wrap gap-2">
           {c.women.roles.map((r) => (
             <span
@@ -1420,6 +1429,7 @@ function Women({ c }: { c: Copy }) {
             </span>
           ))}
         </div>
+
       </div>
     </section>
   );
