@@ -1214,19 +1214,18 @@ function Why({ c }: { c: Copy }) {
   return (
     <section className="mx-auto grid max-w-7xl gap-10 px-4 py-20 md:grid-cols-2 lg:px-8">
       <div className="relative">
-        <div className="absolute -left-6 -top-6 h-24 w-24 blob bg-[var(--ithemba-yellow)]/35 -z-10" />
         <PhotoCollage
-          variant="A"
+          variant="B"
           iconCorner="br"
           icon={ECD_ICONS.brain}
           photos={[
-            { src: PHOTO_CHILD, label: "Child playing at the ECD Centre", tone: "sun" },
-            { src: PHOTO_CLASSROOM, label: "Classroom activities", tone: "warm" },
-            { src: PHOTO_MEAL, label: "Shared meal at the centre", tone: "earth" },
-            { src: PHOTO_CHILD, label: "Learning through play", tone: "sun" },
+            { src: P.outdoorToddlers, label: "Toddlers learning outdoors at the ECD Centre", tone: "sun" },
+            { src: P.freePlayOutdoor, label: "Children at free play outdoors", tone: "warm" },
+            { src: P.class23Activity2, label: "Classroom activity with 2 to 3 year olds", tone: "earth" },
           ]}
         />
       </div>
+
       <div className="flex flex-col justify-center">
         <SectionHeading eyebrow={c.why.eyebrow} title={c.why.title} />
         <div className="mt-5 space-y-4 text-lg leading-relaxed text-foreground/85">
