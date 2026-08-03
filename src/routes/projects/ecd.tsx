@@ -1310,19 +1310,19 @@ function Building({ c }: { c: Copy }) {
           </div>
         </div>
         <div className="relative">
-          <div className="absolute -right-6 -top-6 h-24 w-24 blob-3 bg-[var(--ithemba-blue)]/15 -z-10" />
           <PhotoCollage
             variant="C"
             iconCorner="tr"
             icon={ECD_ICONS.builtWith}
             photos={[
-              { src: PHOTO_CLASSROOM, label: "Completed ECD classroom", tone: "blue" },
-              { src: PHOTO_CHILD, label: "Children at the new centre", tone: "sun" },
-              { src: PHOTO_CLASSROOM, label: "Inside the ECD building", tone: "warm" },
-              { src: PHOTO_MEAL, label: "Daily care in the centre", tone: "earth" },
+              { src: P.building1, label: "Construction phase one of the ECD building", tone: "blue" },
+              { src: P.building2, label: "Construction phase two of the ECD building", tone: "sun" },
+              { src: P.building3, label: "Construction phase three of the ECD building", tone: "warm" },
+              { src: P.building4, label: "The completed No.1 ECD Centre building", tone: "earth" },
             ]}
           />
         </div>
+
       </div>
 
       {/* Timeline */}
