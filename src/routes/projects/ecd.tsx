@@ -1470,6 +1470,20 @@ const RHYTHM_ICONS = [
   ECD_ICONS.playSongs,
   ECD_ICONS.responsive,
 ];
+const RHYTHM_PHOTOS = [
+  P.class23Thabo,
+  P.freePlayOutdoor,
+  P.breakfastTogether,
+  P.class23Activity,
+  P.morningCircle,
+  P.class23Shapes,
+  P.napTime,
+  P.class23Animals,
+  P.foodLunch,
+  P.napTime2,
+  P.freePlayLego,
+  P.class23Arts,
+];
 const RHYTHM_BLOBS = [
   "rounded-[55%_45%_60%_40%/45%_55%_45%_55%]",
   "rounded-[60%_40%_45%_55%/50%_60%_40%_50%]",
@@ -1530,7 +1544,7 @@ function Rhythm({ c }: { c: Copy }) {
               <div className={isLeft ? "md:justify-self-end md:pr-8" : "md:justify-self-start md:pl-8"}>
                 <div className="relative w-20 sm:w-24 md:w-28">
                   <SmartImage
-                    src={`/assets/photos/ecd/rhythm-${i + 1}.jpg`}
+                    src={RHYTHM_PHOTOS[i % RHYTHM_PHOTOS.length]}
                     label={rhythmPhotoLabels[i]}
                     className="aspect-square w-full"
                     rounded={blob}
@@ -1567,7 +1581,7 @@ function Rhythm({ c }: { c: Copy }) {
                   <div className="shrink-0">
                     <div className="relative w-16">
                       <SmartImage
-                        src={`/assets/photos/ecd/rhythm-${i + 1}.jpg`}
+                        src={RHYTHM_PHOTOS[i % RHYTHM_PHOTOS.length]}
                         label={rhythmPhotoLabels[i]}
                         className="aspect-square w-full"
                         rounded={blob}
