@@ -669,6 +669,65 @@ function SunDoodle({ className = "h-8 w-8 text-[var(--ithemba-yellow)]" }) {
   return <Sun className={className} aria-hidden />;
 }
 
+/* ---------- photo collages (final greenhouse media) ---------- */
+type Shot = { src: string; alt: string; pos?: string };
+
+function Frame({ children, frame, className = "" }: { children: React.ReactNode; frame: "light" | "dark"; className?: string }) {
+  return (
+    <div
+      className={`rounded-[2rem] p-2 shadow-xl ring-1 ${
+        frame === "dark" ? "bg-white/10 ring-white/15 backdrop-blur" : "bg-white ring-black/5"
+      } ${className}`}
+    >
+      {children}
+    </div>
+  );
+}
+
+function Shot({ shot, className = "" }: { shot: Shot; className?: string }) {
+  return (
+    <div className={`overflow-hidden rounded-2xl ${className}`}>
+      <img
+        src={shot.src}
+        alt={shot.alt}
+        loading="lazy"
+        className="h-full w-full object-cover"
+        style={shot.pos ? { objectPosition: shot.pos } : undefined}
+      />
+    </div>
+  );
+}
+
+/** One dominant image with two supporting images stacked beside it. */
+function CollageSide({ main, side, frame = "dark", className = "" }: { main: Shot; side: [Shot, Shot]; frame?: "light" | "dark"; className?: string }) {
+  return (
+    <Frame frame={frame} className={className}>
+      <div className="grid grid-cols-3 grid-rows-2 gap-2 aspect-[16/10]">
+        <Shot shot={main} className="col-span-3 row-span-1 sm:col-span-2 sm:row-span-2" />
+        <Shot shot={side[0]} className="col-span-1 sm:col-span-1" />
+        <Shot shot={side[1]} className="col-span-2 sm:col-span-1" />
+      </div>
+    </Frame>
+  );
+}
+
+/** One wide hero image with a compact strip of supporting images below. */
+function CollageStrip({ main, strip, frame = "dark", className = "" }: { main: Shot; strip: Shot[]; frame?: "light" | "dark"; className?: string }) {
+  return (
+    <Frame frame={frame} className={className}>
+      <div className="grid gap-2">
+        <Shot shot={main} className="aspect-[16/9]" />
+        <div className={`grid gap-2 ${strip.length >= 4 ? "grid-cols-4" : "grid-cols-3"}`}>
+          {strip.map((s, i) => (
+            <Shot key={i} shot={s} className="aspect-square" />
+          ))}
+        </div>
+      </div>
+    </Frame>
+  );
+}
+
+
 /* ---------- HERO ---------- */
 function Hero({ c }: { c: Copy }) {
   const reduced = useReducedMotion();
