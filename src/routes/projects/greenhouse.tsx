@@ -1085,6 +1085,19 @@ function Focus({ c }: { c: Copy }) {
         <div className="mt-6 max-w-3xl space-y-4 text-lg leading-relaxed text-white/90">
           {c.focus.body.map((p, i) => <p key={i}>{p}</p>)}
         </div>
+
+        {/* harvest · results · pride */}
+        <CollageStrip
+          className="mt-10"
+          main={{ src: G.harvestGroup, alt: "Community group celebrating a greenhouse harvest", pos: "center 40%" }}
+          strip={[
+            { src: G.harvestTeacherChild, alt: "Teacher and child harvesting together" },
+            { src: G.harvest, alt: "Fresh produce harvested from the greenhouse" },
+            { src: G.harvestChild, alt: "Child holding freshly harvested vegetables" },
+            { src: G.smile, alt: "Smiling community member after the harvest" },
+          ]}
+        />
+
         <div className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-5">
           {c.focus.items.map((it) => {
             const meta = focusAreaBadgeMeta[it.badge];
