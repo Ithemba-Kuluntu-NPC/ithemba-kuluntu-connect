@@ -884,15 +884,13 @@ function Why({ c }: { c: Copy }) {
   return (
     <section className="relative isolate overflow-hidden py-20 text-white md:py-24">
       <div className="absolute inset-0 -z-10">
-        <SmartImage
-          src={PHOTO_FOOD}
-          label="Fresh produce growing in the greenhouse"
-          className="h-full w-full"
-          rounded="rounded-none"
-          tone="green"
-          showMissingBadge={false}
+        <img
+          src={G.growing}
+          alt=""
+          aria-hidden
+          className="h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/92 via-[var(--ithemba-blue-dark)]/82 to-[var(--ithemba-blue)]/55" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/88 via-[var(--ithemba-blue-dark)]/75 to-[var(--ithemba-blue)]/50" />
         <div className="absolute inset-0 bg-gradient-to-t from-[var(--ithemba-blue-deepest)]/70 via-transparent to-transparent" />
         <div className="absolute right-[-6rem] top-[-6rem] h-[28rem] w-[28rem] sun-glow" />
       </div>
