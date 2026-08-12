@@ -1027,17 +1027,17 @@ function Nutrition({ c }: { c: Copy }) {
   return (
     <section className="relative mx-auto grid max-w-7xl gap-10 px-4 py-20 md:grid-cols-2 lg:px-8">
       <div className="relative">
-        <div className="absolute -right-8 -top-8 h-28 w-28 blob bg-[var(--ithemba-yellow)]/40 -z-10" />
-        <div className="absolute -bottom-6 -left-6 h-24 w-24 blob-2 bg-emerald-300/30 -z-10" />
-        <SmartImage
-          src={PHOTO_MEAL}
-          label="Fresh produce supplementing daily meals at the No.1 ECD Centre"
-          className="aspect-[4/5] w-full"
-          rounded="rounded-[2.5rem]"
-          tone="warm"
-          showMissingBadge={false}
+        <CollageStrip
+          frame="light"
+          main={{ src: G.childTeacher, alt: "Teacher and child in the greenhouse", pos: "center 40%" }}
+          strip={[
+            { src: G.kidsPlanting, alt: "Children planting seedlings" },
+            { src: G.kidPlanting, alt: "A child planting in the greenhouse" },
+            { src: G.happyChild, alt: "Happy child at the greenhouse" },
+          ]}
         />
       </div>
+
       <div className="flex flex-col justify-center">
         <SectionHeading eyebrow={c.nutrition.eyebrow} title={c.nutrition.title} />
         <div className="mt-5 space-y-4 text-lg leading-relaxed text-foreground/85">
