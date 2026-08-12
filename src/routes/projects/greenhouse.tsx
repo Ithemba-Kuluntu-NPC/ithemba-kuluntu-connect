@@ -928,6 +928,18 @@ function Partnership({ c }: { c: Copy }) {
           {c.partnership.body.map((p, i) => <p key={i}>{p}</p>)}
         </div>
 
+        {/* local women · training · participation */}
+        <CollageSide
+          frame="light"
+          className="mt-10"
+          main={{ src: G.women, alt: "Local women trained on the African Grower system", pos: "center 35%" }}
+          side={[
+            { src: G.teenGirls, alt: "Young women taking part in the greenhouse project" },
+            { src: G.busy2, alt: "Community members at work in the greenhouse" },
+          ]}
+        />
+
+
         <div className="mt-16 grid gap-14 md:grid-cols-3 md:gap-10">
           {c.partnership.roles.map((r) => (
             <div key={r.name} className="flex flex-col items-center text-center">
