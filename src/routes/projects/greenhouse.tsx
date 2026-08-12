@@ -842,6 +842,18 @@ function Snapshot({ c }: { c: Copy }) {
         <div className="mx-auto mt-6 max-w-3xl space-y-4 text-center text-lg leading-relaxed text-foreground/85">
           {c.snapshot.body.map((p, i) => <p key={i}>{p}</p>)}
         </div>
+
+        {/* the greenhouse itself · scale · production */}
+        <CollageSide
+          frame="light"
+          className="mx-auto mt-10 max-w-4xl"
+          main={{ src: G.wide, alt: "Wide view inside the greenhouse in beautiful light" }}
+          side={[
+            { src: G.outside, alt: "The greenhouse seen from outside" },
+            { src: G.growing, alt: "Healthy crops growing inside the greenhouse" },
+          ]}
+        />
+
         <div className="mt-14 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-4">
           {c.snapshot.facts.map((f, i) => {
             const iconSrc = SNAPSHOT_ICON_PATHS[i];
