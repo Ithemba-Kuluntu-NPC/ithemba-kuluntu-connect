@@ -909,6 +909,17 @@ function Why({ c }: { c: Copy }) {
         <div className="mt-6 max-w-3xl space-y-4 text-lg leading-relaxed text-white/90">
           {c.why.body.map((p, i) => <p key={i}>{p}</p>)}
         </div>
+
+        {/* outdoor · broader community food growing */}
+        <CollageSide
+          className="mt-10"
+          main={{ src: G.outsidePlanting, alt: "Outdoor planting beside the greenhouse" }}
+          side={[
+            { src: G.kidsPlanting, alt: "Children helping to plant" },
+            { src: G.outside, alt: "The greenhouse seen from outside" },
+          ]}
+        />
+
       </div>
     </section>
   );
