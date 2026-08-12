@@ -981,6 +981,17 @@ function HowItWorks({ c }: { c: Copy }) {
           {c.how.body.map((p, i) => <p key={i}>{p}</p>)}
         </div>
 
+        {/* growing · production */}
+        <CollageSide
+          className="mt-10"
+          main={{ src: G.growing2, alt: "Crops growing in the vertical African Grower system" }}
+          side={[
+            { src: G.spinach, alt: "Close-up of spinach grown in the greenhouse" },
+            { src: G.busy, alt: "Team members working in the greenhouse" },
+          ]}
+        />
+
+
         {/* growing flow */}
         <div className="mt-14">
           <div className="grid gap-6 md:grid-cols-4 md:gap-4">
