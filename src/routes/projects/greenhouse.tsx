@@ -36,14 +36,33 @@ import type { Lang } from "@/data/content";
 
 export const Route = createFileRoute("/projects/greenhouse")({ component: GreenhousePage });
 
-/* ---------- assets ---------- */
-const HERO_VIDEO = "/assets/videos/projects/greenhouse-hero.mp4";
-const HERO_POSTER = "/assets/photos/projects/greenhouse-hero-poster.jpg";
-const FALLBACK_POSTER = assets.photos.projects.greenhouseHero;
-const PHOTO_MAIN = assets.photos.greenhouse.main;
-const PHOTO_WOMEN = assets.photos.greenhouse.womenTraining;
-const PHOTO_FOOD = assets.photos.greenhouse.foodGrowing;
-const PHOTO_MEAL = assets.photos.ecd.meal;
+/* ---------- assets (final greenhouse media) ---------- */
+const GH_MEDIA = "/assets/photos/projects/greenhouse";
+const HERO_VIDEO = `${GH_MEDIA}/Greenhouse-hero-video.mp4`;
+const HERO_POSTER = `${GH_MEDIA}/Greenhouse-wide-angle-beautiful-light.jpg`;
+
+const G = {
+  wide: `${GH_MEDIA}/Greenhouse-wide-angle-beautiful-light.jpg`,
+  outside: `${GH_MEDIA}/Greenhouse-from-outside.jpg`,
+  growing: `${GH_MEDIA}/Greenhouse-growing-still.jpg`,
+  growing2: `${GH_MEDIA}/Greenhouse-growing-still-2.jpg`,
+  spinach: `${GH_MEDIA}/Greenhouse-close-up-spinach.jpg`,
+  busy: `${GH_MEDIA}/Greenhouse-busy-at-work.jpg`,
+  busy2: `${GH_MEDIA}/Greenhouse-busy-at-work-2.jpg`,
+  childTeacher: `${GH_MEDIA}/Greenhouse-child-and-teacher.jpg`,
+  kidsPlanting: `${GH_MEDIA}/Greenhouse-kids-planting.jpg`,
+  kidPlanting: `${GH_MEDIA}/Grrenhouse-kid-planting.jpg`,
+  happyChild: `${GH_MEDIA}/Greenhouse-happy-child.jpg`,
+  women: `${GH_MEDIA}/Greenhouse-women-training.jpg`,
+  teenGirls: `${GH_MEDIA}/Greenhouse-teenage-girls.jpg`,
+  outsidePlanting: `${GH_MEDIA}/Greenhouse-outside-planting.jpg`,
+  harvestGroup: `${GH_MEDIA}/Greenhouse-happy-harvest-group.jpg`,
+  harvestTeacherChild: `${GH_MEDIA}/Greenhouse-harvest-teacher-and-child.jpg`,
+  harvest: `${GH_MEDIA}/Grrenhouse-harvest.jpg`,
+  harvestChild: `${GH_MEDIA}/Greenhouse-cute-harvest-child.jpg`,
+  smile: `${GH_MEDIA}/Greenhouse-feel-good-smile.jpg`,
+} as const;
+
 const SA_HARVEST_LOGO = "/assets/logos/partners/sa-harvest-logo.png";
 const FRESH_LIFE_LOGO = "/assets/logos/partners/fresh-life-produce-transparent-logo.png";
 const ITHEMBA_LOGO = assets.logos.ithembaRoundColor;
