@@ -738,10 +738,11 @@ function Hero({ c }: { c: Copy }) {
   return (
     <section className="relative isolate overflow-hidden">
       <div className="absolute inset-0 -z-10">
-        {showVideo ? (
+        <img src={HERO_POSTER} alt="" aria-hidden className="absolute inset-0 h-full w-full object-cover" />
+        {showVideo && (
           <video
             ref={videoRef}
-            className="h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-cover"
             autoPlay
             muted
             loop
@@ -753,28 +754,13 @@ function Hero({ c }: { c: Copy }) {
           >
             <source src={HERO_VIDEO} type="video/mp4" />
           </video>
-        ) : (
-          <SmartImage
-            src={HERO_POSTER}
-            label="Greenhouse with SA Harvest — vertical growing in Cwebeni"
-            className="h-full w-full"
-            rounded="rounded-none"
-            tone="green"
-            showMissingBadge={false}
-          />
         )}
-        {!showVideo && (
-          <img src={FALLBACK_POSTER} alt="" aria-hidden className="absolute inset-0 h-full w-full object-cover -z-10" />
-        )}
-        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/85 via-[var(--ithemba-blue-dark)]/65 to-[var(--ithemba-blue)]/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/62 via-[var(--ithemba-blue-dark)]/42 to-[var(--ithemba-blue)]/25" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
         <div className="absolute right-[-6rem] top-[-6rem] h-[28rem] w-[28rem] sun-glow" />
       </div>
 
-      <div className="pointer-events-none absolute right-4 top-4 z-10 inline-flex items-center gap-2 rounded-full bg-black/40 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.14em] text-white/85 ring-1 ring-white/15 backdrop-blur">
-        <PlayCircle className="h-3.5 w-3.5 text-[var(--ithemba-yellow)]" />
-        {c.hero.placeholder}
-      </div>
+
 
       {/* floating leaf accents */}
       <div className="pointer-events-none absolute left-10 top-24 text-[var(--ithemba-yellow)]/40">
