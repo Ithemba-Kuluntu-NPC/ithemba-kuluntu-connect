@@ -1064,15 +1064,13 @@ function Focus({ c }: { c: Copy }) {
   return (
     <section className="relative isolate overflow-hidden py-20 text-white md:py-24">
       <div className="absolute inset-0 -z-10">
-        <SmartImage
-          src={PHOTO_WOMEN}
-          label="Local women training and working with the African Grower system"
-          className="h-full w-full"
-          rounded="rounded-none"
-          tone="ocean"
-          showMissingBadge={false}
+        <img
+          src={G.harvestGroup}
+          alt=""
+          aria-hidden
+          className="h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/92 via-[var(--ithemba-blue-dark)]/82 to-[var(--ithemba-blue)]/55" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/88 via-[var(--ithemba-blue-dark)]/75 to-[var(--ithemba-blue)]/50" />
         <div className="absolute left-[-6rem] top-[-6rem] h-[24rem] w-[24rem] sun-glow" />
       </div>
       <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
