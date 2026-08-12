@@ -22,12 +22,10 @@ import {
   Truck,
   ArrowDown,
   ArrowRight,
-  PlayCircle,
   Star,
   Award,
 } from "lucide-react";
 import { useLang } from "@/components/site/LanguageProvider";
-import { SmartImage } from "@/components/site/Asset";
 import { DonationWidget } from "@/components/blocks/DonationWidget";
 import { FocusAreaBadges } from "@/components/blocks/FocusAreaBadges";
 import { assets } from "@/data/assets";
