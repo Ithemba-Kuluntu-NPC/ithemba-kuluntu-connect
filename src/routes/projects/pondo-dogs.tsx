@@ -165,7 +165,42 @@ type CollageSlot = {
   src?: string;
   label: string;
   tone?: "warm" | "blue" | "earth" | "sun" | "ocean" | "green";
+  /** object-position for careful cropping */
+  pos?: string;
 };
+
+/** Compact connected photo strip — one cohesive block, no floating cards. */
+function PhotoStrip({
+  photos,
+  className = "",
+  aspect = "aspect-[4/3]",
+}: {
+  photos: CollageSlot[];
+  className?: string;
+  aspect?: string;
+}) {
+  return (
+    <div
+      className={`grid gap-2 overflow-hidden rounded-[1.75rem] ring-1 ring-white/15 ${
+        photos.length >= 4 ? "grid-cols-2 sm:grid-cols-4" : "grid-cols-3"
+      } ${className}`}
+      style={{ filter: "drop-shadow(0 18px 40px rgba(0,0,0,0.28))" }}
+    >
+      {photos.map((p, i) => (
+        <div key={i} className={`overflow-hidden rounded-2xl ${aspect}`}>
+          <img
+            src={p.src}
+            alt={p.label}
+            loading="lazy"
+            className="h-full w-full object-cover"
+            style={p.pos ? { objectPosition: p.pos } : undefined}
+          />
+        </div>
+      ))}
+    </div>
+  );
+}
+
 
 function PhotoCollage({
   photos,
@@ -228,8 +263,10 @@ function PhotoCollage({
               tone={p.tone ?? "earth"}
               rounded="rounded-none"
               className="h-full w-full"
+              objectPosition={p.pos}
               showMissingBadge={false}
             />
+
           </div>
         ))}
       </div>
@@ -1436,15 +1473,14 @@ function Why({ c }: { c: Copy }) {
   return (
     <section className="relative isolate overflow-hidden py-20 text-white md:py-24">
       <div className="absolute inset-0 -z-10">
-        <SmartImage
-          src={PHOTO_HERO}
-          label="Animals and people sharing daily life in Pondoland"
-          className="h-full w-full"
-          rounded="rounded-none"
-          tone="earth"
-          showMissingBadge={false}
+        <img
+          src={PH.puppiesRural}
+          alt=""
+          aria-hidden
+          className="h-full w-full object-cover"
+          style={{ objectPosition: "center 45%" }}
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/92 via-[var(--ithemba-blue-dark)]/82 to-[var(--ithemba-blue)]/55" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/80 via-[var(--ithemba-blue-dark)]/70 to-[var(--ithemba-blue)]/45" />
         <div className="absolute right-[-6rem] top-[-6rem] h-[28rem] w-[28rem] sun-glow" />
       </div>
       <div className="relative mx-auto max-w-4xl px-4 lg:px-8">
@@ -1457,7 +1493,16 @@ function Why({ c }: { c: Copy }) {
             <p key={i}>{p}</p>
           ))}
         </div>
+        <PhotoStrip
+          className="mt-10"
+          photos={[
+            { src: PH.motherPuppies, label: "Mother dog with her puppies in a rural household" },
+            { src: PH.puppiesRural, label: "Puppies in basic rural conditions" },
+            { src: PH.childDog, label: "A child and the family dog in the community", pos: "center 35%" },
+          ]}
+        />
       </div>
+
     </section>
   );
 }
