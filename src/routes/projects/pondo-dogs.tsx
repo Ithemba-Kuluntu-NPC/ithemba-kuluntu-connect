@@ -35,13 +35,58 @@ export const Route = createFileRoute("/projects/pondo-dogs")({
   component: PondoDogsPage,
 });
 
-/* ---------- assets ---------- */
-const HERO_VIDEO = "/assets/videos/projects/pondo-dogs-hero.mp4";
-const HERO_POSTER = "/assets/photos/projects/pondo-dogs-hero-poster.jpg";
-const FALLBACK_POSTER = assets.photos.projects.pondoDogsHero;
-const PHOTO_HERO = assets.photos.pondoDogs.hero;
-const PHOTO_CARE = assets.photos.pondoDogs.care;
-const PHOTO_COMMUNITY = assets.photos.pondoDogs.community;
+/* ---------- final Pondo Dogs documentary media ---------- */
+const PD = "/assets/photos/projects/pondodogs";
+const HERO_VIDEO = `${PD}/hero-video-pondodogs.mp4`;
+const HERO_POSTER = `${PD}/20250827_103808.jpg`;
+
+const PH = {
+  // team / project introduction
+  team: `${PD}/20250827_103808.jpg`,
+  teamPuppies: `${PD}/20250925_105917.jpg`,
+  teamCommunity: `${PD}/20260301_132324.jpg`,
+  teamField: `${PD}/20251212_094319.jpg`,
+  teamCoord: `${PD}/20260227_093910.jpg`,
+  teamPuppyCare: `${PD}/20260528_143908.jpg`,
+  // rural reality
+  motherPuppies: `${PD}/20250509_161130.jpg`,
+  puppiesRural: `${PD}/20251009_155233(0).jpg`,
+  childDog: `${PD}/20251123_093910.jpg`,
+  puppiesMany: `${PD}/20250902_143408.jpg`,
+  puppiesLitter: `${PD}/20260512_151230.jpg`,
+  // medical / emergency
+  medical1: `${PD}/20250808_153010.jpg`,
+  medical2: `${PD}/20260120_172725.jpg`,
+  medical3: `${PD}/20260329_072507.jpg`,
+  // preventive outreach
+  prev1: `${PD}/20250110_133723.jpg`,
+  prev2: `${PD}/20250110_133914.jpg`,
+  prev3: `${PD}/20250110_134443.jpg`,
+  prev4: `${PD}/20250110_141259.jpg`,
+  // sterilisation
+  sterOwner: `${PD}/20251014_114258.jpg`,
+  sterProcedure: `${PD}/20251014_111318.jpg`,
+  sterSupport: `${PD}/20260129_103135.jpg`,
+  sterTransport: `${PD}/20251212_125318.jpg`,
+  // home-based
+  home1: `${PD}/20250827_105255.jpg`,
+  home2: `${PD}/20260130_163511.jpg`,
+  home3: `${PD}/20260310_153451.jpg`,
+  home4: `${PD}/20260512_160914.jpg`,
+  // food & shelter
+  shelterBasic: `${PD}/20250916_145923.jpg`,
+  feeding: `${PD}/20251125_133713.jpg`,
+  shelterNew1: `${PD}/20260401_113020.jpg`,
+  shelterNew2: `${PD}/20260401_113259.jpg`,
+  // owners / community
+  owner1: `${PD}/20250110_135512.jpg`,
+  owner2: `${PD}/20260411_152418.jpg`,
+  owner3: `${PD}/IMG_20240209_145013%20(1).jpg`,
+  // atmosphere / backgrounds
+  field1: `${PD}/20251119_085954.jpg`,
+  field2: `${PD}/20260313_063332.jpg`,
+} as const;
+
 
 const KUSTENHUND_URL = "https://www.kuestenhund.com/";
 
@@ -120,7 +165,42 @@ type CollageSlot = {
   src?: string;
   label: string;
   tone?: "warm" | "blue" | "earth" | "sun" | "ocean" | "green";
+  /** object-position for careful cropping */
+  pos?: string;
 };
+
+/** Compact connected photo strip — one cohesive block, no floating cards. */
+function PhotoStrip({
+  photos,
+  className = "",
+  aspect = "aspect-[4/3]",
+}: {
+  photos: CollageSlot[];
+  className?: string;
+  aspect?: string;
+}) {
+  return (
+    <div
+      className={`grid gap-2 overflow-hidden rounded-[1.75rem] ring-1 ring-white/15 ${
+        photos.length >= 4 ? "grid-cols-2 sm:grid-cols-4" : "grid-cols-3"
+      } ${className}`}
+      style={{ filter: "drop-shadow(0 18px 40px rgba(0,0,0,0.28))" }}
+    >
+      {photos.map((p, i) => (
+        <div key={i} className={`overflow-hidden rounded-2xl ${aspect}`}>
+          <img
+            src={p.src}
+            alt={p.label}
+            loading="lazy"
+            className="h-full w-full object-cover"
+            style={p.pos ? { objectPosition: p.pos } : undefined}
+          />
+        </div>
+      ))}
+    </div>
+  );
+}
+
 
 function PhotoCollage({
   photos,
@@ -183,8 +263,10 @@ function PhotoCollage({
               tone={p.tone ?? "earth"}
               rounded="rounded-none"
               className="h-full w-full"
+              objectPosition={p.pos}
               showMissingBadge={false}
             />
+
           </div>
         ))}
       </div>
@@ -1122,6 +1204,7 @@ function Hero({ c }: { c: Copy }) {
         {showVideo ? (
           <video
             className="h-full w-full object-cover"
+            style={{ objectPosition: "center 45%" }}
             autoPlay
             muted
             loop
@@ -1134,33 +1217,20 @@ function Hero({ c }: { c: Copy }) {
             <source src={HERO_VIDEO} type="video/mp4" />
           </video>
         ) : (
-          <SmartImage
-            src={HERO_POSTER}
-            label="Pondo Dogs — animal welfare in Pondoland"
-            className="h-full w-full"
-            rounded="rounded-none"
-            tone="earth"
-            showMissingBadge={false}
-          />
-        )}
-        {!showVideo && (
           <img
-            src={FALLBACK_POSTER}
+            src={HERO_POSTER}
             alt=""
             aria-hidden
-            className="absolute inset-0 h-full w-full object-cover -z-10"
+            className="h-full w-full object-cover"
+            style={{ objectPosition: "center 45%" }}
           />
         )}
-        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/82 via-[var(--ithemba-blue-dark)]/62 to-[var(--ithemba-blue)]/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/60 via-[var(--ithemba-blue-dark)]/48 to-[var(--ithemba-blue)]/32" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--ithemba-blue-deepest)]/45 via-transparent to-transparent" />
         <div className="absolute right-[-6rem] top-[-6rem] h-[28rem] w-[28rem] sun-glow" />
       </div>
 
-      {/* video placeholder badge */}
-      <div className="pointer-events-none absolute right-4 top-4 z-10 inline-flex items-center gap-2 rounded-full bg-black/40 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.14em] text-white/85 ring-1 ring-white/15 backdrop-blur">
-        <PlayCircle className="h-3.5 w-3.5 text-[var(--ithemba-yellow)]" />
-        {c.hero.placeholder}
-      </div>
+
 
       {/* logo */}
       <div className="absolute right-4 top-14 z-10 md:right-8 md:top-16">
@@ -1321,16 +1391,16 @@ function Who({ c }: { c: Copy }) {
     <section className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
       <div className="grid items-center gap-12 md:grid-cols-2">
         <PhotoCollage
-          variant="A"
+          variant="B"
           iconCorner="tr"
           icon={ICON.project}
           photos={[
-            { src: PHOTO_COMMUNITY, label: "Dogs and people in a Pondoland community", tone: "earth" },
-            { src: PHOTO_HERO, label: "Local community team in Pondoland", tone: "warm" },
-            { src: PHOTO_CARE, label: "Owner and dog together at home", tone: "sun" },
-            { src: PHOTO_COMMUNITY, label: "Everyday life with animals in Pondoland", tone: "earth" },
+            { src: PH.team, label: "iThemba Kuluntu Pondo Dogs project workers with dogs", pos: "center 40%" },
+            { src: PH.teamPuppies, label: "Project worker caring for puppies" },
+            { src: PH.teamCommunity, label: "Pondo Dogs team in the community" },
           ]}
         />
+
         <div>
           <SectionHeading eyebrow={c.who.eyebrow} title={c.who.title} />
           <div className="mt-5 space-y-4 text-lg leading-relaxed text-foreground/85">
@@ -1349,15 +1419,15 @@ function Believe({ c }: { c: Copy }) {
   return (
     <section className="relative isolate overflow-hidden py-20 text-white md:py-24">
       <div className="absolute inset-0 -z-10">
-        <SmartImage
-          src={PHOTO_COMMUNITY}
-          label="Animals and families in community"
-          className="h-full w-full"
-          rounded="rounded-none"
-          tone="earth"
-          showMissingBadge={false}
+        <img
+          src={PH.childDog}
+          alt=""
+          aria-hidden
+          className="h-full w-full object-cover"
+          style={{ objectPosition: "center 40%" }}
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/93 via-[var(--ithemba-blue-dark)]/85 to-[var(--ithemba-blue)]/55" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/78 via-[var(--ithemba-blue-dark)]/68 to-[var(--ithemba-blue)]/45" />
+
         <div className="absolute left-[-6rem] bottom-[-6rem] h-[24rem] w-[24rem] sun-glow" />
       </div>
       <div className="relative mx-auto max-w-4xl px-4 lg:px-8">
@@ -1403,15 +1473,14 @@ function Why({ c }: { c: Copy }) {
   return (
     <section className="relative isolate overflow-hidden py-20 text-white md:py-24">
       <div className="absolute inset-0 -z-10">
-        <SmartImage
-          src={PHOTO_HERO}
-          label="Animals and people sharing daily life in Pondoland"
-          className="h-full w-full"
-          rounded="rounded-none"
-          tone="earth"
-          showMissingBadge={false}
+        <img
+          src={PH.puppiesRural}
+          alt=""
+          aria-hidden
+          className="h-full w-full object-cover"
+          style={{ objectPosition: "center 45%" }}
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/92 via-[var(--ithemba-blue-dark)]/82 to-[var(--ithemba-blue)]/55" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/80 via-[var(--ithemba-blue-dark)]/70 to-[var(--ithemba-blue)]/45" />
         <div className="absolute right-[-6rem] top-[-6rem] h-[28rem] w-[28rem] sun-glow" />
       </div>
       <div className="relative mx-auto max-w-4xl px-4 lg:px-8">
@@ -1424,7 +1493,16 @@ function Why({ c }: { c: Copy }) {
             <p key={i}>{p}</p>
           ))}
         </div>
+        <PhotoStrip
+          className="mt-10"
+          photos={[
+            { src: PH.motherPuppies, label: "Mother dog with her puppies in a rural household" },
+            { src: PH.puppiesRural, label: "Puppies in basic rural conditions" },
+            { src: PH.childDog, label: "A child and the family dog in the community", pos: "center 35%" },
+          ]}
+        />
       </div>
+
     </section>
   );
 }
@@ -1477,8 +1555,8 @@ function CareSection({
   body,
   items,
   outro,
-  photo,
-  photoLabel,
+  photos,
+
   icon,
   reversed = false,
   background = "cream",
@@ -1488,8 +1566,8 @@ function CareSection({
   body: string[];
   items?: Bullet[];
   outro?: string;
-  photo: string;
-  photoLabel: string;
+  photos: CollageSlot[];
+
   icon: string;
   reversed?: boolean;
   background?: "cream" | "white" | "blue";
@@ -1514,16 +1592,12 @@ function CareSection({
       <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
         <div className={`grid items-center gap-10 md:grid-cols-2 ${reversed ? "md:[&>*:first-child]:order-2" : ""}`}>
           <PhotoCollage
-            variant={reversed ? "C" : "A"}
+            variant={photos.length >= 4 ? (reversed ? "C" : "A") : "B"}
             iconCorner={reversed ? "tl" : "tr"}
             icon={icon}
-            photos={[
-              { src: photo, label: photoLabel, tone: "earth" },
-              { src: PHOTO_CARE, label: `${photoLabel} — moment two`, tone: "warm" },
-              { src: PHOTO_COMMUNITY, label: `${photoLabel} — moment three`, tone: "sun" },
-              { src: PHOTO_HERO, label: `${photoLabel} — moment four`, tone: "earth" },
-            ]}
+            photos={photos}
           />
+
           <div>
             {isBlue ? (
               <>
