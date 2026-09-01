@@ -1354,16 +1354,16 @@ function Who({ c }: { c: Copy }) {
     <section className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
       <div className="grid items-center gap-12 md:grid-cols-2">
         <PhotoCollage
-          variant="A"
+          variant="B"
           iconCorner="tr"
           icon={ICON.project}
           photos={[
-            { src: PHOTO_COMMUNITY, label: "Dogs and people in a Pondoland community", tone: "earth" },
-            { src: PHOTO_HERO, label: "Local community team in Pondoland", tone: "warm" },
-            { src: PHOTO_CARE, label: "Owner and dog together at home", tone: "sun" },
-            { src: PHOTO_COMMUNITY, label: "Everyday life with animals in Pondoland", tone: "earth" },
+            { src: PH.team, label: "iThemba Kuluntu Pondo Dogs project workers with dogs", pos: "center 40%" },
+            { src: PH.teamPuppies, label: "Project worker caring for puppies" },
+            { src: PH.teamCommunity, label: "Pondo Dogs team in the community" },
           ]}
         />
+
         <div>
           <SectionHeading eyebrow={c.who.eyebrow} title={c.who.title} />
           <div className="mt-5 space-y-4 text-lg leading-relaxed text-foreground/85">
@@ -1382,15 +1382,15 @@ function Believe({ c }: { c: Copy }) {
   return (
     <section className="relative isolate overflow-hidden py-20 text-white md:py-24">
       <div className="absolute inset-0 -z-10">
-        <SmartImage
-          src={PHOTO_COMMUNITY}
-          label="Animals and families in community"
-          className="h-full w-full"
-          rounded="rounded-none"
-          tone="earth"
-          showMissingBadge={false}
+        <img
+          src={PH.childDog}
+          alt=""
+          aria-hidden
+          className="h-full w-full object-cover"
+          style={{ objectPosition: "center 40%" }}
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/93 via-[var(--ithemba-blue-dark)]/85 to-[var(--ithemba-blue)]/55" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/78 via-[var(--ithemba-blue-dark)]/68 to-[var(--ithemba-blue)]/45" />
+
         <div className="absolute left-[-6rem] bottom-[-6rem] h-[24rem] w-[24rem] sun-glow" />
       </div>
       <div className="relative mx-auto max-w-4xl px-4 lg:px-8">
@@ -1510,8 +1510,8 @@ function CareSection({
   body,
   items,
   outro,
-  photo,
-  photoLabel,
+  photos,
+
   icon,
   reversed = false,
   background = "cream",
@@ -1521,8 +1521,8 @@ function CareSection({
   body: string[];
   items?: Bullet[];
   outro?: string;
-  photo: string;
-  photoLabel: string;
+  photos: CollageSlot[];
+
   icon: string;
   reversed?: boolean;
   background?: "cream" | "white" | "blue";
@@ -1547,16 +1547,12 @@ function CareSection({
       <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
         <div className={`grid items-center gap-10 md:grid-cols-2 ${reversed ? "md:[&>*:first-child]:order-2" : ""}`}>
           <PhotoCollage
-            variant={reversed ? "C" : "A"}
+            variant={photos.length >= 4 ? (reversed ? "C" : "A") : "B"}
             iconCorner={reversed ? "tl" : "tr"}
             icon={icon}
-            photos={[
-              { src: photo, label: photoLabel, tone: "earth" },
-              { src: PHOTO_CARE, label: `${photoLabel} — moment two`, tone: "warm" },
-              { src: PHOTO_COMMUNITY, label: `${photoLabel} — moment three`, tone: "sun" },
-              { src: PHOTO_HERO, label: `${photoLabel} — moment four`, tone: "earth" },
-            ]}
+            photos={photos}
           />
+
           <div>
             {isBlue ? (
               <>
