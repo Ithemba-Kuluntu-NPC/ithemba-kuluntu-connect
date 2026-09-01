@@ -1167,6 +1167,7 @@ function Hero({ c }: { c: Copy }) {
         {showVideo ? (
           <video
             className="h-full w-full object-cover"
+            style={{ objectPosition: "center 45%" }}
             autoPlay
             muted
             loop
@@ -1179,33 +1180,20 @@ function Hero({ c }: { c: Copy }) {
             <source src={HERO_VIDEO} type="video/mp4" />
           </video>
         ) : (
-          <SmartImage
-            src={HERO_POSTER}
-            label="Pondo Dogs — animal welfare in Pondoland"
-            className="h-full w-full"
-            rounded="rounded-none"
-            tone="earth"
-            showMissingBadge={false}
-          />
-        )}
-        {!showVideo && (
           <img
-            src={FALLBACK_POSTER}
+            src={HERO_POSTER}
             alt=""
             aria-hidden
-            className="absolute inset-0 h-full w-full object-cover -z-10"
+            className="h-full w-full object-cover"
+            style={{ objectPosition: "center 45%" }}
           />
         )}
-        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/82 via-[var(--ithemba-blue-dark)]/62 to-[var(--ithemba-blue)]/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/60 via-[var(--ithemba-blue-dark)]/48 to-[var(--ithemba-blue)]/32" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--ithemba-blue-deepest)]/45 via-transparent to-transparent" />
         <div className="absolute right-[-6rem] top-[-6rem] h-[28rem] w-[28rem] sun-glow" />
       </div>
 
-      {/* video placeholder badge */}
-      <div className="pointer-events-none absolute right-4 top-4 z-10 inline-flex items-center gap-2 rounded-full bg-black/40 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.14em] text-white/85 ring-1 ring-white/15 backdrop-blur">
-        <PlayCircle className="h-3.5 w-3.5 text-[var(--ithemba-yellow)]" />
-        {c.hero.placeholder}
-      </div>
+
 
       {/* logo */}
       <div className="absolute right-4 top-14 z-10 md:right-8 md:top-16">
