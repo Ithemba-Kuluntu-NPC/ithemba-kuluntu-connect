@@ -35,13 +35,58 @@ export const Route = createFileRoute("/projects/pondo-dogs")({
   component: PondoDogsPage,
 });
 
-/* ---------- assets ---------- */
-const HERO_VIDEO = "/assets/videos/projects/pondo-dogs-hero.mp4";
-const HERO_POSTER = "/assets/photos/projects/pondo-dogs-hero-poster.jpg";
-const FALLBACK_POSTER = assets.photos.projects.pondoDogsHero;
-const PHOTO_HERO = assets.photos.pondoDogs.hero;
-const PHOTO_CARE = assets.photos.pondoDogs.care;
-const PHOTO_COMMUNITY = assets.photos.pondoDogs.community;
+/* ---------- final Pondo Dogs documentary media ---------- */
+const PD = "/assets/photos/projects/pondodogs";
+const HERO_VIDEO = `${PD}/hero-video-pondodogs.mp4`;
+const HERO_POSTER = `${PD}/20250827_103808.jpg`;
+
+const PH = {
+  // team / project introduction
+  team: `${PD}/20250827_103808.jpg`,
+  teamPuppies: `${PD}/20250925_105917.jpg`,
+  teamCommunity: `${PD}/20260301_132324.jpg`,
+  teamField: `${PD}/20251212_094319.jpg`,
+  teamCoord: `${PD}/20260227_093910.jpg`,
+  teamPuppyCare: `${PD}/20260528_143908.jpg`,
+  // rural reality
+  motherPuppies: `${PD}/20250509_161130.jpg`,
+  puppiesRural: `${PD}/20251009_155233(0).jpg`,
+  childDog: `${PD}/20251123_093910.jpg`,
+  puppiesMany: `${PD}/20250902_143408.jpg`,
+  puppiesLitter: `${PD}/20260512_151230.jpg`,
+  // medical / emergency
+  medical1: `${PD}/20250808_153010.jpg`,
+  medical2: `${PD}/20260120_172725.jpg`,
+  medical3: `${PD}/20260329_072507.jpg`,
+  // preventive outreach
+  prev1: `${PD}/20250110_133723.jpg`,
+  prev2: `${PD}/20250110_133914.jpg`,
+  prev3: `${PD}/20250110_134443.jpg`,
+  prev4: `${PD}/20250110_141259.jpg`,
+  // sterilisation
+  sterOwner: `${PD}/20251014_114258.jpg`,
+  sterProcedure: `${PD}/20251014_111318.jpg`,
+  sterSupport: `${PD}/20260129_103135.jpg`,
+  sterTransport: `${PD}/20251212_125318.jpg`,
+  // home-based
+  home1: `${PD}/20250827_105255.jpg`,
+  home2: `${PD}/20260130_163511.jpg`,
+  home3: `${PD}/20260310_153451.jpg`,
+  home4: `${PD}/20260512_160914.jpg`,
+  // food & shelter
+  shelterBasic: `${PD}/20250916_145923.jpg`,
+  feeding: `${PD}/20251125_133713.jpg`,
+  shelterNew1: `${PD}/20260401_113020.jpg`,
+  shelterNew2: `${PD}/20260401_113259.jpg`,
+  // owners / community
+  owner1: `${PD}/20250110_135512.jpg`,
+  owner2: `${PD}/20260411_152418.jpg`,
+  owner3: `${PD}/IMG_20240209_145013%20(1).jpg`,
+  // atmosphere / backgrounds
+  field1: `${PD}/20251119_085954.jpg`,
+  field2: `${PD}/20260313_063332.jpg`,
+} as const;
+
 
 const KUSTENHUND_URL = "https://www.kuestenhund.com/";
 
