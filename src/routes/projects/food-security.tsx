@@ -39,15 +39,166 @@ import type { Lang } from "@/data/content";
 
 export const Route = createFileRoute("/projects/food-security")({ component: FoodSecurityPage });
 
-/* ---------- assets ---------- */
-const HERO_VIDEO = "/assets/videos/projects/food-security-hero.mp4";
-const HERO_POSTER = "/assets/photos/projects/food-security-hero-poster.jpg";
+/* ---------- media (final Food Security library) ---------- */
+const FS = "/assets/photos/projects/foodsecurity";
+
+/** Build a path + human alt text from the descriptive filename. */
+function fsPhoto(file: string, alt: string) {
+  return { src: `${FS}/${file}`, alt };
+}
+
+const HERO_VIDEO = `${FS}/food-security-hero-video.mp4`;
+const HERO_POSTER = `${FS}/food-security-community-meals-team-serving-meals-to-children-27.jpg`;
 const FALLBACK_POSTER = assets.photos.projects.foodSecurityHero;
-const PHOTO_MEALS = assets.photos.foodSecurity.meals;
-const PHOTO_PARCELS = assets.photos.foodSecurity.parcels;
-const PHOTO_KITCHEN = assets.photos.foodSecurity.communityKitchen;
-const PHOTO_ECD_MEAL = assets.photos.ecd.meal;
-const PHOTO_GREENHOUSE = assets.photos.greenhouse.foodGrowing;
+
+/* A. Community meals */
+const MEALS = {
+  serving: fsPhoto("food-security-community-meals-outdoor-meal-serving-from-large-pots-01.jpg", "Outdoor meal serving from large pots"),
+  childrenEating: fsPhoto("food-security-community-meals-children-eating-together-02.jpg", "Children eating together at a community meal"),
+  womenCooking: fsPhoto("food-security-community-meals-women-cooking-large-pot-03.jpg", "Women cooking in a large pot for the community"),
+  openFire: fsPhoto("food-security-community-meals-large-pot-cooking-over-open-fire-04.jpg", "Large pot cooking over an open fire"),
+  outdoorCooking: fsPhoto("food-security-community-meals-outdoor-community-cooking-with-large-pot-05.jpg", "Outdoor community cooking with a large pot"),
+  workerServing: fsPhoto("food-security-community-meals-worker-serving-meal-to-community-member-06.jpg", "Worker serving a meal to a community member"),
+  gathered: fsPhoto("food-security-community-meals-children-gathered-for-meal-07.jpg", "Children gathered for a meal"),
+  seatedAfter: fsPhoto("food-security-community-meals-children-seated-after-meal-support-08.jpg", "Children seated after receiving meal support"),
+  plates: fsPhoto("food-security-community-meals-plates-prepared-for-serving-09.jpg", "Plates prepared for serving"),
+  linedUp: fsPhoto("food-security-community-meals-children-lined-up-for-meal-10.jpg", "Children lined up for a meal"),
+  atService: fsPhoto("food-security-community-meals-children-gathered-at-meal-service-11.jpg", "Children gathered at a meal service"),
+  rowsPlated: fsPhoto("food-security-community-meals-rows-of-plated-meals-12.jpg", "Rows of plated meals ready to serve"),
+  servedOutdoors: fsPhoto("food-security-community-meals-children-being-served-outdoors-13.jpg", "Children being served outdoors"),
+  childAndWorker: fsPhoto("food-security-community-meals-children-and-worker-at-meal-service-14.jpg", "Children and a worker at a meal service"),
+  waterTank: fsPhoto("food-security-community-meals-children-gathered-around-water-tank-15.jpg", "Children gathered around a water tank"),
+  seatedTogether: fsPhoto("food-security-community-meals-children-seated-together-16.jpg", "Children seated together"),
+  handingMeal: fsPhoto("food-security-community-meals-worker-handing-meal-to-child-17.jpg", "Worker handing a meal to a child"),
+  childEating: fsPhoto("food-security-community-meals-child-eating-from-plate-18.jpg", "Child eating from a plate"),
+  eatingOutdoors: fsPhoto("food-security-community-meals-children-eating-outdoors-19.jpg", "Children eating outdoors"),
+  youngChild: fsPhoto("food-security-community-meals-young-child-eating-meal-20.jpg", "Young child eating a meal"),
+  rowsPrepared: fsPhoto("food-security-community-meals-rows-of-prepared-meals-21.jpg", "Rows of prepared meals"),
+  indoorPrep: fsPhoto("food-security-community-meals-indoor-meal-preparation-team-22.jpg", "Indoor meal preparation team"),
+  riceAndStew: fsPhoto("food-security-community-meals-many-plated-rice-and-stew-meals-23.jpg", "Many plated rice and stew meals"),
+  servingRice: fsPhoto("food-security-community-meals-serving-rice-from-large-pot-24.jpg", "Serving rice from a large pot"),
+  servingFromPots: fsPhoto("food-security-community-meals-worker-serving-meals-from-pots-25.jpg", "Worker serving meals from pots"),
+  freshlyServed: fsPhoto("food-security-community-meals-worker-holding-freshly-served-meal-26.jpg", "Worker holding a freshly served meal"),
+  teamServing: fsPhoto("food-security-community-meals-team-serving-meals-to-children-27.jpg", "Team serving meals to children"),
+  cookingFire: fsPhoto("food-security-community-meals-outdoor-cooking-over-fire-28.jpg", "Outdoor cooking over a fire"),
+  besideVehicle: fsPhoto("food-security-community-meals-children-eating-beside-project-vehicle-29.jpg", "Children eating beside the project vehicle"),
+  motherAndChild: fsPhoto("food-security-community-meals-mother-and-child-eating-community-meal-30.jpg", "Mother and child eating a community meal"),
+  teamCooking: fsPhoto("food-security-community-meals-team-cooking-large-pots-outdoors-31.jpg", "Team cooking large pots outdoors"),
+  eatingOnGround: fsPhoto("food-security-community-meals-children-eating-together-on-ground-32.jpg", "Children eating together on the ground"),
+};
+
+/* B. ECD nutrition */
+const ECD = {
+  eatingOutdoors: fsPhoto("food-security-ecd-nutrition-ecd-children-eating-outdoors-01.jpg", "ECD children eating outdoors"),
+  seated: fsPhoto("food-security-ecd-nutrition-ecd-children-seated-for-meal-02.jpg", "ECD children seated for a meal"),
+  inRow: fsPhoto("food-security-ecd-nutrition-ecd-children-eating-in-row-03.jpg", "ECD children eating in a row"),
+  outsideCentre: fsPhoto("food-security-ecd-nutrition-ecd-mealtime-outside-centre-04.jpg", "Mealtime outside the ECD centre"),
+  bowls: fsPhoto("food-security-ecd-nutrition-bowls-of-rice-stew-and-vegetables-05.jpg", "Bowls of rice, stew and vegetables"),
+  blueTables: fsPhoto("food-security-ecd-nutrition-ecd-children-eating-at-blue-tables-06.jpg", "ECD children eating at blue tables"),
+  groupMeal: fsPhoto("food-security-ecd-nutrition-ecd-group-mealtime-07.jpg", "ECD group mealtime"),
+};
+
+/* C. Food distribution */
+const DIST = {
+  groupWithParcels: fsPhoto("food-security-food-distribution-community-group-with-food-parcels-01.jpg", "Community group with food parcels"),
+  womenReceiving: fsPhoto("food-security-food-distribution-women-receiving-food-parcels-02.jpg", "Women receiving food parcels"),
+  groupAtEvent: fsPhoto("food-security-food-distribution-community-group-at-distribution-event-03.jpg", "Community group at a distribution event"),
+  stationTent: fsPhoto("food-security-food-distribution-distribution-station-under-tent-04.jpg", "Distribution station under a tent"),
+  largeEvent: fsPhoto("food-security-food-distribution-large-community-distribution-event-05.jpg", "Large community distribution event"),
+  packing: fsPhoto("food-security-food-distribution-team-packing-food-parcels-06.jpg", "Team packing food parcels"),
+  hillside: fsPhoto("food-security-food-distribution-community-with-food-parcels-on-hillside-07.jpg", "Community with food parcels on a hillside"),
+  banner: fsPhoto("food-security-food-distribution-distribution-event-with-ithembakuluntu-banner-08.jpg", "Distribution event with the iThemba Kuluntu banner"),
+  outdoorParcels: fsPhoto("food-security-food-distribution-large-outdoor-food-parcel-distribution-09.jpg", "Large outdoor food parcel distribution"),
+  teamSupplies: fsPhoto("food-security-food-distribution-ithembakuluntu-team-with-food-supplies-10.jpg", "iThemba Kuluntu team with food supplies"),
+  tentSupplies: fsPhoto("food-security-food-distribution-distribution-event-with-tent-and-supplies-11.jpg", "Distribution event with tent and supplies"),
+  cabbages: fsPhoto("food-security-food-distribution-fresh-cabbages-at-distribution-event-12.jpg", "Fresh cabbages at a distribution event"),
+  carryingHome: fsPhoto("food-security-food-distribution-community-members-carrying-food-parcels-home-13.jpg", "Community members carrying food parcels home"),
+  womanReceiving: fsPhoto("food-security-food-distribution-woman-receiving-food-parcel-14.jpg", "Woman receiving a food parcel"),
+  chakalaka: fsPhoto("food-security-food-distribution-woman-holding-chakalaka-soup-packets-15.jpg", "Woman holding chakalaka soup packets"),
+  balancing: fsPhoto("food-security-food-distribution-woman-balancing-food-parcel-on-head-16.jpg", "Woman balancing a food parcel on her head"),
+  arranged: fsPhoto("food-security-food-distribution-food-parcels-arranged-for-distribution-17.jpg", "Food parcels arranged for distribution"),
+  withSupplies: fsPhoto("food-security-food-distribution-community-distribution-with-food-supplies-18.jpg", "Community distribution with food supplies"),
+  parcelDisplay: fsPhoto("food-security-food-distribution-ithembakuluntu-team-with-large-food-parcel-display-19.jpg", "iThemba Kuluntu team with a large food parcel display"),
+  rowsHousehold: fsPhoto("food-security-food-distribution-large-rows-of-household-food-parcels-20.jpg", "Large rows of household food parcels"),
+  movingRows: fsPhoto("food-security-food-distribution-team-moving-through-food-parcel-rows-21.jpg", "Team moving through food parcel rows"),
+  closeRows: fsPhoto("food-security-food-distribution-close-view-of-food-parcel-rows-22.jpg", "Close view of food parcel rows"),
+  membersReceiving: fsPhoto("food-security-food-distribution-community-members-receiving-food-parcels-23.jpg", "Community members receiving food parcels"),
+  familyParcels: fsPhoto("food-security-food-distribution-family-with-food-parcels-24.jpg", "Family with food parcels"),
+  householdParcels: fsPhoto("food-security-food-distribution-community-group-with-household-food-parcels-25.jpg", "Community group with household food parcels"),
+  familySupport: fsPhoto("food-security-food-distribution-family-receiving-food-support-26.jpg", "Family receiving food support"),
+  fromVehicle: fsPhoto("food-security-food-distribution-children-collecting-food-support-from-vehicle-27.jpg", "Children collecting food support from a vehicle"),
+  preparingParcel: fsPhoto("food-security-food-distribution-woman-preparing-food-parcel-for-recipient-28.jpg", "Woman preparing a food parcel for a recipient"),
+  supportEvent: fsPhoto("food-security-food-distribution-community-food-support-event-29.jpg", "Community food support event"),
+  motherChildren: fsPhoto("food-security-food-distribution-mother-and-children-at-food-support-event-30.jpg", "Mother and children at a food support event"),
+  workerPacking: fsPhoto("food-security-food-distribution-worker-packing-household-food-parcel-31.jpg", "Worker packing a household food parcel"),
+  withProduce: fsPhoto("food-security-food-distribution-large-community-food-distribution-with-produce-32.jpg", "Large community food distribution with fresh produce"),
+  produceStock: fsPhoto("food-security-food-distribution-large-stock-of-fresh-produce-for-distribution-33.jpg", "Large stock of fresh produce for distribution"),
+};
+
+/* D. Greenhouse growing */
+const GROW = {
+  verticalGarden: fsPhoto("food-security-greenhouse-growing-vertical-garden-with-leafy-vegetables-01.jpg", "Vertical garden with leafy vegetables"),
+  workerTending: fsPhoto("food-security-greenhouse-growing-worker-tending-vertical-garden-02.jpg", "Worker tending the vertical garden"),
+  childrenSmiling: fsPhoto("food-security-greenhouse-growing-children-smiling-in-greenhouse-03.jpg", "Children smiling in the greenhouse"),
+  childrenVeg: fsPhoto("food-security-greenhouse-growing-children-in-greenhouse-with-vegetables-04.jpg", "Children in the greenhouse with vegetables"),
+  childWorker: fsPhoto("food-security-greenhouse-growing-child-and-worker-tending-plants-05.jpg", "Child and worker tending plants"),
+  guidingChild: fsPhoto("food-security-greenhouse-growing-worker-guiding-child-with-plants-06.jpg", "Worker guiding a child with plants"),
+  beetrootContainer: fsPhoto("food-security-greenhouse-growing-beetroot-growing-in-container-07.jpg", "Beetroot growing in a container"),
+  teamPlants: fsPhoto("food-security-greenhouse-growing-team-working-among-vertical-garden-plants-08.jpg", "Team working among vertical garden plants"),
+  teamInside: fsPhoto("food-security-greenhouse-growing-team-inside-greenhouse-09.jpg", "Team inside the greenhouse"),
+  hangingVeg: fsPhoto("food-security-greenhouse-growing-hanging-leafy-vegetables-10.jpg", "Hanging leafy vegetables"),
+  wideView: fsPhoto("food-security-greenhouse-growing-wide-view-of-hanging-vegetable-garden-11.jpg", "Wide view of the hanging vegetable garden"),
+};
+
+/* E. Greenhouse harvest */
+const HARVEST = [
+  fsPhoto("food-security-greenhouse-harvest-close-up-of-spinach-leaves-01.jpg", "Close-up of spinach leaves"),
+  fsPhoto("food-security-greenhouse-harvest-freshly-harvested-beetroot-02.jpg", "Freshly harvested beetroot"),
+  fsPhoto("food-security-greenhouse-harvest-healthy-spinach-close-up-03.jpg", "Healthy spinach close-up"),
+];
+
+/* F. Household support */
+const HOUSE = {
+  childrenStaple: fsPhoto("food-security-household-support-children-with-staple-food-parcel-01.jpg", "Children with a staple food parcel"),
+  wheelbarrow: fsPhoto("food-security-household-support-family-carrying-food-home-by-wheelbarrow-and-head-02.jpg", "Family carrying food home by wheelbarrow and on head"),
+  walkingHome: fsPhoto("food-security-household-support-family-walking-home-with-food-parcels-03.jpg", "Family walking home with food parcels"),
+  atHome: fsPhoto("food-security-household-support-family-with-staple-food-parcel-at-home-04.jpg", "Family with a staple food parcel at home"),
+  receivingOutdoors: fsPhoto("food-security-household-support-family-receiving-food-parcel-outdoors-05.jpg", "Family receiving a food parcel outdoors"),
+  ruralHome: fsPhoto("food-security-household-support-family-with-food-parcel-at-rural-home-06.jpg", "Family with a food parcel at their rural home"),
+  womanAndChild: fsPhoto("food-security-household-support-woman-and-child-with-food-support-at-home-07.jpg", "Woman and child with food support at home"),
+};
+
+/* G. Partner support */
+const PARTNER = {
+  womanBox: fsPhoto("food-security-partner-support-woman-holding-rise-against-hunger-box-01.jpg", "Woman holding a Rise Against Hunger box"),
+  table: fsPhoto("food-security-partner-support-distribution-table-with-rise-against-hunger-boxes-02.jpg", "Distribution table with Rise Against Hunger boxes"),
+  olderWoman: fsPhoto("food-security-partner-support-older-woman-receiving-rise-against-hunger-box-03.jpg", "Older woman receiving a Rise Against Hunger box"),
+  youngRecipient: fsPhoto("food-security-partner-support-young-recipient-holding-rise-against-hunger-box-04.jpg", "Young recipient holding a Rise Against Hunger box"),
+  seated: fsPhoto("food-security-partner-support-woman-seated-with-rise-against-hunger-box-05.jpg", "Woman seated with a Rise Against Hunger box"),
+  carrying: fsPhoto("food-security-partner-support-team-carrying-stacked-food-relief-boxes-06.jpg", "Team carrying stacked food relief boxes"),
+  childrenBoxes: fsPhoto("food-security-partner-support-children-in-front-of-rise-against-hunger-boxes-07.jpg", "Children in front of Rise Against Hunger boxes"),
+  workerFamily: fsPhoto("food-security-partner-support-ithembakuluntu-worker-with-family-and-rise-box-08.jpg", "iThemba Kuluntu worker with a family and a relief box"),
+};
+
+/* H. School feeding */
+const SCHOOL = {
+  gathered: fsPhoto("food-security-school-feeding-school-children-gathered-for-meal-01.jpg", "School children gathered for a meal"),
+  serving: fsPhoto("food-security-school-feeding-worker-serving-school-child-02.jpg", "Worker serving a school child"),
+  cooking: fsPhoto("food-security-school-feeding-worker-cooking-for-school-children-03.jpg", "Worker cooking for school children"),
+  linedOutside: fsPhoto("food-security-school-feeding-school-children-lined-up-outside-04.jpg", "School children lined up outside"),
+  withTeam: fsPhoto("food-security-school-feeding-school-children-with-ithembakuluntu-team-05.jpg", "School children with the iThemba Kuluntu team"),
+  linedForMeals: fsPhoto("food-security-school-feeding-school-children-lined-up-for-meals-06.jpg", "School children lined up for meals"),
+  waiting: fsPhoto("food-security-school-feeding-school-children-waiting-outside-07.jpg", "School children waiting outside"),
+  handingPlate: fsPhoto("food-security-school-feeding-worker-handing-plate-to-child-08.jpg", "Worker handing a plate to a child"),
+  servingYoung: fsPhoto("food-security-school-feeding-worker-serving-young-child-09.jpg", "Worker serving a young child"),
+};
+
+/* I. Team / logistics */
+const LOGISTICS = [
+  fsPhoto("food-security-team-logistics-ithembakuluntu-vehicle-at-food-distribution-01.jpg", "iThemba Kuluntu vehicle at a food distribution"),
+  fsPhoto("food-security-team-logistics-team-and-partners-beside-distribution-vehicle-02.jpg", "Team and partners beside the distribution vehicle"),
+];
+
 
 /* ---------- reduced motion ---------- */
 function useReducedMotion() {
