@@ -1643,7 +1643,7 @@ function Sterilisation({ c }: { c: Copy }) {
     <section className="relative isolate overflow-hidden py-24 text-white">
       <div className="absolute inset-0 -z-10">
         <SmartImage
-          src={PHOTO_CARE}
+          src={PH.sterProcedure}
           label="Sterilisation campaign in Pondoland"
           className="h-full w-full"
           rounded="rounded-none"
@@ -1663,10 +1663,10 @@ function Sterilisation({ c }: { c: Copy }) {
               iconCorner="tl"
               icon={ICON.sterilisation}
               photos={[
-                { src: PHOTO_CARE, label: "Animal welfare team preparing a sterilisation campaign", tone: "earth" },
-                { src: PHOTO_COMMUNITY, label: "Sterilisation campaign day in Pondoland", tone: "warm" },
-                { src: PHOTO_HERO, label: "Recovery and follow-up care", tone: "sun" },
-                { src: PHOTO_CARE, label: "Veterinary support with local partners", tone: "earth" },
+                { src: PH.sterOwner, label: "Animal welfare team preparing a sterilisation campaign", tone: "earth" },
+                { src: PH.sterProcedure, label: "Sterilisation campaign day in Pondoland", tone: "warm" },
+                { src: PH.sterSupport, label: "Recovery and follow-up care", tone: "sun" },
+                { src: PH.sterTransport, label: "Veterinary support with local partners", tone: "earth" },
               ]}
             />
             {/* clean icon badge */}
@@ -1740,9 +1740,9 @@ function Education({ c }: { c: Copy }) {
             iconCorner="tr"
             icon={ICON.ownerEducation}
             photos={[
-              { src: PHOTO_COMMUNITY, label: "Owner education in the community", tone: "earth" },
-              { src: PHOTO_CARE, label: "Practical guidance with a local family", tone: "warm" },
-              { src: PHOTO_HERO, label: "Children learning kind handling", tone: "sun" },
+              { src: PH.owner1, label: "Owner education in the community", tone: "earth" },
+              { src: PH.owner2, label: "Practical guidance with a local family", tone: "warm" },
+              { src: PH.childDog, label: "Children learning kind handling", tone: "sun" },
             ]}
           />
           <div>
@@ -1776,7 +1776,7 @@ function More({ c }: { c: Copy }) {
     <section className="relative isolate overflow-hidden py-20 text-white">
       <div className="absolute inset-0 -z-10">
         <SmartImage
-          src={PHOTO_COMMUNITY}
+          src={PH.teamCommunity}
           label="Animals and people in Pondoland"
           className="h-full w-full"
           rounded="rounded-none"
@@ -1860,7 +1860,7 @@ function DonationHelp({ c }: { c: Copy }) {
     <section className="relative isolate overflow-hidden py-20 text-white">
       <div className="absolute inset-0 -z-10">
         <SmartImage
-          src={PHOTO_HERO}
+          src={PH.field1}
           label="Pondo Dogs in the community"
           className="h-full w-full"
           rounded="rounded-none"
@@ -2025,7 +2025,7 @@ function Impact({ c }: { c: Copy }) {
     <section className="relative isolate overflow-hidden py-20 text-white md:py-24">
       <div className="absolute inset-0 -z-10">
         <SmartImage
-          src={PHOTO_HERO}
+          src={PH.field2}
           label="Pondo Dogs impact"
           className="h-full w-full"
           rounded="rounded-none"
@@ -2100,7 +2100,7 @@ function Closing({ c }: { c: Copy }) {
     <section className="relative isolate overflow-hidden py-24 text-white">
       <div className="absolute inset-0 -z-10">
         <SmartImage
-          src={PHOTO_HERO}
+          src={PH.childDog}
           label="Pondo Dogs — animals and families"
           className="h-full w-full"
           rounded="rounded-none"
@@ -2169,8 +2169,11 @@ function PondoDogsPage() {
         title={c.medical.title}
         body={c.medical.body}
         items={c.medical.items}
-        photo={PHOTO_CARE}
-        photoLabel="Caring for a sick or injured animal"
+        photos={[
+          { src: PH.medical1, label: "Caring for a sick or injured animal", tone: "earth" },
+          { src: PH.medical2, label: "Emergency treatment in the field", tone: "warm" },
+          { src: PH.medical3, label: "Follow-up medical care", tone: "sun" },
+        ]}
         icon={ICON.medicalCare}
         background="blue"
       />
@@ -2179,8 +2182,12 @@ function PondoDogsPage() {
         title={c.preventive.title}
         body={c.preventive.body}
         items={c.preventive.items}
-        photo={PHOTO_COMMUNITY}
-        photoLabel="Preventive care for animals"
+        photos={[
+          { src: PH.prev1, label: "Preventive care outreach", tone: "earth" },
+          { src: PH.prev2, label: "Vaccination and deworming day", tone: "warm" },
+          { src: PH.prev3, label: "Community animals waiting for treatment", tone: "sun" },
+          { src: PH.prev4, label: "Parasite control in the village", tone: "earth" },
+        ]}
         icon={ICON.preventiveCare}
         reversed
         background="white"
@@ -2192,8 +2199,12 @@ function PondoDogsPage() {
         body={c.home.body}
         items={c.home.items}
         outro={c.home.outro}
-        photo={PHOTO_COMMUNITY}
-        photoLabel="Home visit in a Pondoland village"
+        photos={[
+          { src: PH.home1, label: "Home visit in a Pondoland village", tone: "earth" },
+          { src: PH.home2, label: "Support for an animal at home", tone: "warm" },
+          { src: PH.home3, label: "Checking on a recovering dog", tone: "sun" },
+          { src: PH.home4, label: "Care alongside the family", tone: "earth" },
+        ]}
         icon={ICON.homeBased}
         background="cream"
       />
@@ -2201,8 +2212,11 @@ function PondoDogsPage() {
         eyebrow={c.food.eyebrow}
         title={c.food.title}
         body={c.food.body}
-        photo={PHOTO_CARE}
-        photoLabel="Food and shelter support for animals"
+        photos={[
+          { src: PH.feeding, label: "Food support for animals", tone: "earth" },
+          { src: PH.shelterBasic, label: "Basic shelter in the community", tone: "warm" },
+          { src: PH.shelterNew1, label: "A newly built shelter", tone: "sun" },
+        ]}
         icon={ICON.foodAndShelter}
         reversed
         background="blue"
