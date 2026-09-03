@@ -193,12 +193,45 @@ const SCHOOL = {
   servingYoung: fsPhoto("food-security-school-feeding-worker-serving-young-child-09.jpg", "Worker serving a young child"),
 };
 
-/* Legacy aliases — map old placeholder constants to final media. */
-const PHOTO_PARCELS = DIST.rowsHousehold.src;
-const PHOTO_KITCHEN = MEALS.womenCooking.src;
-const PHOTO_ECD_MEAL = ECD.blueTables.src;
-const PHOTO_GREENHOUSE = GROW.wideView.src;
-const PHOTO_MEALS = MEALS.teamServing.src;
+/* ---------- per-section media assignment (every filename used ONCE) ---------- */
+const BG_WHY = DIST.rowsHousehold.src;                       // distribution-20
+const BG_FOCUS = DIST.groupAtEvent.src;                      // distribution-03
+const BG_IMPACT = DIST.withProduce.src;                      // distribution-32
+const BG_MONTHLY = DIST.hillside.src;                        // distribution-07
+const BG_CLOSING = MEALS.motherAndChild.src;                 // community-meals-30
+
+const HAMPERS_COLLAGE = {
+  main: { ...HOUSE.wheelbarrow, pos: "center 45%" },
+  side: [
+    { ...DIST.womanReceiving, pos: "center 35%" },
+    { ...PARTNER.womanBox, pos: "center 30%" },
+  ] as [Shot, Shot],
+};
+
+const KITCHEN_COLLAGE = {
+  main: { ...MEALS.womenCooking, pos: "center 40%" },
+  side: [
+    { ...MEALS.servingFromPots, pos: "center 35%" },
+    { ...MEALS.eatingOutdoors, pos: "center 45%" },
+  ] as [Shot, Shot],
+};
+
+const ECD_COLLAGE = {
+  main: { ...ECD.blueTables, pos: "center 40%" },
+  side: [
+    { ...ECD.groupMeal, pos: "center 35%" },
+    { ...SCHOOL.handingPlate, pos: "center 35%" },
+  ] as [Shot, Shot],
+};
+
+const GROW_COLLAGE = {
+  main: { ...GROW.wideView, pos: "center 50%" },
+  side: [
+    { ...GROW.childrenVeg, pos: "center 35%" },
+    { ...HARVEST[1], pos: "center 50%" },
+  ] as [Shot, Shot],
+};
+
 
 /* I. Team / logistics */
 const LOGISTICS = [
@@ -206,6 +239,48 @@ const LOGISTICS = [
   fsPhoto("food-security-team-logistics-team-and-partners-beside-distribution-vehicle-02.jpg", "Team and partners beside the distribution vehicle"),
 ];
 
+
+/* ---------- photo collage primitives (shared visual language with other project pages) ---------- */
+type Shot = { src: string; alt: string; pos?: string };
+
+function Frame({ children, frame, className = "" }: { children: React.ReactNode; frame: "light" | "dark"; className?: string }) {
+  return (
+    <div
+      className={`rounded-[2rem] p-2 shadow-xl ring-1 ${
+        frame === "dark" ? "bg-white/10 ring-white/15 backdrop-blur" : "bg-white ring-black/5"
+      } ${className}`}
+    >
+      {children}
+    </div>
+  );
+}
+
+function ShotImg({ shot, className = "" }: { shot: Shot; className?: string }) {
+  return (
+    <div className={`overflow-hidden rounded-2xl ${className}`}>
+      <img
+        src={shot.src}
+        alt={shot.alt}
+        loading="lazy"
+        className="h-full w-full object-cover"
+        style={shot.pos ? { objectPosition: shot.pos } : undefined}
+      />
+    </div>
+  );
+}
+
+/** One dominant image with two supporting images beside it. Stacks cleanly on mobile. */
+function CollageSide({ main, side, frame = "light", className = "" }: { main: Shot; side: [Shot, Shot]; frame?: "light" | "dark"; className?: string }) {
+  return (
+    <Frame frame={frame} className={className}>
+      <div className="grid grid-cols-3 grid-rows-2 gap-2 aspect-[16/12] sm:aspect-[16/11]">
+        <ShotImg shot={main} className="col-span-3 row-span-1 sm:col-span-2 sm:row-span-2" />
+        <ShotImg shot={side[0]} className="col-span-1" />
+        <ShotImg shot={side[1]} className="col-span-2 sm:col-span-1" />
+      </div>
+    </Frame>
+  );
+}
 
 /* ---------- reduced motion ---------- */
 function useReducedMotion() {
@@ -888,7 +963,8 @@ function Why({ c }: { c: Copy }) {
     <section className="relative isolate overflow-hidden py-20 text-white md:py-24">
       <div className="absolute inset-0 -z-10">
         <SmartImage
-          src={PHOTO_PARCELS}
+          src={BG_WHY}
+          objectPosition="center 45%"
           label="Food parcels for vulnerable families in Pondoland"
           className="h-full w-full"
           rounded="rounded-none"
@@ -927,54 +1003,40 @@ function Hampers({ c }: { c: Copy }) {
           {c.hampers.body.map((p, i) => <p key={i}>{p}</p>)}
         </div>
       </div>
-      <div className="relative order-1 md:order-2">
+      <div className="relative order-1 md:order-2 flex items-center">
         <div className="absolute -right-8 -top-8 h-28 w-28 blob bg-[var(--ithemba-yellow)]/40 -z-10" />
         <div className="absolute -bottom-6 -left-6 h-24 w-24 blob-2 bg-orange-300/30 -z-10" />
-        <SmartImage
-          src={PHOTO_PARCELS}
-          label="Monthly food hampers distributed to families"
-          className="aspect-[4/5] w-full"
-          rounded="rounded-[2.5rem]"
-          tone="warm"
-          showMissingBadge={false}
-        />
+        <CollageSide main={HAMPERS_COLLAGE.main} side={HAMPERS_COLLAGE.side} frame="light" className="w-full" />
       </div>
     </section>
   );
 }
 
-/* ---------- KITCHEN — blue photo-backed ---------- */
+/* ---------- KITCHEN — cream, text + photo collage ---------- */
 function Kitchen({ c }: { c: Copy }) {
   return (
-    <section className="relative isolate overflow-hidden py-20 text-white md:py-24">
-      <div className="absolute inset-0 -z-10">
-        <SmartImage
-          src={PHOTO_KITCHEN}
-          label="Local women volunteers cooking in the soup kitchen"
-          className="h-full w-full"
-          rounded="rounded-none"
-          tone="warm"
-          showMissingBadge={false}
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/92 via-[var(--ithemba-blue-dark)]/82 to-[var(--ithemba-blue)]/55" />
-        <div className="absolute left-[-6rem] bottom-[-6rem] h-[24rem] w-[24rem] sun-glow" />
-      </div>
-      <div className="pointer-events-none absolute left-12 top-16 text-[var(--ithemba-yellow)]/40"><Soup className="h-8 w-8" /></div>
-      <div className="pointer-events-none absolute right-12 top-24 text-[var(--ithemba-yellow)]/30"><HandHeart className="h-7 w-7" /></div>
-      <div className="relative mx-auto max-w-5xl px-4 lg:px-8">
-        <div className="max-w-3xl">
-          <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center gap-2">
+    <section className="relative overflow-hidden bg-[var(--ithemba-cream)] py-20">
+      <div className="pointer-events-none absolute -left-16 top-10 h-52 w-52 blob bg-[var(--ithemba-yellow)]/25" />
+      <div className="pointer-events-none absolute -right-16 bottom-10 h-48 w-48 blob-2 bg-orange-300/25" />
+      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 md:grid-cols-2 lg:px-8">
+        <div className="flex flex-col justify-center">
+          <div className="hand-eyebrow-lg flex items-center gap-2 text-orange-600">
             <Soup className="h-5 w-5" /> {c.kitchen.eyebrow}
           </div>
-          <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.kitchen.title}</h2>
+          <h2 className="-mt-1 font-display text-4xl font-bold text-[var(--ithemba-blue-dark)] md:text-5xl">{c.kitchen.title}</h2>
+          <div className="mt-5 space-y-4 text-lg leading-relaxed text-foreground/85">
+            {c.kitchen.body.map((p, i) => <p key={i}>{p}</p>)}
+          </div>
+          <div className="mt-6 inline-flex items-center gap-2 self-start rounded-full bg-white px-4 py-2 text-sm font-semibold text-[var(--ithemba-brown)] shadow-sm ring-1 ring-black/5">
+            <HandHeart className="h-4 w-4 text-orange-600" /> {c.kitchen.eyebrow}
+          </div>
         </div>
-        <div className="mt-6 max-w-3xl space-y-4 text-lg leading-relaxed text-white/90">
-          {c.kitchen.body.map((p, i) => <p key={i}>{p}</p>)}
-        </div>
+        <CollageSide main={KITCHEN_COLLAGE.main} side={KITCHEN_COLLAGE.side} frame="light" className="w-full" />
       </div>
     </section>
   );
 }
+
 
 /* ---------- ECD MEALS — cream, photo + text ---------- */
 function EcdMeals({ c }: { c: Copy }) {
@@ -1058,7 +1120,8 @@ function Focus({ c }: { c: Copy }) {
     <section className="relative isolate overflow-hidden py-20 text-white md:py-24">
       <div className="absolute inset-0 -z-10">
         <SmartImage
-          src={PHOTO_MEALS}
+          src={BG_FOCUS}
+          objectPosition="center 40%"
           label="Community food support across iThemba Kuluntu focus areas"
           className="h-full w-full"
           rounded="rounded-none"
@@ -1157,7 +1220,8 @@ function Monthly({ c }: { c: Copy }) {
       </svg>
       <div className="absolute inset-0 -z-10">
         <SmartImage
-          src={PHOTO_KITCHEN}
+          src={BG_MONTHLY}
+          objectPosition="center 45%"
           label="Support food security monthly"
           className="h-full w-full"
           rounded="rounded-none"
