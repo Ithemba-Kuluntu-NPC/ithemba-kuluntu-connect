@@ -240,6 +240,48 @@ const LOGISTICS = [
 ];
 
 
+/* ---------- photo collage primitives (shared visual language with other project pages) ---------- */
+type Shot = { src: string; alt: string; pos?: string };
+
+function Frame({ children, frame, className = "" }: { children: React.ReactNode; frame: "light" | "dark"; className?: string }) {
+  return (
+    <div
+      className={`rounded-[2rem] p-2 shadow-xl ring-1 ${
+        frame === "dark" ? "bg-white/10 ring-white/15 backdrop-blur" : "bg-white ring-black/5"
+      } ${className}`}
+    >
+      {children}
+    </div>
+  );
+}
+
+function ShotImg({ shot, className = "" }: { shot: Shot; className?: string }) {
+  return (
+    <div className={`overflow-hidden rounded-2xl ${className}`}>
+      <img
+        src={shot.src}
+        alt={shot.alt}
+        loading="lazy"
+        className="h-full w-full object-cover"
+        style={shot.pos ? { objectPosition: shot.pos } : undefined}
+      />
+    </div>
+  );
+}
+
+/** One dominant image with two supporting images beside it. Stacks cleanly on mobile. */
+function CollageSide({ main, side, frame = "light", className = "" }: { main: Shot; side: [Shot, Shot]; frame?: "light" | "dark"; className?: string }) {
+  return (
+    <Frame frame={frame} className={className}>
+      <div className="grid grid-cols-3 grid-rows-2 gap-2 aspect-[16/12] sm:aspect-[16/11]">
+        <ShotImg shot={main} className="col-span-3 row-span-1 sm:col-span-2 sm:row-span-2" />
+        <ShotImg shot={side[0]} className="col-span-1" />
+        <ShotImg shot={side[1]} className="col-span-2 sm:col-span-1" />
+      </div>
+    </Frame>
+  );
+}
+
 /* ---------- reduced motion ---------- */
 function useReducedMotion() {
   const [reduced, setReduced] = useState(false);
@@ -921,7 +963,8 @@ function Why({ c }: { c: Copy }) {
     <section className="relative isolate overflow-hidden py-20 text-white md:py-24">
       <div className="absolute inset-0 -z-10">
         <SmartImage
-          src={PHOTO_PARCELS}
+          src={BG_WHY}
+          objectPosition="center 45%"
           label="Food parcels for vulnerable families in Pondoland"
           className="h-full w-full"
           rounded="rounded-none"
@@ -1091,7 +1134,8 @@ function Focus({ c }: { c: Copy }) {
     <section className="relative isolate overflow-hidden py-20 text-white md:py-24">
       <div className="absolute inset-0 -z-10">
         <SmartImage
-          src={PHOTO_MEALS}
+          src={BG_FOCUS}
+          objectPosition="center 40%"
           label="Community food support across iThemba Kuluntu focus areas"
           className="h-full w-full"
           rounded="rounded-none"
@@ -1190,7 +1234,8 @@ function Monthly({ c }: { c: Copy }) {
       </svg>
       <div className="absolute inset-0 -z-10">
         <SmartImage
-          src={PHOTO_KITCHEN}
+          src={BG_MONTHLY}
+          objectPosition="center 45%"
           label="Support food security monthly"
           className="h-full w-full"
           rounded="rounded-none"
