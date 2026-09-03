@@ -193,12 +193,45 @@ const SCHOOL = {
   servingYoung: fsPhoto("food-security-school-feeding-worker-serving-young-child-09.jpg", "Worker serving a young child"),
 };
 
-/* Legacy aliases — map old placeholder constants to final media. */
-const PHOTO_PARCELS = DIST.rowsHousehold.src;
-const PHOTO_KITCHEN = MEALS.womenCooking.src;
-const PHOTO_ECD_MEAL = ECD.blueTables.src;
-const PHOTO_GREENHOUSE = GROW.wideView.src;
-const PHOTO_MEALS = MEALS.teamServing.src;
+/* ---------- per-section media assignment (every filename used ONCE) ---------- */
+const BG_WHY = DIST.rowsHousehold.src;                       // distribution-20
+const BG_FOCUS = DIST.groupAtEvent.src;                      // distribution-03
+const BG_IMPACT = DIST.withProduce.src;                      // distribution-32
+const BG_MONTHLY = DIST.hillside.src;                        // distribution-07
+const BG_CLOSING = MEALS.motherAndChild.src;                 // community-meals-30
+
+const HAMPERS_COLLAGE = {
+  main: { ...HOUSE.wheelbarrow, pos: "center 45%" },
+  side: [
+    { ...DIST.womanReceiving, pos: "center 35%" },
+    { ...PARTNER.womanBox, pos: "center 30%" },
+  ] as [Shot, Shot],
+};
+
+const KITCHEN_COLLAGE = {
+  main: { ...MEALS.womenCooking, pos: "center 40%" },
+  side: [
+    { ...MEALS.servingFromPots, pos: "center 35%" },
+    { ...MEALS.eatingOutdoors, pos: "center 45%" },
+  ] as [Shot, Shot],
+};
+
+const ECD_COLLAGE = {
+  main: { ...ECD.blueTables, pos: "center 40%" },
+  side: [
+    { ...ECD.groupMeal, pos: "center 35%" },
+    { ...SCHOOL.handingPlate, pos: "center 35%" },
+  ] as [Shot, Shot],
+};
+
+const GROW_COLLAGE = {
+  main: { ...GROW.wideView, pos: "center 50%" },
+  side: [
+    { ...GROW.childrenVeg, pos: "center 35%" },
+    { ...HARVEST[1], pos: "center 50%" },
+  ] as [Shot, Shot],
+};
+
 
 /* I. Team / logistics */
 const LOGISTICS = [
