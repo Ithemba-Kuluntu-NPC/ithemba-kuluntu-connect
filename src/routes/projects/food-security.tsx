@@ -193,6 +193,13 @@ const SCHOOL = {
   servingYoung: fsPhoto("food-security-school-feeding-worker-serving-young-child-09.jpg", "Worker serving a young child"),
 };
 
+/* Legacy aliases — map old placeholder constants to final media. */
+const PHOTO_PARCELS = DIST.rowsHousehold.src;
+const PHOTO_KITCHEN = MEALS.womenCooking.src;
+const PHOTO_ECD_MEAL = ECD.blueTables.src;
+const PHOTO_GREENHOUSE = GROW.wideView.src;
+const PHOTO_MEALS = MEALS.teamServing.src;
+
 /* I. Team / logistics */
 const LOGISTICS = [
   fsPhoto("food-security-team-logistics-ithembakuluntu-vehicle-at-food-distribution-01.jpg", "iThemba Kuluntu vehicle at a food distribution"),
