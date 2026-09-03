@@ -1003,54 +1003,40 @@ function Hampers({ c }: { c: Copy }) {
           {c.hampers.body.map((p, i) => <p key={i}>{p}</p>)}
         </div>
       </div>
-      <div className="relative order-1 md:order-2">
+      <div className="relative order-1 md:order-2 flex items-center">
         <div className="absolute -right-8 -top-8 h-28 w-28 blob bg-[var(--ithemba-yellow)]/40 -z-10" />
         <div className="absolute -bottom-6 -left-6 h-24 w-24 blob-2 bg-orange-300/30 -z-10" />
-        <SmartImage
-          src={PHOTO_PARCELS}
-          label="Monthly food hampers distributed to families"
-          className="aspect-[4/5] w-full"
-          rounded="rounded-[2.5rem]"
-          tone="warm"
-          showMissingBadge={false}
-        />
+        <CollageSide main={HAMPERS_COLLAGE.main} side={HAMPERS_COLLAGE.side} frame="light" className="w-full" />
       </div>
     </section>
   );
 }
 
-/* ---------- KITCHEN — blue photo-backed ---------- */
+/* ---------- KITCHEN — cream, text + photo collage ---------- */
 function Kitchen({ c }: { c: Copy }) {
   return (
-    <section className="relative isolate overflow-hidden py-20 text-white md:py-24">
-      <div className="absolute inset-0 -z-10">
-        <SmartImage
-          src={PHOTO_KITCHEN}
-          label="Local women volunteers cooking in the soup kitchen"
-          className="h-full w-full"
-          rounded="rounded-none"
-          tone="warm"
-          showMissingBadge={false}
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/92 via-[var(--ithemba-blue-dark)]/82 to-[var(--ithemba-blue)]/55" />
-        <div className="absolute left-[-6rem] bottom-[-6rem] h-[24rem] w-[24rem] sun-glow" />
-      </div>
-      <div className="pointer-events-none absolute left-12 top-16 text-[var(--ithemba-yellow)]/40"><Soup className="h-8 w-8" /></div>
-      <div className="pointer-events-none absolute right-12 top-24 text-[var(--ithemba-yellow)]/30"><HandHeart className="h-7 w-7" /></div>
-      <div className="relative mx-auto max-w-5xl px-4 lg:px-8">
-        <div className="max-w-3xl">
-          <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center gap-2">
+    <section className="relative overflow-hidden bg-[var(--ithemba-cream)] py-20">
+      <div className="pointer-events-none absolute -left-16 top-10 h-52 w-52 blob bg-[var(--ithemba-yellow)]/25" />
+      <div className="pointer-events-none absolute -right-16 bottom-10 h-48 w-48 blob-2 bg-orange-300/25" />
+      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 md:grid-cols-2 lg:px-8">
+        <div className="flex flex-col justify-center">
+          <div className="hand-eyebrow-lg flex items-center gap-2 text-orange-600">
             <Soup className="h-5 w-5" /> {c.kitchen.eyebrow}
           </div>
-          <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.kitchen.title}</h2>
+          <h2 className="-mt-1 font-display text-4xl font-bold text-[var(--ithemba-blue-dark)] md:text-5xl">{c.kitchen.title}</h2>
+          <div className="mt-5 space-y-4 text-lg leading-relaxed text-foreground/85">
+            {c.kitchen.body.map((p, i) => <p key={i}>{p}</p>)}
+          </div>
+          <div className="mt-6 inline-flex items-center gap-2 self-start rounded-full bg-white px-4 py-2 text-sm font-semibold text-[var(--ithemba-brown)] shadow-sm ring-1 ring-black/5">
+            <HandHeart className="h-4 w-4 text-orange-600" /> {c.kitchen.eyebrow}
+          </div>
         </div>
-        <div className="mt-6 max-w-3xl space-y-4 text-lg leading-relaxed text-white/90">
-          {c.kitchen.body.map((p, i) => <p key={i}>{p}</p>)}
-        </div>
+        <CollageSide main={KITCHEN_COLLAGE.main} side={KITCHEN_COLLAGE.side} frame="light" className="w-full" />
       </div>
     </section>
   );
 }
+
 
 /* ---------- ECD MEALS — cream, photo + text ---------- */
 function EcdMeals({ c }: { c: Copy }) {
