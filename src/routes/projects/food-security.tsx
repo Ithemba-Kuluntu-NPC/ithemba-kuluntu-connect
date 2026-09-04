@@ -79,7 +79,6 @@ const MEALS = {
   servingRice: fsPhoto("food-security-community-meals-serving-rice-from-large-pot-24.jpg", "Serving rice from a large pot"),
   servingFromPots: fsPhoto("food-security-community-meals-worker-serving-meals-from-pots-25.jpg", "Worker serving meals from pots"),
   freshlyServed: fsPhoto("food-security-community-meals-worker-holding-freshly-served-meal-26.jpg", "Worker holding a freshly served meal"),
-  teamServing: fsPhoto("food-security-community-meals-team-serving-meals-to-children-27.jpg", "Team serving meals to children"),
   cookingFire: fsPhoto("food-security-community-meals-outdoor-cooking-over-fire-28.jpg", "Outdoor cooking over a fire"),
   besideVehicle: fsPhoto("food-security-community-meals-children-eating-beside-project-vehicle-29.jpg", "Children eating beside the project vehicle"),
   motherAndChild: fsPhoto("food-security-community-meals-mother-and-child-eating-community-meal-30.jpg", "Mother and child eating a community meal"),
