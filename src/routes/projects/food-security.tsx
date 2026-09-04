@@ -1255,7 +1255,7 @@ function Monthly({ c }: { c: Copy }) {
 /* ---------- CLOSING ---------- */
 function Closing({ c }: { c: Copy }) {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[var(--ithemba-blue-deepest)] via-[var(--ithemba-blue-dark)] to-[var(--ithemba-blue)] pt-28 pb-20 text-white md:pt-32">
+    <section className="relative isolate overflow-hidden pt-28 pb-20 text-white md:pt-32">
       {/* soft wave transition from the donation section above */}
       <svg
         className="pointer-events-none absolute -top-px left-0 z-10 block w-full"
@@ -1273,6 +1273,19 @@ function Closing({ c }: { c: Copy }) {
           fill="var(--ithemba-blue-deepest)"
         />
       </svg>
+      <div className="absolute inset-0 -z-10">
+        <SmartImage
+          src={BG_CLOSING}
+          objectPosition="center 45%"
+          label="Mother and child sharing a community meal"
+          className="h-full w-full"
+          rounded="rounded-none"
+          tone="warm"
+          showMissingBadge={false}
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/90 via-[var(--ithemba-blue-dark)]/78 to-[var(--ithemba-blue)]/55" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--ithemba-blue-deepest)]/60 via-transparent to-transparent" />
+      </div>
       <div className="pointer-events-none absolute right-[-6rem] top-[-6rem] h-[24rem] w-[24rem] sun-glow" />
       <div className="pointer-events-none absolute left-10 top-10">
         <SunDoodle className="h-12 w-12 text-[var(--ithemba-yellow)]/60" />
