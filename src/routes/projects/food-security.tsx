@@ -1180,7 +1180,7 @@ function DonationSupport({ c }: { c: Copy }) {
 
 /* ---------- IMPACT ---------- */
 function Impact({ c }: { c: Copy }) {
-  return <ImpactCounters items={c.impact.items} title={c.impact.title} />;
+  return <ImpactCounters items={c.impact.items} title={c.impact.title} backgroundImage={BG_IMPACT} softOverlay />;
 }
 
 /* ---------- MONTHLY (with widget) ---------- */
