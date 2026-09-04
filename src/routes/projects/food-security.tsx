@@ -1038,23 +1038,16 @@ function Kitchen({ c }: { c: Copy }) {
 }
 
 
-/* ---------- ECD MEALS — cream, photo + text ---------- */
+/* ---------- ECD MEALS — cream, collage + text ---------- */
 function EcdMeals({ c }: { c: Copy }) {
   return (
     <section className="relative overflow-hidden bg-[var(--ithemba-cream)] py-20">
       <div className="pointer-events-none absolute -right-16 top-10 h-56 w-56 blob bg-[var(--ithemba-yellow)]/30" />
       <div className="pointer-events-none absolute -left-16 bottom-10 h-48 w-48 blob-2 bg-orange-300/25" />
       <div className="relative mx-auto grid max-w-7xl gap-10 px-4 md:grid-cols-2 lg:px-8">
-        <div className="relative">
+        <div className="relative flex items-center">
           <div className="absolute -right-8 -top-8 h-28 w-28 blob bg-[var(--ithemba-yellow)]/40 -z-10" />
-          <SmartImage
-            src={PHOTO_ECD_MEAL}
-            label="Daily meals for children at the No.1 ECD Centre"
-            className="aspect-[4/5] w-full"
-            rounded="rounded-[2.5rem]"
-            tone="warm"
-            showMissingBadge={false}
-          />
+          <CollageSide main={ECD_COLLAGE.main} side={ECD_COLLAGE.side} frame="light" className="w-full" />
         </div>
         <div className="flex flex-col justify-center">
           <SectionHeading eyebrow={c.ecd.eyebrow} title={c.ecd.title} />
