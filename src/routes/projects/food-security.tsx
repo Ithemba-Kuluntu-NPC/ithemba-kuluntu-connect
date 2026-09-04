@@ -1071,7 +1071,7 @@ function EcdMeals({ c }: { c: Copy }) {
   );
 }
 
-/* ---------- GREENHOUSE CONNECTION — short, cream split ---------- */
+/* ---------- GREENHOUSE CONNECTION — short, cream split with collage ---------- */
 function GreenhouseConnection({ c }: { c: Copy }) {
   return (
     <section className="relative mx-auto grid max-w-7xl gap-10 px-4 py-20 md:grid-cols-2 lg:px-8">
@@ -1091,17 +1091,10 @@ function GreenhouseConnection({ c }: { c: Copy }) {
           </Link>
         </div>
       </div>
-      <div className="relative order-1 md:order-2">
+      <div className="relative order-1 md:order-2 flex items-center">
         <div className="absolute -left-8 -top-8 h-28 w-28 blob bg-emerald-300/40 -z-10" />
         <div className="absolute -bottom-6 -right-6 h-24 w-24 blob-2 bg-[var(--ithemba-yellow)]/30 -z-10" />
-        <SmartImage
-          src={PHOTO_GREENHOUSE}
-          label="Fresh produce from the greenhouse supplementing ECD meals"
-          className="aspect-[4/5] w-full"
-          rounded="rounded-[2.5rem]"
-          tone="green"
-          showMissingBadge={false}
-        />
+        <CollageSide main={GROW_COLLAGE.main} side={GROW_COLLAGE.side} frame="light" className="w-full" />
       </div>
     </section>
   );
