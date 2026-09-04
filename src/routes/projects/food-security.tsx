@@ -79,7 +79,6 @@ const MEALS = {
   servingRice: fsPhoto("food-security-community-meals-serving-rice-from-large-pot-24.jpg", "Serving rice from a large pot"),
   servingFromPots: fsPhoto("food-security-community-meals-worker-serving-meals-from-pots-25.jpg", "Worker serving meals from pots"),
   freshlyServed: fsPhoto("food-security-community-meals-worker-holding-freshly-served-meal-26.jpg", "Worker holding a freshly served meal"),
-  teamServing: fsPhoto("food-security-community-meals-team-serving-meals-to-children-27.jpg", "Team serving meals to children"),
   cookingFire: fsPhoto("food-security-community-meals-outdoor-cooking-over-fire-28.jpg", "Outdoor cooking over a fire"),
   besideVehicle: fsPhoto("food-security-community-meals-children-eating-beside-project-vehicle-29.jpg", "Children eating beside the project vehicle"),
   motherAndChild: fsPhoto("food-security-community-meals-mother-and-child-eating-community-meal-30.jpg", "Mother and child eating a community meal"),
@@ -1038,23 +1037,16 @@ function Kitchen({ c }: { c: Copy }) {
 }
 
 
-/* ---------- ECD MEALS — cream, photo + text ---------- */
+/* ---------- ECD MEALS — cream, collage + text ---------- */
 function EcdMeals({ c }: { c: Copy }) {
   return (
     <section className="relative overflow-hidden bg-[var(--ithemba-cream)] py-20">
       <div className="pointer-events-none absolute -right-16 top-10 h-56 w-56 blob bg-[var(--ithemba-yellow)]/30" />
       <div className="pointer-events-none absolute -left-16 bottom-10 h-48 w-48 blob-2 bg-orange-300/25" />
       <div className="relative mx-auto grid max-w-7xl gap-10 px-4 md:grid-cols-2 lg:px-8">
-        <div className="relative">
+        <div className="relative flex items-center">
           <div className="absolute -right-8 -top-8 h-28 w-28 blob bg-[var(--ithemba-yellow)]/40 -z-10" />
-          <SmartImage
-            src={PHOTO_ECD_MEAL}
-            label="Daily meals for children at the No.1 ECD Centre"
-            className="aspect-[4/5] w-full"
-            rounded="rounded-[2.5rem]"
-            tone="warm"
-            showMissingBadge={false}
-          />
+          <CollageSide main={ECD_COLLAGE.main} side={ECD_COLLAGE.side} frame="light" className="w-full" />
         </div>
         <div className="flex flex-col justify-center">
           <SectionHeading eyebrow={c.ecd.eyebrow} title={c.ecd.title} />
@@ -1078,7 +1070,7 @@ function EcdMeals({ c }: { c: Copy }) {
   );
 }
 
-/* ---------- GREENHOUSE CONNECTION — short, cream split ---------- */
+/* ---------- GREENHOUSE CONNECTION — short, cream split with collage ---------- */
 function GreenhouseConnection({ c }: { c: Copy }) {
   return (
     <section className="relative mx-auto grid max-w-7xl gap-10 px-4 py-20 md:grid-cols-2 lg:px-8">
@@ -1098,17 +1090,10 @@ function GreenhouseConnection({ c }: { c: Copy }) {
           </Link>
         </div>
       </div>
-      <div className="relative order-1 md:order-2">
+      <div className="relative order-1 md:order-2 flex items-center">
         <div className="absolute -left-8 -top-8 h-28 w-28 blob bg-emerald-300/40 -z-10" />
         <div className="absolute -bottom-6 -right-6 h-24 w-24 blob-2 bg-[var(--ithemba-yellow)]/30 -z-10" />
-        <SmartImage
-          src={PHOTO_GREENHOUSE}
-          label="Fresh produce from the greenhouse supplementing ECD meals"
-          className="aspect-[4/5] w-full"
-          rounded="rounded-[2.5rem]"
-          tone="green"
-          showMissingBadge={false}
-        />
+        <CollageSide main={GROW_COLLAGE.main} side={GROW_COLLAGE.side} frame="light" className="w-full" />
       </div>
     </section>
   );
@@ -1194,7 +1179,7 @@ function DonationSupport({ c }: { c: Copy }) {
 
 /* ---------- IMPACT ---------- */
 function Impact({ c }: { c: Copy }) {
-  return <ImpactCounters items={c.impact.items} title={c.impact.title} />;
+  return <ImpactCounters items={c.impact.items} title={c.impact.title} backgroundImage={BG_IMPACT} softOverlay />;
 }
 
 /* ---------- MONTHLY (with widget) ---------- */
@@ -1269,7 +1254,7 @@ function Monthly({ c }: { c: Copy }) {
 /* ---------- CLOSING ---------- */
 function Closing({ c }: { c: Copy }) {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[var(--ithemba-blue-deepest)] via-[var(--ithemba-blue-dark)] to-[var(--ithemba-blue)] pt-28 pb-20 text-white md:pt-32">
+    <section className="relative isolate overflow-hidden pt-28 pb-20 text-white md:pt-32">
       {/* soft wave transition from the donation section above */}
       <svg
         className="pointer-events-none absolute -top-px left-0 z-10 block w-full"
@@ -1287,6 +1272,19 @@ function Closing({ c }: { c: Copy }) {
           fill="var(--ithemba-blue-deepest)"
         />
       </svg>
+      <div className="absolute inset-0 -z-10">
+        <SmartImage
+          src={BG_CLOSING}
+          objectPosition="center 45%"
+          label="Mother and child sharing a community meal"
+          className="h-full w-full"
+          rounded="rounded-none"
+          tone="warm"
+          showMissingBadge={false}
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/90 via-[var(--ithemba-blue-dark)]/78 to-[var(--ithemba-blue)]/55" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--ithemba-blue-deepest)]/60 via-transparent to-transparent" />
+      </div>
       <div className="pointer-events-none absolute right-[-6rem] top-[-6rem] h-[24rem] w-[24rem] sun-glow" />
       <div className="pointer-events-none absolute left-10 top-10">
         <SunDoodle className="h-12 w-12 text-[var(--ithemba-yellow)]/60" />
