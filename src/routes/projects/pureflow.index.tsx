@@ -128,8 +128,35 @@ const SERIF = '"Fraunces", "Georgia", serif';
 const SCRIPT = '"Caveat", "Kalam", cursive';
 
 const ASSET_BASE = "/assets/icons/projects/pureflow";
+const PHOTO_BASE = "/assets/photos/projects/pureflow";
 const HERO_VIDEO = "/assets/videos/projects/pureflow/pureflow-hero-loop.mp4";
 const HERO_POSTER = "/assets/photos/projects/pureflow/pureflow-hero-poster.jpg";
+
+const FIELD_PHOTOS = {
+  loop: [
+    "pureflow-community-engagement-royal-house-community-address-01.jpg",
+    "pureflow-pilot-assembly-station-team-01.jpg",
+    "pureflow-big-hand-out-event-giving-filters-to-people.jpg",
+    "pureflow-rural-handout-wash-training-community-speaker-01.jpg",
+    "pureflow-home-visit-household-monitoring-discussion-01.jpg",
+  ],
+  structural: {
+    background: "pureflow-water-source-muddy-stream-woman-01.jpg",
+    main: "pureflow-water-source-muddy-stream-group-collection-01.jpg",
+    carrying: "pureflow-collected-dirty-water-buckets-01.jpg",
+    source: "pureflow-water-source-cattle-drinking-shared-spring-01.jpg",
+    household: "pureflow-home-visit-boiling-water-open-fire-01.jpg",
+  },
+  climate: [
+    "pureflow-home-visit-filter-backwash-demonstration-01.jpg",
+    "pureflow-home-visit-water-testing-demonstration-01.jpg",
+    "pureflow-dirty-vs-filtered-water-comparison-01.jpg",
+    "pureflow-home-visit-woman-pouring-water-into-filter-01.jpg",
+  ],
+  sdg: "pureflow-community-engagement-royal-house-large-community-meeting-01.jpg",
+  donation: "pureflow-happy-dancing-recipients-of-filter-after-event.jpg",
+  closing: "pureflow-rural-handout-community-group-holding-filter-buckets-01.jpg",
+} as const;
 
 // ----------------------- Reusable building blocks -----------------------
 
@@ -969,12 +996,11 @@ function StepBlock({
 
 function DeliveryLoop({ t }: { t: (k: string, fb?: string) => string }) {
   const ICONS = [Ear, Wrench, Truck, GraduationCap, HeartHandshake];
-  const SLUGS = ["listen", "assemble", "deliver", "teach", "stay"];
   const items = [1, 2, 3, 4, 5].map((n, i) => ({
     title: t(`step2.loop.${n}.title`),
     desc: t(`step2.loop.${n}.desc`),
     Icon: ICONS[i],
-    photo: `/assets/photos/projects/pureflow/pureflow-loop-${SLUGS[i]}.jpg`,
+    photo: `${PHOTO_BASE}/${FIELD_PHOTOS.loop[i]}`,
   }));
 
   const LoopPhoto = ({ src, Icon, alt, size }: { src: string; Icon: typeof Ear; alt: string; size: "lg" | "sm" }) => {
@@ -1152,7 +1178,7 @@ function SDGGrid({ t }: { t: (k: string, fb?: string) => string }) {
     <section className="relative isolate overflow-hidden">
       <div className="absolute inset-0 -z-10">
         <img
-          src="/assets/photos/projects/pureflow/pureflow-sdg-background.jpg"
+          src={`${PHOTO_BASE}/${FIELD_PHOTOS.sdg}`}
           alt=""
           aria-hidden
           className="h-full w-full object-cover"
@@ -1328,7 +1354,7 @@ function DonationBox({ t, anchorRef }: { t: (k: string, fb?: string) => string; 
     <section ref={anchorRef as React.RefObject<HTMLDivElement>} id="donate" className="relative isolate scroll-mt-20 overflow-hidden">
       <div className="absolute inset-0 -z-10">
         <img
-          src="/assets/photos/projects/pureflow/pureflow-invest-transformation-bg.jpg"
+          src={`${PHOTO_BASE}/${FIELD_PHOTOS.donation}`}
           alt=""
           aria-hidden
           className="h-full w-full object-cover"
@@ -1471,7 +1497,7 @@ function Closing({ t, goDonate }: { t: (k: string, fb?: string) => string; goDon
       <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-14 text-white md:px-8 md:py-20 lg:grid-cols-[1.05fr_1fr] lg:gap-14">
         <div className="relative">
           <PhotoFrame
-            src="/assets/photos/projects/pureflow/pureflow-closing-group-filters.jpg"
+            src={`${PHOTO_BASE}/${FIELD_PHOTOS.closing}`}
             alt="Community group photo holding PureFlow Amanzi filters"
             tone="ocean"
             className="aspect-[5/4] w-full"
@@ -1520,7 +1546,7 @@ function Step01Collage({ t }: { t: (k: string, fb?: string) => string }) {
   return (
     <section id="structural-problem" className="relative isolate overflow-hidden" style={{ background: CREAM, scrollMarginTop: "calc(var(--header-height, 80px) + 16px)" }}>
       <img
-        src="/assets/photos/projects/pureflow/pureflow-step-01-structural-problem-background.jpg"
+        src={`${PHOTO_BASE}/${FIELD_PHOTOS.structural.background}`}
         alt=""
         aria-hidden
         className="pointer-events-none absolute inset-0 h-full w-full object-cover"
@@ -1579,17 +1605,17 @@ function Step01Collage({ t }: { t: (k: string, fb?: string) => string }) {
               {/* main tall portrait, left */}
               <div className="col-span-7 row-span-4 overflow-hidden rounded-tl-[2.5rem] rounded-br-2xl rounded-tr-xl rounded-bl-xl ring-1 ring-black/10">
                 <img
-                  src="/assets/photos/projects/pureflow/pureflow-step-01-structural-problem.jpg"
+                  src={`${PHOTO_BASE}/${FIELD_PHOTOS.structural.main}`}
                   alt="Women in rural Pondoland carrying the daily burden of unsafe water"
                   loading="lazy"
                   className="h-full w-full object-cover"
-                  style={{ objectPosition: "center 30%" }}
+                  style={{ objectPosition: "center 42%" }}
                 />
               </div>
               {/* top right */}
               <div className="col-span-5 row-span-3 overflow-hidden rounded-tr-[2.5rem] rounded-bl-xl rounded-tl-xl rounded-br-xl ring-1 ring-black/10">
                 <img
-                  src="/assets/photos/projects/pureflow/pureflow-step-01-structural-problem-2.jpg"
+                  src={`${PHOTO_BASE}/${FIELD_PHOTOS.structural.carrying}`}
                   alt="Daily reality of collecting water in Pondoland"
                   loading="lazy"
                   className="h-full w-full object-cover"
@@ -1599,17 +1625,17 @@ function Step01Collage({ t }: { t: (k: string, fb?: string) => string }) {
               {/* mid right */}
               <div className="col-span-5 row-span-3 overflow-hidden rounded-xl ring-1 ring-black/10">
                 <img
-                  src="/assets/photos/projects/pureflow/pureflow-step-01-structural-problem-3.jpg"
+                  src={`${PHOTO_BASE}/${FIELD_PHOTOS.structural.source}`}
                   alt="Unsafe water source serving rural households"
                   loading="lazy"
                   className="h-full w-full object-cover"
-                  style={{ objectPosition: "center" }}
+                  style={{ objectPosition: "center 40%" }}
                 />
               </div>
               {/* bottom wide */}
               <div className="col-span-7 row-span-2 overflow-hidden rounded-bl-[2.5rem] rounded-tr-xl rounded-tl-xl rounded-br-xl ring-1 ring-black/10">
                 <img
-                  src="/assets/photos/projects/pureflow/pureflow-step-01-structural-problem-4.jpg"
+                  src={`${PHOTO_BASE}/${FIELD_PHOTOS.structural.household}`}
                   alt="Community context behind the water crisis"
                   loading="lazy"
                   className="h-full w-full object-cover"
@@ -1645,10 +1671,10 @@ function Step01Collage({ t }: { t: (k: string, fb?: string) => string }) {
 // ----------------------- Climate Resilience & Sustainability -----------------------
 
 const CLIMATE_PHOTOS: Array<{ src?: string; objectPosition?: string; alt?: string }> = [
-  { src: "/assets/photos/projects/pureflow/pureflow-step-06-long-term-transformation.jpg", alt: "Rural landscape and village resilience" },
-  { src: "/assets/photos/projects/pureflow/pureflow-step-03-immediate-public-benefit.jpg", alt: "Safe water in households and schools" },
-  { src: "/assets/photos/projects/pureflow/pureflow-step-05-wider-community-gains.jpeg", alt: "Local women in paid follow-up roles" },
-  { src: "/assets/photos/projects/pureflow/pureflow-step-04-system-shifts.jpg", alt: "WASH training and sustained household solutions" },
+  { src: `${PHOTO_BASE}/${FIELD_PHOTOS.climate[0]}`, alt: "Household filter maintenance and backwashing" },
+  { src: `${PHOTO_BASE}/${FIELD_PHOTOS.climate[1]}`, alt: "Field team testing household water quality" },
+  { src: `${PHOTO_BASE}/${FIELD_PHOTOS.climate[2]}`, alt: "Untreated water compared with filtered drinking water" },
+  { src: `${PHOTO_BASE}/${FIELD_PHOTOS.climate[3]}`, alt: "Resident using a PureFlow filter during a home visit" },
 ];
 
 function ClimateSection({ t }: { t: (k: string, fb?: string) => string }) {
@@ -1960,9 +1986,9 @@ function PureFlowCompactPage() {
         photoTone="ocean"
         collageVariant="B"
         photoSrcs={[
-          { src: "/assets/photos/projects/pureflow/pureflow-step-02-pureflow-model.jpg", alt: "PureFlow filter installed in a household" },
-          { src: "/assets/photos/projects/pureflow/pureflow-step-02-pureflow-model-2.jpg", alt: "Assembly of a PureFlow bucket filter" },
-          { src: "/assets/photos/projects/pureflow/pureflow-step-02-pureflow-model-3.jpg", alt: "Family using safe water at home" },
+          { src: `${PHOTO_BASE}/pureflow-pilot-assembly-drilling-filter-bucket-01.jpg`, objectPosition: "center 42%", alt: "Local team drilling a PureFlow filter bucket" },
+          { src: `${PHOTO_BASE}/pureflow-pilot-assembly-fitting-filter-bucket-01.jpg`, objectPosition: "center 45%", alt: "Local assembly team fitting a PureFlow filter" },
+          { src: `${PHOTO_BASE}/pureflow-handout-event-01-assembly-pouring-water-01.jpg`, objectPosition: "center 38%", alt: "Team preparing a PureFlow filter for community delivery" },
         ]}
         accentSrc={`${ASSET_BASE}/pureflow-solution.png`}
       >
@@ -1983,10 +2009,10 @@ function PureFlowCompactPage() {
         photoTone="sun"
         collageVariant="C"
         photoSrcs={[
-          { src: "/assets/photos/projects/pureflow/pureflow-step-03-immediate-public-benefit.jpg", alt: "Children drinking safe water at the ECD centre" },
-          { src: "/assets/photos/projects/pureflow/pureflow-step-03-immediate-public-benefit-2.jpg", alt: "School classroom benefiting from PureFlow water" },
-          { src: "/assets/photos/projects/pureflow/pureflow-step-03-immediate-public-benefit-3.jpg", alt: "Clean drinking cups at the ECD centre" },
-          { src: "/assets/photos/projects/pureflow/pureflow-step-03-immediate-public-benefit-4.jpg", alt: "Educator supporting children with safe water" },
+          { src: `${PHOTO_BASE}/pureflow-children-drinking-filtered-water-01.jpg`, objectPosition: "center 35%", alt: "Children drinking freshly filtered water" },
+          { src: `${PHOTO_BASE}/pureflow-ecd-child-using-filter-in-class.jpg`, objectPosition: "center 35%", alt: "Child using a PureFlow filter in an ECD classroom" },
+          { src: `${PHOTO_BASE}/pureflow-rural-ECD-classroom-kids-holding-up-cups-during-education.jpg`, objectPosition: "center 42%", alt: "Children holding drinking cups during rural ECD safe-water education" },
+          { src: `${PHOTO_BASE}/pureflow-rural-ECD-handwashing-kid-filter-two-teachers.jpg`, objectPosition: "center 38%", alt: "Teachers guiding a child through handwashing at a rural ECD centre" },
         ]}
         accentSrc={`${ASSET_BASE}/pureflow-school.png`}
         accentSrcSecondary={`${ASSET_BASE}/pureflow-ecd.png`}
@@ -2010,10 +2036,10 @@ function PureFlowCompactPage() {
         photoTone="blue"
         collageVariant="A"
         photoSrcs={[
-          { src: "/assets/photos/projects/pureflow/pureflow-step-04-system-shifts.jpg", alt: "WASH training session with community members" },
-          { src: "/assets/photos/projects/pureflow/pureflow-step-04-system-shifts-2.jpg", alt: "Hygiene demonstration in a village" },
-          { src: "/assets/photos/projects/pureflow/pureflow-step-04-system-shifts-3.jpg", alt: "Community health worker with a family" },
-          { src: "/assets/photos/projects/pureflow/pureflow-step-04-system-shifts-4.jpg", alt: "Village leaders reviewing water plans" },
+          { src: `${PHOTO_BASE}/pureflow-community-engagement-royal-house-wash-training-community-01.jpg`, objectPosition: "center 40%", alt: "WASH training with community members at the Royal House" },
+          { src: `${PHOTO_BASE}/pureflow-community-engagement-royal-house-filter-demonstration-01.jpg`, objectPosition: "center 38%", alt: "PureFlow filter demonstration during community engagement" },
+          { src: `${PHOTO_BASE}/pureflow-handout-event-01-backwash-demonstration-participant-01.jpg`, objectPosition: "center 42%", alt: "Participant practising a filter backwash demonstration" },
+          { src: `${PHOTO_BASE}/pureflow-home-visit-filter-training-mother-and-children-01.jpg`, objectPosition: "center 35%", alt: "Mother and children receiving filter-use guidance at home" },
         ]}
         accentSrc={`${ASSET_BASE}/pureflow-wash.png`}
       />
@@ -2032,9 +2058,9 @@ function PureFlowCompactPage() {
         photoTone="warm"
         collageVariant="B"
         photoSrcs={[
-          { src: "/assets/photos/projects/pureflow/pureflow-step-05-wider-community-gains.jpeg", alt: "Local team assembling filters" },
-          { src: "/assets/photos/projects/pureflow/pureflow-step-05-wider-community-gains-2.jpg", alt: "Delivery day in a Pondoland village" },
-          { src: "/assets/photos/projects/pureflow/pureflow-step-05-wider-community-gains-3.jpg", alt: "New skills, new local income" },
+          { src: `${PHOTO_BASE}/pureflow-handout-event-01-assembly-station-team-02.jpg`, objectPosition: "center 38%", alt: "Local implementation team assembling PureFlow filters" },
+          { src: `${PHOTO_BASE}/pureflow-handout-event-01-household-registration-01.jpg`, objectPosition: "center 35%", alt: "Local team registering households for filter delivery" },
+          { src: `${PHOTO_BASE}/pureflow-gift-of-givers-core-team-hands-on-filter-training-01.jpg`, objectPosition: "center 40%", alt: "Implementation-partner team receiving hands-on filter training" },
         ]}
         accentSrc={`${ASSET_BASE}/pureflow-jobs.png`}
       />
@@ -2055,10 +2081,10 @@ function PureFlowCompactPage() {
         photoTone="ocean"
         collageVariant="C"
         photoSrcs={[
-          { src: "/assets/photos/projects/pureflow/pureflow-step-06-long-term-transformation.jpg", objectPosition: "center 18%", alt: "Woman with lasting access to safe water" },
-          { src: "/assets/photos/projects/pureflow/pureflow-step-06-long-term-transformation-2.jpg", alt: "Children thriving in a healthier village" },
-          { src: "/assets/photos/projects/pureflow/pureflow-step-06-long-term-transformation-3.jpg", alt: "Village landscape shaped by clean water" },
-          { src: "/assets/photos/projects/pureflow/pureflow-step-06-long-term-transformation-4.jpg", alt: "Long-term community transformation" },
+          { src: `${PHOTO_BASE}/pureflow-rural-handout-smiling-woman-holding-filter-core-01.jpg`, objectPosition: "center 30%", alt: "Woman holding the PureFlow filter core after a rural handout" },
+          { src: `${PHOTO_BASE}/pureflow-happy-recipients-after-event-child-smiling.jpg`, objectPosition: "center 35%", alt: "Child smiling after a community filter event" },
+          { src: `${PHOTO_BASE}/pureflow-rural-handout-resident-collecting-filtered-water-01.jpg`, objectPosition: "center 42%", alt: "Resident collecting filtered water from a PureFlow unit" },
+          { src: `${PHOTO_BASE}/pureflow-gift-of-givers-core-team-implementation-partner-group-photo-01.jpg`, objectPosition: "center 38%", alt: "PureFlow and Gift of the Givers implementation team" },
         ]}
         accentSrc={`${ASSET_BASE}/pureflow-village.png`}
         accentSrcSecondary={`${ASSET_BASE}/pureflow-community.png`}
