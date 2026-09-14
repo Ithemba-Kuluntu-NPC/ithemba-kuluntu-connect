@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   ArrowLeft,
@@ -10,7 +9,6 @@ import {
   MapPin,
   Building2,
   Truck,
-  PlayCircle,
   Star,
   HandHeart,
   ShieldAlert,
@@ -32,31 +30,60 @@ import { SmartImage } from "@/components/site/Asset";
 import { DonationWidget } from "@/components/blocks/DonationWidget";
 import { FocusAreaBadges } from "@/components/blocks/FocusAreaBadges";
 import { ImpactCounters } from "@/components/blocks/ImpactCounters";
-import { assets } from "@/data/assets";
 import { focusAreaBadgeMeta } from "@/data/projects";
 import type { Lang } from "@/data/content";
 
 export const Route = createFileRoute("/projects/disaster-relief")({ component: DisasterReliefPage });
 
 /* ---------- assets ---------- */
-const HERO_VIDEO = "/assets/videos/projects/disaster-relief-hero.mp4";
-const HERO_POSTER = "/assets/photos/projects/disaster-relief-hero-poster.jpg";
-const FALLBACK_POSTER = assets.photos.projects.disasterReliefHero;
-const PHOTO_SUPPORT = assets.photos.disasterRelief.support;
-const PHOTO_SUPPLIES = assets.photos.disasterRelief.supplies;
+const PHOTO_BASE = "/assets/photos/projects/disaster-relief";
+const PHOTOS = {
+  hero: `${PHOTO_BASE}/disaster-relief-community-distribution-large-community-gathering-02.jpg`,
+  snapshotMain: `${PHOTO_BASE}/disaster-relief-community-distribution-large-group-with-mattress-and-supplies-01.jpg`,
+  snapshotFamilies: `${PHOTO_BASE}/disaster-relief-community-distribution-families-with-mattresses-and-relief-items-01.jpg`,
+  snapshotDelivery: `${PHOTO_BASE}/disaster-relief-mattress-support-team-carrying-mattresses-across-rural-field-01.jpg`,
+  vulnerabilityHome: `${PHOTO_BASE}/disaster-relief-household-vulnerability-children-at-weathered-rural-home-02.jpg`,
+  fireDamage: `${PHOTO_BASE}/disaster-relief-fire-damage-burned-round-home-with-destroyed-roof-02.jpg`,
+  vulnerableRoom: `${PHOTO_BASE}/disaster-relief-household-vulnerability-bare-room-with-bedding-on-floor-05.jpg`,
+  reliefBundle: `${PHOTO_BASE}/disaster-relief-relief-bundle-family-with-mattress-food-and-supplies-01.jpg`,
+  mattressDelivery: `${PHOTO_BASE}/disaster-relief-mattress-support-woman-carrying-mattress-through-village-04.jpg`,
+  schoolShoes: `${PHOTO_BASE}/disaster-relief-school-shoes-worker-distributing-shoes-to-children-02.jpg`,
+  wheelchair: `${PHOTO_BASE}/disaster-relief-wheelchair-support-worker-adjusting-wheelchair-for-recipient-08.jpg`,
+  localTrustMain: `${PHOTO_BASE}/disaster-relief-local-trust-worker-with-older-woman-and-relief-supplies-05.jpg`,
+  localTrustChild: `${PHOTO_BASE}/disaster-relief-local-trust-worker-hugging-child-at-rural-home-02.jpg`,
+  fireTeam: `${PHOTO_BASE}/disaster-relief-fire-response-team-unloading-mattresses-and-supplies-01.jpg`,
+  recovery: `${PHOTO_BASE}/disaster-relief-recovery-site-woman-beside-excavator-clearing-rubble-02.jpg`,
+  connectedMain: `${PHOTO_BASE}/disaster-relief-connected-care-children-and-caregivers-outside-community-building-01.jpg`,
+  connectedChild: `${PHOTO_BASE}/disaster-relief-connected-care-smiling-child-at-community-support-event-02.jpg`,
+  connectedFamily: `${PHOTO_BASE}/disaster-relief-connected-care-mother-and-child-portrait-03.jpg`,
+  supportMain: `${PHOTO_BASE}/disaster-relief-household-support-family-group-at-rural-home-03.jpg`,
+  supportBundle: `${PHOTO_BASE}/disaster-relief-relief-bundle-community-with-mattress-and-household-supplies-02.jpg`,
+  monthly: `${PHOTO_BASE}/disaster-relief-fire-response-family-with-mattress-food-and-relief-bundle-05.jpg`,
+  closing: `${PHOTO_BASE}/disaster-relief-wheelchair-support-smiling-woman-seated-in-wheelchair-09.jpg`,
+} as const;
 
-/* ---------- reduced motion ---------- */
-function useReducedMotion() {
-  const [reduced, setReduced] = useState(false);
-  useEffect(() => {
-    if (typeof window === "undefined" || !window.matchMedia) return;
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReduced(mq.matches);
-    const on = (e: MediaQueryListEvent) => setReduced(e.matches);
-    mq.addEventListener?.("change", on);
-    return () => mq.removeEventListener?.("change", on);
-  }, []);
-  return reduced;
+type Photo = { src: string; alt: string; position: string };
+
+function PhotoCollage({ photos, className = "" }: { photos: readonly Photo[]; className?: string }) {
+  const count = photos.length;
+  return (
+    <div className={`grid min-h-[22rem] gap-3 overflow-hidden rounded-3xl sm:min-h-[28rem] ${count > 1 ? "grid-cols-2" : "grid-cols-1"} ${className}`}>
+      {photos.map((photo, index) => (
+        <div
+          key={photo.src}
+          className={`relative min-h-0 overflow-hidden ${count === 3 && index === 0 ? "col-span-2 min-h-[14rem] sm:col-span-1 sm:row-span-2 sm:min-h-0" : "min-h-[11rem]"}`}
+        >
+          <img
+            src={photo.src}
+            alt={photo.alt}
+            className="absolute inset-0 h-full w-full object-cover"
+            style={{ objectPosition: photo.position }}
+            loading="lazy"
+          />
+        </div>
+      ))}
+    </div>
+  );
 }
 
 /* ---------- content types ---------- */
