@@ -1,81 +1,825 @@
 [
   {
-    "_comment": "Placeholder data for design preview only. Replace with verified PureFlow Amanzi event data and event-specific photos before public launch.",
-    "id": "event-001",
-    "community": "Cwebeni Village (demo)",
-    "date": "2026-01-15",
-    "eventType": "Community rollout event",
-    "householdsReached": 24,
-    "peopleReached": 132,
-    "partnerSupporter": "To be confirmed",
-    "description": "Short editable description of the event. Replace this demo text with verified field information before launch.",
-    "coordinates": { "lat": -31.6229, "lng": 29.5448 },
+    "id": "community-01-sicambeni",
+    "eventNumber": 1,
+    "eventType": "community-rollout",
+    "community": "Sicambeni",
+    "location": "Sicambeni, Eastern Cape",
+    "householdsReached": 160,
+    "peopleReached": 800,
+    "supportedBy": "iThemba Kuluntu e.V.",
+    "coreActivities": [
+      "Beneficiary registration",
+      "WASH education",
+      "Filter use & maintenance training"
+    ],
+    "coordinates": {
+      "lat": -31.6593,
+      "lng": 29.48138
+    },
     "photos": [
-      "/assets/photos/projects/pureflow/pureflow-watch-verify.jpeg",
-      "/assets/photos/projects/pureflow/pureflow-step-01-structural-problem.jpg",
-      "/assets/photos/projects/pureflow/pureflow-step-02-pureflow-model.jpg"
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-1-scambeni-01.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-1-scambeni-02.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-1-scambeni-03.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-1-scambeni-04.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-1-scambeni-05.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-1-scambeni-06.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-1-scambeni-07.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-1-scambeni-08.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-1-scambeni-09.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-1-scambeni-10.jpg"
     ]
   },
   {
-    "id": "event-002",
-    "community": "Port St Johns area (demo)",
-    "date": "2026-02-08",
-    "eventType": "WASH education",
-    "householdsReached": 18,
-    "peopleReached": 96,
-    "partnerSupporter": "To be confirmed",
-    "description": "Short editable description of the event. Replace this demo text with verified field information before launch.",
-    "coordinates": { "lat": -31.6304, "lng": 29.5450 },
+    "id": "community-02-bholani",
+    "eventNumber": 2,
+    "eventType": "community-rollout",
+    "community": "Bholani",
+    "location": "Bholani, Eastern Cape",
+    "householdsReached": 120,
+    "peopleReached": 600,
+    "supportedBy": null,
+    "coreActivities": [
+      "Beneficiary registration",
+      "WASH education",
+      "Filter use & maintenance training"
+    ],
+    "coordinates": {
+      "lat": -31.64473,
+      "lng": 29.4159
+    },
     "photos": [
-      "/assets/photos/projects/pureflow/pureflow-step-03-immediate-public-benefit.jpg",
-      "/assets/photos/projects/pureflow/pureflow-step-04-system-shifts.jpg"
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-2-bholani-01.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-2-bholani-02.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-2-bholani-03.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-2-bholani-04.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-2-bholani-05.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-2-bholani-06.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-2-bholani-07.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-2-bholani-08.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-2-bholani-09.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-2-bholani-10.jpg"
     ]
   },
   {
-    "id": "event-003",
-    "community": "No.1 ECD Centre (demo)",
-    "date": "2026-03-02",
-    "eventType": "School / ECD event",
-    "householdsReached": 6,
-    "peopleReached": 84,
-    "partnerSupporter": "To be confirmed",
-    "description": "Short editable description of the event. Replace this demo text with verified field information before launch.",
-    "coordinates": { "lat": -31.6410, "lng": 29.5610 },
+    "id": "community-03-cwebeni-no1-family-rollout",
+    "eventNumber": 3,
+    "eventType": "community-rollout",
+    "community": "Cwebeni No.1 ECD Centre - Family Rollout",
+    "location": "Cwebeni, Eastern Cape",
+    "householdsReached": 120,
+    "peopleReached": 600,
+    "supportedBy": "iThemba Kuluntu e.V.",
+    "coreActivities": [
+      "Beneficiary registration",
+      "WASH education",
+      "Filter use & maintenance training"
+    ],
+    "coordinates": {
+      "lat": -31.669177,
+      "lng": 29.439696
+    },
     "photos": [
-      "/assets/photos/projects/pureflow/pureflow-step-05-wider-community-gains.jpeg",
-      "/assets/photos/projects/pureflow/pureflow-step-06-long-term-transformation.jpg",
-      "/assets/photos/projects/pureflow/pureflow-closing-group-filters.jpg"
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-3-cwebeni-no1-01.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-3-cwebeni-no1-02.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-3-cwebeni-no1-03.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-3-cwebeni-no1-04.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-3-cwebeni-no1-05.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-3-cwebeni-no1-06.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-3-cwebeni-no1-07.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-3-cwebeni-no1-08.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-3-cwebeni-no1-09.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-3-cwebeni-no1-10.jpg"
     ]
   },
   {
-    "id": "event-004",
-    "community": "Mthatha outskirts (demo)",
-    "date": "2026-04-19",
-    "eventType": "Partner rollout",
-    "householdsReached": 42,
-    "peopleReached": 231,
-    "partnerSupporter": "To be confirmed",
-    "description": "Short editable description of the event. Replace this demo text with verified field information before launch.",
-    "coordinates": { "lat": -31.5889, "lng": 28.7844 },
+    "id": "community-04-tombo",
+    "eventNumber": 4,
+    "eventType": "community-rollout",
+    "community": "Tombo",
+    "location": "Tombo, Eastern Cape",
+    "householdsReached": 90,
+    "peopleReached": 450,
+    "supportedBy": null,
+    "coreActivities": [
+      "Beneficiary registration",
+      "WASH education",
+      "Filter use & maintenance training"
+    ],
+    "coordinates": {
+      "lat": -31.62318,
+      "lng": 29.39084
+    },
     "photos": [
-      "/assets/photos/projects/pureflow/pureflow-step-01-structural-problem-2.jpg",
-      "/assets/photos/projects/pureflow/pureflow-step-01-structural-problem-3.jpg",
-      "/assets/photos/projects/pureflow/pureflow-step-01-structural-problem-4.jpg"
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-4-tombo-01.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-4-tombo-02.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-4-tombo-03.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-4-tombo-04.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-4-tombo-05.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-4-tombo-06.jpg"
     ]
   },
   {
-    "id": "event-005",
-    "community": "Lusikisiki (demo)",
-    "date": "2026-05-11",
-    "eventType": "Community rollout event",
+    "id": "community-05-vukandlule",
+    "eventNumber": 5,
+    "eventType": "community-rollout",
+    "community": "Vukandlule",
+    "location": "Vukandlule, Eastern Cape",
+    "householdsReached": 110,
+    "peopleReached": 550,
+    "supportedBy": "Rossi South Africa",
+    "coreActivities": [
+      "Beneficiary registration",
+      "WASH education",
+      "Filter use & maintenance training"
+    ],
+    "coordinates": {
+      "lat": -31.65904,
+      "lng": 29.46012
+    },
+    "photos": [
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-5-vukandlule-01.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-5-vukandlule-02.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-5-vukandlule-03.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-5-vukandlule-04.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-5-vukandlule-05.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-5-vukandlule-06.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-5-vukandlule-07.jpg"
+    ]
+  },
+  {
+    "id": "community-06-caguba",
+    "eventNumber": 6,
+    "eventType": "community-rollout",
+    "community": "Caguba",
+    "location": "Caguba, Eastern Cape",
+    "householdsReached": 150,
+    "peopleReached": 750,
+    "supportedBy": "Nando's",
+    "coreActivities": [
+      "Beneficiary registration",
+      "WASH education",
+      "Filter use & maintenance training"
+    ],
+    "coordinates": {
+      "lat": -31.63632,
+      "lng": 29.46289
+    },
+    "photos": [
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-6-caguba-01.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-6-caguba-02.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-6-caguba-03.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-6-caguba-04.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-6-caguba-05.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-6-caguba-06.jpg"
+    ]
+  },
+  {
+    "id": "community-07-dumasi",
+    "eventNumber": 7,
+    "eventType": "community-rollout",
+    "community": "Dumasi",
+    "location": "Dumasi, Eastern Cape",
+    "householdsReached": 200,
+    "peopleReached": 1000,
+    "supportedBy": null,
+    "coreActivities": [
+      "Beneficiary registration",
+      "WASH education",
+      "Filter use & maintenance training"
+    ],
+    "coordinates": {
+      "lat": -31.628414,
+      "lng": 29.420861
+    },
+    "photos": [
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-7-dumasi-01.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-7-dumasi-02.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-7-dumasi-03.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-7-dumasi-04.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-7-dumasi-05.jpg"
+    ]
+  },
+  {
+    "id": "community-08-hlamvana",
+    "eventNumber": 8,
+    "eventType": "community-rollout",
+    "community": "Hlamvana",
+    "location": "Hlamvana, Eastern Cape",
+    "householdsReached": 140,
+    "peopleReached": 700,
+    "supportedBy": null,
+    "coreActivities": [
+      "Beneficiary registration",
+      "WASH education",
+      "Filter use & maintenance training"
+    ],
+    "coordinates": {
+      "lat": -31.65791,
+      "lng": 29.42096
+    },
+    "photos": [
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-8-hlamvana-01.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-8-hlamvana-02.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-8-hlamvana-03.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-8-hlamvana-04.jpg"
+    ]
+  },
+  {
+    "id": "community-09-bofolo",
+    "eventNumber": 9,
+    "eventType": "community-rollout",
+    "community": "Bofolo",
+    "location": "Bofolo, Cwebeni, Eastern Cape",
+    "householdsReached": 60,
+    "peopleReached": 300,
+    "supportedBy": null,
+    "coreActivities": [
+      "Beneficiary registration",
+      "WASH education",
+      "Filter use & maintenance training"
+    ],
+    "coordinates": {
+      "lat": -31.663332,
+      "lng": 29.430908
+    },
+    "photos": [
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-9-bofolo-01.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-9-bofolo-02.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-9-bofolo-03.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-9-bofolo-04.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-9-bofolo-05.jpg"
+    ]
+  },
+  {
+    "id": "community-10-kwa-zulu",
+    "eventNumber": 10,
+    "eventType": "community-rollout",
+    "community": "Kwa-Zulu",
+    "location": "Kwa-Zulu, Cwebeni, Eastern Cape",
+    "householdsReached": 100,
+    "peopleReached": 500,
+    "supportedBy": "Rossi South Africa",
+    "coreActivities": [
+      "Beneficiary registration",
+      "WASH education",
+      "Filter use & maintenance training"
+    ],
+    "coordinates": {
+      "lat": -31.664997,
+      "lng": 29.440435
+    },
+    "photos": [
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-10-kwa-zulu-01.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-10-kwa-zulu-02.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-10-kwa-zulu-03.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-10-kwa-zulu-04.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-10-kwa-zulu-05.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-10-kwa-zulu-06.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-10-kwa-zulu-07.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-10-kwa-zulu-08.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-10-kwa-zulu-09.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-10-kwa-zulu-10.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-10-kwa-zulu-11.jpg"
+    ]
+  },
+  {
+    "id": "community-11-cwebeni-jss",
+    "eventNumber": 11,
+    "eventType": "community-rollout",
+    "community": "Cwebeni JSS Secondary School",
+    "location": "Cwebeni, Eastern Cape",
     "householdsReached": 30,
-    "peopleReached": 168,
-    "partnerSupporter": "To be confirmed",
-    "description": "Short editable description of the event. Replace this demo text with verified field information before launch.",
-    "coordinates": { "lat": -31.3728, "lng": 29.5744 },
+    "peopleReached": 150,
+    "supportedBy": null,
+    "coreActivities": [
+      "Beneficiary registration",
+      "WASH education",
+      "Filter use & maintenance training"
+    ],
+    "coordinates": {
+      "lat": -31.66661,
+      "lng": 29.4322
+    },
     "photos": [
-      "/assets/photos/projects/pureflow/pureflow-sdg-background.jpg",
-      "/assets/photos/projects/pureflow/pureflow-watch-verify.jpeg"
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-11-cwebeni-jss-01.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-11-cwebeni-jss-02.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-11-cwebeni-jss-03.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-11-cwebeni-jss-04.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-11-cwebeni-jss-05.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-11-cwebeni-jss-06.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-11-cwebeni-jss-07.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-11-cwebeni-jss-08.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-11-cwebeni-jss-09.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-11-cwebeni-jss-10.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-11-cwebeni-jss-11.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-11-cwebeni-jss-12.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-11-cwebeni-jss-13.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-11-cwebeni-jss-14.jpg"
+    ]
+  },
+  {
+    "id": "community-12-cwebeni-pilot",
+    "eventNumber": 12,
+    "eventType": "community-rollout",
+    "community": "Cwebeni Pilot",
+    "location": "Cwebeni, Eastern Cape",
+    "householdsReached": 25,
+    "peopleReached": 125,
+    "implementationPartner": "Gift of the Givers",
+    "supportedBy": "Star Foundation",
+    "coreActivities": [
+      "Beneficiary registration",
+      "WASH education",
+      "Filter use & maintenance training"
+    ],
+    "coordinates": {
+      "lat": -31.66739,
+      "lng": 29.431282
+    },
+    "photos": [
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-12-cwebeni-pilot-01.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-12-cwebeni-pilot-02.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-12-cwebeni-pilot-03.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-12-cwebeni-pilot-04.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-12-cwebeni-pilot-05.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-12-cwebeni-pilot-06.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-12-cwebeni-pilot-07.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-12-cwebeni-pilot-08.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-12-cwebeni-pilot-09.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-12-cwebeni-pilot-10.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-12-cwebeni-pilot-11.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-event-12-cwebeni-pilot-12.jpg"
+    ]
+  },
+  {
+    "id": "gotg-01-mbhava",
+    "eventNumber": 1,
+    "eventType": "community-rollout",
+    "community": "Mbhava",
+    "location": "Mbhava, Swayimane, KwaZulu-Natal",
+    "householdsReached": 140,
+    "peopleReached": 700,
+    "implementationPartner": "Gift of the Givers",
+    "supportedBy": "Star Foundation",
+    "coreActivities": [
+      "Beneficiary registration",
+      "WASH education",
+      "Filter use & maintenance training"
+    ],
+    "coordinates": {
+      "lat": -29.580986,
+      "lng": 30.675536
+    },
+    "photos": [
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-1-mbhava-swayimane-01.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-1-mbhava-swayimane-02.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-1-mbhava-swayimane-03.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-1-mbhava-swayimane-04.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-1-mbhava-swayimane-05.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-1-mbhava-swayimane-06.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-1-mbhava-swayimane-07.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-1-mbhava-swayimane-08.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-1-mbhava-swayimane-09.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-1-mbhava-swayimane-10.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-1-mbhava-swayimane-11.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-1-mbhava-swayimane-12.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-1-mbhava-swayimane-13.jpg"
+    ]
+  },
+  {
+    "id": "gotg-02-hluhluwe",
+    "eventNumber": 2,
+    "eventType": "community-rollout",
+    "community": "Hluhluwe",
+    "location": "Hluhluwe, KwaZulu-Natal",
+    "householdsReached": 80,
+    "peopleReached": 400,
+    "implementationPartner": "Gift of the Givers",
+    "supportedBy": "Star Foundation",
+    "coreActivities": [
+      "Beneficiary registration",
+      "WASH education",
+      "Filter use & maintenance training"
+    ],
+    "coordinates": {
+      "lat": -28.0175,
+      "lng": 32.2692
+    },
+    "photos": [
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-2-hluhluwe-01.jpg"
+    ]
+  },
+  {
+    "id": "gotg-03-manguzi",
+    "eventNumber": 3,
+    "eventType": "community-rollout",
+    "community": "Manguzi",
+    "location": "Manguzi, KwaZulu-Natal",
+    "householdsReached": 90,
+    "peopleReached": 450,
+    "implementationPartner": "Gift of the Givers",
+    "supportedBy": "Star Foundation",
+    "coreActivities": [
+      "Beneficiary registration",
+      "WASH education",
+      "Filter use & maintenance training"
+    ],
+    "coordinates": {
+      "lat": -26.98829,
+      "lng": 32.75603
+    },
+    "photos": [
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-3-manguzi-01.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-3-manguzi-02.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-3-manguzi-03.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-3-manguzi-04.jpg"
+    ]
+  },
+  {
+    "id": "gotg-04-kortnek",
+    "eventNumber": 4,
+    "eventType": "community-rollout",
+    "community": "Kortnek",
+    "location": "Kortnek, KwaZulu-Natal",
+    "householdsReached": 150,
+    "peopleReached": 750,
+    "implementationPartner": "Gift of the Givers",
+    "supportedBy": "Star Foundation",
+    "coreActivities": [
+      "Beneficiary registration",
+      "WASH education",
+      "Filter use & maintenance training"
+    ],
+    "coordinates": {
+      "lat": -27.40946,
+      "lng": 31.30247
+    },
+    "photos": [
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-4-pangola-01.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-4-pangola-02.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-4-pangola-03.jpg"
+    ],
+    "note": "The existing filenames use \"pangola\". The public event name is Kortnek."
+  },
+  {
+    "id": "gotg-05-skhemelele",
+    "eventNumber": 5,
+    "eventType": "community-rollout",
+    "community": "Skhemelele",
+    "location": "Skhemelele, Manguzi, KwaZulu-Natal",
+    "householdsReached": 160,
+    "peopleReached": 800,
+    "implementationPartner": "Gift of the Givers",
+    "supportedBy": "Star Foundation",
+    "coreActivities": [
+      "Beneficiary registration",
+      "WASH education",
+      "Filter use & maintenance training"
+    ],
+    "coordinates": {
+      "lat": -27.03978,
+      "lng": 32.27193
+    },
+    "photos": [
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-5-skhemelele-01.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-5-skhemelele-02.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-5-skhemelele-03.jpg"
+    ]
+  },
+  {
+    "id": "gotg-06-ndumo",
+    "eventNumber": 6,
+    "eventType": "community-rollout",
+    "community": "Ndumo",
+    "location": "Ndumo, KwaZulu-Natal",
+    "householdsReached": 150,
+    "peopleReached": 750,
+    "implementationPartner": "Gift of the Givers",
+    "supportedBy": "Star Foundation",
+    "coreActivities": [
+      "Beneficiary registration",
+      "WASH education",
+      "Filter use & maintenance training"
+    ],
+    "coordinates": {
+      "lat": -26.92541,
+      "lng": 32.25232
+    },
+    "photos": [
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-6-ndumo-01.jpg"
+    ]
+  },
+  {
+    "id": "gotg-07-appelsbosch",
+    "eventNumber": 7,
+    "eventType": "community-rollout",
+    "community": "Appelsbosch",
+    "location": "Appelsbosch, KwaZulu-Natal",
+    "householdsReached": 200,
+    "peopleReached": 1000,
+    "implementationPartner": "Gift of the Givers",
+    "supportedBy": "Star Foundation",
+    "coreActivities": [
+      "Beneficiary registration",
+      "WASH education",
+      "Filter use & maintenance training"
+    ],
+    "coordinates": {
+      "lat": -29.3847,
+      "lng": 30.84673
+    },
+    "photos": [
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-7-appelsbosch-01.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-7-appelsbosch-02.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-7-appelsbosch-03.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-7-appelsbosch-04.jpg"
+    ]
+  },
+  {
+    "id": "gotg-08-mkhuze",
+    "eventNumber": 8,
+    "eventType": "community-rollout",
+    "community": "Mkhuze",
+    "location": "Mkhuze, KwaZulu-Natal",
+    "householdsReached": 180,
+    "peopleReached": 900,
+    "implementationPartner": "Gift of the Givers",
+    "supportedBy": "Star Foundation",
+    "coreActivities": [
+      "Beneficiary registration",
+      "WASH education",
+      "Filter use & maintenance training"
+    ],
+    "coordinates": {
+      "lat": -27.6186,
+      "lng": 32.03244
+    },
+    "photos": [
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-8-mkhuze-01.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-8-mkhuze-02.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-8-mkhuze-03.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-8-mkhuze-04.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-8-mkhuze-05.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-8-mkhuze-06.jpg"
+    ]
+  },
+  {
+    "id": "gotg-09-siyaphumula",
+    "eventNumber": 9,
+    "eventType": "community-rollout",
+    "community": "Siyaphumula",
+    "location": "Siyaphumula, Ndwedwe, KwaZulu-Natal",
+    "householdsReached": 120,
+    "peopleReached": 600,
+    "implementationPartner": "Gift of the Givers",
+    "supportedBy": "Star Foundation",
+    "coreActivities": [
+      "Beneficiary registration",
+      "WASH education",
+      "Filter use & maintenance training"
+    ],
+    "coordinates": {
+      "lat": -29.3299,
+      "lng": 30.9084
+    },
+    "photos": [
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-9-siyaphumula-01.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-9-siyaphumula-02.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-9-siyaphumula-03.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-9-siyaphumula-04.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-9-siyaphumula-05.jpg"
+    ]
+  },
+  {
+    "id": "gotg-10-dukuduku",
+    "eventNumber": 10,
+    "eventType": "community-rollout",
+    "community": "Dukuduku",
+    "location": "Dukuduku, Mtubatuba, KwaZulu-Natal",
+    "householdsReached": 120,
+    "peopleReached": 600,
+    "implementationPartner": "Gift of the Givers",
+    "supportedBy": "Star Foundation",
+    "coreActivities": [
+      "Beneficiary registration",
+      "WASH education",
+      "Filter use & maintenance training"
+    ],
+    "coordinates": {
+      "lat": -28.4059,
+      "lng": 32.3392
+    },
+    "photos": [
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-10-dukuduku-01.jpg"
+    ]
+  },
+  {
+    "id": "gotg-11-kwambonambi",
+    "eventNumber": 11,
+    "eventType": "community-rollout",
+    "community": "KwaMbonambi",
+    "location": "KwaMbonambi, KwaZulu-Natal",
+    "householdsReached": 150,
+    "peopleReached": 750,
+    "implementationPartner": "Gift of the Givers",
+    "supportedBy": "Star Foundation",
+    "coreActivities": [
+      "Beneficiary registration",
+      "WASH education",
+      "Filter use & maintenance training"
+    ],
+    "coordinates": {
+      "lat": -28.59889,
+      "lng": 32.08944
+    },
+    "photos": [
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-11-kwambonambi-01.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-11-kwambonambi-02.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-11-kwambonambi-03.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-11-kwambonambi-04.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-11-kwambonambi-05.jpg"
+    ]
+  },
+  {
+    "id": "gotg-12-kwadeda",
+    "eventNumber": 12,
+    "eventType": "community-rollout",
+    "community": "KwaDeda",
+    "location": "KwaDeda, Taylors Halt, KwaZulu-Natal",
+    "householdsReached": 218,
+    "peopleReached": 1090,
+    "implementationPartner": "Gift of the Givers",
+    "supportedBy": "Star Foundation",
+    "coreActivities": [
+      "Beneficiary registration",
+      "WASH education",
+      "Filter use & maintenance training"
+    ],
+    "coordinates": {
+      "lat": -29.6922,
+      "lng": 30.1937
+    },
+    "photos": [
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-12-kwadeda-01.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-12-kwadeda-02.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-12-kwadeda-03.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-12-kwadeda-04.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-12-kwadeda-05.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-12-kwadeda-06.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-12-kwadeda-07.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-12-kwadeda-08.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-giftofthegivers-event-12-kwadeda-09.jpg"
+    ]
+  },
+  {
+    "id": "ecd-01-bholani",
+    "eventNumber": 1,
+    "eventType": "ecd-learning-site",
+    "ecdCentre": "Bholani ECD",
+    "location": "Bholani, Eastern Cape",
+    "childrenReached": 50,
+    "practitionersTrained": 3,
+    "safeWaterSystemsInstalled": 11,
+    "supportedBy": null,
+    "coreActivities": [
+      "Centre onboarding",
+      "Practitioner training",
+      "Child-focused WASH education"
+    ],
+    "coordinates": {
+      "lat": -31.641079,
+      "lng": 29.412326
+    },
+    "photos": [
+      "/assets/photos/projects/pureflow/map/pureflow-map-ECD-event-1-bholani-01.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-ECD-event-1-bholani-02.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-ECD-event-1-bholani-03.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-ECD-event-1-bholani-04.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-ECD-event-1-bholani-05.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-ECD-event-1-bholani-06.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-ECD-event-1-bholani-07.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-ECD-event-1-bholani-08.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-ECD-event-1-bholani-09.jpg"
+    ]
+  },
+  {
+    "id": "ecd-02-cwebeni",
+    "eventNumber": 2,
+    "eventType": "ecd-learning-site",
+    "ecdCentre": "iThemba Kuluntu No.1 ECD Centre",
+    "location": "Cwebeni, Eastern Cape",
+    "childrenReached": 120,
+    "practitionersTrained": 6,
+    "safeWaterSystemsInstalled": 20,
+    "supportedBy": null,
+    "coreActivities": [
+      "Centre onboarding",
+      "Practitioner training",
+      "Child-focused WASH education"
+    ],
+    "coordinates": {
+      "lat": -31.669177,
+      "lng": 29.439696
+    },
+    "photos": [
+      "/assets/photos/projects/pureflow/map/pureflow-map-ECD-event-2-cwebeni-01.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-ECD-event-2-cwebeni-02.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-ECD-event-2-cwebeni-03.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-ECD-event-2-cwebeni-04.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-ECD-event-2-cwebeni-05.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-ECD-event-2-cwebeni-06.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-ECD-event-2-cwebeni-07.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-ECD-event-2-cwebeni-08.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-ECD-event-2-cwebeni-09.jpg"
+    ],
+    "aggregationNote": "ECD Event 2 and ECD Event 3 are separate documented activities at the same iThemba Kuluntu No.1 ECD Centre. Both event entries use the site figures: 120 children reached, 6 practitioners trained, 20 safe-water systems installed. However, these are not two separate 20-system installations. For programme-level totals, Bholani ECD systems: 11; Cwebeni ECD systems: 20; unique ECD systems installed: 31."
+  },
+  {
+    "id": "ecd-03-cwebeni",
+    "eventNumber": 3,
+    "eventType": "ecd-learning-site",
+    "ecdCentre": "iThemba Kuluntu No.1 ECD Centre",
+    "location": "Cwebeni, Eastern Cape",
+    "childrenReached": 120,
+    "practitionersTrained": 6,
+    "safeWaterSystemsInstalled": 20,
+    "supportedBy": null,
+    "coreActivities": [
+      "Centre onboarding",
+      "Practitioner training",
+      "Child-focused WASH education"
+    ],
+    "coordinates": {
+      "lat": -31.669177,
+      "lng": 29.439696
+    },
+    "photos": [
+      "/assets/photos/projects/pureflow/map/pureflow-map-ECD-event-3-cwebeni-01.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-ECD-event-3-cwebeni-02.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-ECD-event-3-cwebeni-03.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-ECD-event-3-cwebeni-04.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-ECD-event-3-cwebeni-05.jpg"
+    ],
+    "aggregationNote": "ECD Event 2 and ECD Event 3 are separate documented activities at the same iThemba Kuluntu No.1 ECD Centre. Both event entries use the site figures: 120 children reached, 6 practitioners trained, 20 safe-water systems installed. However, these are not two separate 20-system installations. For programme-level totals, Bholani ECD systems: 11; Cwebeni ECD systems: 20; unique ECD systems installed: 31."
+  },
+  {
+    "id": "training-01-cwebeni",
+    "eventNumber": 1,
+    "eventType": "implementation-partner-training",
+    "partnerOrganisation": "Gift of the Givers",
+    "location": "Cwebeni, Eastern Cape",
+    "implementersTrained": 4,
+    "supportedBy": "Star Foundation",
+    "coreActivities": [
+      "Assembly",
+      "Beneficiary onboarding",
+      "WASH facilitation",
+      "Monitoring & aftercare"
+    ],
+    "coordinates": {
+      "lat": -31.669545,
+      "lng": 29.440575
+    },
+    "photos": [
+      "/assets/photos/projects/pureflow/map/pureflow-map-implementation-partner-training-1-cwebeni-01.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-implementation-partner-training-1-cwebeni-02.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-implementation-partner-training-1-cwebeni-03.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-implementation-partner-training-1-cwebeni-04.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-implementation-partner-training-1-cwebeni-05.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-implementation-partner-training-1-cwebeni-06.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-implementation-partner-training-1-cwebeni-07.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-implementation-partner-training-1-cwebeni-08.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-implementation-partner-training-1-cwebeni-09.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-implementation-partner-training-1-cwebeni-10.jpg"
+    ]
+  },
+  {
+    "id": "training-02-pietermaritzburg",
+    "eventNumber": 2,
+    "eventType": "implementation-partner-training",
+    "partnerOrganisation": "Gift of the Givers",
+    "location": "Gift of the Givers, 290 Prince Alfred St, CBD, Pietermaritzburg, 3201",
+    "implementersTrained": 7,
+    "supportedBy": "Star Foundation",
+    "coreActivities": [
+      "Assembly",
+      "Beneficiary onboarding",
+      "WASH facilitation",
+      "Monitoring & aftercare"
+    ],
+    "coordinates": {
+      "lat": -29.60508,
+      "lng": 30.38542
+    },
+    "photos": [
+      "/assets/photos/projects/pureflow/map/pureflow-map-implementation-partner-training-2-pietermaritzburg-01.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-implementation-partner-training-2-pietermaritzburg-02.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-implementation-partner-training-2-pietermaritzburg-03.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-implementation-partner-training-2-pietermaritzburg-04.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-implementation-partner-training-2-pietermaritzburg-05.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-implementation-partner-training-2-pietermaritzburg-06.jpg",
+      "/assets/photos/projects/pureflow/map/pureflow-map-implementation-partner-training-2-pietermaritzburg-07.jpg"
     ]
   }
 ]
