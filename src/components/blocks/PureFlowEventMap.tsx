@@ -427,7 +427,7 @@ export default function PureFlowEventMap() {
             </span>
           ))}
         </div>
-        <div className="flex max-w-full gap-2 overflow-x-auto pb-1" aria-label="Filter map events">
+        <div className="flex max-w-full flex-wrap gap-2" aria-label="Filter map events">
           {FILTERS.map((item) => (
             <Button
               key={item.value}
