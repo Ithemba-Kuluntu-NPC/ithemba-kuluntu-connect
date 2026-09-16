@@ -1905,15 +1905,15 @@ function PureFlowCompactPage() {
             aria-hidden
           />
           <div className="mx-auto max-w-3xl text-center">
-            <Script color={YELLOW}>{t("fieldmap.script_heading", "Field Map")}</Script>
+            <Script color={YELLOW}>{t("fieldmap.script_heading", "Impact Map")}</Script>
             <h2
               className="mt-1 text-3xl font-bold md:text-4xl"
               style={{ fontFamily: SERIF, color: "#ffffff" }}
             >
-              {t("fieldmap.main_heading", "PureFlow Amanzi rollout events")}
+              PureFlow Amanzi – Impact Map
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-sm md:text-base text-white/85">
-              {t("fieldmap.intro")}
+              Real communities. Cleaner water. Brighter futures.
             </p>
           </div>
 
@@ -1929,24 +1929,7 @@ function PureFlowCompactPage() {
                   </div>
                 }
               >
-                <PureFlowEventMap
-                  labels={{
-                    photoFallback: t("fieldmap.card.photo_fallback", "PureFlow Amanzi · photo coming soon"),
-                    community: t("fieldmap.card.community_label", "Community"),
-                    date: t("fieldmap.card.date_label", "Date"),
-                    households: t("fieldmap.card.households_label", "Households reached"),
-                    people: t("fieldmap.card.people_label", "People reached"),
-                    partner: t("fieldmap.card.partner_label", "Partner / supporter"),
-                    description: t("fieldmap.card.description_label", "Description"),
-                    noSelection: t("fieldmap.all_events_label", "Select a location"),
-                    noSelectionHint: t("fieldmap.card.no_event_selected", "Tap any pin on the map to see details."),
-                    eventCountSuffix: t("fieldmap.event_count_suffix", "events shown"),
-                    demoNote: t("fieldmap.demo_note", "Demo data · replace with verified events before launch."),
-                    mapRegionLabel: t("fieldmap.map_label", "PureFlow Amanzi rollout events map"),
-                    prevPhoto: "‹",
-                    nextPhoto: "›",
-                  }}
-                />
+                <PureFlowEventMap />
               </Suspense>
             ) : (
               <div
