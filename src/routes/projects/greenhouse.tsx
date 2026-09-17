@@ -825,7 +825,7 @@ function SectionHeading({ eyebrow, title, center = false, color = "var(--ithemba
 /* ---------- SNAPSHOT ---------- */
 function Snapshot({ c }: { c: Copy }) {
   return (
-    <section className="relative overflow-hidden bg-[var(--ithemba-cream)] py-20">
+    <section className="relative -mt-px overflow-hidden bg-[var(--ithemba-cream)] pb-20 pt-10 md:pt-12">
       <div className="pointer-events-none absolute -left-10 top-10 h-44 w-44 blob bg-[var(--ithemba-yellow)]/25" />
       <div className="pointer-events-none absolute -right-10 bottom-10 h-52 w-52 blob-2 bg-[var(--ithemba-blue)]/15" />
       <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
