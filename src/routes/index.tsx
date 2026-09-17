@@ -62,7 +62,8 @@ function Home() {
                   src="/assets/photos/home/main-who-we-are-2.jpeg"
                   label="women-led iThemba team — community photo"
                   className="h-full w-full"
-                  objectPosition="center 48%"
+                  imgClassName="scale-[1.3]"
+                  objectPosition="center center"
                   rounded="rounded-none"
                   tone="warm"
                   showMissingBadge={false}
@@ -73,7 +74,8 @@ function Home() {
                   src="/assets/photos/about/about-full-team-jumping-high-res-awesome.jpg"
                   label="iThemba Kuluntu team jumping together"
                   className="h-full w-full"
-                  objectPosition="center 50%"
+                  imgClassName="origin-left scale-[1.12]"
+                  objectPosition="left center"
                   rounded="rounded-none"
                   tone="warm"
                   showMissingBadge={false}
