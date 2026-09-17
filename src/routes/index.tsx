@@ -48,18 +48,38 @@ function Home() {
         softOverlay
       />
 
-      {/* Who we are — editorial split with layered photos */}
+      {/* Who we are — editorial split with a two-photo collage */}
       <section className="relative overflow-hidden py-20 md:py-28">
         <div className="pointer-events-none absolute -left-20 top-20 h-72 w-72 blob bg-[var(--ithemba-yellow)]/15" />
         <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 md:grid-cols-2 lg:px-8">
           <div className="relative">
-            <SmartImage
-              src="/assets/photos/home/main-who-we-are-2.jpeg"
-              label="women-led iThemba team — community photo"
-              className="aspect-[4/5] w-full"
-              tone="warm"
-              showMissingBadge={false}
-            />
+            <div
+              className="grid aspect-[4/5] w-full grid-rows-2 gap-2.5 md:gap-3"
+              style={{ filter: "drop-shadow(0 22px 50px rgba(30,60,90,0.28))" }}
+            >
+              <div className="overflow-hidden rounded-b-xl rounded-t-[2.5rem] ring-1 ring-black/10">
+                <SmartImage
+                  src="/assets/photos/home/main-who-we-are-2.jpeg"
+                  label="women-led iThemba team — community photo"
+                  className="h-full w-full"
+                  objectPosition="center 48%"
+                  rounded="rounded-none"
+                  tone="warm"
+                  showMissingBadge={false}
+                />
+              </div>
+              <div className="overflow-hidden rounded-b-[2.5rem] rounded-t-xl ring-1 ring-black/10">
+                <SmartImage
+                  src="/assets/photos/about/about-full-team-jumping-high-res-awesome.jpg"
+                  label="iThemba Kuluntu team jumping together"
+                  className="h-full w-full"
+                  objectPosition="center 50%"
+                  rounded="rounded-none"
+                  tone="warm"
+                  showMissingBadge={false}
+                />
+              </div>
+            </div>
             <div className="absolute -left-6 -top-6 h-20 w-20 blob bg-[var(--ithemba-yellow)] shadow-lg" aria-hidden />
             {/* subtle handwritten heart accent */}
             <svg
