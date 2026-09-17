@@ -145,7 +145,7 @@ const TEAM: Member[] = [
       de: "Programmleitung — Sicheres Wasser & Klimaresilienz",
       nl: "Programmacoördinator — Veilig water & klimaatbestendigheid",
     },
-    photo: null,
+    photo: `${PHOTO_BASE}/team-tj.jpg`,
   },
   {
     id: 6,
@@ -167,7 +167,7 @@ const TEAM: Member[] = [
     id: 8,
     firstName: "Veliswa",
     role: { en: "ECD Practitioner", de: "ECD-Fachkraft", nl: "ECD-medewerker" },
-    photo: null,
+    photo: `${PHOTO_BASE}/team-veliswa.jpg`,
   },
   {
     id: 9,
