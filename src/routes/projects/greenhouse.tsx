@@ -670,18 +670,6 @@ function SunDoodle({ className = "h-8 w-8 text-[var(--ithemba-yellow)]" }) {
 /* ---------- photo collages (final greenhouse media) ---------- */
 type Shot = { src: string; alt: string; pos?: string };
 
-function Frame({ children, frame, className = "" }: { children: React.ReactNode; frame: "light" | "dark"; className?: string }) {
-  return (
-    <div
-      className={`rounded-[2rem] p-2 shadow-xl ring-1 ${
-        frame === "dark" ? "bg-white/10 ring-white/15 backdrop-blur" : "bg-white ring-black/5"
-      } ${className}`}
-    >
-      {children}
-    </div>
-  );
-}
-
 function Shot({ shot, className = "" }: { shot: Shot; className?: string }) {
   return (
     <div className={`overflow-hidden rounded-2xl ${className}`}>
@@ -696,35 +684,42 @@ function Shot({ shot, className = "" }: { shot: Shot; className?: string }) {
   );
 }
 
-/** One dominant image with two supporting images stacked beside it. */
-function CollageSide({ main, side, frame = "dark", className = "" }: { main: Shot; side: [Shot, Shot]; frame?: "light" | "dark"; className?: string }) {
+/** Editorial mosaic shared by the approved ECD and PureFlow project layouts. */
+function PhotoCollage({ photos, className = "" }: { photos: Shot[]; className?: string }) {
+  const layouts: Record<number, string[]> = {
+    3: [
+      "col-span-7 row-span-6 rounded-l-[2.5rem] rounded-r-xl",
+      "col-span-5 row-span-3 rounded-tr-[2.5rem] rounded-bl-xl rounded-tl-xl rounded-br-xl",
+      "col-span-5 row-span-3 rounded-br-[2.5rem] rounded-tl-xl rounded-tr-xl rounded-bl-xl",
+    ],
+    4: [
+      "col-span-7 row-span-4 rounded-tl-[2.5rem] rounded-br-2xl rounded-tr-xl rounded-bl-xl",
+      "col-span-5 row-span-3 rounded-tr-[2.5rem] rounded-bl-xl rounded-tl-xl rounded-br-xl",
+      "col-span-5 row-span-3 rounded-xl",
+      "col-span-7 row-span-2 rounded-bl-[2.5rem] rounded-tr-xl rounded-tl-xl rounded-br-xl",
+    ],
+    5: [
+      "col-span-7 row-span-8 rounded-tl-[2.5rem] rounded-br-2xl rounded-tr-xl rounded-bl-xl",
+      "col-span-5 row-span-4 rounded-tr-[2.5rem] rounded-bl-xl rounded-tl-xl rounded-br-xl",
+      "col-span-5 row-span-4 rounded-xl",
+      "col-span-6 row-span-4 rounded-bl-[2.5rem] rounded-tr-xl rounded-tl-xl rounded-br-xl",
+      "col-span-6 row-span-4 rounded-br-[2.5rem] rounded-tl-xl rounded-tr-xl rounded-bl-xl",
+    ],
+  };
+  const cells = layouts[photos.length] ?? layouts[4];
+  const rows = photos.length === 5 ? "grid-rows-12" : "grid-rows-6";
+
   return (
-    <Frame frame={frame} className={className}>
-      <div className="grid grid-cols-3 grid-rows-2 gap-2 aspect-[16/10]">
-        <Shot shot={main} className="col-span-3 row-span-1 sm:col-span-2 sm:row-span-2" />
-        <Shot shot={side[0]} className="col-span-1 sm:col-span-1" />
-        <Shot shot={side[1]} className="col-span-2 sm:col-span-1" />
-      </div>
-    </Frame>
+    <div
+      className={`relative grid aspect-[4/5] grid-cols-12 ${rows} gap-2.5 md:gap-3 ${className}`}
+      style={{ filter: "drop-shadow(0 22px 50px rgba(8,26,96,0.32))" }}
+    >
+      {photos.map((photo, i) => (
+        <Shot key={photo.src} shot={photo} className={`ring-1 ring-black/10 ${cells[i]}`} />
+      ))}
+    </div>
   );
 }
-
-/** One wide hero image with a compact strip of supporting images below. */
-function CollageStrip({ main, strip, frame = "dark", className = "" }: { main: Shot; strip: Shot[]; frame?: "light" | "dark"; className?: string }) {
-  return (
-    <Frame frame={frame} className={className}>
-      <div className="grid gap-2">
-        <Shot shot={main} className="aspect-[16/9]" />
-        <div className={`grid gap-2 ${strip.length >= 4 ? "grid-cols-4" : "grid-cols-3"}`}>
-          {strip.map((s, i) => (
-            <Shot key={i} shot={s} className="aspect-square" />
-          ))}
-        </div>
-      </div>
-    </Frame>
-  );
-}
-
 
 /* ---------- HERO ---------- */
 function Hero({ c }: { c: Copy }) {
@@ -834,23 +829,23 @@ function Snapshot({ c }: { c: Copy }) {
       <div className="pointer-events-none absolute -left-10 top-10 h-44 w-44 blob bg-[var(--ithemba-yellow)]/25" />
       <div className="pointer-events-none absolute -right-10 bottom-10 h-52 w-52 blob-2 bg-[var(--ithemba-blue)]/15" />
       <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
-        <div className="text-center">
-          <SectionHeading eyebrow={c.snapshot.eyebrow} title={c.snapshot.title} center />
+        <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+          <div>
+            <SectionHeading eyebrow={c.snapshot.eyebrow} title={c.snapshot.title} />
+            <div className="mt-6 space-y-4 text-lg leading-relaxed text-foreground/85">
+              {c.snapshot.body.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </div>
+          </div>
+          <PhotoCollage
+            photos={[
+              { src: G.wide, alt: "Wide view inside the greenhouse in beautiful light" },
+              { src: G.outside, alt: "The greenhouse seen from outside" },
+              { src: G.growing, alt: "Healthy crops growing inside the greenhouse" },
+            ]}
+          />
         </div>
-        <div className="mx-auto mt-6 max-w-3xl space-y-4 text-center text-lg leading-relaxed text-foreground/85">
-          {c.snapshot.body.map((p, i) => <p key={i}>{p}</p>)}
-        </div>
-
-        {/* the greenhouse itself · scale · production */}
-        <CollageSide
-          frame="light"
-          className="mx-auto mt-10 max-w-4xl"
-          main={{ src: G.wide, alt: "Wide view inside the greenhouse in beautiful light" }}
-          side={[
-            { src: G.outside, alt: "The greenhouse seen from outside" },
-            { src: G.growing, alt: "Healthy crops growing inside the greenhouse" },
-          ]}
-        />
 
         <div className="mt-14 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-4">
           {c.snapshot.facts.map((f, i) => {
@@ -864,8 +859,12 @@ function Snapshot({ c }: { c: Copy }) {
                   className="h-16 w-16 object-contain md:h-20 md:w-20"
                   loading="lazy"
                 />
-                <div className="mt-3 text-[11px] font-semibold uppercase tracking-wide text-foreground/60">{f.label}</div>
-                <div className="mt-1 font-display text-base font-extrabold leading-tight text-[var(--ithemba-blue-dark)]">{f.value}</div>
+                <div className="mt-3 text-[11px] font-semibold uppercase tracking-wide text-foreground/60">
+                  {f.label}
+                </div>
+                <div className="mt-1 font-display text-base font-extrabold leading-tight text-[var(--ithemba-blue-dark)]">
+                  {f.value}
+                </div>
               </div>
             );
           })}
@@ -880,40 +879,37 @@ function Why({ c }: { c: Copy }) {
   return (
     <section className="relative isolate overflow-hidden py-20 text-white md:py-24">
       <div className="absolute inset-0 -z-10">
-        <img
-          src={G.growing}
-          alt=""
-          aria-hidden
-          className="h-full w-full object-cover"
-        />
+        <img src={G.growing} alt="" aria-hidden className="h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/88 via-[var(--ithemba-blue-dark)]/75 to-[var(--ithemba-blue)]/50" />
         <div className="absolute inset-0 bg-gradient-to-t from-[var(--ithemba-blue-deepest)]/70 via-transparent to-transparent" />
         <div className="absolute right-[-6rem] top-[-6rem] h-[28rem] w-[28rem] sun-glow" />
       </div>
-      <div className="pointer-events-none absolute left-10 top-16 text-[var(--ithemba-yellow)]/40"><Leaf className="h-7 w-7" /></div>
-      <div className="pointer-events-none absolute right-16 bottom-16 text-[var(--ithemba-yellow)]/40"><Sprout className="h-8 w-8" /></div>
+      <div className="pointer-events-none absolute left-10 top-16 text-[var(--ithemba-yellow)]/40">
+        <Leaf className="h-7 w-7" />
+      </div>
+      <div className="pointer-events-none absolute right-16 bottom-16 text-[var(--ithemba-yellow)]/40">
+        <Sprout className="h-8 w-8" />
+      </div>
 
-      <div className="relative mx-auto max-w-5xl px-4 lg:px-8">
-        <div className="max-w-3xl">
-          <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center gap-2">
-            <SparkleDoodle /> {c.why.eyebrow}
-          </div>
-          <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.why.title}</h2>
-        </div>
-        <div className="mt-6 max-w-3xl space-y-4 text-lg leading-relaxed text-white/90">
-          {c.why.body.map((p, i) => <p key={i}>{p}</p>)}
-        </div>
-
-        {/* outdoor · broader community food growing */}
-        <CollageSide
-          className="mt-10"
-          main={{ src: G.outsidePlanting, alt: "Outdoor planting beside the greenhouse" }}
-          side={[
+      <div className="relative mx-auto grid max-w-6xl items-center gap-8 px-4 lg:grid-cols-2 lg:gap-12 lg:px-8">
+        <PhotoCollage
+          photos={[
+            { src: G.outsidePlanting, alt: "Outdoor planting beside the greenhouse" },
             { src: G.kidsPlanting, alt: "Children helping to plant" },
             { src: G.outside, alt: "The greenhouse seen from outside" },
           ]}
         />
-
+        <div>
+          <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center gap-2">
+            <SparkleDoodle /> {c.why.eyebrow}
+          </div>
+          <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.why.title}</h2>
+          <div className="mt-6 space-y-4 text-lg leading-relaxed text-white/90">
+            {c.why.body.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -926,25 +922,27 @@ function Partnership({ c }: { c: Copy }) {
       <div className="pointer-events-none absolute -right-20 top-0 h-56 w-56 blob bg-emerald-300/25" />
       <div className="pointer-events-none absolute -left-20 bottom-0 h-56 w-56 blob-2 bg-[var(--ithemba-yellow)]/25" />
       <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
-        <div className="max-w-3xl">
-          <SectionHeading eyebrow={c.partnership.eyebrow} title={c.partnership.title} />
+        <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+          <div>
+            <SectionHeading eyebrow={c.partnership.eyebrow} title={c.partnership.title} />
+            <div className="mt-6 space-y-4 text-lg leading-relaxed text-foreground/85">
+              {c.partnership.body.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </div>
+          </div>
+          <PhotoCollage
+            photos={[
+              {
+                src: G.women,
+                alt: "Local women trained on the African Grower system",
+                pos: "center 35%",
+              },
+              { src: G.teenGirls, alt: "Young women taking part in the greenhouse project" },
+              { src: G.busy2, alt: "Community members at work in the greenhouse" },
+            ]}
+          />
         </div>
-        <div className="mt-6 max-w-3xl space-y-4 text-lg leading-relaxed text-foreground/85">
-          {c.partnership.body.map((p, i) => <p key={i}>{p}</p>)}
-        </div>
-
-        {/* local women · training · participation */}
-        <CollageSide
-          frame="light"
-          className="mt-10"
-          main={{ src: G.women, alt: "Local women trained on the African Grower system", pos: "center 35%" }}
-          side={[
-            { src: G.teenGirls, alt: "Young women taking part in the greenhouse project" },
-            { src: G.busy2, alt: "Community members at work in the greenhouse" },
-          ]}
-        />
-
-
         <div className="mt-16 grid gap-14 md:grid-cols-3 md:gap-10">
           {c.partnership.roles.map((r) => (
             <div key={r.name} className="flex flex-col items-center text-center">
@@ -960,7 +958,9 @@ function Partnership({ c }: { c: Copy }) {
                   <Building2 className="h-20 w-20 text-[var(--ithemba-blue)]" />
                 )}
               </div>
-              <div className="mt-6 font-display text-xl font-bold text-[var(--ithemba-blue-dark)]">{r.name}</div>
+              <div className="mt-6 font-display text-xl font-bold text-[var(--ithemba-blue-dark)]">
+                {r.name}
+              </div>
               <div className="mt-2 max-w-xs text-sm leading-snug text-foreground/75">{r.role}</div>
             </div>
           ))}
@@ -975,37 +975,32 @@ function HowItWorks({ c }: { c: Copy }) {
   return (
     <section className="relative isolate overflow-hidden py-20 text-white md:py-24">
       <div className="absolute inset-0 -z-10">
-        <img
-          src={G.busy2}
-          alt=""
-          aria-hidden
-          className="h-full w-full object-cover"
-        />
+        <img src={G.busy2} alt="" aria-hidden className="h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/88 via-[var(--ithemba-blue-dark)]/75 to-[var(--ithemba-blue)]/50" />
         <div className="absolute right-[-6rem] bottom-[-6rem] h-[24rem] w-[24rem] sun-glow" />
       </div>
 
       <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
-        <div className="max-w-3xl">
-          <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center gap-2">
-            <SparkleDoodle /> {c.how.eyebrow}
+        <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+          <PhotoCollage
+            photos={[
+              { src: G.growing2, alt: "Crops growing in the vertical African Grower system" },
+              { src: G.spinach, alt: "Close-up of spinach grown in the greenhouse" },
+              { src: G.busy, alt: "Team members working in the greenhouse" },
+            ]}
+          />
+          <div>
+            <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center gap-2">
+              <SparkleDoodle /> {c.how.eyebrow}
+            </div>
+            <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.how.title}</h2>
+            <div className="mt-6 space-y-4 text-lg leading-relaxed text-white/90">
+              {c.how.body.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </div>
           </div>
-          <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.how.title}</h2>
         </div>
-        <div className="mt-6 max-w-3xl space-y-4 text-lg leading-relaxed text-white/90">
-          {c.how.body.map((p, i) => <p key={i}>{p}</p>)}
-        </div>
-
-        {/* growing · production */}
-        <CollageSide
-          className="mt-10"
-          main={{ src: G.growing2, alt: "Crops growing in the vertical African Grower system" }}
-          side={[
-            { src: G.spinach, alt: "Close-up of spinach grown in the greenhouse" },
-            { src: G.busy, alt: "Team members working in the greenhouse" },
-          ]}
-        />
-
 
         {/* growing flow */}
         <div className="mt-14">
@@ -1051,12 +1046,11 @@ function HowItWorks({ c }: { c: Copy }) {
 /* ---------- NUTRITION ---------- */
 function Nutrition({ c }: { c: Copy }) {
   return (
-    <section className="relative mx-auto grid max-w-7xl gap-10 px-4 py-20 md:grid-cols-2 lg:px-8">
+    <section className="relative mx-auto grid max-w-6xl items-center gap-8 px-4 py-20 lg:grid-cols-2 lg:gap-12 lg:px-8">
       <div className="relative">
-        <CollageStrip
-          frame="light"
-          main={{ src: G.childTeacher, alt: "Teacher and child in the greenhouse", pos: "center 40%" }}
-          strip={[
+        <PhotoCollage
+          photos={[
+            { src: G.childTeacher, alt: "Teacher and child in the greenhouse", pos: "center 40%" },
             { src: G.kidsPlanting, alt: "Children planting seedlings" },
             { src: G.kidPlanting, alt: "A child planting in the greenhouse" },
             { src: G.happyChild, alt: "Happy child at the greenhouse" },
@@ -1067,7 +1061,9 @@ function Nutrition({ c }: { c: Copy }) {
       <div className="flex flex-col justify-center">
         <SectionHeading eyebrow={c.nutrition.eyebrow} title={c.nutrition.title} />
         <div className="mt-5 space-y-4 text-lg leading-relaxed text-foreground/85">
-          {c.nutrition.body.map((p, i) => <p key={i}>{p}</p>)}
+          {c.nutrition.body.map((p, i) => (
+            <p key={i}>{p}</p>
+          ))}
         </div>
         <div className="mt-6 flex flex-wrap gap-2">
           <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100 px-3 py-1.5 text-sm font-semibold text-emerald-700">
@@ -1090,37 +1086,37 @@ function Focus({ c }: { c: Copy }) {
   return (
     <section className="relative isolate overflow-hidden py-20 text-white md:py-24">
       <div className="absolute inset-0 -z-10">
-        <img
-          src={G.harvestGroup}
-          alt=""
-          aria-hidden
-          className="h-full w-full object-cover"
-        />
+        <img src={G.harvestGroup} alt="" aria-hidden className="h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/88 via-[var(--ithemba-blue-dark)]/75 to-[var(--ithemba-blue)]/50" />
         <div className="absolute left-[-6rem] top-[-6rem] h-[24rem] w-[24rem] sun-glow" />
       </div>
       <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
-        <div className="max-w-3xl">
-          <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center gap-2">
-            <SparkleDoodle /> {c.focus.eyebrow}
+        <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+          <div>
+            <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center gap-2">
+              <SparkleDoodle /> {c.focus.eyebrow}
+            </div>
+            <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.focus.title}</h2>
+            <div className="mt-6 space-y-4 text-lg leading-relaxed text-white/90">
+              {c.focus.body.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </div>
           </div>
-          <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.focus.title}</h2>
+          <PhotoCollage
+            photos={[
+              {
+                src: G.harvestGroup,
+                alt: "Community group celebrating a greenhouse harvest",
+                pos: "center 40%",
+              },
+              { src: G.harvestTeacherChild, alt: "Teacher and child harvesting together" },
+              { src: G.harvest, alt: "Fresh produce harvested from the greenhouse" },
+              { src: G.harvestChild, alt: "Child holding freshly harvested vegetables" },
+              { src: G.smile, alt: "Smiling community member after the harvest" },
+            ]}
+          />
         </div>
-        <div className="mt-6 max-w-3xl space-y-4 text-lg leading-relaxed text-white/90">
-          {c.focus.body.map((p, i) => <p key={i}>{p}</p>)}
-        </div>
-
-        {/* harvest · results · pride */}
-        <CollageStrip
-          className="mt-10"
-          main={{ src: G.harvestGroup, alt: "Community group celebrating a greenhouse harvest", pos: "center 40%" }}
-          strip={[
-            { src: G.harvestTeacherChild, alt: "Teacher and child harvesting together" },
-            { src: G.harvest, alt: "Fresh produce harvested from the greenhouse" },
-            { src: G.harvestChild, alt: "Child holding freshly harvested vegetables" },
-            { src: G.smile, alt: "Smiling community member after the harvest" },
-          ]}
-        />
 
         <div className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-5">
           {c.focus.items.map((it) => {
