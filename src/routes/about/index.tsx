@@ -622,10 +622,10 @@ function WhereWeWork({ c }: { c: AboutContent }) {
             Cwebeni · Port St Johns · Wild Coast · Pondoland · Eastern Cape · South Africa
           </div>
         </div>
-        {/* Premium editorial 3-photo collage: top landscape + two portraits below */}
-        <div className="relative">
-          <div className="overflow-hidden rounded-[2.5rem] bg-white p-2 shadow-[0_24px_60px_-20px_rgba(15,42,140,0.25)]">
-            <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
+        {/* White-framed editorial collage: top landscape + two portraits below */}
+        <div className="relative min-w-0">
+          <div className="overflow-hidden rounded-[2.5rem] bg-white p-3 shadow-[0_22px_50px_rgba(30,60,90,0.28)] ring-1 ring-black/10 sm:p-4">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4">
               <div className="col-span-2 aspect-[16/9] overflow-hidden rounded-2xl">
                 <SmartImage
                   src="/assets/photos/about/about-where-we-work-3-collage.jpeg"
