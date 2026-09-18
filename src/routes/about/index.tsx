@@ -625,8 +625,8 @@ function WhereWeWork({ c }: { c: AboutContent }) {
         {/* Premium editorial 3-photo collage: top landscape + two portraits below */}
         <div className="relative">
           <div className="overflow-hidden rounded-[2.5rem] bg-white p-2 shadow-[0_24px_60px_-20px_rgba(15,42,140,0.25)]">
-            <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-              <div className="col-span-1 aspect-[16/9] overflow-hidden rounded-2xl md:col-span-2">
+            <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
+              <div className="col-span-2 aspect-[16/9] overflow-hidden rounded-2xl">
                 <SmartImage
                   src="/assets/photos/about/about-where-we-work-3-collage.jpeg"
                   label="Wild Coast landscape near Cwebeni, Port St Johns"
@@ -666,7 +666,17 @@ function WhereWeWork({ c }: { c: AboutContent }) {
 
 function Structures({ c }: { c: AboutContent }) {
   return (
-    <section className="mx-auto max-w-7xl px-4 py-16 md:py-20 lg:px-8">
+    <section className="relative isolate overflow-hidden py-16 md:py-20">
+      <div className="absolute inset-0 -z-10" aria-hidden>
+        <img
+          src="/assets/photos/about/about-team-germany-sa-together.jpg"
+          alt=""
+          className="h-full w-full object-cover object-[center_52%] sm:object-[center_55%]"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-[rgba(255,250,239,0.78)] backdrop-blur-[1px]" />
+      </div>
+      <div className="mx-auto max-w-7xl px-4 lg:px-8">
       <div className="mx-auto max-w-3xl text-center">
         <div className="hand-eyebrow inline-flex items-center justify-center gap-2">
           <Handshake className="h-4 w-4" /> {c.eyebrows.structures}
@@ -717,6 +727,7 @@ function Structures({ c }: { c: AboutContent }) {
             <p className="mt-4 text-sm leading-relaxed text-foreground/85">{c.structures.paragraphs[1]}</p>
           </article>
         </div>
+      </div>
       </div>
     </section>
   );
@@ -780,7 +791,17 @@ const GUIDES_ICONS = [
 
 function WhatGuidesUs({ c }: { c: AboutContent }) {
   return (
-    <section className="mx-auto max-w-7xl px-4 py-16 md:py-20 lg:px-8">
+    <section className="relative isolate overflow-hidden py-16 md:py-20">
+      <div className="absolute inset-0 -z-10" aria-hidden>
+        <img
+          src="/assets/photos/about/about-team-cooking-having-fun.jpg"
+          alt=""
+          className="h-full w-full object-cover object-[62%_center] sm:object-center"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-[rgba(255,250,239,0.74)] backdrop-blur-[1px]" />
+      </div>
+      <div className="mx-auto max-w-7xl px-4 lg:px-8">
       <div className="mx-auto max-w-2xl text-center">
         <div className="hand-eyebrow">{c.eyebrows.guides}</div>
         <h2 className="mt-1 font-display text-3xl font-bold text-[var(--ithemba-blue-dark)] md:text-4xl">
@@ -810,6 +831,7 @@ function WhatGuidesUs({ c }: { c: AboutContent }) {
             <p className="mt-2 text-sm leading-relaxed text-foreground/85">{card.text}</p>
           </div>
         ))}
+      </div>
       </div>
     </section>
   );
