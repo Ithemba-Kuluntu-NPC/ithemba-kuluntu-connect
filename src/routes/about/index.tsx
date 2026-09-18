@@ -671,7 +671,7 @@ function Structures({ c }: { c: AboutContent }) {
         <img
           src="/assets/photos/about/about-team-germany-sa-together.jpg"
           alt=""
-          className="h-full w-full object-cover object-[center_52%] sm:object-[center_55%]"
+          className="h-full w-full object-cover object-[center_38%] sm:object-[center_30%]"
           loading="lazy"
         />
         <div className="absolute inset-0 bg-[rgba(255,250,239,0.78)] backdrop-blur-[1px]" />
@@ -794,9 +794,9 @@ function WhatGuidesUs({ c }: { c: AboutContent }) {
     <section className="relative isolate overflow-hidden py-16 md:py-20">
       <div className="absolute inset-0 -z-10" aria-hidden>
         <img
-          src="/assets/photos/about/about-team-cooking-having-fun.jpg"
+          src="/assets/photos/about/about-team-sitting-together-with-children-fun.jpg"
           alt=""
-          className="h-full w-full object-cover object-[62%_center] sm:object-center"
+          className="h-full w-full object-cover object-[48%_30%] sm:object-[center_25%]"
           loading="lazy"
         />
         <div className="absolute inset-0 bg-[rgba(255,250,239,0.74)] backdrop-blur-[1px]" />
