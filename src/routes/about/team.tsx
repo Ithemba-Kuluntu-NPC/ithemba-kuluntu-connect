@@ -210,6 +210,26 @@ const TEAM: Member[] = [
     photo: null,
   },
   {
+    id: 21,
+    firstName: "Hannah",
+    role: {
+      en: "ECD, Education & Social Support | Switzerland Outreach",
+      de: "ECD, Education & Social Support | Switzerland Outreach",
+      nl: "ECD, Education & Social Support | Switzerland Outreach",
+    },
+    photo: `${PHOTO_BASE}/team-hannah-21.jpg`,
+  },
+  {
+    id: 22,
+    firstName: "Mehret",
+    role: {
+      en: "PureFlow Amanzi Partnerships & Rollout Coordinator | Netherlands",
+      de: "PureFlow Amanzi Partnerships & Rollout Coordinator | Netherlands",
+      nl: "PureFlow Amanzi Partnerships & Rollout Coordinator | Netherlands",
+    },
+    photo: `${PHOTO_BASE}/team-mehret-22.jpg`,
+  },
+  {
     id: 13,
     firstName: "John",
     role: {
@@ -257,7 +277,7 @@ const TEAM: Member[] = [
       de: "Leitung Instandhaltung & Bauteam",
       nl: "Leiding onderhoud & bouwteam",
     },
-    photo: null,
+    photo: `${PHOTO_BASE}/team-sizonke.jpg`,
   },
   {
     id: 18,
@@ -267,7 +287,7 @@ const TEAM: Member[] = [
       de: "Infrastruktur- & Bauteam",
       nl: "Infrastructuur- & bouwteam",
     },
-    photo: null,
+    photo: `${PHOTO_BASE}/team-adam.jpg`,
   },
   {
     id: 19,
@@ -277,7 +297,7 @@ const TEAM: Member[] = [
       de: "Infrastruktur- & Bauteam",
       nl: "Infrastructuur- & bouwteam",
     },
-    photo: null,
+    photo: `${PHOTO_BASE}/team-ernest.jpg`,
   },
   {
     id: 20,
@@ -287,27 +307,7 @@ const TEAM: Member[] = [
       de: "Infrastruktur- & Bauteam",
       nl: "Infrastructuur- & bouwteam",
     },
-    photo: null,
-  },
-  {
-    id: 21,
-    firstName: "Hannah",
-    role: {
-      en: "Volunteer — Education, Social Work & Switzerland Outreach",
-      de: "Ehrenamt — Bildung, Sozialarbeit & Netzwerk Schweiz",
-      nl: "Vrijwilliger — onderwijs, maatschappelijk werk & netwerk Zwitserland",
-    },
-    photo: `${PHOTO_BASE}/team-hannah-21.jpg`,
-  },
-  {
-    id: 22,
-    firstName: "Mehret",
-    role: {
-      en: "Volunteer — Community Support & Netherlands Outreach",
-      de: "Ehrenamt — Unterstützung vor Ort & Netzwerk Niederlande",
-      nl: "Vrijwilliger — ondersteuning ter plaatse & netwerk Nederland",
-    },
-    photo: `${PHOTO_BASE}/team-mehret-22.jpg`,
+    photo: `${PHOTO_BASE}/team-simon.jpg`,
   },
 ];
 
@@ -438,7 +438,7 @@ function TeamHero({ c }: { c: HeroCopy }) {
 
 function TeamGrid({ c, lang }: { c: HeroCopy; lang: Lang }) {
   return (
-    <section className="relative mx-auto max-w-7xl px-4 py-16 md:py-24 lg:px-8">
+    <section className="relative mx-auto max-w-7xl overflow-hidden px-4 py-16 md:py-24 lg:px-8">
       {/* decorative blobs */}
       <div aria-hidden className="pointer-events-none absolute -left-24 top-24 h-72 w-72 rounded-full bg-[var(--ithemba-yellow)]/15 blur-3xl" />
       <div aria-hidden className="pointer-events-none absolute -right-24 bottom-24 h-80 w-80 rounded-full bg-[var(--ithemba-blue)]/15 blur-3xl" />
