@@ -438,7 +438,7 @@ function TeamHero({ c }: { c: HeroCopy }) {
 
 function TeamGrid({ c, lang }: { c: HeroCopy; lang: Lang }) {
   return (
-    <section className="relative mx-auto max-w-7xl px-4 py-16 md:py-24 lg:px-8">
+    <section className="relative mx-auto max-w-7xl overflow-hidden px-4 py-16 md:py-24 lg:px-8">
       {/* decorative blobs */}
       <div aria-hidden className="pointer-events-none absolute -left-24 top-24 h-72 w-72 rounded-full bg-[var(--ithemba-yellow)]/15 blur-3xl" />
       <div aria-hidden className="pointer-events-none absolute -right-24 bottom-24 h-80 w-80 rounded-full bg-[var(--ithemba-blue)]/15 blur-3xl" />
