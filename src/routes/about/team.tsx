@@ -1,9 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Heart, MapPin, Sparkles, Users } from "lucide-react";
 import { useLang } from "@/components/site/LanguageProvider";
-import { SmartImage } from "@/components/site/Asset";
 import type { Lang } from "@/data/content";
 
 
@@ -118,6 +116,36 @@ const TEAM: Member[] = [
     photo: `${PHOTO_BASE}/team-anke-02.jpg`,
   },
   {
+    id: 5,
+    firstName: "TJ",
+    role: {
+      en: "Programme Lead — Safe Water & Climate Resilience",
+      de: "Programmleitung — Sicheres Wasser & Klimaresilienz",
+      nl: "Programmacoördinator — Veilig water & klimaatbestendigheid",
+    },
+    photo: `${PHOTO_BASE}/team-tj.jpg`,
+  },
+  {
+    id: 21,
+    firstName: "Hannah",
+    role: {
+      en: "ECD, Education & Social Support | Switzerland Outreach",
+      de: "ECD, Bildung & soziale Unterstützung | Netzwerk Schweiz",
+      nl: "ECD, onderwijs & sociale ondersteuning | Netwerk Zwitserland",
+    },
+    photo: `${PHOTO_BASE}/team-hannah-21.jpg`,
+  },
+  {
+    id: 22,
+    firstName: "Mehret",
+    role: {
+      en: "PureFlow Amanzi Partnerships & Rollout Coordinator | Netherlands",
+      de: "PureFlow Amanzi Partnerschaften & Rollout-Koordination | Niederlande",
+      nl: "PureFlow Amanzi Partnerschappen & uitrolcoördinatie | Nederland",
+    },
+    photo: `${PHOTO_BASE}/team-mehret-22.jpg`,
+  },
+  {
     id: 3,
     firstName: "Linda",
     role: {
@@ -136,16 +164,6 @@ const TEAM: Member[] = [
       nl: "ECD-leerkracht & teamlid PureFlow Amanzi",
     },
     photo: `${PHOTO_BASE}/team-sasa-04.jpg`,
-  },
-  {
-    id: 5,
-    firstName: "TJ",
-    role: {
-      en: "Programme Lead — Safe Water & Climate Resilience",
-      de: "Programmleitung — Sicheres Wasser & Klimaresilienz",
-      nl: "Programmacoördinator — Veilig water & klimaatbestendigheid",
-    },
-    photo: `${PHOTO_BASE}/team-tj.jpg`,
   },
   {
     id: 6,
@@ -208,26 +226,6 @@ const TEAM: Member[] = [
       nl: "Gemeenschapszorg & teamlid Pondo Dogs",
     },
     photo: null,
-  },
-  {
-    id: 21,
-    firstName: "Hannah",
-    role: {
-      en: "ECD, Education & Social Support | Switzerland Outreach",
-      de: "ECD, Education & Social Support | Switzerland Outreach",
-      nl: "ECD, Education & Social Support | Switzerland Outreach",
-    },
-    photo: `${PHOTO_BASE}/team-hannah-21.jpg`,
-  },
-  {
-    id: 22,
-    firstName: "Mehret",
-    role: {
-      en: "PureFlow Amanzi Partnerships & Rollout Coordinator | Netherlands",
-      de: "PureFlow Amanzi Partnerships & Rollout Coordinator | Netherlands",
-      nl: "PureFlow Amanzi Partnerships & Rollout Coordinator | Netherlands",
-    },
-    photo: `${PHOTO_BASE}/team-mehret-22.jpg`,
   },
   {
     id: 13,
@@ -313,21 +311,7 @@ const TEAM: Member[] = [
 
 /* ---------- Helpers ---------- */
 
-const HERO_VIDEO = "/assets/videos/team/team-hero.mp4";
-const HERO_POSTER = "/assets/photos/team/team-hero-poster.jpg";
-
-function useReducedMotion() {
-  const [reduced, setReduced] = useState(false);
-  useEffect(() => {
-    if (typeof window === "undefined" || !window.matchMedia) return;
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReduced(mq.matches);
-    const onChange = (e: MediaQueryListEvent) => setReduced(e.matches);
-    mq.addEventListener?.("change", onChange);
-    return () => mq.removeEventListener?.("change", onChange);
-  }, []);
-  return reduced;
-}
+const HERO_PHOTO = "/assets/photos/team/team-hero-photo.jpg";
 
 function pickHero(lang: Lang): HeroCopy {
   return HERO[lang] ?? HERO.en;
@@ -351,53 +335,20 @@ function AboutTeam() {
 /* ---------- Hero ---------- */
 
 function TeamHero({ c }: { c: HeroCopy }) {
-  const reduced = useReducedMotion();
-  const [videoFailed, setVideoFailed] = useState(false);
-  const videoRef = useRef<HTMLVideoElement | null>(null);
-  const showVideo = !reduced && !videoFailed;
-
   return (
     <section className="relative isolate overflow-hidden">
       <div className="absolute inset-0 -z-10">
-        {showVideo ? (
-          <video
-            ref={videoRef}
-            className="h-full w-full object-cover"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            poster={HERO_POSTER}
-            onError={() => setVideoFailed(true)}
-            aria-hidden
-          >
-            <source src={HERO_VIDEO} type="video/mp4" />
-          </video>
-        ) : (
-          <SmartImage
-            src={HERO_POSTER}
-            label="iThemba Kuluntu team — community hero"
-            className="h-full w-full"
-            rounded="rounded-none"
-            tone="earth"
-            showMissingBadge={false}
-          />
-        )}
-        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/85 via-[var(--ithemba-blue-dark)]/70 to-[var(--ithemba-blue)]/55" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+        <img
+          src={HERO_PHOTO}
+          alt=""
+          aria-hidden
+          fetchPriority="high"
+          className="h-full w-full object-cover object-[center_42%]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/72 via-[var(--ithemba-blue-dark)]/58 to-[var(--ithemba-blue)]/42" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
         <div className="absolute right-[-6rem] top-[-6rem] h-[28rem] w-[28rem] sun-glow" />
       </div>
-
-      {!showVideo && (
-        <div className="pointer-events-none absolute right-4 top-4 z-10 hidden items-center gap-2 rounded-full bg-black/40 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.14em] text-white/85 ring-1 ring-white/15 backdrop-blur md:inline-flex">
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--ithemba-yellow)] opacity-75" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--ithemba-yellow)]" />
-          </span>
-          Hero video placeholder · ready for real team video
-        </div>
-      )}
 
       <div className="mx-auto max-w-7xl px-4 pb-20 pt-20 md:pb-28 md:pt-28 lg:min-h-[68vh] lg:px-8">
         <div className="relative max-w-3xl text-white">
@@ -438,7 +389,7 @@ function TeamHero({ c }: { c: HeroCopy }) {
 
 function TeamGrid({ c, lang }: { c: HeroCopy; lang: Lang }) {
   return (
-    <section className="relative mx-auto max-w-7xl overflow-hidden px-4 py-16 md:py-24 lg:px-8">
+    <section className="relative mx-auto max-w-7xl overflow-hidden px-4 pb-16 pt-10 md:pb-24 md:pt-14 lg:px-8">
       {/* decorative blobs */}
       <div aria-hidden className="pointer-events-none absolute -left-24 top-24 h-72 w-72 rounded-full bg-[var(--ithemba-yellow)]/15 blur-3xl" />
       <div aria-hidden className="pointer-events-none absolute -right-24 bottom-24 h-80 w-80 rounded-full bg-[var(--ithemba-blue)]/15 blur-3xl" />
