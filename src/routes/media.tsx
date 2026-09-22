@@ -14,7 +14,6 @@ import {
 } from "lucide-react";
 import { useLang } from "@/components/site/LanguageProvider";
 import { Button } from "@/components/ui/button";
-import { assets } from "@/data/assets";
 
 export const Route = createFileRoute("/media")({
   head: () => ({
