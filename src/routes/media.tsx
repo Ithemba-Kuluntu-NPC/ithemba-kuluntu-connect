@@ -31,7 +31,8 @@ export const Route = createFileRoute("/media")({
         content:
           "News coverage, broadcast features, articles and project videos from iThemba Kuluntu's work in rural South Africa.",
       },
-      { property: "og:image", content: assets.photos.home.impact },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: MediaPage,
@@ -555,58 +556,31 @@ function VideoCard({
   );
 }
 
-function publisherBadgeLabel(name: string) {
-  const map: Record<string, string> = {
-    "News24": "N24",
-    "Daily Dispatch": "DD",
-    "GoodThingsGuy": "GTG",
-    "Daily Maverick": "DM",
-    "UNICEF South Africa": "US",
-    "South African Human Rights Commission": "SAHRC",
-  };
-  return map[name] || publisherInitials(name);
-}
-
-function ArticleCard({ a, label, typeLabel }: { a: ArticleItem; label: string; typeLabel: string }) {
-  const badge = publisherBadgeLabel(a.publisher);
-  const longBadge = badge.length > 4;
+function ArticleCard({ a, label }: { a: ArticleItem; label: string }) {
   return (
-    <li className="group flex flex-col rounded-2xl bg-white p-4 shadow-[0_6px_20px_-12px_rgb(15_42_140/0.18)] ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-md">
-      <div className="flex items-start gap-3">
-        <div
-          className="flex h-10 w-10 flex-none items-center justify-center rounded-full"
-          style={{ background: blueDeep, color: "#fff" }}
-          aria-label={typeLabel}
-        >
-          {longBadge ? (
-            <Newspaper className="h-5 w-5" />
-          ) : (
-            <span className="text-[10px] font-bold uppercase leading-none">{badge}</span>
+    <li className="group border-b border-[color:var(--ithemba-blue,#1d4e89)]/20 py-5 first:pt-0 md:py-6 md:[&:nth-child(2)]:pt-0">
+      <ExternalA
+        href={a.url}
+        ariaLabel={`${label}: ${a.title}`}
+        className="block rounded-sm outline-none transition focus-visible:ring-2 focus-visible:ring-[color:var(--ithemba-blue,#1d4e89)] focus-visible:ring-offset-4 focus-visible:ring-offset-[color:var(--ithemba-cream,#fdf7ed)]"
+      >
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[10px] font-bold uppercase tracking-[0.12em] text-[color:var(--ithemba-blue,#1d4e89)] md:text-[11px]">
+          <span>{a.publisher}</span>
+          {a.date && (
+            <>
+              <span aria-hidden className="h-1 w-1 rounded-full bg-[color:var(--ithemba-blue,#1d4e89)]/40" />
+              <time className="text-foreground/60">{a.date}</time>
+            </>
           )}
         </div>
-        <div className="flex-1 min-w-0">
-          <div className="flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-[color:var(--ithemba-blue,#1d4e89)]">
-            <span className="truncate">{a.publisher}</span>
-            {a.date && (
-              <>
-                <span className="h-1 w-1 rounded-full bg-[color:var(--ithemba-blue,#1d4e89)]/40" />
-                <span className="whitespace-nowrap text-foreground/60">{a.date}</span>
-              </>
-            )}
-          </div>
-          <h3 className="mt-1 font-display text-[15px] font-semibold leading-snug text-[color:var(--ithemba-blue-deepest,#0b2545)] md:text-base">
-            {a.title}
-          </h3>
-        </div>
-      </div>
-      <div className="mt-3">
-        <Button asChild size="sm" variant="outline" className="rounded-full">
-          <ExternalA href={a.url}>
-            {label}
-            <ExternalLink className="ml-1.5 h-3.5 w-3.5" />
-          </ExternalA>
-        </Button>
-      </div>
+        <h3 className="mt-2 font-display text-lg font-semibold leading-snug text-[color:var(--ithemba-blue-deepest,#0b2545)] transition-colors group-hover:text-[color:var(--ithemba-blue,#1d4e89)] md:text-xl">
+          {a.title}
+        </h3>
+        <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-[color:var(--ithemba-blue,#1d4e89)] underline-offset-4 group-hover:underline">
+          {label}
+          <ExternalLink className="h-3.5 w-3.5" />
+        </span>
+      </ExternalA>
     </li>
   );
 }
@@ -642,14 +616,15 @@ function MediaPage() {
       {/* HERO */}
       <section className="relative isolate overflow-hidden">
         <div className="relative h-[48vh] min-h-[360px] w-full">
-          <img
-            src={assets.photos.home.impact}
-            alt=""
-            aria-hidden
+          <video
+            src="/assets/photos/media/media-hero-video.mp4"
+            aria-hidden="true"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
             className="absolute inset-0 h-full w-full object-cover"
-            onError={(e) => {
-              (e.currentTarget as HTMLImageElement).src = assets.photos.about.cwebeni;
-            }}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#0b2545]/80 via-[#0b2545]/55 to-[#0b2545]/85" />
           <div
@@ -666,12 +641,11 @@ function MediaPage() {
             <p className="mt-4 max-w-2xl text-base text-white/90 md:text-lg">{c.hero.text}</p>
           </div>
         </div>
-        <Wave from="rgba(0,0,0,0)" to={cream} />
       </section>
 
       {/* FILTER BAR */}
       <section style={{ background: cream }}>
-        <div className="mx-auto max-w-6xl px-5 pt-5 md:px-8 md:pt-8">
+        <div className="mx-auto max-w-6xl px-5 py-3.5 md:px-8 md:py-4">
           <div className="flex flex-wrap items-center gap-2">
             {filters.map((f) => {
               const active = filter === f.id;
@@ -722,7 +696,7 @@ function MediaPage() {
       {/* BROADCAST */}
       {show.broadcast && (
         <section className="bg-white">
-          <div className="mx-auto max-w-6xl px-5 py-10 md:px-8 md:py-14">
+          <div className="mx-auto max-w-6xl px-5 py-9 md:px-8 md:py-12">
             <p className="text-3xl" style={{ color: blue, fontFamily: script }}>
               {c.broadcast.eyebrow}
             </p>
@@ -750,9 +724,9 @@ function MediaPage() {
             <h2 className="mt-1 font-display text-3xl font-bold text-[color:var(--ithemba-blue-deepest,#0b2545)] md:text-4xl">
               {c.articles.title}
             </h2>
-            <ul className="mt-7 grid gap-3 md:grid-cols-2">
+            <ul className="mt-6 grid gap-x-10 lg:grid-cols-2 lg:gap-x-14">
               {ARTICLES.map((a) => (
-                <ArticleCard key={a.url} a={a} label={c.articles.read} typeLabel={c.type.article} />
+                <ArticleCard key={a.url} a={a} label={c.articles.read} />
               ))}
             </ul>
           </div>
@@ -808,19 +782,28 @@ function MediaPage() {
         </section>
       )}
 
-      <Wave from={show.pureflow ? blueDeep : cream} to={cream} />
+      <Wave from={show.pureflow ? blueDeep : cream} to={blueDeep} />
 
       {/* YOUTUBE CHANNEL */}
-      <section style={{ background: cream }}>
-        <div className="mx-auto max-w-5xl px-5 py-10 text-center md:px-8 md:py-14">
-          <p className="text-3xl" style={{ color: blue, fontFamily: script }}>
+      <section className="relative isolate flex min-h-[360px] items-center overflow-hidden text-white md:min-h-[420px]">
+        <img
+          src="/assets/photos/media/media-cool-photo-sabc-interview.jpg"
+          alt="iThemba Kuluntu during a media interview"
+          className="absolute inset-0 h-full w-full object-cover object-center"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0b2545]/90 via-[#0b2545]/72 to-[#0b2545]/52" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0b2545]/65 via-transparent to-[#0b2545]/25" />
+        <div className="relative mx-auto w-full max-w-5xl px-5 py-14 md:px-8 md:py-16">
+          <div className="max-w-2xl">
+          <p className="text-3xl md:text-4xl" style={{ color: yellow, fontFamily: script }}>
             {c.channel.eyebrow}
           </p>
-          <h2 className="mt-1 font-display text-3xl font-bold text-[color:var(--ithemba-blue-deepest,#0b2545)] md:text-4xl">
+          <h2 className="mt-1 font-display text-3xl font-bold text-white md:text-5xl">
             {c.channel.title}
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-[15px] text-foreground/80 md:text-base">{c.channel.text}</p>
-          <div className="mt-5 flex justify-center">
+          <p className="mt-4 max-w-xl text-[15px] text-white/90 md:text-base">{c.channel.text}</p>
+          <div className="mt-6 flex">
             <Button
               asChild
               size="lg"
@@ -832,10 +815,11 @@ function MediaPage() {
               </ExternalA>
             </Button>
           </div>
+          </div>
         </div>
       </section>
 
-      <Wave from={cream} to="#ffffff" />
+      <Wave from={blueDeep} to="#ffffff" />
 
       {/* PRESS */}
       <section className="bg-white">
