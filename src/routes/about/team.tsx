@@ -89,6 +89,8 @@ type Member = {
   id: number;
   firstName: string;
   role: Role;
+  /** Optional smaller secondary line beneath the main role */
+  sub?: Role;
   photo: string | null;
 };
 
@@ -116,36 +118,6 @@ const TEAM: Member[] = [
     photo: `${PHOTO_BASE}/team-anke-02.jpg`,
   },
   {
-    id: 5,
-    firstName: "TJ",
-    role: {
-      en: "Programme Lead — Safe Water & Climate Resilience",
-      de: "Programmleitung — Sicheres Wasser & Klimaresilienz",
-      nl: "Programmacoördinator — Veilig water & klimaatbestendigheid",
-    },
-    photo: `${PHOTO_BASE}/team-tj.jpg`,
-  },
-  {
-    id: 21,
-    firstName: "Hannah",
-    role: {
-      en: "ECD, Education & Social Support | Switzerland Outreach",
-      de: "ECD, Bildung & soziale Unterstützung | Netzwerk Schweiz",
-      nl: "ECD, onderwijs & sociale ondersteuning | Netwerk Zwitserland",
-    },
-    photo: `${PHOTO_BASE}/team-hannah-21.jpg`,
-  },
-  {
-    id: 22,
-    firstName: "Mehret",
-    role: {
-      en: "PureFlow Amanzi Partnerships & Rollout Coordinator | Netherlands",
-      de: "PureFlow Amanzi Partnerschaften & Rollout-Koordination | Niederlande",
-      nl: "PureFlow Amanzi Partnerschappen & uitrolcoördinatie | Nederland",
-    },
-    photo: `${PHOTO_BASE}/team-mehret-22.jpg`,
-  },
-  {
     id: 3,
     firstName: "Linda",
     role: {
@@ -154,6 +126,46 @@ const TEAM: Member[] = [
       nl: "Contactpersoon gemeenschap — ECD Centre & PureFlow Amanzi",
     },
     photo: `${PHOTO_BASE}/team-linda-03.jpg`,
+  },
+  {
+    id: 21,
+    firstName: "Hannah",
+    role: {
+      en: "Education & International Partnerships Lead",
+      de: "Bildung & Internationale Partnerschaften — Leitung",
+      nl: "Onderwijs & Internationale Partnerschappen — Leiding",
+    },
+    sub: {
+      en: "South Africa & Switzerland",
+      de: "Südafrika & Schweiz",
+      nl: "Zuid-Afrika & Zwitserland",
+    },
+    photo: `${PHOTO_BASE}/team-hannah-21.jpg`,
+  },
+  {
+    id: 22,
+    firstName: "Mehret",
+    role: {
+      en: "International Partnerships & Development Lead",
+      de: "Internationale Partnerschaften & Entwicklungsleitung",
+      nl: "Internationale Partnerschappen & Ontwikkelingsleiding",
+    },
+    sub: {
+      en: "Netherlands & International",
+      de: "Niederlande & International",
+      nl: "Nederland & Internationaal",
+    },
+    photo: `${PHOTO_BASE}/team-mehret-22.jpg`,
+  },
+  {
+    id: 5,
+    firstName: "TJ",
+    role: {
+      en: "Programme Lead — Safe Water & Climate Resilience",
+      de: "Programmleitung — Sicheres Wasser & Klimaresilienz",
+      nl: "Programmacoördinator — Veilig water & klimaatbestendigheid",
+    },
+    photo: `${PHOTO_BASE}/team-tj.jpg`,
   },
   {
     id: 4,
@@ -438,6 +450,7 @@ function TeamCard({
 
   const initial = member.firstName.charAt(0);
   const role = member.role[lang] ?? member.role.en;
+  const sub = member.sub ? member.sub[lang] ?? member.sub.en : null;
 
   return (
     <article className={`group relative flex flex-col items-center text-center ${offset} transition-transform`}>
@@ -485,6 +498,9 @@ function TeamCard({
         {member.firstName}
       </h3>
       <p className="mt-1.5 max-w-[18rem] text-sm leading-snug text-foreground/75">{role}</p>
+      {sub && (
+        <p className="mt-0.5 max-w-[18rem] text-xs leading-snug text-foreground/60">{sub}</p>
+      )}
     </article>
   );
 }
