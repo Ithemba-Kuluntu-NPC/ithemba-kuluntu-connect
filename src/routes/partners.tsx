@@ -789,7 +789,7 @@ function PartnersPage() {
       </section>
 
       {/* ============ CLOSING CTA ============ */}
-      <section className="relative isolate overflow-hidden text-white" style={{ background: blueDeep }}>
+      <section id="partners-closing" className="relative isolate overflow-hidden text-white" style={{ background: blueDeep }}>
         <img
           src={CTA_BG}
           alt=""
@@ -828,6 +828,9 @@ function PartnersPage() {
           </div>
         </div>
       </section>
+      {/* Scoped: the shared footer adds mt-24 globally; on this page the closing
+          CTA section must sit flush against the footer, so cancel it here only. */}
+      <style>{`main:has(#partners-closing) + footer { margin-top: 0; }`}</style>
     </main>
   );
 }
