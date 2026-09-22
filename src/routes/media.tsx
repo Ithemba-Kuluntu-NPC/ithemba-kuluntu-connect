@@ -824,16 +824,18 @@ function MediaPage() {
 
       {/* PRESS */}
       <section className="bg-white">
-        <div className="mx-auto max-w-5xl px-5 py-10 md:px-8 md:py-14">
-          <div className="rounded-3xl bg-[color:var(--ithemba-cream,#fdf7ed)] p-6 ring-1 ring-black/5 md:p-10">
-            <p className="text-3xl" style={{ color: blue, fontFamily: script }}>
-              {c.press.eyebrow}
-            </p>
-            <h2 className="mt-1 font-display text-3xl font-bold text-[color:var(--ithemba-blue-deepest,#0b2545)] md:text-4xl">
-              {c.press.title}
-            </h2>
-            <p className="mt-4 max-w-2xl text-[15px] text-foreground/80 md:text-base">{c.press.text}</p>
-            <div className="mt-5 flex flex-wrap items-center gap-4">
+        <div className="mx-auto max-w-6xl px-5 py-8 md:px-8 md:py-10">
+          <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between md:gap-12">
+            <div className="max-w-xl">
+              <p className="text-3xl" style={{ color: blue, fontFamily: script }}>
+                {c.press.eyebrow}
+              </p>
+              <h2 className="mt-1 font-display text-2xl font-bold text-[color:var(--ithemba-blue-deepest,#0b2545)] md:text-3xl">
+                {c.press.title}
+              </h2>
+              <p className="mt-2 text-[15px] text-foreground/80 md:text-base">{c.press.text}</p>
+            </div>
+            <div className="flex flex-col items-start gap-3 md:items-end">
               <a
                 href="mailto:info@ithembakuluntu.org"
                 className="inline-flex items-center gap-2 font-display text-lg font-semibold text-[color:var(--ithemba-blue-deepest,#0b2545)] underline-offset-4 hover:underline"
@@ -854,18 +856,19 @@ function MediaPage() {
       {/* CLOSING CTA */}
       <section className="relative isolate overflow-hidden text-white" style={{ background: blueDeep }}>
         <img
-          src={assets.photos.home.impact}
-          alt=""
-          aria-hidden
-          className="absolute inset-0 h-full w-full object-cover opacity-30"
+          src="/assets/photos/media/media-filming-at-water-source.jpg"
+          alt="Filming at a water source in Cwebeni"
+          className="absolute inset-0 h-full w-full object-cover"
+          style={{ objectPosition: "center 35%" }}
+          loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0b2545]/85 via-[#0b2545]/80 to-[#0b2545]/95" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0b2545]/70 via-[#0b2545]/45 to-[#0b2545]/75" />
         <div className="relative mx-auto max-w-5xl px-5 py-16 text-center md:px-8 md:py-20">
           <p className="text-3xl md:text-4xl" style={{ color: yellow, fontFamily: script }}>
             {c.cta.eyebrow}
           </p>
           <h2 className="mt-2 font-display text-3xl font-bold md:text-5xl">{c.cta.title}</h2>
-          <p className="mx-auto mt-5 max-w-2xl text-[15px] text-white/85 md:text-base">{c.cta.text}</p>
+          <p className="mx-auto mt-5 max-w-2xl text-[15px] text-white/90 md:text-base">{c.cta.text}</p>
           <div className="mt-7 flex flex-wrap justify-center gap-3">
             <Button asChild size="lg" className="bg-[var(--ithemba-yellow,#f5c64a)] text-[#0b2545] hover:bg-[var(--ithemba-yellow,#f5c64a)]/90">
               <Link to="/projects">
