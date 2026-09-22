@@ -853,12 +853,15 @@ function MediaPage() {
       <Wave from="#ffffff" to={blueDeep} />
 
       {/* CLOSING CTA */}
-      <section className="relative isolate overflow-hidden text-white" style={{ background: blueDeep }}>
+      {/* Scoped: the shared footer adds mt-24 globally; on this page the photo
+          section must sit flush against the footer, so cancel it here only. */}
+      <style>{`main:has(#media-stories-of-change) + footer { margin-top: 0; }`}</style>
+      <section id="media-stories-of-change" className="relative isolate overflow-hidden text-white" style={{ background: blueDeep }}>
         <img
           src="/assets/photos/media/media-filming-at-water-source.jpg"
           alt="Filming at a water source in Cwebeni"
           className="absolute inset-0 h-full w-full object-cover"
-          style={{ objectPosition: "center 35%" }}
+          style={{ objectPosition: "center 58%" }}
           loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0b2545]/70 via-[#0b2545]/45 to-[#0b2545]/75" />
