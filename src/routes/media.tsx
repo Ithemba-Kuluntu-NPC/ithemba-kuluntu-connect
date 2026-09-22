@@ -789,7 +789,8 @@ function MediaPage() {
         <img
           src="/assets/photos/media/media-cool-photo-sabc-interview.jpg"
           alt="iThemba Kuluntu during a media interview"
-          className="absolute inset-0 h-full w-full object-cover object-center"
+          className="absolute inset-0 h-full w-full object-cover"
+          style={{ objectPosition: "center 38%" }}
           loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0b2545]/90 via-[#0b2545]/72 to-[#0b2545]/52" />
