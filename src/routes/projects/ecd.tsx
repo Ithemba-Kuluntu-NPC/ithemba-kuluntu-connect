@@ -1221,7 +1221,7 @@ function Why({ c }: { c: Copy }) {
           iconCorner="br"
           icon={ECD_ICONS.brain}
           photos={[
-            { src: P.outdoorToddlers, label: "Toddlers learning outdoors at the ECD Centre", tone: "sun" },
+            { src: P.class23Animals, label: "A teacher teaching animals to 2 to 3 year olds", tone: "sun" },
             { src: P.freePlayOutdoor, label: "Children at free play outdoors", tone: "warm" },
             { src: P.class23Activity2, label: "Classroom activity with 2 to 3 year olds", tone: "earth" },
           ]}
