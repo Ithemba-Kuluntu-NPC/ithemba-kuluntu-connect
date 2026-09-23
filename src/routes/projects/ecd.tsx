@@ -1914,6 +1914,30 @@ function Monthly({ c }: { c: Copy }) {
 
         <div className="absolute right-[-6rem] top-[-6rem] h-[28rem] w-[28rem] sun-glow" />
       </div>
+
+      {/* Thin wave divider softening the transition into the closing photo section */}
+      <svg
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-10 w-full md:h-12"
+        viewBox="0 0 1440 48"
+        preserveAspectRatio="none"
+        fill="none"
+        aria-hidden
+      >
+        <path
+          d="M0 32 C 120 14, 260 14, 400 30 C 540 46, 680 46, 820 30 C 960 14, 1100 14, 1240 30 C 1330 40, 1390 42, 1440 38"
+          stroke="white"
+          strokeOpacity="0.45"
+          strokeWidth="2.5"
+          vectorEffect="non-scaling-stroke"
+        />
+        <path
+          d="M0 38 C 140 22, 280 22, 430 36 C 580 50, 720 48, 870 32 C 1020 16, 1170 18, 1310 32 C 1370 38, 1410 40, 1440 39"
+          stroke="white"
+          strokeOpacity="0.18"
+          strokeWidth="2"
+          vectorEffect="non-scaling-stroke"
+        />
+      </svg>
       <div className="mx-auto grid max-w-7xl gap-10 px-4 md:grid-cols-2 lg:px-8">
         <div className="text-white">
           <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)]">{c.monthly.eyebrow}</div>
