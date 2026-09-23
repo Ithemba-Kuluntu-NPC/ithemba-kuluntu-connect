@@ -419,17 +419,31 @@ const COPY: Record<"en" | "de" | "nl", Copy> = {
 };
 
 /* ---------- wave divider ---------- */
-function Wave({ from, to, flip = false }: { from: string; to: string; flip?: boolean }) {
+function Wave({
+  from,
+  to,
+  flip = false,
+  compact = false,
+}: {
+  from: string;
+  to: string;
+  flip?: boolean;
+  compact?: boolean;
+}) {
   return (
-    <div className="relative -mb-px" style={{ background: from, lineHeight: 0 }}>
+    <div className="relative -mb-px" style={{ background: from, lineHeight: 0, marginTop: -2 }}>
       <svg
-        viewBox="0 0 1440 90"
+        viewBox="0 0 1440 92"
         preserveAspectRatio="none"
-        className="block h-[60px] w-full md:h-[90px]"
-        style={{ transform: flip ? "scaleY(-1)" : undefined }}
+        className={`block w-full ${compact ? "h-[46px] md:h-[66px]" : "h-[60px] md:h-[90px]"}`}
+        style={{
+          // overlap 2px into the next section so no sub-pixel seam can appear
+          // at fractional zoom levels; the wave's bottom edge is solid `to`
+          transform: flip ? "scaleY(-1)" : "translateY(2px)",
+        }}
         aria-hidden
       >
-        <path d="M0,40 C240,90 480,0 720,40 C960,80 1200,10 1440,50 L1440,90 L0,90 Z" fill={to} />
+        <path d="M0,40 C240,90 480,0 720,40 C960,80 1200,10 1440,50 L1440,92 L0,92 Z" fill={to} />
       </svg>
     </div>
   );
@@ -694,7 +708,7 @@ function PartnersPage() {
 
       {/* ============ HOW IT WORKS ============ */}
       <section style={{ background: blueDeep }} className="text-white">
-        <div className="mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
+        <div className="mx-auto max-w-6xl px-5 pb-9 pt-12 md:px-8 md:pb-11 md:pt-14">
           <p
             className="text-3xl text-[var(--ithemba-yellow,#f5c64a)]"
             style={{ fontFamily: '"Caveat", "Kalam", cursive' }}
@@ -733,11 +747,11 @@ function PartnersPage() {
         </div>
       </section>
 
-      <Wave from={blueDeep} to={cream} />
+      <Wave from={blueDeep} to={cream} compact />
 
       {/* ============ TRUST ============ */}
       <section style={{ background: cream }}>
-        <div className="mx-auto grid max-w-6xl items-center gap-8 px-5 py-12 md:px-8 md:py-16 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12">
+        <div className="mx-auto grid max-w-6xl items-center gap-8 px-5 pb-12 pt-9 md:px-8 md:pb-16 md:pt-11 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12">
           <div>
             <p
               className="text-3xl text-[var(--ithemba-yellow,#f5c64a)]"
