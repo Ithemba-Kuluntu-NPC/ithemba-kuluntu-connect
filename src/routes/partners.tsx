@@ -436,10 +436,13 @@ function Wave({
         viewBox="0 0 1440 92"
         preserveAspectRatio="none"
         className={`block w-full ${compact ? "h-[46px] md:h-[66px]" : "h-[60px] md:h-[90px]"}`}
-        style={{ transform: flip ? "scaleY(-1)" : undefined }}
+        style={{
+          // overlap 2px into the next section so no sub-pixel seam can appear
+          // at fractional zoom levels; the wave's bottom edge is solid `to`
+          transform: flip ? "scaleY(-1)" : "translateY(2px)",
+        }}
         aria-hidden
       >
-        {/* fill closes past the bottom edge so no sub-pixel seam of `from` shows through */}
         <path d="M0,40 C240,90 480,0 720,40 C960,80 1200,10 1440,50 L1440,92 L0,92 Z" fill={to} />
       </svg>
     </div>
