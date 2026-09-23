@@ -33,8 +33,19 @@ const HERO: Record<Lang, HeroCopy> = {
   },
 };
 
-const HERO_VIDEO = "/assets/videos/projects/projects-hero.mp4";
+const OVERVIEW_MEDIA = "/assets/photos/project-overview";
+const HERO_VIDEO = `${OVERVIEW_MEDIA}/hero-video-project-overview.mp4`;
 const HERO_POSTER = "/assets/photos/projects/ecd-hero.jpg";
+
+/** Project card photography — same files and crops as the Home page cards. */
+const overviewProjectHeroes: Record<string, string> = {
+  ecd: `${OVERVIEW_MEDIA}/main-ecd-project-title-2.jpg`,
+  pureflow: `${OVERVIEW_MEDIA}/main-pureflow-project-title-3.jpg`,
+  greenhouse: `${OVERVIEW_MEDIA}/main-greenhouse-project-title.jpeg`,
+  "food-security": `${OVERVIEW_MEDIA}/main-food-security-project-title.jpeg`,
+  "pondo-dogs": `${OVERVIEW_MEDIA}/main-pondo-dogs-project-title-2.jpg`,
+  "disaster-relief": `${OVERVIEW_MEDIA}/main-disaster-relief-project-title.jpeg`,
+};
 
 function useReducedMotion() {
   const [reduced, setReduced] = useState(false);
@@ -135,7 +146,14 @@ function ProjectsOverview() {
       </section>
       <section className="mx-auto max-w-7xl px-4 pb-20 lg:px-8">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.map((p) => <ProjectCard key={p.slug} project={p} />)}
+          {projects.map((p) => (
+            <ProjectCard
+              key={p.slug}
+              project={p}
+              heroImage={overviewProjectHeroes[p.slug]}
+              objectPosition={p.slug === "pondo-dogs" ? "center 60%" : undefined}
+            />
+          ))}
         </div>
       </section>
     </>
