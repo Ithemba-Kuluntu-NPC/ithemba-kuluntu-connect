@@ -285,7 +285,7 @@ function EventDetail({ event }: { event: PureFlowEvent }) {
   const validMetrics = metrics.filter((metric): metric is { icon: typeof Users; label: string; value: number } => typeof metric.value === "number");
 
   return (
-    <article className="overflow-hidden rounded-3xl bg-card text-card-foreground shadow-2xl ring-1 ring-border">
+    <article className="h-full overflow-y-auto rounded-3xl bg-card text-card-foreground shadow-2xl ring-1 ring-border">
       <div className="p-4 sm:p-5">
         <EventPhotoCarousel event={event} />
       </div>
@@ -449,9 +449,9 @@ export default function PureFlowEventMap() {
         </div>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-[minmax(0,1.55fr)_minmax(340px,1fr)] lg:items-start">
-        <div className="min-w-0 overflow-hidden rounded-3xl bg-card shadow-2xl ring-1 ring-border">
-          <div role="region" aria-label="PureFlow Amanzi impact map" className="h-[390px] w-full sm:h-[480px] lg:h-[620px]">
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,1.55fr)_minmax(340px,1fr)] lg:items-stretch">
+        <div className="min-w-0 overflow-hidden rounded-3xl bg-card shadow-2xl ring-1 ring-border lg:h-[620px]">
+          <div role="region" aria-label="PureFlow Amanzi impact map" className="h-[390px] w-full sm:h-[480px] lg:h-full">
             <MapContainer
               center={[-30.3, 30.5]}
               zoom={7}
@@ -501,13 +501,9 @@ export default function PureFlowEventMap() {
               ))}
             </MapContainer>
           </div>
-          <div className="flex flex-wrap items-center justify-between gap-2 border-t border-border px-4 py-3 text-xs text-muted-foreground">
-            <span>{filteredEvents.length} {filteredEvents.length === 1 ? "event" : "events"}</span>
-            <span>{groups.length} {groups.length === 1 ? "location" : "locations"}</span>
-          </div>
         </div>
 
-        <div ref={detailRef} className="min-w-0 scroll-mt-24">
+        <div ref={detailRef} className="min-w-0 scroll-mt-24 lg:h-[620px]">
           {selected && <EventDetail event={selected} />}
         </div>
       </div>
