@@ -20,7 +20,7 @@ import { assets } from "@/data/assets";
 
 export const Route = createFileRoute("/contact")({ component: ContactPage });
 
-const BG_IMG = assets.photos.about.cwebeni;
+const BG_IMG = "/assets/photos/contact/contact-funny-team-photo.jpg";
 
 /* ---------- copy ---------- */
 const COPY = {
