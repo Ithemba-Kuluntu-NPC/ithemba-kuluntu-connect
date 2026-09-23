@@ -2029,7 +2029,6 @@ function EcdPage() {
       <Building c={c} />
       <Women c={c} />
       <Provides c={c} />
-      <Rhythm c={c} />
       <Nutrition c={c} />
       <Focus c={c} />
       <Impact c={c} />
