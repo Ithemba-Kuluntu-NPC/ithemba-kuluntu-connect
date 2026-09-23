@@ -1757,7 +1757,7 @@ function Monthly({ c }: { c: Copy }) {
 /* ---------- CLOSING ---------- */
 function Closing({ c }: { c: Copy }) {
   return (
-    <section className="relative isolate overflow-hidden py-20 text-white md:py-24">
+    <section id="ecd-closing" className="relative isolate overflow-hidden py-20 text-white md:py-24">
       <div className="absolute inset-0 -z-10">
         <img
           src={P.groupPhoto}
@@ -1834,6 +1834,9 @@ function EcdPage() {
       <Impact c={c} />
       <Monthly c={c} />
       <Closing c={c} />
+      {/* Scoped: the shared footer adds mt-24 globally; on this page the closing
+          section must sit flush against the footer, so cancel it here only. */}
+      <style>{`main:has(#ecd-closing) + footer { margin-top: 0; }`}</style>
     </>
   );
 }
