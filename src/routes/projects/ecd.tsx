@@ -1958,7 +1958,18 @@ function Monthly({ c }: { c: Copy }) {
 /* ---------- CLOSING ---------- */
 function Closing({ c }: { c: Copy }) {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[var(--ithemba-blue-deepest)] via-[var(--ithemba-blue-dark)] to-[var(--ithemba-blue)] py-20 text-white">
+    <section className="relative isolate overflow-hidden py-20 text-white md:py-24">
+      <div className="absolute inset-0 -z-10">
+        <img
+          src={P.groupPhoto}
+          alt="Children and their teacher at the No.1 ECD Centre"
+          loading="lazy"
+          className="h-full w-full object-cover"
+          style={{ objectPosition: "center 35%" }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/80 via-[var(--ithemba-blue-dark)]/66 to-[var(--ithemba-blue)]/52" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--ithemba-blue-deepest)]/60 via-transparent to-transparent" />
+      </div>
       <div className="pointer-events-none absolute right-[-6rem] top-[-6rem] h-[24rem] w-[24rem] sun-glow" />
       <div className="pointer-events-none absolute left-10 top-10">
         <SunDoodle className="h-12 w-12 text-[var(--ithemba-yellow)]/60" />
