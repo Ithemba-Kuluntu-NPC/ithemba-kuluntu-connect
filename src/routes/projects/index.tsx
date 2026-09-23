@@ -124,8 +124,8 @@ function ProjectsHero({ c }: { c: HeroCopy }) {
         </div>
       </div>
 
-      <svg className="block w-full" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden>
-        <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="var(--background)" />
+      <svg className="block w-full" viewBox="0 0 1440 82" preserveAspectRatio="none" aria-hidden>
+        <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,82 L0,82 Z" fill="var(--background)" />
       </svg>
     </section>
   );
@@ -137,7 +137,7 @@ function ProjectsOverview() {
   return (
     <>
       <ProjectsHero c={c} />
-      <section className="mx-auto max-w-7xl px-4 py-12 text-center lg:px-8">
+      <section className="mx-auto max-w-7xl px-4 pb-6 pt-6 text-center md:pb-8 md:pt-7 lg:px-8">
         <Link to="/donate">
           <Button size="lg" className="rounded-full bg-[var(--ithemba-yellow)] text-[var(--ithemba-brown)] hover:bg-[var(--ithemba-yellow)]/90 font-semibold">
             <Heart className="mr-2 h-4 w-4 fill-current" /> {c.donate}
