@@ -705,7 +705,7 @@ function PartnersPage() {
 
       {/* ============ HOW IT WORKS ============ */}
       <section style={{ background: blueDeep }} className="text-white">
-        <div className="mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
+        <div className="mx-auto max-w-6xl px-5 pb-9 pt-12 md:px-8 md:pb-11 md:pt-14">
           <p
             className="text-3xl text-[var(--ithemba-yellow,#f5c64a)]"
             style={{ fontFamily: '"Caveat", "Kalam", cursive' }}
