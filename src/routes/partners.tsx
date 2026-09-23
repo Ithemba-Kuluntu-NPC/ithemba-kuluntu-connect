@@ -744,11 +744,11 @@ function PartnersPage() {
         </div>
       </section>
 
-      <Wave from={blueDeep} to={cream} />
+      <Wave from={blueDeep} to={cream} compact />
 
       {/* ============ TRUST ============ */}
       <section style={{ background: cream }}>
-        <div className="mx-auto grid max-w-6xl items-center gap-8 px-5 py-12 md:px-8 md:py-16 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12">
+        <div className="mx-auto grid max-w-6xl items-center gap-8 px-5 pb-12 pt-9 md:px-8 md:pb-16 md:pt-11 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12">
           <div>
             <p
               className="text-3xl text-[var(--ithemba-yellow,#f5c64a)]"
