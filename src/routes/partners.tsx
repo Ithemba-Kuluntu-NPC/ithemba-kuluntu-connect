@@ -419,17 +419,28 @@ const COPY: Record<"en" | "de" | "nl", Copy> = {
 };
 
 /* ---------- wave divider ---------- */
-function Wave({ from, to, flip = false }: { from: string; to: string; flip?: boolean }) {
+function Wave({
+  from,
+  to,
+  flip = false,
+  compact = false,
+}: {
+  from: string;
+  to: string;
+  flip?: boolean;
+  compact?: boolean;
+}) {
   return (
     <div className="relative -mb-px" style={{ background: from, lineHeight: 0 }}>
       <svg
-        viewBox="0 0 1440 90"
+        viewBox="0 0 1440 92"
         preserveAspectRatio="none"
-        className="block h-[60px] w-full md:h-[90px]"
+        className={`block w-full ${compact ? "h-[46px] md:h-[66px]" : "h-[60px] md:h-[90px]"}`}
         style={{ transform: flip ? "scaleY(-1)" : undefined }}
         aria-hidden
       >
-        <path d="M0,40 C240,90 480,0 720,40 C960,80 1200,10 1440,50 L1440,90 L0,90 Z" fill={to} />
+        {/* fill closes past the bottom edge so no sub-pixel seam of `from` shows through */}
+        <path d="M0,40 C240,90 480,0 720,40 C960,80 1200,10 1440,50 L1440,92 L0,92 Z" fill={to} />
       </svg>
     </div>
   );
