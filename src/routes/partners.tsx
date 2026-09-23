@@ -47,33 +47,27 @@ export const Route = createFileRoute("/partners")({
 const PARTNERS_MEDIA = "/assets/photos/partners";
 const HERO_VIDEO = `${PARTNERS_MEDIA}/partners-hero-video.mp4`;
 const HERO_FALLBACK = `${PARTNERS_MEDIA}/partners-beautiful-team-photo-with-sa-harvest.jpg`;
-const TOGETHER_BG = `${PARTNERS_MEDIA}/partners-fun-team-photo-sa-harvest-and-ithemba.jpg`;
+const TOGETHER_PHOTO = `${PARTNERS_MEDIA}/partners-beautiful-team-photo-with-sa-harvest.jpg`;
 const TRUST_PHOTO = `${PARTNERS_MEDIA}/partners-beautiful-team-photo-with-giftofthegivers.jpg`;
 const CTA_BG = `${PARTNERS_MEDIA}/partners-giftofthegivers-at-hub-in-pietermaritzburg.jpg`;
 const OPPORTUNITY_PHOTOS = [
   {
     src: `${PARTNERS_MEDIA}/partners-rossi-food-security.jpg`,
     alt: "Food security partners supporting a community distribution",
-    className: "col-span-2 row-span-2 min-h-64 sm:min-h-80 lg:col-span-7 lg:min-h-[410px]",
+    className: "col-span-2 min-h-64 sm:min-h-80 lg:min-h-[300px]",
     position: "center 48%",
   },
   {
     src: `${PARTNERS_MEDIA}/partners-training-gift-of-the-givers-pureflow.jpg`,
     alt: "Gift of the Givers and PureFlow Amanzi training partners",
-    className: "col-span-1 min-h-44 sm:min-h-56 lg:col-span-5 lg:min-h-[198px]",
+    className: "col-span-1 min-h-40 sm:min-h-52 lg:min-h-[190px]",
     position: "center 45%",
   },
   {
     src: `${PARTNERS_MEDIA}/partners-beautiful-team-photo-with-fnb-care.jpg`,
     alt: "FNB Care and iThemba Kuluntu team members",
-    className: "col-span-1 min-h-44 sm:min-h-56 lg:col-span-3 lg:min-h-[198px]",
+    className: "col-span-1 min-h-40 sm:min-h-52 lg:min-h-[190px]",
     position: "center 42%",
-  },
-  {
-    src: `${PARTNERS_MEDIA}/partners-team-photo-sa-harvest-lingham-foundation-ithemba-at-skill-centre-opening.jpg`,
-    alt: "SA Harvest, Lingham Foundation and iThemba Kuluntu at the Skills Centre opening",
-    className: "col-span-2 min-h-48 sm:min-h-64 lg:col-span-2 lg:min-h-[198px]",
-    position: "center 52%",
   },
 ] as const;
 
@@ -536,56 +530,57 @@ function PartnersPage() {
         </div>
       </section>
 
-      {/* ============ WHY — photo-backed deep blue ============ */}
-      <section style={{ background: blueDeep }} className="relative isolate overflow-hidden text-white">
-        <img
-          src={TOGETHER_BG}
-          alt=""
-          aria-hidden
-          className="absolute inset-0 h-full w-full object-cover"
-          style={{ objectPosition: "center 44%" }}
-          loading="lazy"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-[var(--ithemba-blue-deepest,#0b2545)]/92 via-[var(--ithemba-blue-deepest,#0b2545)]/72 to-[var(--ithemba-blue-deepest,#0b2545)]/48" />
-        <div className="absolute inset-0 bg-[var(--ithemba-blue-deepest,#0b2545)]/18" />
-        <div className="relative mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
-          <p
-            className="text-3xl text-[var(--ithemba-yellow,#f5c64a)]"
-            style={{ fontFamily: '"Caveat", "Kalam", cursive' }}
-          >
-            {c.why.eyebrow}
-          </p>
-          <h2 className="mt-1 max-w-3xl font-display text-3xl font-bold md:text-4xl">
-            {c.why.title}
-          </h2>
-          <div className="mt-4 grid max-w-2xl gap-3 text-[15px] leading-relaxed text-white/90 md:text-base">
-            {c.why.body.map((p, i) => (<p key={i}>{p}</p>))}
-          </div>
+      {/* ============ WHY — solid deep blue with documentary photo ============ */}
+      <section style={{ background: blueDeep }} className="text-white">
+        <div className="mx-auto grid max-w-6xl items-center gap-9 px-5 py-12 md:px-8 md:py-16 lg:grid-cols-[minmax(0,1.35fr)_minmax(320px,1fr)] lg:gap-12">
+          <div>
+            <p
+              className="text-3xl text-[var(--ithemba-yellow,#f5c64a)]"
+              style={{ fontFamily: '"Caveat", "Kalam", cursive' }}
+            >
+              {c.why.eyebrow}
+            </p>
+            <h2 className="mt-1 max-w-3xl font-display text-3xl font-bold md:text-4xl">
+              {c.why.title}
+            </h2>
+            <div className="mt-4 grid max-w-2xl gap-3 text-[15px] leading-relaxed text-white/90 md:text-base">
+              {c.why.body.map((p, i) => (<p key={i}>{p}</p>))}
+            </div>
 
-          <ul className="mt-7 grid max-w-5xl gap-x-6 gap-y-3 sm:grid-cols-2 lg:grid-cols-3">
-            {c.why.points.map((pt) => {
-              const Icon = WHY_ICONS[pt.icon];
-              const png = WHY_ICON_PNG[pt.icon];
-              return (
-                <li key={pt.label} className="flex items-center gap-4">
-                  {png ? (
-                    <img
-                      src={png}
-                      alt=""
-                      aria-hidden
-                      loading="lazy"
-                      className="h-12 w-12 flex-none object-contain md:h-16 md:w-16"
-                    />
-                  ) : (
-                    <span className="flex h-10 w-10 flex-none items-center justify-center rounded-full border border-[var(--ithemba-yellow,#f5c64a)]/50 text-[var(--ithemba-yellow,#f5c64a)]">
-                      <Icon className="h-5 w-5" />
-                    </span>
-                  )}
-                  <span className="text-[15px] font-medium text-white/95">{pt.label}</span>
-                </li>
-              );
-            })}
-          </ul>
+            <ul className="mt-7 grid gap-x-6 gap-y-3 sm:grid-cols-2">
+              {c.why.points.map((pt) => {
+                const Icon = WHY_ICONS[pt.icon];
+                const png = WHY_ICON_PNG[pt.icon];
+                return (
+                  <li key={pt.label} className="flex items-center gap-4">
+                    {png ? (
+                      <img
+                        src={png}
+                        alt=""
+                        aria-hidden
+                        loading="lazy"
+                        className="h-12 w-12 flex-none object-contain md:h-14 md:w-14"
+                      />
+                    ) : (
+                      <span className="flex h-10 w-10 flex-none items-center justify-center rounded-full border border-[var(--ithemba-yellow,#f5c64a)]/50 text-[var(--ithemba-yellow,#f5c64a)]">
+                        <Icon className="h-5 w-5" />
+                      </span>
+                    )}
+                    <span className="text-[15px] font-medium text-white/95">{pt.label}</span>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+          <figure className="relative min-h-72 overflow-hidden rounded-[1.75rem] drop-shadow-[0_18px_28px_rgba(0,0,0,0.22)] sm:min-h-96 lg:min-h-[500px]">
+            <img
+              src={TOGETHER_PHOTO}
+              alt="iThemba Kuluntu team members with SA Harvest"
+              className="absolute inset-0 h-full w-full object-cover"
+              style={{ objectPosition: "center 46%" }}
+              loading="lazy"
+            />
+          </figure>
         </div>
       </section>
 
@@ -593,46 +588,48 @@ function PartnersPage() {
 
       {/* ============ OPPORTUNITIES ============ */}
       <section style={{ background: cream }} className="relative">
-        <div className="mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
-          <p
-            className="text-3xl text-[color:var(--ithemba-blue,#1d4e89)]"
-            style={{ fontFamily: '"Caveat", "Kalam", cursive' }}
-          >
-            {c.opportunities.eyebrow}
-          </p>
-          <h2 className="mt-1 max-w-3xl font-display text-3xl font-bold text-[color:var(--ithemba-blue-deepest,#0b2545)] md:text-4xl">
-            {c.opportunities.title}
-          </h2>
-          <p className="mt-3 max-w-2xl text-[15px] text-foreground/80 md:text-base">{c.opportunities.intro}</p>
+        <div className="mx-auto grid max-w-6xl items-center gap-9 px-5 py-12 md:px-8 md:py-16 lg:grid-cols-[minmax(0,1.35fr)_minmax(320px,1fr)] lg:gap-12">
+          <div>
+            <p
+              className="text-3xl text-[color:var(--ithemba-blue,#1d4e89)]"
+              style={{ fontFamily: '"Caveat", "Kalam", cursive' }}
+            >
+              {c.opportunities.eyebrow}
+            </p>
+            <h2 className="mt-1 max-w-3xl font-display text-3xl font-bold text-[color:var(--ithemba-blue-deepest,#0b2545)] md:text-4xl">
+              {c.opportunities.title}
+            </h2>
+            <p className="mt-3 max-w-2xl text-[15px] text-foreground/80 md:text-base">{c.opportunities.intro}</p>
 
-          <ul className="mt-7 grid grid-cols-3 gap-x-4 gap-y-5 sm:grid-cols-4 lg:grid-cols-7">
-            {c.opportunities.items.map((it) => {
-              const meta = it.badge !== "none" ? focusAreaBadgeMeta[it.badge] : null;
-              const Fallback = it.icon ? OPP_FALLBACK_ICONS[it.icon] : Sparkles;
-              return (
-                <li key={it.label} className="flex flex-col items-center text-center">
-                  {meta ? (
-                    <img
-                      src={meta.src}
-                      alt=""
-                      aria-hidden
-                      className="h-14 w-14 object-contain md:h-16 md:w-16"
-                      loading="lazy"
-                    />
-                  ) : (
-                    <span className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-emerald-700 text-white md:h-16 md:w-16">
-                      <Fallback className="h-7 w-7" />
-                    </span>
-                  )}
-                  <span className="mt-2 text-xs font-medium leading-snug text-foreground md:text-[13px]">{it.label}</span>
-                </li>
-              );
-            })}
-          </ul>
+            <ul className="mt-7 grid grid-cols-3 gap-x-4 gap-y-5 sm:grid-cols-4">
+              {c.opportunities.items.map((it) => {
+                const meta = it.badge !== "none" ? focusAreaBadgeMeta[it.badge] : null;
+                const Fallback = it.icon ? OPP_FALLBACK_ICONS[it.icon] : Sparkles;
+                return (
+                  <li key={it.label} className="flex flex-col items-center text-center">
+                    {meta ? (
+                      <img
+                        src={meta.src}
+                        alt=""
+                        aria-hidden
+                        className="h-14 w-14 object-contain md:h-16 md:w-16"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <span className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-emerald-700 text-white md:h-16 md:w-16">
+                        <Fallback className="h-7 w-7" />
+                      </span>
+                    )}
+                    <span className="mt-2 text-xs font-medium leading-snug text-foreground md:text-[13px]">{it.label}</span>
+                  </li>
+                );
+              })}
+            </ul>
 
-          <p className="mt-7 max-w-2xl text-[15px] text-foreground/80 md:text-base">{c.opportunities.outro}</p>
+            <p className="mt-7 max-w-2xl text-[15px] text-foreground/80 md:text-base">{c.opportunities.outro}</p>
+          </div>
 
-          <div className="relative mt-8 grid grid-cols-2 gap-3 lg:grid-cols-12 lg:grid-rows-2 lg:gap-4">
+          <div className="relative grid grid-cols-2 gap-3 lg:gap-4">
             <span className="absolute -left-3 -top-3 h-12 w-12 rounded-full bg-[var(--ithemba-yellow,#f5c64a)]/85" aria-hidden />
             {OPPORTUNITY_PHOTOS.map((photo) => (
               <figure
@@ -736,8 +733,10 @@ function PartnersPage() {
         </div>
       </section>
 
+      <Wave from={blueDeep} to={cream} />
+
       {/* ============ TRUST ============ */}
-      <section className="text-white" style={{ background: blueDeep }}>
+      <section style={{ background: cream }}>
         <div className="mx-auto grid max-w-6xl items-center gap-8 px-5 py-12 md:px-8 md:py-16 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12">
           <div>
             <p
@@ -746,10 +745,10 @@ function PartnersPage() {
             >
               {c.expect.eyebrow}
             </p>
-            <h2 className="mt-1 max-w-3xl font-display text-3xl font-bold md:text-4xl">
+            <h2 className="mt-1 max-w-3xl font-display text-3xl font-bold text-[color:var(--ithemba-blue-deepest,#0b2545)] md:text-4xl">
               {c.expect.title}
             </h2>
-            <p className="mt-3 max-w-3xl text-[15px] text-white/85 md:text-base">{c.expect.intro}</p>
+            <p className="mt-3 max-w-3xl text-[15px] text-foreground/80 md:text-base">{c.expect.intro}</p>
 
             <ul className="mt-7 grid gap-x-5 gap-y-3 sm:grid-cols-2">
               {c.expect.items.map((it) => {
@@ -766,11 +765,11 @@ function PartnersPage() {
                         className="h-11 w-11 flex-none object-contain md:h-12 md:w-12"
                       />
                     ) : (
-                      <span className="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-[var(--ithemba-yellow,#f5c64a)]/15 text-[var(--ithemba-yellow,#f5c64a)] ring-1 ring-[var(--ithemba-yellow,#f5c64a)]/40">
+                      <span className="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-[var(--ithemba-yellow,#f5c64a)]/20 text-[color:var(--ithemba-blue-deepest,#0b2545)] ring-1 ring-[var(--ithemba-yellow,#f5c64a)]/55">
                         <Icon className="h-5 w-5" />
                       </span>
                     )}
-                    <span className="text-[15px] font-medium text-white/95">{it.label}</span>
+                    <span className="text-[15px] font-medium text-foreground">{it.label}</span>
                   </li>
                 );
               })}
