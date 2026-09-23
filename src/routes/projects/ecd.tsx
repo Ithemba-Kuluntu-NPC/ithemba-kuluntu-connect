@@ -1174,34 +1174,36 @@ function SectionHeading({
 /* ---------- SNAPSHOT ---------- */
 function Snapshot({ c }: { c: Copy }) {
   return (
-    <section className="relative overflow-hidden bg-[var(--ithemba-cream)] py-20">
+    <section className="relative overflow-hidden bg-[var(--ithemba-cream)] py-12 md:py-14">
       <div className="pointer-events-none absolute -left-10 top-10 h-44 w-44 blob bg-[var(--ithemba-yellow)]/25" />
       <div className="pointer-events-none absolute -right-10 bottom-10 h-52 w-52 blob-2 bg-[var(--ithemba-blue)]/15" />
-      <div className="relative mx-auto max-w-5xl px-4 lg:px-8">
-        <div className="text-center">
-          <SectionHeading eyebrow={c.snapshot.eyebrow} title={c.snapshot.title} center />
-        </div>
-        <div className="mx-auto mt-6 max-w-3xl space-y-4 text-center text-lg leading-relaxed text-foreground/85">
-          {c.snapshot.body.map((p, i) => (
-            <p key={i}>{p}</p>
-          ))}
-        </div>
-        <div className="mt-14 grid grid-cols-2 gap-x-6 gap-y-12 sm:grid-cols-4">
-          {c.snapshot.facts.map((f, i) => (
-            <div key={f.label} className="flex flex-col items-center text-center">
-              <EcdIcon
-                src={SNAPSHOT_ICONS[i] ?? SNAPSHOT_ICONS[0]}
-                alt={f.label}
-                className="h-20 w-20 md:h-24 md:w-24"
-              />
-              <div className="mt-4 font-display text-xl font-extrabold leading-tight text-[var(--ithemba-blue-dark)]">
-                {f.value}
-              </div>
-              <div className="mt-1 text-[11px] font-semibold uppercase tracking-wide text-foreground/60">
-                {f.label}
-              </div>
+      <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
+        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_1.3fr] lg:gap-14">
+          <div>
+            <SectionHeading eyebrow={c.snapshot.eyebrow} title={c.snapshot.title} />
+            <div className="mt-5 space-y-4 text-base leading-relaxed text-foreground/85 md:text-lg">
+              {c.snapshot.body.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
             </div>
-          ))}
+          </div>
+          <div className="grid grid-cols-2 gap-x-5 gap-y-6 sm:grid-cols-4 lg:grid-cols-2 lg:gap-x-8 lg:gap-y-7">
+            {c.snapshot.facts.map((f, i) => (
+              <div key={f.label} className="flex flex-col items-start text-left">
+                <EcdIcon
+                  src={SNAPSHOT_ICONS[i] ?? SNAPSHOT_ICONS[0]}
+                  alt={f.label}
+                  className="h-12 w-12 md:h-14 md:w-14"
+                />
+                <div className="mt-2 font-display text-lg font-extrabold leading-tight text-[var(--ithemba-blue-dark)]">
+                  {f.value}
+                </div>
+                <div className="mt-0.5 text-[11px] font-semibold uppercase leading-snug tracking-wide text-foreground/60">
+                  {f.label}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -1755,7 +1757,7 @@ function Monthly({ c }: { c: Copy }) {
 /* ---------- CLOSING ---------- */
 function Closing({ c }: { c: Copy }) {
   return (
-    <section className="relative isolate overflow-hidden py-20 text-white md:py-24">
+    <section id="ecd-closing" className="relative isolate overflow-hidden py-20 text-white md:py-24">
       <div className="absolute inset-0 -z-10">
         <img
           src={P.groupPhoto}
@@ -1832,6 +1834,9 @@ function EcdPage() {
       <Impact c={c} />
       <Monthly c={c} />
       <Closing c={c} />
+      {/* Scoped: the shared footer adds mt-24 globally; on this page the closing
+          section must sit flush against the footer, so cancel it here only. */}
+      <style>{`main:has(#ecd-closing) + footer { margin-top: 0; }`}</style>
     </>
   );
 }
