@@ -1278,22 +1278,6 @@ function PartnersStrip({ t }: { t: (k: string, fb?: string) => string }) {
 // ----------------------- Donation Box -----------------------
 
 function DonationBox({ t, anchorRef }: { t: (k: string, fb?: string) => string; anchorRef: React.RefObject<HTMLDivElement | null> }) {
-  const [frequency, setFrequency] = useState<"monthly" | "once">("monthly");
-  const [selected, setSelected] = useState<number | "custom">(2);
-  const [customAmount, setCustomAmount] = useState("");
-
-  const sym = t("donation.currency.symbol", "€");
-  const tiers = [1, 2, 3, 4, 5].map((n) => ({
-    n,
-    value: t(`donation.amt.${n}`),
-    desc: t(`donation.amt.${n}_desc`),
-  }));
-
-  const trustPoints = t("donation.trust_points")
-    .split(",")
-    .map((s) => s.trim())
-    .filter(Boolean);
-
   return (
     <section ref={anchorRef as React.RefObject<HTMLDivElement>} id="donate" className="relative isolate scroll-mt-20 overflow-hidden">
       <div className="absolute inset-0 -z-10">
@@ -1306,129 +1290,14 @@ function DonationBox({ t, anchorRef }: { t: (k: string, fb?: string) => string; 
         />
         <div className="absolute inset-0" style={{ background: `linear-gradient(135deg, ${BLUE_DEEP}EE 0%, ${BLUE}E6 60%, ${BLUE}D9 100%)` }} />
       </div>
-      <div className="mx-auto max-w-5xl px-5 py-12 md:px-8 md:py-16">
-        <div className="text-center text-white">
+      <div className="mx-auto grid max-w-7xl gap-8 px-5 py-12 md:px-8 md:py-16 lg:grid-cols-[minmax(0,0.8fr)_minmax(560px,1.2fr)] lg:items-start">
+        <div className="text-white lg:pt-6">
           <Script>{t("donation.script_heading")}</Script>
-          <h2 className="mt-1 text-3xl font-bold md:text-4xl" style={{ fontFamily: SERIF }}>
-            {t("donation.main_heading")}
-          </h2>
-          <p className="mx-auto mt-2 max-w-2xl text-sm text-white/85 md:text-base">
-            {t("donation.text_intro")}
-          </p>
+          <h2 className="mt-1 text-3xl font-bold md:text-4xl" style={{ fontFamily: SERIF }}>{t("donation.main_heading")}</h2>
+          <p className="mt-3 max-w-xl text-base text-white/85">{t("donation.text_intro")}</p>
         </div>
-
-        <div className="mt-8 overflow-hidden rounded-3xl bg-white shadow-2xl ring-1 ring-black/5">
-          <div className="grid grid-cols-2 bg-slate-100 p-1 text-sm font-semibold">
-            {(["monthly", "once"] as const).map((f) => (
-              <button
-                key={f}
-                onClick={() => setFrequency(f)}
-                className={cn(
-                  "rounded-full py-2 transition",
-                  frequency === f ? "shadow" : "text-slate-600",
-                )}
-                style={frequency === f ? { background: YELLOW, color: BLUE_DEEP } : undefined}
-              >
-                {t(`donation.tab.${f}`)}
-              </button>
-            ))}
+        <DonationWidget defaultProject="Safe Water" />
           </div>
-
-          <div className="p-6 md:p-8">
-            <p className="text-sm font-semibold uppercase tracking-wider text-slate-500">
-              {t("donation.amount.heading")}
-            </p>
-            <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
-              {tiers.map((tier) => {
-                const active = selected === tier.n;
-                return (
-                  <button
-                    key={tier.n}
-                    onClick={() => setSelected(tier.n)}
-                    className={cn(
-                      "rounded-2xl border p-4 text-left transition",
-                      active
-                        ? "border-transparent shadow-md"
-                        : "border-slate-200 bg-white hover:border-slate-300",
-                    )}
-                    style={active ? { background: CREAM, borderColor: YELLOW } : undefined}
-                  >
-                    <div className="flex items-baseline gap-1">
-                      <span
-                        className="text-2xl font-extrabold"
-                        style={{ color: BLUE_DEEP, fontFamily: SERIF }}
-                      >
-                        {sym}
-                        {tier.value}
-                      </span>
-                      {frequency === "monthly" && (
-                        <span className="text-xs text-slate-500">/mo</span>
-                      )}
-                    </div>
-                    <p className="mt-2 text-xs leading-snug text-slate-600">{tier.desc}</p>
-                  </button>
-                );
-              })}
-              <button
-                onClick={() => setSelected("custom")}
-                className={cn(
-                  "rounded-2xl border p-4 text-left transition",
-                  selected === "custom"
-                    ? "border-transparent shadow-md"
-                    : "border-slate-200 bg-white hover:border-slate-300",
-                )}
-                style={selected === "custom" ? { background: CREAM, borderColor: YELLOW } : undefined}
-              >
-                <p className="text-sm font-semibold" style={{ color: BLUE_DEEP, fontFamily: SERIF }}>
-                  {t("donation.amt.custom")}
-                </p>
-                <div className="mt-2 flex items-center gap-2">
-                  <span className="text-sm text-slate-500">{sym}</span>
-                  <input
-                    inputMode="numeric"
-                    value={customAmount}
-                    onChange={(e) => {
-                      setCustomAmount(e.target.value.replace(/[^0-9]/g, ""));
-                      setSelected("custom");
-                    }}
-                    placeholder="0"
-                    className="w-full border-0 border-b border-slate-300 bg-transparent py-1 text-base focus:border-slate-500 focus:outline-none focus:ring-0"
-                  />
-                </div>
-              </button>
-            </div>
-
-            <div className="mt-6">
-              <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-                {t("donation.payment.heading")}
-              </p>
-              <p className="mt-2 text-sm text-slate-600">{t("donation.payment.options")}</p>
-            </div>
-
-            <Button
-              asChild
-              size="lg"
-              className="mt-6 w-full rounded-full text-base font-semibold"
-              style={{ background: BLUE, color: "#FFFFFF" }}
-            >
-              <Link to="/donate">
-                {frequency === "monthly" ? t("donation.btn.monthly") : t("donation.btn.once")}
-              </Link>
-            </Button>
-
-            {trustPoints.length > 0 && (
-              <ul className="mt-5 flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs text-slate-500">
-                {trustPoints.map((p) => (
-                  <li key={p} className="inline-flex items-center gap-1.5">
-                    <Sparkles className="h-3 w-3" style={{ color: YELLOW }} />
-                    {p}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        </div>
-      </div>
     </section>
   );
 }
@@ -1437,15 +1306,17 @@ function DonationBox({ t, anchorRef }: { t: (k: string, fb?: string) => string; 
 
 function Closing({ t, goDonate }: { t: (k: string, fb?: string) => string; goDonate: (f: "monthly" | "once") => void }) {
   return (
-    <section className="relative" style={{ background: BLUE_DEEP }}>
+    <section id="pureflow-closing" className="relative" style={{ background: BLUE_DEEP }}>
       <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-14 text-white md:px-8 md:py-20 lg:grid-cols-[1.05fr_1fr] lg:gap-14">
         <div className="relative">
-          <PhotoFrame
-            src={`${PHOTO_BASE}/${FIELD_PHOTOS.closing}`}
-            alt="Community group photo holding PureFlow Amanzi filters"
-            tone="ocean"
-            className="aspect-[5/4] w-full"
-            rounded="rounded-[2rem]"
+          <StepCollage
+            photos={FIELD_PHOTOS.closing.map((photo, index) => ({
+              src: `${PHOTO_BASE}/${photo}`,
+              objectPosition: index === 2 ? "center 38%" : "center 42%",
+              alt: "PureFlow Amanzi community members with household water filters",
+            }))}
+            variant="C"
+            alt="PureFlow Amanzi community groups"
           />
           <div className="absolute -bottom-6 -right-4 md:-bottom-8 md:-right-6">
             <CircleArt src={`${ASSET_BASE}/pureflow-community.png`} alt="Community" size="sm" />
@@ -1529,15 +1400,6 @@ function Step01Collage({ t }: { t: (k: string, fb?: string) => string }) {
             <p className="mt-3 text-base leading-relaxed md:text-lg" style={{ color: "#334155" }}>
               {t("step1.text_block")}
             </p>
-            <Link
-              to="/projects/pureflow/structural-problem"
-              className="mt-6 inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold shadow-md transition hover:shadow-lg"
-              style={{ background: BLUE_DEEP, color: "#FFFFFF" }}
-            >
-              {t("step1.cta_label", "Read the Full Picture")}
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-
           </div>
 
           {/* Editorial 4-photo collage */}
