@@ -861,7 +861,7 @@ function MediaPage() {
           src="/assets/photos/media/media-filming-at-water-source.jpg"
           alt="Filming at a water source in Cwebeni"
           className="absolute inset-0 h-full w-full object-cover"
-          style={{ objectPosition: "center 58%" }}
+          style={{ objectPosition: "center 52%" }}
           loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0b2545]/70 via-[#0b2545]/45 to-[#0b2545]/75" />
