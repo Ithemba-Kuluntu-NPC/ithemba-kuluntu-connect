@@ -736,46 +736,6 @@ function Showcase({ t, lang }: { t: (k: string, fb?: string) => string; lang: La
   );
 }
 
-// ----------------------- Step Sheet (read more) -----------------------
-
-function ReadMoreSheet({
-  label,
-  title,
-  body,
-  tag,
-}: {
-  label: string;
-  title: string;
-  body: string;
-  tag: string;
-}) {
-  if (!label) return null;
-  return (
-    <Sheet>
-      <SheetTrigger asChild>
-        <Button
-          variant="outline"
-          className="mt-5 rounded-full border-transparent px-5 font-semibold"
-          style={{ background: YELLOW, color: BLUE_DEEP }}
-        >
-          {label} <ArrowRight className="ml-1 h-4 w-4" />
-        </Button>
-      </SheetTrigger>
-      <SheetContent className="w-full max-w-lg overflow-y-auto sm:max-w-xl" style={{ background: CREAM }}>
-        <SheetHeader>
-          <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: BLUE }}>
-            {tag}
-          </p>
-          <SheetTitle style={{ fontFamily: SERIF, color: BLUE_DEEP }} className="text-2xl">
-            {title}
-          </SheetTitle>
-          <SheetDescription className="text-base leading-relaxed text-slate-700">{body}</SheetDescription>
-        </SheetHeader>
-      </SheetContent>
-    </Sheet>
-  );
-}
-
 // ----------------------- Editorial collage (3–4 photo placeholders) -----------------------
 
 function StepCollage({
@@ -858,7 +818,6 @@ function StepBlock({
   tag,
   heading,
   body,
-  ctaLabel,
   reverse,
   dark,
   photoSrc,
@@ -877,7 +836,6 @@ function StepBlock({
   tag: string;
   heading: string;
   body: string;
-  ctaLabel: string;
   reverse?: boolean;
   dark?: boolean;
   photoSrc?: string;
@@ -948,7 +906,6 @@ function StepBlock({
             <p className="mt-3 text-base leading-relaxed md:text-lg" style={{ color: bodyColor }}>
               {body}
             </p>
-            <ReadMoreSheet label={ctaLabel} title={heading} body={body} tag={tag} />
           </div>
 
           {/* Visual: editorial collage (preferred) or single photo fallback */}
