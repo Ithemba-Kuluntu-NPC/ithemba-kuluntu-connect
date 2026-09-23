@@ -44,6 +44,16 @@ const PureFlowEventMap = lazy(() => import("@/components/blocks/PureFlowEventMap
 
 export const Route = createFileRoute("/projects/pureflow/")({
   component: PureFlowCompactPage,
+  head: () => ({
+    meta: [
+      { title: "PureFlow Amanzi | iThemba Kuluntu" },
+      { name: "description", content: "PureFlow Amanzi brings cleaner, safer water to rural households and learning sites through locally led delivery." },
+      { property: "og:title", content: "PureFlow Amanzi | iThemba Kuluntu" },
+      { property: "og:description", content: "Explore PureFlow Amanzi's locally led safe-water model, verified impact, field events, and community transformation." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
 });
 
 // ----------------------- Content loading -----------------------
@@ -660,50 +670,8 @@ function Showcase({ t, lang }: { t: (k: string, fb?: string) => string; lang: La
           <p className="mx-auto mt-2 max-w-2xl text-sm text-white/80 md:text-base">{t("showcase.text")}</p>
         </div>
 
-        <div className="mx-auto mt-8 max-w-4xl overflow-hidden rounded-3xl bg-black/90 shadow-2xl ring-1 ring-white/10 md:max-w-[900px]">
-          <div className="relative aspect-video w-full">
-            {vid && !playing && (
-              <button
-                type="button"
-                onClick={() => setPlaying(true)}
-                className="group absolute inset-0 z-10"
-                aria-label={t("showcase.video.title")}
-              >
-                <img
-                  src={`https://i.ytimg.com/vi/${vid}/hqdefault.jpg`}
-                  alt={t("showcase.video.title")}
-                  className="h-full w-full object-cover"
-                />
-                <span className="absolute inset-0 flex items-center justify-center bg-black/30 transition group-hover:bg-black/40">
-                  <PlayCircle className="h-20 w-20" style={{ color: YELLOW }} />
-                </span>
-              </button>
-            )}
-            {vid && playing && (
-              <iframe
-                className="absolute inset-0 h-full w-full"
-                src={`https://www.youtube.com/embed/${vid}?autoplay=1&rel=0`}
-                title={t("showcase.video.title")}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            )}
-            {!vid && (
-              <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#081A60] to-[#1E40C8] text-white/70">
-                <PlayCircle className="h-16 w-16" style={{ color: YELLOW }} />
-              </div>
-            )}
-          </div>
-          <div className="bg-white/95 px-5 py-3">
-            <p className="text-sm font-semibold" style={{ color: BLUE_DEEP, fontFamily: SERIF }}>
-              {t("showcase.video.title")}
-            </p>
-            <p className="mt-0.5 text-xs text-slate-600">{t("showcase.video.description")}</p>
-          </div>
-        </div>
-
         {/* Counter matrix — yellow icons, animated numbers, on blue */}
-        <div className="mt-10 grid grid-cols-2 gap-x-5 gap-y-8 sm:grid-cols-4 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-2 gap-x-5 gap-y-7 sm:grid-cols-4">
           {counters.map((c) => {
             const { value, suffix } = parseCounter(c.v);
             return (
@@ -731,6 +699,27 @@ function Showcase({ t, lang }: { t: (k: string, fb?: string) => string; lang: La
         <p className="mx-auto mt-8 max-w-3xl text-center text-xs italic text-white/65 md:text-sm">
           {t("impact.note")}
         </p>
+
+        <div className="mx-auto mt-8 max-w-4xl overflow-hidden rounded-3xl bg-black/90 shadow-2xl ring-1 ring-white/10 md:max-w-[900px]">
+          <div className="relative aspect-video w-full">
+            {vid && !playing && (
+              <button type="button" onClick={() => setPlaying(true)} className="group absolute inset-0 z-10" aria-label={t("showcase.video.title")}>
+                <img src={`https://i.ytimg.com/vi/${vid}/hqdefault.jpg`} alt={t("showcase.video.title")} className="h-full w-full object-cover" />
+                <span className="absolute inset-0 flex items-center justify-center bg-black/30 transition group-hover:bg-black/40">
+                  <PlayCircle className="h-20 w-20" style={{ color: YELLOW }} />
+                </span>
+              </button>
+            )}
+            {vid && playing && (
+              <iframe className="absolute inset-0 h-full w-full" src={`https://www.youtube.com/embed/${vid}?autoplay=1&rel=0`} title={t("showcase.video.title")} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+            )}
+            {!vid && <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#081A60] to-[#1E40C8] text-white/70"><PlayCircle className="h-16 w-16" style={{ color: YELLOW }} /></div>}
+          </div>
+          <div className="bg-white/95 px-5 py-3">
+            <p className="text-sm font-semibold" style={{ color: BLUE_DEEP, fontFamily: SERIF }}>{t("showcase.video.title")}</p>
+            <p className="mt-0.5 text-xs text-slate-600">{t("showcase.video.description")}</p>
+          </div>
+        </div>
       </div>
     </section>
   );
