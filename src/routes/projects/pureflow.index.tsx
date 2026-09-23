@@ -33,15 +33,8 @@ import {
   CircleDollarSign,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetDescription,
-  SheetTrigger,
-} from "@/components/ui/sheet";
 import { useLang } from "@/components/site/LanguageProvider";
+import { DonationWidget } from "@/components/blocks/DonationWidget";
 import { partners as allPartners } from "@/data/projects";
 import { cn } from "@/lib/utils";
 import type { Lang } from "@/data/content";
@@ -134,28 +127,33 @@ const HERO_POSTER = "/assets/photos/projects/pureflow/pureflow-hero-poster.jpg";
 
 const FIELD_PHOTOS = {
   loop: [
-    "pureflow-community-engagement-royal-house-community-address-01.jpg",
-    "pureflow-pilot-assembly-station-team-01.jpg",
+    "pureflow-community-engagement-sibonda-outdoor-meeting-team-and-filter-01.jpg",
+    "pureflow-handout-event-01-assembly-components-table-01.jpg",
     "pureflow-big-hand-out-event-giving-filters-to-people.jpg",
     "pureflow-rural-handout-wash-training-community-speaker-01.jpg",
     "pureflow-home-visit-household-monitoring-discussion-01.jpg",
   ],
   structural: {
     background: "pureflow-water-source-muddy-stream-woman-01.jpg",
-    main: "pureflow-water-source-muddy-stream-group-collection-01.jpg",
-    carrying: "pureflow-collected-dirty-water-buckets-01.jpg",
-    source: "pureflow-water-source-cattle-drinking-shared-spring-01.jpg",
+    main: "pureflow-woman-carrying-water-bucket-on-head-01.jpg",
+    carrying: "pureflow-water-source-muddy-stream-scooping-01.jpg",
+    source: "pureflow-step-01-structural-problem-3.jpg",
     household: "pureflow-home-visit-boiling-water-open-fire-01.jpg",
   },
   climate: [
-    "pureflow-home-visit-filter-backwash-demonstration-01.jpg",
-    "pureflow-home-visit-water-testing-demonstration-01.jpg",
-    "pureflow-dirty-vs-filtered-water-comparison-01.jpg",
-    "pureflow-home-visit-woman-pouring-water-into-filter-01.jpg",
+    "pureflow-young-woman-drinking-filtered-water-01.jpg",
+    "pureflow-sdg-background.jpg",
+    "pureflow-home-visit-family-filter-use-guidance-01.jpg",
+    "pureflow-ecd-handout-event-smiling-mom-at-training-station.jpg",
   ],
   sdg: "pureflow-community-engagement-royal-house-large-community-meeting-01.jpg",
   donation: "pureflow-happy-dancing-recipients-of-filter-after-event.jpg",
-  closing: "pureflow-rural-handout-community-group-holding-filter-buckets-01.jpg",
+  closing: [
+    "pureflow-handout-event-01-community-group-with-filters-02.jpg",
+    "pureflow-rural-handout-community-group-holding-filter-buckets-01.jpg",
+    "pureflow-ecd-handout-event-group-photo.jpg",
+    "pureflow-handout-event-bholani-group-photo-1.jpg",
+  ],
 } as const;
 
 // ----------------------- Reusable building blocks -----------------------
@@ -422,7 +420,7 @@ function Hero({ t, goDonate }: { t: (k: string, fb?: string) => string; goDonate
           </div>
         </div>
       </div>
-      <WaveDivider from="transparent" to={CREAM} />
+      <WaveDivider from="transparent" to={BLUE_DEEP} />
     </section>
   );
 }
@@ -464,14 +462,14 @@ function PathwayStepper({ t }: { t: (k: string, fb?: string) => string }) {
   };
 
   return (
-    <section style={{ background: CREAM }} className="relative">
+    <section style={{ background: BLUE_DEEP }} className="relative text-white">
       <div className="mx-auto max-w-7xl px-4 py-10 md:px-8 md:py-14">
         <div className="text-center">
-          <Script color={BLUE}>{t("pathway.script_heading")}</Script>
-          <h2 className="mt-1 text-3xl font-bold md:text-4xl" style={{ fontFamily: SERIF, color: BLUE_DEEP }}>
+          <Script color={YELLOW}>{t("pathway.script_heading")}</Script>
+          <h2 className="mt-1 text-3xl font-bold text-white md:text-4xl" style={{ fontFamily: SERIF }}>
             {t("pathway.main_heading")}
           </h2>
-          <p className="mx-auto mt-2 max-w-2xl text-sm text-slate-700 md:text-base">
+          <p className="mx-auto mt-2 max-w-2xl text-sm text-white/80 md:text-base">
             {t("pathway.sub_heading")}
           </p>
         </div>
@@ -499,7 +497,7 @@ function PathwayStepper({ t }: { t: (k: string, fb?: string) => string }) {
                       />
                     </div>
                     <span
-                      className="absolute -bottom-1 -right-1 inline-flex h-7 w-7 items-center justify-center rounded-full text-[11px] font-extrabold shadow ring-2 ring-[#FBF6E9]"
+                      className="absolute -bottom-1 -right-1 inline-flex h-7 w-7 items-center justify-center rounded-full text-[11px] font-extrabold shadow ring-2 ring-[#081A60]"
                       style={{ background: YELLOW, color: BLUE_DEEP }}
                     >
                       {s.num}
@@ -507,11 +505,11 @@ function PathwayStepper({ t }: { t: (k: string, fb?: string) => string }) {
                   </div>
                   <p
                     className="mt-3 text-[13px] font-semibold leading-tight lg:text-sm"
-                    style={{ color: BLUE_DEEP, fontFamily: SERIF }}
+                    style={{ color: "#FFFFFF", fontFamily: SERIF }}
                   >
                     {s.title}
                   </p>
-                  <p className="mt-1 line-clamp-3 text-[11px] leading-snug text-slate-600 lg:text-xs">{s.desc}</p>
+                  <p className="mt-1 line-clamp-3 text-[11px] leading-snug text-white/70 lg:text-xs">{s.desc}</p>
                 </button>
               </li>
               {i < steps.length - 1 && (
