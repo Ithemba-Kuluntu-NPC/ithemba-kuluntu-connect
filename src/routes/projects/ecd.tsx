@@ -1429,7 +1429,7 @@ function Women({ c }: { c: Copy }) {
           photos={[
             { src: P.class45Teachers, label: "Teachers with their class at the ECD Centre", position: "center 35%" },
             { src: P.breakfastFeeding, label: "A teacher feeding a child at breakfast", position: "center 35%" },
-            { src: P.main, label: "The No.1 ECD Centre team and children", position: "center 40%" },
+            { src: P.class23Thabo, label: "Children playing the Finding Thabo learning game", position: "center 40%" },
           ]}
         />
         <div className="mt-8 flex flex-wrap gap-2">
