@@ -1072,7 +1072,7 @@ function Hero({ c }: { c: Copy }) {
         />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-4 pb-24 pt-20 md:pb-32 md:pt-28 lg:px-8">
+      <div className="relative mx-auto max-w-7xl px-4 pb-16 pt-20 md:pb-20 md:pt-28 lg:px-8">
         <Link
           to="/projects"
           className="inline-flex items-center gap-1 text-sm font-medium text-white/85 hover:text-white"
@@ -1137,12 +1137,6 @@ function Hero({ c }: { c: Copy }) {
         </div>
       </div>
 
-      <svg className="block w-full" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden>
-        <path
-          d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z"
-          fill="var(--background)"
-        />
-      </svg>
     </section>
   );
 }
@@ -1153,18 +1147,20 @@ function SectionHeading({
   title,
   center = false,
   color = "var(--ithemba-yellow)",
+  titleColor = "var(--ithemba-blue-dark)",
 }: {
   eyebrow: string;
   title: string;
   center?: boolean;
   color?: string;
+  titleColor?: string;
 }) {
   return (
     <div className={center ? "text-center" : ""}>
       <div className="hand-eyebrow-lg" style={{ color }}>
         {eyebrow}
       </div>
-      <h2 className="-mt-1 font-display text-4xl font-bold text-[var(--ithemba-blue-dark)] md:text-5xl">
+      <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl" style={{ color: titleColor }}>
         {title}
       </h2>
     </div>
@@ -1174,14 +1170,18 @@ function SectionHeading({
 /* ---------- SNAPSHOT ---------- */
 function Snapshot({ c }: { c: Copy }) {
   return (
-    <section className="relative overflow-hidden bg-[var(--ithemba-cream)] py-12 md:py-14">
-      <div className="pointer-events-none absolute -left-10 top-10 h-44 w-44 blob bg-[var(--ithemba-yellow)]/25" />
-      <div className="pointer-events-none absolute -right-10 bottom-10 h-52 w-52 blob-2 bg-[var(--ithemba-blue)]/15" />
+    <section className="relative overflow-hidden bg-[var(--ithemba-blue-deepest)] py-12 md:py-14">
+      <div className="pointer-events-none absolute -left-10 top-10 h-44 w-44 blob bg-[var(--ithemba-yellow)]/20" />
+      <div className="pointer-events-none absolute -right-10 bottom-10 h-52 w-52 blob-2 bg-white/10" />
       <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
         <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_1.3fr] lg:gap-14">
           <div>
-            <SectionHeading eyebrow={c.snapshot.eyebrow} title={c.snapshot.title} />
-            <div className="mt-5 space-y-4 text-base leading-relaxed text-foreground/85 md:text-lg">
+            <SectionHeading
+              eyebrow={c.snapshot.eyebrow}
+              title={c.snapshot.title}
+              titleColor="white"
+            />
+            <div className="mt-5 space-y-4 text-base leading-relaxed text-white/85 md:text-lg">
               {c.snapshot.body.map((p, i) => (
                 <p key={i}>{p}</p>
               ))}
@@ -1195,10 +1195,10 @@ function Snapshot({ c }: { c: Copy }) {
                   alt={f.label}
                   className="h-12 w-12 md:h-14 md:w-14"
                 />
-                <div className="mt-2 font-display text-lg font-extrabold leading-tight text-[var(--ithemba-blue-dark)]">
+                <div className="mt-2 font-display text-lg font-extrabold leading-tight text-white">
                   {f.value}
                 </div>
-                <div className="mt-0.5 text-[11px] font-semibold uppercase leading-snug tracking-wide text-foreground/60">
+                <div className="mt-0.5 text-[11px] font-semibold uppercase leading-snug tracking-wide text-white/70">
                   {f.label}
                 </div>
               </div>
