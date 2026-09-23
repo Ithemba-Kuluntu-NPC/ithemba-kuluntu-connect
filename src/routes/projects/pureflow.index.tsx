@@ -1521,14 +1521,6 @@ function ClimateSection({ t }: { t: (k: string, fb?: string) => string }) {
               ))}
             </div>
 
-            {t("climate.cta_label") && (
-              <ReadMoreSheet
-                label={t("climate.cta_label")}
-                title={t("climate.main_heading")}
-                body={paragraphs.join("\n\n") + "\n\n" + t("climate.future_text")}
-                tag={t("climate.script_heading", "Climate Resilience")}
-              />
-            )}
           </div>
 
           {/* Collage side */}
@@ -1686,39 +1678,34 @@ function PureFlowCompactPage() {
       <Hero t={t} goDonate={goDonate} />
       <PathwayStepper t={t} />
 
-      <WaveDivider from={CREAM} to={BLUE} />
+      <WaveDivider from={BLUE_DEEP} to={BLUE} />
       <Showcase t={t} lang={lang} />
 
-      {/* Field Map — interactive Leaflet/OpenStreetMap of rollout events.
-          Visually belongs with Watch & Verify → deep blue section. */}
+      <WaveDivider from={BLUE} to={CREAM_WARM} />
+
+      {/* Field Map — verified rollout events on a distinct light section. */}
       <section
         id="event-map"
         className="relative scroll-mt-20 isolate overflow-hidden"
-        style={{ background: BLUE }}
+        style={{ background: CREAM_WARM }}
       >
         <div
           className="pointer-events-none absolute inset-0"
           style={{
-            background: `radial-gradient(1200px 500px at 15% 0%, ${YELLOW}22 0%, transparent 60%), radial-gradient(900px 500px at 100% 100%, ${BLUE_DEEP} 0%, transparent 60%)`,
+            background: `radial-gradient(1200px 500px at 15% 0%, ${YELLOW}24 0%, transparent 60%)`,
           }}
           aria-hidden
         />
-        <div className="relative mx-auto max-w-7xl px-4 pt-4 pb-14 md:px-8 md:pt-6 md:pb-20">
-          {/* subtle hairline separator to signal a new subsection within the same deep-blue block */}
-          <div
-            className="mx-auto mb-8 h-px w-24 md:mb-10"
-            style={{ background: `${YELLOW}66` }}
-            aria-hidden
-          />
+        <div className="relative mx-auto max-w-7xl px-4 py-12 md:px-8 md:py-16">
           <div className="mx-auto max-w-3xl text-center">
             <Script color={YELLOW}>{t("fieldmap.script_heading", "Impact Map")}</Script>
             <h2
               className="mt-1 text-3xl font-bold md:text-4xl"
-              style={{ fontFamily: SERIF, color: "#ffffff" }}
+              style={{ fontFamily: SERIF, color: BLUE_DEEP }}
             >
               PureFlow Amanzi – Impact Map
             </h2>
-            <p className="mx-auto mt-3 max-w-2xl text-sm md:text-base text-white/85">
+            <p className="mx-auto mt-3 max-w-2xl text-sm text-slate-700 md:text-base">
               Real communities. Cleaner water. Brighter futures.
             </p>
           </div>
@@ -1751,7 +1738,7 @@ function PureFlowCompactPage() {
         </div>
       </section>
 
-      <WaveDivider from={BLUE} to={CREAM} />
+      <WaveDivider from={CREAM_WARM} to={CREAM} />
 
       {/* Step 01 — cream w/ 4-photo collage */}
       <Step01Collage t={t} />
@@ -1768,16 +1755,15 @@ function PureFlowCompactPage() {
         tag={t("step2.tag")}
         heading={t("step2.heading")}
         body={t("step2.text_block")}
-        ctaLabel={t("step2.cta_label")}
         reverse
         dark
         photoAlt="PureFlow Amanzi household filter installation"
         photoTone="ocean"
         collageVariant="B"
         photoSrcs={[
-          { src: `${PHOTO_BASE}/pureflow-pilot-assembly-drilling-filter-bucket-01.jpg`, objectPosition: "center 42%", alt: "Local team drilling a PureFlow filter bucket" },
-          { src: `${PHOTO_BASE}/pureflow-pilot-assembly-fitting-filter-bucket-01.jpg`, objectPosition: "center 45%", alt: "Local assembly team fitting a PureFlow filter" },
-          { src: `${PHOTO_BASE}/pureflow-handout-event-01-assembly-pouring-water-01.jpg`, objectPosition: "center 38%", alt: "Team preparing a PureFlow filter for community delivery" },
+          { src: `${PHOTO_BASE}/pureflow-home-visit-filter-installation-family-01.jpg`, objectPosition: "center 42%", alt: "Family learning how to install and use a PureFlow filter" },
+          { src: `${PHOTO_BASE}/pureflow-giftofthegivers-smiling-woman-at-training-station-at-handout-event.jpg`, objectPosition: "center 35%", alt: "Woman smiling at a PureFlow training station" },
+          { src: `${PHOTO_BASE}/pureflow-ecd-handout-event-wash-education.jpg`, objectPosition: "center 40%", alt: "WASH education at an ECD handout event" },
         ]}
         accentSrc={`${ASSET_BASE}/pureflow-solution.png`}
       >
@@ -1793,7 +1779,6 @@ function PureFlowCompactPage() {
         tag={t("step3.tag")}
         heading={t("step3.heading")}
         body={t("step3.text_block")}
-        ctaLabel={t("step3.cta_label")}
         photoAlt="Children at the No.1 ECD Centre with safe drinking water"
         photoTone="sun"
         collageVariant="C"
@@ -1818,17 +1803,16 @@ function PureFlowCompactPage() {
         tag={t("step4.tag")}
         heading={t("step4.heading")}
         body={t("step4.text_block")}
-        ctaLabel={t("step4.cta_label")}
         reverse
         dark
         photoAlt="WASH training session in a Pondoland village"
         photoTone="blue"
         collageVariant="A"
         photoSrcs={[
-          { src: `${PHOTO_BASE}/pureflow-community-engagement-royal-house-wash-training-community-01.jpg`, objectPosition: "center 40%", alt: "WASH training with community members at the Royal House" },
-          { src: `${PHOTO_BASE}/pureflow-community-engagement-royal-house-filter-demonstration-01.jpg`, objectPosition: "center 38%", alt: "PureFlow filter demonstration during community engagement" },
-          { src: `${PHOTO_BASE}/pureflow-handout-event-01-backwash-demonstration-participant-01.jpg`, objectPosition: "center 42%", alt: "Participant practising a filter backwash demonstration" },
-          { src: `${PHOTO_BASE}/pureflow-home-visit-filter-training-mother-and-children-01.jpg`, objectPosition: "center 35%", alt: "Mother and children receiving filter-use guidance at home" },
+          { src: `${PHOTO_BASE}/pureflow-giftofthegivers-handout-event-before-and-after-photo-of-water-woman-fascinated.jpg`, objectPosition: "center 38%", alt: "Woman comparing untreated and filtered water" },
+          { src: `${PHOTO_BASE}/pureflow-home-visit-child-operating-filter-01.jpg`, objectPosition: "center 38%", alt: "Child operating a PureFlow filter at home" },
+          { src: `${PHOTO_BASE}/pureflow-home-visit-filter-backwash-demonstration-01.jpg`, objectPosition: "center 42%", alt: "Filter backwash demonstration during a home visit" },
+          { src: `${PHOTO_BASE}/pureflow-home-visit-filter-maintenance-training-with-resident-01.jpg`, objectPosition: "center 38%", alt: "Resident receiving filter maintenance training" },
         ]}
         accentSrc={`${ASSET_BASE}/pureflow-wash.png`}
       />
@@ -1842,14 +1826,13 @@ function PureFlowCompactPage() {
         tag={t("step5.tag")}
         heading={t("step5.heading")}
         body={t("step5.text_block")}
-        ctaLabel={t("step5.cta_label")}
         photoAlt="Local team assembling and delivering PureFlow filters"
         photoTone="warm"
         collageVariant="B"
         photoSrcs={[
-          { src: `${PHOTO_BASE}/pureflow-handout-event-01-assembly-station-team-02.jpg`, objectPosition: "center 38%", alt: "Local implementation team assembling PureFlow filters" },
-          { src: `${PHOTO_BASE}/pureflow-handout-event-01-household-registration-01.jpg`, objectPosition: "center 35%", alt: "Local team registering households for filter delivery" },
-          { src: `${PHOTO_BASE}/pureflow-gift-of-givers-core-team-hands-on-filter-training-01.jpg`, objectPosition: "center 40%", alt: "Implementation-partner team receiving hands-on filter training" },
+          { src: `${PHOTO_BASE}/pureflow-happy-dancing-recipients-of-filter-after-event.jpg`, objectPosition: "center 36%", alt: "Community members celebrating after a filter event" },
+          { src: `${PHOTO_BASE}/pureflow-g20-indaba-east-london-booth-team-01.jpg`, objectPosition: "center 42%", alt: "PureFlow Amanzi team at the G20 Indaba booth" },
+          { src: `${PHOTO_BASE}/pureflow-handout-event-01-assembly-station-team-02.jpg`, objectPosition: "center 38%", alt: "Local implementation team at the assembly station" },
         ]}
         accentSrc={`${ASSET_BASE}/pureflow-jobs.png`}
       />
@@ -1863,17 +1846,16 @@ function PureFlowCompactPage() {
         tag={t("step6.tag")}
         heading={t("step6.heading")}
         body={t("step6.text_block")}
-        ctaLabel={t("step6.cta_label")}
         reverse
         dark
         photoAlt="Pondoland village community living with safe water"
         photoTone="ocean"
         collageVariant="C"
         photoSrcs={[
-          { src: `${PHOTO_BASE}/pureflow-rural-handout-smiling-woman-holding-filter-core-01.jpg`, objectPosition: "center 30%", alt: "Woman holding the PureFlow filter core after a rural handout" },
+          { src: `${PHOTO_BASE}/pureflow-ecd-handout-child-drinking-filtered-water-01.jpg`, objectPosition: "center 35%", alt: "Child drinking filtered water at an ECD handout" },
           { src: `${PHOTO_BASE}/pureflow-happy-recipients-after-event-child-smiling.jpg`, objectPosition: "center 35%", alt: "Child smiling after a community filter event" },
-          { src: `${PHOTO_BASE}/pureflow-rural-handout-resident-collecting-filtered-water-01.jpg`, objectPosition: "center 42%", alt: "Resident collecting filtered water from a PureFlow unit" },
-          { src: `${PHOTO_BASE}/pureflow-gift-of-givers-core-team-implementation-partner-group-photo-01.jpg`, objectPosition: "center 38%", alt: "PureFlow and Gift of the Givers implementation team" },
+          { src: `${PHOTO_BASE}/pureflow-handout-event-bholani-training-station.jpg`, objectPosition: "center 40%", alt: "PureFlow training station at Bholani" },
+          { src: `${PHOTO_BASE}/pureflow-step-06-long-term-transformation.jpg`, objectPosition: "center 42%", alt: "Long-term transformation through safe water" },
         ]}
         accentSrc={`${ASSET_BASE}/pureflow-village.png`}
         accentSrcSecondary={`${ASSET_BASE}/pureflow-community.png`}
@@ -1897,6 +1879,7 @@ function PureFlowCompactPage() {
 
       <WaveDivider from={BLUE} to={BLUE_DEEP} />
       <Closing t={t} goDonate={goDonate} />
+      <style>{`main:has(#pureflow-closing) + footer { margin-top: 0; }`}</style>
     </main>
   );
 }
