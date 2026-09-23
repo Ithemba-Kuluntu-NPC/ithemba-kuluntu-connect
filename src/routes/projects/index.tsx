@@ -146,7 +146,14 @@ function ProjectsOverview() {
       </section>
       <section className="mx-auto max-w-7xl px-4 pb-20 lg:px-8">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.map((p) => <ProjectCard key={p.slug} project={p} />)}
+          {projects.map((p) => (
+            <ProjectCard
+              key={p.slug}
+              project={p}
+              heroImage={overviewProjectHeroes[p.slug]}
+              objectPosition={p.slug === "pondo-dogs" ? "center 60%" : undefined}
+            />
+          ))}
         </div>
       </section>
     </>
