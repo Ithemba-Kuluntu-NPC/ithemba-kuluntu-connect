@@ -1707,47 +1707,60 @@ function Rhythm({ c }: { c: Copy }) {
 /* ---------- NUTRITION ---------- */
 function Nutrition({ c }: { c: Copy }) {
   return (
-    <section className="mx-auto grid max-w-7xl gap-10 px-4 py-20 md:grid-cols-2 lg:px-8">
-      <div className="relative">
-        <div
-          className="grid grid-cols-3 grid-rows-3 gap-2 overflow-hidden rounded-[2rem]"
-          style={{ filter: "drop-shadow(0 22px 50px rgba(30,60,90,0.28))" }}
-        >
-          <div className="col-span-2 row-span-2 overflow-hidden rounded-2xl">
-            <img src={P.lunchMain} alt="A warm lunch served at the ECD Centre" loading="lazy" className="h-full w-full object-cover" />
-          </div>
-          <div className="overflow-hidden rounded-2xl">
-            <img src={P.food} alt="Food prepared in the ECD kitchen" loading="lazy" className="h-full w-full object-cover" />
-          </div>
-          <div className="overflow-hidden rounded-2xl">
-            <img src={P.foodBowls} alt="Bowls filled with food for the children" loading="lazy" className="h-full w-full object-cover" />
-          </div>
-          <div className="overflow-hidden rounded-2xl">
-            <img src={P.breakfastTogether} alt="Children eating breakfast together" loading="lazy" className="h-full w-full object-cover" style={{ objectPosition: "center 40%" }} />
-          </div>
-          <div className="overflow-hidden rounded-2xl">
-            <img src={P.foodLunch} alt="Children eating lunch" loading="lazy" className="h-full w-full object-cover" style={{ objectPosition: "center 40%" }} />
-          </div>
-          <div className="overflow-hidden rounded-2xl">
-            <img src={P.foodBreakfastTogether} alt="Children sharing breakfast" loading="lazy" className="h-full w-full object-cover" style={{ objectPosition: "center 40%" }} />
+    <section className="relative overflow-hidden bg-gradient-to-br from-[var(--ithemba-blue-dark)] via-[var(--ithemba-blue)] to-[var(--ithemba-blue-dark)] py-20 text-white">
+      <div className="pointer-events-none absolute right-[-6rem] top-[-6rem] h-[24rem] w-[24rem] sun-glow" />
+      <div className="relative mx-auto grid max-w-7xl gap-10 px-4 md:grid-cols-2 lg:px-8">
+        <div className="relative">
+          <div
+            className="grid grid-cols-2 grid-rows-2 gap-2.5 md:gap-3"
+            style={{ filter: "drop-shadow(0 22px 50px rgba(10,30,55,0.35))" }}
+          >
+            <div className="col-span-2 overflow-hidden rounded-[2rem] ring-1 ring-white/15">
+              <img
+                src={P.lunchMain}
+                alt="A warm lunch served at the ECD Centre"
+                loading="lazy"
+                className="aspect-[16/9] h-full w-full object-cover"
+                style={{ objectPosition: "center 45%" }}
+              />
+            </div>
+            <div className="overflow-hidden rounded-3xl ring-1 ring-white/15">
+              <img
+                src={P.food}
+                alt="Food prepared in the ECD kitchen"
+                loading="lazy"
+                className="aspect-square h-full w-full object-cover"
+              />
+            </div>
+            <div className="overflow-hidden rounded-3xl ring-1 ring-white/15">
+              <img
+                src={P.foodBowls}
+                alt="Bowls filled with food for the children"
+                loading="lazy"
+                className="aspect-square h-full w-full object-cover"
+              />
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="flex flex-col justify-center">
-        <SectionHeading eyebrow={c.nutrition.eyebrow} title={c.nutrition.title} />
-        <div className="mt-5 space-y-4 text-lg leading-relaxed text-foreground/85">
-          {c.nutrition.body.map((p, i) => (
-            <p key={i}>{p}</p>
-          ))}
-        </div>
-        <div className="mt-6 flex flex-wrap gap-2">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--ithemba-yellow)]/25 px-3 py-1.5 text-sm font-semibold text-[var(--ithemba-brown)]">
-            <Utensils className="h-4 w-4" /> Food Security
-          </span>
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100 px-3 py-1.5 text-sm font-semibold text-emerald-700">
-            <Sprout className="h-4 w-4" /> Greenhouse with SA Harvest
-          </span>
+        <div className="flex flex-col justify-center">
+          <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center gap-2">
+            <SparkleDoodle /> {c.nutrition.eyebrow}
+          </div>
+          <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.nutrition.title}</h2>
+          <div className="mt-5 space-y-4 text-lg leading-relaxed text-white/90">
+            {c.nutrition.body.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
+          </div>
+          <div className="mt-6 flex flex-wrap gap-2">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--ithemba-yellow)] px-3 py-1.5 text-sm font-semibold text-[var(--ithemba-brown)]">
+              <Utensils className="h-4 w-4" /> Food Security
+            </span>
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1.5 text-sm font-semibold text-white ring-1 ring-white/25 backdrop-blur">
+              <Sprout className="h-4 w-4" /> Greenhouse with SA Harvest
+            </span>
+          </div>
         </div>
       </div>
     </section>
