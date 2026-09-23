@@ -16,11 +16,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { assets } from "@/data/assets";
 
 export const Route = createFileRoute("/contact")({ component: ContactPage });
 
-const BG_IMG = assets.photos.about.cwebeni;
+const BG_IMG = "/assets/photos/contact/contact-funny-team-photo.jpg";
 
 /* ---------- copy ---------- */
 const COPY = {
