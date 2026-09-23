@@ -121,8 +121,8 @@ function DonatePage() {
       {/* Compact two-column donation section */}
       <section className="relative overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${HERO_PHOTO})` }}
+          className="absolute inset-0 bg-cover"
+          style={{ backgroundImage: `url(${HERO_PHOTO})`, backgroundPosition: "center 32%" }}
           aria-hidden
         />
         <div
@@ -176,12 +176,12 @@ function DonatePage() {
       {/* Thank You closing section — compact */}
       <section className="relative overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${HERO_PHOTO})` }}
+          className="absolute inset-0 bg-cover"
+          style={{ backgroundImage: `url(${THANKYOU_PHOTO})`, backgroundPosition: "center 45%" }}
           aria-hidden
         />
         <div
-          className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-dark)]/95 via-[var(--ithemba-blue-dark)]/90 to-[var(--ithemba-blue)]/85"
+          className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-dark)]/68 via-[var(--ithemba-blue-dark)]/48 to-[var(--ithemba-blue)]/62"
           aria-hidden
         />
         <div className="relative mx-auto max-w-3xl px-4 py-12 text-center lg:px-8 lg:py-14">
