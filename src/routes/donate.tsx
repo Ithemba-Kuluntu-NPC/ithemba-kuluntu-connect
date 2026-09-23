@@ -104,7 +104,8 @@ const COPY = {
 } as const;
 
 const TRUST_ICONS = [Shield, Award, FileText, Heart];
-const HERO_PHOTO = "/assets/photos/home/home-hero-community.jpg";
+const HERO_PHOTO = "/assets/photos/donate/donate-hapy-girl-in-greenhouse.jpeg";
+const THANKYOU_PHOTO = "/assets/photos/donate/donate-adult-hand-holding-kids-hand.jpg";
 
 function DonatePage() {
   const { lang } = useLang();
