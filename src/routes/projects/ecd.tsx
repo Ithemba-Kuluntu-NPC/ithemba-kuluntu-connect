@@ -1807,12 +1807,13 @@ function Focus({ c }: { c: Copy }) {
           ))}
         </div>
         <PhotoStrip
-          className="mt-8 max-w-3xl grid-cols-3"
+          className="mt-8 max-w-4xl grid-cols-2 md:grid-cols-4"
           aspect="aspect-[4/5]"
           photos={[
-            { src: P.greenhousePlanting, label: "Children planting spinach in the greenhouse", position: "center 40%" },
             { src: P.plantingTeacher, label: "Children planting with their teacher", position: "center 40%" },
-            { src: P.breakfastFeeding, label: "A teacher feeding a child at breakfast", position: "center 35%" },
+            { src: P.playingRing, label: "Children playing together with a ring", position: "center 40%" },
+            { src: P.porridgeBoy, label: "A boy eating his morning porridge", position: "center 40%" },
+            { src: P.class45Math, label: "Early numeracy activity with 4 to 5 year olds", position: "center 40%" },
           ]}
         />
         <div className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-5">
