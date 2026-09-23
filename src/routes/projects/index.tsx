@@ -33,8 +33,19 @@ const HERO: Record<Lang, HeroCopy> = {
   },
 };
 
-const HERO_VIDEO = "/assets/videos/projects/projects-hero.mp4";
+const OVERVIEW_MEDIA = "/assets/photos/project-overview";
+const HERO_VIDEO = `${OVERVIEW_MEDIA}/hero-video-project-overview.mp4`;
 const HERO_POSTER = "/assets/photos/projects/ecd-hero.jpg";
+
+/** Project card photography — same files and crops as the Home page cards. */
+const overviewProjectHeroes: Record<string, string> = {
+  ecd: `${OVERVIEW_MEDIA}/main-ecd-project-title-2.jpg`,
+  pureflow: `${OVERVIEW_MEDIA}/main-pureflow-project-title-3.jpg`,
+  greenhouse: `${OVERVIEW_MEDIA}/main-greenhouse-project-title.jpeg`,
+  "food-security": `${OVERVIEW_MEDIA}/main-food-security-project-title.jpeg`,
+  "pondo-dogs": `${OVERVIEW_MEDIA}/main-pondo-dogs-project-title-2.jpg`,
+  "disaster-relief": `${OVERVIEW_MEDIA}/main-disaster-relief-project-title.jpeg`,
+};
 
 function useReducedMotion() {
   const [reduced, setReduced] = useState(false);
