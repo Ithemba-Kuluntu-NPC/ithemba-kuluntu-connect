@@ -1904,8 +1904,8 @@ function Monthly({ c }: { c: Copy }) {
     <section className="relative isolate overflow-hidden py-20">
       <div className="absolute inset-0 -z-10">
         <img
-          src={P.foodBreakfastTogether}
-          alt="Children sharing breakfast at the No.1 ECD Centre"
+          src={P.napTime}
+          alt="Nap time at the No.1 ECD Centre"
           loading="lazy"
           className="h-full w-full object-cover"
           style={{ objectPosition: "center 45%" }}
