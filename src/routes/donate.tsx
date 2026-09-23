@@ -122,7 +122,7 @@ function DonatePage() {
       <section className="relative overflow-hidden">
         <div
           className="absolute inset-0 bg-cover"
-          style={{ backgroundImage: `url(${HERO_PHOTO})`, backgroundPosition: "center 32%" }}
+          style={{ backgroundImage: `url(${HERO_PHOTO})`, backgroundPosition: "20% 32%" }}
           aria-hidden
         />
         <div
