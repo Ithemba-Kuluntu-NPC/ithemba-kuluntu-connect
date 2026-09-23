@@ -431,7 +431,7 @@ function Wave({
   compact?: boolean;
 }) {
   return (
-    <div className="relative -mb-px" style={{ background: from, lineHeight: 0 }}>
+    <div className="relative -mb-px" style={{ background: from, lineHeight: 0, marginTop: -2 }}>
       <svg
         viewBox="0 0 1440 92"
         preserveAspectRatio="none"
