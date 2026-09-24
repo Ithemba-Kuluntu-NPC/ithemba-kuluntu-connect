@@ -10,15 +10,17 @@
 
 # ------------------------------------------
 
+# ------------------------------------------
+
 # 01. HERO SECTION
 
 # ------------------------------------------
 
-hero.script_heading: Safe Water, Female Leadership
-hero.main_heading: The Transformation Pathway
-hero.sub_heading: Safe water. Local employment. Stronger communities. Climate action.
-hero.text_long: A holistic implementation platform converting the daily water crisis into local green jobs, educational equality, and long-term economic resilience for women in rural South Africa.
-hero.text_small_line: Electricity-free, gravity-fed filtration meets last-mile community development.
+hero.script_heading: PureFlow Amanzi
+hero.main_heading: From Safe Water to Stronger Communities.
+hero.sub_heading: Women-led delivery. Local employment. Community-rooted. Climate action.
+hero.text_long: PureFlow Amanzi starts with safe drinking water and builds around it through local assembly, community green jobs, WASH education, monitoring and ongoing support, helping build long-term economic resilience for women and communities across rural South Africa and beyond.
+hero.text_small_line:
 hero.patent_trust_line: Patent pending: South African Patent Application No. 2026/00975
 hero.cta.monthly: Support Safe Water and Women Monthly
 hero.cta.once: Give Once

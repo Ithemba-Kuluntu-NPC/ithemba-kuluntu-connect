@@ -70,6 +70,9 @@ const P = {
   lunchMain: `${ECD_MEDIA}/ECD-lunch-main.jpeg`,
   greenhousePlanting: `${ECD_MEDIA}/ECD-greenhouse-kids-planting-spinach.jpeg`,
   plantingTeacher: `${ECD_MEDIA}/ECD-food-kids-planting-with-teacher.jpeg`,
+  playingRing: `${ECD_MEDIA}/ECD-children-playing-with-ring.jpg`,
+  porridgeBoy: `${ECD_MEDIA}/ECD-close-up-boy-eating-breakfast-porrdige.jpg`,
+  groupPhoto: `${ECD_MEDIA}/ECD-group-photo-with-children-and-teacher.jpg`,
   building1: `${ECD_MEDIA}/ECD-building-phase.jpeg`,
   building2: `${ECD_MEDIA}/ECD-building-phase-2.jpeg`,
   building3: `${ECD_MEDIA}/ECD-building-phase-3.jpeg`,
@@ -1009,9 +1012,6 @@ const PROVIDES_ICONS = [
   ECD_ICONS.team,
   ECD_ICONS.widerFood,
 ];
-const RHYTHM_TONES: Array<"sun" | "blue" | "warm" | "green" | "ocean" | "earth"> = [
-  "sun", "warm", "sun", "blue", "warm", "green", "blue", "ocean", "warm", "blue", "green", "sun",
-];
 
 /* ---------- Doodle SVGs ---------- */
 function SunDoodle({ className = "h-8 w-8 text-[var(--ithemba-yellow)]" }) {
@@ -1072,7 +1072,7 @@ function Hero({ c }: { c: Copy }) {
         />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-4 pb-24 pt-20 md:pb-32 md:pt-28 lg:px-8">
+      <div className="relative mx-auto max-w-7xl px-4 pb-16 pt-20 md:pb-20 md:pt-28 lg:px-8">
         <Link
           to="/projects"
           className="inline-flex items-center gap-1 text-sm font-medium text-white/85 hover:text-white"
@@ -1137,12 +1137,6 @@ function Hero({ c }: { c: Copy }) {
         </div>
       </div>
 
-      <svg className="block w-full" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden>
-        <path
-          d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z"
-          fill="var(--background)"
-        />
-      </svg>
     </section>
   );
 }
@@ -1153,18 +1147,20 @@ function SectionHeading({
   title,
   center = false,
   color = "var(--ithemba-yellow)",
+  titleColor = "var(--ithemba-blue-dark)",
 }: {
   eyebrow: string;
   title: string;
   center?: boolean;
   color?: string;
+  titleColor?: string;
 }) {
   return (
     <div className={center ? "text-center" : ""}>
       <div className="hand-eyebrow-lg" style={{ color }}>
         {eyebrow}
       </div>
-      <h2 className="-mt-1 font-display text-4xl font-bold text-[var(--ithemba-blue-dark)] md:text-5xl">
+      <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl" style={{ color: titleColor }}>
         {title}
       </h2>
     </div>
@@ -1174,34 +1170,40 @@ function SectionHeading({
 /* ---------- SNAPSHOT ---------- */
 function Snapshot({ c }: { c: Copy }) {
   return (
-    <section className="relative overflow-hidden bg-[var(--ithemba-cream)] py-20">
-      <div className="pointer-events-none absolute -left-10 top-10 h-44 w-44 blob bg-[var(--ithemba-yellow)]/25" />
-      <div className="pointer-events-none absolute -right-10 bottom-10 h-52 w-52 blob-2 bg-[var(--ithemba-blue)]/15" />
-      <div className="relative mx-auto max-w-5xl px-4 lg:px-8">
-        <div className="text-center">
-          <SectionHeading eyebrow={c.snapshot.eyebrow} title={c.snapshot.title} center />
-        </div>
-        <div className="mx-auto mt-6 max-w-3xl space-y-4 text-center text-lg leading-relaxed text-foreground/85">
-          {c.snapshot.body.map((p, i) => (
-            <p key={i}>{p}</p>
-          ))}
-        </div>
-        <div className="mt-14 grid grid-cols-2 gap-x-6 gap-y-12 sm:grid-cols-4">
-          {c.snapshot.facts.map((f, i) => (
-            <div key={f.label} className="flex flex-col items-center text-center">
-              <EcdIcon
-                src={SNAPSHOT_ICONS[i] ?? SNAPSHOT_ICONS[0]}
-                alt={f.label}
-                className="h-20 w-20 md:h-24 md:w-24"
-              />
-              <div className="mt-4 font-display text-xl font-extrabold leading-tight text-[var(--ithemba-blue-dark)]">
-                {f.value}
-              </div>
-              <div className="mt-1 text-[11px] font-semibold uppercase tracking-wide text-foreground/60">
-                {f.label}
-              </div>
+    <section className="relative overflow-hidden bg-[var(--ithemba-blue-deepest)] py-12 md:py-14">
+      <div className="pointer-events-none absolute -left-10 top-10 h-44 w-44 blob bg-[var(--ithemba-yellow)]/20" />
+      <div className="pointer-events-none absolute -right-10 bottom-10 h-52 w-52 blob-2 bg-white/10" />
+      <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
+        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_1.3fr] lg:gap-14">
+          <div>
+            <SectionHeading
+              eyebrow={c.snapshot.eyebrow}
+              title={c.snapshot.title}
+              titleColor="white"
+            />
+            <div className="mt-5 space-y-4 text-base leading-relaxed text-white/85 md:text-lg">
+              {c.snapshot.body.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
             </div>
-          ))}
+          </div>
+          <div className="grid grid-cols-2 gap-x-5 gap-y-6 sm:grid-cols-4 lg:grid-cols-2 lg:gap-x-8 lg:gap-y-7">
+            {c.snapshot.facts.map((f, i) => (
+              <div key={f.label} className="flex flex-col items-start text-left">
+                <EcdIcon
+                  src={SNAPSHOT_ICONS[i] ?? SNAPSHOT_ICONS[0]}
+                  alt={f.label}
+                  className="h-12 w-12 md:h-14 md:w-14"
+                />
+                <div className="mt-2 font-display text-lg font-extrabold leading-tight text-white">
+                  {f.value}
+                </div>
+                <div className="mt-0.5 text-[11px] font-semibold uppercase leading-snug tracking-wide text-white/70">
+                  {f.label}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -1218,7 +1220,7 @@ function Why({ c }: { c: Copy }) {
           iconCorner="br"
           icon={ECD_ICONS.brain}
           photos={[
-            { src: P.outdoorToddlers, label: "Toddlers learning outdoors at the ECD Centre", tone: "sun" },
+            { src: P.class23Animals, label: "A teacher teaching animals to 2 to 3 year olds", tone: "sun" },
             { src: P.freePlayOutdoor, label: "Children at free play outdoors", tone: "warm" },
             { src: P.class23Activity2, label: "Classroom activity with 2 to 3 year olds", tone: "earth" },
           ]}
@@ -1426,7 +1428,7 @@ function Women({ c }: { c: Copy }) {
           photos={[
             { src: P.class45Teachers, label: "Teachers with their class at the ECD Centre", position: "center 35%" },
             { src: P.breakfastFeeding, label: "A teacher feeding a child at breakfast", position: "center 35%" },
-            { src: P.main, label: "The No.1 ECD Centre team and children", position: "center 40%" },
+            { src: P.class23Thabo, label: "Children playing the Finding Thabo learning game", position: "center 40%" },
           ]}
         />
         <div className="mt-8 flex flex-wrap gap-2">
@@ -1475,276 +1477,64 @@ function Provides({ c }: { c: Copy }) {
   );
 }
 
-/* ---------- DAILY RHYTHM — alternating photo/text bubbles + wavy path ---------- */
-const RHYTHM_ICONS = [
-  ECD_ICONS.opened,
-  ECD_ICONS.playSongs,
-  ECD_ICONS.meals,
-  ECD_ICONS.safety,
-  ECD_ICONS.playSongs,
-  ECD_ICONS.ageGroups,
-  ECD_ICONS.rest,
-  ECD_ICONS.schoolReady,
-  ECD_ICONS.meals,
-  ECD_ICONS.rest,
-  ECD_ICONS.playSongs,
-  ECD_ICONS.responsive,
-];
-const RHYTHM_PHOTOS = [
-  P.class23Thabo,
-  P.freePlayOutdoor,
-  P.class23Arts,
-  P.class23Shapes,
-  P.class23Animals,
-  P.freePlayLego,
-  P.napTime,
-  P.napTime2,
-];
-const RHYTHM_BLOBS = [
-  "rounded-[55%_45%_60%_40%/45%_55%_45%_55%]",
-  "rounded-[60%_40%_45%_55%/50%_60%_40%_50%]",
-  "rounded-[50%_50%_55%_45%/60%_40%_60%_40%]",
-  "rounded-[45%_55%_50%_50%/55%_45%_55%_45%]",
-];
-
-function Rhythm({ c }: { c: Copy }) {
-  const [open, setOpen] = useState(false);
-  const [contentHeight, setContentHeight] = useState(0);
-  const contentRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = contentRef.current;
-    if (!el) return;
-    const update = () => setContentHeight(el.scrollHeight);
-    update();
-    const ro = new ResizeObserver(update);
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, []);
-
-  const rhythmPhotoLabels = [
-    "Children arriving at the ECD Centre",
-    "Children at free and guided play",
-    "Children eating breakfast",
-    "Daily care routine",
-    "Morning circle — singing and movement",
-    "Teacher guiding learning",
-    "Quiet rest for younger children",
-    "Older children learning through play",
-    "A warm lunch served",
-    "Nap time at the centre",
-    "Afternoon play and calm activities",
-    "Goodbye circle and prayer",
-  ];
-
-  const timeline = (
-    <>
-      {/* central dotted vertical path */}
-      <div className="relative mt-8">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute left-4 top-2 bottom-2 w-px md:left-1/2 md:-translate-x-1/2"
-          style={{
-            backgroundImage:
-              "repeating-linear-gradient(to bottom, var(--ithemba-yellow) 0 6px, transparent 6px 12px)",
-          }}
-        />
-        <ol className="relative space-y-5 md:space-y-7">
-          {c.rhythm.items.map((r, i) => {
-            const iconSrc = RHYTHM_ICONS[i] ?? RHYTHM_ICONS[0];
-            const tone = RHYTHM_TONES[i % RHYTHM_TONES.length];
-            const blob = RHYTHM_BLOBS[i % RHYTHM_BLOBS.length];
-            const isLeft = i % 2 === 0;
-
-            const photo = (
-              <div className={isLeft ? "md:justify-self-end md:pr-8" : "md:justify-self-start md:pl-8"}>
-                <div className="relative w-20 sm:w-24 md:w-28">
-                  <SmartImage
-                    src={RHYTHM_PHOTOS[i % RHYTHM_PHOTOS.length]}
-                    label={rhythmPhotoLabels[i]}
-                    className="aspect-square w-full"
-                    rounded={blob}
-                    tone={tone}
-                    showMissingBadge={false}
-                  />
-                  <div className="absolute -right-1 -top-1 hidden md:block">
-                    <SparkleDoodle className="h-4 w-4 text-[var(--ithemba-yellow)]" />
-                  </div>
-                </div>
-              </div>
-            );
-            const text = (
-              <div className={isLeft ? "md:pl-8 md:text-left" : "md:pr-8 md:text-right"}>
-                <div className={`inline-flex items-center gap-2 ${isLeft ? "" : "md:flex-row-reverse"}`}>
-                  <EcdIcon src={iconSrc} alt={r.time} className="h-8 w-8 md:h-10 md:w-10" />
-                  <div className="font-display text-sm font-bold text-[var(--ithemba-yellow)] md:text-base">
-                    {r.time}
-                  </div>
-                </div>
-                <div className="mt-1 text-sm leading-snug text-white/95 md:text-[15px]">
-                  {r.what}
-                </div>
-              </div>
-            );
-
-            return (
-              <li key={i} className="relative">
-                {/* timeline dot on the path */}
-                <div className="absolute left-4 top-4 z-10 h-3 w-3 -translate-x-1/2 rounded-full bg-[var(--ithemba-yellow)] ring-4 ring-[var(--ithemba-blue-dark)] md:left-1/2 md:top-6 md:h-3.5 md:w-3.5" />
-
-                {/* mobile: photo + text side-by-side as one connected unit */}
-                <div className="flex items-center gap-3 pl-10 md:hidden">
-                  <div className="shrink-0">
-                    <div className="relative w-16">
-                      <SmartImage
-                        src={RHYTHM_PHOTOS[i % RHYTHM_PHOTOS.length]}
-                        label={rhythmPhotoLabels[i]}
-                        className="aspect-square w-full"
-                        rounded={blob}
-                        tone={tone}
-                        showMissingBadge={false}
-                      />
-                    </div>
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <div className="inline-flex items-center gap-2">
-                      <EcdIcon src={iconSrc} alt={r.time} className="h-7 w-7" />
-                      <div className="font-display text-sm font-bold text-[var(--ithemba-yellow)]">
-                        {r.time}
-                      </div>
-                    </div>
-                    <div className="mt-0.5 text-sm leading-snug text-white/95">{r.what}</div>
-                  </div>
-                </div>
-
-                {/* desktop: alternating two-column */}
-                <div className="hidden md:grid md:grid-cols-2 md:items-center md:gap-6">
-                  {isLeft ? (
-                    <>
-                      {photo}
-                      {text}
-                    </>
-                  ) : (
-                    <>
-                      {text}
-                      {photo}
-                    </>
-                  )}
-                </div>
-              </li>
-            );
-          })}
-        </ol>
-      </div>
-
-      <p className="mx-auto mt-8 max-w-3xl text-center text-base leading-relaxed text-white/85">
-        {c.rhythm.outro}
-      </p>
-    </>
-  );
-
-  return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[var(--ithemba-blue-dark)] via-[var(--ithemba-blue)] to-[var(--ithemba-blue-dark)] py-12 text-white md:py-16">
-      <div className="pointer-events-none absolute left-[-6rem] top-[-6rem] h-[24rem] w-[24rem] sun-glow" />
-      <div className="pointer-events-none absolute right-10 bottom-10">
-        <SunDoodle className="h-20 w-20 text-[var(--ithemba-yellow)]/50" />
-      </div>
-      <div className="pointer-events-none absolute left-12 top-24">
-        <SparkleDoodle className="h-6 w-6 text-[var(--ithemba-yellow)]/60" />
-      </div>
-      {/* playful ECD accents */}
-      <div className="pointer-events-none absolute right-1/3 top-12 font-display text-3xl text-[var(--ithemba-yellow)]/30 select-none">ABC</div>
-      <div className="pointer-events-none absolute left-1/4 bottom-24"><Star className="h-6 w-6 text-[var(--ithemba-yellow)]/40 fill-current" /></div>
-      <div className="pointer-events-none absolute right-16 top-1/3"><Heart className="h-5 w-5 text-[var(--ithemba-yellow)]/40 fill-current" /></div>
-
-      <div className="relative mx-auto max-w-5xl px-4 lg:px-8">
-        <div className="text-center">
-          <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)]">{c.rhythm.eyebrow}</div>
-          <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">
-            {open ? c.rhythm.title : c.rhythm.closedTitle}
-          </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-base text-white/90 md:text-lg">
-            {open ? c.rhythm.intro : c.rhythm.closedIntro}
-          </p>
-        </div>
-
-        <div className="mt-6 flex justify-center">
-          <Button
-            onClick={() => setOpen((v) => !v)}
-            aria-expanded={open}
-            aria-controls="rhythm-panel"
-            className="group inline-flex items-center gap-2 rounded-full border-2 border-[var(--ithemba-yellow)] bg-[var(--ithemba-cream)] px-6 py-5 text-base font-bold text-[var(--ithemba-blue-dark)] shadow-[var(--shadow-soft)] transition-all hover:bg-[var(--ithemba-yellow)] hover:text-[var(--ithemba-blue-dark)] active:scale-95 md:px-8 md:py-6 md:text-lg"
-          >
-            {open ? c.rhythm.closeButton : c.rhythm.openButton}
-            <ChevronDown
-              className={cn(
-                "h-5 w-5 transition-transform duration-300",
-                open ? "rotate-180" : ""
-              )}
-            />
-          </Button>
-        </div>
-
-        <div
-          id="rhythm-panel"
-          className="overflow-hidden transition-[max-height] duration-500 ease-in-out"
-          style={{
-            maxHeight: open ? contentHeight : 0,
-          }}
-        >
-          <div ref={contentRef}>
-            {timeline}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 /* ---------- NUTRITION ---------- */
 function Nutrition({ c }: { c: Copy }) {
   return (
-    <section className="mx-auto grid max-w-7xl gap-10 px-4 py-20 md:grid-cols-2 lg:px-8">
-      <div className="relative">
-        <div
-          className="grid grid-cols-3 grid-rows-3 gap-2 overflow-hidden rounded-[2rem]"
-          style={{ filter: "drop-shadow(0 22px 50px rgba(30,60,90,0.28))" }}
-        >
-          <div className="col-span-2 row-span-2 overflow-hidden rounded-2xl">
-            <img src={P.lunchMain} alt="A warm lunch served at the ECD Centre" loading="lazy" className="h-full w-full object-cover" />
-          </div>
-          <div className="overflow-hidden rounded-2xl">
-            <img src={P.food} alt="Food prepared in the ECD kitchen" loading="lazy" className="h-full w-full object-cover" />
-          </div>
-          <div className="overflow-hidden rounded-2xl">
-            <img src={P.foodBowls} alt="Bowls filled with food for the children" loading="lazy" className="h-full w-full object-cover" />
-          </div>
-          <div className="overflow-hidden rounded-2xl">
-            <img src={P.breakfastTogether} alt="Children eating breakfast together" loading="lazy" className="h-full w-full object-cover" style={{ objectPosition: "center 40%" }} />
-          </div>
-          <div className="overflow-hidden rounded-2xl">
-            <img src={P.foodLunch} alt="Children eating lunch" loading="lazy" className="h-full w-full object-cover" style={{ objectPosition: "center 40%" }} />
-          </div>
-          <div className="overflow-hidden rounded-2xl">
-            <img src={P.foodBreakfastTogether} alt="Children sharing breakfast" loading="lazy" className="h-full w-full object-cover" style={{ objectPosition: "center 40%" }} />
+    <section className="relative overflow-hidden bg-gradient-to-br from-[var(--ithemba-blue-dark)] via-[var(--ithemba-blue)] to-[var(--ithemba-blue-dark)] py-20 text-white">
+      <div className="pointer-events-none absolute right-[-6rem] top-[-6rem] h-[24rem] w-[24rem] sun-glow" />
+      <div className="relative mx-auto grid max-w-7xl gap-10 px-4 md:grid-cols-2 lg:px-8">
+        <div className="relative">
+          <div
+            className="grid grid-cols-2 grid-rows-2 gap-2.5 md:gap-3"
+            style={{ filter: "drop-shadow(0 22px 50px rgba(10,30,55,0.35))" }}
+          >
+            <div className="col-span-2 overflow-hidden rounded-[2rem] ring-1 ring-white/15">
+              <img
+                src={P.lunchMain}
+                alt="A warm lunch served at the ECD Centre"
+                loading="lazy"
+                className="aspect-[16/9] h-full w-full object-cover"
+                style={{ objectPosition: "center 45%" }}
+              />
+            </div>
+            <div className="overflow-hidden rounded-3xl ring-1 ring-white/15">
+              <img
+                src={P.food}
+                alt="Food prepared in the ECD kitchen"
+                loading="lazy"
+                className="aspect-square h-full w-full object-cover"
+              />
+            </div>
+            <div className="overflow-hidden rounded-3xl ring-1 ring-white/15">
+              <img
+                src={P.foodBowls}
+                alt="Bowls filled with food for the children"
+                loading="lazy"
+                className="aspect-square h-full w-full object-cover"
+              />
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="flex flex-col justify-center">
-        <SectionHeading eyebrow={c.nutrition.eyebrow} title={c.nutrition.title} />
-        <div className="mt-5 space-y-4 text-lg leading-relaxed text-foreground/85">
-          {c.nutrition.body.map((p, i) => (
-            <p key={i}>{p}</p>
-          ))}
-        </div>
-        <div className="mt-6 flex flex-wrap gap-2">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--ithemba-yellow)]/25 px-3 py-1.5 text-sm font-semibold text-[var(--ithemba-brown)]">
-            <Utensils className="h-4 w-4" /> Food Security
-          </span>
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100 px-3 py-1.5 text-sm font-semibold text-emerald-700">
-            <Sprout className="h-4 w-4" /> Greenhouse with SA Harvest
-          </span>
+        <div className="flex flex-col justify-center">
+          <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center gap-2">
+            <SparkleDoodle /> {c.nutrition.eyebrow}
+          </div>
+          <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.nutrition.title}</h2>
+          <div className="mt-5 space-y-4 text-lg leading-relaxed text-white/90">
+            {c.nutrition.body.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
+          </div>
+          <div className="mt-6 flex flex-wrap gap-2">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--ithemba-yellow)] px-3 py-1.5 text-sm font-semibold text-[var(--ithemba-brown)]">
+              <Utensils className="h-4 w-4" /> Food Security
+            </span>
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1.5 text-sm font-semibold text-white ring-1 ring-white/25 backdrop-blur">
+              <Sprout className="h-4 w-4" /> Greenhouse with SA Harvest
+            </span>
+          </div>
         </div>
       </div>
     </section>
@@ -1791,12 +1581,13 @@ function Focus({ c }: { c: Copy }) {
           ))}
         </div>
         <PhotoStrip
-          className="mt-8 max-w-3xl grid-cols-3"
+          className="mt-8 max-w-4xl grid-cols-2 md:grid-cols-4"
           aspect="aspect-[4/5]"
           photos={[
-            { src: P.greenhousePlanting, label: "Children planting spinach in the greenhouse", position: "center 40%" },
             { src: P.plantingTeacher, label: "Children planting with their teacher", position: "center 40%" },
-            { src: P.breakfastFeeding, label: "A teacher feeding a child at breakfast", position: "center 35%" },
+            { src: P.playingRing, label: "Children playing together with a ring", position: "center 40%" },
+            { src: P.porridgeBoy, label: "A boy eating his morning porridge", position: "center 40%" },
+            { src: P.class45Math, label: "Early numeracy activity with 4 to 5 year olds", position: "center 40%" },
           ]}
         />
         <div className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-5">
@@ -1888,8 +1679,8 @@ function Monthly({ c }: { c: Copy }) {
     <section className="relative isolate overflow-hidden py-20">
       <div className="absolute inset-0 -z-10">
         <img
-          src={P.foodBreakfastTogether}
-          alt="Children sharing breakfast at the No.1 ECD Centre"
+          src={P.napTime}
+          alt="Nap time at the No.1 ECD Centre"
           loading="lazy"
           className="h-full w-full object-cover"
           style={{ objectPosition: "center 45%" }}
@@ -1898,6 +1689,30 @@ function Monthly({ c }: { c: Copy }) {
 
         <div className="absolute right-[-6rem] top-[-6rem] h-[28rem] w-[28rem] sun-glow" />
       </div>
+
+      {/* Thin wave divider softening the transition into the closing photo section */}
+      <svg
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-10 w-full md:h-12"
+        viewBox="0 0 1440 48"
+        preserveAspectRatio="none"
+        fill="none"
+        aria-hidden
+      >
+        <path
+          d="M0 32 C 120 14, 260 14, 400 30 C 540 46, 680 46, 820 30 C 960 14, 1100 14, 1240 30 C 1330 40, 1390 42, 1440 38"
+          stroke="white"
+          strokeOpacity="0.45"
+          strokeWidth="2.5"
+          vectorEffect="non-scaling-stroke"
+        />
+        <path
+          d="M0 38 C 140 22, 280 22, 430 36 C 580 50, 720 48, 870 32 C 1020 16, 1170 18, 1310 32 C 1370 38, 1410 40, 1440 39"
+          stroke="white"
+          strokeOpacity="0.18"
+          strokeWidth="2"
+          vectorEffect="non-scaling-stroke"
+        />
+      </svg>
       <div className="mx-auto grid max-w-7xl gap-10 px-4 md:grid-cols-2 lg:px-8">
         <div className="text-white">
           <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)]">{c.monthly.eyebrow}</div>
@@ -1942,7 +1757,18 @@ function Monthly({ c }: { c: Copy }) {
 /* ---------- CLOSING ---------- */
 function Closing({ c }: { c: Copy }) {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[var(--ithemba-blue-deepest)] via-[var(--ithemba-blue-dark)] to-[var(--ithemba-blue)] py-20 text-white">
+    <section id="ecd-closing" className="relative isolate overflow-hidden py-20 text-white md:py-24">
+      <div className="absolute inset-0 -z-10">
+        <img
+          src={P.groupPhoto}
+          alt="Children and their teacher at the No.1 ECD Centre"
+          loading="lazy"
+          className="h-full w-full object-cover"
+          style={{ objectPosition: "center 35%" }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/80 via-[var(--ithemba-blue-dark)]/66 to-[var(--ithemba-blue)]/52" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--ithemba-blue-deepest)]/60 via-transparent to-transparent" />
+      </div>
       <div className="pointer-events-none absolute right-[-6rem] top-[-6rem] h-[24rem] w-[24rem] sun-glow" />
       <div className="pointer-events-none absolute left-10 top-10">
         <SunDoodle className="h-12 w-12 text-[var(--ithemba-yellow)]/60" />
@@ -1960,16 +1786,6 @@ function Closing({ c }: { c: Copy }) {
             <p key={i}>{p}</p>
           ))}
         </div>
-        <PhotoStrip
-          className="mt-8 grid-cols-2 md:grid-cols-4"
-          aspect="aspect-[3/4]"
-          photos={[
-            { src: P.class45Singing, label: "Older children singing together", position: "center 35%" },
-            { src: P.class45Arts, label: "Arts and crafts with 4 to 5 year olds", position: "center 40%" },
-            { src: P.class45Math, label: "Early numeracy activity", position: "center 40%" },
-            { src: P.class45Teachers, label: "Proud teachers with their class", position: "center 35%" },
-          ]}
-        />
 
         <div className="mt-7 flex flex-wrap justify-center gap-2">
           <Link to="/donate">
@@ -2013,12 +1829,14 @@ function EcdPage() {
       <Building c={c} />
       <Women c={c} />
       <Provides c={c} />
-      <Rhythm c={c} />
       <Nutrition c={c} />
       <Focus c={c} />
       <Impact c={c} />
       <Monthly c={c} />
       <Closing c={c} />
+      {/* Scoped: the shared footer adds mt-24 globally; on this page the closing
+          section must sit flush against the footer, so cancel it here only. */}
+      <style>{`main:has(#ecd-closing) + footer { margin-top: 0; }`}</style>
     </>
   );
 }

@@ -33,15 +33,8 @@ import {
   CircleDollarSign,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetDescription,
-  SheetTrigger,
-} from "@/components/ui/sheet";
 import { useLang } from "@/components/site/LanguageProvider";
+import { DonationWidget } from "@/components/blocks/DonationWidget";
 import { partners as allPartners } from "@/data/projects";
 import { cn } from "@/lib/utils";
 import type { Lang } from "@/data/content";
@@ -51,6 +44,16 @@ const PureFlowEventMap = lazy(() => import("@/components/blocks/PureFlowEventMap
 
 export const Route = createFileRoute("/projects/pureflow/")({
   component: PureFlowCompactPage,
+  head: () => ({
+    meta: [
+      { title: "PureFlow Amanzi | iThemba Kuluntu" },
+      { name: "description", content: "PureFlow Amanzi brings cleaner, safer water to rural households and learning sites through locally led delivery." },
+      { property: "og:title", content: "PureFlow Amanzi | iThemba Kuluntu" },
+      { property: "og:description", content: "Explore PureFlow Amanzi's locally led safe-water model, verified impact, field events, and community transformation." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
 });
 
 // ----------------------- Content loading -----------------------
@@ -134,28 +137,33 @@ const HERO_POSTER = "/assets/photos/projects/pureflow/pureflow-hero-poster.jpg";
 
 const FIELD_PHOTOS = {
   loop: [
-    "pureflow-community-engagement-royal-house-community-address-01.jpg",
-    "pureflow-pilot-assembly-station-team-01.jpg",
+    "pureflow-community-engagement-sibonda-outdoor-meeting-team-and-filter-01.jpg",
+    "pureflow-handout-event-01-assembly-components-table-01.jpg",
     "pureflow-big-hand-out-event-giving-filters-to-people.jpg",
     "pureflow-rural-handout-wash-training-community-speaker-01.jpg",
     "pureflow-home-visit-household-monitoring-discussion-01.jpg",
   ],
   structural: {
     background: "pureflow-water-source-muddy-stream-woman-01.jpg",
-    main: "pureflow-water-source-muddy-stream-group-collection-01.jpg",
-    carrying: "pureflow-collected-dirty-water-buckets-01.jpg",
-    source: "pureflow-water-source-cattle-drinking-shared-spring-01.jpg",
+    main: "pureflow-woman-carrying-water-bucket-on-head-01.jpg",
+    carrying: "pureflow-water-source-muddy-stream-scooping-01.jpg",
+    source: "pureflow-step-01-structural-problem-3.jpg",
     household: "pureflow-home-visit-boiling-water-open-fire-01.jpg",
   },
   climate: [
-    "pureflow-home-visit-filter-backwash-demonstration-01.jpg",
-    "pureflow-home-visit-water-testing-demonstration-01.jpg",
-    "pureflow-dirty-vs-filtered-water-comparison-01.jpg",
-    "pureflow-home-visit-woman-pouring-water-into-filter-01.jpg",
+    "pureflow-young-woman-drinking-filtered-water-01.jpg",
+    "pureflow-sdg-background.jpg",
+    "pureflow-home-visit-family-filter-use-guidance-01.jpg",
+    "pureflow-ecd-handout-event-smiling-mom-at-training-station.jpg",
   ],
   sdg: "pureflow-community-engagement-royal-house-large-community-meeting-01.jpg",
   donation: "pureflow-happy-dancing-recipients-of-filter-after-event.jpg",
-  closing: "pureflow-rural-handout-community-group-holding-filter-buckets-01.jpg",
+  closing: [
+    "pureflow-handout-event-01-community-group-with-filters-02.jpg",
+    "pureflow-rural-handout-community-group-holding-filter-buckets-01.jpg",
+    "pureflow-ecd-handout-event-group-photo.jpg",
+    "pureflow-handout-event-bholani-group-photo-1.jpg",
+  ],
 } as const;
 
 // ----------------------- Reusable building blocks -----------------------
@@ -422,7 +430,7 @@ function Hero({ t, goDonate }: { t: (k: string, fb?: string) => string; goDonate
           </div>
         </div>
       </div>
-      <WaveDivider from="transparent" to={CREAM} />
+      <WaveDivider from="transparent" to={BLUE_DEEP} />
     </section>
   );
 }
@@ -464,14 +472,14 @@ function PathwayStepper({ t }: { t: (k: string, fb?: string) => string }) {
   };
 
   return (
-    <section style={{ background: CREAM }} className="relative">
+    <section style={{ background: BLUE_DEEP }} className="relative text-white">
       <div className="mx-auto max-w-7xl px-4 py-10 md:px-8 md:py-14">
         <div className="text-center">
-          <Script color={BLUE}>{t("pathway.script_heading")}</Script>
-          <h2 className="mt-1 text-3xl font-bold md:text-4xl" style={{ fontFamily: SERIF, color: BLUE_DEEP }}>
+          <Script color={YELLOW}>{t("pathway.script_heading")}</Script>
+          <h2 className="mt-1 text-3xl font-bold text-white md:text-4xl" style={{ fontFamily: SERIF }}>
             {t("pathway.main_heading")}
           </h2>
-          <p className="mx-auto mt-2 max-w-2xl text-sm text-slate-700 md:text-base">
+          <p className="mx-auto mt-2 max-w-2xl text-sm text-white/80 md:text-base">
             {t("pathway.sub_heading")}
           </p>
         </div>
@@ -499,7 +507,7 @@ function PathwayStepper({ t }: { t: (k: string, fb?: string) => string }) {
                       />
                     </div>
                     <span
-                      className="absolute -bottom-1 -right-1 inline-flex h-7 w-7 items-center justify-center rounded-full text-[11px] font-extrabold shadow ring-2 ring-[#FBF6E9]"
+                      className="absolute -bottom-1 -right-1 inline-flex h-7 w-7 items-center justify-center rounded-full text-[11px] font-extrabold shadow ring-2 ring-[#081A60]"
                       style={{ background: YELLOW, color: BLUE_DEEP }}
                     >
                       {s.num}
@@ -507,11 +515,11 @@ function PathwayStepper({ t }: { t: (k: string, fb?: string) => string }) {
                   </div>
                   <p
                     className="mt-3 text-[13px] font-semibold leading-tight lg:text-sm"
-                    style={{ color: BLUE_DEEP, fontFamily: SERIF }}
+                    style={{ color: "#FFFFFF", fontFamily: SERIF }}
                   >
                     {s.title}
                   </p>
-                  <p className="mt-1 line-clamp-3 text-[11px] leading-snug text-slate-600 lg:text-xs">{s.desc}</p>
+                  <p className="mt-1 line-clamp-3 text-[11px] leading-snug text-white/70 lg:text-xs">{s.desc}</p>
                 </button>
               </li>
               {i < steps.length - 1 && (
@@ -662,50 +670,8 @@ function Showcase({ t, lang }: { t: (k: string, fb?: string) => string; lang: La
           <p className="mx-auto mt-2 max-w-2xl text-sm text-white/80 md:text-base">{t("showcase.text")}</p>
         </div>
 
-        <div className="mx-auto mt-8 max-w-4xl overflow-hidden rounded-3xl bg-black/90 shadow-2xl ring-1 ring-white/10 md:max-w-[900px]">
-          <div className="relative aspect-video w-full">
-            {vid && !playing && (
-              <button
-                type="button"
-                onClick={() => setPlaying(true)}
-                className="group absolute inset-0 z-10"
-                aria-label={t("showcase.video.title")}
-              >
-                <img
-                  src={`https://i.ytimg.com/vi/${vid}/hqdefault.jpg`}
-                  alt={t("showcase.video.title")}
-                  className="h-full w-full object-cover"
-                />
-                <span className="absolute inset-0 flex items-center justify-center bg-black/30 transition group-hover:bg-black/40">
-                  <PlayCircle className="h-20 w-20" style={{ color: YELLOW }} />
-                </span>
-              </button>
-            )}
-            {vid && playing && (
-              <iframe
-                className="absolute inset-0 h-full w-full"
-                src={`https://www.youtube.com/embed/${vid}?autoplay=1&rel=0`}
-                title={t("showcase.video.title")}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            )}
-            {!vid && (
-              <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#081A60] to-[#1E40C8] text-white/70">
-                <PlayCircle className="h-16 w-16" style={{ color: YELLOW }} />
-              </div>
-            )}
-          </div>
-          <div className="bg-white/95 px-5 py-3">
-            <p className="text-sm font-semibold" style={{ color: BLUE_DEEP, fontFamily: SERIF }}>
-              {t("showcase.video.title")}
-            </p>
-            <p className="mt-0.5 text-xs text-slate-600">{t("showcase.video.description")}</p>
-          </div>
-        </div>
-
         {/* Counter matrix — yellow icons, animated numbers, on blue */}
-        <div className="mt-10 grid grid-cols-2 gap-x-5 gap-y-8 sm:grid-cols-4 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-2 gap-x-5 gap-y-7 sm:grid-cols-4">
           {counters.map((c) => {
             const { value, suffix } = parseCounter(c.v);
             return (
@@ -733,48 +699,29 @@ function Showcase({ t, lang }: { t: (k: string, fb?: string) => string; lang: La
         <p className="mx-auto mt-8 max-w-3xl text-center text-xs italic text-white/65 md:text-sm">
           {t("impact.note")}
         </p>
+
+        <div className="mx-auto mt-8 max-w-4xl overflow-hidden rounded-3xl bg-black/90 shadow-2xl ring-1 ring-white/10 md:max-w-[900px]">
+          <div className="relative aspect-video w-full">
+            {vid && !playing && (
+              <button type="button" onClick={() => setPlaying(true)} className="group absolute inset-0 z-10" aria-label={t("showcase.video.title")}>
+                <img src={`https://i.ytimg.com/vi/${vid}/hqdefault.jpg`} alt={t("showcase.video.title")} className="h-full w-full object-cover" />
+                <span className="absolute inset-0 flex items-center justify-center bg-black/30 transition group-hover:bg-black/40">
+                  <PlayCircle className="h-20 w-20" style={{ color: YELLOW }} />
+                </span>
+              </button>
+            )}
+            {vid && playing && (
+              <iframe className="absolute inset-0 h-full w-full" src={`https://www.youtube.com/embed/${vid}?autoplay=1&rel=0`} title={t("showcase.video.title")} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+            )}
+            {!vid && <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#081A60] to-[#1E40C8] text-white/70"><PlayCircle className="h-16 w-16" style={{ color: YELLOW }} /></div>}
+          </div>
+          <div className="bg-white/95 px-5 py-3">
+            <p className="text-sm font-semibold" style={{ color: BLUE_DEEP, fontFamily: SERIF }}>{t("showcase.video.title")}</p>
+            <p className="mt-0.5 text-xs text-slate-600">{t("showcase.video.description")}</p>
+          </div>
+        </div>
       </div>
     </section>
-  );
-}
-
-// ----------------------- Step Sheet (read more) -----------------------
-
-function ReadMoreSheet({
-  label,
-  title,
-  body,
-  tag,
-}: {
-  label: string;
-  title: string;
-  body: string;
-  tag: string;
-}) {
-  if (!label) return null;
-  return (
-    <Sheet>
-      <SheetTrigger asChild>
-        <Button
-          variant="outline"
-          className="mt-5 rounded-full border-transparent px-5 font-semibold"
-          style={{ background: YELLOW, color: BLUE_DEEP }}
-        >
-          {label} <ArrowRight className="ml-1 h-4 w-4" />
-        </Button>
-      </SheetTrigger>
-      <SheetContent className="w-full max-w-lg overflow-y-auto sm:max-w-xl" style={{ background: CREAM }}>
-        <SheetHeader>
-          <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: BLUE }}>
-            {tag}
-          </p>
-          <SheetTitle style={{ fontFamily: SERIF, color: BLUE_DEEP }} className="text-2xl">
-            {title}
-          </SheetTitle>
-          <SheetDescription className="text-base leading-relaxed text-slate-700">{body}</SheetDescription>
-        </SheetHeader>
-      </SheetContent>
-    </Sheet>
   );
 }
 
@@ -860,7 +807,6 @@ function StepBlock({
   tag,
   heading,
   body,
-  ctaLabel,
   reverse,
   dark,
   photoSrc,
@@ -879,7 +825,6 @@ function StepBlock({
   tag: string;
   heading: string;
   body: string;
-  ctaLabel: string;
   reverse?: boolean;
   dark?: boolean;
   photoSrc?: string;
@@ -950,7 +895,6 @@ function StepBlock({
             <p className="mt-3 text-base leading-relaxed md:text-lg" style={{ color: bodyColor }}>
               {body}
             </p>
-            <ReadMoreSheet label={ctaLabel} title={heading} body={body} tag={tag} />
           </div>
 
           {/* Visual: editorial collage (preferred) or single photo fallback */}
@@ -1334,22 +1278,6 @@ function PartnersStrip({ t }: { t: (k: string, fb?: string) => string }) {
 // ----------------------- Donation Box -----------------------
 
 function DonationBox({ t, anchorRef }: { t: (k: string, fb?: string) => string; anchorRef: React.RefObject<HTMLDivElement | null> }) {
-  const [frequency, setFrequency] = useState<"monthly" | "once">("monthly");
-  const [selected, setSelected] = useState<number | "custom">(2);
-  const [customAmount, setCustomAmount] = useState("");
-
-  const sym = t("donation.currency.symbol", "€");
-  const tiers = [1, 2, 3, 4, 5].map((n) => ({
-    n,
-    value: t(`donation.amt.${n}`),
-    desc: t(`donation.amt.${n}_desc`),
-  }));
-
-  const trustPoints = t("donation.trust_points")
-    .split(",")
-    .map((s) => s.trim())
-    .filter(Boolean);
-
   return (
     <section ref={anchorRef as React.RefObject<HTMLDivElement>} id="donate" className="relative isolate scroll-mt-20 overflow-hidden">
       <div className="absolute inset-0 -z-10">
@@ -1362,129 +1290,14 @@ function DonationBox({ t, anchorRef }: { t: (k: string, fb?: string) => string; 
         />
         <div className="absolute inset-0" style={{ background: `linear-gradient(135deg, ${BLUE_DEEP}EE 0%, ${BLUE}E6 60%, ${BLUE}D9 100%)` }} />
       </div>
-      <div className="mx-auto max-w-5xl px-5 py-12 md:px-8 md:py-16">
-        <div className="text-center text-white">
+      <div className="mx-auto grid max-w-7xl gap-8 px-5 py-12 md:px-8 md:py-16 lg:grid-cols-[minmax(0,0.8fr)_minmax(560px,1.2fr)] lg:items-start">
+        <div className="text-white lg:pt-6">
           <Script>{t("donation.script_heading")}</Script>
-          <h2 className="mt-1 text-3xl font-bold md:text-4xl" style={{ fontFamily: SERIF }}>
-            {t("donation.main_heading")}
-          </h2>
-          <p className="mx-auto mt-2 max-w-2xl text-sm text-white/85 md:text-base">
-            {t("donation.text_intro")}
-          </p>
+          <h2 className="mt-1 text-3xl font-bold md:text-4xl" style={{ fontFamily: SERIF }}>{t("donation.main_heading")}</h2>
+          <p className="mt-3 max-w-xl text-base text-white/85">{t("donation.text_intro")}</p>
         </div>
-
-        <div className="mt-8 overflow-hidden rounded-3xl bg-white shadow-2xl ring-1 ring-black/5">
-          <div className="grid grid-cols-2 bg-slate-100 p-1 text-sm font-semibold">
-            {(["monthly", "once"] as const).map((f) => (
-              <button
-                key={f}
-                onClick={() => setFrequency(f)}
-                className={cn(
-                  "rounded-full py-2 transition",
-                  frequency === f ? "shadow" : "text-slate-600",
-                )}
-                style={frequency === f ? { background: YELLOW, color: BLUE_DEEP } : undefined}
-              >
-                {t(`donation.tab.${f}`)}
-              </button>
-            ))}
+        <DonationWidget defaultProject="Safe Water" />
           </div>
-
-          <div className="p-6 md:p-8">
-            <p className="text-sm font-semibold uppercase tracking-wider text-slate-500">
-              {t("donation.amount.heading")}
-            </p>
-            <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
-              {tiers.map((tier) => {
-                const active = selected === tier.n;
-                return (
-                  <button
-                    key={tier.n}
-                    onClick={() => setSelected(tier.n)}
-                    className={cn(
-                      "rounded-2xl border p-4 text-left transition",
-                      active
-                        ? "border-transparent shadow-md"
-                        : "border-slate-200 bg-white hover:border-slate-300",
-                    )}
-                    style={active ? { background: CREAM, borderColor: YELLOW } : undefined}
-                  >
-                    <div className="flex items-baseline gap-1">
-                      <span
-                        className="text-2xl font-extrabold"
-                        style={{ color: BLUE_DEEP, fontFamily: SERIF }}
-                      >
-                        {sym}
-                        {tier.value}
-                      </span>
-                      {frequency === "monthly" && (
-                        <span className="text-xs text-slate-500">/mo</span>
-                      )}
-                    </div>
-                    <p className="mt-2 text-xs leading-snug text-slate-600">{tier.desc}</p>
-                  </button>
-                );
-              })}
-              <button
-                onClick={() => setSelected("custom")}
-                className={cn(
-                  "rounded-2xl border p-4 text-left transition",
-                  selected === "custom"
-                    ? "border-transparent shadow-md"
-                    : "border-slate-200 bg-white hover:border-slate-300",
-                )}
-                style={selected === "custom" ? { background: CREAM, borderColor: YELLOW } : undefined}
-              >
-                <p className="text-sm font-semibold" style={{ color: BLUE_DEEP, fontFamily: SERIF }}>
-                  {t("donation.amt.custom")}
-                </p>
-                <div className="mt-2 flex items-center gap-2">
-                  <span className="text-sm text-slate-500">{sym}</span>
-                  <input
-                    inputMode="numeric"
-                    value={customAmount}
-                    onChange={(e) => {
-                      setCustomAmount(e.target.value.replace(/[^0-9]/g, ""));
-                      setSelected("custom");
-                    }}
-                    placeholder="0"
-                    className="w-full border-0 border-b border-slate-300 bg-transparent py-1 text-base focus:border-slate-500 focus:outline-none focus:ring-0"
-                  />
-                </div>
-              </button>
-            </div>
-
-            <div className="mt-6">
-              <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-                {t("donation.payment.heading")}
-              </p>
-              <p className="mt-2 text-sm text-slate-600">{t("donation.payment.options")}</p>
-            </div>
-
-            <Button
-              asChild
-              size="lg"
-              className="mt-6 w-full rounded-full text-base font-semibold"
-              style={{ background: BLUE, color: "#FFFFFF" }}
-            >
-              <Link to="/donate">
-                {frequency === "monthly" ? t("donation.btn.monthly") : t("donation.btn.once")}
-              </Link>
-            </Button>
-
-            {trustPoints.length > 0 && (
-              <ul className="mt-5 flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs text-slate-500">
-                {trustPoints.map((p) => (
-                  <li key={p} className="inline-flex items-center gap-1.5">
-                    <Sparkles className="h-3 w-3" style={{ color: YELLOW }} />
-                    {p}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        </div>
-      </div>
     </section>
   );
 }
@@ -1493,15 +1306,17 @@ function DonationBox({ t, anchorRef }: { t: (k: string, fb?: string) => string; 
 
 function Closing({ t, goDonate }: { t: (k: string, fb?: string) => string; goDonate: (f: "monthly" | "once") => void }) {
   return (
-    <section className="relative" style={{ background: BLUE_DEEP }}>
+    <section id="pureflow-closing" className="relative" style={{ background: BLUE_DEEP }}>
       <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-14 text-white md:px-8 md:py-20 lg:grid-cols-[1.05fr_1fr] lg:gap-14">
         <div className="relative">
-          <PhotoFrame
-            src={`${PHOTO_BASE}/${FIELD_PHOTOS.closing}`}
-            alt="Community group photo holding PureFlow Amanzi filters"
-            tone="ocean"
-            className="aspect-[5/4] w-full"
-            rounded="rounded-[2rem]"
+          <StepCollage
+            photos={FIELD_PHOTOS.closing.map((photo, index) => ({
+              src: `${PHOTO_BASE}/${photo}`,
+              objectPosition: index === 2 ? "center 38%" : "center 42%",
+              alt: "PureFlow Amanzi community members with household water filters",
+            }))}
+            variant="C"
+            alt="PureFlow Amanzi community groups"
           />
           <div className="absolute -bottom-6 -right-4 md:-bottom-8 md:-right-6">
             <CircleArt src={`${ASSET_BASE}/pureflow-community.png`} alt="Community" size="sm" />
@@ -1585,15 +1400,6 @@ function Step01Collage({ t }: { t: (k: string, fb?: string) => string }) {
             <p className="mt-3 text-base leading-relaxed md:text-lg" style={{ color: "#334155" }}>
               {t("step1.text_block")}
             </p>
-            <Link
-              to="/projects/pureflow/structural-problem"
-              className="mt-6 inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold shadow-md transition hover:shadow-lg"
-              style={{ background: BLUE_DEEP, color: "#FFFFFF" }}
-            >
-              {t("step1.cta_label", "Read the Full Picture")}
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-
           </div>
 
           {/* Editorial 4-photo collage */}
@@ -1715,14 +1521,6 @@ function ClimateSection({ t }: { t: (k: string, fb?: string) => string }) {
               ))}
             </div>
 
-            {t("climate.cta_label") && (
-              <ReadMoreSheet
-                label={t("climate.cta_label")}
-                title={t("climate.main_heading")}
-                body={paragraphs.join("\n\n") + "\n\n" + t("climate.future_text")}
-                tag={t("climate.script_heading", "Climate Resilience")}
-              />
-            )}
           </div>
 
           {/* Collage side */}
@@ -1880,39 +1678,34 @@ function PureFlowCompactPage() {
       <Hero t={t} goDonate={goDonate} />
       <PathwayStepper t={t} />
 
-      <WaveDivider from={CREAM} to={BLUE} />
+      <WaveDivider from={BLUE_DEEP} to={BLUE} />
       <Showcase t={t} lang={lang} />
 
-      {/* Field Map — interactive Leaflet/OpenStreetMap of rollout events.
-          Visually belongs with Watch & Verify → deep blue section. */}
+      <WaveDivider from={BLUE} to={CREAM_WARM} />
+
+      {/* Field Map — verified rollout events on a distinct light section. */}
       <section
         id="event-map"
         className="relative scroll-mt-20 isolate overflow-hidden"
-        style={{ background: BLUE }}
+        style={{ background: CREAM_WARM }}
       >
         <div
           className="pointer-events-none absolute inset-0"
           style={{
-            background: `radial-gradient(1200px 500px at 15% 0%, ${YELLOW}22 0%, transparent 60%), radial-gradient(900px 500px at 100% 100%, ${BLUE_DEEP} 0%, transparent 60%)`,
+            background: `radial-gradient(1200px 500px at 15% 0%, ${YELLOW}24 0%, transparent 60%)`,
           }}
           aria-hidden
         />
-        <div className="relative mx-auto max-w-7xl px-4 pt-4 pb-14 md:px-8 md:pt-6 md:pb-20">
-          {/* subtle hairline separator to signal a new subsection within the same deep-blue block */}
-          <div
-            className="mx-auto mb-8 h-px w-24 md:mb-10"
-            style={{ background: `${YELLOW}66` }}
-            aria-hidden
-          />
+        <div className="relative mx-auto max-w-7xl px-4 py-12 md:px-8 md:py-16">
           <div className="mx-auto max-w-3xl text-center">
             <Script color={YELLOW}>{t("fieldmap.script_heading", "Impact Map")}</Script>
             <h2
               className="mt-1 text-3xl font-bold md:text-4xl"
-              style={{ fontFamily: SERIF, color: "#ffffff" }}
+              style={{ fontFamily: SERIF, color: BLUE_DEEP }}
             >
               PureFlow Amanzi – Impact Map
             </h2>
-            <p className="mx-auto mt-3 max-w-2xl text-sm md:text-base text-white/85">
+            <p className="mx-auto mt-3 max-w-2xl text-sm text-slate-700 md:text-base">
               Real communities. Cleaner water. Brighter futures.
             </p>
           </div>
@@ -1945,7 +1738,7 @@ function PureFlowCompactPage() {
         </div>
       </section>
 
-      <WaveDivider from={BLUE} to={CREAM} />
+      <WaveDivider from={CREAM_WARM} to={CREAM} />
 
       {/* Step 01 — cream w/ 4-photo collage */}
       <Step01Collage t={t} />
@@ -1962,16 +1755,15 @@ function PureFlowCompactPage() {
         tag={t("step2.tag")}
         heading={t("step2.heading")}
         body={t("step2.text_block")}
-        ctaLabel={t("step2.cta_label")}
         reverse
         dark
         photoAlt="PureFlow Amanzi household filter installation"
         photoTone="ocean"
         collageVariant="B"
         photoSrcs={[
-          { src: `${PHOTO_BASE}/pureflow-pilot-assembly-drilling-filter-bucket-01.jpg`, objectPosition: "center 42%", alt: "Local team drilling a PureFlow filter bucket" },
-          { src: `${PHOTO_BASE}/pureflow-pilot-assembly-fitting-filter-bucket-01.jpg`, objectPosition: "center 45%", alt: "Local assembly team fitting a PureFlow filter" },
-          { src: `${PHOTO_BASE}/pureflow-handout-event-01-assembly-pouring-water-01.jpg`, objectPosition: "center 38%", alt: "Team preparing a PureFlow filter for community delivery" },
+          { src: `${PHOTO_BASE}/pureflow-home-visit-filter-installation-family-01.jpg`, objectPosition: "center 42%", alt: "Family learning how to install and use a PureFlow filter" },
+          { src: `${PHOTO_BASE}/pureflow-giftofthegivers-smiling-woman-at-training-station-at-handout-event.jpg`, objectPosition: "center 35%", alt: "Woman smiling at a PureFlow training station" },
+          { src: `${PHOTO_BASE}/pureflow-ecd-handout-event-wash-education.jpg`, objectPosition: "center 40%", alt: "WASH education at an ECD handout event" },
         ]}
         accentSrc={`${ASSET_BASE}/pureflow-solution.png`}
       >
@@ -1987,7 +1779,6 @@ function PureFlowCompactPage() {
         tag={t("step3.tag")}
         heading={t("step3.heading")}
         body={t("step3.text_block")}
-        ctaLabel={t("step3.cta_label")}
         photoAlt="Children at the No.1 ECD Centre with safe drinking water"
         photoTone="sun"
         collageVariant="C"
@@ -2012,17 +1803,16 @@ function PureFlowCompactPage() {
         tag={t("step4.tag")}
         heading={t("step4.heading")}
         body={t("step4.text_block")}
-        ctaLabel={t("step4.cta_label")}
         reverse
         dark
         photoAlt="WASH training session in a Pondoland village"
         photoTone="blue"
         collageVariant="A"
         photoSrcs={[
-          { src: `${PHOTO_BASE}/pureflow-community-engagement-royal-house-wash-training-community-01.jpg`, objectPosition: "center 40%", alt: "WASH training with community members at the Royal House" },
-          { src: `${PHOTO_BASE}/pureflow-community-engagement-royal-house-filter-demonstration-01.jpg`, objectPosition: "center 38%", alt: "PureFlow filter demonstration during community engagement" },
-          { src: `${PHOTO_BASE}/pureflow-handout-event-01-backwash-demonstration-participant-01.jpg`, objectPosition: "center 42%", alt: "Participant practising a filter backwash demonstration" },
-          { src: `${PHOTO_BASE}/pureflow-home-visit-filter-training-mother-and-children-01.jpg`, objectPosition: "center 35%", alt: "Mother and children receiving filter-use guidance at home" },
+          { src: `${PHOTO_BASE}/pureflow-giftofthegivers-handout-event-before-and-after-photo-of-water-woman-fascinated.jpg`, objectPosition: "center 38%", alt: "Woman comparing untreated and filtered water" },
+          { src: `${PHOTO_BASE}/pureflow-home-visit-child-operating-filter-01.jpg`, objectPosition: "center 38%", alt: "Child operating a PureFlow filter at home" },
+          { src: `${PHOTO_BASE}/pureflow-home-visit-filter-backwash-demonstration-01.jpg`, objectPosition: "center 42%", alt: "Filter backwash demonstration during a home visit" },
+          { src: `${PHOTO_BASE}/pureflow-home-visit-filter-maintenance-training-with-resident-01.jpg`, objectPosition: "center 38%", alt: "Resident receiving filter maintenance training" },
         ]}
         accentSrc={`${ASSET_BASE}/pureflow-wash.png`}
       />
@@ -2036,14 +1826,13 @@ function PureFlowCompactPage() {
         tag={t("step5.tag")}
         heading={t("step5.heading")}
         body={t("step5.text_block")}
-        ctaLabel={t("step5.cta_label")}
         photoAlt="Local team assembling and delivering PureFlow filters"
         photoTone="warm"
         collageVariant="B"
         photoSrcs={[
-          { src: `${PHOTO_BASE}/pureflow-handout-event-01-assembly-station-team-02.jpg`, objectPosition: "center 38%", alt: "Local implementation team assembling PureFlow filters" },
-          { src: `${PHOTO_BASE}/pureflow-handout-event-01-household-registration-01.jpg`, objectPosition: "center 35%", alt: "Local team registering households for filter delivery" },
-          { src: `${PHOTO_BASE}/pureflow-gift-of-givers-core-team-hands-on-filter-training-01.jpg`, objectPosition: "center 40%", alt: "Implementation-partner team receiving hands-on filter training" },
+          { src: `${PHOTO_BASE}/pureflow-happy-dancing-recipients-of-filter-after-event.jpg`, objectPosition: "center 36%", alt: "Community members celebrating after a filter event" },
+          { src: `${PHOTO_BASE}/pureflow-g20-indaba-east-london-booth-team-01.jpg`, objectPosition: "center 42%", alt: "PureFlow Amanzi team at the G20 Indaba booth" },
+          { src: `${PHOTO_BASE}/pureflow-handout-event-01-assembly-station-team-02.jpg`, objectPosition: "center 38%", alt: "Local implementation team at the assembly station" },
         ]}
         accentSrc={`${ASSET_BASE}/pureflow-jobs.png`}
       />
@@ -2057,17 +1846,16 @@ function PureFlowCompactPage() {
         tag={t("step6.tag")}
         heading={t("step6.heading")}
         body={t("step6.text_block")}
-        ctaLabel={t("step6.cta_label")}
         reverse
         dark
         photoAlt="Pondoland village community living with safe water"
         photoTone="ocean"
         collageVariant="C"
         photoSrcs={[
-          { src: `${PHOTO_BASE}/pureflow-rural-handout-smiling-woman-holding-filter-core-01.jpg`, objectPosition: "center 30%", alt: "Woman holding the PureFlow filter core after a rural handout" },
+          { src: `${PHOTO_BASE}/pureflow-ecd-handout-child-drinking-filtered-water-01.jpg`, objectPosition: "center 35%", alt: "Child drinking filtered water at an ECD handout" },
           { src: `${PHOTO_BASE}/pureflow-happy-recipients-after-event-child-smiling.jpg`, objectPosition: "center 35%", alt: "Child smiling after a community filter event" },
-          { src: `${PHOTO_BASE}/pureflow-rural-handout-resident-collecting-filtered-water-01.jpg`, objectPosition: "center 42%", alt: "Resident collecting filtered water from a PureFlow unit" },
-          { src: `${PHOTO_BASE}/pureflow-gift-of-givers-core-team-implementation-partner-group-photo-01.jpg`, objectPosition: "center 38%", alt: "PureFlow and Gift of the Givers implementation team" },
+          { src: `${PHOTO_BASE}/pureflow-handout-event-bholani-training-station.jpg`, objectPosition: "center 40%", alt: "PureFlow training station at Bholani" },
+          { src: `${PHOTO_BASE}/pureflow-step-06-long-term-transformation.jpg`, objectPosition: "center 42%", alt: "Long-term transformation through safe water" },
         ]}
         accentSrc={`${ASSET_BASE}/pureflow-village.png`}
         accentSrcSecondary={`${ASSET_BASE}/pureflow-community.png`}
@@ -2091,6 +1879,7 @@ function PureFlowCompactPage() {
 
       <WaveDivider from={BLUE} to={BLUE_DEEP} />
       <Closing t={t} goDonate={goDonate} />
+      <style>{`main:has(#pureflow-closing) + footer { margin-top: 0; }`}</style>
     </main>
   );
 }

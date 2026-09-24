@@ -3,7 +3,7 @@ FOOD SECURITY PROJECT PAGE - GERMAN CONTENT V1.1
 HERO SECTION
 
 Script heading:
-Ernährungssicherheit
+Lebensmittelhilfe & Ernährung
 
 Main heading:
 Food Security
