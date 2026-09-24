@@ -1754,8 +1754,8 @@ function BeforeAfter({ c }: { c: Copy }) {
       <h3 className="mb-4 text-center font-display text-2xl font-bold text-white">{label}</h3>
       <div className="grid min-w-0 aspect-[5/3] grid-cols-2 gap-2.5">
         {photos.map((photo, index) => (
-          <div key={photo.src} className={`min-w-0 overflow-hidden shadow-lg ring-1 ring-white/15 ${index === 0 ? "rounded-l-[2rem]" : "rounded-r-[2rem]"}`}>
-            <img src={photo.src} alt={photo.label} loading="lazy" className="block h-full w-full min-w-0 object-cover" style={{ objectPosition: photo.pos }} />
+          <div key={photo.src} className={`relative min-w-0 overflow-hidden shadow-lg ring-1 ring-white/15 ${index === 0 ? "rounded-l-[2rem]" : "rounded-r-[2rem]"}`}>
+            <img src={photo.src} alt={photo.label} loading="lazy" className="absolute inset-0 h-full w-full object-cover" style={{ objectPosition: photo.pos }} />
           </div>
         ))}
       </div>
