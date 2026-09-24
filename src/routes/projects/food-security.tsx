@@ -203,7 +203,7 @@ const HAMPERS_COLLAGE = {
   main: { ...HOUSE.wheelbarrow, pos: "center 45%" },
   side: [
     { ...DIST.womanReceiving, pos: "center 35%" },
-    { ...PARTNER.womanBox, pos: "center 30%" },
+    { ...DIST.familyParcels, pos: "center 42%" },
   ] as [Shot, Shot],
 };
 
@@ -219,7 +219,7 @@ const ECD_COLLAGE = {
   main: { ...ECD.blueTables, pos: "center 40%" },
   side: [
     { ...ECD.groupMeal, pos: "center 35%" },
-    { ...SCHOOL.handingPlate, pos: "center 35%" },
+    { ...ECD.inRow, pos: "center 42%" },
   ] as [Shot, Shot],
 };
 
@@ -242,21 +242,9 @@ const LOGISTICS = [
 /* ---------- photo collage primitives (shared visual language with other project pages) ---------- */
 type Shot = { src: string; alt: string; pos?: string };
 
-function Frame({ children, frame, className = "" }: { children: React.ReactNode; frame: "light" | "dark"; className?: string }) {
-  return (
-    <div
-      className={`rounded-[2rem] p-2 shadow-xl ring-1 ${
-        frame === "dark" ? "bg-white/10 ring-white/15 backdrop-blur" : "bg-white ring-black/5"
-      } ${className}`}
-    >
-      {children}
-    </div>
-  );
-}
-
 function ShotImg({ shot, className = "" }: { shot: Shot; className?: string }) {
   return (
-    <div className={`overflow-hidden rounded-2xl ${className}`}>
+    <div className={`overflow-hidden rounded-2xl shadow-lg ring-1 ring-black/10 ${className}`}>
       <img
         src={shot.src}
         alt={shot.alt}
@@ -269,15 +257,13 @@ function ShotImg({ shot, className = "" }: { shot: Shot; className?: string }) {
 }
 
 /** One dominant image with two supporting images beside it. Stacks cleanly on mobile. */
-function CollageSide({ main, side, frame = "light", className = "" }: { main: Shot; side: [Shot, Shot]; frame?: "light" | "dark"; className?: string }) {
+function CollageSide({ main, side, className = "" }: { main: Shot; side: [Shot, Shot]; className?: string }) {
   return (
-    <Frame frame={frame} className={className}>
-      <div className="grid grid-cols-3 grid-rows-2 gap-2 aspect-[16/12] sm:aspect-[16/11]">
-        <ShotImg shot={main} className="col-span-3 row-span-1 sm:col-span-2 sm:row-span-2" />
-        <ShotImg shot={side[0]} className="col-span-1" />
-        <ShotImg shot={side[1]} className="col-span-2 sm:col-span-1" />
-      </div>
-    </Frame>
+    <div className={`grid aspect-[16/12] grid-cols-3 grid-rows-2 gap-2.5 sm:aspect-[16/11] md:gap-3 ${className}`}>
+      <ShotImg shot={main} className="col-span-3 row-span-1 rounded-tl-[2rem] sm:col-span-2 sm:row-span-2 sm:rounded-bl-[2rem]" />
+      <ShotImg shot={side[0]} className="col-span-1 rounded-tr-[2rem]" />
+      <ShotImg shot={side[1]} className="col-span-2 rounded-br-[2rem] sm:col-span-1" />
+    </div>
   );
 }
 
@@ -341,7 +327,7 @@ const COPY: Record<Lang, Copy> = {
   en: {
     back: "All projects",
     hero: {
-      eyebrow: "Food Security",
+      eyebrow: "Food Support & Nutrition",
       title: "Food Security",
       text:
         "Practical food support for vulnerable families in Cwebeni and surrounding communities, through monthly food hampers, a volunteer-run soup kitchen, and daily meals for children at the iThemba Kuluntu No.1 ECD Centre.",
@@ -489,7 +475,7 @@ const COPY: Record<Lang, Copy> = {
   de: {
     back: "Alle Projekte",
     hero: {
-      eyebrow: "Ernährungssicherheit",
+      eyebrow: "Lebensmittelhilfe & Ernährung",
       title: "Food Security",
       text:
         "Praktische Lebensmittelhilfe für vulnerable Familien in Cwebeni und den umliegenden Gemeinden, durch monatliche Lebensmittelpakete, eine von lokalen Frauen ehrenamtlich geführte Suppenküche und tägliche Mahlzeiten für Kinder im iThemba Kuluntu No.1 ECD Centre.",
@@ -637,7 +623,7 @@ const COPY: Record<Lang, Copy> = {
   nl: {
     back: "Alle projecten",
     hero: {
-      eyebrow: "Voedselzekerheid",
+      eyebrow: "Voedselhulp & Voeding",
       title: "Food Security",
       text:
         "Praktische voedselondersteuning voor kwetsbare families in Cwebeni en omliggende gemeenschappen, via maandelijkse voedselpakketten, een soepkeuken gerund door lokale vrouwelijke vrijwilligers en dagelijkse maaltijden voor kinderen in het iThemba Kuluntu No.1 ECD Centre.",
@@ -909,7 +895,7 @@ function Hero({ c }: { c: Copy }) {
       </div>
 
       <svg className="block w-full -mb-px" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden>
-        <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="var(--ithemba-cream)" />
+        <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="var(--ithemba-blue-deepest)" />
       </svg>
     </section>
   );
@@ -929,24 +915,27 @@ function SectionHeading({ eyebrow, title, center = false, color = "var(--ithemba
 /* ---------- SNAPSHOT ---------- */
 function Snapshot({ c }: { c: Copy }) {
   return (
-    <section className="relative overflow-hidden bg-[var(--ithemba-cream)] py-20">
-      <div className="pointer-events-none absolute -left-10 top-10 h-44 w-44 blob bg-[var(--ithemba-yellow)]/25" />
-      <div className="pointer-events-none absolute -right-10 bottom-10 h-52 w-52 blob-2 bg-orange-300/20" />
-      <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
-        <div className="text-center">
-          <SectionHeading eyebrow={c.snapshot.eyebrow} title={c.snapshot.title} center />
+    <section className="relative overflow-hidden bg-[var(--ithemba-blue-deepest)] py-12 text-white md:py-14">
+      <div className="pointer-events-none absolute -left-10 top-10 h-44 w-44 blob bg-[var(--ithemba-yellow)]/15" />
+      <div className="pointer-events-none absolute -right-10 bottom-10 h-52 w-52 blob-2 bg-white/5" />
+      <div className="relative mx-auto grid max-w-7xl gap-9 px-4 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center lg:gap-12 lg:px-8">
+        <div>
+          <div className="hand-eyebrow-lg text-[var(--ithemba-yellow)]">{c.snapshot.eyebrow}</div>
+          <h2 className="-mt-1 font-display text-4xl font-bold text-white md:text-5xl">{c.snapshot.title}</h2>
+          <div className="mt-5 space-y-3 text-base leading-relaxed text-white/85 md:text-lg">
+            {c.snapshot.body.map((p, i) => <p key={i}>{p}</p>)}
+          </div>
         </div>
-        <div className="mx-auto mt-6 max-w-3xl space-y-4 text-center text-lg leading-relaxed text-foreground/85">
-          {c.snapshot.body.map((p, i) => <p key={i}>{p}</p>)}
-        </div>
-        <div className="mt-14 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-2">
           {c.snapshot.facts.map((f, i) => {
             const iconSrc = SNAPSHOT_ICON_PATHS[i];
             return (
-              <div key={f.label} className="flex flex-col items-center text-center">
-                <img src={iconSrc} alt="" aria-hidden className="h-16 w-16 object-contain md:h-20 md:w-20" />
-                <div className="mt-3 text-[11px] font-semibold uppercase tracking-wide text-foreground/60">{f.label}</div>
-                <div className="mt-1 font-display text-base font-extrabold leading-tight text-[var(--ithemba-blue-dark)]">{f.value}</div>
+              <div key={f.label} className="grid grid-cols-[3rem_1fr] items-center gap-3">
+                <img src={iconSrc} alt="" aria-hidden className="h-12 w-12 object-contain" />
+                <div className="min-w-0">
+                  <div className="text-[11px] font-semibold uppercase tracking-wide text-white/65">{f.label}</div>
+                  <div className="mt-0.5 font-display text-sm font-extrabold leading-snug text-white md:text-base">{f.value}</div>
+                </div>
               </div>
             );
           })}
@@ -995,7 +984,8 @@ function Why({ c }: { c: Copy }) {
 /* ---------- HAMPERS — cream with photo bubble ---------- */
 function Hampers({ c }: { c: Copy }) {
   return (
-    <section className="relative mx-auto grid max-w-7xl gap-10 px-4 py-20 md:grid-cols-2 lg:px-8">
+    <section className="relative bg-[var(--ithemba-cream)] py-14 md:py-16">
+      <div className="mx-auto grid max-w-7xl gap-8 px-4 md:grid-cols-2 lg:gap-10 lg:px-8">
       <div className="flex flex-col justify-center order-2 md:order-1">
         <SectionHeading eyebrow={c.hampers.eyebrow} title={c.hampers.title} />
         <div className="mt-5 space-y-4 text-lg leading-relaxed text-foreground/85">
@@ -1005,7 +995,8 @@ function Hampers({ c }: { c: Copy }) {
       <div className="relative order-1 md:order-2 flex items-center">
         <div className="absolute -right-8 -top-8 h-28 w-28 blob bg-[var(--ithemba-yellow)]/40 -z-10" />
         <div className="absolute -bottom-6 -left-6 h-24 w-24 blob-2 bg-orange-300/30 -z-10" />
-        <CollageSide main={HAMPERS_COLLAGE.main} side={HAMPERS_COLLAGE.side} frame="light" className="w-full" />
+        <CollageSide main={HAMPERS_COLLAGE.main} side={HAMPERS_COLLAGE.side} className="w-full" />
+      </div>
       </div>
     </section>
   );
@@ -1014,23 +1005,23 @@ function Hampers({ c }: { c: Copy }) {
 /* ---------- KITCHEN — cream, text + photo collage ---------- */
 function Kitchen({ c }: { c: Copy }) {
   return (
-    <section className="relative overflow-hidden bg-[var(--ithemba-cream)] py-20">
-      <div className="pointer-events-none absolute -left-16 top-10 h-52 w-52 blob bg-[var(--ithemba-yellow)]/25" />
-      <div className="pointer-events-none absolute -right-16 bottom-10 h-48 w-48 blob-2 bg-orange-300/25" />
-      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 md:grid-cols-2 lg:px-8">
+    <section className="relative overflow-hidden bg-[var(--ithemba-blue-deepest)] py-14 text-white md:py-16">
+      <div className="pointer-events-none absolute -left-16 top-10 h-52 w-52 blob bg-[var(--ithemba-yellow)]/15" />
+      <div className="pointer-events-none absolute -right-16 bottom-10 h-48 w-48 blob-2 bg-white/5" />
+      <div className="relative mx-auto grid max-w-7xl items-center gap-8 px-4 md:grid-cols-2 lg:gap-10 lg:px-8">
         <div className="flex flex-col justify-center">
-          <div className="hand-eyebrow-lg flex items-center gap-2 text-orange-600">
+          <div className="hand-eyebrow-lg flex items-center gap-2 text-[var(--ithemba-yellow)]">
             <Soup className="h-5 w-5" /> {c.kitchen.eyebrow}
           </div>
-          <h2 className="-mt-1 font-display text-4xl font-bold text-[var(--ithemba-blue-dark)] md:text-5xl">{c.kitchen.title}</h2>
-          <div className="mt-5 space-y-4 text-lg leading-relaxed text-foreground/85">
+          <h2 className="-mt-1 font-display text-4xl font-bold text-white md:text-5xl">{c.kitchen.title}</h2>
+          <div className="mt-5 space-y-4 text-lg leading-relaxed text-white/85">
             {c.kitchen.body.map((p, i) => <p key={i}>{p}</p>)}
           </div>
-          <div className="mt-6 inline-flex items-center gap-2 self-start rounded-full bg-white px-4 py-2 text-sm font-semibold text-[var(--ithemba-brown)] shadow-sm ring-1 ring-black/5">
-            <HandHeart className="h-4 w-4 text-orange-600" /> {c.kitchen.eyebrow}
+          <div className="mt-6 inline-flex items-center gap-2 self-start rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-white ring-1 ring-white/20">
+            <HandHeart className="h-4 w-4 text-[var(--ithemba-yellow)]" /> {c.kitchen.eyebrow}
           </div>
         </div>
-        <CollageSide main={KITCHEN_COLLAGE.main} side={KITCHEN_COLLAGE.side} frame="light" className="w-full" />
+        <CollageSide main={KITCHEN_COLLAGE.main} side={KITCHEN_COLLAGE.side} className="w-full" />
       </div>
     </section>
   );
@@ -1040,13 +1031,13 @@ function Kitchen({ c }: { c: Copy }) {
 /* ---------- ECD MEALS — cream, collage + text ---------- */
 function EcdMeals({ c }: { c: Copy }) {
   return (
-    <section className="relative overflow-hidden bg-[var(--ithemba-cream)] py-20">
+    <section className="relative overflow-hidden bg-[var(--ithemba-cream)] py-14 md:py-16">
       <div className="pointer-events-none absolute -right-16 top-10 h-56 w-56 blob bg-[var(--ithemba-yellow)]/30" />
       <div className="pointer-events-none absolute -left-16 bottom-10 h-48 w-48 blob-2 bg-orange-300/25" />
-      <div className="relative mx-auto grid max-w-7xl gap-10 px-4 md:grid-cols-2 lg:px-8">
+      <div className="relative mx-auto grid max-w-7xl gap-8 px-4 md:grid-cols-2 lg:gap-10 lg:px-8">
         <div className="relative flex items-center">
           <div className="absolute -right-8 -top-8 h-28 w-28 blob bg-[var(--ithemba-yellow)]/40 -z-10" />
-          <CollageSide main={ECD_COLLAGE.main} side={ECD_COLLAGE.side} frame="light" className="w-full" />
+          <CollageSide main={ECD_COLLAGE.main} side={ECD_COLLAGE.side} className="w-full" />
         </div>
         <div className="flex flex-col justify-center">
           <SectionHeading eyebrow={c.ecd.eyebrow} title={c.ecd.title} />
@@ -1073,18 +1064,19 @@ function EcdMeals({ c }: { c: Copy }) {
 /* ---------- GREENHOUSE CONNECTION — short, cream split with collage ---------- */
 function GreenhouseConnection({ c }: { c: Copy }) {
   return (
-    <section className="relative mx-auto grid max-w-7xl gap-10 px-4 py-20 md:grid-cols-2 lg:px-8">
+    <section className="relative bg-[var(--ithemba-blue-deepest)] py-14 text-white md:py-16">
+      <div className="mx-auto grid max-w-7xl gap-8 px-4 md:grid-cols-2 lg:gap-10 lg:px-8">
       <div className="flex flex-col justify-center order-2 md:order-1">
-        <div className="hand-eyebrow-lg text-emerald-700 flex items-center gap-2">
+        <div className="hand-eyebrow-lg flex items-center gap-2 text-[var(--ithemba-yellow)]">
           <Sprout className="h-5 w-5" /> {c.greenhouse.eyebrow}
         </div>
-        <h2 className="-mt-1 font-display text-3xl font-bold text-[var(--ithemba-blue-dark)] md:text-4xl">{c.greenhouse.title}</h2>
-        <div className="mt-5 space-y-4 text-lg leading-relaxed text-foreground/85">
+        <h2 className="-mt-1 font-display text-3xl font-bold text-white md:text-4xl">{c.greenhouse.title}</h2>
+        <div className="mt-5 space-y-4 text-lg leading-relaxed text-white/85">
           {c.greenhouse.body.map((p, i) => <p key={i}>{p}</p>)}
         </div>
         <div className="mt-6">
           <Link to="/projects/greenhouse">
-            <Button variant="outline" className="rounded-full border-emerald-300 text-emerald-700 hover:bg-emerald-50">
+            <Button variant="outline" className="rounded-full border-white/35 bg-white/10 text-white hover:bg-white/20 hover:text-white">
               <Leaf className="mr-2 h-4 w-4" /> Greenhouse with SA Harvest
             </Button>
           </Link>
@@ -1093,7 +1085,8 @@ function GreenhouseConnection({ c }: { c: Copy }) {
       <div className="relative order-1 md:order-2 flex items-center">
         <div className="absolute -left-8 -top-8 h-28 w-28 blob bg-emerald-300/40 -z-10" />
         <div className="absolute -bottom-6 -right-6 h-24 w-24 blob-2 bg-[var(--ithemba-yellow)]/30 -z-10" />
-        <CollageSide main={GROW_COLLAGE.main} side={GROW_COLLAGE.side} frame="light" className="w-full" />
+        <CollageSide main={GROW_COLLAGE.main} side={GROW_COLLAGE.side} className="w-full" />
+      </div>
       </div>
     </section>
   );
@@ -1254,7 +1247,7 @@ function Monthly({ c }: { c: Copy }) {
 /* ---------- CLOSING ---------- */
 function Closing({ c }: { c: Copy }) {
   return (
-    <section className="relative isolate overflow-hidden pt-28 pb-20 text-white md:pt-32">
+    <section id="food-security-closing" className="relative isolate overflow-hidden pt-28 pb-20 text-white md:pt-32">
       {/* soft wave transition from the donation section above */}
       <svg
         className="pointer-events-none absolute -top-px left-0 z-10 block w-full"
@@ -1340,14 +1333,15 @@ function FoodSecurityPage() {
   const c = COPY[lang] ?? COPY.en;
   return (
     <>
+      <style>{`main:has(#food-security-closing) + footer { margin-top: 0; }`}</style>
       <Hero c={c} />
       <Snapshot c={c} />
-      <Wave from="var(--ithemba-cream)" to="var(--background)" />
+      <Wave from="var(--ithemba-blue-deepest)" to="var(--background)" />
       <Why c={c} />
       <Hampers c={c} />
       <Kitchen c={c} />
       <EcdMeals c={c} />
-      <Wave from="var(--ithemba-cream)" to="var(--background)" />
+      <Wave from="var(--ithemba-cream)" to="var(--ithemba-blue-deepest)" />
       <GreenhouseConnection c={c} />
       <Focus c={c} />
       <DonationSupport c={c} />
