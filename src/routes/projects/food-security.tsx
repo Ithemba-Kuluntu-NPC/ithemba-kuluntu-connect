@@ -16,7 +16,6 @@ import {
   Cookie,
   PackageOpen,
   Truck,
-  PlayCircle,
   Star,
   Award,
   UtensilsCrossed,

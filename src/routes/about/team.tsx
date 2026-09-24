@@ -22,7 +22,6 @@ type HeroCopy = {
   ctaHeading: string;
   ctaDonate: string;
   ctaContact: string;
-  photoPending: string;
 };
 
 const HERO: Record<Lang, HeroCopy> = {
@@ -42,7 +41,6 @@ const HERO: Record<Lang, HeroCopy> = {
     ctaHeading: "Support the team's work",
     ctaDonate: "Donate Monthly",
     ctaContact: "Get in touch",
-    photoPending: "Photo coming soon",
   },
   de: {
     eyebrow: "Über",
@@ -60,7 +58,6 @@ const HERO: Record<Lang, HeroCopy> = {
     ctaHeading: "Unterstützen Sie die Arbeit des Teams",
     ctaDonate: "Monatlich spenden",
     ctaContact: "Kontakt aufnehmen",
-    photoPending: "Foto folgt in Kürze",
   },
   nl: {
     eyebrow: "Over",
@@ -78,7 +75,6 @@ const HERO: Record<Lang, HeroCopy> = {
     ctaHeading: "Steun het werk van het team",
     ctaDonate: "Maandelijks doneren",
     ctaContact: "Neem contact op",
-    photoPending: "Foto volgt binnenkort",
   },
 };
 
@@ -419,7 +415,7 @@ function TeamGrid({ c, lang }: { c: HeroCopy; lang: Lang }) {
 
       <div className="relative mt-12 grid gap-x-6 gap-y-14 sm:grid-cols-2 md:gap-y-16 lg:grid-cols-3 xl:grid-cols-4">
         {TEAM.map((m, i) => (
-          <TeamCard key={m.id} member={m} lang={lang} index={i} photoPending={c.photoPending} />
+          <TeamCard key={m.id} member={m} lang={lang} index={i} />
         ))}
       </div>
     </section>
@@ -432,12 +428,10 @@ function TeamCard({
   member,
   lang,
   index,
-  photoPending,
 }: {
   member: Member;
   lang: Lang;
   index: number;
-  photoPending: string;
 }) {
   // alternate subtle backdrop tones
   const palette = [
@@ -491,7 +485,7 @@ function TeamCard({
               style={{ objectPosition: "center 30%" }}
             />
           ) : (
-            <PhotoPending initial={initial} label={photoPending} />
+            <PhotoPending initial={initial} />
           )}
         </div>
       </div>
@@ -507,15 +501,12 @@ function TeamCard({
   );
 }
 
-function PhotoPending({ initial, label }: { initial: string; label: string }) {
+function PhotoPending({ initial }: { initial: string }) {
   return (
     <div className="flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-[var(--ithemba-cream)] via-white to-[var(--ithemba-yellow)]/20">
       <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[var(--ithemba-blue-dark)]/90 font-display text-2xl font-bold text-white">
         {initial}
       </div>
-      <span className="mt-3 px-2 text-center text-[10px] font-medium uppercase tracking-[0.14em] text-[var(--ithemba-blue-dark)]/70">
-        {label}
-      </span>
     </div>
   );
 }

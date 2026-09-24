@@ -14,7 +14,7 @@ export function NewsletterSignup() {
         <div className="relative grid items-center gap-5 md:grid-cols-[minmax(0,1fr)_minmax(320px,0.85fr)] md:gap-8">
           <div>
             <div className="font-hand text-xl text-[var(--ithemba-yellow)] md:text-2xl">
-            {lbl("Stay close", "Bleiben Sie verbunden", "Blijf in contact")}
+              {lbl("Stay close", "Bleiben Sie verbunden", "Blijf in contact")}
             </div>
             <h2 className="font-display text-2xl font-bold md:text-3xl">
               {lbl("Follow the journey", "Begleiten Sie unseren Weg", "Volg de reis")}
