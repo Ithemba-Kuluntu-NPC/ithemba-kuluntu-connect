@@ -11,12 +11,25 @@ export function Hero() {
   const { t: tr, lang } = useLang();
   return (
     <section className="relative isolate overflow-hidden">
-      {/* full-bleed photo background */}
-      <div className="absolute inset-0 -z-10">
+      {/* mobile/tablet: photo first, clearly visible above the blue panel */}
+      <div className="relative h-[38vh] min-h-[260px] w-full sm:h-[42vh] lg:hidden">
         <img
           src={heroPhoto}
           alt="Children in Pondoland sharing a joyful high-five with bubbles in the sunlight"
-          className="h-full w-full object-cover object-[95%_center] md:object-right"
+          className="h-full w-full object-cover object-[70%_30%]"
+          loading="eager"
+          decoding="async"
+        />
+        {/* gentle warm fade toward the blue panel below */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--ithemba-blue)]/35 via-transparent to-transparent" />
+      </div>
+
+      {/* desktop: full-bleed photo background (unchanged composition) */}
+      <div className="absolute inset-0 -z-10 hidden lg:block">
+        <img
+          src={heroPhoto}
+          alt="Children in Pondoland sharing a joyful high-five with bubbles in the sunlight"
+          className="h-full w-full object-cover object-right"
           loading="eager"
           decoding="async"
         />
@@ -27,11 +40,13 @@ export function Hero() {
         <div className="absolute right-[-6rem] top-[-6rem] h-[28rem] w-[28rem] sun-glow" />
       </div>
 
-      <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 pb-20 pt-16 md:pb-28 md:pt-24 lg:min-h-[88vh] lg:px-8">
+      {/* content: on mobile/tablet a blue band below the photo with a small organic overlap */}
+      <div className="relative -mt-10 bg-[var(--ithemba-blue)] lg:mt-0 lg:bg-transparent">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 pb-20 pt-8 md:pb-28 md:pt-10 lg:min-h-[88vh] lg:px-8 lg:pb-28 lg:pt-24">
         <div className="relative max-w-2xl">
           {/* organic blue bubble holding the headline */}
           <div className="relative">
-            <div className="absolute -inset-x-6 -inset-y-8 -z-10 blob bg-[var(--ithemba-blue)]/85 backdrop-blur-sm shadow-[0_30px_80px_-30px_rgb(8_26_96/0.7)]" aria-hidden />
+            <div className="absolute -inset-x-6 -inset-y-8 -z-10 blob bg-[var(--ithemba-blue)]/85 backdrop-blur-sm shadow-[0_30px_80px_-30px_rgb(8_26_96/0.7)] lg:bg-[var(--ithemba-blue)]/85" aria-hidden />
             <div className="relative p-2 pr-4 text-white sm:p-4">
               <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] drop-shadow-sm">
                 {tr(t.home.welcome)}
@@ -41,7 +56,7 @@ export function Hero() {
                 <SmartLogo
                   src={assets.logos.ithembaTextWhite}
                   alt="iThemba Kuluntu"
-                  className="block h-auto w-full max-w-md drop-shadow-[0_4px_24px_rgba(0,0,0,0.45)]"
+                  className="block h-auto w-full max-w-[230px] sm:max-w-[300px] lg:max-w-md drop-shadow-[0_4px_24px_rgba(0,0,0,0.45)]"
                   showMissingBadge={false}
                   fallback={
                     <>
@@ -63,14 +78,14 @@ export function Hero() {
                 {tr(t.home.heroIntro)}
               </p>
 
-              <div className="mt-7 flex flex-wrap gap-3">
-                <Link to="/donate">
-                  <Button size="lg" className="rounded-full bg-[var(--ithemba-yellow)] px-6 py-6 text-base font-bold text-[var(--ithemba-brown)] shadow-xl shadow-amber-900/30 hover:bg-[var(--ithemba-yellow)]/95 hover:scale-[1.02] transition">
+              <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <Link to="/donate" className="w-full sm:w-auto">
+                  <Button size="lg" className="w-full justify-center rounded-full bg-[var(--ithemba-yellow)] px-6 py-6 text-base font-bold text-[var(--ithemba-brown)] shadow-xl shadow-amber-900/30 hover:bg-[var(--ithemba-yellow)]/95 hover:scale-[1.02] transition sm:w-auto">
                     <Heart className="mr-2 h-4 w-4 fill-current" /> {tr(t.cta.donateMonthly)}
                   </Button>
                 </Link>
-                <Link to="/about">
-                  <Button size="lg" variant="outline" className="rounded-full border-white/40 bg-white/10 px-6 py-6 text-base text-white backdrop-blur hover:bg-white/20 hover:text-white">
+                <Link to="/about" className="w-full sm:w-auto">
+                  <Button size="lg" variant="outline" className="w-full justify-center rounded-full border-white/40 bg-white/10 px-6 py-6 text-base text-white backdrop-blur hover:bg-white/20 hover:text-white sm:w-auto">
                     {tr(t.cta.learnMoreAbout)} <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
@@ -87,6 +102,7 @@ export function Hero() {
               </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
 
