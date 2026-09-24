@@ -287,12 +287,6 @@ function PhotoFrame({
       {errored || !src ? (
         <div className={cn("absolute inset-0 bg-gradient-to-br", tones[tone])}>
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_80%_at_25%_15%,rgba(255,240,200,0.45),transparent_55%),radial-gradient(120%_80%_at_85%_90%,rgba(0,0,0,0.45),transparent_55%)]" />
-          <div className="absolute bottom-3 left-3 right-3 flex items-center gap-2 rounded-full bg-black/35 px-3 py-1 backdrop-blur-sm">
-            <PlayCircle className="h-3 w-3 shrink-0 text-white/90" />
-            <span className="truncate text-[10px] font-medium uppercase tracking-[0.14em] text-white/90">
-              Photo · {alt}
-            </span>
-          </div>
         </div>
       ) : (
         <img
