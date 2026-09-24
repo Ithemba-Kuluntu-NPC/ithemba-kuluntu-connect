@@ -14,13 +14,13 @@
 
 # ------------------------------------------
 
-hero.script_heading: Sicheres Wasser, Frauen stärken
-hero.main_heading: Der Weg zur Transformation
-hero.sub_heading: Sicheres Wasser. Lokale Arbeit. Stärkere Gemeinschaften. Klimaschutz.
-hero.text_long: Eine ganzheitliche Umsetzungsplattform, die die tägliche Wasserkrise in lokale grüne Arbeitsplätze, bessere Bildungschancen und langfristige wirtschaftliche Resilienz für Frauen im ländlichen Südafrika verwandelt.
-hero.text_small_line: Stromfreie, schwerkraftbetriebene Filtration trifft auf gemeindebasierte Last-Mile-Entwicklung.
+hero.script_heading: PureFlow Amanzi
+hero.main_heading: Von sicherem Wasser zu stärkeren Gemeinschaften.
+hero.sub_heading: Von Frauen getragen. Lokale Arbeitsplätze. In den Gemeinden verankert. Klimaschutz.
+hero.text_long: PureFlow Amanzi beginnt mit sicherem Trinkwasser und schafft darauf aufbauend durch lokale Montage, grüne Arbeitsplätze in den Gemeinden, WASH-Bildung, Monitoring und kontinuierliche Begleitung langfristige wirtschaftliche Perspektiven und mehr Widerstandsfähigkeit für Frauen und Gemeinschaften im ländlichen Südafrika und darüber hinaus.
+hero.text_small_line:
 hero.patent_trust_line: Patent angemeldet: Südafrikanische Patentanmeldung Nr. 2026/00975
-hero.cta.monthly: Sicheres Wasser und Frauen monatlich unterstützen
+hero.cta.monthly: Monatlich sicheres Wasser und Frauen unterstützen
 hero.cta.once: Einmalig spenden
 
 # ------------------------------------------
