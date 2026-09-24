@@ -327,6 +327,7 @@ function Hero({ t, goDonate }: { t: (k: string, fb?: string) => string; goDonate
   const [videoFailed, setVideoFailed] = useState(false);
   const reduced = useReducedMotion();
   const showVideo = !videoFailed && !reduced;
+  const smallLine = t("hero.text_small_line").trim();
 
   return (
     <section className="relative isolate overflow-hidden" style={{ background: BLUE_DEEP }}>
@@ -401,7 +402,9 @@ function Hero({ t, goDonate }: { t: (k: string, fb?: string) => string; goDonate
             <p className="mt-4 max-w-2xl text-sm text-white/80 md:text-base">
               {t("hero.text_long")}
             </p>
-            <p className="mt-2 max-w-2xl text-xs text-white/65 md:text-sm">{t("hero.text_small_line")}</p>
+            {smallLine && (
+              <p className="mt-2 max-w-2xl text-xs text-white/65 md:text-sm">{smallLine}</p>
+            )}
 
             <div className="mt-6 flex flex-wrap gap-3">
               <Button
@@ -1480,7 +1483,7 @@ const CLIMATE_PHOTOS: Array<{ src?: string; objectPosition?: string; alt?: strin
   { src: `${PHOTO_BASE}/${FIELD_PHOTOS.climate[0]}`, alt: "Household filter maintenance and backwashing" },
   { src: `${PHOTO_BASE}/${FIELD_PHOTOS.climate[1]}`, alt: "Field team testing household water quality" },
   { src: `${PHOTO_BASE}/${FIELD_PHOTOS.climate[2]}`, alt: "Untreated water compared with filtered drinking water" },
-  { src: `${PHOTO_BASE}/${FIELD_PHOTOS.climate[3]}`, alt: "Resident using a PureFlow filter during a home visit" },
+  { src: `${PHOTO_BASE}/${FIELD_PHOTOS.climate[3]}`, objectPosition: "center 32%", alt: "Resident using a PureFlow filter during a home visit" },
 ];
 
 function ClimateSection({ t }: { t: (k: string, fb?: string) => string }) {
@@ -1832,7 +1835,7 @@ function PureFlowCompactPage() {
         photoSrcs={[
           { src: `${PHOTO_BASE}/pureflow-happy-dancing-recipients-of-filter-after-event.jpg`, objectPosition: "center 36%", alt: "Community members celebrating after a filter event" },
           { src: `${PHOTO_BASE}/pureflow-g20-indaba-east-london-booth-team-01.jpg`, objectPosition: "center 42%", alt: "PureFlow Amanzi team at the G20 Indaba booth" },
-          { src: `${PHOTO_BASE}/pureflow-handout-event-01-assembly-station-team-02.jpg`, objectPosition: "center 38%", alt: "Local implementation team at the assembly station" },
+          { src: `${PHOTO_BASE}/pureflow-step-05-wider-community-gains.jpg`, objectPosition: "center 42%", alt: "Wider community gains created through PureFlow Amanzi" },
         ]}
         accentSrc={`${ASSET_BASE}/pureflow-jobs.png`}
       />
