@@ -3,7 +3,7 @@ FOOD SECURITY PROJECT PAGE - DUTCH CONTENT V1.1
 HERO SECTION
 
 Script heading:
-Voedselzekerheid
+Voedselhulp & Voeding
 
 Main heading:
 Food Security
