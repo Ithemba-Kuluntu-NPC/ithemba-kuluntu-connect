@@ -59,6 +59,8 @@ const G = {
   harvest: `${GH_MEDIA}/Grrenhouse-harvest.jpg`,
   harvestChild: `${GH_MEDIA}/Greenhouse-cute-harvest-child.jpg`,
   smile: `${GH_MEDIA}/Greenhouse-feel-good-smile.jpg`,
+  localGrowing: `${GH_MEDIA}/20250926_092400.jpg`,
+  childPlantingCloseUp: `${GH_MEDIA}/greenhouse-close-up-child-planting.jpg`,
 } as const;
 
 const SA_HARVEST_LOGO = "/assets/logos/partners/sa-harvest-logo.png";
@@ -896,7 +898,7 @@ function Why({ c }: { c: Copy }) {
           photos={[
             { src: G.outsidePlanting, alt: "Outdoor planting beside the greenhouse" },
             { src: G.kidsPlanting, alt: "Children helping to plant" },
-            { src: G.outside, alt: "The greenhouse seen from outside" },
+             { src: G.localGrowing, alt: "Locally grown produce at the greenhouse", pos: "center 48%" },
           ]}
         />
         <div>
@@ -1051,7 +1053,7 @@ function Nutrition({ c }: { c: Copy }) {
         <PhotoCollage
           photos={[
             { src: G.childTeacher, alt: "Teacher and child in the greenhouse", pos: "center 40%" },
-            { src: G.kidsPlanting, alt: "Children planting seedlings" },
+             { src: G.childPlantingCloseUp, alt: "Child planting in the greenhouse", pos: "center 42%" },
             { src: G.kidPlanting, alt: "A child planting in the greenhouse" },
             { src: G.happyChild, alt: "Happy child at the greenhouse" },
           ]}
@@ -1227,21 +1229,21 @@ function Monthly({ c }: { c: Copy }) {
 /* ---------- CLOSING ---------- */
 function Closing({ c }: { c: Copy }) {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[var(--ithemba-blue-deepest)] via-[var(--ithemba-blue-dark)] to-[var(--ithemba-blue)] pt-28 pb-20 text-white md:pt-32">
+    <section id="greenhouse-closing" className="relative overflow-hidden bg-gradient-to-br from-[var(--ithemba-blue-deepest)] via-[var(--ithemba-blue-dark)] to-[var(--ithemba-blue)] pb-20 pt-16 text-white md:pt-20">
       {/* soft wave transition from the donation section above */}
       <svg
         className="pointer-events-none absolute -top-px left-0 z-10 block w-full"
-        viewBox="0 0 1440 120"
+        viewBox="0 0 1440 64"
         preserveAspectRatio="none"
         aria-hidden
       >
         <path
-          d="M0,60 C240,110 480,10 720,55 C960,100 1200,20 1440,65 L1440,0 L0,0 Z"
+          d="M0,32 C240,58 480,5 720,29 C960,53 1200,11 1440,35 L1440,0 L0,0 Z"
           fill="var(--ithemba-blue-deepest)"
           opacity="0.55"
         />
         <path
-          d="M0,80 C240,30 480,120 720,75 C960,30 1200,110 1440,70 L1440,0 L0,0 Z"
+          d="M0,43 C240,16 480,64 720,40 C960,16 1200,59 1440,37 L1440,0 L0,0 Z"
           fill="var(--ithemba-blue-deepest)"
         />
       </svg>
@@ -1289,6 +1291,7 @@ function GreenhousePage() {
   const c = COPY[lang] ?? COPY.en;
   return (
     <>
+      <style>{`main:has(#greenhouse-closing) + footer { margin-top: 0; }`}</style>
       <Hero c={c} />
       <Snapshot c={c} />
       <Why c={c} />
