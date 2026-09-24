@@ -78,14 +78,14 @@ export function Hero() {
                 {tr(t.home.heroIntro)}
               </p>
 
-              <div className="mt-7 flex flex-wrap gap-3">
-                <Link to="/donate">
-                  <Button size="lg" className="rounded-full bg-[var(--ithemba-yellow)] px-6 py-6 text-base font-bold text-[var(--ithemba-brown)] shadow-xl shadow-amber-900/30 hover:bg-[var(--ithemba-yellow)]/95 hover:scale-[1.02] transition">
+              <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <Link to="/donate" className="w-full sm:w-auto">
+                  <Button size="lg" className="w-full justify-center rounded-full bg-[var(--ithemba-yellow)] px-6 py-6 text-base font-bold text-[var(--ithemba-brown)] shadow-xl shadow-amber-900/30 hover:bg-[var(--ithemba-yellow)]/95 hover:scale-[1.02] transition sm:w-auto">
                     <Heart className="mr-2 h-4 w-4 fill-current" /> {tr(t.cta.donateMonthly)}
                   </Button>
                 </Link>
-                <Link to="/about">
-                  <Button size="lg" variant="outline" className="rounded-full border-white/40 bg-white/10 px-6 py-6 text-base text-white backdrop-blur hover:bg-white/20 hover:text-white">
+                <Link to="/about" className="w-full sm:w-auto">
+                  <Button size="lg" variant="outline" className="w-full justify-center rounded-full border-white/40 bg-white/10 px-6 py-6 text-base text-white backdrop-blur hover:bg-white/20 hover:text-white sm:w-auto">
                     {tr(t.cta.learnMoreAbout)} <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
@@ -102,6 +102,7 @@ export function Hero() {
               </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
 
