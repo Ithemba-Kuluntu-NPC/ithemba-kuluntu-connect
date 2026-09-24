@@ -808,7 +808,7 @@ function PartnersPage() {
           alt=""
           aria-hidden
           className="absolute inset-0 h-full w-full object-cover"
-          style={{ objectPosition: "center 48%" }}
+          style={{ objectPosition: "center 40%" }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[var(--ithemba-blue-deepest,#0b2545)]/74 via-[var(--ithemba-blue-deepest,#0b2545)]/62 to-[var(--ithemba-blue-deepest,#0b2545)]/80" />
         <div className="relative mx-auto max-w-5xl px-5 py-14 text-center md:px-8 md:py-20">
