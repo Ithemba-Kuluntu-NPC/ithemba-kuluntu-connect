@@ -33,7 +33,19 @@ import { ImpactCounters } from "@/components/blocks/ImpactCounters";
 import { focusAreaBadgeMeta } from "@/data/projects";
 import type { Lang } from "@/data/content";
 
-export const Route = createFileRoute("/projects/disaster-relief")({ component: DisasterReliefPage });
+export const Route = createFileRoute("/projects/disaster-relief")({
+  component: DisasterReliefPage,
+  head: () => ({
+    meta: [
+      { title: "Disaster Relief | iThemba Kuluntu" },
+      { name: "description", content: "Practical emergency support for families in Cwebeni and surrounding communities facing crisis and sudden hardship." },
+      { property: "og:title", content: "Disaster Relief | iThemba Kuluntu" },
+      { property: "og:description", content: "See how practical, locally coordinated emergency support helps families recover from crisis with dignity." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+});
 
 /* ---------- assets ---------- */
 const PHOTO_BASE = "/assets/photos/projects/disaster-relief";
@@ -66,12 +78,24 @@ type Photo = { src: string; alt: string; position: string };
 
 function PhotoCollage({ photos, className = "" }: { photos: readonly Photo[]; className?: string }) {
   const count = photos.length;
+  const cells = count === 4
+    ? [
+        "col-span-7 row-span-4 rounded-tl-[2.5rem] rounded-br-2xl rounded-tr-xl rounded-bl-xl",
+        "col-span-5 row-span-3 rounded-tr-[2.5rem] rounded-bl-xl rounded-tl-xl rounded-br-xl",
+        "col-span-5 row-span-3 rounded-xl",
+        "col-span-7 row-span-2 rounded-bl-[2.5rem] rounded-tr-xl rounded-tl-xl rounded-br-xl",
+      ]
+    : [
+        "col-span-7 row-span-6 rounded-tl-[2.5rem] rounded-bl-[2.5rem] rounded-tr-xl rounded-br-xl",
+        "col-span-5 row-span-3 rounded-tr-[2.5rem] rounded-bl-xl rounded-tl-xl rounded-br-xl",
+        "col-span-5 row-span-3 rounded-br-[2.5rem] rounded-tl-xl rounded-tr-xl rounded-bl-xl",
+      ];
   return (
-    <div className={`grid min-h-[22rem] gap-3 overflow-hidden rounded-3xl sm:min-h-[28rem] ${count > 1 ? "grid-cols-2" : "grid-cols-1"} ${className}`}>
-      {photos.map((photo, index) => (
+    <div className={`grid aspect-[16/10] w-full grid-cols-12 grid-rows-6 gap-2.5 md:gap-3 ${className}`}>
+      {photos.slice(0, cells.length).map((photo, index) => (
         <div
           key={photo.src}
-          className={`relative min-h-0 overflow-hidden ${count === 3 && index === 0 ? "col-span-2 min-h-[14rem] sm:col-span-1 sm:row-span-2 sm:min-h-0" : "min-h-[11rem]"}`}
+          className={`relative min-w-0 overflow-hidden shadow-lg ring-1 ring-black/10 ${cells[index]}`}
         >
           <img
             src={photo.src}
@@ -675,42 +699,44 @@ function SectionHeading({ eyebrow, title, center = false, color = "var(--ithemba
 /* ---------- SNAPSHOT ---------- */
 function Snapshot({ c }: { c: Copy }) {
   return (
-    <section className="relative overflow-hidden bg-[var(--ithemba-cream)] py-20">
+    <section className="relative overflow-hidden bg-[var(--ithemba-cream)] py-14 md:py-16">
       <div className="pointer-events-none absolute -left-10 top-10 h-44 w-44 blob bg-[var(--ithemba-yellow)]/25" />
       <div className="pointer-events-none absolute -right-10 bottom-10 h-52 w-52 blob-2 bg-sky-300/20" />
       <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
-        <div className="text-center">
-          <SectionHeading eyebrow={c.snapshot.eyebrow} title={c.snapshot.title} center />
+        <div className="max-w-4xl">
+          <SectionHeading eyebrow={c.snapshot.eyebrow} title={c.snapshot.title} />
         </div>
-        <div className="mx-auto mt-6 max-w-3xl space-y-4 text-center text-lg leading-relaxed text-foreground/85">
+        <div className="mt-5 max-w-4xl space-y-3 text-lg leading-relaxed text-foreground/85">
           {c.snapshot.body.map((p, i) => <p key={i}>{p}</p>)}
         </div>
+        <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {c.snapshot.facts.map((f, i) => {
+            const iconSrc = SNAPSHOT_ICON_PATHS[i];
+            return (
+              <div key={f.label} className="grid min-w-0 grid-cols-[auto_minmax(0,1fr)] items-center gap-3">
+                <img
+                  src={iconSrc}
+                  alt=""
+                  aria-hidden
+                  className="h-12 w-12 shrink-0 object-contain md:h-14 md:w-14"
+                  loading="lazy"
+                />
+                <div className="min-w-0">
+                  <div className="text-[11px] font-semibold uppercase tracking-wide text-foreground/60">{f.label}</div>
+                  <div className="mt-0.5 font-display text-sm font-extrabold leading-snug text-[var(--ithemba-blue-dark)] md:text-base">{f.value}</div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
         <PhotoCollage
-          className="mx-auto mt-10 max-w-5xl shadow-xl"
+          className="mx-auto mt-9 max-w-4xl"
           photos={[
             { src: PHOTOS.snapshotMain, alt: "Community members gathered with mattresses and emergency supplies", position: "center 46%" },
             { src: PHOTOS.snapshotFamilies, alt: "Families receiving mattresses and relief items", position: "center 42%" },
             { src: PHOTOS.snapshotDelivery, alt: "Relief team carrying mattresses across a rural field", position: "center 45%" },
           ]}
         />
-        <div className="mt-14 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-4">
-          {c.snapshot.facts.map((f, i) => {
-            const iconSrc = SNAPSHOT_ICON_PATHS[i];
-            return (
-              <div key={f.label} className="flex flex-col items-center text-center">
-                <img
-                  src={iconSrc}
-                  alt=""
-                  aria-hidden
-                  className="h-16 w-16 md:h-20 md:w-20 object-contain"
-                  loading="lazy"
-                />
-                <div className="mt-3 text-[11px] font-semibold uppercase tracking-wide text-foreground/60">{f.label}</div>
-                <div className="mt-1 font-display text-base font-extrabold leading-tight text-[var(--ithemba-blue-dark)]">{f.value}</div>
-              </div>
-            );
-          })}
-        </div>
       </div>
     </section>
   );
@@ -719,9 +745,10 @@ function Snapshot({ c }: { c: Copy }) {
 /* ---------- WHY — blue photo-backed ---------- */
 function Why({ c }: { c: Copy }) {
   return (
-    <section className="relative overflow-hidden bg-[var(--ithemba-blue-deepest)] py-20 text-white md:py-24">
+    <section className="relative overflow-hidden bg-[var(--ithemba-blue-deepest)] py-14 text-white md:py-16">
       <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 md:grid-cols-[0.9fr_1.1fr] lg:px-8">
         <PhotoCollage
+          className="mx-auto max-w-xl"
           photos={[
             { src: PHOTOS.vulnerabilityHome, alt: "Children outside a weathered rural home", position: "center 38%" },
             { src: PHOTOS.fireDamage, alt: "Round home with severe fire damage", position: "center 48%" },
@@ -747,7 +774,7 @@ function Why({ c }: { c: Copy }) {
 /* ---------- PROVIDE — cream with icon grid ---------- */
 function Provide({ c }: { c: Copy }) {
   return (
-    <section className="relative overflow-hidden bg-[var(--ithemba-cream)] py-20">
+    <section className="relative overflow-hidden bg-[var(--ithemba-cream)] py-14 md:py-16">
       <div className="pointer-events-none absolute -right-16 top-16 h-56 w-56 blob-2 bg-sky-300/25" />
       <div className="pointer-events-none absolute -left-16 bottom-16 h-48 w-48 blob bg-[var(--ithemba-yellow)]/25" />
       <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
@@ -755,8 +782,25 @@ function Provide({ c }: { c: Copy }) {
           <SectionHeading eyebrow={c.provide.eyebrow} title={c.provide.title} />
           <p className="mt-5 text-lg leading-relaxed text-foreground/85">{c.provide.intro}</p>
         </div>
+        <div className="mt-8 grid gap-3 sm:grid-cols-2 md:grid-cols-3">
+          {c.provide.items.map((it, i) => {
+            const iconSrc = DONATION_ICON_PATHS[it.icon] ?? `${DR_ICON_BASE}/disaster-relief-core-support.png`;
+            return (
+              <div key={i} className="grid min-w-0 grid-cols-[auto_minmax(0,1fr)] items-center gap-3">
+                <img
+                  src={iconSrc}
+                  alt=""
+                  aria-hidden
+                  className="h-12 w-12 shrink-0 object-contain md:h-14 md:w-14"
+                  loading="lazy"
+                />
+                <div className="min-w-0 text-sm font-medium leading-snug text-[var(--ithemba-blue-dark)]">{it.label}</div>
+              </div>
+            );
+          })}
+        </div>
         <PhotoCollage
-          className="mt-10 shadow-xl"
+          className="mx-auto mt-9 max-w-4xl"
           photos={[
             { src: PHOTOS.reliefBundle, alt: "Family receiving a mattress, food and household supplies", position: "center 42%" },
             { src: PHOTOS.mattressDelivery, alt: "Woman carrying a new mattress through the village", position: "center 40%" },
@@ -764,24 +808,7 @@ function Provide({ c }: { c: Copy }) {
             { src: PHOTOS.wheelchair, alt: "Worker adjusting a wheelchair for its recipient", position: "center 42%" },
           ]}
         />
-        <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 md:grid-cols-3">
-          {c.provide.items.map((it, i) => {
-            const iconSrc = DONATION_ICON_PATHS[it.icon] ?? `${DR_ICON_BASE}/disaster-relief-core-support.png`;
-            return (
-              <div key={i} className="flex flex-col items-center text-center">
-                <img
-                  src={iconSrc}
-                  alt=""
-                  aria-hidden
-                  className="h-16 w-16 md:h-20 md:w-20 object-contain"
-                  loading="lazy"
-                />
-                <div className="mt-3 text-sm font-medium leading-snug text-[var(--ithemba-blue-dark)]">{it.label}</div>
-              </div>
-            );
-          })}
-        </div>
-        <p className="mx-auto mt-10 max-w-3xl text-base leading-relaxed text-foreground/75">{c.provide.outro}</p>
+        <p className="mx-auto mt-8 max-w-3xl text-base leading-relaxed text-foreground/75">{c.provide.outro}</p>
       </div>
     </section>
   );
@@ -804,6 +831,7 @@ function Respond({ c }: { c: Copy }) {
         </div>
         </div>
         <PhotoCollage
+          className="mx-auto max-w-xl"
           photos={[
             { src: PHOTOS.localTrustMain, alt: "Community worker supporting an older woman with relief supplies", position: "center 38%" },
             { src: PHOTOS.localTrustChild, alt: "Community worker embracing a child during a home visit", position: "center 35%" },
@@ -822,6 +850,7 @@ function Focus({ c }: { c: Copy }) {
       <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
         <div className="grid items-center gap-10 md:grid-cols-[0.9fr_1.1fr]">
           <PhotoCollage
+            className="mx-auto max-w-xl"
             photos={[
               { src: PHOTOS.connectedMain, alt: "Children and caregivers together outside a community building", position: "center 42%" },
               { src: PHOTOS.connectedChild, alt: "Smiling child at a community support event", position: "center 32%" },
@@ -866,7 +895,7 @@ function Focus({ c }: { c: Copy }) {
 /* ---------- DONATION SUPPORT ITEMS — cream ---------- */
 function DonationSupport({ c }: { c: Copy }) {
   return (
-    <section className="relative overflow-hidden bg-[var(--ithemba-cream)] py-20">
+    <section className="relative overflow-hidden bg-[var(--ithemba-cream)] py-14 md:py-16">
       <div className="pointer-events-none absolute -right-16 top-16 h-56 w-56 blob-2 bg-sky-300/25" />
       <div className="pointer-events-none absolute -left-16 bottom-16 h-48 w-48 blob bg-[var(--ithemba-yellow)]/25" />
       <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
@@ -874,31 +903,32 @@ function DonationSupport({ c }: { c: Copy }) {
           <SectionHeading eyebrow={c.donation.eyebrow} title={c.donation.title} />
           <p className="mt-5 text-lg leading-relaxed text-foreground/85">{c.donation.intro}</p>
         </div>
-        <div className="mt-10 grid gap-3 overflow-hidden rounded-3xl shadow-xl sm:grid-cols-[1.35fr_0.65fr]">
-          <img src={PHOTOS.supportMain} alt="Family gathered outside their rural home after receiving support" className="h-72 w-full object-cover sm:h-96" style={{ objectPosition: "center 38%" }} loading="lazy" />
-          <div className="grid grid-rows-2 gap-3">
-            <img src={PHOTOS.supportBundle} alt="Community members with a mattress and household relief supplies" className="h-full min-h-36 w-full object-cover" style={{ objectPosition: "center 42%" }} loading="lazy" />
-            <img src={PHOTOS.recovery} alt="Woman beside an excavator clearing a damaged property" className="h-full min-h-36 w-full object-cover" style={{ objectPosition: "center 48%" }} loading="lazy" />
-          </div>
-        </div>
-        <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 md:grid-cols-4">
+        <div className="mt-8 grid gap-3 sm:grid-cols-2 md:grid-cols-4">
           {c.donation.items.map((it, i) => {
             const iconSrc = DONATION_ICON_PATHS[it.icon] ?? `${DR_ICON_BASE}/disaster-relief-donation-focus.png`;
             return (
-              <div key={i} className="flex flex-col items-center text-center">
+              <div key={i} className="grid min-w-0 grid-cols-[auto_minmax(0,1fr)] items-center gap-3">
                 <img
                   src={iconSrc}
                   alt=""
                   aria-hidden
-                  className="h-16 w-16 md:h-20 md:w-20 object-contain"
+                  className="h-12 w-12 shrink-0 object-contain md:h-14 md:w-14"
                   loading="lazy"
                 />
-                <div className="mt-3 text-sm font-medium leading-snug text-[var(--ithemba-blue-dark)]">{it.label}</div>
+                <div className="min-w-0 text-sm font-medium leading-snug text-[var(--ithemba-blue-dark)]">{it.label}</div>
               </div>
             );
           })}
         </div>
-        <p className="mx-auto mt-12 max-w-3xl text-center text-base leading-relaxed text-foreground/75">{c.donation.outro}</p>
+        <PhotoCollage
+          className="mx-auto mt-9 max-w-4xl"
+          photos={[
+            { src: PHOTOS.supportMain, alt: "Family gathered outside their rural home after receiving support", position: "center 38%" },
+            { src: PHOTOS.supportBundle, alt: "Community members with a mattress and household relief supplies", position: "center 42%" },
+            { src: PHOTOS.recovery, alt: "Woman beside an excavator clearing a damaged property", position: "center 48%" },
+          ]}
+        />
+        <p className="mx-auto mt-8 max-w-3xl text-center text-base leading-relaxed text-foreground/75">{c.donation.outro}</p>
       </div>
     </section>
   );
@@ -906,7 +936,7 @@ function DonationSupport({ c }: { c: Copy }) {
 
 /* ---------- IMPACT ---------- */
 function Impact({ c }: { c: Copy }) {
-  return <ImpactCounters items={c.impact.items} title={c.impact.title} />;
+  return <ImpactCounters items={c.impact.items} title={c.impact.title} backgroundImage={PHOTOS.connectedMain} softOverlay />;
 }
 
 /* ---------- MONTHLY (with widget) ---------- */
@@ -968,11 +998,7 @@ function Monthly({ c }: { c: Copy }) {
 /* ---------- CLOSING ---------- */
 function Closing({ c }: { c: Copy }) {
   return (
-    <section className="relative isolate overflow-hidden py-20 text-white">
-      <div className="absolute inset-0 -z-10">
-        <SmartImage src={PHOTOS.closing} label="Woman smiling with her new wheelchair" className="h-full w-full" objectPosition="center 35%" rounded="rounded-none" tone="blue" showMissingBadge={false} />
-        <div className="absolute inset-0 bg-gradient-to-r from-[var(--ithemba-blue-deepest)]/90 via-[var(--ithemba-blue-dark)]/76 to-[var(--ithemba-blue-dark)]/48" />
-      </div>
+    <section id="disaster-relief-closing" className="relative isolate overflow-hidden bg-[var(--ithemba-blue-deepest)] py-16 text-white md:py-20">
       <svg className="pointer-events-none absolute inset-x-0 top-0 -mt-px block h-12 w-full md:h-16" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden>
         <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,0 L0,0 Z" fill="var(--ithemba-blue-deepest)" opacity="0.55" />
         <path d="M0,55 C240,90 480,15 720,55 C960,90 1200,15 1440,55 L1440,0 L0,0 Z" fill="var(--ithemba-blue-deepest)" />
@@ -1026,9 +1052,9 @@ function DisasterReliefPage() {
   const c = COPY[lang] ?? COPY.en;
   return (
     <>
+      <style>{`main:has(#disaster-relief-closing) + footer { margin-top: 0; }`}</style>
       <Hero c={c} />
       <Snapshot c={c} />
-      <Wave from="var(--ithemba-cream)" to="var(--background)" />
       <Why c={c} />
       <Provide c={c} />
       <Respond c={c} />
