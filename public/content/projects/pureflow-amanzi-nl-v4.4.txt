@@ -14,14 +14,14 @@
 
 # ------------------------------------------
 
-hero.script_heading: Veilig water, vrouwen versterken
-hero.main_heading: Het transformatietraject
-hero.sub_heading: Veilig water. Lokaal werk. Sterkere gemeenschappen. Klimaatactie.
-hero.text_long: Een geïntegreerd uitvoeringsmodel dat de dagelijkse watercrisis omzet in lokale groene banen, betere onderwijskansen en langdurige economische veerkracht voor vrouwen op het Zuid-Afrikaanse platteland.
-hero.text_small_line: Stroomvrije, zwaartekrachtgedreven filtratie verbonden met gemeenschapsgerichte last-mile ontwikkeling.
-hero.patent_trust_line: Patent aangevraagd: Zuid-Afrikaanse patentaanvraag nr. 2026/00975
-hero.cta.monthly: Steun veilig water en vrouwen maandelijks
-hero.cta.once: Eenmalig geven
+hero.script_heading: PureFlow Amanzi
+hero.main_heading: Van veilig water naar sterkere gemeenschappen.
+hero.sub_heading: Door vrouwen geleid. Lokale werkgelegenheid. Verankerd in de gemeenschap. Klimaatactie.
+hero.text_long: PureFlow Amanzi begint bij veilig drinkwater en bouwt daarop voort met lokale assemblage, groene banen in de gemeenschap, WASH-educatie, monitoring en doorlopende begeleiding. Zo helpt het programma vrouwen en gemeenschappen in landelijk Zuid-Afrika en daarbuiten om op lange termijn economisch sterker en weerbaarder te worden.
+hero.text_small_line:
+hero.patent_trust_line: Octrooi aangevraagd: Zuid-Afrikaanse octrooiaanvraag nr. 2026/00975
+hero.cta.monthly: Steun veilig water en vrouwen elke maand
+hero.cta.once: Eenmalig doneren
 
 # ------------------------------------------
 
