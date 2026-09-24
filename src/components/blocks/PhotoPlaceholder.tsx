@@ -11,7 +11,7 @@ export function PhotoPlaceholder({
   className = "",
   tone = "warm",
   rounded = "rounded-[2rem]",
-  showLabel = true,
+  showLabel = false,
   children,
   gradient,
 }: {

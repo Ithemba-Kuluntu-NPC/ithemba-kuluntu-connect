@@ -1711,12 +1711,6 @@ function Hero({ c }: { c: Copy }) {
         <div className="absolute right-[-6rem] top-[-6rem] h-[28rem] w-[28rem] sun-glow" />
       </div>
 
-      {/* video placeholder badge */}
-      <div className="pointer-events-none absolute right-4 top-4 z-10 inline-flex items-center gap-2 rounded-full bg-black/40 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.14em] text-white/85 ring-1 ring-white/15 backdrop-blur">
-        <PlayCircle className="h-3.5 w-3.5 text-[var(--ithemba-yellow)]" />
-        {c.hero.placeholder}
-      </div>
-
       {/* water decorative accents */}
       <div className="pointer-events-none absolute left-10 top-24 text-[var(--ithemba-yellow)]/40">
         <Droplets className="h-7 w-7" />
@@ -1942,9 +1936,6 @@ function Sdg({ c }: { c: Copy }) {
                 <div className="mt-1 px-1 text-[10px] font-semibold leading-tight">
                   {sdg.title}
                 </div>
-              </div>
-              <div className="mt-2 text-[10px] font-medium uppercase tracking-wide text-foreground/45">
-                Placeholder · awaiting official SDG logo
               </div>
             </div>
           ))}

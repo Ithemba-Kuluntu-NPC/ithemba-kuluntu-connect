@@ -340,6 +340,7 @@ function AboutTeam() {
       <TeamHero c={c} />
       <TeamGrid c={c} lang={lang} />
       <ClosingCTA c={c} />
+      <style>{`main:has(#team-closing) + footer { margin-top: 0; }`}</style>
     </>
   );
 }
@@ -523,7 +524,7 @@ function PhotoPending({ initial, label }: { initial: string; label: string }) {
 
 function ClosingCTA({ c }: { c: HeroCopy }) {
   return (
-    <section className="relative isolate overflow-hidden bg-[var(--ithemba-blue-deepest)] text-white">
+    <section id="team-closing" className="relative isolate overflow-hidden bg-[var(--ithemba-blue-deepest)] text-white">
       <div className="absolute right-[-8rem] top-[-8rem] h-[28rem] w-[28rem] sun-glow" aria-hidden />
       <div className="mx-auto max-w-4xl px-4 py-16 text-center md:py-20 lg:px-8">
         <h2 className="font-display text-2xl font-bold md:text-3xl">{c.ctaHeading}</h2>

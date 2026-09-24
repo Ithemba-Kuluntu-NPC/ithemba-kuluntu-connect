@@ -17,7 +17,7 @@ export function SmartImage({
   objectPosition,
   tone = "warm",
   rounded = "rounded-[2rem]",
-  showMissingBadge = true,
+  showMissingBadge = false,
   showLabel = false,
   children,
 }: {
@@ -117,7 +117,7 @@ export function SmartLogo({
   alt,
   className = "",
   fallback,
-  showMissingBadge = true,
+  showMissingBadge = false,
 }: {
   src: string;
   alt: string;

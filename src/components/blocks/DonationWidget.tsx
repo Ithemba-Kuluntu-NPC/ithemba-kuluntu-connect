@@ -37,15 +37,6 @@ export function DonationWidget({ defaultProject }: { defaultProject?: string } =
         <h3 className="mt-4 font-display text-2xl font-bold text-[var(--ithemba-blue-dark)]">
           {lbl("Thank you for choosing to support Pondoland.", "Vielen Dank für Ihre Unterstützung von Pondoland.")}
         </h3>
-        <p className="mt-2 text-muted-foreground">
-          {lbl(
-            "This is a prototype confirmation. In the live version you will be taken to a secure payment provider.",
-            "Dies ist eine Prototyp-Bestätigung. In der Live-Version werden Sie zu einem sicheren Zahlungsanbieter weitergeleitet."
-          )}
-        </p>
-        <div className="mt-4 inline-block">
-          <Placeholder text="monthly donation payment provider" />
-        </div>
         <Button className="mt-4" variant="outline" onClick={() => setSubmitted(false)}>
           {lbl("Back to donation form", "Zurück zum Spendenformular")}
         </Button>

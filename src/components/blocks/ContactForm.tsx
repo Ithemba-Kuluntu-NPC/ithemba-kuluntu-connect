@@ -17,10 +17,6 @@ export function ContactForm({ partnership = false }: { partnership?: boolean }) 
       <div className="rounded-3xl bg-white p-8 text-center shadow-md ring-1 ring-[var(--ithemba-blue)]/15">
         <CheckCircle2 className="mx-auto h-10 w-10 text-[var(--ithemba-teal)]" />
         <h3 className="mt-3 font-display text-xl font-bold">{lbl("Message sent. Thank you.", "Nachricht gesendet. Danke.")}</h3>
-        <p className="mt-1 text-sm text-muted-foreground">
-          {lbl("This is a prototype confirmation. In the live version your message will be delivered to our team.", "Dies ist eine Prototyp-Bestätigung. In der Live-Version wird Ihre Nachricht an unser Team gesendet.")}
-        </p>
-        <Placeholder text={partnership ? "partnership form recipient email" : "contact form recipient email"} />
       </div>
     );
   }

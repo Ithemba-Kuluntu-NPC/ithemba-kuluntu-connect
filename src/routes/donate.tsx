@@ -119,7 +119,7 @@ function DonatePage() {
   return (
     <>
       {/* Compact two-column donation section */}
-      <section className="relative overflow-hidden">
+      <section id="donate-closing" className="relative overflow-hidden">
         <div
           className="absolute inset-0 bg-cover"
           style={{ backgroundImage: `url(${HERO_PHOTO})`, backgroundPosition: "20% 32%" }}
@@ -195,6 +195,7 @@ function DonatePage() {
           </div>
         </div>
       </section>
+      <style>{`main:has(#donate-closing) + footer { margin-top: 0; }`}</style>
 
 
       {/* Thank You closing section — compact */}
