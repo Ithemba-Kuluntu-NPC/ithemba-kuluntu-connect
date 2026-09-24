@@ -124,6 +124,7 @@ function useProjectContent(lang: Lang) {
 
 const BLUE = "#0F2A8C";
 const BLUE_DEEP = "#081A60";
+const MAP_BLUE = "#6FAFD3";
 const YELLOW = "#FBBF24";
 const CREAM = "#FBF6E9";
 const CREAM_WARM = "#F5EDD7";
@@ -1690,7 +1691,7 @@ function PureFlowCompactPage() {
       <section
         id="event-map"
         className="relative scroll-mt-20 isolate overflow-hidden"
-        style={{ background: CREAM_WARM }}
+        style={{ background: MAP_BLUE }}
       >
         <div
           className="pointer-events-none absolute inset-0"
@@ -1741,7 +1742,7 @@ function PureFlowCompactPage() {
         </div>
       </section>
 
-      <WaveDivider from={CREAM_WARM} to={CREAM} />
+      <WaveDivider from={MAP_BLUE} to={CREAM} />
 
       {/* Step 01 — cream w/ 4-photo collage */}
       <Step01Collage t={t} />
@@ -1835,7 +1836,7 @@ function PureFlowCompactPage() {
         photoSrcs={[
           { src: `${PHOTO_BASE}/pureflow-happy-dancing-recipients-of-filter-after-event.jpg`, objectPosition: "center 36%", alt: "Community members celebrating after a filter event" },
           { src: `${PHOTO_BASE}/pureflow-g20-indaba-east-london-booth-team-01.jpg`, objectPosition: "center 42%", alt: "PureFlow Amanzi team at the G20 Indaba booth" },
-          { src: `${PHOTO_BASE}/pureflow-step-05-wider-community-gains.jpg`, objectPosition: "center 42%", alt: "Wider community gains created through PureFlow Amanzi" },
+          { src: `${PHOTO_BASE}/pureflow-step-05-wider-community-gains.jpeg`, objectPosition: "center 42%", alt: "Wider community gains created through PureFlow Amanzi" },
         ]}
         accentSrc={`${ASSET_BASE}/pureflow-jobs.png`}
       />
