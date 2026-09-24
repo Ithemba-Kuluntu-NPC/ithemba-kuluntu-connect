@@ -22,6 +22,7 @@ import {
   Dog,
   Bird,
   Star,
+  ArrowRight,
   type LucideIcon,
 } from "lucide-react";
 import { useLang } from "@/components/site/LanguageProvider";
@@ -82,6 +83,21 @@ const PH = {
   owner1: `${PD}/20250110_135512.jpg`,
   owner2: `${PD}/20260411_152418.jpg`,
   owner3: `${PD}/IMG_20240209_145013%20(1).jpg`,
+  // targeted section imagery
+  believe1: `${PD}/20251115_145159.jpg`,
+  believe2: `${PD}/20250902_143408.jpg`,
+  believe3: `${PD}/20250927_153331.jpg`,
+  medicalLeft: `${PD}/IMG_20240211_095618.jpg`,
+  medicalTopRight: `${PD}/20260129_085244.jpg`,
+  preventionTopLeft: `${PD}/20260129_103144.jpg`,
+  foodFourth: `${PD}/20260513_161707.jpg`,
+  before1: `${PD}/20251102_133018.jpg`,
+  before2: `${PD}/20260129_085244.jpg`,
+  after1: `${PD}/20260515_150019.jpg`,
+  after2: `${PD}/20260411_152418.jpg`,
+  beyondDogs: `${PD}/goat-smile.jpeg`,
+  donationBg: `${PD}/20251123_093910.jpg`,
+  impactBg: `${PD}/20250808_153010.jpg`,
   // atmosphere / backgrounds
   field1: `${PD}/20251119_085954.jpg`,
   field2: `${PD}/20260313_063332.jpg`,
@@ -356,6 +372,7 @@ type Copy = {
     body: string[];
     topics: string[];
   };
+  beforeAfter: { eyebrow: string; title: string; body: string; before: string; after: string };
   more: { eyebrow: string; title: string; body: string[] };
   focus: {
     eyebrow: string;
@@ -556,6 +573,13 @@ const COPY: Record<Lang, Copy> = {
         "Why sterilisation matters",
         "Responsible care",
       ],
+    },
+    beforeAfter: {
+      eyebrow: "Before and after",
+      title: "What care can change",
+      body: "These images show the kind of practical change support can make. Some animals arrive weak, injured or vulnerable. With treatment, food, shelter and follow-up, recovery becomes possible.",
+      before: "Before",
+      after: "After",
     },
     more: {
       eyebrow: "Beyond dogs",
@@ -809,6 +833,13 @@ const COPY: Record<Lang, Copy> = {
         "Verantwortungsvolle Tierhaltung",
       ],
     },
+    beforeAfter: {
+      eyebrow: "Vorher und nachher",
+      title: "Was Fürsorge verändern kann",
+      body: "Diese Bilder zeigen, welche praktische Veränderung Unterstützung möglich machen kann. Manche Tiere kommen geschwächt, verletzt oder in einem verletzlichen Zustand an. Mit Behandlung, Futter, Schutz und Begleitung wird Erholung möglich.",
+      before: "Vorher",
+      after: "Nachher",
+    },
     more: {
       eyebrow: "Mehr als Hunde",
       title: "Hilfe dort, wo sie gebraucht wird",
@@ -1060,6 +1091,13 @@ const COPY: Record<Lang, Copy> = {
         "Waarom sterilisatie belangrijk is",
         "Verantwoord zorgen voor dieren",
       ],
+    },
+    beforeAfter: {
+      eyebrow: "Voor en na",
+      title: "Wat zorg kan veranderen",
+      body: "Deze beelden laten zien welk praktisch verschil steun kan maken. Sommige dieren komen verzwakt, gewond of erg kwetsbaar aan. Met behandeling, voeding, beschutting en opvolging wordt herstel mogelijk.",
+      before: "Voor",
+      after: "Na",
     },
     more: {
       eyebrow: "Meer dan honden",
@@ -1339,46 +1377,32 @@ const SNAPSHOT_ICONS: string[] = [
 
 function Snapshot({ c }: { c: Copy }) {
   return (
-    <section className="relative overflow-hidden bg-[var(--ithemba-cream)] py-20">
-      <div className="pointer-events-none absolute -left-10 top-10 h-44 w-44 blob bg-[var(--ithemba-yellow)]/25" />
-      <div className="pointer-events-none absolute -right-10 bottom-10 h-52 w-52 blob-2 bg-[var(--ithemba-blue)]/15" />
-      <div className="pointer-events-none absolute right-12 top-12 opacity-30">
-        <PawPrint className="h-7 w-7 text-[var(--ithemba-blue-dark)]" />
-      </div>
-
-      <div className="relative mx-auto max-w-5xl px-4 lg:px-8">
-        <div className="text-center">
-          <SectionHeading eyebrow={c.snapshot.eyebrow} title={c.snapshot.title} center />
-        </div>
-        <div className="mx-auto mt-6 max-w-3xl space-y-4 text-center text-lg leading-relaxed text-foreground/85">
-          {c.snapshot.body.map((p, i) => (
-            <p key={i}>{p}</p>
-          ))}
+    <section className="relative overflow-hidden bg-[var(--ithemba-blue-deepest)] py-14 text-white md:py-16">
+      <div className="relative mx-auto grid max-w-7xl gap-9 px-4 lg:grid-cols-[0.82fr_1.18fr] lg:items-start lg:gap-12 lg:px-8">
+        <div>
+          <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)]">{c.snapshot.eyebrow}</div>
+          <h2 className="-mt-1 font-display text-4xl font-bold text-white md:text-5xl">{c.snapshot.title}</h2>
+          <div className="mt-5 space-y-3 text-base leading-relaxed text-white/85">
+            {c.snapshot.body.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
+          </div>
         </div>
 
-        <div className="mt-14 grid grid-cols-2 gap-x-6 gap-y-12 sm:grid-cols-4">
-          {c.snapshot.facts.map((f, i) => (
-            <div key={f.label} className="flex flex-col items-center text-center">
-              <PdIcon
-                src={SNAPSHOT_ICONS[i] ?? ICON.project}
-                className="h-16 w-16 md:h-20 md:w-20"
-              />
-              <div className="mt-4 font-display text-base font-extrabold leading-tight text-[var(--ithemba-blue-dark)]">
-                {f.value}
+        <div>
+          <div className="grid gap-x-7 gap-y-5 sm:grid-cols-2">
+            {c.snapshot.facts.map((fact, index) => (
+              <div key={fact.label} className="flex items-start gap-3">
+                <PdIcon src={SNAPSHOT_ICONS[index] ?? ICON.project} className="h-11 w-11 shrink-0 md:h-12 md:w-12" />
+                <div className="pt-0.5">
+                  <div className="text-[10px] font-semibold uppercase tracking-wide text-white/60">{fact.label}</div>
+                  <div className="mt-0.5 font-display text-sm font-bold leading-snug text-white md:text-base">{fact.value}</div>
+                </div>
               </div>
-              <div className="mt-1 text-[11px] font-semibold uppercase tracking-wide text-foreground/60">
-                {f.label}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Partner line */}
-        <div className="mx-auto mt-10 max-w-2xl rounded-2xl bg-white/70 px-5 py-4 text-center text-sm text-foreground/85 ring-1 ring-[var(--ithemba-blue)]/15">
-          <PawPrint className="mr-2 inline h-4 w-4 text-[var(--ithemba-yellow)]" />
-          {c.snapshot.partnerLine.pre}
-          <KustenhundLink />
-          {c.snapshot.partnerLine.post}
+            ))}
+          </div>
+          <div className="mt-6 border-t border-white/15 pt-4 text-sm text-white/80">
+            <PawPrint className="mr-2 inline h-4 w-4 text-[var(--ithemba-yellow)]" />
+            {c.snapshot.partnerLine.pre}<KustenhundLink className="text-white" />{c.snapshot.partnerLine.post}
+          </div>
         </div>
       </div>
     </section>
@@ -1417,92 +1441,45 @@ function Who({ c }: { c: Copy }) {
 /* ---------- BELIEVE — blue photo overlay, text-left ---------- */
 function Believe({ c }: { c: Copy }) {
   return (
-    <section className="relative isolate overflow-hidden py-20 text-white md:py-24">
-      <div className="absolute inset-0 -z-10">
-        <img
-          src={PH.childDog}
-          alt=""
-          aria-hidden
-          className="h-full w-full object-cover"
-          style={{ objectPosition: "center 40%" }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/78 via-[var(--ithemba-blue-dark)]/68 to-[var(--ithemba-blue)]/45" />
-
-        <div className="absolute left-[-6rem] bottom-[-6rem] h-[24rem] w-[24rem] sun-glow" />
-      </div>
-      <div className="relative mx-auto max-w-4xl px-4 lg:px-8">
-        <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center gap-2">
-          <PawDoodle /> {c.believe.eyebrow}
+    <section className="relative overflow-hidden bg-[var(--ithemba-blue-deepest)] py-14 text-white md:py-16">
+      <div className="mx-auto grid max-w-7xl items-center gap-9 px-4 md:grid-cols-2 lg:gap-12 lg:px-8">
+        <div>
+          <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center gap-2"><PawDoodle /> {c.believe.eyebrow}</div>
+          <h2 className="-mt-1 font-display text-4xl font-bold text-white md:text-5xl">{c.believe.title}</h2>
+          <div className="mt-5 space-y-3 text-base leading-relaxed text-white/85 md:text-lg">
+            {c.believe.body.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
+          </div>
         </div>
-        <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.believe.title}</h2>
-        <div className="mt-6 space-y-4 text-lg leading-relaxed text-white/90">
-          {c.believe.body.map((p, i) => (
-            <p key={i}>{p}</p>
-          ))}
-        </div>
+        <PhotoCollage
+          variant="B"
+          photos={[
+            { src: PH.believe1, label: "A dog receiving practical care", pos: "center 42%" },
+            { src: PH.believe2, label: "Puppies sharing a meal", pos: "center 48%" },
+            { src: PH.believe3, label: "A cat caring for kittens", pos: "center 45%" },
+          ]}
+        />
       </div>
-
-      {/* gentle wave divider into Why */}
-      <svg
-        className="relative mt-16 block w-full"
-        viewBox="0 0 1440 60"
-        preserveAspectRatio="none"
-        aria-hidden
-      >
-        <path
-          d="M0,30 C240,55 480,5 720,30 C960,55 1200,5 1440,30"
-          stroke="var(--ithemba-yellow)"
-          strokeOpacity="0.35"
-          strokeWidth="2"
-          fill="none"
-        />
-        <path
-          d="M0,38 C240,62 480,12 720,38 C960,62 1200,12 1440,38"
-          stroke="#ffffff"
-          strokeOpacity="0.18"
-          strokeWidth="1.5"
-          fill="none"
-        />
-      </svg>
     </section>
   );
 }
 
-/* ---------- WHY — blue photo bg ---------- */
+/* ---------- WHY — focused nursing-dog background ---------- */
 function Why({ c }: { c: Copy }) {
   return (
-    <section className="relative isolate overflow-hidden py-20 text-white md:py-24">
+    <section className="relative isolate overflow-hidden py-14 text-white md:py-16">
       <div className="absolute inset-0 -z-10">
-        <img
-          src={PH.puppiesRural}
-          alt=""
-          aria-hidden
-          className="h-full w-full object-cover"
-          style={{ objectPosition: "center 45%" }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/80 via-[var(--ithemba-blue-dark)]/70 to-[var(--ithemba-blue)]/45" />
-        <div className="absolute right-[-6rem] top-[-6rem] h-[28rem] w-[28rem] sun-glow" />
+        <img src={PH.motherPuppies} alt="" aria-hidden className="h-full w-full object-cover" style={{ objectPosition: "center 54%" }} />
+        <div className="absolute inset-0 bg-gradient-to-r from-[var(--ithemba-blue-deepest)]/78 via-[var(--ithemba-blue-dark)]/58 to-[var(--ithemba-blue)]/24" />
       </div>
-      <div className="relative mx-auto max-w-4xl px-4 lg:px-8">
-        <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center gap-2">
-          <PawDoodle /> {c.why.eyebrow}
+      <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
+        <div className="max-w-3xl">
+          <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center gap-2"><PawDoodle /> {c.why.eyebrow}</div>
+          <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.why.title}</h2>
+          <div className="mt-5 space-y-3 text-base leading-relaxed text-white/90 md:text-lg">
+            {c.why.body.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
+          </div>
         </div>
-        <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.why.title}</h2>
-        <div className="mt-6 space-y-4 text-lg leading-relaxed text-white/90">
-          {c.why.body.map((p, i) => (
-            <p key={i}>{p}</p>
-          ))}
-        </div>
-        <PhotoStrip
-          className="mt-10"
-          photos={[
-            { src: PH.motherPuppies, label: "Mother dog with her puppies in a rural household" },
-            { src: PH.puppiesRural, label: "Puppies in basic rural conditions" },
-            { src: PH.childDog, label: "A child and the family dog in the community", pos: "center 35%" },
-          ]}
-        />
       </div>
-
     </section>
   );
 }
@@ -1770,20 +1747,53 @@ function Education({ c }: { c: Copy }) {
   );
 }
 
+/* ---------- BEFORE AND AFTER ---------- */
+function BeforeAfter({ c }: { c: Copy }) {
+  const pair = (photos: CollageSlot[], label: string) => (
+    <div className="min-w-0">
+      <h3 className="mb-4 text-center font-display text-2xl font-bold text-white">{label}</h3>
+      <div className="grid min-w-0 aspect-[5/3] grid-cols-2 gap-2.5">
+        {photos.map((photo, index) => (
+          <div key={photo.src} className={`relative min-w-0 overflow-hidden shadow-lg ring-1 ring-white/15 ${index === 0 ? "rounded-l-[2rem]" : "rounded-r-[2rem]"}`}>
+            <img src={photo.src} alt={photo.label} loading="lazy" className="absolute inset-0 h-full w-full object-cover" style={{ objectPosition: photo.pos }} />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+  return (
+    <section className="bg-[var(--ithemba-blue-deepest)] py-14 text-white md:py-16">
+      <div className="mx-auto max-w-7xl px-4 lg:px-8">
+        <div className="mx-auto max-w-3xl text-center">
+          <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)]">{c.beforeAfter.eyebrow}</div>
+          <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.beforeAfter.title}</h2>
+          <p className="mt-4 text-base leading-relaxed text-white/85 md:text-lg">{c.beforeAfter.body}</p>
+        </div>
+        <div className="mt-9 grid items-center gap-6 md:grid-cols-[1fr_auto_1fr]">
+          {pair([{ src: PH.before1, label: c.beforeAfter.before, pos: "center 52%" }, { src: PH.before2, label: c.beforeAfter.before, pos: "center 45%" }], c.beforeAfter.before)}
+          <ArrowRight className="mx-auto h-10 w-10 rotate-90 text-[var(--ithemba-yellow)] md:rotate-0" aria-hidden />
+          {pair([{ src: PH.after1, label: c.beforeAfter.after, pos: "center 45%" }, { src: PH.after2, label: c.beforeAfter.after, pos: "center 42%" }], c.beforeAfter.after)}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ---------- MORE THAN DOGS ---------- */
 function More({ c }: { c: Copy }) {
   return (
     <section className="relative isolate overflow-hidden py-20 text-white">
       <div className="absolute inset-0 -z-10">
         <SmartImage
-          src={PH.teamCommunity}
-          label="Animals and people in Pondoland"
+          src={PH.beyondDogs}
+          label="A smiling goat supported by Pondo Dogs"
           className="h-full w-full"
           rounded="rounded-none"
           tone="earth"
           showMissingBadge={false}
+          objectPosition="center 30%"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/92 via-[var(--ithemba-blue-dark)]/85 to-[var(--ithemba-blue)]/60" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/68 via-[var(--ithemba-blue-dark)]/55 to-[var(--ithemba-blue)]/32" />
       </div>
       <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 sun-glow" />
       <div className="pointer-events-none absolute -left-16 bottom-12 h-48 w-48 blob bg-[var(--ithemba-yellow)]/10" />
@@ -1860,8 +1870,8 @@ function DonationHelp({ c }: { c: Copy }) {
     <section className="relative isolate overflow-hidden py-20 text-white">
       <div className="absolute inset-0 -z-10">
         <SmartImage
-          src={PH.field1}
-          label="Pondo Dogs in the community"
+          src={PH.donationBg}
+          label="A child with a puppy in the community"
           className="h-full w-full"
           rounded="rounded-none"
           tone="earth"
@@ -2022,17 +2032,18 @@ function Impact({ c }: { c: Copy }) {
   const { lang } = useLang();
   const locale = lang === "en" ? "en-US" : lang === "de" ? "de-DE" : "nl-NL";
   return (
-    <section className="relative isolate overflow-hidden py-20 text-white md:py-24">
+    <section className="relative isolate overflow-hidden py-14 text-white md:py-16">
       <div className="absolute inset-0 -z-10">
         <SmartImage
-          src={PH.field2}
-          label="Pondo Dogs impact"
+          src={PH.impactBg}
+          label="Newborn puppy receiving care"
           className="h-full w-full"
           rounded="rounded-none"
           tone="earth"
           showMissingBadge={false}
+          objectPosition="center 46%"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[var(--ithemba-blue-deepest)]/92 via-[var(--ithemba-blue-dark)]/88 to-[var(--ithemba-blue-deepest)]/95" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[var(--ithemba-blue-deepest)]/70 via-[var(--ithemba-blue-dark)]/62 to-[var(--ithemba-blue-deepest)]/76" />
       </div>
       <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
@@ -2042,7 +2053,7 @@ function Impact({ c }: { c: Copy }) {
           <h2 className="-mt-1 font-display text-3xl font-bold md:text-4xl">{c.impact.title}</h2>
         </div>
 
-        <div className="mx-auto mt-12 flex flex-wrap justify-center gap-x-6 gap-y-10">
+        <div className="mx-auto mt-8 flex flex-wrap justify-center gap-x-6 gap-y-7">
           {c.impact.counters.map((cnt, i) => {
             const iconSrc = IMPACT_ICONS[i] ?? ICON.coreSupport;
             const { n, suffix } = parseCounter(cnt.value);
@@ -2068,28 +2079,6 @@ function Impact({ c }: { c: Copy }) {
         </div>
       </div>
 
-      {/* gentle wave divider into Closing */}
-      <svg
-        className="relative mt-16 block w-full"
-        viewBox="0 0 1440 60"
-        preserveAspectRatio="none"
-        aria-hidden
-      >
-        <path
-          d="M0,30 C240,55 480,5 720,30 C960,55 1200,5 1440,30"
-          stroke="var(--ithemba-yellow)"
-          strokeOpacity="0.35"
-          strokeWidth="2"
-          fill="none"
-        />
-        <path
-          d="M0,38 C240,62 480,12 720,38 C960,62 1200,12 1440,38"
-          stroke="#ffffff"
-          strokeOpacity="0.18"
-          strokeWidth="1.5"
-          fill="none"
-        />
-      </svg>
     </section>
   );
 }
@@ -2097,18 +2086,7 @@ function Impact({ c }: { c: Copy }) {
 /* ---------- CLOSING ---------- */
 function Closing({ c }: { c: Copy }) {
   return (
-    <section className="relative isolate overflow-hidden py-24 text-white">
-      <div className="absolute inset-0 -z-10">
-        <SmartImage
-          src={PH.childDog}
-          label="Pondo Dogs — animals and families"
-          className="h-full w-full"
-          rounded="rounded-none"
-          tone="earth"
-          showMissingBadge={false}
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/92 via-[var(--ithemba-blue-dark)]/80 to-[var(--ithemba-blue)]/55" />
-      </div>
+    <section id="pondo-dogs-closing" className="relative overflow-hidden bg-[var(--ithemba-blue-deepest)] py-16 text-white md:py-20">
       <div className="relative mx-auto max-w-4xl px-4 text-center lg:px-8">
         <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center justify-center gap-2">
           <PawDoodle /> {c.closing.eyebrow}
@@ -2158,6 +2136,7 @@ function PondoDogsPage() {
   const c = COPY[lang];
   return (
     <>
+      <style>{`main:has(#pondo-dogs-closing) + footer { margin-top: 0; }`}</style>
       <Hero c={c} />
       <Snapshot c={c} />
       <Who c={c} />
@@ -2170,8 +2149,8 @@ function PondoDogsPage() {
         body={c.medical.body}
         items={c.medical.items}
         photos={[
-          { src: PH.medical1, label: "Caring for a sick or injured animal", tone: "earth" },
-          { src: PH.medical2, label: "Emergency treatment in the field", tone: "warm" },
+          { src: PH.medicalLeft, label: "Caring for a sick or injured animal", tone: "earth" },
+          { src: PH.medicalTopRight, label: "Emergency treatment in the field", tone: "warm" },
           { src: PH.medical3, label: "Follow-up medical care", tone: "sun" },
         ]}
         icon={ICON.medicalCare}
@@ -2183,7 +2162,7 @@ function PondoDogsPage() {
         body={c.preventive.body}
         items={c.preventive.items}
         photos={[
-          { src: PH.prev1, label: "Preventive care outreach", tone: "earth" },
+          { src: PH.preventionTopLeft, label: "Preventive care outreach", tone: "earth" },
           { src: PH.prev2, label: "Vaccination and deworming day", tone: "warm" },
           { src: PH.prev3, label: "Community animals waiting for treatment", tone: "sun" },
           { src: PH.prev4, label: "Parasite control in the village", tone: "earth" },
@@ -2216,12 +2195,14 @@ function PondoDogsPage() {
           { src: PH.feeding, label: "Food support for animals", tone: "earth" },
           { src: PH.shelterBasic, label: "Basic shelter in the community", tone: "warm" },
           { src: PH.shelterNew1, label: "A newly built shelter", tone: "sun" },
+          { src: PH.foodFourth, label: "A puppy receiving food support", tone: "earth" },
         ]}
         icon={ICON.foodAndShelter}
         reversed
         background="blue"
       />
       <Education c={c} />
+      <BeforeAfter c={c} />
       <More c={c} />
       <Focus c={c} />
       <DonationHelp c={c} />
