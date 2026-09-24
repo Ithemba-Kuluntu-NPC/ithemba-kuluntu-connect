@@ -45,9 +45,10 @@ export function FocusAreas() {
       <div className="absolute inset-0 -z-10">
 
         <SmartImage
-          src="/assets/photos/home/main-focus-areas-background.jpg"
-          label="Community impact in Pondoland"
+          src="/assets/photos/projects/foodsecurity/food-security-food-distribution-large-community-food-distribution-with-produce-32.jpg"
+          label="Community food distribution in Pondoland"
           className="h-full w-full"
+          objectPosition="center 45%"
           rounded="rounded-none"
           tone="warm"
           showMissingBadge={false}
