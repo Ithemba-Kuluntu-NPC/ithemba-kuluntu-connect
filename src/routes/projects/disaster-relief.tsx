@@ -805,7 +805,7 @@ function Provide({ c }: { c: Copy }) {
             { src: PHOTOS.reliefBundle, alt: "Family receiving a mattress, food and household supplies", position: "center 42%" },
             { src: PHOTOS.mattressDelivery, alt: "Woman carrying a new mattress through the village", position: "center 40%" },
             { src: PHOTOS.schoolShoes, alt: "Community worker fitting children with new school shoes", position: "center 42%" },
-            { src: PHOTOS.wheelchair, alt: "Happy girl seated in her wheelchair with a support worker", position: "45% 60%" },
+            { src: PHOTOS.wheelchair, alt: "Happy girl seated in her wheelchair with a support worker", position: "45% 78%" },
           ]}
         />
         <p className="mx-auto mt-8 max-w-3xl text-base leading-relaxed text-foreground/75">{c.provide.outro}</p>
