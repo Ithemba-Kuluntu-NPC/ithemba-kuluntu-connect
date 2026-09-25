@@ -226,8 +226,8 @@ function CircleArt({
   bg?: string;
 }) {
   const sizes = {
-    xs: "h-28 w-28",
-    sm: "h-36 w-36 md:h-40 md:w-40",
+    xs: "h-14 w-14 p-1 sm:h-28 sm:w-28 sm:p-2",
+    sm: "h-16 w-16 p-1 sm:h-36 sm:w-36 sm:p-2 md:h-40 md:w-40",
     md: "h-44 w-44 md:h-52 md:w-52",
     lg: "h-56 w-56 md:h-64 md:w-64",
   } as const;
@@ -405,7 +405,7 @@ function Hero({ t, goDonate }: { t: (k: string, fb?: string) => string; goDonate
               <Button
                 size="lg"
                 onClick={() => goDonate("monthly")}
-                className="rounded-full px-6 text-base font-semibold"
+                className="h-auto min-h-11 max-w-full whitespace-normal rounded-full px-6 py-3 text-center text-base font-semibold leading-snug"
                 style={{ background: YELLOW, color: BLUE_DEEP }}
               >
                 <Heart className="mr-2 h-4 w-4 fill-current" />
@@ -466,7 +466,7 @@ function PathwayStepper({ t }: { t: (k: string, fb?: string) => string }) {
   const scroll = (dir: 1 | -1) => {
     const el = carouselRef.current;
     if (!el) return;
-    el.scrollBy({ left: dir * (el.clientWidth * 0.8), behavior: "smooth" });
+    el.scrollBy({ left: dir * el.clientWidth, behavior: "smooth" });
   };
 
   return (
@@ -533,52 +533,50 @@ function PathwayStepper({ t }: { t: (k: string, fb?: string) => string }) {
         <div className="relative mt-8 md:hidden">
           <div
             ref={carouselRef}
-            className="flex snap-x snap-mandatory gap-3 overflow-x-auto pb-3 [-ms-overflow-style:none] [scrollbar-width:none]"
+            className="flex snap-x snap-mandatory overflow-x-auto pb-3 [-ms-overflow-style:none] [scrollbar-width:none]"
             style={{ scrollbarWidth: "none" }}
           >
             {steps.map((s) => (
               <button
                 key={s.id}
                 onClick={() => scrollToStep(s.id)}
-                className="min-w-[72%] shrink-0 snap-center rounded-2xl bg-white p-4 text-left shadow-sm ring-1 ring-black/5"
+                className="flex w-full shrink-0 snap-center flex-col items-center px-6 text-center"
               >
-                <div className="flex items-center gap-3">
+                <div className="relative">
                   <img
                     src={s.img}
                     alt=""
                     aria-hidden
-                    className="h-14 w-14 shrink-0 rounded-full object-contain p-1 ring-2"
-                    style={{ background: CREAM, boxShadow: `0 0 0 3px ${YELLOW}` }}
+                    className="h-32 w-32 rounded-full bg-white object-contain p-2"
+                    style={{ boxShadow: `0 18px 40px -20px rgba(0,0,0,0.5), 0 0 0 3px rgba(251,191,36,0.55)` }}
                     onError={(e) => ((e.currentTarget as HTMLImageElement).style.visibility = "hidden")}
                   />
-                  <div className="min-w-0">
-                    <span
-                      className="inline-flex h-6 items-center rounded-full px-2 text-[10px] font-bold"
-                      style={{ background: YELLOW, color: BLUE_DEEP }}
-                    >
-                      {s.num}
-                    </span>
-                    <p className="mt-1 text-sm font-semibold leading-tight" style={{ color: BLUE_DEEP, fontFamily: SERIF }}>
-                      {s.title}
-                    </p>
-                  </div>
+                  <span
+                    className="absolute -bottom-1 -right-1 inline-flex h-8 w-8 items-center justify-center rounded-full text-xs font-extrabold shadow"
+                    style={{ background: YELLOW, color: BLUE_DEEP }}
+                  >
+                    {s.num}
+                  </span>
                 </div>
-                <p className="mt-2 text-xs text-slate-600">{s.desc}</p>
+                <p className="mt-4 text-lg font-semibold leading-tight text-white" style={{ fontFamily: SERIF }}>
+                  {s.title}
+                </p>
+                <p className="mt-1 max-w-xs text-sm leading-snug text-white/75">{s.desc}</p>
               </button>
             ))}
           </div>
-          <div className="mt-2 flex justify-end gap-2">
+          <div className="mt-4 flex justify-center gap-4">
             <button
               aria-label="Previous"
               onClick={() => scroll(-1)}
-              className="rounded-full bg-white p-2 shadow ring-1 ring-black/5"
+              className="rounded-full bg-white p-2.5 shadow ring-1 ring-black/5"
             >
               <ChevronLeft className="h-4 w-4" style={{ color: BLUE_DEEP }} />
             </button>
             <button
               aria-label="Next"
               onClick={() => scroll(1)}
-              className="rounded-full bg-white p-2 shadow ring-1 ring-black/5"
+              className="rounded-full bg-white p-2.5 shadow ring-1 ring-black/5"
             >
               <ChevronRight className="h-4 w-4" style={{ color: BLUE_DEEP }} />
             </button>
@@ -896,7 +894,7 @@ function StepBlock({
           </div>
 
           {/* Visual: editorial collage (preferred) or single photo fallback */}
-          <div className="relative">
+          <div className="relative min-w-0">
             {photoSrcs && photoSrcs.length > 0 ? (
               <StepCollage
                 photos={photoSrcs}
@@ -915,12 +913,12 @@ function StepBlock({
             )}
             {/* Small illustration accent bubble (secondary) */}
             {accentSrc && (
-              <div className="absolute -bottom-6 -left-4 md:-bottom-8 md:-left-8">
+              <div className="absolute bottom-2 left-2 z-10 sm:-bottom-6 sm:-left-4 md:-bottom-8 md:-left-8">
                 <CircleArt src={accentSrc} alt={photoAlt} size="sm" />
               </div>
             )}
             {accentSrcSecondary && (
-              <div className="absolute -right-3 -top-5 md:-right-6 md:-top-8">
+              <div className="absolute right-2 top-2 z-10 sm:-right-3 sm:-top-5 md:-right-6 md:-top-8">
                 <CircleArt src={accentSrcSecondary} alt={photoAlt} size="xs" bg="#FFFFFF" ring="rgba(15,42,140,0.25)" />
               </div>
             )}
@@ -1305,8 +1303,8 @@ function DonationBox({ t, anchorRef }: { t: (k: string, fb?: string) => string; 
 function Closing({ t, goDonate }: { t: (k: string, fb?: string) => string; goDonate: (f: "monthly" | "once") => void }) {
   return (
     <section id="pureflow-closing" className="relative" style={{ background: BLUE_DEEP }}>
-      <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-14 text-white md:px-8 md:py-20 lg:grid-cols-[1.05fr_1fr] lg:gap-14">
-        <div className="relative">
+      <div className="mx-auto grid max-w-6xl items-center gap-8 px-5 py-10 text-white sm:gap-10 md:px-8 md:py-20 lg:grid-cols-[1.05fr_1fr] lg:gap-14">
+        <div className="relative mx-auto w-full min-w-0 max-w-md lg:max-w-none">
           <StepCollage
             photos={FIELD_PHOTOS.closing.map((photo, index) => ({
               src: `${PHOTO_BASE}/${photo}`,
@@ -1316,22 +1314,22 @@ function Closing({ t, goDonate }: { t: (k: string, fb?: string) => string; goDon
             variant="C"
             alt="PureFlow Amanzi community groups"
           />
-          <div className="absolute -bottom-6 -right-4 md:-bottom-8 md:-right-6">
+          <div className="absolute bottom-2 right-2 z-10 sm:-bottom-6 sm:-right-4 md:-bottom-8 md:-right-6">
             <CircleArt src={`${ASSET_BASE}/pureflow-community.png`} alt="Community" size="sm" />
           </div>
         </div>
-        <div className="text-center lg:text-left">
-          <h2 className="text-3xl font-bold md:text-5xl" style={{ fontFamily: SERIF }}>
+        <div className="min-w-0 text-center lg:text-left">
+          <h2 className="text-3xl font-bold break-words md:text-5xl" style={{ fontFamily: SERIF }}>
             {t("closing.main_heading")}
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base text-white/85 md:text-lg lg:mx-0">
             {t("closing.text")}
           </p>
-          <div className="mt-7 flex flex-wrap justify-center gap-3 lg:justify-start">
+          <div className="mt-7 flex flex-col items-center gap-3 sm:flex-row sm:flex-wrap sm:justify-center lg:justify-start">
             <Button
               size="lg"
               onClick={() => goDonate("monthly")}
-              className="rounded-full px-6 text-base font-semibold"
+              className="h-auto min-h-11 max-w-full whitespace-normal rounded-full px-6 py-3 text-center text-base font-semibold leading-snug"
               style={{ background: YELLOW, color: BLUE_DEEP }}
             >
               <Heart className="mr-2 h-4 w-4 fill-current" />
@@ -1401,7 +1399,7 @@ function Step01Collage({ t }: { t: (k: string, fb?: string) => string }) {
           </div>
 
           {/* Editorial 4-photo collage */}
-          <div className="relative">
+          <div className="relative min-w-0">
             <div
               className="relative grid aspect-[4/5] grid-cols-12 grid-rows-6 gap-2.5 md:gap-3"
               style={{ filter: "drop-shadow(0 28px 60px rgba(8,26,96,0.45))" }}
@@ -1455,7 +1453,7 @@ function Step01Collage({ t }: { t: (k: string, fb?: string) => string }) {
               aria-hidden
             />
             {/* step icon bubble */}
-            <div className="absolute -bottom-6 -left-4 z-10 md:-bottom-8 md:-left-8">
+            <div className="absolute bottom-2 left-2 z-10 sm:-bottom-6 sm:-left-4 md:-bottom-8 md:-left-8">
               <CircleArt
                 src={`${ASSET_BASE}/pureflow-problem.png`}
                 alt="Structural Problem"
@@ -1522,7 +1520,7 @@ function ClimateSection({ t }: { t: (k: string, fb?: string) => string }) {
           </div>
 
           {/* Collage side */}
-          <div className="relative">
+          <div className="relative min-w-0">
             <StepCollage
               photos={CLIMATE_PHOTOS}
               variant="A"
