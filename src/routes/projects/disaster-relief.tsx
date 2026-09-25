@@ -91,7 +91,7 @@ function PhotoCollage({ photos, className = "" }: { photos: readonly Photo[]; cl
         "col-span-5 row-span-3 rounded-br-[2.5rem] rounded-tl-xl rounded-tr-xl rounded-bl-xl",
       ];
   return (
-    <div className={`grid aspect-[16/10] w-full grid-cols-12 grid-rows-6 gap-2.5 md:gap-3 ${className}`}>
+    <div className={`grid aspect-[4/5] w-full grid-cols-12 grid-rows-6 gap-2.5 md:gap-3 ${className}`}>
       {photos.slice(0, cells.length).map((photo, index) => (
         <div
           key={photo.src}
@@ -730,7 +730,7 @@ function Snapshot({ c }: { c: Copy }) {
           })}
         </div>
         <PhotoCollage
-          className="mx-auto mt-9 max-w-4xl"
+          className="mx-auto mt-9 max-w-xl"
           photos={[
             { src: PHOTOS.snapshotMain, alt: "Community members gathered with mattresses and emergency supplies", position: "center 46%" },
             { src: PHOTOS.snapshotFamilies, alt: "Families receiving mattresses and relief items", position: "center 42%" },
@@ -748,7 +748,7 @@ function Why({ c }: { c: Copy }) {
     <section className="relative overflow-hidden bg-[var(--ithemba-blue-deepest)] py-14 text-white md:py-16">
       <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 md:grid-cols-[0.9fr_1.1fr] lg:px-8">
         <PhotoCollage
-          className="mx-auto max-w-xl"
+          className="mx-auto max-w-md"
           photos={[
             { src: PHOTOS.vulnerabilityHome, alt: "Children outside a weathered rural home", position: "center 38%" },
             { src: PHOTOS.fireDamage, alt: "Round home with severe fire damage", position: "center 48%" },
@@ -800,12 +800,12 @@ function Provide({ c }: { c: Copy }) {
           })}
         </div>
         <PhotoCollage
-          className="mx-auto mt-9 max-w-4xl"
+          className="mx-auto mt-9 max-w-xl"
           photos={[
             { src: PHOTOS.reliefBundle, alt: "Family receiving a mattress, food and household supplies", position: "center 42%" },
             { src: PHOTOS.mattressDelivery, alt: "Woman carrying a new mattress through the village", position: "center 40%" },
             { src: PHOTOS.schoolShoes, alt: "Community worker fitting children with new school shoes", position: "center 42%" },
-            { src: PHOTOS.wheelchair, alt: "Worker adjusting a wheelchair for its recipient", position: "center 42%" },
+            { src: PHOTOS.wheelchair, alt: "Happy girl seated in her wheelchair with a support worker", position: "45% 60%" },
           ]}
         />
         <p className="mx-auto mt-8 max-w-3xl text-base leading-relaxed text-foreground/75">{c.provide.outro}</p>
@@ -831,7 +831,7 @@ function Respond({ c }: { c: Copy }) {
         </div>
         </div>
         <PhotoCollage
-          className="mx-auto max-w-xl"
+          className="mx-auto max-w-md"
           photos={[
             { src: PHOTOS.localTrustMain, alt: "Community worker supporting an older woman with relief supplies", position: "center 38%" },
             { src: PHOTOS.localTrustChild, alt: "Community worker embracing a child during a home visit", position: "center 35%" },
@@ -850,7 +850,7 @@ function Focus({ c }: { c: Copy }) {
       <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
         <div className="grid items-center gap-10 md:grid-cols-[0.9fr_1.1fr]">
           <PhotoCollage
-            className="mx-auto max-w-xl"
+            className="mx-auto max-w-md"
             photos={[
               { src: PHOTOS.connectedMain, alt: "Children and caregivers together outside a community building", position: "center 42%" },
               { src: PHOTOS.connectedChild, alt: "Smiling child at a community support event", position: "center 32%" },
@@ -921,7 +921,7 @@ function DonationSupport({ c }: { c: Copy }) {
           })}
         </div>
         <PhotoCollage
-          className="mx-auto mt-9 max-w-4xl"
+          className="mx-auto mt-9 max-w-xl"
           photos={[
             { src: PHOTOS.supportMain, alt: "Family gathered outside their rural home after receiving support", position: "center 38%" },
             { src: PHOTOS.supportBundle, alt: "Community members with a mattress and household relief supplies", position: "center 42%" },
