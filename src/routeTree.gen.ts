@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as PartnersRouteImport } from './routes/partners'
+import { Route as NewsletterConfirmedRouteImport } from './routes/newsletter-confirmed'
 import { Route as MissingInformationRouteImport } from './routes/missing-information'
 import { Route as MediaRouteImport } from './routes/media'
 import { Route as ImpressumRouteImport } from './routes/impressum'
@@ -43,6 +44,11 @@ const TermsRoute = TermsRouteImport.update({
 const PartnersRoute = PartnersRouteImport.update({
   id: '/partners',
   path: '/partners',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewsletterConfirmedRoute = NewsletterConfirmedRouteImport.update({
+  id: '/newsletter-confirmed',
+  path: '/newsletter-confirmed',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MissingInformationRoute = MissingInformationRouteImport.update({
@@ -174,6 +180,7 @@ export interface FileRoutesByFullPath {
   '/impressum': typeof ImpressumRoute
   '/media': typeof MediaRoute
   '/missing-information': typeof MissingInformationRoute
+  '/newsletter-confirmed': typeof NewsletterConfirmedRoute
   '/partners': typeof PartnersRoute
   '/terms': typeof TermsRoute
   '/about/team': typeof AboutTeamRoute
@@ -201,6 +208,7 @@ export interface FileRoutesByTo {
   '/impressum': typeof ImpressumRoute
   '/media': typeof MediaRoute
   '/missing-information': typeof MissingInformationRoute
+  '/newsletter-confirmed': typeof NewsletterConfirmedRoute
   '/partners': typeof PartnersRoute
   '/terms': typeof TermsRoute
   '/about/team': typeof AboutTeamRoute
@@ -228,6 +236,7 @@ export interface FileRoutesById {
   '/impressum': typeof ImpressumRoute
   '/media': typeof MediaRoute
   '/missing-information': typeof MissingInformationRoute
+  '/newsletter-confirmed': typeof NewsletterConfirmedRoute
   '/partners': typeof PartnersRoute
   '/terms': typeof TermsRoute
   '/about/team': typeof AboutTeamRoute
@@ -257,6 +266,7 @@ export interface FileRouteTypes {
     | '/impressum'
     | '/media'
     | '/missing-information'
+    | '/newsletter-confirmed'
     | '/partners'
     | '/terms'
     | '/about/team'
@@ -284,6 +294,7 @@ export interface FileRouteTypes {
     | '/impressum'
     | '/media'
     | '/missing-information'
+    | '/newsletter-confirmed'
     | '/partners'
     | '/terms'
     | '/about/team'
@@ -310,6 +321,7 @@ export interface FileRouteTypes {
     | '/impressum'
     | '/media'
     | '/missing-information'
+    | '/newsletter-confirmed'
     | '/partners'
     | '/terms'
     | '/about/team'
@@ -338,6 +350,7 @@ export interface RootRouteChildren {
   ImpressumRoute: typeof ImpressumRoute
   MediaRoute: typeof MediaRoute
   MissingInformationRoute: typeof MissingInformationRoute
+  NewsletterConfirmedRoute: typeof NewsletterConfirmedRoute
   PartnersRoute: typeof PartnersRoute
   TermsRoute: typeof TermsRoute
   AboutTeamRoute: typeof AboutTeamRoute
@@ -367,6 +380,13 @@ declare module '@tanstack/react-router' {
       path: '/partners'
       fullPath: '/partners'
       preLoaderRoute: typeof PartnersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/newsletter-confirmed': {
+      id: '/newsletter-confirmed'
+      path: '/newsletter-confirmed'
+      fullPath: '/newsletter-confirmed'
+      preLoaderRoute: typeof NewsletterConfirmedRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/missing-information': {
@@ -558,6 +578,7 @@ const rootRouteChildren: RootRouteChildren = {
   ImpressumRoute: ImpressumRoute,
   MediaRoute: MediaRoute,
   MissingInformationRoute: MissingInformationRoute,
+  NewsletterConfirmedRoute: NewsletterConfirmedRoute,
   PartnersRoute: PartnersRoute,
   TermsRoute: TermsRoute,
   AboutTeamRoute: AboutTeamRoute,
