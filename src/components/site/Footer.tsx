@@ -3,7 +3,6 @@ import { Instagram, Facebook, Youtube, Mail, Phone, MapPin } from "lucide-react"
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useLang } from "./LanguageProvider";
-import { TurnstileWidget } from "@/components/forms/TurnstileWidget";
 import { useNewsletterForm } from "@/components/forms/useNewsletterForm";
 
 const socialBase =
@@ -27,19 +26,13 @@ export function Footer() {
             "Bitte geben Sie eine gültige E-Mail-Adresse ein und stimmen Sie der Einwilligungserklärung zu.",
             "Vul een geldig e-mailadres in en ga akkoord met de toestemmingsverklaring.",
           )
-        : form.status === "security"
+        : form.status === "error"
           ? lbl(
-              "Please complete the security check and try again.",
-              "Bitte schließen Sie die Sicherheitsprüfung ab und versuchen Sie es erneut.",
-              "Voltooi de beveiligingscontrole en probeer het opnieuw.",
+              "Something went wrong while sending your request. Please try again.",
+              "Beim Senden Ihrer Anfrage ist etwas schiefgegangen. Bitte versuchen Sie es erneut.",
+              "Er ging iets mis bij het verzenden van uw verzoek. Probeer het opnieuw.",
             )
-          : form.status === "error"
-            ? lbl(
-                "Something went wrong while sending your request. Please try again.",
-                "Beim Senden Ihrer Anfrage ist etwas schiefgegangen. Bitte versuchen Sie es erneut.",
-                "Er ging iets mis bij het verzenden van uw verzoek. Probeer het opnieuw.",
-              )
-            : "";
+          : "";
 
   return (
     <footer className="mt-24 border-t border-border bg-[var(--ithemba-blue-dark)] text-white">
@@ -162,12 +155,6 @@ export function Footer() {
                 .
               </span>
             </label>
-            <TurnstileWidget
-              ref={form.turnstileRef}
-              action="newsletter"
-              onToken={form.onToken}
-              onExpire={form.onExpire}
-            />
             <Button
               disabled={form.status === "submitting"}
               type="submit"

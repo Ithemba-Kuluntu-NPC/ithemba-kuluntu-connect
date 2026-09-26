@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useLang } from "@/components/site/LanguageProvider";
-import { TurnstileWidget } from "@/components/forms/TurnstileWidget";
 import { useNewsletterForm } from "@/components/forms/useNewsletterForm";
 import { Link } from "@tanstack/react-router";
 
@@ -23,19 +22,13 @@ export function NewsletterSignup() {
             "Bitte geben Sie eine gültige E-Mail-Adresse ein und stimmen Sie der Einwilligungserklärung zu.",
             "Vul een geldig e-mailadres in en ga akkoord met de toestemmingsverklaring.",
           )
-        : form.status === "security"
+        : form.status === "error"
           ? lbl(
-              "Please complete the security check and try again.",
-              "Bitte schließen Sie die Sicherheitsprüfung ab und versuchen Sie es erneut.",
-              "Voltooi de beveiligingscontrole en probeer het opnieuw.",
+              "Something went wrong while sending your request. Please try again.",
+              "Beim Senden Ihrer Anfrage ist etwas schiefgegangen. Bitte versuchen Sie es erneut.",
+              "Er ging iets mis bij het verzenden van uw verzoek. Probeer het opnieuw.",
             )
-          : form.status === "error"
-            ? lbl(
-                "Something went wrong while sending your request. Please try again.",
-                "Beim Senden Ihrer Anfrage ist etwas schiefgegangen. Bitte versuchen Sie es erneut.",
-                "Er ging iets mis bij het verzenden van uw verzoek. Probeer het opnieuw.",
-              )
-            : "";
+          : "";
   return (
     <section className="mx-auto max-w-7xl px-4 py-8 md:py-10 lg:px-8">
       <div className="relative overflow-hidden rounded-3xl bg-[var(--ithemba-blue)] px-6 py-7 text-white md:px-8 md:py-8 lg:px-10">
@@ -100,12 +93,6 @@ export function NewsletterSignup() {
                 .
               </span>
             </label>
-            <TurnstileWidget
-              ref={form.turnstileRef}
-              action="newsletter"
-              onToken={form.onToken}
-              onExpire={form.onExpire}
-            />
             <p aria-live="polite" className="min-h-4 text-xs text-white/90">
               {message}
             </p>

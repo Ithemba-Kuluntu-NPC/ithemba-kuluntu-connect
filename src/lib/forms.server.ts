@@ -90,26 +90,18 @@ function safeSubject(value: string): string {
     .slice(0, 120);
 }
 
-export async function subscribeToNewsletter(
-  payload: unknown,
-  remoteIp?: string,
-): Promise<FormResult> {
+export async function subscribeToNewsletter(payload: unknown): Promise<FormResult> {
   if (
     !isObject(payload) ||
-    !hasOnlyKeys(payload, ["email", "consent", "turnstileToken"]) ||
+    !hasOnlyKeys(payload, ["email", "consent"]) ||
     !stringWithin(payload.email, EMAIL_MAX, true) ||
-    payload.consent !== true ||
-    !stringWithin(payload.turnstileToken, 2048, true)
+    payload.consent !== true
   ) {
     return { ok: false, kind: "validation" };
   }
 
   const email = payload.email.trim();
   if (!validEmail(email)) return { ok: false, kind: "validation" };
-
-  if (!(await verifyTurnstile(payload.turnstileToken, "newsletter", remoteIp))) {
-    return { ok: false, kind: "security" };
-  }
 
   const sent = await brevoRequest(BREVO_CONTACTS_URL, {
     email,

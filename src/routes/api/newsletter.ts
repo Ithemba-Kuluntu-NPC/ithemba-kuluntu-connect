@@ -13,12 +13,7 @@ export const Route = createFileRoute("/api/newsletter")({
         if (payload === undefined) {
           return Response.json({ ok: false, error: "validation" }, { status: 400 });
         }
-        return publicResponse(
-          await subscribeToNewsletter(
-            payload,
-            request.headers.get("CF-Connecting-IP") ?? undefined,
-          ),
-        );
+        return publicResponse(await subscribeToNewsletter(payload));
       },
     },
   },
