@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import {
   Mail,
   Phone,
@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { TurnstileWidget, type TurnstileWidgetHandle } from "@/components/forms/TurnstileWidget";
 
 export const Route = createFileRoute("/contact")({ component: ContactPage });
 
@@ -43,8 +44,10 @@ const COPY = {
       message: "Message",
       submit: "Send message",
       sending: "Sending…",
-      success:
-        "Thank you. Your message has been received, and we will get back to you as soon as possible.",
+      success: "Thank you. Your message has been sent.",
+      validation: "Please check the required fields and try again.",
+      security: "Please complete the security check and try again.",
+      error: "Something went wrong while sending your request. Please try again.",
     },
   },
   de: {
@@ -67,8 +70,10 @@ const COPY = {
       message: "Nachricht",
       submit: "Nachricht senden",
       sending: "Wird gesendet…",
-      success:
-        "Vielen Dank. Ihre Nachricht wurde empfangen, und wir melden uns so bald wie möglich bei Ihnen.",
+      success: "Vielen Dank. Ihre Nachricht wurde gesendet.",
+      validation: "Bitte prüfen Sie die Pflichtfelder und versuchen Sie es erneut.",
+      security: "Bitte schließen Sie die Sicherheitsprüfung ab und versuchen Sie es erneut.",
+      error: "Beim Senden Ihrer Anfrage ist etwas schiefgegangen. Bitte versuchen Sie es erneut.",
     },
   },
   nl: {
@@ -91,8 +96,10 @@ const COPY = {
       message: "Bericht",
       submit: "Bericht verzenden",
       sending: "Wordt verzonden…",
-      success:
-        "Dank u wel. Uw bericht is ontvangen, en we nemen zo snel mogelijk contact met u op.",
+      success: "Dank u wel. Uw bericht is verzonden.",
+      validation: "Controleer de verplichte velden en probeer het opnieuw.",
+      security: "Voltooi de beveiligingscontrole en probeer het opnieuw.",
+      error: "Er ging iets mis bij het verzenden van uw verzoek. Probeer het opnieuw.",
     },
   },
 };
@@ -102,7 +109,13 @@ const EMAIL = "info@ithembakuluntu.org";
 const PHONE = "+27 71 977 8063";
 const WHATSAPP = "+27 71 977 8063";
 const WHATSAPP_HREF = "https://wa.me/27719778063";
-const SA_ADDRESS = ["Cwebeni, Ward 5, Caguba A/A", "Port St. Johns", "Eastern Cape", "South Africa", "5120"];
+const SA_ADDRESS = [
+  "Cwebeni, Ward 5, Caguba A/A",
+  "Port St. Johns",
+  "Eastern Cape",
+  "South Africa",
+  "5120",
+];
 const DE_ADDRESS = ["Am Emberg 20", "57399 Kirchhundem", "Germany"];
 
 const TikTokIcon = ({ className }: { className?: string }) => (
@@ -112,19 +125,80 @@ const TikTokIcon = ({ className }: { className?: string }) => (
 );
 
 const socialLinks = [
-  { href: "https://www.instagram.com/ithemba.kuluntu/", label: "Follow iThemba Kuluntu on Instagram", Icon: Instagram },
-  { href: "https://web.facebook.com/people/IThemba-Kuluntu-e-V-NPO/61555304087486/", label: "Follow iThemba Kuluntu on Facebook", Icon: Facebook },
-  { href: "https://www.tiktok.com/@ithemba.kuluntu", label: "Follow iThemba Kuluntu on TikTok", Icon: TikTokIcon },
-  { href: "https://www.youtube.com/@iThembaKuluntu", label: "Follow iThemba Kuluntu on YouTube", Icon: Youtube },
+  {
+    href: "https://www.instagram.com/ithemba.kuluntu/",
+    label: "Follow iThemba Kuluntu on Instagram",
+    Icon: Instagram,
+  },
+  {
+    href: "https://web.facebook.com/people/IThemba-Kuluntu-e-V-NPO/61555304087486/",
+    label: "Follow iThemba Kuluntu on Facebook",
+    Icon: Facebook,
+  },
+  {
+    href: "https://www.tiktok.com/@ithemba.kuluntu",
+    label: "Follow iThemba Kuluntu on TikTok",
+    Icon: TikTokIcon,
+  },
+  {
+    href: "https://www.youtube.com/@iThembaKuluntu",
+    label: "Follow iThemba Kuluntu on YouTube",
+    Icon: Youtube,
+  },
 ];
 
 /* ---------- form ---------- */
 function ContactFormCard({ copy }: { copy: (typeof COPY)["en"]["form"] }) {
   const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<"idle" | "submitting" | "validation" | "security" | "error">(
+    "idle",
+  );
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const turnstileRef = useRef<TurnstileWidgetHandle>(null);
+  const onTurnstileToken = useCallback((token: string) => {
+    setTurnstileToken(token);
+    setStatus((current) => (current === "security" ? "idle" : current));
+  }, []);
+  const onTurnstileExpire = useCallback(() => setTurnstileToken(""), []);
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSent(true);
+    if (status === "submitting") return;
+    if (!turnstileToken) {
+      setStatus("security");
+      return;
+    }
+
+    const formData = new FormData(e.currentTarget);
+    setStatus("submitting");
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          name: formData.get("name"),
+          email: formData.get("email"),
+          country: formData.get("country"),
+          subject: formData.get("subject"),
+          message: formData.get("message"),
+          turnstileToken,
+        }),
+      });
+      if (response.ok) {
+        setSent(true);
+      } else {
+        const body: unknown = await response.json().catch(() => undefined);
+        const kind = body && typeof body === "object" && "error" in body ? body.error : undefined;
+        setStatus(
+          kind === "security" ? "security" : kind === "validation" ? "validation" : "error",
+        );
+      }
+    } catch {
+      setStatus("error");
+    } finally {
+      setTurnstileToken("");
+      turnstileRef.current?.reset();
+    }
   };
 
   if (sent) {
@@ -151,19 +225,26 @@ function ContactFormCard({ copy }: { copy: (typeof COPY)["en"]["form"] }) {
 
       <div className="mt-3 grid gap-2.5 md:grid-cols-2">
         <div className="space-y-1">
-          <Label htmlFor="c-name" className="text-[13px] font-semibold text-[color:var(--ithemba-blue-deepest,#0b2545)]">
+          <Label
+            htmlFor="c-name"
+            className="text-[13px] font-semibold text-[color:var(--ithemba-blue-deepest,#0b2545)]"
+          >
             {copy.name}
           </Label>
           <Input
             id="c-name"
             name="name"
             required
+            maxLength={120}
             autoComplete="name"
             className="h-9 rounded-xl border-[color:var(--ithemba-blue,#1d4e89)]/15 bg-white shadow-none focus-visible:ring-[color:var(--ithemba-blue,#1d4e89)]"
           />
         </div>
         <div className="space-y-1">
-          <Label htmlFor="c-email" className="text-[13px] font-semibold text-[color:var(--ithemba-blue-deepest,#0b2545)]">
+          <Label
+            htmlFor="c-email"
+            className="text-[13px] font-semibold text-[color:var(--ithemba-blue-deepest,#0b2545)]"
+          >
             {copy.email}
           </Label>
           <Input
@@ -171,33 +252,45 @@ function ContactFormCard({ copy }: { copy: (typeof COPY)["en"]["form"] }) {
             name="email"
             type="email"
             required
+            maxLength={254}
             autoComplete="email"
             className="h-9 rounded-xl border-[color:var(--ithemba-blue,#1d4e89)]/15 bg-white shadow-none focus-visible:ring-[color:var(--ithemba-blue,#1d4e89)]"
           />
         </div>
         <div className="space-y-1">
-          <Label htmlFor="c-country" className="text-[13px] font-semibold text-[color:var(--ithemba-blue-deepest,#0b2545)]">
+          <Label
+            htmlFor="c-country"
+            className="text-[13px] font-semibold text-[color:var(--ithemba-blue-deepest,#0b2545)]"
+          >
             {copy.country}
           </Label>
           <Input
             id="c-country"
             name="country"
+            maxLength={120}
             autoComplete="country-name"
             className="h-9 rounded-xl border-[color:var(--ithemba-blue,#1d4e89)]/15 bg-white shadow-none focus-visible:ring-[color:var(--ithemba-blue,#1d4e89)]"
           />
         </div>
         <div className="space-y-1">
-          <Label htmlFor="c-subject" className="text-[13px] font-semibold text-[color:var(--ithemba-blue-deepest,#0b2545)]">
+          <Label
+            htmlFor="c-subject"
+            className="text-[13px] font-semibold text-[color:var(--ithemba-blue-deepest,#0b2545)]"
+          >
             {copy.subject}
           </Label>
           <Input
             id="c-subject"
             name="subject"
+            maxLength={160}
             className="h-9 rounded-xl border-[color:var(--ithemba-blue,#1d4e89)]/15 bg-white shadow-none focus-visible:ring-[color:var(--ithemba-blue,#1d4e89)]"
           />
         </div>
         <div className="space-y-1 md:col-span-2">
-          <Label htmlFor="c-message" className="text-[13px] font-semibold text-[color:var(--ithemba-blue-deepest,#0b2545)]">
+          <Label
+            htmlFor="c-message"
+            className="text-[13px] font-semibold text-[color:var(--ithemba-blue-deepest,#0b2545)]"
+          >
             {copy.message}
           </Label>
           <Textarea
@@ -205,18 +298,39 @@ function ContactFormCard({ copy }: { copy: (typeof COPY)["en"]["form"] }) {
             name="message"
             rows={3}
             required
+            maxLength={5000}
             className="rounded-xl border-[color:var(--ithemba-blue,#1d4e89)]/15 bg-white shadow-none focus-visible:ring-[color:var(--ithemba-blue,#1d4e89)]"
           />
         </div>
       </div>
 
+      <div className="mt-3">
+        <TurnstileWidget
+          ref={turnstileRef}
+          action="contact"
+          onToken={onTurnstileToken}
+          onExpire={onTurnstileExpire}
+        />
+      </div>
+
+      <p aria-live="polite" className="mt-2 min-h-5 text-sm text-red-700">
+        {status === "validation"
+          ? copy.validation
+          : status === "security"
+            ? copy.security
+            : status === "error"
+              ? copy.error
+              : ""}
+      </p>
+
       <Button
         type="submit"
+        disabled={status === "submitting"}
         size="lg"
         className="mt-3 w-full rounded-full bg-[color:var(--ithemba-blue,#1d4e89)] py-5 text-base font-semibold text-white shadow-[0_10px_30px_-10px_rgba(29,78,137,0.6)] hover:bg-[color:var(--ithemba-blue-deepest,#0b2545)]"
       >
         <Send className="mr-2 h-4 w-4" />
-        {copy.submit}
+        {status === "submitting" ? copy.sending : copy.submit}
       </Button>
     </form>
   );
@@ -243,11 +357,15 @@ function ContactPage() {
       <div className="absolute inset-0 -z-10 bg-[#0b2545]/80" />
       <div
         className="absolute inset-0 -z-10"
-        style={{ background: "radial-gradient(70% 90% at 30% 20%, rgba(29,78,137,0.35), transparent 70%)" }}
+        style={{
+          background: "radial-gradient(70% 90% at 30% 20%, rgba(29,78,137,0.35), transparent 70%)",
+        }}
       />
       <div
         className="absolute inset-0 -z-10"
-        style={{ background: "radial-gradient(60% 70% at 80% 80%, rgba(11,37,69,0.55), transparent 70%)" }}
+        style={{
+          background: "radial-gradient(60% 70% at 80% 80%, rgba(11,37,69,0.55), transparent 70%)",
+        }}
       />
 
       {/* Content */}
@@ -284,7 +402,9 @@ function ContactPage() {
                 <Mail className="h-4 w-4" />
               </span>
               <div>
-                <p className="text-xs font-semibold uppercase tracking-wide text-white/60">{c.emailLabel}</p>
+                <p className="text-xs font-semibold uppercase tracking-wide text-white/60">
+                  {c.emailLabel}
+                </p>
                 <a
                   href={`mailto:${EMAIL}`}
                   className="text-[15px] font-medium text-white underline-offset-4 hover:underline md:text-base"
@@ -301,7 +421,9 @@ function ContactPage() {
                 <Phone className="h-4 w-4" />
               </span>
               <div>
-                <p className="text-xs font-semibold uppercase tracking-wide text-white/60">{c.phoneLabel}</p>
+                <p className="text-xs font-semibold uppercase tracking-wide text-white/60">
+                  {c.phoneLabel}
+                </p>
                 <a
                   href={`tel:${PHONE.replace(/\s+/g, "")}`}
                   className="text-[15px] font-medium text-white underline-offset-4 hover:underline md:text-base"
@@ -318,7 +440,9 @@ function ContactPage() {
                 <MessageCircle className="h-4 w-4" />
               </span>
               <div>
-                <p className="text-xs font-semibold uppercase tracking-wide text-white/60">{c.whatsappLabel}</p>
+                <p className="text-xs font-semibold uppercase tracking-wide text-white/60">
+                  {c.whatsappLabel}
+                </p>
                 <a
                   href={WHATSAPP_HREF}
                   target="_blank"
