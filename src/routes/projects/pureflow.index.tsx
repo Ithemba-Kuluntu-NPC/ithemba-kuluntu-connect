@@ -8,6 +8,7 @@
 // Language is driven by the global LanguageProvider (EN / DE / NL).
 
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { createSeoHead, PUREFLOW_SOCIAL_IMAGE } from "@/lib/seo";
 import { Fragment, Suspense, lazy, useEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowLeft,
@@ -42,19 +43,7 @@ import type { Lang } from "@/data/content";
 // Lazy-loaded, client-only Leaflet map (Leaflet touches `window` at import).
 const PureFlowEventMap = lazy(() => import("@/components/blocks/PureFlowEventMap"));
 
-export const Route = createFileRoute("/projects/pureflow/")({
-  component: PureFlowCompactPage,
-  head: () => ({
-    meta: [
-      { title: "PureFlow Amanzi | iThemba Kuluntu" },
-      { name: "description", content: "PureFlow Amanzi brings cleaner, safer water to rural households and learning sites through locally led delivery." },
-      { property: "og:title", content: "PureFlow Amanzi | iThemba Kuluntu" },
-      { property: "og:description", content: "Explore PureFlow Amanzi's locally led safe-water model, verified impact, field events, and community transformation." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
-});
+export const Route = createFileRoute("/projects/pureflow/")({ component: PureFlowCompactPage, head: () => createSeoHead({ title: 'PureFlow Amanzi | Safe Water | iThemba Kuluntu', description: 'PureFlow Amanzi expands safe-water access for rural households and learning sites through locally led delivery, WASH education, monitoring and ongoing support.', path: '/projects/pureflow', breadcrumbs: [{ name: 'Home', path: '/' }, { name: 'Projects', path: '/projects' }, { name: 'PureFlow Amanzi', path: '/projects/pureflow' }], image: PUREFLOW_SOCIAL_IMAGE, imageAlt: "PureFlow Amanzi safe-water system in rural South Africa" }) });
 
 // ----------------------- Content loading -----------------------
 

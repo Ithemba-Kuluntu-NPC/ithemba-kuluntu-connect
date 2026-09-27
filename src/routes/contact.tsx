@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { createSeoHead } from "@/lib/seo";
 import { useCallback, useRef, useState } from "react";
 import {
   Mail,
@@ -18,7 +19,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { TurnstileWidget, type TurnstileWidgetHandle } from "@/components/forms/TurnstileWidget";
 
-export const Route = createFileRoute("/contact")({ component: ContactPage });
+export const Route = createFileRoute("/contact")({ component: ContactPage, head: () => createSeoHead({ title: 'Contact iThemba Kuluntu', description: 'Contact iThemba Kuluntu about partnerships, funding, media, donations, project support or our work in South Africa and internationally.', path: '/contact' }) });
 
 const BG_IMG = "/assets/photos/contact/contact-funny-team-photo.jpg";
 

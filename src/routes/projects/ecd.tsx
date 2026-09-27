@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { createSeoHead } from "@/lib/seo";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -35,7 +36,7 @@ import { assets } from "@/data/assets";
 import { focusAreaBadgeMeta } from "@/data/projects";
 import type { Lang } from "@/data/content";
 
-export const Route = createFileRoute("/projects/ecd")({ component: EcdPage });
+export const Route = createFileRoute("/projects/ecd")({ component: EcdPage, head: () => createSeoHead({ title: 'No.1 ECD Centre | iThemba Kuluntu', description: 'A free-to-attend early learning centre in Cwebeni supporting 120 children with education, daily meals, care and preparation for school.', path: '/projects/ecd', breadcrumbs: [{ name: 'Home', path: '/' }, { name: 'Projects', path: '/projects' }, { name: 'No.1 ECD Centre', path: '/projects/ecd' }] }) });
 
 /* ---------- assets (final ECD media) ---------- */
 const ECD_MEDIA = "/assets/photos/projects/ECD";

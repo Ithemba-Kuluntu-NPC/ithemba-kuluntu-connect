@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { createSeoHead } from "@/lib/seo";
 import { useEffect, useRef, useState } from "react";
 import { ProjectCard } from "@/components/blocks/ProjectCard";
 import { Button } from "@/components/ui/button";
@@ -8,7 +9,7 @@ import { useLang } from "@/components/site/LanguageProvider";
 import { SmartImage } from "@/components/site/Asset";
 import type { Lang } from "@/data/content";
 
-export const Route = createFileRoute("/projects/")({ component: ProjectsOverview });
+export const Route = createFileRoute("/projects/")({ component: ProjectsOverview, head: () => createSeoHead({ title: 'Our Projects | iThemba Kuluntu', description: 'Explore our work across safe water, early learning, food security, animal welfare, disaster relief and local livelihoods in rural South Africa.', path: '/projects' }) });
 
 type HeroCopy = { eyebrow: string; title: string; subtitle: string; donate: string };
 

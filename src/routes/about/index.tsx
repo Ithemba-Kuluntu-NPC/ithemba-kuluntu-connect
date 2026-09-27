@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { createSeoHead } from "@/lib/seo";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -22,7 +23,7 @@ import { SmartImage, SmartLogo } from "@/components/site/Asset";
 import { assets } from "@/data/assets";
 import type { Lang } from "@/data/content";
 
-export const Route = createFileRoute("/about/")({ component: About });
+export const Route = createFileRoute("/about/")({ component: About, head: () => createSeoHead({ title: 'About iThemba Kuluntu | Community-Rooted Work in South Africa', description: 'Learn how iThemba Kuluntu combines local leadership in Cwebeni, South Africa, with international partnerships to support rural families for the long term.', path: '/about' }) });
 
 /* ---------- Per-language content (verbatim from /public/content/about) ---------- */
 

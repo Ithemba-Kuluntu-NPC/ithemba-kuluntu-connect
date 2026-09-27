@@ -1,11 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { createSeoHead } from "@/lib/seo";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Heart, MapPin, Sparkles, Users } from "lucide-react";
 import { useLang } from "@/components/site/LanguageProvider";
 import type { Lang } from "@/data/content";
 
 
-export const Route = createFileRoute("/about/team")({ component: AboutTeam });
+export const Route = createFileRoute("/about/team")({ component: AboutTeam, head: () => createSeoHead({ title: 'Our Team | iThemba Kuluntu', description: "Meet the community leaders, teachers, carers, technicians and international volunteers behind iThemba Kuluntu's work in Cwebeni and beyond.", path: '/about/team', breadcrumbs: [{ name: 'Home', path: '/' }, { name: 'About', path: '/about' }, { name: 'Our Team', path: '/about/team' }] }) });
 
 /* ---------- Per-language hero copy ---------- */
 

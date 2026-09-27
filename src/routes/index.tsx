@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { createSeoHead, HOME_STRUCTURED_DATA } from "@/lib/seo";
 import { Hero } from "@/components/blocks/Hero";
 import { ImpactCounters } from "@/components/blocks/ImpactCounters";
 import { FocusAreas } from "@/components/blocks/FocusAreas";
@@ -14,7 +15,7 @@ import { Heart } from "lucide-react";
 import { SmartImage } from "@/components/site/Asset";
 import { assets } from "@/data/assets";
 
-export const Route = createFileRoute("/")({ component: Home });
+export const Route = createFileRoute("/")({ component: Home, head: () => createSeoHead({ title: 'iThemba Kuluntu | Community-Rooted Nonprofit in South Africa', description: 'Women-led, community-rooted nonprofit working with rural communities in South Africa across safe water, early learning, food security, animal welfare and emergency support.', path: '/', jsonLd: HOME_STRUCTURED_DATA }) });
 
 const homeProjectHeroes: Record<string, string> = {
   ecd: "/assets/photos/home/main-ecd-project-title-2.jpg",

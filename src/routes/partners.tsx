@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { createSeoHead } from "@/lib/seo";
 import { useEffect, useRef, useState } from "react";
 import {
   ArrowRight,
@@ -29,19 +30,7 @@ import { useLang } from "@/components/site/LanguageProvider";
 import { Button } from "@/components/ui/button";
 import { partners, focusAreaBadgeMeta, type FocusAreaBadge } from "@/data/projects";
 
-export const Route = createFileRoute("/partners")({
-  head: () => ({
-    meta: [
-      { title: "Partner with iThemba Kuluntu" },
-      { name: "description", content: "Support practical, community-rooted change through partnership with iThemba Kuluntu." },
-      { property: "og:title", content: "Partner with iThemba Kuluntu" },
-      { property: "og:description", content: "Support practical, community-rooted change through partnership with iThemba Kuluntu." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
-  component: PartnersPage,
-});
+export const Route = createFileRoute("/partners")({ component: PartnersPage, head: () => createSeoHead({ title: 'Partner with iThemba Kuluntu', description: 'Partner with a community-rooted nonprofit delivering practical programmes across safe water, early learning, food security, animal welfare and livelihoods.', path: '/partners' }) });
 
 /* ---------- assets ---------- */
 const PARTNERS_MEDIA = "/assets/photos/partners";

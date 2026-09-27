@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { createSeoHead } from "@/lib/seo";
 import { Button } from "@/components/ui/button";
 import {
   ArrowLeft,
@@ -33,19 +34,7 @@ import { ImpactCounters } from "@/components/blocks/ImpactCounters";
 import { focusAreaBadgeMeta } from "@/data/projects";
 import type { Lang } from "@/data/content";
 
-export const Route = createFileRoute("/projects/disaster-relief")({
-  component: DisasterReliefPage,
-  head: () => ({
-    meta: [
-      { title: "Disaster Relief | iThemba Kuluntu" },
-      { name: "description", content: "Practical emergency support for families in Cwebeni and surrounding communities facing crisis and sudden hardship." },
-      { property: "og:title", content: "Disaster Relief | iThemba Kuluntu" },
-      { property: "og:description", content: "See how practical, locally coordinated emergency support helps families recover from crisis with dignity." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
-});
+export const Route = createFileRoute("/projects/disaster-relief")({ component: DisasterReliefPage, head: () => createSeoHead({ title: 'Disaster Relief | iThemba Kuluntu', description: 'Practical emergency support for families in Cwebeni and surrounding communities facing floods, fires, sudden hardship and urgent household needs.', path: '/projects/disaster-relief', breadcrumbs: [{ name: 'Home', path: '/' }, { name: 'Projects', path: '/projects' }, { name: 'Disaster Relief', path: '/projects/disaster-relief' }] }) });
 
 /* ---------- assets ---------- */
 const PHOTO_BASE = "/assets/photos/projects/disaster-relief";

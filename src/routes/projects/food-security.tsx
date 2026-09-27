@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { createSeoHead } from "@/lib/seo";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -36,7 +37,7 @@ import { assets } from "@/data/assets";
 import { focusAreaBadgeMeta } from "@/data/projects";
 import type { Lang } from "@/data/content";
 
-export const Route = createFileRoute("/projects/food-security")({ component: FoodSecurityPage });
+export const Route = createFileRoute("/projects/food-security")({ component: FoodSecurityPage, head: () => createSeoHead({ title: 'Food Security | iThemba Kuluntu', description: 'Practical food support for vulnerable families through monthly food hampers, a volunteer-run soup kitchen and daily meals for children at the No.1 ECD Centre.', path: '/projects/food-security', breadcrumbs: [{ name: 'Home', path: '/' }, { name: 'Projects', path: '/projects' }, { name: 'Food Security', path: '/projects/food-security' }] }) });
 
 /* ---------- media (final Food Security library) ---------- */
 const FS = "/assets/photos/projects/foodsecurity";
