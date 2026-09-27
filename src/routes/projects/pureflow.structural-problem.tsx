@@ -61,7 +61,7 @@ const SCRIPT = '"Caveat", "Kalam", cursive';
 const PHOTOS = {
   hero: "/assets/photos/projects/pureflow/pureflow-step-01-structural-problem.jpg",
   hero2: "/assets/photos/projects/pureflow/pureflow-step-01-structural-problem-2.jpg",
-  hero3: "/assets/photos/projects/pureflow/pureflow-step-01-structural-problem-3.jpg",
+  hero3: "/assets/generated-performance/pureflow-step-01-structural-problem-3-web.jpg",
   hero4: "/assets/photos/projects/pureflow/pureflow-step-01-structural-problem-4.jpg",
   heroBg: "/assets/photos/projects/pureflow/pureflow-step-01-structural-problem-background.jpg",
   response: "/assets/photos/projects/pureflow/pureflow-step-02-pureflow-model.jpg",

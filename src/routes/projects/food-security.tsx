@@ -44,7 +44,7 @@ const FS = "/assets/photos/projects/foodsecurity";
 
 /** Build a path + human alt text from the descriptive filename. */
 function fsPhoto(file: string, alt: string) {
-  return { src: `${FS}/${file}`, alt };
+  return { src: file.startsWith("/") ? file : `${FS}/${file}`, alt };
 }
 
 const HERO_VIDEO = `${FS}/food-security-hero-video.mp4`;
@@ -81,7 +81,7 @@ const MEALS = {
   freshlyServed: fsPhoto("food-security-community-meals-worker-holding-freshly-served-meal-26.jpg", "Worker holding a freshly served meal"),
   cookingFire: fsPhoto("food-security-community-meals-outdoor-cooking-over-fire-28.jpg", "Outdoor cooking over a fire"),
   besideVehicle: fsPhoto("food-security-community-meals-children-eating-beside-project-vehicle-29.jpg", "Children eating beside the project vehicle"),
-  motherAndChild: fsPhoto("food-security-community-meals-mother-and-child-eating-community-meal-30.jpg", "Mother and child eating a community meal"),
+  motherAndChild: fsPhoto("/assets/generated-performance/food-security-community-meals-mother-and-child-eating-community-meal-30-web.jpg", "Mother and child eating a community meal"),
   teamCooking: fsPhoto("food-security-community-meals-team-cooking-large-pots-outdoors-31.jpg", "Team cooking large pots outdoors"),
   eatingOnGround: fsPhoto("food-security-community-meals-children-eating-together-on-ground-32.jpg", "Children eating together on the ground"),
 };
@@ -151,7 +151,7 @@ const GROW = {
 
 /* E. Greenhouse harvest */
 const HARVEST = [
-  fsPhoto("food-security-greenhouse-harvest-close-up-of-spinach-leaves-01.jpg", "Close-up of spinach leaves"),
+  fsPhoto("/assets/generated-performance/food-security-greenhouse-harvest-close-up-of-spinach-leaves-01-web.jpg", "Close-up of spinach leaves"),
   fsPhoto("food-security-greenhouse-harvest-freshly-harvested-beetroot-02.jpg", "Freshly harvested beetroot"),
   fsPhoto("food-security-greenhouse-harvest-healthy-spinach-close-up-03.jpg", "Healthy spinach close-up"),
 ];
@@ -173,7 +173,7 @@ const PARTNER = {
   table: fsPhoto("food-security-partner-support-distribution-table-with-rise-against-hunger-boxes-02.jpg", "Distribution table with Rise Against Hunger boxes"),
   olderWoman: fsPhoto("food-security-partner-support-older-woman-receiving-rise-against-hunger-box-03.jpg", "Older woman receiving a Rise Against Hunger box"),
   youngRecipient: fsPhoto("food-security-partner-support-young-recipient-holding-rise-against-hunger-box-04.jpg", "Young recipient holding a Rise Against Hunger box"),
-  seated: fsPhoto("food-security-partner-support-woman-seated-with-rise-against-hunger-box-05.jpg", "Woman seated with a Rise Against Hunger box"),
+  seated: fsPhoto("/assets/generated-performance/food-security-partner-support-woman-seated-with-rise-against-hunger-box-05-web.jpg", "Woman seated with a Rise Against Hunger box"),
   carrying: fsPhoto("food-security-partner-support-team-carrying-stacked-food-relief-boxes-06.jpg", "Team carrying stacked food relief boxes"),
   childrenBoxes: fsPhoto("food-security-partner-support-children-in-front-of-rise-against-hunger-boxes-07.jpg", "Children in front of Rise Against Hunger boxes"),
   workerFamily: fsPhoto("food-security-partner-support-ithembakuluntu-worker-with-family-and-rise-box-08.jpg", "iThemba Kuluntu worker with a family and a relief box"),
@@ -926,7 +926,7 @@ function Snapshot({ c }: { c: Copy }) {
             const iconSrc = SNAPSHOT_ICON_PATHS[i];
             return (
               <div key={f.label} className="grid grid-cols-[3rem_1fr] items-center gap-3">
-                <img src={iconSrc} alt="" aria-hidden className="h-12 w-12 object-contain" />
+                <img src={iconSrc} alt="" aria-hidden loading="lazy" className="h-12 w-12 object-contain" />
                 <div className="min-w-0">
                   <div className="text-[11px] font-semibold uppercase tracking-wide text-white/65">{f.label}</div>
                   <div className="mt-0.5 font-display text-sm font-extrabold leading-snug text-white md:text-base">{f.value}</div>
@@ -1153,7 +1153,7 @@ function DonationSupport({ c }: { c: Copy }) {
             const iconSrc = DONATION_ICON_PATHS[it.icon] ?? `${FS_ICON_BASE}/food-security-project.png`;
             return (
               <div key={it.label} className="flex flex-col items-center text-center">
-                <img src={iconSrc} alt="" aria-hidden className="h-16 w-16 object-contain md:h-20 md:w-20" />
+                <img src={iconSrc} alt="" aria-hidden loading="lazy" className="h-16 w-16 object-contain md:h-20 md:w-20" />
                 <div className="mt-3 text-sm font-medium leading-snug text-[var(--ithemba-blue-dark)]">{it.label}</div>
               </div>
             );

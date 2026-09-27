@@ -106,7 +106,7 @@ const COPY = {
 
 const TRUST_ICONS = [Shield, Award, FileText, Heart];
 const HERO_PHOTO = "/assets/photos/donate/donate-hapy-girl-in-greenhouse.jpeg";
-const THANKYOU_PHOTO = "/assets/photos/donate/donate-adult-hand-holding-kids-hand.jpg";
+const THANKYOU_PHOTO = "/assets/generated-performance/donate-adult-hand-holding-kids-hand-web.jpg";
 
 function DonatePage() {
   const { lang } = useLang();

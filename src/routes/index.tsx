@@ -18,7 +18,7 @@ import { assets } from "@/data/assets";
 export const Route = createFileRoute("/")({ component: Home, head: () => createSeoHead({ title: 'iThemba Kuluntu | Community-Rooted Nonprofit in South Africa', description: 'Women-led, community-rooted nonprofit working with rural communities in South Africa across safe water, early learning, food security, animal welfare and emergency support.', path: '/', jsonLd: HOME_STRUCTURED_DATA }) });
 
 const homeProjectHeroes: Record<string, string> = {
-  ecd: "/assets/photos/home/main-ecd-project-title-2.jpg",
+  ecd: "/assets/generated-performance/home-main-ecd-project-title-2-web.jpg",
   pureflow: "/assets/photos/home/main-pureflow-project-title-3.jpg",
   greenhouse: "/assets/photos/home/main-greenhouse-project-title.jpeg",
   "food-security": "/assets/photos/home/main-food-security-project-title.jpeg",
@@ -72,7 +72,7 @@ function Home() {
               </div>
               <div className="overflow-hidden rounded-b-[2.5rem] rounded-t-xl ring-1 ring-black/10">
                 <SmartImage
-                  src="/assets/photos/about/about-full-team-jumping-high-res-awesome.jpg"
+                  src="/assets/generated-performance/about-full-team-jumping-high-res-awesome-web.jpg"
                   label="iThemba Kuluntu team jumping together"
                   className="h-full w-full"
                   imgClassName="origin-left scale-[1.12]"

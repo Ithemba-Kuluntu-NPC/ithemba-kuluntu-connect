@@ -25,7 +25,7 @@ export const assets = {
     ithembaTextWhite: `${base}/logos/ithemba-text-white.png`,
     pureflowAmanzi: `${base}/logos/pureflow-amanzi-logo.png`,
     no1Ecd: `${base}/logos/no1-ecd-logo.png`,
-    pondoDogs: `${base}/logos/pondo-dogs-logo.png`,
+    pondoDogs: `${base}/generated-performance/pondo-dogs-logo-web.png`,
   },
   focusAreaIcons: {
     education: `${base}/icons/focus-areas/education.png`,

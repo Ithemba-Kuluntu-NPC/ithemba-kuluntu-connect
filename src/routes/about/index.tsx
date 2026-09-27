@@ -690,6 +690,7 @@ function Structures({ c }: { c: AboutContent }) {
               <img
                 src="/assets/icons/about-us/about-sa-project-delivery.png"
                 alt=""
+                loading="lazy"
                 className="h-16 w-16 flex-shrink-0 object-contain md:h-[72px] md:w-[72px]"
               />
               <div>
@@ -708,6 +709,7 @@ function Structures({ c }: { c: AboutContent }) {
               <img
                 src="/assets/icons/about-us/about-germany-awareness-support.png"
                 alt=""
+                loading="lazy"
                 className="h-16 w-16 flex-shrink-0 object-contain md:h-[72px] md:w-[72px]"
               />
               <div>
@@ -762,6 +764,7 @@ function WhatMakesDifferent({ c }: { c: AboutContent }) {
                 <img
                   src={iconSrc}
                   alt=""
+                  loading="lazy"
                   className="h-16 w-16 object-contain md:h-20 md:w-20"
                 />
                 <h3 className="mt-4 font-display text-lg font-bold">{card.title}</h3>
@@ -811,6 +814,7 @@ function WhatGuidesUs({ c }: { c: AboutContent }) {
             <img
               src={GUIDES_ICONS[i] ?? "/assets/icons/about-us/about-long-term-care.png"}
               alt=""
+              loading="lazy"
               className="relative h-16 w-16 object-contain md:h-20 md:w-20"
             />
             <h3 className="mt-4 font-display text-lg font-bold text-[var(--ithemba-blue-dark)]">
@@ -856,6 +860,7 @@ function Governance({ c }: { c: AboutContent }) {
               <img
                 src="/assets/icons/about-us/about-sa-project-delivery.png"
                 alt=""
+                loading="lazy"
                 className="h-16 w-16 flex-shrink-0 object-contain md:h-[72px] md:w-[72px]"
               />
               <h3 className="font-display text-xl font-bold">{g.saHeading}</h3>
@@ -883,6 +888,7 @@ function Governance({ c }: { c: AboutContent }) {
               <img
                 src="/assets/icons/about-us/about-germany-awareness-support.png"
                 alt=""
+                loading="lazy"
                 className="h-16 w-16 flex-shrink-0 object-contain md:h-[72px] md:w-[72px]"
               />
               <h3 className="font-display text-xl font-bold">{g.deHeading}</h3>

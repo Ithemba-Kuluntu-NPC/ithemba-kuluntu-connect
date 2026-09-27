@@ -50,7 +50,7 @@ const PH = {
   teamPuppyCare: `${PD}/20260528_143908.jpg`,
   // rural reality
   motherPuppies: `${PD}/20250509_161130.jpg`,
-  puppiesRural: `${PD}/20251009_155233(0).jpg`,
+  puppiesRural: "/assets/generated-performance/20251009_155233(0)-web.jpg",
   childDog: `${PD}/20251123_093910.jpg`,
   puppiesMany: `${PD}/20250902_143408.jpg`,
   puppiesLitter: `${PD}/20260512_151230.jpg`,
@@ -70,13 +70,13 @@ const PH = {
   sterTransport: `${PD}/20251212_125318.jpg`,
   // home-based
   home1: `${PD}/20250827_105255.jpg`,
-  home2: `${PD}/20260130_163511.jpg`,
+  home2: "/assets/generated-performance/20260130_163511-web.jpg",
   home3: `${PD}/20260310_153451.jpg`,
   home4: `${PD}/20260512_160914.jpg`,
   // food & shelter
   shelterBasic: `${PD}/20250916_145923.jpg`,
   feeding: `${PD}/20251125_133713.jpg`,
-  shelterNew1: `${PD}/20260401_113020.jpg`,
+  shelterNew1: "/assets/generated-performance/20260401_113020-web.jpg",
   shelterNew2: `${PD}/20260401_113259.jpg`,
   // owners / community
   owner1: `${PD}/20250110_135512.jpg`,
@@ -90,7 +90,7 @@ const PH = {
   medicalTopRight: `${PD}/20260129_085244.jpg`,
   preventionTopLeft: `${PD}/20260129_103144.jpg`,
   foodFourth: `${PD}/20260513_161707.jpg`,
-  before1: `${PD}/20251102_133018.jpg`,
+  before1: "/assets/generated-performance/20251102_133018-web.jpg",
   before2: `${PD}/20260129_085244.jpg`,
   after1: `${PD}/20260515_150019.jpg`,
   after2: `${PD}/20260411_152418.jpg`,

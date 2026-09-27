@@ -40,7 +40,7 @@ const HERO_POSTER = "/assets/photos/projects/ecd-hero.jpg";
 
 /** Project card photography — same files and crops as the Home page cards. */
 const overviewProjectHeroes: Record<string, string> = {
-  ecd: `${OVERVIEW_MEDIA}/main-ecd-project-title-2.jpg`,
+  ecd: `/assets/generated-performance/project-overview-main-ecd-project-title-2-web.jpg`,
   pureflow: `${OVERVIEW_MEDIA}/main-pureflow-project-title-3.jpg`,
   greenhouse: `${OVERVIEW_MEDIA}/main-greenhouse-project-title.jpeg`,
   "food-security": `${OVERVIEW_MEDIA}/main-food-security-project-title.jpeg`,
