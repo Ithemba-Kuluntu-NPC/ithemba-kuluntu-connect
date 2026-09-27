@@ -35,9 +35,9 @@ export const Route = createFileRoute("/partners")({ component: PartnersPage, hea
 /* ---------- assets ---------- */
 const PARTNERS_MEDIA = "/assets/photos/partners";
 const HERO_VIDEO = `${PARTNERS_MEDIA}/partners-hero-video.mp4`;
-const HERO_FALLBACK = `${PARTNERS_MEDIA}/partners-beautiful-team-photo-with-sa-harvest.jpg`;
-const TOGETHER_PHOTO = `${PARTNERS_MEDIA}/partners-beautiful-team-photo-with-sa-harvest.jpg`;
-const TRUST_PHOTO = `${PARTNERS_MEDIA}/partners-beautiful-team-photo-with-giftofthegivers.jpg`;
+const HERO_FALLBACK = "/assets/generated-performance/partners-beautiful-team-photo-with-sa-harvest-web.jpg";
+const TOGETHER_PHOTO = "/assets/generated-performance/partners-beautiful-team-photo-with-sa-harvest-web.jpg";
+const TRUST_PHOTO = "/assets/generated-performance/partners-beautiful-team-photo-with-giftofthegivers-web.jpg";
 const CTA_BG = `${PARTNERS_MEDIA}/partners-giftofthegivers-at-hub-in-pietermaritzburg.jpg`;
 const OPPORTUNITY_PHOTOS = [
   {
@@ -47,7 +47,7 @@ const OPPORTUNITY_PHOTOS = [
     position: "center 48%",
   },
   {
-    src: `${PARTNERS_MEDIA}/partners-training-gift-of-the-givers-pureflow.jpg`,
+    src: "/assets/generated-performance/partners-training-gift-of-the-givers-pureflow-web.jpg",
     alt: "Gift of the Givers and PureFlow Amanzi training partners",
     className: "col-span-1 min-h-40 sm:min-h-52 lg:min-h-[190px]",
     position: "center 45%",

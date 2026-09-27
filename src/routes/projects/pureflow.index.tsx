@@ -122,13 +122,14 @@ const SCRIPT = '"Caveat", "Kalam", cursive';
 
 const ASSET_BASE = "/assets/icons/projects/pureflow";
 const PHOTO_BASE = "/assets/photos/projects/pureflow";
+const photoPath = (filename: string) => (filename.startsWith("/") ? filename : `${PHOTO_BASE}/${filename}`);
 const HERO_VIDEO = "/assets/videos/projects/pureflow/pureflow-hero-loop.mp4";
-const HERO_POSTER = "/assets/photos/projects/pureflow/pureflow-hero-poster.jpg";
+const HERO_POSTER = "/assets/photos/projects/pureflow/pureflow-rural-handout-community-group-holding-filter-buckets-02.jpg";
 
 const FIELD_PHOTOS = {
   loop: [
-    "pureflow-community-engagement-sibonda-outdoor-meeting-team-and-filter-01.jpg",
-    "pureflow-handout-event-01-assembly-components-table-01.jpg",
+    "/assets/generated-performance/pureflow-community-engagement-sibonda-outdoor-meeting-team-and-filter-01-web.jpg",
+    "/assets/generated-performance/pureflow-handout-event-01-assembly-components-table-01-web.jpg",
     "pureflow-big-hand-out-event-giving-filters-to-people.jpg",
     "pureflow-rural-handout-wash-training-community-speaker-01.jpg",
     "pureflow-home-visit-household-monitoring-discussion-01.jpg",
@@ -137,17 +138,17 @@ const FIELD_PHOTOS = {
     background: "pureflow-water-source-muddy-stream-woman-01.jpg",
     main: "pureflow-woman-carrying-water-bucket-on-head-01.jpg",
     carrying: "pureflow-water-source-muddy-stream-scooping-01.jpg",
-    source: "pureflow-step-01-structural-problem-3.jpg",
+    source: "/assets/generated-performance/pureflow-step-01-structural-problem-3-web.jpg",
     household: "pureflow-home-visit-boiling-water-open-fire-01.jpg",
   },
   climate: [
     "pureflow-young-woman-drinking-filtered-water-01.jpg",
     "pureflow-sdg-background.jpg",
     "pureflow-home-visit-family-filter-use-guidance-01.jpg",
-    "pureflow-ecd-handout-event-smiling-mom-at-training-station.jpg",
+    "/assets/generated-performance/pureflow-ecd-handout-event-smiling-mom-at-training-station-web.jpg",
   ],
-  sdg: "pureflow-community-engagement-royal-house-large-community-meeting-01.jpg",
-  donation: "pureflow-happy-dancing-recipients-of-filter-after-event.jpg",
+  sdg: "/assets/generated-performance/pureflow-community-engagement-royal-house-large-community-meeting-01-web.jpg",
+  donation: "/assets/generated-performance/pureflow-happy-dancing-recipients-of-filter-after-event-web.jpg",
   closing: [
     "pureflow-handout-event-01-community-group-with-filters-02.jpg",
     "pureflow-rural-handout-community-group-holding-filter-buckets-01.jpg",
@@ -929,7 +930,7 @@ function DeliveryLoop({ t }: { t: (k: string, fb?: string) => string }) {
     title: t(`step2.loop.${n}.title`),
     desc: t(`step2.loop.${n}.desc`),
     Icon: ICONS[i],
-    photo: `${PHOTO_BASE}/${FIELD_PHOTOS.loop[i]}`,
+    photo: photoPath(FIELD_PHOTOS.loop[i]),
   }));
 
   const LoopPhoto = ({ src, Icon, alt, size }: { src: string; Icon: typeof Ear; alt: string; size: "lg" | "sm" }) => {
@@ -1107,9 +1108,10 @@ function SDGGrid({ t }: { t: (k: string, fb?: string) => string }) {
     <section className="relative isolate overflow-hidden">
       <div className="absolute inset-0 -z-10">
         <img
-          src={`${PHOTO_BASE}/${FIELD_PHOTOS.sdg}`}
+          src={photoPath(FIELD_PHOTOS.sdg)}
           alt=""
           aria-hidden
+          loading="lazy"
           className="h-full w-full object-cover"
           onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = "none")}
         />
@@ -1267,9 +1269,10 @@ function DonationBox({ t, anchorRef }: { t: (k: string, fb?: string) => string; 
     <section ref={anchorRef as React.RefObject<HTMLDivElement>} id="donate" className="relative isolate scroll-mt-20 overflow-hidden">
       <div className="absolute inset-0 -z-10">
         <img
-          src={`${PHOTO_BASE}/${FIELD_PHOTOS.donation}`}
+          src={photoPath(FIELD_PHOTOS.donation)}
           alt=""
           aria-hidden
+          loading="lazy"
           className="h-full w-full object-cover"
           onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = "none")}
         />
@@ -1296,7 +1299,7 @@ function Closing({ t, goDonate }: { t: (k: string, fb?: string) => string; goDon
         <div className="relative mx-auto w-full min-w-0 max-w-md lg:max-w-none">
           <StepCollage
             photos={FIELD_PHOTOS.closing.map((photo, index) => ({
-              src: `${PHOTO_BASE}/${photo}`,
+              src: photoPath(photo),
               objectPosition: index === 2 ? "center 38%" : "center 42%",
               alt: "PureFlow Amanzi community members with household water filters",
             }))}
@@ -1346,9 +1349,10 @@ function Step01Collage({ t }: { t: (k: string, fb?: string) => string }) {
   return (
     <section id="structural-problem" className="relative isolate overflow-hidden" style={{ background: CREAM, scrollMarginTop: "calc(var(--header-height, 80px) + 16px)" }}>
       <img
-        src={`${PHOTO_BASE}/${FIELD_PHOTOS.structural.background}`}
+        src={photoPath(FIELD_PHOTOS.structural.background)}
         alt=""
         aria-hidden
+        loading="lazy"
         className="pointer-events-none absolute inset-0 h-full w-full object-cover"
         onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = "none")}
       />
@@ -1396,7 +1400,7 @@ function Step01Collage({ t }: { t: (k: string, fb?: string) => string }) {
               {/* main tall portrait, left */}
               <div className="col-span-7 row-span-4 overflow-hidden rounded-tl-[2.5rem] rounded-br-2xl rounded-tr-xl rounded-bl-xl ring-1 ring-black/10">
                 <img
-                  src={`${PHOTO_BASE}/${FIELD_PHOTOS.structural.main}`}
+                  src={photoPath(FIELD_PHOTOS.structural.main)}
                   alt="Women in rural Pondoland carrying the daily burden of unsafe water"
                   loading="lazy"
                   className="h-full w-full object-cover"
@@ -1406,7 +1410,7 @@ function Step01Collage({ t }: { t: (k: string, fb?: string) => string }) {
               {/* top right */}
               <div className="col-span-5 row-span-3 overflow-hidden rounded-tr-[2.5rem] rounded-bl-xl rounded-tl-xl rounded-br-xl ring-1 ring-black/10">
                 <img
-                  src={`${PHOTO_BASE}/${FIELD_PHOTOS.structural.carrying}`}
+                  src={photoPath(FIELD_PHOTOS.structural.carrying)}
                   alt="Daily reality of collecting water in Pondoland"
                   loading="lazy"
                   className="h-full w-full object-cover"
@@ -1416,7 +1420,7 @@ function Step01Collage({ t }: { t: (k: string, fb?: string) => string }) {
               {/* mid right */}
               <div className="col-span-5 row-span-3 overflow-hidden rounded-xl ring-1 ring-black/10">
                 <img
-                  src={`${PHOTO_BASE}/${FIELD_PHOTOS.structural.source}`}
+                  src={photoPath(FIELD_PHOTOS.structural.source)}
                   alt="Unsafe water source serving rural households"
                   loading="lazy"
                   className="h-full w-full object-cover"
@@ -1426,7 +1430,7 @@ function Step01Collage({ t }: { t: (k: string, fb?: string) => string }) {
               {/* bottom wide */}
               <div className="col-span-7 row-span-2 overflow-hidden rounded-bl-[2.5rem] rounded-tr-xl rounded-tl-xl rounded-br-xl ring-1 ring-black/10">
                 <img
-                  src={`${PHOTO_BASE}/${FIELD_PHOTOS.structural.household}`}
+                  src={photoPath(FIELD_PHOTOS.structural.household)}
                   alt="Community context behind the water crisis"
                   loading="lazy"
                   className="h-full w-full object-cover"
@@ -1462,10 +1466,10 @@ function Step01Collage({ t }: { t: (k: string, fb?: string) => string }) {
 // ----------------------- Climate Resilience & Sustainability -----------------------
 
 const CLIMATE_PHOTOS: Array<{ src?: string; objectPosition?: string; alt?: string }> = [
-  { src: `${PHOTO_BASE}/${FIELD_PHOTOS.climate[0]}`, alt: "Household filter maintenance and backwashing" },
-  { src: `${PHOTO_BASE}/${FIELD_PHOTOS.climate[1]}`, alt: "Field team testing household water quality" },
-  { src: `${PHOTO_BASE}/${FIELD_PHOTOS.climate[2]}`, alt: "Untreated water compared with filtered drinking water" },
-  { src: `${PHOTO_BASE}/${FIELD_PHOTOS.climate[3]}`, objectPosition: "center 32%", alt: "Resident using a PureFlow filter during a home visit" },
+  { src: photoPath(FIELD_PHOTOS.climate[0]), alt: "Household filter maintenance and backwashing" },
+  { src: photoPath(FIELD_PHOTOS.climate[1]), alt: "Field team testing household water quality" },
+  { src: photoPath(FIELD_PHOTOS.climate[2]), alt: "Untreated water compared with filtered drinking water" },
+  { src: photoPath(FIELD_PHOTOS.climate[3]), objectPosition: "center 32%", alt: "Resident using a PureFlow filter during a home visit" },
 ];
 
 function ClimateSection({ t }: { t: (k: string, fb?: string) => string }) {
@@ -1746,7 +1750,7 @@ function PureFlowCompactPage() {
         photoTone="ocean"
         collageVariant="B"
         photoSrcs={[
-          { src: `${PHOTO_BASE}/pureflow-home-visit-filter-installation-family-01.jpg`, objectPosition: "center 42%", alt: "Family learning how to install and use a PureFlow filter" },
+          { src: "/assets/generated-performance/pureflow-home-visit-filter-installation-family-01-web.jpg", objectPosition: "center 42%", alt: "Family learning how to install and use a PureFlow filter" },
           { src: `${PHOTO_BASE}/pureflow-giftofthegivers-smiling-woman-at-training-station-at-handout-event.jpg`, objectPosition: "center 35%", alt: "Woman smiling at a PureFlow training station" },
           { src: `${PHOTO_BASE}/pureflow-ecd-handout-event-wash-education.jpg`, objectPosition: "center 40%", alt: "WASH education at an ECD handout event" },
         ]}
@@ -1815,7 +1819,7 @@ function PureFlowCompactPage() {
         photoTone="warm"
         collageVariant="B"
         photoSrcs={[
-          { src: `${PHOTO_BASE}/pureflow-happy-dancing-recipients-of-filter-after-event.jpg`, objectPosition: "center 36%", alt: "Community members celebrating after a filter event" },
+          { src: "/assets/generated-performance/pureflow-happy-dancing-recipients-of-filter-after-event-web.jpg", objectPosition: "center 36%", alt: "Community members celebrating after a filter event" },
           { src: `${PHOTO_BASE}/pureflow-g20-indaba-east-london-booth-team-01.jpg`, objectPosition: "center 42%", alt: "PureFlow Amanzi team at the G20 Indaba booth" },
           { src: `${PHOTO_BASE}/pureflow-step-05-wider-community-gains.jpeg`, objectPosition: "center 42%", alt: "Wider community gains created through PureFlow Amanzi" },
         ]}

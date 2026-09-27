@@ -38,10 +38,10 @@ export const Route = createFileRoute("/projects/greenhouse")({ component: Greenh
 /* ---------- assets (final greenhouse media) ---------- */
 const GH_MEDIA = "/assets/photos/projects/greenhouse";
 const HERO_VIDEO = `${GH_MEDIA}/Greenhouse-hero-video.mp4`;
-const HERO_POSTER = `${GH_MEDIA}/Greenhouse-wide-angle-beautiful-light.jpg`;
+const HERO_POSTER = "/assets/generated-performance/Greenhouse-wide-angle-beautiful-light-web.jpg";
 
 const G = {
-  wide: `${GH_MEDIA}/Greenhouse-wide-angle-beautiful-light.jpg`,
+  wide: "/assets/generated-performance/Greenhouse-wide-angle-beautiful-light-web.jpg",
   outside: `${GH_MEDIA}/Greenhouse-from-outside.jpg`,
   growing: `${GH_MEDIA}/Greenhouse-growing-still.jpg`,
   growing2: `${GH_MEDIA}/Greenhouse-growing-still-2.jpg`,
@@ -882,7 +882,7 @@ function Why({ c }: { c: Copy }) {
   return (
     <section className="relative isolate overflow-hidden py-20 text-white md:py-24">
       <div className="absolute inset-0 -z-10">
-        <img src={G.growing} alt="" aria-hidden className="h-full w-full object-cover" />
+        <img src={G.growing} alt="" aria-hidden loading="lazy" className="h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/88 via-[var(--ithemba-blue-dark)]/75 to-[var(--ithemba-blue)]/50" />
         <div className="absolute inset-0 bg-gradient-to-t from-[var(--ithemba-blue-deepest)]/70 via-transparent to-transparent" />
         <div className="absolute right-[-6rem] top-[-6rem] h-[28rem] w-[28rem] sun-glow" />
@@ -978,7 +978,7 @@ function HowItWorks({ c }: { c: Copy }) {
   return (
     <section className="relative isolate overflow-hidden py-20 text-white md:py-24">
       <div className="absolute inset-0 -z-10">
-        <img src={G.busy2} alt="" aria-hidden className="h-full w-full object-cover" />
+        <img src={G.busy2} alt="" aria-hidden loading="lazy" className="h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/88 via-[var(--ithemba-blue-dark)]/75 to-[var(--ithemba-blue)]/50" />
         <div className="absolute right-[-6rem] bottom-[-6rem] h-[24rem] w-[24rem] sun-glow" />
       </div>
@@ -1089,7 +1089,7 @@ function Focus({ c }: { c: Copy }) {
   return (
     <section className="relative isolate overflow-hidden py-20 text-white md:py-24">
       <div className="absolute inset-0 -z-10">
-        <img src={G.harvestGroup} alt="" aria-hidden className="h-full w-full object-cover" />
+        <img src={G.harvestGroup} alt="" aria-hidden loading="lazy" className="h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/88 via-[var(--ithemba-blue-dark)]/75 to-[var(--ithemba-blue)]/50" />
         <div className="absolute left-[-6rem] top-[-6rem] h-[24rem] w-[24rem] sun-glow" />
       </div>
@@ -1187,6 +1187,7 @@ function Monthly({ c }: { c: Copy }) {
           src={G.harvestGroup}
           alt=""
           aria-hidden
+          loading="lazy"
           className="h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[var(--ithemba-blue-deepest)]/85 via-[var(--ithemba-blue-dark)]/65 to-[var(--ithemba-blue-dark)]/35" />
