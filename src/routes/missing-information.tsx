@@ -2,7 +2,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import { missingInformation } from "@/data/missing";
 import { AlertTriangle, CheckCircle2, CircleDashed } from "lucide-react";
 
-export const Route = createFileRoute("/missing-information")({ component: MissingInfoPage });
+export const Route = createFileRoute("/missing-information")({
+  component: MissingInfoPage,
+  head: () => ({ meta: [{ name: "robots", content: "noindex, nofollow" }] }),
+});
 
 function MissingInfoPage() {
   const totalMissing = missingInformation.reduce((n, c) => n + c.items.filter(i => i.status === "missing").length, 0);

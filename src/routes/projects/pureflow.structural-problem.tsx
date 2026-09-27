@@ -42,6 +42,7 @@ export const Route = createFileRoute("/projects/pureflow/structural-problem")({
       },
       { property: "og:type", content: "article" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "robots", content: "noindex, nofollow" },
     ],
   }),
   component: StructuralProblemPage,

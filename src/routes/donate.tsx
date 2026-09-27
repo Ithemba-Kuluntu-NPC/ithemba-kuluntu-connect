@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { createSeoHead } from "@/lib/seo";
 import { DonationWidget } from "@/components/blocks/DonationWidget";
 import { useLang } from "@/components/site/LanguageProvider";
 import { Shield, Repeat, FileText, Heart, Award, Check } from "lucide-react";
@@ -237,24 +238,4 @@ function DonatePage() {
   );
 }
 
-export const Route = createFileRoute("/donate")({
-  component: DonatePage,
-  head: () => ({
-    meta: [
-      { title: "Donate — iThemba Kuluntu" },
-      {
-        name: "description",
-        content:
-          "Give monthly to sustain safe water, early learning, food security, animal welfare and emergency support in rural Pondoland.",
-      },
-      { property: "og:title", content: "Donate — iThemba Kuluntu" },
-      {
-        property: "og:description",
-        content:
-          "Your monthly donation helps sustain community-rooted work across Pondoland.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
-});
+export const Route = createFileRoute("/donate")({ component: DonatePage, head: () => createSeoHead({ title: 'Donate | iThemba Kuluntu', description: 'Support practical, community-rooted programmes helping children, families and communities across rural South Africa.', path: '/donate' }) });

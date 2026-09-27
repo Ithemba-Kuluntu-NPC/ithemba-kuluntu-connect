@@ -49,16 +49,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "iThemba Kuluntu — Hope for communities in Pondoland" },
-      { name: "description", content: "Women-led, community-rooted nonprofit working with rural communities in the Eastern Cape, South Africa. Safe water, education, food security, animal welfare and emergency support." },
       { name: "author", content: "iThemba Kuluntu" },
-      { property: "og:title", content: "iThemba Kuluntu — Hope for communities in Pondoland" },
-      { property: "og:description", content: "Women-led nonprofit in Pondoland: safe water, early learning, food security, animal welfare and emergency support." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
+      { rel: "icon", type: "image/png", href: "/assets/logos/ithemba-round-color.png" },
+      { rel: "apple-touch-icon", href: "/assets/logos/ithemba-round-color.png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" },

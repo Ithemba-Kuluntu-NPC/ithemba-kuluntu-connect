@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { createSeoHead } from "@/lib/seo";
 import { useMemo, useState } from "react";
 import {
   ArrowRight,
@@ -15,27 +16,7 @@ import {
 import { useLang } from "@/components/site/LanguageProvider";
 import { Button } from "@/components/ui/button";
 
-export const Route = createFileRoute("/media")({
-  head: () => ({
-    meta: [
-      { title: "Media and Stories — iThemba Kuluntu" },
-      {
-        name: "description",
-        content:
-          "News coverage, broadcast features, articles and project videos from iThemba Kuluntu's work in rural South Africa.",
-      },
-      { property: "og:title", content: "Media and Stories — iThemba Kuluntu" },
-      {
-        property: "og:description",
-        content:
-          "News coverage, broadcast features, articles and project videos from iThemba Kuluntu's work in rural South Africa.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-    ],
-  }),
-  component: MediaPage,
-});
+export const Route = createFileRoute("/media")({ component: MediaPage, head: () => createSeoHead({ title: 'Media & Stories | iThemba Kuluntu', description: "News coverage, broadcast features, articles and project videos from iThemba Kuluntu's community-rooted work in rural South Africa.", path: '/media' }) });
 
 /* ---------- design tokens ---------- */
 const blueDeep = "var(--ithemba-blue-deepest, #0b2545)";

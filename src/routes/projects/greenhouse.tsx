@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { createSeoHead } from "@/lib/seo";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -32,7 +33,7 @@ import { assets } from "@/data/assets";
 import { focusAreaBadgeMeta } from "@/data/projects";
 import type { Lang } from "@/data/content";
 
-export const Route = createFileRoute("/projects/greenhouse")({ component: GreenhousePage });
+export const Route = createFileRoute("/projects/greenhouse")({ component: GreenhousePage, head: () => createSeoHead({ title: 'Greenhouse with SA Harvest | iThemba Kuluntu', description: 'A water-efficient growing project in Cwebeni that produces fresh food while building practical growing skills and supporting the No.1 ECD Centre.', path: '/projects/greenhouse', breadcrumbs: [{ name: 'Home', path: '/' }, { name: 'Projects', path: '/projects' }, { name: 'Greenhouse with SA Harvest', path: '/projects/greenhouse' }] }) });
 
 /* ---------- assets (final greenhouse media) ---------- */
 const GH_MEDIA = "/assets/photos/projects/greenhouse";

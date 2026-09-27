@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { createSeoHead } from "@/lib/seo";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -32,9 +33,7 @@ import { focusAreaBadgeMeta } from "@/data/projects";
 import { assets } from "@/data/assets";
 import type { Lang } from "@/data/content";
 
-export const Route = createFileRoute("/projects/pondo-dogs")({
-  component: PondoDogsPage,
-});
+export const Route = createFileRoute("/projects/pondo-dogs")({ component: PondoDogsPage, head: () => createSeoHead({ title: 'Pondo Dogs | Animal Welfare in Pondoland | iThemba Kuluntu', description: 'Community-based animal welfare in Pondoland providing medical care, prevention, sterilisation, food, shelter support and practical owner education.', path: '/projects/pondo-dogs', breadcrumbs: [{ name: 'Home', path: '/' }, { name: 'Projects', path: '/projects' }, { name: 'Pondo Dogs', path: '/projects/pondo-dogs' }] }) });
 
 /* ---------- final Pondo Dogs documentary media ---------- */
 const PD = "/assets/photos/projects/pondodogs";
