@@ -76,25 +76,19 @@ impact.counters.households.value: 3,094
 impact.counters.households.label: Haushalte mit sichererem Wasserzugang erreicht
 
 impact.counters.people.value: 15,000+
-impact.counters.people.label: Menschen mit sichererem Wasserzugang erreicht
+impact.counters.people.label: Menschen mit Zugang zu sicherem Wasser erreicht
 
 impact.counters.green_jobs.value: 80+
-impact.counters.green_jobs.label: Grüne Arbeitsplätze und lokale Umsetzungsrollen für Frauen und Jugendliche geschaffen
+impact.counters.green_jobs.label: Grüne Arbeitsplätze und bezahlte lokale Umsetzungsrollen für Frauen und Jugendliche geschaffen
 
-impact.counters.learning_sites.value: 114
-impact.counters.learning_sites.label: Schulen und ECD-Zentren mit sichererem Wasserzugang unterstützt
+impact.counters.wash_events.value: 350+
+impact.counters.wash_events.label: WASH-Bildung, Gemeindeschulungen und Nachbetreuungsmaßnahmen in Haushalten durchgeführt
 
-impact.counters.educators.value: 276
-impact.counters.educators.label: Lehrkräfte und ECD-Fachkräfte durch sicheren Wasserzugang und WASH-Unterstützung erreicht
-
-impact.counters.wash_events.value: 270+
-impact.counters.wash_events.label: WASH-Bildungs- und Gemeindeschulungen durchgeführt
-
-impact.counters.litres.value: 30M+
-impact.counters.litres.label: Liter sichere Wasserkapazität systematisch bereitgestellt
+impact.counters.litres.value: 45M+
+impact.counters.litres.label: Liter Aufbereitungskapazität für sicheres Wasser ermöglicht
 
 impact.counters.co2.value: 8,000+
-impact.counters.co2.label: Tonnen CO₂e vermieden oder reduziert, vorbehaltlich Verifizierung
+impact.counters.co2.label: Tonnen CO₂e-Minderungspotenzial, vorbehaltlich Verifizierung
 
 # ------------------------------------------
 
