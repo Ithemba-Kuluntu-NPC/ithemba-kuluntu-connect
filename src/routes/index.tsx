@@ -335,7 +335,9 @@ function Home() {
         </div>
       </section>
 
-      <NewsletterSignup />
+      <div className="-mb-24">
+        <NewsletterSignup />
+      </div>
     </>
   );
 }
