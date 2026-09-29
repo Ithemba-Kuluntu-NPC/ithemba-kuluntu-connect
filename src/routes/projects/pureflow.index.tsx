@@ -637,8 +637,6 @@ function Showcase({ t, lang }: { t: (k: string, fb?: string) => string; lang: La
     { k: "households", iconSrc: "/assets/icons/projects/pureflow/pureflow-households-safe-water.png", v: t("impact.counters.households.value"), l: t("impact.counters.households.label") },
     { k: "people", iconSrc: "/assets/icons/projects/pureflow/pureflow-individuals-reached.png", v: t("impact.counters.people.value"), l: t("impact.counters.people.label") },
     { k: "green_jobs", iconSrc: "/assets/icons/projects/pureflow/pureflow-green-jobs.png", v: t("impact.counters.green_jobs.value"), l: t("impact.counters.green_jobs.label") },
-    { k: "learning_sites", iconSrc: "/assets/icons/projects/pureflow/pureflow-schools-ecd-supported.png", v: t("impact.counters.learning_sites.value"), l: t("impact.counters.learning_sites.label") },
-    { k: "educators", iconSrc: "/assets/icons/projects/pureflow/pureflow-educators-practitioners.png", v: t("impact.counters.educators.value"), l: t("impact.counters.educators.label") },
     { k: "wash_events", iconSrc: "/assets/icons/projects/pureflow/pureflow-wash-training-sessions.png", v: t("impact.counters.wash_events.value"), l: t("impact.counters.wash_events.label") },
     { k: "litres", iconSrc: "/assets/icons/projects/pureflow/pureflow-clean-water-capacity.png", v: t("impact.counters.litres.value"), l: t("impact.counters.litres.label") },
     { k: "co2", iconSrc: "/assets/icons/projects/pureflow/pureflow-co2e-reduced.png", v: t("impact.counters.co2.value"), l: t("impact.counters.co2.label") },
@@ -657,7 +655,7 @@ function Showcase({ t, lang }: { t: (k: string, fb?: string) => string; lang: La
         </div>
 
         {/* Counter matrix — yellow icons, animated numbers, on blue */}
-        <div className="mt-8 grid grid-cols-2 gap-x-5 gap-y-7 sm:grid-cols-4">
+        <div className="mt-8 grid grid-cols-2 gap-x-5 gap-y-7 sm:grid-cols-3">
           {counters.map((c) => {
             const { value, suffix } = parseCounter(c.v);
             return (
