@@ -74,29 +74,23 @@ showcase.video.description: Real-world last-mile delivery and field tracking.
 
 impact.note: Every figure represents tracked field activity, household onboarding, WASH education, local implementation and climate impact data, with emissions figures subject to independent verification.
 
-impact.counters.households.value: 3,094
+impact.counters.households.value: 3,000+
 impact.counters.households.label: Households secured with safer water access
 
 impact.counters.people.value: 15,000+
-impact.counters.people.label: Individuals reached with safer water access
+impact.counters.people.label: People reached with safe water access
 
 impact.counters.green_jobs.value: 80+
-impact.counters.green_jobs.label: Green jobs and local implementation roles created for women and youth
+impact.counters.green_jobs.label: Green jobs and paid local implementation roles created for women and youth
 
-impact.counters.learning_sites.value: 114
-impact.counters.learning_sites.label: Schools and ECD centres supported with safer water access
+impact.counters.wash_events.value: 350+
+impact.counters.wash_events.label: WASH education, community training and household follow-up engagements delivered
 
-impact.counters.educators.value: 276
-impact.counters.educators.label: Educators and ECD practitioners reached through safe-water and WASH support
-
-impact.counters.wash_events.value: 270+
-impact.counters.wash_events.label: WASH education and community training sessions delivered
-
-impact.counters.litres.value: 30M+
-impact.counters.litres.label: Litres of clean water capacity systematically generated
+impact.counters.litres.value: 45M+
+impact.counters.litres.label: Litres of safe-water treatment capacity enabled
 
 impact.counters.co2.value: 8,000+
-impact.counters.co2.label: Tonnes of CO₂e avoided or reduced, subject to verification
+impact.counters.co2.label: Tonnes CO₂e reduction potential, subject to verification
 
 # ------------------------------------------
 
