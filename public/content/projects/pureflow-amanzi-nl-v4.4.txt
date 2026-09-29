@@ -76,25 +76,19 @@ impact.counters.households.value: 3,094
 impact.counters.households.label: Huishoudens bereikt met veiliger water
 
 impact.counters.people.value: 15,000+
-impact.counters.people.label: Mensen bereikt met veiliger water
+impact.counters.people.label: Mensen bereikt met toegang tot veilig water
 
 impact.counters.green_jobs.value: 80+
-impact.counters.green_jobs.label: Groene banen en lokale uitvoeringsrollen gecreëerd voor vrouwen en jongeren
+impact.counters.green_jobs.label: Groene banen en betaalde lokale uitvoeringsrollen gecreëerd voor vrouwen en jongeren
 
-impact.counters.learning_sites.value: 114
-impact.counters.learning_sites.label: Scholen en ECD-centra ondersteund met veiliger water
+impact.counters.wash_events.value: 350+
+impact.counters.wash_events.label: WASH-educatie, gemeenschapstrainingen en opvolgmomenten bij huishoudens uitgevoerd
 
-impact.counters.educators.value: 276
-impact.counters.educators.label: Leerkrachten en ECD-medewerkers bereikt via veilig water en WASH-ondersteuning
-
-impact.counters.wash_events.value: 270+
-impact.counters.wash_events.label: WASH-educatie en gemeenschapstrainingen uitgevoerd
-
-impact.counters.litres.value: 30M+
-impact.counters.litres.label: Liter veilige watercapaciteit systematisch mogelijk gemaakt
+impact.counters.litres.value: 45M+
+impact.counters.litres.label: Liter capaciteit voor veilige waterbehandeling mogelijk gemaakt
 
 impact.counters.co2.value: 8,000+
-impact.counters.co2.label: Ton CO₂e vermeden of verminderd, onder voorbehoud van verificatie
+impact.counters.co2.label: Ton CO₂e-reductiepotentieel, onder voorbehoud van verificatie
 
 # ------------------------------------------
 
