@@ -230,7 +230,7 @@ const COPY: Record<"en" | "de" | "nl", Copy> = {
   de: {
     hero: {
       eyebrow: "Partnerschaften",
-      title: "Partner von iThemba Kuluntu werden",
+      title: "Partner werden",
       text: "Wir arbeiten mit Partnern zusammen, die praktische, gemeindenahe Veränderung in Pondoland und darüber hinaus unterstützen möchten. Gemeinsam können wir sicheres Wasser, frühkindliche Bildung, Ernährungssicherheit, Tierschutz, Katastrophenhilfe und lokale Lebensgrundlagen stärken.",
       ctaPartner: "Partner werden",
       ctaProjects: "Unsere Projekte entdecken",
