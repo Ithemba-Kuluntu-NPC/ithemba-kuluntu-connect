@@ -34,7 +34,7 @@ export const Route = createFileRoute("/partners")({ component: PartnersPage, hea
 
 /* ---------- assets ---------- */
 const PARTNERS_MEDIA = "/assets/photos/partners";
-const HERO_VIDEO = `${PARTNERS_MEDIA}/partners-hero-video.mp4`;
+const HERO_VIDEO = `${PARTNERS_MEDIA}/partners-hero-video-compressed.mp4`;
 const HERO_FALLBACK = "/assets/generated-performance/partners-beautiful-team-photo-with-sa-harvest-web.jpg";
 const TOGETHER_PHOTO = "/assets/generated-performance/partners-beautiful-team-photo-with-sa-harvest-web.jpg";
 const TRUST_PHOTO = "/assets/generated-performance/partners-beautiful-team-photo-with-giftofthegivers-web.jpg";

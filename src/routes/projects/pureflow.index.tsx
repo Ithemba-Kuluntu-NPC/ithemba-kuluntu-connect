@@ -123,7 +123,7 @@ const SCRIPT = '"Caveat", "Kalam", cursive';
 const ASSET_BASE = "/assets/icons/projects/pureflow";
 const PHOTO_BASE = "/assets/photos/projects/pureflow";
 const photoPath = (filename: string) => (filename.startsWith("/") ? filename : `${PHOTO_BASE}/${filename}`);
-const HERO_VIDEO = "/assets/videos/projects/pureflow/pureflow-hero-loop.mp4";
+const HERO_VIDEO = `${PHOTO_BASE}/hero-video-pureflow-compressed-8mb.mp4`;
 const HERO_POSTER = "/assets/photos/projects/pureflow/pureflow-rural-handout-community-group-holding-filter-buckets-02.jpg";
 
 const FIELD_PHOTOS = {
