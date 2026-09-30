@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { createSeoHead } from "@/lib/seo";
+import { PhotoLightboxGallery, contentPhoto } from "@/components/blocks/PhotoLightbox";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -33,7 +34,21 @@ import { focusAreaBadgeMeta } from "@/data/projects";
 import { assets } from "@/data/assets";
 import type { Lang } from "@/data/content";
 
-export const Route = createFileRoute("/projects/pondo-dogs")({ component: PondoDogsPage, head: () => createSeoHead({ title: 'Pondo Dogs | Animal Welfare in Pondoland | iThemba Kuluntu', description: 'Community-based animal welfare in Pondoland providing medical care, prevention, sterilisation, food, shelter support and practical owner education.', path: '/projects/pondo-dogs', breadcrumbs: [{ name: 'Home', path: '/' }, { name: 'Projects', path: '/projects' }, { name: 'Pondo Dogs', path: '/projects/pondo-dogs' }] }) });
+export const Route = createFileRoute("/projects/pondo-dogs")({
+  component: PondoDogsPage,
+  head: () =>
+    createSeoHead({
+      title: "Pondo Dogs | Animal Welfare in Pondoland | iThemba Kuluntu",
+      description:
+        "Community-based animal welfare in Pondoland providing medical care, prevention, sterilisation, food, shelter support and practical owner education.",
+      path: "/projects/pondo-dogs",
+      breadcrumbs: [
+        { name: "Home", path: "/" },
+        { name: "Projects", path: "/projects" },
+        { name: "Pondo Dogs", path: "/projects/pondo-dogs" },
+      ],
+    }),
+});
 
 /* ---------- final Pondo Dogs documentary media ---------- */
 const PD = "/assets/photos/projects/pondodogs";
@@ -101,7 +116,6 @@ const PH = {
   field1: `${PD}/20251119_085954.jpg`,
   field2: `${PD}/20260313_063332.jpg`,
 } as const;
-
 
 const KUSTENHUND_URL = "https://www.kuestenhund.com/";
 
@@ -194,28 +208,44 @@ function PhotoStrip({
   className?: string;
   aspect?: string;
 }) {
+  const usable = photos.filter((photo): photo is CollageSlot & { src: string } =>
+    Boolean(photo.src),
+  );
   return (
-    <div
-      className={`grid gap-2 overflow-hidden rounded-[1.75rem] ring-1 ring-white/15 ${
-        photos.length >= 4 ? "grid-cols-2 sm:grid-cols-4" : "grid-cols-3"
-      } ${className}`}
-      style={{ filter: "drop-shadow(0 18px 40px rgba(0,0,0,0.28))" }}
+    <PhotoLightboxGallery
+      photos={usable.map((photo) => contentPhoto(photo.src, photo.label))}
+      label="Pondo Dogs photo gallery"
     >
-      {photos.map((p, i) => (
-        <div key={i} className={`overflow-hidden rounded-2xl ${aspect}`}>
-          <img
-            src={p.src}
-            alt={p.label}
-            loading="lazy"
-            className="h-full w-full object-cover"
-            style={p.pos ? { objectPosition: p.pos } : undefined}
-          />
+      {(openPhoto) => (
+        <div
+          className={`grid gap-2 overflow-hidden rounded-[1.75rem] ring-1 ring-white/15 ${photos.length >= 4 ? "grid-cols-2 sm:grid-cols-4" : "grid-cols-3"} ${className}`}
+          style={{ filter: "drop-shadow(0 18px 40px rgba(0,0,0,0.28))" }}
+        >
+          {photos.map((p, i) => (
+            <button
+              type="button"
+              disabled={!p.src}
+              aria-label={`Open photo: ${p.label}`}
+              onClick={() => p.src && openPhoto(usable.findIndex((photo) => photo.src === p.src))}
+              key={i}
+              className={`overflow-hidden rounded-2xl text-left ${p.src ? "cursor-zoom-in" : ""} ${aspect}`}
+            >
+              {p.src && (
+                <img
+                  src={p.src}
+                  alt={p.label}
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                  style={p.pos ? { objectPosition: p.pos } : undefined}
+                />
+              )}
+            </button>
+          ))}
         </div>
-      ))}
-    </div>
+      )}
+    </PhotoLightboxGallery>
   );
 }
-
 
 function PhotoCollage({
   photos,
@@ -264,29 +294,54 @@ function PhotoCollage({
     br: "-right-3 -bottom-3",
   };
 
+  const galleryPhotos = usable.filter((photo): photo is CollageSlot & { src: string } =>
+    Boolean(photo.src),
+  );
   return (
-    <div className={`relative ${className}`}>
-      <div
-        className="relative grid aspect-[4/5] grid-cols-12 grid-rows-6 gap-2.5 md:gap-3"
-        style={{ filter: "drop-shadow(0 22px 50px rgba(60,30,10,0.32))" }}
-      >
-        {usable.map((p, i) => (
-          <div key={i} className={`overflow-hidden ring-1 ring-black/10 ${cells[i]}`}>
-            <SmartImage
-              src={p.src ?? ""}
-              label={p.label}
-              tone={p.tone ?? "earth"}
-              rounded="rounded-none"
-              className="h-full w-full"
-              objectPosition={p.pos}
-              showMissingBadge={false}
-            />
-
+    <PhotoLightboxGallery
+      photos={galleryPhotos.map((photo) => contentPhoto(photo.src, photo.label))}
+      label="Pondo Dogs photo gallery"
+    >
+      {(openPhoto) => (
+        <div className={`relative ${className}`}>
+          <div
+            className="relative grid aspect-[4/5] grid-cols-12 grid-rows-6 gap-2.5 md:gap-3"
+            style={{ filter: "drop-shadow(0 22px 50px rgba(60,30,10,0.32))" }}
+          >
+            {usable.map((p, i) => (
+              <button
+                type="button"
+                disabled={!p.src}
+                aria-label={`Open photo: ${p.label}`}
+                onClick={() =>
+                  p.src && openPhoto(galleryPhotos.findIndex((photo) => photo.src === p.src))
+                }
+                key={i}
+                className={`overflow-hidden text-left ring-1 ring-black/10 ${p.src ? "cursor-zoom-in" : ""} ${cells[i]}`}
+              >
+                <SmartImage
+                  src={p.src ?? ""}
+                  label={p.label}
+                  tone={p.tone ?? "earth"}
+                  rounded="rounded-none"
+                  className="h-full w-full"
+                  objectPosition={p.pos}
+                  showMissingBadge={false}
+                />
+              </button>
+            ))}
           </div>
-        ))}
-      </div>
-      {icon && <CollageIconBadge src={icon} alt="" className={`${iconPos[iconCorner]} rotate-[8deg]`} size={64} />}
-    </div>
+          {icon && (
+            <CollageIconBadge
+              src={icon}
+              alt=""
+              className={`${iconPos[iconCorner]} rotate-[8deg]`}
+              size={64}
+            />
+          )}
+        </div>
+      )}
+    </PhotoLightboxGallery>
   );
 }
 
@@ -377,7 +432,10 @@ type Copy = {
     eyebrow: string;
     title: string;
     body: string[];
-    areas: { key: "animal-welfare" | "education" | "skills-livelihoods" | "community-health"; label: string }[];
+    areas: {
+      key: "animal-welfare" | "education" | "skills-livelihoods" | "community-health";
+      label: string;
+    }[];
   };
   donation: {
     eyebrow: string;
@@ -415,8 +473,7 @@ const COPY: Record<Lang, Copy> = {
     hero: {
       eyebrow: "Animal Welfare",
       title: "Pondo Dogs",
-      text:
-        "Pondo Dogs is the animal welfare programme of iThemba Kuluntu. We work with animals, owners and local community teams in Pondoland, South Africa, supporting vulnerable dogs, cats and other animals through practical care, prevention, medical support, food, shelter and owner education.",
+      text: "Pondo Dogs is the animal welfare programme of iThemba Kuluntu. We work with animals, owners and local community teams in Pondoland, South Africa, supporting vulnerable dogs, cats and other animals through practical care, prevention, medical support, food, shelter and owner education.",
       monthly: "Donate Monthly to Support This Project",
       once: "Give Once",
       location: "Pondoland · Eastern Cape · South Africa",
@@ -433,9 +490,16 @@ const COPY: Record<Lang, Copy> = {
         { label: "Project", value: "Pondo Dogs" },
         { label: "Focus", value: "Animal welfare and community wellbeing" },
         { label: "Where", value: "Pondoland, Eastern Cape, South Africa" },
-        { label: "Who it helps", value: "Vulnerable dogs and cats, and where possible other domestic or working animals" },
+        {
+          label: "Who it helps",
+          value: "Vulnerable dogs and cats, and where possible other domestic or working animals",
+        },
         { label: "How we work", value: "With animals, owners and local community teams" },
-        { label: "Core support", value: "Medical care, emergency response, prevention, sterilisation, food, shelter and education" },
+        {
+          label: "Core support",
+          value:
+            "Medical care, emergency response, prevention, sterilisation, food, shelter and education",
+        },
         { label: "Donation focus", value: "Monthly support for animal welfare care" },
       ],
       partnerLine: { pre: "Partner: ", post: " for monthly sterilisation campaigns" },
@@ -674,8 +738,7 @@ const COPY: Record<Lang, Copy> = {
     hero: {
       eyebrow: "Tierschutz",
       title: "Pondo Dogs",
-      text:
-        "Pondo Dogs ist das Tierschutzprogramm von iThemba Kuluntu. Gemeinsam mit Tieren, Tierhalterinnen und Tierhaltern sowie lokalen Community-Teams in Pondoland, Südafrika, unterstützen wir gefährdete Hunde, Katzen und andere Tiere durch praktische Hilfe, Prävention, medizinische Versorgung, Futter, Schutz und Aufklärung.",
+      text: "Pondo Dogs ist das Tierschutzprogramm von iThemba Kuluntu. Gemeinsam mit Tieren, Tierhalterinnen und Tierhaltern sowie lokalen Community-Teams in Pondoland, Südafrika, unterstützen wir gefährdete Hunde, Katzen und andere Tiere durch praktische Hilfe, Prävention, medizinische Versorgung, Futter, Schutz und Aufklärung.",
       monthly: "Monatlich für dieses Projekt spenden",
       once: "Einmalig spenden",
       location: "Pondoland · Eastern Cape · Südafrika",
@@ -692,9 +755,19 @@ const COPY: Record<Lang, Copy> = {
         { label: "Projekt", value: "Pondo Dogs" },
         { label: "Fokus", value: "Tierschutz und Gemeinwohl" },
         { label: "Wo", value: "Pondoland, Eastern Cape, Südafrika" },
-        { label: "Wem es hilft", value: "Gefährdete Hunde und Katzen sowie, wo möglich, andere Haus- und Nutztiere in Not" },
-        { label: "Wie wir arbeiten", value: "Mit Tieren, Tierhalterinnen und Tierhaltern sowie lokalen Community-Teams" },
-        { label: "Kernunterstützung", value: "Medizinische Versorgung, Notfallhilfe, Prävention, Sterilisation, Futter, Schutz und Aufklärung" },
+        {
+          label: "Wem es hilft",
+          value: "Gefährdete Hunde und Katzen sowie, wo möglich, andere Haus- und Nutztiere in Not",
+        },
+        {
+          label: "Wie wir arbeiten",
+          value: "Mit Tieren, Tierhalterinnen und Tierhaltern sowie lokalen Community-Teams",
+        },
+        {
+          label: "Kernunterstützung",
+          value:
+            "Medizinische Versorgung, Notfallhilfe, Prävention, Sterilisation, Futter, Schutz und Aufklärung",
+        },
         { label: "Spendenfokus", value: "Monatliche Unterstützung für Tierschutzarbeit" },
       ],
       partnerLine: { pre: "Partner: ", post: " für monatliche Sterilisationskampagnen" },
@@ -933,8 +1006,7 @@ const COPY: Record<Lang, Copy> = {
     hero: {
       eyebrow: "Dierenwelzijn",
       title: "Pondo Dogs",
-      text:
-        "Pondo Dogs is het dierenwelzijnsprogramma van iThemba Kuluntu. Samen met dieren, eigenaren en lokale communityteams in Pondoland, Zuid-Afrika, ondersteunen we kwetsbare honden, katten en andere dieren met praktische zorg, preventie, medische hulp, voeding, beschutting en voorlichting.",
+      text: "Pondo Dogs is het dierenwelzijnsprogramma van iThemba Kuluntu. Samen met dieren, eigenaren en lokale communityteams in Pondoland, Zuid-Afrika, ondersteunen we kwetsbare honden, katten en andere dieren met praktische zorg, preventie, medische hulp, voeding, beschutting en voorlichting.",
       monthly: "Maandelijks doneren voor dit project",
       once: "Eenmalig doneren",
       location: "Pondoland · Eastern Cape · Zuid-Afrika",
@@ -951,9 +1023,16 @@ const COPY: Record<Lang, Copy> = {
         { label: "Project", value: "Pondo Dogs" },
         { label: "Focus", value: "Dierenwelzijn en gemeenschapswelzijn" },
         { label: "Waar", value: "Pondoland, Eastern Cape, Zuid-Afrika" },
-        { label: "Wie het helpt", value: "Kwetsbare honden en katten, en waar mogelijk andere huis- en werkdieren in nood" },
+        {
+          label: "Wie het helpt",
+          value: "Kwetsbare honden en katten, en waar mogelijk andere huis- en werkdieren in nood",
+        },
         { label: "Hoe wij werken", value: "Met dieren, eigenaren en lokale communityteams" },
-        { label: "Kernondersteuning", value: "Medische zorg, noodhulp, preventie, sterilisatie, voeding, beschutting en voorlichting" },
+        {
+          label: "Kernondersteuning",
+          value:
+            "Medische zorg, noodhulp, preventie, sterilisatie, voeding, beschutting en voorlichting",
+        },
         { label: "Donatiefocus", value: "Maandelijkse steun voor dierenwelzijnswerk" },
       ],
       partnerLine: { pre: "Partner: ", post: " voor maandelijkse sterilisatiecampagnes" },
@@ -1267,8 +1346,6 @@ function Hero({ c }: { c: Copy }) {
         <div className="absolute right-[-6rem] top-[-6rem] h-[28rem] w-[28rem] sun-glow" />
       </div>
 
-
-
       {/* logo */}
       <div className="absolute right-4 top-14 z-10 md:right-8 md:top-16">
         <SmartLogo
@@ -1353,7 +1430,12 @@ function Hero({ c }: { c: Copy }) {
         </div>
       </div>
 
-      <svg className="block w-full -mb-px" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden>
+      <svg
+        className="block w-full -mb-px"
+        viewBox="0 0 1440 80"
+        preserveAspectRatio="none"
+        aria-hidden
+      >
         <path
           d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z"
           fill="var(--ithemba-cream)"
@@ -1380,9 +1462,13 @@ function Snapshot({ c }: { c: Copy }) {
       <div className="relative mx-auto grid max-w-7xl gap-9 px-4 lg:grid-cols-[0.82fr_1.18fr] lg:items-start lg:gap-12 lg:px-8">
         <div>
           <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)]">{c.snapshot.eyebrow}</div>
-          <h2 className="-mt-1 font-display text-4xl font-bold text-white md:text-5xl">{c.snapshot.title}</h2>
+          <h2 className="-mt-1 font-display text-4xl font-bold text-white md:text-5xl">
+            {c.snapshot.title}
+          </h2>
           <div className="mt-5 space-y-3 text-base leading-relaxed text-white/85">
-            {c.snapshot.body.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
+            {c.snapshot.body.map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))}
           </div>
         </div>
 
@@ -1390,17 +1476,26 @@ function Snapshot({ c }: { c: Copy }) {
           <div className="grid gap-x-7 gap-y-5 sm:grid-cols-2">
             {c.snapshot.facts.map((fact, index) => (
               <div key={fact.label} className="flex items-start gap-3">
-                <PdIcon src={SNAPSHOT_ICONS[index] ?? ICON.project} className="h-11 w-11 shrink-0 md:h-12 md:w-12" />
+                <PdIcon
+                  src={SNAPSHOT_ICONS[index] ?? ICON.project}
+                  className="h-11 w-11 shrink-0 md:h-12 md:w-12"
+                />
                 <div className="pt-0.5">
-                  <div className="text-[10px] font-semibold uppercase tracking-wide text-white/60">{fact.label}</div>
-                  <div className="mt-0.5 font-display text-sm font-bold leading-snug text-white md:text-base">{fact.value}</div>
+                  <div className="text-[10px] font-semibold uppercase tracking-wide text-white/60">
+                    {fact.label}
+                  </div>
+                  <div className="mt-0.5 font-display text-sm font-bold leading-snug text-white md:text-base">
+                    {fact.value}
+                  </div>
                 </div>
               </div>
             ))}
           </div>
           <div className="mt-6 border-t border-white/15 pt-4 text-sm text-white/80">
             <PawPrint className="mr-2 inline h-4 w-4 text-[var(--ithemba-yellow)]" />
-            {c.snapshot.partnerLine.pre}<KustenhundLink className="text-white" />{c.snapshot.partnerLine.post}
+            {c.snapshot.partnerLine.pre}
+            <KustenhundLink className="text-white" />
+            {c.snapshot.partnerLine.post}
           </div>
         </div>
       </div>
@@ -1418,7 +1513,11 @@ function Who({ c }: { c: Copy }) {
           iconCorner="tr"
           icon={ICON.project}
           photos={[
-            { src: PH.team, label: "iThemba Kuluntu Pondo Dogs project workers with dogs", pos: "center 40%" },
+            {
+              src: PH.team,
+              label: "iThemba Kuluntu Pondo Dogs project workers with dogs",
+              pos: "center 40%",
+            },
             { src: PH.teamPuppies, label: "Project worker caring for puppies" },
             { src: PH.teamCommunity, label: "Pondo Dogs team in the community" },
           ]}
@@ -1443,10 +1542,16 @@ function Believe({ c }: { c: Copy }) {
     <section className="relative overflow-hidden bg-[var(--ithemba-blue-deepest)] py-14 text-white md:py-16">
       <div className="mx-auto grid max-w-7xl items-center gap-9 px-4 md:grid-cols-2 lg:gap-12 lg:px-8">
         <div>
-          <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center gap-2"><PawDoodle /> {c.believe.eyebrow}</div>
-          <h2 className="-mt-1 font-display text-4xl font-bold text-white md:text-5xl">{c.believe.title}</h2>
+          <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center gap-2">
+            <PawDoodle /> {c.believe.eyebrow}
+          </div>
+          <h2 className="-mt-1 font-display text-4xl font-bold text-white md:text-5xl">
+            {c.believe.title}
+          </h2>
           <div className="mt-5 space-y-3 text-base leading-relaxed text-white/85 md:text-lg">
-            {c.believe.body.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
+            {c.believe.body.map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))}
           </div>
         </div>
         <PhotoCollage
@@ -1467,15 +1572,25 @@ function Why({ c }: { c: Copy }) {
   return (
     <section className="relative isolate overflow-hidden py-14 text-white md:py-16">
       <div className="absolute inset-0 -z-10">
-        <img src={PH.motherPuppies} alt="" aria-hidden className="h-full w-full object-cover" style={{ objectPosition: "center 54%" }} />
+        <img
+          src={PH.motherPuppies}
+          alt=""
+          aria-hidden
+          className="h-full w-full object-cover"
+          style={{ objectPosition: "center 54%" }}
+        />
         <div className="absolute inset-0 bg-gradient-to-r from-[var(--ithemba-blue-deepest)]/78 via-[var(--ithemba-blue-dark)]/58 to-[var(--ithemba-blue)]/24" />
       </div>
       <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
         <div className="max-w-3xl">
-          <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center gap-2"><PawDoodle /> {c.why.eyebrow}</div>
+          <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center gap-2">
+            <PawDoodle /> {c.why.eyebrow}
+          </div>
           <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.why.title}</h2>
           <div className="mt-5 space-y-3 text-base leading-relaxed text-white/90 md:text-lg">
-            {c.why.body.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
+            {c.why.body.map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))}
           </div>
         </div>
       </div>
@@ -1566,7 +1681,9 @@ function CareSection({
         </>
       )}
       <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
-        <div className={`grid items-center gap-10 md:grid-cols-2 ${reversed ? "md:[&>*:first-child]:order-2" : ""}`}>
+        <div
+          className={`grid items-center gap-10 md:grid-cols-2 ${reversed ? "md:[&>*:first-child]:order-2" : ""}`}
+        >
           <PhotoCollage
             variant={photos.length >= 4 ? (reversed ? "C" : "A") : "B"}
             iconCorner={reversed ? "tl" : "tr"}
@@ -1580,7 +1697,9 @@ function CareSection({
                 <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center gap-2">
                   <PawDoodle /> {eyebrow}
                 </div>
-                <h2 className="-mt-1 font-display text-4xl font-bold text-white md:text-5xl">{title}</h2>
+                <h2 className="-mt-1 font-display text-4xl font-bold text-white md:text-5xl">
+                  {title}
+                </h2>
               </>
             ) : (
               <SectionHeading eyebrow={eyebrow} title={title} />
@@ -1603,9 +1722,7 @@ function CareSection({
                 ))}
               </ul>
             )}
-            {outro && (
-              <p className={`mt-6 text-base leading-relaxed ${outroColor}`}>{outro}</p>
-            )}
+            {outro && <p className={`mt-6 text-base leading-relaxed ${outroColor}`}>{outro}</p>}
           </div>
         </div>
       </div>
@@ -1639,10 +1756,22 @@ function Sterilisation({ c }: { c: Copy }) {
               iconCorner="tl"
               icon={ICON.sterilisation}
               photos={[
-                { src: PH.sterOwner, label: "Animal welfare team preparing a sterilisation campaign", tone: "earth" },
-                { src: PH.sterProcedure, label: "Sterilisation campaign day in Pondoland", tone: "warm" },
+                {
+                  src: PH.sterOwner,
+                  label: "Animal welfare team preparing a sterilisation campaign",
+                  tone: "earth",
+                },
+                {
+                  src: PH.sterProcedure,
+                  label: "Sterilisation campaign day in Pondoland",
+                  tone: "warm",
+                },
                 { src: PH.sterSupport, label: "Recovery and follow-up care", tone: "sun" },
-                { src: PH.sterTransport, label: "Veterinary support with local partners", tone: "earth" },
+                {
+                  src: PH.sterTransport,
+                  label: "Veterinary support with local partners",
+                  tone: "earth",
+                },
               ]}
             />
             {/* clean icon badge */}
@@ -1753,8 +1882,17 @@ function BeforeAfter({ c }: { c: Copy }) {
       <h3 className="mb-4 text-center font-display text-2xl font-bold text-white">{label}</h3>
       <div className="grid min-w-0 aspect-[5/3] grid-cols-2 gap-2.5">
         {photos.map((photo, index) => (
-          <div key={photo.src} className={`relative min-w-0 overflow-hidden shadow-lg ring-1 ring-white/15 ${index === 0 ? "rounded-l-[2rem]" : "rounded-r-[2rem]"}`}>
-            <img src={photo.src} alt={photo.label} loading="lazy" className="absolute inset-0 h-full w-full object-cover" style={{ objectPosition: photo.pos }} />
+          <div
+            key={photo.src}
+            className={`relative min-w-0 overflow-hidden shadow-lg ring-1 ring-white/15 ${index === 0 ? "rounded-l-[2rem]" : "rounded-r-[2rem]"}`}
+          >
+            <img
+              src={photo.src}
+              alt={photo.label}
+              loading="lazy"
+              className="absolute inset-0 h-full w-full object-cover"
+              style={{ objectPosition: photo.pos }}
+            />
           </div>
         ))}
       </div>
@@ -1764,14 +1902,35 @@ function BeforeAfter({ c }: { c: Copy }) {
     <section className="bg-[var(--ithemba-blue-deepest)] py-14 text-white md:py-16">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
-          <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)]">{c.beforeAfter.eyebrow}</div>
-          <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.beforeAfter.title}</h2>
-          <p className="mt-4 text-base leading-relaxed text-white/85 md:text-lg">{c.beforeAfter.body}</p>
+          <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)]">
+            {c.beforeAfter.eyebrow}
+          </div>
+          <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">
+            {c.beforeAfter.title}
+          </h2>
+          <p className="mt-4 text-base leading-relaxed text-white/85 md:text-lg">
+            {c.beforeAfter.body}
+          </p>
         </div>
         <div className="mt-9 grid items-center gap-6 md:grid-cols-[1fr_auto_1fr]">
-          {pair([{ src: PH.before1, label: c.beforeAfter.before, pos: "center 52%" }, { src: PH.before2, label: c.beforeAfter.before, pos: "center 45%" }], c.beforeAfter.before)}
-          <ArrowRight className="mx-auto h-10 w-10 rotate-90 text-[var(--ithemba-yellow)] md:rotate-0" aria-hidden />
-          {pair([{ src: PH.after1, label: c.beforeAfter.after, pos: "center 45%" }, { src: PH.after2, label: c.beforeAfter.after, pos: "center 42%" }], c.beforeAfter.after)}
+          {pair(
+            [
+              { src: PH.before1, label: c.beforeAfter.before, pos: "center 52%" },
+              { src: PH.before2, label: c.beforeAfter.before, pos: "center 45%" },
+            ],
+            c.beforeAfter.before,
+          )}
+          <ArrowRight
+            className="mx-auto h-10 w-10 rotate-90 text-[var(--ithemba-yellow)] md:rotate-0"
+            aria-hidden
+          />
+          {pair(
+            [
+              { src: PH.after1, label: c.beforeAfter.after, pos: "center 45%" },
+              { src: PH.after2, label: c.beforeAfter.after, pos: "center 42%" },
+            ],
+            c.beforeAfter.after,
+          )}
         </div>
       </div>
     </section>
@@ -1883,9 +2042,7 @@ function DonationHelp({ c }: { c: Copy }) {
           <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center gap-2">
             <PawDoodle /> {c.donation.eyebrow}
           </div>
-          <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">
-            {c.donation.title}
-          </h2>
+          <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.donation.title}</h2>
           <div className="mt-5 space-y-4 text-lg leading-relaxed text-white/90">
             {c.donation.body.map((p, i) => (
               <p key={i}>{p}</p>
@@ -1953,9 +2110,7 @@ function Monthly({ c }: { c: Copy }) {
               </div>
             </div>
           </div>
-          <p className="mt-4 text-sm leading-relaxed text-foreground/80">
-            {c.monthly.cardText}
-          </p>
+          <p className="mt-4 text-sm leading-relaxed text-foreground/80">{c.monthly.cardText}</p>
           <div className="mt-6 grid gap-2">
             <Link to="/donate">
               <Button
@@ -2077,7 +2232,6 @@ function Impact({ c }: { c: Copy }) {
           })}
         </div>
       </div>
-
     </section>
   );
 }
@@ -2085,7 +2239,10 @@ function Impact({ c }: { c: Copy }) {
 /* ---------- CLOSING ---------- */
 function Closing({ c }: { c: Copy }) {
   return (
-    <section id="pondo-dogs-closing" className="relative overflow-hidden bg-[var(--ithemba-blue-deepest)] py-16 text-white md:py-20">
+    <section
+      id="pondo-dogs-closing"
+      className="relative overflow-hidden bg-[var(--ithemba-blue-deepest)] py-16 text-white md:py-20"
+    >
       <div className="relative mx-auto max-w-4xl px-4 text-center lg:px-8">
         <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center justify-center gap-2">
           <PawDoodle /> {c.closing.eyebrow}

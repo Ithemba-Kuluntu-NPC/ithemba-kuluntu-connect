@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { createSeoHead } from "@/lib/seo";
+import { PhotoLightboxGallery, contentPhoto } from "@/components/blocks/PhotoLightbox";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -33,7 +34,21 @@ import { assets } from "@/data/assets";
 import { focusAreaBadgeMeta } from "@/data/projects";
 import type { Lang } from "@/data/content";
 
-export const Route = createFileRoute("/projects/greenhouse")({ component: GreenhousePage, head: () => createSeoHead({ title: 'Greenhouse with SA Harvest | iThemba Kuluntu', description: 'A water-efficient growing project in Cwebeni that produces fresh food while building practical growing skills and supporting the No.1 ECD Centre.', path: '/projects/greenhouse', breadcrumbs: [{ name: 'Home', path: '/' }, { name: 'Projects', path: '/projects' }, { name: 'Greenhouse with SA Harvest', path: '/projects/greenhouse' }] }) });
+export const Route = createFileRoute("/projects/greenhouse")({
+  component: GreenhousePage,
+  head: () =>
+    createSeoHead({
+      title: "Greenhouse with SA Harvest | iThemba Kuluntu",
+      description:
+        "A water-efficient growing project in Cwebeni that produces fresh food while building practical growing skills and supporting the No.1 ECD Centre.",
+      path: "/projects/greenhouse",
+      breadcrumbs: [
+        { name: "Home", path: "/" },
+        { name: "Projects", path: "/projects" },
+        { name: "Greenhouse with SA Harvest", path: "/projects/greenhouse" },
+      ],
+    }),
+});
 
 /* ---------- assets (final greenhouse media) ---------- */
 const GH_MEDIA = "/assets/photos/projects/greenhouse";
@@ -86,7 +101,10 @@ function useReducedMotion() {
 type Fact = { label: string; value: string };
 type Step = { title: string; text: string };
 type DonationItem = { icon: string; label: string };
-type FocusItem = { badge: "food-security" | "skills-livelihoods" | "community-health" | "education" | "safe-water"; label: string };
+type FocusItem = {
+  badge: "food-security" | "skills-livelihoods" | "community-health" | "education" | "safe-water";
+  label: string;
+};
 
 type Copy = {
   back: string;
@@ -167,8 +185,7 @@ const COPY: Record<Lang, Copy> = {
     hero: {
       eyebrow: "Food growing",
       title: "Greenhouse with SA Harvest",
-      text:
-        "A water-efficient vertical growing project in Cwebeni, sponsored by SA Harvest and implemented in cooperation with Fresh Life Produce. The greenhouse helps local women build practical growing skills while producing fresh food to supplement the daily meals at the iThemba Kuluntu No.1 ECD Centre.",
+      text: "A water-efficient vertical growing project in Cwebeni, sponsored by SA Harvest and implemented in cooperation with Fresh Life Produce. The greenhouse helps local women build practical growing skills while producing fresh food to supplement the daily meals at the iThemba Kuluntu No.1 ECD Centre.",
       monthly: "Donate Monthly to Support This Project",
       once: "Give Once",
       location: "Cwebeni · Port St Johns · Eastern Cape · South Africa",
@@ -216,9 +233,21 @@ const COPY: Record<Lang, Copy> = {
         "Together, the partnership brings sponsorship, technology, training and community-rooted implementation into one practical project.",
       ],
       roles: [
-        { name: "SA Harvest", logo: SA_HARVEST_LOGO, role: "Project sponsor and food security partner" },
-        { name: "Fresh Life Produce", logo: FRESH_LIFE_LOGO, role: "African Grower system, technical support and training partner" },
-        { name: "iThemba Kuluntu", logo: ITHEMBA_LOGO, role: "Local implementation, community coordination and connection to the No.1 ECD Centre" },
+        {
+          name: "SA Harvest",
+          logo: SA_HARVEST_LOGO,
+          role: "Project sponsor and food security partner",
+        },
+        {
+          name: "Fresh Life Produce",
+          logo: FRESH_LIFE_LOGO,
+          role: "African Grower system, technical support and training partner",
+        },
+        {
+          name: "iThemba Kuluntu",
+          logo: ITHEMBA_LOGO,
+          role: "Local implementation, community coordination and connection to the No.1 ECD Centre",
+        },
       ],
     },
     how: {
@@ -242,9 +271,18 @@ const COPY: Record<Lang, Copy> = {
       ],
       steps: [
         { title: "Plant", text: "Seeds and seedlings go into the African Grower vertical system." },
-        { title: "Care", text: "Local women, trained by Fresh Life Produce, monitor plants, water and nutrients." },
-        { title: "Grow", text: "The vertical system uses space and water efficiently as plants mature." },
-        { title: "Harvest", text: "Fresh produce is picked and prepared for the children at the No.1 ECD Centre." },
+        {
+          title: "Care",
+          text: "Local women, trained by Fresh Life Produce, monitor plants, water and nutrients.",
+        },
+        {
+          title: "Grow",
+          text: "The vertical system uses space and water efficiently as plants mature.",
+        },
+        {
+          title: "Harvest",
+          text: "Fresh produce is picked and prepared for the children at the No.1 ECD Centre.",
+        },
       ],
     },
     nutrition: {
@@ -277,7 +315,8 @@ const COPY: Record<Lang, Copy> = {
     donation: {
       eyebrow: "Your support",
       title: "Help keep the greenhouse growing",
-      intro: "Donations help keep the Greenhouse with SA Harvest active, productive and useful for the community. Your support can help provide:",
+      intro:
+        "Donations help keep the Greenhouse with SA Harvest active, productive and useful for the community. Your support can help provide:",
       items: [
         { icon: "Sprout", label: "Seeds and seedlings" },
         { icon: "PackageOpen", label: "Growing materials" },
@@ -286,11 +325,12 @@ const COPY: Record<Lang, Copy> = {
         { icon: "GraduationCap", label: "Training and follow-up support" },
         { icon: "Truck", label: "Harvesting and distribution support" },
         { icon: "Users", label: "Local coordination" },
-        
+
         { icon: "Cookie", label: "Fresh produce to supplement meals at the No.1 ECD Centre" },
         { icon: "Handshake", label: "Connection to wider food security work" },
       ],
-      outro: "A donation to the greenhouse helps strengthen practical food-growing skills and supports the systems that keep fresh produce closer to vulnerable families and children.",
+      outro:
+        "A donation to the greenhouse helps strengthen practical food-growing skills and supports the systems that keep fresh produce closer to vulnerable families and children.",
     },
     monthly: {
       eyebrow: "Give monthly",
@@ -302,7 +342,8 @@ const COPY: Record<Lang, Copy> = {
       ],
       cardHeading: "Support food growing",
       cardAmount: "€10 / month",
-      cardText: "Helps support seeds, growing materials, training, maintenance and fresh produce for the No.1 ECD Centre meal programme.",
+      cardText:
+        "Helps support seeds, growing materials, training, maintenance and fresh produce for the No.1 ECD Centre meal programme.",
       cta1: "Support the greenhouse monthly",
       cta2: "Give once to the Greenhouse",
     },
@@ -323,8 +364,7 @@ const COPY: Record<Lang, Copy> = {
     hero: {
       eyebrow: "Lebensmittel anbauen",
       title: "Greenhouse with SA Harvest",
-      text:
-        "Ein wassereffizientes vertikales Anbauprojekt in Cwebeni, gefördert von SA Harvest und umgesetzt in Kooperation mit Fresh Life Produce. Das Greenhouse stärkt praktische Anbaufähigkeiten lokaler Frauen und hilft zugleich, die täglichen Mahlzeiten im iThemba Kuluntu No.1 ECD Centre mit frischen Lebensmitteln zu ergänzen.",
+      text: "Ein wassereffizientes vertikales Anbauprojekt in Cwebeni, gefördert von SA Harvest und umgesetzt in Kooperation mit Fresh Life Produce. Das Greenhouse stärkt praktische Anbaufähigkeiten lokaler Frauen und hilft zugleich, die täglichen Mahlzeiten im iThemba Kuluntu No.1 ECD Centre mit frischen Lebensmitteln zu ergänzen.",
       monthly: "Monatlich für dieses Projekt spenden",
       once: "Einmalig spenden",
       location: "Cwebeni · Port St Johns · Eastern Cape · Südafrika",
@@ -345,8 +385,14 @@ const COPY: Record<Lang, Copy> = {
         { label: "Wo", value: "Cwebeni, Port St Johns, Eastern Cape, Südafrika" },
         { label: "Gefördert von", value: "SA Harvest" },
         { label: "In Kooperation mit", value: "Fresh Life Produce" },
-        { label: "Anbausystem", value: "African Grower — wassereffizientes vertikales Anbausystem" },
-        { label: "Schulung", value: "Lokale Frauen, geschult durch das Team von Fresh Life Produce" },
+        {
+          label: "Anbausystem",
+          value: "African Grower — wassereffizientes vertikales Anbausystem",
+        },
+        {
+          label: "Schulung",
+          value: "Lokale Frauen, geschult durch das Team von Fresh Life Produce",
+        },
         { label: "Verbundenes Projekt", value: "iThemba Kuluntu No.1 ECD Centre · 120 Kinder" },
       ],
     },
@@ -372,9 +418,21 @@ const COPY: Record<Lang, Copy> = {
         "Zusammen bringt diese Partnerschaft Förderung, Technologie, Schulung und gemeindenahe Umsetzung in einem praktischen Projekt zusammen.",
       ],
       roles: [
-        { name: "SA Harvest", logo: SA_HARVEST_LOGO, role: "Projektförderer und Partner für Ernährungssicherheit" },
-        { name: "Fresh Life Produce", logo: FRESH_LIFE_LOGO, role: "African Grower System, technische Unterstützung und Schulungspartner" },
-        { name: "iThemba Kuluntu", logo: ITHEMBA_LOGO, role: "Lokale Umsetzung, Community-Koordination und Verbindung zum No.1 ECD Centre" },
+        {
+          name: "SA Harvest",
+          logo: SA_HARVEST_LOGO,
+          role: "Projektförderer und Partner für Ernährungssicherheit",
+        },
+        {
+          name: "Fresh Life Produce",
+          logo: FRESH_LIFE_LOGO,
+          role: "African Grower System, technische Unterstützung und Schulungspartner",
+        },
+        {
+          name: "iThemba Kuluntu",
+          logo: ITHEMBA_LOGO,
+          role: "Lokale Umsetzung, Community-Koordination und Verbindung zum No.1 ECD Centre",
+        },
       ],
     },
     how: {
@@ -397,10 +455,22 @@ const COPY: Record<Lang, Copy> = {
         "Verbindet Ernährungssicherheit mit lokalen Lebensgrundlagen",
       ],
       steps: [
-        { title: "Pflanzen", text: "Saatgut und Setzlinge kommen in das vertikale African Grower System." },
-        { title: "Pflegen", text: "Lokale Frauen, geschult von Fresh Life Produce, beobachten Pflanzen, Wasser und Nährstoffe." },
-        { title: "Wachsen", text: "Das vertikale System nutzt Raum und Wasser effizient, während die Pflanzen reifen." },
-        { title: "Ernten", text: "Frische Lebensmittel werden gepflückt und für die Kinder im No.1 ECD Centre vorbereitet." },
+        {
+          title: "Pflanzen",
+          text: "Saatgut und Setzlinge kommen in das vertikale African Grower System.",
+        },
+        {
+          title: "Pflegen",
+          text: "Lokale Frauen, geschult von Fresh Life Produce, beobachten Pflanzen, Wasser und Nährstoffe.",
+        },
+        {
+          title: "Wachsen",
+          text: "Das vertikale System nutzt Raum und Wasser effizient, während die Pflanzen reifen.",
+        },
+        {
+          title: "Ernten",
+          text: "Frische Lebensmittel werden gepflückt und für die Kinder im No.1 ECD Centre vorbereitet.",
+        },
       ],
     },
     nutrition: {
@@ -433,7 +503,8 @@ const COPY: Record<Lang, Copy> = {
     donation: {
       eyebrow: "Ihre Unterstützung",
       title: "Helfen Sie, das Greenhouse wachsen zu lassen",
-      intro: "Spenden helfen, das Greenhouse with SA Harvest aktiv, produktiv und nützlich für die Gemeinschaft zu halten. Ihre Unterstützung kann Folgendes ermöglichen:",
+      intro:
+        "Spenden helfen, das Greenhouse with SA Harvest aktiv, produktiv und nützlich für die Gemeinschaft zu halten. Ihre Unterstützung kann Folgendes ermöglichen:",
       items: [
         { icon: "Sprout", label: "Saatgut und Setzlinge" },
         { icon: "PackageOpen", label: "Anbaumaterialien" },
@@ -442,11 +513,15 @@ const COPY: Record<Lang, Copy> = {
         { icon: "GraduationCap", label: "Schulung und Nachbetreuung" },
         { icon: "Truck", label: "Unterstützung bei Ernte und Verteilung" },
         { icon: "Users", label: "Lokale Koordination" },
-        
-        { icon: "Cookie", label: "Frische Lebensmittel zur Ergänzung der Mahlzeiten im No.1 ECD Centre" },
+
+        {
+          icon: "Cookie",
+          label: "Frische Lebensmittel zur Ergänzung der Mahlzeiten im No.1 ECD Centre",
+        },
         { icon: "Handshake", label: "Verbindung zur weiteren Ernährungssicherungsarbeit" },
       ],
-      outro: "Eine Spende für das Greenhouse stärkt praktische Fähigkeiten im Lebensmittelanbau und unterstützt Systeme, die frische Lebensmittel näher zu vulnerablen Familien und Kindern bringen.",
+      outro:
+        "Eine Spende für das Greenhouse stärkt praktische Fähigkeiten im Lebensmittelanbau und unterstützt Systeme, die frische Lebensmittel näher zu vulnerablen Familien und Kindern bringen.",
     },
     monthly: {
       eyebrow: "Monatlich geben",
@@ -458,7 +533,8 @@ const COPY: Record<Lang, Copy> = {
       ],
       cardHeading: "Lebensmittelanbau unterstützen",
       cardAmount: "10 € / Monat",
-      cardText: "Hilft, Saatgut, Anbaumaterialien, Schulung, Instandhaltung und frische Lebensmittel für das Mahlzeitenprogramm des No.1 ECD Centre zu unterstützen.",
+      cardText:
+        "Hilft, Saatgut, Anbaumaterialien, Schulung, Instandhaltung und frische Lebensmittel für das Mahlzeitenprogramm des No.1 ECD Centre zu unterstützen.",
       cta1: "Greenhouse monatlich unterstützen",
       cta2: "Einmalig für das Greenhouse spenden",
     },
@@ -479,8 +555,7 @@ const COPY: Record<Lang, Copy> = {
     hero: {
       eyebrow: "Voedsel verbouwen",
       title: "Greenhouse with SA Harvest",
-      text:
-        "Een waterefficiënt verticaal teeltproject in Cwebeni, gesponsord door SA Harvest en uitgevoerd in samenwerking met Fresh Life Produce. De kas helpt lokale vrouwen praktische teeltvaardigheden op te bouwen en levert tegelijk verse producten om de dagelijkse maaltijden in het iThemba Kuluntu No.1 ECD Centre aan te vullen.",
+      text: "Een waterefficiënt verticaal teeltproject in Cwebeni, gesponsord door SA Harvest en uitgevoerd in samenwerking met Fresh Life Produce. De kas helpt lokale vrouwen praktische teeltvaardigheden op te bouwen en levert tegelijk verse producten om de dagelijkse maaltijden in het iThemba Kuluntu No.1 ECD Centre aan te vullen.",
       monthly: "Maandelijks doneren voor dit project",
       once: "Eenmalig doneren",
       location: "Cwebeni · Port St Johns · Eastern Cape · Zuid-Afrika",
@@ -502,7 +577,10 @@ const COPY: Record<Lang, Copy> = {
         { label: "Gesponsord door", value: "SA Harvest" },
         { label: "In samenwerking met", value: "Fresh Life Produce" },
         { label: "Teeltsysteem", value: "African Grower — waterefficiënt verticaal teeltsysteem" },
-        { label: "Training", value: "Lokale vrouwen getraind door het team van Fresh Life Produce" },
+        {
+          label: "Training",
+          value: "Lokale vrouwen getraind door het team van Fresh Life Produce",
+        },
         { label: "Verbonden project", value: "iThemba Kuluntu No.1 ECD Centre · 120 kinderen" },
       ],
     },
@@ -528,9 +606,21 @@ const COPY: Record<Lang, Copy> = {
         "Samen brengen deze partners sponsoring, technologie, training en gemeenschapsgerichte uitvoering samen in één praktisch project.",
       ],
       roles: [
-        { name: "SA Harvest", logo: SA_HARVEST_LOGO, role: "Projectsponsor en partner voor voedselzekerheid" },
-        { name: "Fresh Life Produce", logo: FRESH_LIFE_LOGO, role: "African Grower-systeem, technische ondersteuning en trainingspartner" },
-        { name: "iThemba Kuluntu", logo: ITHEMBA_LOGO, role: "Lokale uitvoering, communitycoördinatie en verbinding met het No.1 ECD Centre" },
+        {
+          name: "SA Harvest",
+          logo: SA_HARVEST_LOGO,
+          role: "Projectsponsor en partner voor voedselzekerheid",
+        },
+        {
+          name: "Fresh Life Produce",
+          logo: FRESH_LIFE_LOGO,
+          role: "African Grower-systeem, technische ondersteuning en trainingspartner",
+        },
+        {
+          name: "iThemba Kuluntu",
+          logo: ITHEMBA_LOGO,
+          role: "Lokale uitvoering, communitycoördinatie en verbinding met het No.1 ECD Centre",
+        },
       ],
     },
     how: {
@@ -553,10 +643,22 @@ const COPY: Record<Lang, Copy> = {
         "Verbindt voedselzekerheid met lokale bestaansmogelijkheden",
       ],
       steps: [
-        { title: "Planten", text: "Zaden en zaailingen gaan in het verticale African Grower-systeem." },
-        { title: "Verzorgen", text: "Lokale vrouwen, getraind door Fresh Life Produce, monitoren planten, water en voeding." },
-        { title: "Groeien", text: "Het verticale systeem gebruikt ruimte en water efficiënt terwijl de planten rijpen." },
-        { title: "Oogsten", text: "Verse producten worden geplukt en voorbereid voor de kinderen in het No.1 ECD Centre." },
+        {
+          title: "Planten",
+          text: "Zaden en zaailingen gaan in het verticale African Grower-systeem.",
+        },
+        {
+          title: "Verzorgen",
+          text: "Lokale vrouwen, getraind door Fresh Life Produce, monitoren planten, water en voeding.",
+        },
+        {
+          title: "Groeien",
+          text: "Het verticale systeem gebruikt ruimte en water efficiënt terwijl de planten rijpen.",
+        },
+        {
+          title: "Oogsten",
+          text: "Verse producten worden geplukt en voorbereid voor de kinderen in het No.1 ECD Centre.",
+        },
       ],
     },
     nutrition: {
@@ -589,7 +691,8 @@ const COPY: Record<Lang, Copy> = {
     donation: {
       eyebrow: "Uw steun",
       title: "Help de kas blijven groeien",
-      intro: "Donaties helpen de Greenhouse with SA Harvest actief, productief en waardevol voor de gemeenschap te houden. Uw steun kan het volgende mogelijk maken:",
+      intro:
+        "Donaties helpen de Greenhouse with SA Harvest actief, productief en waardevol voor de gemeenschap te houden. Uw steun kan het volgende mogelijk maken:",
       items: [
         { icon: "Sprout", label: "Zaden en zaailingen" },
         { icon: "PackageOpen", label: "Teeltmaterialen" },
@@ -598,11 +701,15 @@ const COPY: Record<Lang, Copy> = {
         { icon: "GraduationCap", label: "Training en opvolging" },
         { icon: "Truck", label: "Ondersteuning bij oogst en verdeling" },
         { icon: "Users", label: "Lokale coördinatie" },
-        
-        { icon: "Cookie", label: "Verse producten om maaltijden in het No.1 ECD Centre aan te vullen" },
+
+        {
+          icon: "Cookie",
+          label: "Verse producten om maaltijden in het No.1 ECD Centre aan te vullen",
+        },
         { icon: "Handshake", label: "Verbinding met breder voedselzekerheidswerk" },
       ],
-      outro: "Een donatie aan de kas versterkt praktische voedselteeltvaardigheden en ondersteunt systemen die verse producten dichter bij kwetsbare families en kinderen brengen.",
+      outro:
+        "Een donatie aan de kas versterkt praktische voedselteeltvaardigheden en ondersteunt systemen die verse producten dichter bij kwetsbare families en kinderen brengen.",
     },
     monthly: {
       eyebrow: "Geef maandelijks",
@@ -614,7 +721,8 @@ const COPY: Record<Lang, Copy> = {
       ],
       cardHeading: "Steun voedselteelt",
       cardAmount: "€10 / maand",
-      cardText: "Helpt zaden, teeltmaterialen, training, onderhoud en verse producten voor het maaltijdprogramma van het No.1 ECD Centre te ondersteunen.",
+      cardText:
+        "Helpt zaden, teeltmaterialen, training, onderhoud en verse producten voor het maaltijdprogramma van het No.1 ECD Centre te ondersteunen.",
       cta1: "Steun de kas maandelijks",
       cta2: "Doneer eenmalig aan de kas",
     },
@@ -634,8 +742,22 @@ const COPY: Record<Lang, Copy> = {
 
 /* ---------- icon registry ---------- */
 const ICONS: Record<string, typeof Sprout> = {
-  Sprout, Leaf, Droplet, Wrench, Users, GraduationCap, Handshake, Cookie,
-  PackageOpen, Hammer, Truck, Heart, Building2, MapPin, Calendar, Award,
+  Sprout,
+  Leaf,
+  Droplet,
+  Wrench,
+  Users,
+  GraduationCap,
+  Handshake,
+  Cookie,
+  PackageOpen,
+  Hammer,
+  Truck,
+  Heart,
+  Building2,
+  MapPin,
+  Calendar,
+  Award,
 };
 
 /* ---------- custom PNG icons (uploaded) ---------- */
@@ -713,14 +835,29 @@ function PhotoCollage({ photos, className = "" }: { photos: Shot[]; className?: 
   const rows = photos.length === 5 ? "grid-rows-12" : "grid-rows-6";
 
   return (
-    <div
-      className={`relative grid aspect-[4/5] grid-cols-12 ${rows} gap-2.5 md:gap-3 ${className}`}
-      style={{ filter: "drop-shadow(0 22px 50px rgba(8,26,96,0.32))" }}
+    <PhotoLightboxGallery
+      photos={photos.map((photo) => contentPhoto(photo.src, photo.alt))}
+      label="Greenhouse photo gallery"
     >
-      {photos.map((photo, i) => (
-        <Shot key={photo.src} shot={photo} className={`ring-1 ring-black/10 ${cells[i]}`} />
-      ))}
-    </div>
+      {(openPhoto) => (
+        <div
+          className={`relative grid aspect-[4/5] grid-cols-12 ${rows} gap-2.5 md:gap-3 ${className}`}
+          style={{ filter: "drop-shadow(0 22px 50px rgba(8,26,96,0.32))" }}
+        >
+          {photos.map((photo, i) => (
+            <button
+              type="button"
+              aria-label={`Open photo: ${photo.alt}`}
+              onClick={() => openPhoto(i)}
+              key={photo.src}
+              className={`min-w-0 cursor-zoom-in text-left ring-1 ring-black/10 ${cells[i]}`}
+            >
+              <Shot shot={photo} className="h-full w-full rounded-[inherit]" />
+            </button>
+          ))}
+        </div>
+      )}
+    </PhotoLightboxGallery>
   );
 }
 
@@ -734,7 +871,12 @@ function Hero({ c }: { c: Copy }) {
   return (
     <section className="relative isolate overflow-hidden">
       <div className="absolute inset-0 -z-10">
-        <img src={HERO_POSTER} alt="" aria-hidden className="absolute inset-0 h-full w-full object-cover" />
+        <img
+          src={HERO_POSTER}
+          alt=""
+          aria-hidden
+          className="absolute inset-0 h-full w-full object-cover"
+        />
         {showVideo && (
           <video
             ref={videoRef}
@@ -756,8 +898,6 @@ function Hero({ c }: { c: Copy }) {
         <div className="absolute right-[-6rem] top-[-6rem] h-[28rem] w-[28rem] sun-glow" />
       </div>
 
-
-
       {/* floating leaf accents */}
       <div className="pointer-events-none absolute left-10 top-24 text-[var(--ithemba-yellow)]/40">
         <Leaf className="h-6 w-6" />
@@ -767,13 +907,22 @@ function Hero({ c }: { c: Copy }) {
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4 pb-24 pt-20 md:pb-32 md:pt-28 lg:px-8">
-        <Link to="/projects" className="inline-flex items-center gap-1 text-sm font-medium text-white/85 hover:text-white">
+        <Link
+          to="/projects"
+          className="inline-flex items-center gap-1 text-sm font-medium text-white/85 hover:text-white"
+        >
           <ArrowLeft className="h-4 w-4" /> {c.back}
         </Link>
 
         <div className="mt-8 max-w-3xl text-white">
           <FocusAreaBadges
-            badges={["food-security", "skills-livelihoods", "community-health", "education", "safe-water"]}
+            badges={[
+              "food-security",
+              "skills-livelihoods",
+              "community-health",
+              "education",
+              "safe-water",
+            ]}
             size="md"
             className="mb-5"
           />
@@ -783,10 +932,24 @@ function Hero({ c }: { c: Copy }) {
           <h1 className="mt-2 font-display text-[clamp(2.25rem,5.5vw,4.25rem)] font-extrabold leading-[1.02] tracking-tight drop-shadow-[0_4px_24px_rgba(0,0,0,0.45)]">
             {c.hero.title}
           </h1>
-          <svg className="mt-4 block w-48 md:w-72" height="14" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden>
-            <path d="M2,8 C50,2 120,14 198,6" stroke="var(--ithemba-yellow)" strokeWidth="4" strokeLinecap="round" fill="none" />
+          <svg
+            className="mt-4 block w-48 md:w-72"
+            height="14"
+            viewBox="0 0 200 14"
+            preserveAspectRatio="none"
+            aria-hidden
+          >
+            <path
+              d="M2,8 C50,2 120,14 198,6"
+              stroke="var(--ithemba-yellow)"
+              strokeWidth="4"
+              strokeLinecap="round"
+              fill="none"
+            />
           </svg>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/95 md:text-xl">{c.hero.text}</p>
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/95 md:text-xl">
+            {c.hero.text}
+          </p>
           <div className="mt-3 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white/85 ring-1 ring-white/20 backdrop-blur">
             <Star className="h-3.5 w-3.5 text-[var(--ithemba-yellow)] fill-current" />
             {c.hero.location}
@@ -794,12 +957,19 @@ function Hero({ c }: { c: Copy }) {
 
           <div className="mt-7 flex flex-wrap gap-2">
             <Link to="/donate">
-              <Button size="lg" className="rounded-full bg-[var(--ithemba-yellow)] font-semibold text-[var(--ithemba-brown)] shadow-lg hover:bg-[var(--ithemba-yellow)]/95">
+              <Button
+                size="lg"
+                className="rounded-full bg-[var(--ithemba-yellow)] font-semibold text-[var(--ithemba-brown)] shadow-lg hover:bg-[var(--ithemba-yellow)]/95"
+              >
                 <Heart className="mr-2 h-4 w-4 fill-current" /> {c.hero.monthly}
               </Button>
             </Link>
             <Link to="/donate">
-              <Button size="lg" variant="outline" className="rounded-full border-white/40 bg-white/10 text-white hover:bg-white/20 hover:text-white">
+              <Button
+                size="lg"
+                variant="outline"
+                className="rounded-full border-white/40 bg-white/10 text-white hover:bg-white/20 hover:text-white"
+              >
                 {c.hero.once}
               </Button>
             </Link>
@@ -808,19 +978,34 @@ function Hero({ c }: { c: Copy }) {
       </div>
 
       <svg className="block w-full" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden>
-        <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="var(--ithemba-cream)" />
+        <path
+          d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z"
+          fill="var(--ithemba-cream)"
+        />
       </svg>
     </section>
   );
 }
 
-function SectionHeading({ eyebrow, title, center = false, color = "var(--ithemba-yellow)" }: {
-  eyebrow: string; title: string; center?: boolean; color?: string;
+function SectionHeading({
+  eyebrow,
+  title,
+  center = false,
+  color = "var(--ithemba-yellow)",
+}: {
+  eyebrow: string;
+  title: string;
+  center?: boolean;
+  color?: string;
 }) {
   return (
     <div className={center ? "text-center" : ""}>
-      <div className="hand-eyebrow-lg" style={{ color }}>{eyebrow}</div>
-      <h2 className="-mt-1 font-display text-4xl font-bold text-[var(--ithemba-blue-dark)] md:text-5xl">{title}</h2>
+      <div className="hand-eyebrow-lg" style={{ color }}>
+        {eyebrow}
+      </div>
+      <h2 className="-mt-1 font-display text-4xl font-bold text-[var(--ithemba-blue-dark)] md:text-5xl">
+        {title}
+      </h2>
     </div>
   );
 }
@@ -882,7 +1067,13 @@ function Why({ c }: { c: Copy }) {
   return (
     <section className="relative isolate overflow-hidden py-20 text-white md:py-24">
       <div className="absolute inset-0 -z-10">
-        <img src={G.growing} alt="" aria-hidden loading="lazy" className="h-full w-full object-cover" />
+        <img
+          src={G.growing}
+          alt=""
+          aria-hidden
+          loading="lazy"
+          className="h-full w-full object-cover"
+        />
         <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/88 via-[var(--ithemba-blue-dark)]/75 to-[var(--ithemba-blue)]/50" />
         <div className="absolute inset-0 bg-gradient-to-t from-[var(--ithemba-blue-deepest)]/70 via-transparent to-transparent" />
         <div className="absolute right-[-6rem] top-[-6rem] h-[28rem] w-[28rem] sun-glow" />
@@ -899,7 +1090,11 @@ function Why({ c }: { c: Copy }) {
           photos={[
             { src: G.outsidePlanting, alt: "Outdoor planting beside the greenhouse" },
             { src: G.kidsPlanting, alt: "Children helping to plant" },
-             { src: G.localGrowing, alt: "Locally grown produce at the greenhouse", pos: "center 48%" },
+            {
+              src: G.localGrowing,
+              alt: "Locally grown produce at the greenhouse",
+              pos: "center 48%",
+            },
           ]}
         />
         <div>
@@ -978,7 +1173,13 @@ function HowItWorks({ c }: { c: Copy }) {
   return (
     <section className="relative isolate overflow-hidden py-20 text-white md:py-24">
       <div className="absolute inset-0 -z-10">
-        <img src={G.busy2} alt="" aria-hidden loading="lazy" className="h-full w-full object-cover" />
+        <img
+          src={G.busy2}
+          alt=""
+          aria-hidden
+          loading="lazy"
+          className="h-full w-full object-cover"
+        />
         <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/88 via-[var(--ithemba-blue-dark)]/75 to-[var(--ithemba-blue)]/50" />
         <div className="absolute right-[-6rem] bottom-[-6rem] h-[24rem] w-[24rem] sun-glow" />
       </div>
@@ -1054,7 +1255,11 @@ function Nutrition({ c }: { c: Copy }) {
         <PhotoCollage
           photos={[
             { src: G.childTeacher, alt: "Teacher and child in the greenhouse", pos: "center 40%" },
-             { src: G.childPlantingCloseUp, alt: "Child planting in the greenhouse", pos: "center 42%" },
+            {
+              src: G.childPlantingCloseUp,
+              alt: "Child planting in the greenhouse",
+              pos: "center 42%",
+            },
             { src: G.kidPlanting, alt: "A child planting in the greenhouse" },
             { src: G.happyChild, alt: "Happy child at the greenhouse" },
           ]}
@@ -1089,7 +1294,13 @@ function Focus({ c }: { c: Copy }) {
   return (
     <section className="relative isolate overflow-hidden py-20 text-white md:py-24">
       <div className="absolute inset-0 -z-10">
-        <img src={G.harvestGroup} alt="" aria-hidden loading="lazy" className="h-full w-full object-cover" />
+        <img
+          src={G.harvestGroup}
+          alt=""
+          aria-hidden
+          loading="lazy"
+          className="h-full w-full object-cover"
+        />
         <div className="absolute inset-0 bg-gradient-to-br from-[var(--ithemba-blue-deepest)]/88 via-[var(--ithemba-blue-dark)]/75 to-[var(--ithemba-blue)]/50" />
         <div className="absolute left-[-6rem] top-[-6rem] h-[24rem] w-[24rem] sun-glow" />
       </div>
@@ -1167,12 +1378,16 @@ function DonationSupport({ c }: { c: Copy }) {
                   className="h-16 w-16 object-contain md:h-20 md:w-20"
                   loading="lazy"
                 />
-                <div className="mt-3 text-sm font-medium leading-snug text-[var(--ithemba-blue-dark)]">{it.label}</div>
+                <div className="mt-3 text-sm font-medium leading-snug text-[var(--ithemba-blue-dark)]">
+                  {it.label}
+                </div>
               </div>
             );
           })}
         </div>
-        <p className="mx-auto mt-12 max-w-3xl text-center text-base leading-relaxed text-foreground/75">{c.donation.outro}</p>
+        <p className="mx-auto mt-12 max-w-3xl text-center text-base leading-relaxed text-foreground/75">
+          {c.donation.outro}
+        </p>
       </div>
     </section>
   );
@@ -1196,13 +1411,19 @@ function Monthly({ c }: { c: Copy }) {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 md:grid-cols-2 lg:px-8">
         <div className="text-white">
           <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)]">{c.monthly.eyebrow}</div>
-          <h2 className="-mt-1 font-display text-4xl font-extrabold md:text-5xl">{c.monthly.title}</h2>
+          <h2 className="-mt-1 font-display text-4xl font-extrabold md:text-5xl">
+            {c.monthly.title}
+          </h2>
           <div className="mt-5 space-y-4 text-lg leading-relaxed text-white/90">
-            {c.monthly.body.map((p, i) => <p key={i}>{p}</p>)}
+            {c.monthly.body.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
           </div>
 
           <div className="mt-7 rounded-3xl bg-[var(--ithemba-yellow)] p-6 text-[var(--ithemba-brown)] shadow-xl">
-            <div className="text-xs font-semibold uppercase tracking-wide opacity-80">{c.monthly.cardHeading}</div>
+            <div className="text-xs font-semibold uppercase tracking-wide opacity-80">
+              {c.monthly.cardHeading}
+            </div>
             <div className="mt-1 flex items-baseline gap-2">
               <Sprout className="h-6 w-6" />
               <div className="font-display text-3xl font-extrabold">{c.monthly.cardAmount}</div>
@@ -1215,7 +1436,10 @@ function Monthly({ c }: { c: Copy }) {
                 </Button>
               </Link>
               <Link to="/donate">
-                <Button variant="outline" className="rounded-full border-[var(--ithemba-brown)]/40 bg-white/40 text-[var(--ithemba-brown)] hover:bg-white/60">
+                <Button
+                  variant="outline"
+                  className="rounded-full border-[var(--ithemba-brown)]/40 bg-white/40 text-[var(--ithemba-brown)] hover:bg-white/60"
+                >
                   {c.monthly.cta2}
                 </Button>
               </Link>
@@ -1231,7 +1455,10 @@ function Monthly({ c }: { c: Copy }) {
 /* ---------- CLOSING ---------- */
 function Closing({ c }: { c: Copy }) {
   return (
-    <section id="greenhouse-closing" className="relative overflow-hidden bg-gradient-to-br from-[var(--ithemba-blue-deepest)] via-[var(--ithemba-blue-dark)] to-[var(--ithemba-blue)] pb-20 pt-16 text-white md:pt-20">
+    <section
+      id="greenhouse-closing"
+      className="relative overflow-hidden bg-gradient-to-br from-[var(--ithemba-blue-deepest)] via-[var(--ithemba-blue-dark)] to-[var(--ithemba-blue)] pb-20 pt-16 text-white md:pt-20"
+    >
       {/* soft wave transition from the donation section above */}
       <svg
         className="pointer-events-none absolute -top-px left-0 z-10 block w-full"
@@ -1261,23 +1488,38 @@ function Closing({ c }: { c: Copy }) {
       </div>
       <div className="relative mx-auto max-w-3xl px-4 text-center lg:px-8">
         <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)]">{c.closing.eyebrow}</div>
-        <h2 className="-mt-1 font-display text-4xl font-extrabold md:text-5xl">{c.closing.title}</h2>
+        <h2 className="-mt-1 font-display text-4xl font-extrabold md:text-5xl">
+          {c.closing.title}
+        </h2>
         <div className="mt-5 space-y-4 text-lg leading-relaxed text-white/90">
-          {c.closing.body.map((p, i) => <p key={i}>{p}</p>)}
+          {c.closing.body.map((p, i) => (
+            <p key={i}>{p}</p>
+          ))}
         </div>
         <div className="mt-7 flex flex-wrap justify-center gap-2">
           <Link to="/donate">
-            <Button size="lg" className="rounded-full bg-[var(--ithemba-yellow)] font-semibold text-[var(--ithemba-brown)] shadow-lg hover:bg-[var(--ithemba-yellow)]/95">
+            <Button
+              size="lg"
+              className="rounded-full bg-[var(--ithemba-yellow)] font-semibold text-[var(--ithemba-brown)] shadow-lg hover:bg-[var(--ithemba-yellow)]/95"
+            >
               <Heart className="mr-2 h-4 w-4 fill-current" /> {c.closing.monthly}
             </Button>
           </Link>
           <Link to="/donate">
-            <Button size="lg" variant="outline" className="rounded-full border-white/40 bg-white/10 text-white hover:bg-white/20 hover:text-white">
+            <Button
+              size="lg"
+              variant="outline"
+              className="rounded-full border-white/40 bg-white/10 text-white hover:bg-white/20 hover:text-white"
+            >
               {c.closing.once}
             </Button>
           </Link>
           <Link to="/projects">
-            <Button size="lg" variant="ghost" className="rounded-full text-white hover:bg-white/10 hover:text-white">
+            <Button
+              size="lg"
+              variant="ghost"
+              className="rounded-full text-white hover:bg-white/10 hover:text-white"
+            >
               {c.closing.all}
             </Button>
           </Link>
