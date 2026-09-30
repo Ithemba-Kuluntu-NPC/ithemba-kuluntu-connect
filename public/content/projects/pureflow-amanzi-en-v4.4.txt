@@ -135,8 +135,8 @@ step1.image_path: /pureflow problem.png
 
 step2.num: 02
 step2.tag: PureFlow Model
-step2.heading: A full implementation platform, not a product handover alone
-step2.text_block: PureFlow Amanzi combines household safe-water systems with WASH education, local assembly, community-based rollout, safe-use training, follow-up support and field data collection. The gravity-fed filter works without electricity, chemicals or boiling, using 0.1 micron membrane filtration to remove harmful bacteria from drinking water. The strength of the model is the delivery system around the filter: trained local teams, household onboarding, practical demonstrations, maintenance guidance and long-term follow-up that support correct use, trust and lasting behaviour change.
+step2.heading: A complete last-mile delivery model, not a product handover alone
+step2.text_block: PureFlow Amanzi combines household safe-water systems with WASH education, local assembly, community-based rollout, safe-use training, follow-up support and field data collection. The patent-pending, gravity-fed filter works without electricity or chemicals and provides safe drinking water at household level, reducing the need for boiling. The strength of the model is the delivery system around the technology: trained local teams, household onboarding, practical demonstrations, ongoing monitoring and long-term aftercare that reinforce correct use, build trust and sustain behaviour change.
 step2.cta_label: Explore the PureFlow Model
 step2.image_path: /pureflow solution.png
 
