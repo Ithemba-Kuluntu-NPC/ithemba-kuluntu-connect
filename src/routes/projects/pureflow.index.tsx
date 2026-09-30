@@ -34,6 +34,7 @@ import {
   CircleDollarSign,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { useLang } from "@/components/site/LanguageProvider";
 import { DonationWidget } from "@/components/blocks/DonationWidget";
 import { partners as allPartners } from "@/data/projects";
@@ -123,6 +124,13 @@ const SCRIPT = '"Caveat", "Kalam", cursive';
 const ASSET_BASE = "/assets/icons/projects/pureflow";
 const PHOTO_BASE = "/assets/photos/projects/pureflow";
 const photoPath = (filename: string) => (filename.startsWith("/") ? filename : `${PHOTO_BASE}/${filename}`);
+const ORIGINAL_PHOTOS: Record<string, string> = {
+  "/assets/generated-performance/pureflow-ecd-handout-event-smiling-mom-at-training-station-web.jpg": `${PHOTO_BASE}/pureflow-ecd-handout-event-smiling-mom-at-training-station.jpg`,
+  "/assets/generated-performance/pureflow-home-visit-filter-installation-family-01-web.jpg": `${PHOTO_BASE}/pureflow-home-visit-filter-installation-family-01.jpg`,
+  "/assets/generated-performance/pureflow-step-01-structural-problem-3-web.jpg": `${PHOTO_BASE}/pureflow-step-01-structural-problem-3.jpg`,
+  "/assets/generated-performance/pureflow-happy-dancing-recipients-of-filter-after-event-web.jpg": `${PHOTO_BASE}/pureflow-happy-dancing-recipients-of-filter-after-event.jpg`,
+};
+const originalPhotoPath = (src: string) => ORIGINAL_PHOTOS[src] ?? src;
 const HERO_VIDEO = `${PHOTO_BASE}/hero-video-pureflow-compressed-8mb.mp4`;
 const HERO_POSTER = "/assets/photos/projects/pureflow/pureflow-rural-handout-community-group-holding-filter-buckets-02.jpg";
 
@@ -711,6 +719,91 @@ function Showcase({ t, lang }: { t: (k: string, fb?: string) => string; lang: La
 
 // ----------------------- Editorial collage (3–4 photo placeholders) -----------------------
 
+type CollagePhoto = { src?: string; objectPosition?: string; alt?: string };
+
+function PureFlowPhotoLightbox({
+  photos,
+  index,
+  onClose,
+}: {
+  photos: CollagePhoto[];
+  index: number | null;
+  onClose: () => void;
+}) {
+  const [activeIndex, setActiveIndex] = useState(index ?? 0);
+  const touchStart = useRef<number | null>(null);
+  const count = photos.length;
+
+  useEffect(() => {
+    if (index !== null) setActiveIndex(index);
+  }, [index]);
+
+  const change = (direction: -1 | 1) => {
+    setActiveIndex((current) => (current + direction + count) % count);
+  };
+  const activePhoto = photos[activeIndex];
+
+  return (
+    <Dialog open={index !== null} onOpenChange={(open) => !open && onClose()}>
+      <DialogContent
+        onPointerDown={(event) => {
+          if (event.target === event.currentTarget) onClose();
+        }}
+        onKeyDown={(event) => {
+          if (event.key === "ArrowLeft") {
+            event.preventDefault();
+            change(-1);
+          } else if (event.key === "ArrowRight") {
+            event.preventDefault();
+            change(1);
+          }
+        }}
+        className="flex h-[100dvh] w-screen max-w-none items-center justify-center border-0 bg-transparent p-4 shadow-none sm:rounded-none sm:p-8 [&>button]:right-4 [&>button]:top-4 [&>button]:z-20 [&>button]:grid [&>button]:h-12 [&>button]:w-12 [&>button]:place-items-center [&>button]:rounded-full [&>button]:bg-black/55 [&>button]:text-white [&>button]:opacity-100 [&>button_svg]:h-7 [&>button_svg]:w-7"
+      >
+        <DialogTitle className="sr-only">PureFlow Amanzi photo gallery</DialogTitle>
+        <div
+          className="relative flex h-full w-full items-center justify-center"
+          onTouchStart={(event) => {
+            touchStart.current = event.touches[0]?.clientX ?? null;
+          }}
+          onTouchEnd={(event) => {
+            const start = touchStart.current;
+            const end = event.changedTouches[0]?.clientX;
+            touchStart.current = null;
+            if (start === null || end === undefined || Math.abs(end - start) < 45) return;
+            change(end < start ? 1 : -1);
+          }}
+          onPointerDown={(event) => {
+            if (event.target === event.currentTarget) onClose();
+          }}
+        >
+          {activePhoto?.src && (
+            <img
+              src={originalPhotoPath(activePhoto.src)}
+              alt={activePhoto.alt ?? "PureFlow Amanzi project photo"}
+              className="max-h-[calc(100dvh-8rem)] max-w-[calc(100vw-2rem)] rounded-xl object-contain shadow-2xl sm:max-w-[calc(100vw-8rem)]"
+              onPointerDown={(event) => event.stopPropagation()}
+            />
+          )}
+          {count > 1 && (
+            <>
+              <Button type="button" size="icon" variant="secondary" aria-label="Previous photo" onClick={() => change(-1)} className="absolute left-0 top-1/2 z-10 h-14 w-14 -translate-y-1/2 rounded-full bg-background/90 text-foreground shadow-xl hover:bg-background sm:left-2 sm:h-16 sm:w-16">
+                <ChevronLeft className="h-8 w-8" aria-hidden="true" />
+              </Button>
+              <Button type="button" size="icon" variant="secondary" aria-label="Next photo" onClick={() => change(1)} className="absolute right-0 top-1/2 z-10 h-14 w-14 -translate-y-1/2 rounded-full bg-background/90 text-foreground shadow-xl hover:bg-background sm:right-2 sm:h-16 sm:w-16">
+                <ChevronRight className="h-8 w-8" aria-hidden="true" />
+              </Button>
+            </>
+          )}
+          <p aria-live="polite" className="absolute bottom-1 left-1/2 -translate-x-1/2 rounded-full bg-black/65 px-4 py-2 text-sm font-semibold text-white">
+            {activeIndex + 1} / {count}
+          </p>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
 function StepCollage({
   photos,
   variant = "A",
@@ -718,12 +811,13 @@ function StepCollage({
   tone = "ocean",
   accent = YELLOW,
 }: {
-  photos: Array<{ src?: string; objectPosition?: string; alt?: string }>;
+  photos: CollagePhoto[];
   variant?: "A" | "B" | "C";
   alt: string;
   tone?: "ocean" | "earth" | "sun" | "warm" | "blue";
   accent?: string;
 }) {
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   // Ensure exactly 3 or 4 slots
   const slots = photos.slice(0, 4);
   while (slots.length < 3) slots.push({});
@@ -762,14 +856,16 @@ function StepCollage({
       >
         {usable.map((p, i) => (
           <div key={i} className={cn("overflow-hidden ring-1 ring-black/10", cells[i])}>
-            <PhotoFrame
-              src={p.src}
-              alt={p.alt ?? alt}
-              tone={tone}
-              rounded="rounded-none"
-              className="h-full w-full"
-              objectPosition={p.objectPosition}
-            />
+            <button type="button" className="h-full w-full cursor-zoom-in" aria-label={`Enlarge ${p.alt ?? alt}`} onClick={() => p.src && setLightboxIndex(i)} disabled={!p.src}>
+              <PhotoFrame
+                src={p.src}
+                alt={p.alt ?? alt}
+                tone={tone}
+                rounded="rounded-none"
+                className="h-full w-full"
+                objectPosition={p.objectPosition}
+              />
+            </button>
           </div>
         ))}
       </div>
@@ -779,6 +875,7 @@ function StepCollage({
         style={{ background: accent, boxShadow: `0 14px 28px -14px ${accent}B3` }}
         aria-hidden
       />
+      <PureFlowPhotoLightbox photos={usable} index={lightboxIndex} onClose={() => setLightboxIndex(null)} />
     </div>
   );
 }
@@ -1344,6 +1441,13 @@ function Closing({ t, goDonate }: { t: (k: string, fb?: string) => string; goDon
 
 
 function Step01Collage({ t }: { t: (k: string, fb?: string) => string }) {
+  const photos: CollagePhoto[] = [
+    { src: photoPath(FIELD_PHOTOS.structural.main), alt: "Women in rural Pondoland carrying the daily burden of unsafe water" },
+    { src: photoPath(FIELD_PHOTOS.structural.carrying), alt: "Daily reality of collecting water in Pondoland" },
+    { src: photoPath(FIELD_PHOTOS.structural.source), alt: "Unsafe water source serving rural households" },
+    { src: photoPath(FIELD_PHOTOS.structural.household), alt: "Community context behind the water crisis" },
+  ];
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   return (
     <section id="structural-problem" className="relative isolate overflow-hidden" style={{ background: CREAM, scrollMarginTop: "calc(var(--header-height, 80px) + 16px)" }}>
       <img
@@ -1397,43 +1501,51 @@ function Step01Collage({ t }: { t: (k: string, fb?: string) => string }) {
             >
               {/* main tall portrait, left */}
               <div className="col-span-7 row-span-4 overflow-hidden rounded-tl-[2.5rem] rounded-br-2xl rounded-tr-xl rounded-bl-xl ring-1 ring-black/10">
+                <button type="button" className="h-full w-full cursor-zoom-in" aria-label={`Enlarge ${photos[0].alt}`} onClick={() => setLightboxIndex(0)}>
                 <img
-                  src={photoPath(FIELD_PHOTOS.structural.main)}
-                  alt="Women in rural Pondoland carrying the daily burden of unsafe water"
+                  src={photos[0].src}
+                  alt={photos[0].alt}
                   loading="lazy"
                   className="h-full w-full object-cover"
                   style={{ objectPosition: "center 42%" }}
                 />
+                </button>
               </div>
               {/* top right */}
               <div className="col-span-5 row-span-3 overflow-hidden rounded-tr-[2.5rem] rounded-bl-xl rounded-tl-xl rounded-br-xl ring-1 ring-black/10">
+                <button type="button" className="h-full w-full cursor-zoom-in" aria-label={`Enlarge ${photos[1].alt}`} onClick={() => setLightboxIndex(1)}>
                 <img
-                  src={photoPath(FIELD_PHOTOS.structural.carrying)}
-                  alt="Daily reality of collecting water in Pondoland"
+                  src={photos[1].src}
+                  alt={photos[1].alt}
                   loading="lazy"
                   className="h-full w-full object-cover"
                   style={{ objectPosition: "center" }}
                 />
+                </button>
               </div>
               {/* mid right */}
               <div className="col-span-5 row-span-3 overflow-hidden rounded-xl ring-1 ring-black/10">
+                <button type="button" className="h-full w-full cursor-zoom-in" aria-label={`Enlarge ${photos[2].alt}`} onClick={() => setLightboxIndex(2)}>
                 <img
-                  src={photoPath(FIELD_PHOTOS.structural.source)}
-                  alt="Unsafe water source serving rural households"
+                  src={photos[2].src}
+                  alt={photos[2].alt}
                   loading="lazy"
                   className="h-full w-full object-cover"
                   style={{ objectPosition: "center 40%" }}
                 />
+                </button>
               </div>
               {/* bottom wide */}
               <div className="col-span-7 row-span-2 overflow-hidden rounded-bl-[2.5rem] rounded-tr-xl rounded-tl-xl rounded-br-xl ring-1 ring-black/10">
+                <button type="button" className="h-full w-full cursor-zoom-in" aria-label={`Enlarge ${photos[3].alt}`} onClick={() => setLightboxIndex(3)}>
                 <img
-                  src={photoPath(FIELD_PHOTOS.structural.household)}
-                  alt="Community context behind the water crisis"
+                  src={photos[3].src}
+                  alt={photos[3].alt}
                   loading="lazy"
                   className="h-full w-full object-cover"
                   style={{ objectPosition: "center" }}
                 />
+                </button>
               </div>
             </div>
 
@@ -1443,6 +1555,7 @@ function Step01Collage({ t }: { t: (k: string, fb?: string) => string }) {
               style={{ background: YELLOW, boxShadow: "0 14px 28px -14px rgba(251,191,36,0.7)" }}
               aria-hidden
             />
+            <PureFlowPhotoLightbox photos={photos} index={lightboxIndex} onClose={() => setLightboxIndex(null)} />
             {/* step icon bubble */}
             <div className="absolute bottom-2 left-2 z-10 sm:-bottom-6 sm:-left-4 md:-bottom-8 md:-left-8">
               <CircleArt
