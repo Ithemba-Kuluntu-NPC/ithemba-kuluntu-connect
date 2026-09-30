@@ -507,7 +507,7 @@ function PathwayStepper({ t }: { t: (k: string, fb?: string) => string }) {
                   >
                     {s.title}
                   </p>
-                  <p className="mt-1 line-clamp-3 text-[11px] leading-snug text-white/70 lg:text-xs">{s.desc}</p>
+                  <p className="mt-1 text-[11px] leading-snug text-white/70 lg:text-xs">{s.desc}</p>
                 </button>
               </li>
               {i < steps.length - 1 && (
