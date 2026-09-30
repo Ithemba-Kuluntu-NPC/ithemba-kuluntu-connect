@@ -15,6 +15,7 @@ import {
   Wrench,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 
 const BLUE = "#0F2A8C";
@@ -176,10 +177,16 @@ function FitBounds({ groups }: { groups: LocationGroup[] }) {
 
 function EventPhotoCarousel({ event }: { event: PureFlowEvent }) {
   const [index, setIndex] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
   const touchStart = useRef<number | null>(null);
+  const lightboxTouchStart = useRef<number | null>(null);
+  const suppressOpen = useRef(false);
   const count = event.photos.length;
 
-  useEffect(() => setIndex(0), [event.id]);
+  useEffect(() => {
+    setIndex(0);
+    setLightboxOpen(false);
+  }, [event.id]);
 
   const change = (direction: -1 | 1) => {
     if (count < 2) return;
@@ -192,6 +199,7 @@ function EventPhotoCarousel({ event }: { event: PureFlowEvent }) {
     <div
       className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl bg-primary"
       onTouchStart={(event) => {
+        suppressOpen.current = false;
         touchStart.current = event.touches[0]?.clientX ?? null;
       }}
       onTouchEnd={(event) => {
@@ -199,16 +207,30 @@ function EventPhotoCarousel({ event }: { event: PureFlowEvent }) {
         const end = event.changedTouches[0]?.clientX;
         touchStart.current = null;
         if (start === null || end === undefined || Math.abs(end - start) < 45) return;
+        suppressOpen.current = true;
         change(end < start ? 1 : -1);
       }}
     >
-      <img
-        key={event.photos[index]}
-        src={event.photos[index]}
-        alt={alt}
-        loading={index === 0 ? "eager" : "lazy"}
-        className="h-full w-full object-cover object-center"
-      />
+      <button
+        type="button"
+        aria-label={`Open photo ${index + 1} of ${count} for ${eventTitle(event)}`}
+        className="h-full w-full cursor-zoom-in"
+        onClick={() => {
+          if (suppressOpen.current) {
+            suppressOpen.current = false;
+            return;
+          }
+          setLightboxOpen(true);
+        }}
+      >
+        <img
+          key={event.photos[index]}
+          src={event.photos[index]}
+          alt={alt}
+          loading={index === 0 ? "eager" : "lazy"}
+          className="h-full w-full object-cover object-center"
+        />
+      </button>
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-primary/60 to-transparent" />
 
       {count > 1 && (
@@ -239,7 +261,10 @@ function EventPhotoCarousel({ event }: { event: PureFlowEvent }) {
           >
             {index + 1} / {count}
           </p>
-          <div className="absolute bottom-4 left-1/2 flex max-w-[55%] -translate-x-1/2 gap-1" aria-hidden="true">
+          <div
+            className="absolute bottom-4 left-1/2 flex max-w-[55%] -translate-x-1/2 gap-1"
+            aria-hidden="true"
+          >
             {event.photos.map((photo, photoIndex) => (
               <span
                 key={photo}
@@ -252,6 +277,83 @@ function EventPhotoCarousel({ event }: { event: PureFlowEvent }) {
           </div>
         </>
       )}
+
+      <Dialog open={lightboxOpen} onOpenChange={setLightboxOpen}>
+        <DialogContent
+          onPointerDown={(pointerEvent) => {
+            if (pointerEvent.target === pointerEvent.currentTarget) setLightboxOpen(false);
+          }}
+          onKeyDown={(keyboardEvent) => {
+            if (keyboardEvent.key === "ArrowLeft") {
+              keyboardEvent.preventDefault();
+              change(-1);
+            } else if (keyboardEvent.key === "ArrowRight") {
+              keyboardEvent.preventDefault();
+              change(1);
+            }
+          }}
+          className="flex h-[100dvh] w-screen max-w-none items-center justify-center border-0 bg-transparent p-4 shadow-none sm:rounded-none sm:p-8 [&>button]:right-4 [&>button]:top-4 [&>button]:z-20 [&>button]:grid [&>button]:h-12 [&>button]:w-12 [&>button]:place-items-center [&>button]:rounded-full [&>button]:bg-black/55 [&>button]:text-white [&>button]:opacity-100 [&>button_svg]:h-7 [&>button_svg]:w-7"
+        >
+          <DialogTitle className="sr-only">{eventTitle(event)} photo gallery</DialogTitle>
+          <div
+            className="relative flex h-full w-full items-center justify-center"
+            onTouchStart={(touchEvent) => {
+              touchEvent.stopPropagation();
+              lightboxTouchStart.current = touchEvent.touches[0]?.clientX ?? null;
+            }}
+            onTouchEnd={(touchEvent) => {
+              touchEvent.stopPropagation();
+              const start = lightboxTouchStart.current;
+              const end = touchEvent.changedTouches[0]?.clientX;
+              lightboxTouchStart.current = null;
+              if (start === null || end === undefined || Math.abs(end - start) < 45) return;
+              change(end < start ? 1 : -1);
+            }}
+            onPointerDown={(pointerEvent) => {
+              if (pointerEvent.target === pointerEvent.currentTarget) setLightboxOpen(false);
+            }}
+          >
+            <img
+              key={`lightbox-${event.photos[index]}`}
+              src={event.photos[index]}
+              alt={alt}
+              className="max-h-[calc(100dvh-8rem)] max-w-[calc(100vw-2rem)] rounded-xl object-contain shadow-2xl sm:max-w-[calc(100vw-8rem)]"
+              onPointerDown={(pointerEvent) => pointerEvent.stopPropagation()}
+            />
+
+            {count > 1 && (
+              <>
+                <Button
+                  type="button"
+                  size="icon"
+                  variant="secondary"
+                  aria-label={`Previous photo for ${eventTitle(event)}`}
+                  onClick={() => change(-1)}
+                  className="absolute left-0 top-1/2 z-10 h-14 w-14 -translate-y-1/2 rounded-full bg-background/90 text-foreground shadow-xl hover:bg-background sm:left-2 sm:h-16 sm:w-16"
+                >
+                  <ChevronLeft className="h-8 w-8" aria-hidden="true" />
+                </Button>
+                <Button
+                  type="button"
+                  size="icon"
+                  variant="secondary"
+                  aria-label={`Next photo for ${eventTitle(event)}`}
+                  onClick={() => change(1)}
+                  className="absolute right-0 top-1/2 z-10 h-14 w-14 -translate-y-1/2 rounded-full bg-background/90 text-foreground shadow-xl hover:bg-background sm:right-2 sm:h-16 sm:w-16"
+                >
+                  <ChevronRight className="h-8 w-8" aria-hidden="true" />
+                </Button>
+              </>
+            )}
+            <p
+              aria-live="polite"
+              className="absolute bottom-1 left-1/2 -translate-x-1/2 rounded-full bg-black/65 px-4 py-2 text-sm font-semibold text-white"
+            >
+              {index + 1} / {count}
+            </p>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
