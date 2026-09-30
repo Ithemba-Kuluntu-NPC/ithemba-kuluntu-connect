@@ -133,8 +133,8 @@ step1.image_path: /pureflow problem.png
 
 step2.num: 02
 step2.tag: PureFlow Modell
-step2.heading: Eine vollständige Umsetzungsplattform, nicht nur eine Produktübergabe
-step2.text_block: PureFlow Amanzi verbindet Haushaltslösungen für sicheres Wasser mit WASH-Bildung, lokaler Montage, gemeindebasiertem Rollout, Schulung zur sicheren Nutzung, Nachbetreuung und Felddatenerhebung. Der schwerkraftbetriebene Filter funktioniert ohne Strom, Chemikalien oder Abkochen und nutzt eine 0,1-Mikron-Membranfiltration, um schädliche Bakterien aus Trinkwasser zu entfernen. Die Stärke des Modells liegt im System rund um den Filter: geschulte lokale Teams, Einführung im Haushalt, praktische Vorführungen, Wartungsanleitung und langfristige Nachbetreuung unterstützen richtige Nutzung, Vertrauen und nachhaltige Verhaltensänderung.
+step2.heading: Ein vollständiges Last-Mile-Modell, nicht nur die Übergabe eines Produkts
+step2.text_block: PureFlow Amanzi verbindet sichere Trinkwasserversorgung auf Haushaltsebene mit WASH-Bildung, lokaler Montage, gemeindenaher Verteilung, Schulungen zur sicheren Nutzung, Nachbetreuung und der Erfassung von Felddaten. Der zum Patent angemeldete, schwerkraftbetriebene Filter kommt ohne Strom und Chemikalien aus und stellt sicheres Trinkwasser direkt im Haushalt bereit, wodurch Wasser deutlich seltener abgekocht werden muss. Die Stärke des Modells liegt im Umsetzungssystem rund um die Technologie: geschulte lokale Teams, strukturierte Haushaltsanbindung, praktische Vorführungen, laufendes Monitoring und langfristige Nachbetreuung fördern die korrekte Nutzung, schaffen Vertrauen und unterstützen nachhaltige Verhaltensänderungen.
 step2.cta_label: Das PureFlow Modell ansehen
 step2.image_path: /pureflow solution.png
 
