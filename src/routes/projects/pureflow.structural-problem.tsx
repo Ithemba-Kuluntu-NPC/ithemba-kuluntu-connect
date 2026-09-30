@@ -22,6 +22,7 @@ import {
   Quote,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { PhotoLightboxGallery, contentPhoto } from "@/components/blocks/PhotoLightbox";
 import { useLang } from "@/components/site/LanguageProvider";
 import type { Lang } from "@/data/content";
 
@@ -141,10 +142,7 @@ function useDeepDiveContent(lang: Lang) {
 
 function ScriptHead({ children, color = YELLOW }: { children: React.ReactNode; color?: string }) {
   return (
-    <div
-      className="text-2xl md:text-3xl mb-3"
-      style={{ fontFamily: SCRIPT, color }}
-    >
+    <div className="text-2xl md:text-3xl mb-3" style={{ fontFamily: SCRIPT, color }}>
       {children}
     </div>
   );
@@ -185,7 +183,11 @@ function Paragraphs({ text, className = "" }: { text: string; className?: string
 function WaveDivider({ from, to }: { from: string; to: string }) {
   return (
     <div className="relative -mt-px" style={{ background: from }}>
-      <svg viewBox="0 0 1440 60" className="block w-full h-[40px] md:h-[56px]" preserveAspectRatio="none">
+      <svg
+        viewBox="0 0 1440 60"
+        className="block w-full h-[40px] md:h-[56px]"
+        preserveAspectRatio="none"
+      >
         <path d="M0,30 C240,60 480,0 720,20 C960,40 1200,50 1440,20 L1440,60 L0,60 Z" fill={to} />
       </svg>
     </div>
@@ -232,7 +234,9 @@ function Hero({ get }: { get: (k: string) => string }) {
           </Link>
           <ScriptHead>{get("hero.small_heading")}</ScriptHead>
           <SerifH2 className="mb-6">{get("hero.main_heading")}</SerifH2>
-          <p className="text-lg md:text-xl text-white/90 mb-5 leading-relaxed">{get("hero.hook")}</p>
+          <p className="text-lg md:text-xl text-white/90 mb-5 leading-relaxed">
+            {get("hero.hook")}
+          </p>
           <Paragraphs text={get("hero.intro")} className="text-white/80 mb-6" />
           <div
             className="border-l-4 pl-4 py-2 mb-8 italic text-white/95 text-base md:text-lg"
@@ -298,7 +302,10 @@ function ReportedVsFunctional({
           <Paragraphs text={get("section_02.copy")} className="text-slate-700" />
         </div>
         <div className="grid gap-5 md:grid-cols-2">
-          <div className="rounded-2xl border-2 p-6 md:p-7" style={{ borderColor: "#E7C9C1", background: "#FFF3EE" }}>
+          <div
+            className="rounded-2xl border-2 p-6 md:p-7"
+            style={{ borderColor: "#E7C9C1", background: "#FFF3EE" }}
+          >
             <div className="text-xs font-semibold uppercase tracking-widest text-orange-800 mb-2">
               {get("section_02.graphic_left_heading")}
             </div>
@@ -321,7 +328,10 @@ function ReportedVsFunctional({
             <ul className="space-y-2">
               {right.map((item, i) => (
                 <li key={i} className="flex items-start gap-2">
-                  <span className="mt-2 inline-block h-1.5 w-1.5 rounded-full" style={{ background: YELLOW }} />
+                  <span
+                    className="mt-2 inline-block h-1.5 w-1.5 rounded-full"
+                    style={{ background: YELLOW }}
+                  />
                   <span>{item}</span>
                 </li>
               ))}
@@ -382,7 +392,10 @@ function StatsGrid({ get }: { get: (k: string) => string }) {
             <div
               key={i}
               className="rounded-2xl p-6"
-              style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)" }}
+              style={{
+                background: "rgba(255,255,255,0.06)",
+                border: "1px solid rgba(255,255,255,0.12)",
+              }}
             >
               <div
                 className="text-4xl md:text-5xl font-bold mb-2 leading-none"
@@ -417,6 +430,43 @@ function StatsGrid({ get }: { get: (k: string) => string }) {
 
 // ----------------------- Section 04: True Source -----------------------
 
+function StructuralPhotoGroup({
+  photos,
+}: {
+  photos: Array<{ src: string; alt: string; className: string }>;
+}) {
+  return (
+    <PhotoLightboxGallery
+      photos={photos.map((photo) => contentPhoto(photo.src, photo.alt))}
+      label="PureFlow structural problem photo gallery"
+    >
+      {(openPhoto) => (
+        <div className="grid grid-cols-2 gap-3">
+          {photos.map((photo, index) => (
+            <button
+              type="button"
+              key={photo.src}
+              aria-label={`Open photo: ${photo.alt}`}
+              onClick={() => openPhoto(index)}
+              className={`${photo.className} min-w-0 cursor-zoom-in overflow-hidden rounded-2xl text-left`}
+            >
+              <img
+                src={photo.src}
+                alt={photo.alt}
+                loading="lazy"
+                className="h-full w-full object-cover"
+                onError={(event) => {
+                  event.currentTarget.style.visibility = "hidden";
+                }}
+              />
+            </button>
+          ))}
+        </div>
+      )}
+    </PhotoLightboxGallery>
+  );
+}
+
 function TrueSource({ get }: { get: (k: string) => string }) {
   return (
     <section className="px-6 py-14 md:py-20" style={{ background: CREAM_WARM }}>
@@ -427,7 +477,10 @@ function TrueSource({ get }: { get: (k: string) => string }) {
             {get("section_04.main_heading")}
           </SerifH2>
           <Paragraphs text={get("section_04.copy")} className="text-slate-700 mb-4" />
-          <div className="mt-5 border-l-4 pl-4 py-2 text-slate-700 italic" style={{ borderColor: YELLOW }}>
+          <div
+            className="mt-5 border-l-4 pl-4 py-2 text-slate-700 italic"
+            style={{ borderColor: YELLOW }}
+          >
             {get("section_04.supporting_copy")}
           </div>
           {get("section_04.source_url") && (
@@ -442,11 +495,17 @@ function TrueSource({ get }: { get: (k: string) => string }) {
             </a>
           )}
         </div>
-        <div className="grid grid-cols-2 gap-3">
-          <img src={PHOTOS.hero2} alt="" className="h-56 md:h-72 w-full object-cover rounded-2xl" />
-          <img src={PHOTOS.hero3} alt="" className="h-56 md:h-72 w-full object-cover rounded-2xl mt-6" />
-          <img src={PHOTOS.hero4} alt="" className="h-40 md:h-56 w-full object-cover rounded-2xl col-span-2" />
-        </div>
+        <StructuralPhotoGroup
+          photos={[
+            { src: PHOTOS.hero2, alt: "Rural water access conditions", className: "h-56 md:h-72" },
+            { src: PHOTOS.hero3, alt: "Community water source", className: "h-56 md:h-72 mt-6" },
+            {
+              src: PHOTOS.hero4,
+              alt: "Daily water collection in the community",
+              className: "h-40 md:h-56 col-span-2",
+            },
+          ]}
+        />
       </div>
     </section>
   );
@@ -504,7 +563,10 @@ function WomenChildren({
     <section className="relative overflow-hidden" style={{ background: BLUE_DEEP }}>
       <div className="absolute inset-0 opacity-20">
         <img src={PHOTOS.hero4} alt="" className="h-full w-full object-cover" />
-        <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(8,26,96,0.85), rgba(8,26,96,0.95))" }} />
+        <div
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(180deg, rgba(8,26,96,0.85), rgba(8,26,96,0.95))" }}
+        />
       </div>
       <div className="relative mx-auto max-w-6xl px-6 py-16 md:py-24">
         <div className="max-w-3xl mb-10">
@@ -529,7 +591,10 @@ function WomenChildren({
               <li
                 key={i}
                 className="flex items-start gap-3 rounded-xl p-3 border"
-                style={{ background: "rgba(255,255,255,0.05)", borderColor: "rgba(255,255,255,0.12)" }}
+                style={{
+                  background: "rgba(255,255,255,0.05)",
+                  borderColor: "rgba(255,255,255,0.12)",
+                }}
               >
                 <span
                   className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold"
@@ -537,7 +602,9 @@ function WomenChildren({
                 >
                   {i + 1}
                 </span>
-                <span className="text-white/90 text-sm md:text-base leading-snug pt-0.5">{step}</span>
+                <span className="text-white/90 text-sm md:text-base leading-snug pt-0.5">
+                  {step}
+                </span>
               </li>
             ))}
           </ol>
@@ -545,7 +612,10 @@ function WomenChildren({
 
         {/* Sub cards */}
         <div className="grid gap-5 md:grid-cols-2">
-          <div className="rounded-2xl p-6 border" style={{ background: "rgba(255,255,255,0.06)", borderColor: "rgba(255,255,255,0.15)" }}>
+          <div
+            className="rounded-2xl p-6 border"
+            style={{ background: "rgba(255,255,255,0.06)", borderColor: "rgba(255,255,255,0.15)" }}
+          >
             <div className="flex items-center gap-2 mb-2">
               <Users className="h-5 w-5" style={{ color: YELLOW }} />
               <div className="text-white font-semibold" style={{ fontFamily: SERIF }}>
@@ -556,7 +626,10 @@ function WomenChildren({
               {get("section_06.body_burden_copy")}
             </p>
           </div>
-          <div className="rounded-2xl p-6 border" style={{ background: "rgba(255,255,255,0.06)", borderColor: "rgba(255,255,255,0.15)" }}>
+          <div
+            className="rounded-2xl p-6 border"
+            style={{ background: "rgba(255,255,255,0.06)", borderColor: "rgba(255,255,255,0.15)" }}
+          >
             <div className="flex items-center gap-2 mb-2">
               <Flame className="h-5 w-5" style={{ color: YELLOW }} />
               <div className="text-white font-semibold" style={{ fontFamily: SERIF }}>
@@ -567,7 +640,9 @@ function WomenChildren({
               {get("section_06.firewood_tax_copy")}
             </p>
             {get("section_06.firewood_tax_note") && (
-              <p className="mt-3 text-white/70 text-xs italic">{get("section_06.firewood_tax_note")}</p>
+              <p className="mt-3 text-white/70 text-xs italic">
+                {get("section_06.firewood_tax_note")}
+              </p>
             )}
           </div>
         </div>
@@ -702,14 +777,20 @@ function HealthLearning({
             >
               <div className="flex items-center gap-2 mb-3">
                 <c.icon className="h-5 w-5" style={{ color: BLUE }} />
-                <div className="font-semibold text-lg" style={{ color: BLUE_DEEP, fontFamily: SERIF }}>
+                <div
+                  className="font-semibold text-lg"
+                  style={{ color: BLUE_DEEP, fontFamily: SERIF }}
+                >
                   {c.title}
                 </div>
               </div>
               <ul className="space-y-1.5">
                 {c.items.map((it, j) => (
                   <li key={j} className="flex items-start gap-2 text-slate-700 text-sm">
-                    <span className="mt-1.5 inline-block h-1.5 w-1.5 rounded-full" style={{ background: YELLOW }} />
+                    <span
+                      className="mt-1.5 inline-block h-1.5 w-1.5 rounded-full"
+                      style={{ background: YELLOW }}
+                    />
                     <span>{it}</span>
                   </li>
                 ))}
@@ -744,7 +825,11 @@ function BeyondHousehold({ get }: { get: (k: string) => string }) {
   const cards = [
     { title: get("section_09.card_01_title"), copy: get("section_09.card_01_copy"), icon: School },
     { title: get("section_09.card_02_title"), copy: get("section_09.card_02_copy"), icon: Baby },
-    { title: get("section_09.card_03_title"), copy: get("section_09.card_03_copy"), icon: HeartPulse },
+    {
+      title: get("section_09.card_03_title"),
+      copy: get("section_09.card_03_copy"),
+      icon: HeartPulse,
+    },
   ];
   return (
     <section className="relative overflow-hidden px-6 py-14 md:py-20">
@@ -763,7 +848,10 @@ function BeyondHousehold({ get }: { get: (k: string) => string }) {
             <div
               key={i}
               className="rounded-2xl p-6 border"
-              style={{ background: "rgba(255,255,255,0.08)", borderColor: "rgba(255,255,255,0.15)" }}
+              style={{
+                background: "rgba(255,255,255,0.08)",
+                borderColor: "rgba(255,255,255,0.15)",
+              }}
             >
               <c.icon className="h-6 w-6 mb-3" style={{ color: YELLOW }} />
               <div className="font-semibold text-lg mb-2 text-white" style={{ fontFamily: SERIF }}>
@@ -774,7 +862,9 @@ function BeyondHousehold({ get }: { get: (k: string) => string }) {
           ))}
         </div>
         {get("section_09.stat_line") && (
-          <p className="mt-6 text-white/80 text-sm italic max-w-3xl">{get("section_09.stat_line")}</p>
+          <p className="mt-6 text-white/80 text-sm italic max-w-3xl">
+            {get("section_09.stat_line")}
+          </p>
         )}
       </div>
     </section>
@@ -795,7 +885,12 @@ function PureFlowResponse({ get }: { get: (k: string) => string }) {
           <Paragraphs text={get("section_10.copy")} className="text-slate-700 mb-4" />
           <div
             className="mt-4 rounded-xl p-4 italic border-l-4"
-            style={{ background: "white", borderColor: YELLOW, color: BLUE_DEEP, fontFamily: SERIF }}
+            style={{
+              background: "white",
+              borderColor: YELLOW,
+              color: BLUE_DEEP,
+              fontFamily: SERIF,
+            }}
           >
             {get("section_10.closing_line")}
           </div>
@@ -817,14 +912,21 @@ function PureFlowResponse({ get }: { get: (k: string) => string }) {
             </a>
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-3">
-          <img src={PHOTOS.response} alt="" className="h-40 md:h-56 w-full object-cover rounded-2xl" />
-          <img src={PHOTOS.closing} alt="" className="h-40 md:h-56 w-full object-cover rounded-2xl mt-6"
-            onError={(e) => {
-              (e.currentTarget as HTMLImageElement).style.display = "none";
-            }} />
-          <img src={PHOTOS.benefit} alt="" className="h-32 md:h-40 w-full object-cover rounded-2xl col-span-2" />
-        </div>
+        <StructuralPhotoGroup
+          photos={[
+            { src: PHOTOS.response, alt: "PureFlow community response", className: "h-40 md:h-56" },
+            {
+              src: PHOTOS.closing,
+              alt: "Community members with PureFlow filters",
+              className: "h-40 md:h-56 mt-6",
+            },
+            {
+              src: PHOTOS.benefit,
+              alt: "Immediate public benefit of safe water",
+              className: "h-32 md:h-40 col-span-2",
+            },
+          ]}
+        />
       </div>
     </section>
   );
@@ -852,7 +954,10 @@ function SourcesAccordion({ get }: { get: (k: string) => string }) {
           <ChevronDown className={cn("h-4 w-4 transition-transform", open && "rotate-180")} />
         </button>
         {open && (
-          <ul className="mt-3 space-y-2 rounded-xl bg-white p-4 border" style={{ borderColor: "#E7DDBF" }}>
+          <ul
+            className="mt-3 space-y-2 rounded-xl bg-white p-4 border"
+            style={{ borderColor: "#E7DDBF" }}
+          >
             {items.map((s, i) => (
               <li key={i}>
                 <a
@@ -885,7 +990,8 @@ function ClosingNav({ get }: { get: (k: string) => string }) {
           hash="structural-problem"
           className="inline-flex items-center gap-2 text-white/90 hover:text-white text-sm"
         >
-          <ArrowLeft className="h-4 w-4" /> {get("section_10.button_01_label") || "Back to PureFlow Amanzi"}
+          <ArrowLeft className="h-4 w-4" />{" "}
+          {get("section_10.button_01_label") || "Back to PureFlow Amanzi"}
         </Link>
         <a
           href={get("section_10.button_02_url") || "/projects/pureflow"}

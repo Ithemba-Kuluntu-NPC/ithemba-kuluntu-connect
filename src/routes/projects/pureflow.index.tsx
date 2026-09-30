@@ -43,7 +43,23 @@ import type { Lang } from "@/data/content";
 // Lazy-loaded, client-only Leaflet map (Leaflet touches `window` at import).
 const PureFlowEventMap = lazy(() => import("@/components/blocks/PureFlowEventMap"));
 
-export const Route = createFileRoute("/projects/pureflow/")({ component: PureFlowCompactPage, head: () => createSeoHead({ title: 'PureFlow Amanzi | Safe Water | iThemba Kuluntu', description: 'PureFlow Amanzi expands safe-water access for rural households and learning sites through locally led delivery, WASH education, monitoring and ongoing support.', path: '/projects/pureflow', breadcrumbs: [{ name: 'Home', path: '/' }, { name: 'Projects', path: '/projects' }, { name: 'PureFlow Amanzi', path: '/projects/pureflow' }], image: PUREFLOW_SOCIAL_IMAGE, imageAlt: "PureFlow Amanzi safe-water system in rural South Africa" }) });
+export const Route = createFileRoute("/projects/pureflow/")({
+  component: PureFlowCompactPage,
+  head: () =>
+    createSeoHead({
+      title: "PureFlow Amanzi | Safe Water | iThemba Kuluntu",
+      description:
+        "PureFlow Amanzi expands safe-water access for rural households and learning sites through locally led delivery, WASH education, monitoring and ongoing support.",
+      path: "/projects/pureflow",
+      breadcrumbs: [
+        { name: "Home", path: "/" },
+        { name: "Projects", path: "/projects" },
+        { name: "PureFlow Amanzi", path: "/projects/pureflow" },
+      ],
+      image: PUREFLOW_SOCIAL_IMAGE,
+      imageAlt: "PureFlow Amanzi safe-water system in rural South Africa",
+    }),
+});
 
 // ----------------------- Content loading -----------------------
 
@@ -103,8 +119,7 @@ function useProjectContent(lang: Lang) {
   }, [lang]);
 
   return useMemo(() => {
-    const t = (key: string, fb = ""): string =>
-      dict[key] ?? enFallback[key] ?? fb;
+    const t = (key: string, fb = ""): string => dict[key] ?? enFallback[key] ?? fb;
     return { t };
   }, [dict, enFallback]);
 }
@@ -122,9 +137,11 @@ const SCRIPT = '"Caveat", "Kalam", cursive';
 
 const ASSET_BASE = "/assets/icons/projects/pureflow";
 const PHOTO_BASE = "/assets/photos/projects/pureflow";
-const photoPath = (filename: string) => (filename.startsWith("/") ? filename : `${PHOTO_BASE}/${filename}`);
+const photoPath = (filename: string) =>
+  filename.startsWith("/") ? filename : `${PHOTO_BASE}/${filename}`;
 const HERO_VIDEO = `${PHOTO_BASE}/hero-video-pureflow-compressed-8mb.mp4`;
-const HERO_POSTER = "/assets/photos/projects/pureflow/pureflow-rural-handout-community-group-holding-filter-buckets-02.jpg";
+const HERO_POSTER =
+  "/assets/photos/projects/pureflow/pureflow-rural-handout-community-group-holding-filter-buckets-02.jpg";
 
 const FIELD_PHOTOS = {
   loop: [
@@ -148,7 +165,8 @@ const FIELD_PHOTOS = {
     "/assets/generated-performance/pureflow-ecd-handout-event-smiling-mom-at-training-station-web.jpg",
   ],
   sdg: "/assets/generated-performance/pureflow-community-engagement-royal-house-large-community-meeting-01-web.jpg",
-  donation: "/assets/generated-performance/pureflow-happy-dancing-recipients-of-filter-after-event-web.jpg",
+  donation:
+    "/assets/generated-performance/pureflow-happy-dancing-recipients-of-filter-after-event-web.jpg",
   closing: [
     "pureflow-handout-event-01-community-group-with-filters-02.jpg",
     "pureflow-rural-handout-community-group-holding-filter-buckets-01.jpg",
@@ -179,16 +197,21 @@ function WaveDivider({
         preserveAspectRatio="none"
         className="block h-[40px] w-full md:h-[60px]"
       >
-        <path
-          d="M0,35 C240,70 480,0 720,35 C960,70 1200,5 1440,40 L1440,70 L0,70 Z"
-          fill={to}
-        />
+        <path d="M0,35 C240,70 480,0 720,35 C960,70 1200,5 1440,40 L1440,70 L0,70 Z" fill={to} />
       </svg>
     </div>
   );
 }
 
-function Script({ children, color = YELLOW, className = "" }: { children: React.ReactNode; color?: string; className?: string }) {
+function Script({
+  children,
+  color = YELLOW,
+  className = "",
+}: {
+  children: React.ReactNode;
+  color?: string;
+  className?: string;
+}) {
   return (
     <p
       className={cn("text-2xl md:text-3xl leading-none", className)}
@@ -273,7 +296,13 @@ function PhotoFrame({
     warm: "from-[#7C3A12] via-[#C26A2A] to-[#F0B870]",
   };
   return (
-    <div className={cn("relative isolate overflow-hidden shadow-xl ring-1 ring-black/10", rounded, className)}>
+    <div
+      className={cn(
+        "relative isolate overflow-hidden shadow-xl ring-1 ring-black/10",
+        rounded,
+        className,
+      )}
+    >
       {errored || !src ? (
         <div className={cn("absolute inset-0 bg-gradient-to-br", tones[tone])}>
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_80%_at_25%_15%,rgba(255,240,200,0.45),transparent_55%),radial-gradient(120%_80%_at_85%_90%,rgba(0,0,0,0.45),transparent_55%)]" />
@@ -308,7 +337,13 @@ function useReducedMotion() {
   return reduced;
 }
 
-function Hero({ t, goDonate }: { t: (k: string, fb?: string) => string; goDonate: (freq: "monthly" | "once") => void }) {
+function Hero({
+  t,
+  goDonate,
+}: {
+  t: (k: string, fb?: string) => string;
+  goDonate: (freq: "monthly" | "once") => void;
+}) {
   const [videoFailed, setVideoFailed] = useState(false);
   const reduced = useReducedMotion();
   const showVideo = !videoFailed && !reduced;
@@ -371,7 +406,6 @@ function Hero({ t, goDonate }: { t: (k: string, fb?: string) => string; goDonate
           <ArrowLeft className="h-4 w-4" /> {t("hero.back", "All projects")}
         </Link>
 
-
         <div className="mt-6">
           <div className="min-w-0">
             <Script>{t("hero.script_heading")}</Script>
@@ -381,7 +415,10 @@ function Hero({ t, goDonate }: { t: (k: string, fb?: string) => string; goDonate
             >
               {t("hero.main_heading")}
             </h1>
-            <p className="mt-4 max-w-xl text-lg text-white/90 md:text-xl" style={{ fontFamily: SERIF }}>
+            <p
+              className="mt-4 max-w-xl text-lg text-white/90 md:text-xl"
+              style={{ fontFamily: SERIF }}
+            >
               {t("hero.sub_heading")}
             </p>
             <p className="mt-4 max-w-2xl text-sm text-white/80 md:text-base">
@@ -464,7 +501,10 @@ function PathwayStepper({ t }: { t: (k: string, fb?: string) => string }) {
       <div className="mx-auto max-w-7xl px-4 py-10 md:px-8 md:py-14">
         <div className="text-center">
           <Script color={YELLOW}>{t("pathway.script_heading")}</Script>
-          <h2 className="mt-1 text-3xl font-bold text-white md:text-4xl" style={{ fontFamily: SERIF }}>
+          <h2
+            className="mt-1 text-3xl font-bold text-white md:text-4xl"
+            style={{ fontFamily: SERIF }}
+          >
             {t("pathway.main_heading")}
           </h2>
           <p className="mx-auto mt-2 max-w-2xl text-sm text-white/80 md:text-base">
@@ -484,14 +524,18 @@ function PathwayStepper({ t }: { t: (k: string, fb?: string) => string }) {
                   <div className="relative">
                     <div
                       className="flex h-32 w-32 items-center justify-center rounded-full bg-white shadow-lg ring-1 ring-black/5 lg:h-36 lg:w-36"
-                      style={{ boxShadow: `0 18px 40px -20px rgba(8,26,96,0.45), 0 0 0 3px rgba(251,191,36,0.55)` }}
+                      style={{
+                        boxShadow: `0 18px 40px -20px rgba(8,26,96,0.45), 0 0 0 3px rgba(251,191,36,0.55)`,
+                      }}
                     >
                       <img
                         src={s.img}
                         alt={s.title}
                         loading="lazy"
                         className="h-full w-full rounded-full object-contain p-2"
-                        onError={(e) => ((e.currentTarget as HTMLImageElement).style.visibility = "hidden")}
+                        onError={(e) =>
+                          ((e.currentTarget as HTMLImageElement).style.visibility = "hidden")
+                        }
                       />
                     </div>
                     <span
@@ -511,7 +555,11 @@ function PathwayStepper({ t }: { t: (k: string, fb?: string) => string }) {
                 </button>
               </li>
               {i < steps.length - 1 && (
-                <li key={`arrow-${i}`} aria-hidden className="col-span-1 flex items-center justify-center pt-12">
+                <li
+                  key={`arrow-${i}`}
+                  aria-hidden
+                  className="col-span-1 flex items-center justify-center pt-12"
+                >
                   <ArrowRight className="h-7 w-7" style={{ color: YELLOW }} strokeWidth={3} />
                 </li>
               )}
@@ -538,8 +586,12 @@ function PathwayStepper({ t }: { t: (k: string, fb?: string) => string }) {
                     alt=""
                     aria-hidden
                     className="h-32 w-32 rounded-full bg-white object-contain p-2"
-                    style={{ boxShadow: `0 18px 40px -20px rgba(0,0,0,0.5), 0 0 0 3px rgba(251,191,36,0.55)` }}
-                    onError={(e) => ((e.currentTarget as HTMLImageElement).style.visibility = "hidden")}
+                    style={{
+                      boxShadow: `0 18px 40px -20px rgba(0,0,0,0.5), 0 0 0 3px rgba(251,191,36,0.55)`,
+                    }}
+                    onError={(e) =>
+                      ((e.currentTarget as HTMLImageElement).style.visibility = "hidden")
+                    }
                   />
                   <span
                     className="absolute -bottom-1 -right-1 inline-flex h-8 w-8 items-center justify-center rounded-full text-xs font-extrabold shadow"
@@ -548,7 +600,10 @@ function PathwayStepper({ t }: { t: (k: string, fb?: string) => string }) {
                     {s.num}
                   </span>
                 </div>
-                <p className="mt-4 text-lg font-semibold leading-tight text-white" style={{ fontFamily: SERIF }}>
+                <p
+                  className="mt-4 text-lg font-semibold leading-tight text-white"
+                  style={{ fontFamily: SERIF }}
+                >
                   {s.title}
                 </p>
                 <p className="mt-1 max-w-xs text-sm leading-snug text-white/75">{s.desc}</p>
@@ -591,7 +646,15 @@ function parseCounter(v: string): { value: number; suffix: string } {
   return { value: isNaN(num) ? 0 : num, suffix: m[2] };
 }
 
-function AnimatedNumber({ value, suffix, locale }: { value: number; suffix: string; locale: string }) {
+function AnimatedNumber({
+  value,
+  suffix,
+  locale,
+}: {
+  value: number;
+  suffix: string;
+  locale: string;
+}) {
   const [n, setN] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
   useEffect(() => {
@@ -634,14 +697,43 @@ function Showcase({ t, lang }: { t: (k: string, fb?: string) => string; lang: La
   const locale = lang === "de" ? "de-DE" : lang === "nl" ? "nl-NL" : "en-US";
 
   const counters = [
-    { k: "households", iconSrc: "/assets/icons/projects/pureflow/pureflow-households-safe-water.png", v: t("impact.counters.households.value"), l: t("impact.counters.households.label") },
-    { k: "people", iconSrc: "/assets/icons/projects/pureflow/pureflow-individuals-reached.png", v: t("impact.counters.people.value"), l: t("impact.counters.people.label") },
-    { k: "green_jobs", iconSrc: "/assets/icons/projects/pureflow/pureflow-green-jobs.png", v: t("impact.counters.green_jobs.value"), l: t("impact.counters.green_jobs.label") },
-    { k: "wash_events", iconSrc: "/assets/icons/projects/pureflow/pureflow-wash-training-sessions.png", v: t("impact.counters.wash_events.value"), l: t("impact.counters.wash_events.label") },
-    { k: "litres", iconSrc: "/assets/icons/projects/pureflow/pureflow-clean-water-capacity.png", v: t("impact.counters.litres.value"), l: t("impact.counters.litres.label") },
-    { k: "co2", iconSrc: "/assets/icons/projects/pureflow/pureflow-co2e-reduced.png", v: t("impact.counters.co2.value"), l: t("impact.counters.co2.label") },
+    {
+      k: "households",
+      iconSrc: "/assets/icons/projects/pureflow/pureflow-households-safe-water.png",
+      v: t("impact.counters.households.value"),
+      l: t("impact.counters.households.label"),
+    },
+    {
+      k: "people",
+      iconSrc: "/assets/icons/projects/pureflow/pureflow-individuals-reached.png",
+      v: t("impact.counters.people.value"),
+      l: t("impact.counters.people.label"),
+    },
+    {
+      k: "green_jobs",
+      iconSrc: "/assets/icons/projects/pureflow/pureflow-green-jobs.png",
+      v: t("impact.counters.green_jobs.value"),
+      l: t("impact.counters.green_jobs.label"),
+    },
+    {
+      k: "wash_events",
+      iconSrc: "/assets/icons/projects/pureflow/pureflow-wash-training-sessions.png",
+      v: t("impact.counters.wash_events.value"),
+      l: t("impact.counters.wash_events.label"),
+    },
+    {
+      k: "litres",
+      iconSrc: "/assets/icons/projects/pureflow/pureflow-clean-water-capacity.png",
+      v: t("impact.counters.litres.value"),
+      l: t("impact.counters.litres.label"),
+    },
+    {
+      k: "co2",
+      iconSrc: "/assets/icons/projects/pureflow/pureflow-co2e-reduced.png",
+      v: t("impact.counters.co2.value"),
+      l: t("impact.counters.co2.label"),
+    },
   ];
-
 
   return (
     <section style={{ background: BLUE }} className="relative">
@@ -651,7 +743,9 @@ function Showcase({ t, lang }: { t: (k: string, fb?: string) => string; lang: La
           <h2 className="mt-1 text-3xl font-bold md:text-4xl" style={{ fontFamily: SERIF }}>
             {t("showcase.main_heading")}
           </h2>
-          <p className="mx-auto mt-2 max-w-2xl text-sm text-white/80 md:text-base">{t("showcase.text")}</p>
+          <p className="mx-auto mt-2 max-w-2xl text-sm text-white/80 md:text-base">
+            {t("showcase.text")}
+          </p>
         </div>
 
         {/* Counter matrix — yellow icons, animated numbers, on blue */}
@@ -672,13 +766,13 @@ function Showcase({ t, lang }: { t: (k: string, fb?: string) => string; lang: La
                 >
                   <AnimatedNumber value={value} suffix={suffix} locale={locale} />
                 </div>
-                <p className="mt-3 max-w-[15rem] text-[11px] leading-snug text-white/80 md:text-xs">{c.l}</p>
+                <p className="mt-3 max-w-[15rem] text-[11px] leading-snug text-white/80 md:text-xs">
+                  {c.l}
+                </p>
               </div>
             );
           })}
-
         </div>
-
 
         <p className="mx-auto mt-8 max-w-3xl text-center text-xs italic text-white/65 md:text-sm">
           {t("impact.note")}
@@ -687,20 +781,41 @@ function Showcase({ t, lang }: { t: (k: string, fb?: string) => string; lang: La
         <div className="mx-auto mt-8 max-w-4xl overflow-hidden rounded-3xl bg-black/90 shadow-2xl ring-1 ring-white/10 md:max-w-[900px]">
           <div className="relative aspect-video w-full">
             {vid && !playing && (
-              <button type="button" onClick={() => setPlaying(true)} className="group absolute inset-0 z-10" aria-label={t("showcase.video.title")}>
-                <img src={`https://i.ytimg.com/vi/${vid}/hqdefault.jpg`} alt={t("showcase.video.title")} className="h-full w-full object-cover" />
+              <button
+                type="button"
+                onClick={() => setPlaying(true)}
+                className="group absolute inset-0 z-10"
+                aria-label={t("showcase.video.title")}
+              >
+                <img
+                  src={`https://i.ytimg.com/vi/${vid}/hqdefault.jpg`}
+                  alt={t("showcase.video.title")}
+                  className="h-full w-full object-cover"
+                />
                 <span className="absolute inset-0 flex items-center justify-center bg-black/30 transition group-hover:bg-black/40">
                   <PlayCircle className="h-20 w-20" style={{ color: YELLOW }} />
                 </span>
               </button>
             )}
             {vid && playing && (
-              <iframe className="absolute inset-0 h-full w-full" src={`https://www.youtube.com/embed/${vid}?autoplay=1&rel=0`} title={t("showcase.video.title")} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+              <iframe
+                className="absolute inset-0 h-full w-full"
+                src={`https://www.youtube.com/embed/${vid}?autoplay=1&rel=0`}
+                title={t("showcase.video.title")}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
             )}
-            {!vid && <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#081A60] to-[#1E40C8] text-white/70"><PlayCircle className="h-16 w-16" style={{ color: YELLOW }} /></div>}
+            {!vid && (
+              <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#081A60] to-[#1E40C8] text-white/70">
+                <PlayCircle className="h-16 w-16" style={{ color: YELLOW }} />
+              </div>
+            )}
           </div>
           <div className="bg-white/95 px-5 py-3">
-            <p className="text-sm font-semibold" style={{ color: BLUE_DEEP, fontFamily: SERIF }}>{t("showcase.video.title")}</p>
+            <p className="text-sm font-semibold" style={{ color: BLUE_DEEP, fontFamily: SERIF }}>
+              {t("showcase.video.title")}
+            </p>
             <p className="mt-0.5 text-xs text-slate-600">{t("showcase.video.description")}</p>
           </div>
         </div>
@@ -754,32 +869,55 @@ function StepCollage({
   const cells = layouts[variant];
   const usable = slots.slice(0, cells.length);
 
+  const galleryPhotos = usable.filter((photo): photo is typeof photo & { src: string } =>
+    Boolean(photo.src),
+  );
   return (
-    <div className="relative">
-      <div
-        className="relative grid aspect-[4/5] grid-cols-12 grid-rows-6 gap-2.5 md:gap-3"
-        style={{ filter: "drop-shadow(0 28px 60px rgba(8,26,96,0.35))" }}
-      >
-        {usable.map((p, i) => (
-          <div key={i} className={cn("overflow-hidden ring-1 ring-black/10", cells[i])}>
-            <PhotoFrame
-              src={p.src}
-              alt={p.alt ?? alt}
-              tone={tone}
-              rounded="rounded-none"
-              className="h-full w-full"
-              objectPosition={p.objectPosition}
-            />
+    <PhotoLightboxGallery
+      photos={galleryPhotos.map((photo) => contentPhoto(photo.src, photo.alt ?? alt))}
+      label={`${alt} photo gallery`}
+    >
+      {(openPhoto) => (
+        <div className="relative">
+          <div
+            className="relative grid aspect-[4/5] grid-cols-12 grid-rows-6 gap-2.5 md:gap-3"
+            style={{ filter: "drop-shadow(0 28px 60px rgba(8,26,96,0.35))" }}
+          >
+            {usable.map((p, i) => (
+              <button
+                type="button"
+                disabled={!p.src}
+                aria-label={`Open photo: ${p.alt ?? alt}`}
+                onClick={() =>
+                  p.src && openPhoto(galleryPhotos.findIndex((photo) => photo.src === p.src))
+                }
+                key={i}
+                className={cn(
+                  "overflow-hidden text-left ring-1 ring-black/10",
+                  p.src && "cursor-zoom-in",
+                  cells[i],
+                )}
+              >
+                <PhotoFrame
+                  src={p.src}
+                  alt={p.alt ?? alt}
+                  tone={tone}
+                  rounded="rounded-none"
+                  className="h-full w-full"
+                  objectPosition={p.objectPosition}
+                />
+              </button>
+            ))}
           </div>
-        ))}
-      </div>
-      {/* accent block */}
-      <div
-        className="pointer-events-none absolute -right-3 -top-3 hidden h-20 w-20 rounded-2xl md:block"
-        style={{ background: accent, boxShadow: `0 14px 28px -14px ${accent}B3` }}
-        aria-hidden
-      />
-    </div>
+          {/* accent block */}
+          <div
+            className="pointer-events-none absolute -right-3 -top-3 hidden h-20 w-20 rounded-2xl md:block"
+            style={{ background: accent, boxShadow: `0 14px 28px -14px ${accent}B3` }}
+            aria-hidden
+          />
+        </div>
+      )}
+    </PhotoLightboxGallery>
   );
 }
 
@@ -827,11 +965,7 @@ function StepBlock({
   const tagBg = dark ? "rgba(255,255,255,0.12)" : "rgba(15,42,140,0.08)";
   const tagFg = dark ? YELLOW : BLUE;
   return (
-    <section
-      id={id}
-      className="relative scroll-mt-20"
-      style={{ background: dark ? BLUE : CREAM }}
-    >
+    <section id={id} className="relative scroll-mt-20" style={{ background: dark ? BLUE : CREAM }}>
       {bgPhotoSrc && !dark && (
         <>
           <img
@@ -848,7 +982,6 @@ function StepBlock({
       )}
 
       <div className="relative mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
-
         <div
           className={cn(
             "grid items-center gap-8 lg:grid-cols-2 lg:gap-12",
@@ -907,7 +1040,13 @@ function StepBlock({
             )}
             {accentSrcSecondary && (
               <div className="absolute right-2 top-2 z-10 sm:-right-3 sm:-top-5 md:-right-6 md:-top-8">
-                <CircleArt src={accentSrcSecondary} alt={photoAlt} size="xs" bg="#FFFFFF" ring="rgba(15,42,140,0.25)" />
+                <CircleArt
+                  src={accentSrcSecondary}
+                  alt={photoAlt}
+                  size="xs"
+                  bg="#FFFFFF"
+                  ring="rgba(15,42,140,0.25)"
+                />
               </div>
             )}
           </div>
@@ -918,7 +1057,6 @@ function StepBlock({
     </section>
   );
 }
-
 
 // ----------------------- Horizontal 5-step delivery loop (under Step 02) -----------------------
 
@@ -931,14 +1069,28 @@ function DeliveryLoop({ t }: { t: (k: string, fb?: string) => string }) {
     photo: photoPath(FIELD_PHOTOS.loop[i]),
   }));
 
-  const LoopPhoto = ({ src, Icon, alt, size }: { src: string; Icon: typeof Ear; alt: string; size: "lg" | "sm" }) => {
+  const LoopPhoto = ({
+    src,
+    Icon,
+    alt,
+    size,
+  }: {
+    src: string;
+    Icon: typeof Ear;
+    alt: string;
+    size: "lg" | "sm";
+  }) => {
     const [errored, setErrored] = useState(false);
     const box = size === "lg" ? "h-28 w-28 md:h-32 md:w-32" : "h-16 w-16";
     const ring = size === "lg" ? "ring-[6px]" : "ring-[4px]";
     return (
       <div
         className={`relative flex shrink-0 items-center justify-center overflow-hidden rounded-full ${box} ${ring}`}
-        style={{ background: BLUE, boxShadow: "0 12px 28px -12px rgba(8,26,96,0.45)", ["--tw-ring-color" as never]: CREAM }}
+        style={{
+          background: BLUE,
+          boxShadow: "0 12px 28px -12px rgba(8,26,96,0.45)",
+          ["--tw-ring-color" as never]: CREAM,
+        }}
       >
         {!errored ? (
           <img
@@ -953,9 +1105,15 @@ function DeliveryLoop({ t }: { t: (k: string, fb?: string) => string }) {
             <div
               aria-hidden
               className="absolute inset-0"
-              style={{ background: `radial-gradient(120% 80% at 30% 20%, ${YELLOW}33, transparent 60%), linear-gradient(135deg, ${BLUE} 0%, ${BLUE_DEEP} 100%)` }}
+              style={{
+                background: `radial-gradient(120% 80% at 30% 20%, ${YELLOW}33, transparent 60%), linear-gradient(135deg, ${BLUE} 0%, ${BLUE_DEEP} 100%)`,
+              }}
             />
-            <Icon className={size === "lg" ? "relative h-10 w-10 md:h-12 md:w-12" : "relative h-6 w-6"} style={{ color: YELLOW }} strokeWidth={1.75} />
+            <Icon
+              className={size === "lg" ? "relative h-10 w-10 md:h-12 md:w-12" : "relative h-6 w-6"}
+              style={{ color: YELLOW }}
+              strokeWidth={1.75}
+            />
           </>
         )}
       </div>
@@ -965,10 +1123,15 @@ function DeliveryLoop({ t }: { t: (k: string, fb?: string) => string }) {
   return (
     <div className="mt-12 rounded-3xl bg-white/95 p-5 shadow-xl ring-1 ring-black/5 md:p-8">
       <div className="text-center">
-        <h4 className="text-xl font-bold md:text-2xl" style={{ fontFamily: SERIF, color: BLUE_DEEP }}>
+        <h4
+          className="text-xl font-bold md:text-2xl"
+          style={{ fontFamily: SERIF, color: BLUE_DEEP }}
+        >
           {t("step2.loop.heading")}
         </h4>
-        <p className="mx-auto mt-1 max-w-2xl text-sm text-slate-600 md:text-base">{t("step2.loop.sub_heading")}</p>
+        <p className="mx-auto mt-1 max-w-2xl text-sm text-slate-600 md:text-base">
+          {t("step2.loop.sub_heading")}
+        </p>
       </div>
 
       {/* Desktop / tablet: horizontal flow */}
@@ -985,7 +1148,10 @@ function DeliveryLoop({ t }: { t: (k: string, fb?: string) => string }) {
                   {i + 1}
                 </span>
               </div>
-              <p className="mt-4 text-sm font-semibold" style={{ color: BLUE_DEEP, fontFamily: SERIF }}>
+              <p
+                className="mt-4 text-sm font-semibold"
+                style={{ color: BLUE_DEEP, fontFamily: SERIF }}
+              >
                 {it.title}
               </p>
               <p className="mt-1 text-[11px] leading-snug text-slate-600">{it.desc}</p>
@@ -1023,7 +1189,6 @@ function DeliveryLoop({ t }: { t: (k: string, fb?: string) => string }) {
       </ol>
     </div>
   );
-
 }
 
 // ----------------------- ECD YouTube Embed (for Step 03) -----------------------
@@ -1065,7 +1230,9 @@ function EcdVideoEmbed() {
           <p className="text-sm font-semibold" style={{ color: BLUE_DEEP, fontFamily: SERIF }}>
             PureFlow Amanzi at the No.1 ECD Centre
           </p>
-          <p className="mt-0.5 text-xs text-slate-600">Safe water in action for early childhood learners.</p>
+          <p className="mt-0.5 text-xs text-slate-600">
+            Safe water in action for early childhood learners.
+          </p>
         </div>
       </div>
     </div>
@@ -1118,10 +1285,15 @@ function SDGGrid({ t }: { t: (k: string, fb?: string) => string }) {
       <div className="mx-auto max-w-6xl px-5 py-10 md:px-8 md:py-12">
         <div className="text-center">
           <Script color={YELLOW}>SDG</Script>
-          <h2 className="mt-1 text-3xl font-bold text-white md:text-4xl" style={{ fontFamily: SERIF }}>
+          <h2
+            className="mt-1 text-3xl font-bold text-white md:text-4xl"
+            style={{ fontFamily: SERIF }}
+          >
             {t("sdg.main_heading")}
           </h2>
-          <p className="mx-auto mt-2 max-w-2xl text-sm text-white/90 md:text-base">{t("sdg.sub_heading")}</p>
+          <p className="mx-auto mt-2 max-w-2xl text-sm text-white/90 md:text-base">
+            {t("sdg.sub_heading")}
+          </p>
         </div>
 
         {/* Compact icon grid */}
@@ -1165,10 +1337,16 @@ function SDGGrid({ t }: { t: (k: string, fb?: string) => string }) {
               <SDGIcon n={selected} />
             </div>
             <div>
-              <div className="text-xs font-semibold uppercase tracking-wider text-[#FFC629]" style={{ color: "#B8860B" }}>
+              <div
+                className="text-xs font-semibold uppercase tracking-wider text-[#FFC629]"
+                style={{ color: "#B8860B" }}
+              >
                 SDG {selected}
               </div>
-              <h3 className="mt-0.5 text-lg font-bold text-[#081A60] md:text-xl" style={{ fontFamily: SERIF }}>
+              <h3
+                className="mt-0.5 text-lg font-bold text-[#081A60] md:text-xl"
+                style={{ fontFamily: SERIF }}
+              >
                 {t(`sdg.${selected}.title`)}
               </h3>
               <p className="mt-1.5 text-sm leading-relaxed text-slate-800 md:text-[15px]">
@@ -1214,10 +1392,15 @@ function PartnersStrip({ t }: { t: (k: string, fb?: string) => string }) {
       <div className="mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
         <div className="text-center">
           <Script color={BLUE}>{t("partners.script_heading")}</Script>
-          <h2 className="mt-1 text-3xl font-bold md:text-4xl" style={{ fontFamily: SERIF, color: BLUE_DEEP }}>
+          <h2
+            className="mt-1 text-3xl font-bold md:text-4xl"
+            style={{ fontFamily: SERIF, color: BLUE_DEEP }}
+          >
             {t("partners.main_heading")}
           </h2>
-          <p className="mx-auto mt-2 max-w-2xl text-sm text-slate-700 md:text-base">{t("partners.text")}</p>
+          <p className="mx-auto mt-2 max-w-2xl text-sm text-slate-700 md:text-base">
+            {t("partners.text")}
+          </p>
         </div>
 
         {matched.length > 0 ? (
@@ -1262,9 +1445,19 @@ function PartnersStrip({ t }: { t: (k: string, fb?: string) => string }) {
 
 // ----------------------- Donation Box -----------------------
 
-function DonationBox({ t, anchorRef }: { t: (k: string, fb?: string) => string; anchorRef: React.RefObject<HTMLDivElement | null> }) {
+function DonationBox({
+  t,
+  anchorRef,
+}: {
+  t: (k: string, fb?: string) => string;
+  anchorRef: React.RefObject<HTMLDivElement | null>;
+}) {
   return (
-    <section ref={anchorRef as React.RefObject<HTMLDivElement>} id="donate" className="relative isolate scroll-mt-20 overflow-hidden">
+    <section
+      ref={anchorRef as React.RefObject<HTMLDivElement>}
+      id="donate"
+      className="relative isolate scroll-mt-20 overflow-hidden"
+    >
       <div className="absolute inset-0 -z-10">
         <img
           src={photoPath(FIELD_PHOTOS.donation)}
@@ -1274,23 +1467,36 @@ function DonationBox({ t, anchorRef }: { t: (k: string, fb?: string) => string; 
           className="h-full w-full object-cover"
           onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = "none")}
         />
-        <div className="absolute inset-0" style={{ background: `linear-gradient(135deg, ${BLUE_DEEP}EE 0%, ${BLUE}E6 60%, ${BLUE}D9 100%)` }} />
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `linear-gradient(135deg, ${BLUE_DEEP}EE 0%, ${BLUE}E6 60%, ${BLUE}D9 100%)`,
+          }}
+        />
       </div>
       <div className="mx-auto grid max-w-7xl gap-8 px-5 py-12 md:px-8 md:py-16 lg:grid-cols-[minmax(0,0.8fr)_minmax(560px,1.2fr)] lg:items-start">
         <div className="text-white lg:pt-6">
           <Script>{t("donation.script_heading")}</Script>
-          <h2 className="mt-1 text-3xl font-bold md:text-4xl" style={{ fontFamily: SERIF }}>{t("donation.main_heading")}</h2>
+          <h2 className="mt-1 text-3xl font-bold md:text-4xl" style={{ fontFamily: SERIF }}>
+            {t("donation.main_heading")}
+          </h2>
           <p className="mt-3 max-w-xl text-base text-white/85">{t("donation.text_intro")}</p>
         </div>
         <DonationWidget defaultProject="Safe Water" />
-          </div>
+      </div>
     </section>
   );
 }
 
 // ----------------------- Closing -----------------------
 
-function Closing({ t, goDonate }: { t: (k: string, fb?: string) => string; goDonate: (f: "monthly" | "once") => void }) {
+function Closing({
+  t,
+  goDonate,
+}: {
+  t: (k: string, fb?: string) => string;
+  goDonate: (f: "monthly" | "once") => void;
+}) {
   return (
     <section id="pureflow-closing" className="relative" style={{ background: BLUE_DEEP }}>
       <div className="mx-auto grid max-w-6xl items-center gap-8 px-5 py-10 text-white sm:gap-10 md:px-8 md:py-20 lg:grid-cols-[1.05fr_1fr] lg:gap-14">
@@ -1342,10 +1548,13 @@ function Closing({ t, goDonate }: { t: (k: string, fb?: string) => string; goDon
 
 // ----------------------- Step 01 — Structural Problem (4-photo editorial collage) -----------------------
 
-
 function Step01Collage({ t }: { t: (k: string, fb?: string) => string }) {
   return (
-    <section id="structural-problem" className="relative isolate overflow-hidden" style={{ background: CREAM, scrollMarginTop: "calc(var(--header-height, 80px) + 16px)" }}>
+    <section
+      id="structural-problem"
+      className="relative isolate overflow-hidden"
+      style={{ background: CREAM, scrollMarginTop: "calc(var(--header-height, 80px) + 16px)" }}
+    >
       <img
         src={photoPath(FIELD_PHOTOS.structural.background)}
         alt=""
@@ -1357,7 +1566,9 @@ function Step01Collage({ t }: { t: (k: string, fb?: string) => string }) {
       <div className="pointer-events-none absolute inset-0" style={{ background: `${CREAM}CC` }} />
       <div
         className="pointer-events-none absolute inset-0"
-        style={{ background: `linear-gradient(135deg, ${CREAM}E6 0%, ${CREAM_WARM}B3 60%, ${CREAM}D9 100%)` }}
+        style={{
+          background: `linear-gradient(135deg, ${CREAM}E6 0%, ${CREAM_WARM}B3 60%, ${CREAM}D9 100%)`,
+        }}
       />
 
       <div className="relative mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
@@ -1451,7 +1662,6 @@ function Step01Collage({ t }: { t: (k: string, fb?: string) => string }) {
                 size="sm"
               />
             </div>
-
           </div>
         </div>
       </div>
@@ -1459,15 +1669,20 @@ function Step01Collage({ t }: { t: (k: string, fb?: string) => string }) {
   );
 }
 
-
-
 // ----------------------- Climate Resilience & Sustainability -----------------------
 
 const CLIMATE_PHOTOS: Array<{ src?: string; objectPosition?: string; alt?: string }> = [
   { src: photoPath(FIELD_PHOTOS.climate[0]), alt: "Household filter maintenance and backwashing" },
   { src: photoPath(FIELD_PHOTOS.climate[1]), alt: "Field team testing household water quality" },
-  { src: photoPath(FIELD_PHOTOS.climate[2]), alt: "Untreated water compared with filtered drinking water" },
-  { src: photoPath(FIELD_PHOTOS.climate[3]), objectPosition: "center 32%", alt: "Resident using a PureFlow filter during a home visit" },
+  {
+    src: photoPath(FIELD_PHOTOS.climate[2]),
+    alt: "Untreated water compared with filtered drinking water",
+  },
+  {
+    src: photoPath(FIELD_PHOTOS.climate[3]),
+    objectPosition: "center 32%",
+    alt: "Resident using a PureFlow filter during a home visit",
+  },
 ];
 
 function ClimateSection({ t }: { t: (k: string, fb?: string) => string }) {
@@ -1507,7 +1722,6 @@ function ClimateSection({ t }: { t: (k: string, fb?: string) => string }) {
                 <p key={i}>{p}</p>
               ))}
             </div>
-
           </div>
 
           {/* Collage side */}
@@ -1527,7 +1741,15 @@ function ClimateSection({ t }: { t: (k: string, fb?: string) => string }) {
 
 // ----------------------- Video Library -----------------------
 
-function VideoCard({ url, title, size = "md" }: { url: string; title: string; size?: "md" | "sm" }) {
+function VideoCard({
+  url,
+  title,
+  size = "md",
+}: {
+  url: string;
+  title: string;
+  size?: "md" | "sm";
+}) {
   const [playing, setPlaying] = useState(false);
   const vid = youtubeId(url);
   return (
@@ -1547,7 +1769,10 @@ function VideoCard({ url, title, size = "md" }: { url: string; title: string; si
               className="h-full w-full object-cover"
             />
             <span className="absolute inset-0 flex items-center justify-center bg-black/30 transition group-hover:bg-black/40">
-              <PlayCircle className={size === "sm" ? "h-12 w-12" : "h-16 w-16"} style={{ color: YELLOW }} />
+              <PlayCircle
+                className={size === "sm" ? "h-12 w-12" : "h-16 w-16"}
+                style={{ color: YELLOW }}
+              />
             </span>
           </button>
         )}
@@ -1587,7 +1812,11 @@ function VideoLibrary({ t }: { t: (k: string, fb?: string) => string }) {
     .filter((v) => v.url);
 
   return (
-    <section id="videos" className="relative isolate overflow-hidden scroll-mt-20" style={{ background: BLUE }}>
+    <section
+      id="videos"
+      className="relative isolate overflow-hidden scroll-mt-20"
+      style={{ background: BLUE }}
+    >
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
@@ -1644,14 +1873,12 @@ function VideoLibrary({ t }: { t: (k: string, fb?: string) => string }) {
   );
 }
 
-
 function PureFlowCompactPage() {
   const { lang } = useLang();
   const { t } = useProjectContent(lang);
   const donationRef = useRef<HTMLDivElement | null>(null);
   const [mapMounted, setMapMounted] = useState(false);
   useEffect(() => setMapMounted(true), []);
-
 
   const goDonate = (_freq: "monthly" | "once") => {
     const el = donationRef.current;
@@ -1720,8 +1947,6 @@ function PureFlowCompactPage() {
               </div>
             )}
           </div>
-
-
         </div>
       </section>
 
@@ -1729,9 +1954,6 @@ function PureFlowCompactPage() {
 
       {/* Step 01 — cream w/ 4-photo collage */}
       <Step01Collage t={t} />
-
-
-
 
       <WaveDivider from={CREAM} to={BLUE} />
 
@@ -1748,9 +1970,21 @@ function PureFlowCompactPage() {
         photoTone="ocean"
         collageVariant="B"
         photoSrcs={[
-          { src: "/assets/generated-performance/pureflow-home-visit-filter-installation-family-01-web.jpg", objectPosition: "center 42%", alt: "Family learning how to install and use a PureFlow filter" },
-          { src: `${PHOTO_BASE}/pureflow-giftofthegivers-smiling-woman-at-training-station-at-handout-event.jpg`, objectPosition: "center 35%", alt: "Woman smiling at a PureFlow training station" },
-          { src: `${PHOTO_BASE}/pureflow-ecd-handout-event-wash-education.jpg`, objectPosition: "center 40%", alt: "WASH education at an ECD handout event" },
+          {
+            src: "/assets/generated-performance/pureflow-home-visit-filter-installation-family-01-web.jpg",
+            objectPosition: "center 42%",
+            alt: "Family learning how to install and use a PureFlow filter",
+          },
+          {
+            src: `${PHOTO_BASE}/pureflow-giftofthegivers-smiling-woman-at-training-station-at-handout-event.jpg`,
+            objectPosition: "center 35%",
+            alt: "Woman smiling at a PureFlow training station",
+          },
+          {
+            src: `${PHOTO_BASE}/pureflow-ecd-handout-event-wash-education.jpg`,
+            objectPosition: "center 40%",
+            alt: "WASH education at an ECD handout event",
+          },
         ]}
         accentSrc={`${ASSET_BASE}/pureflow-solution.png`}
       >
@@ -1770,10 +2004,26 @@ function PureFlowCompactPage() {
         photoTone="sun"
         collageVariant="C"
         photoSrcs={[
-          { src: `${PHOTO_BASE}/pureflow-children-drinking-filtered-water-01.jpg`, objectPosition: "center 35%", alt: "Children drinking freshly filtered water" },
-          { src: `${PHOTO_BASE}/pureflow-ecd-child-using-filter-in-class.jpg`, objectPosition: "center 35%", alt: "Child using a PureFlow filter in an ECD classroom" },
-          { src: `${PHOTO_BASE}/pureflow-rural-ECD-classroom-kids-holding-up-cups-during-education.jpg`, objectPosition: "center 42%", alt: "Children holding drinking cups during rural ECD safe-water education" },
-          { src: `${PHOTO_BASE}/pureflow-rural-ECD-handwashing-kid-filter-two-teachers.jpg`, objectPosition: "center 38%", alt: "Teachers guiding a child through handwashing at a rural ECD centre" },
+          {
+            src: `${PHOTO_BASE}/pureflow-children-drinking-filtered-water-01.jpg`,
+            objectPosition: "center 35%",
+            alt: "Children drinking freshly filtered water",
+          },
+          {
+            src: `${PHOTO_BASE}/pureflow-ecd-child-using-filter-in-class.jpg`,
+            objectPosition: "center 35%",
+            alt: "Child using a PureFlow filter in an ECD classroom",
+          },
+          {
+            src: `${PHOTO_BASE}/pureflow-rural-ECD-classroom-kids-holding-up-cups-during-education.jpg`,
+            objectPosition: "center 42%",
+            alt: "Children holding drinking cups during rural ECD safe-water education",
+          },
+          {
+            src: `${PHOTO_BASE}/pureflow-rural-ECD-handwashing-kid-filter-two-teachers.jpg`,
+            objectPosition: "center 38%",
+            alt: "Teachers guiding a child through handwashing at a rural ECD centre",
+          },
         ]}
         accentSrc={`${ASSET_BASE}/pureflow-school.png`}
         accentSrcSecondary={`${ASSET_BASE}/pureflow-ecd.png`}
@@ -1796,10 +2046,26 @@ function PureFlowCompactPage() {
         photoTone="blue"
         collageVariant="A"
         photoSrcs={[
-          { src: `${PHOTO_BASE}/pureflow-giftofthegivers-handout-event-before-and-after-photo-of-water-woman-fascinated.jpg`, objectPosition: "center 38%", alt: "Woman comparing untreated and filtered water" },
-          { src: `${PHOTO_BASE}/pureflow-home-visit-child-operating-filter-01.jpg`, objectPosition: "center 38%", alt: "Child operating a PureFlow filter at home" },
-          { src: `${PHOTO_BASE}/pureflow-home-visit-filter-backwash-demonstration-01.jpg`, objectPosition: "center 42%", alt: "Filter backwash demonstration during a home visit" },
-          { src: `${PHOTO_BASE}/pureflow-home-visit-filter-maintenance-training-with-resident-01.jpg`, objectPosition: "center 38%", alt: "Resident receiving filter maintenance training" },
+          {
+            src: `${PHOTO_BASE}/pureflow-giftofthegivers-handout-event-before-and-after-photo-of-water-woman-fascinated.jpg`,
+            objectPosition: "center 38%",
+            alt: "Woman comparing untreated and filtered water",
+          },
+          {
+            src: `${PHOTO_BASE}/pureflow-home-visit-child-operating-filter-01.jpg`,
+            objectPosition: "center 38%",
+            alt: "Child operating a PureFlow filter at home",
+          },
+          {
+            src: `${PHOTO_BASE}/pureflow-home-visit-filter-backwash-demonstration-01.jpg`,
+            objectPosition: "center 42%",
+            alt: "Filter backwash demonstration during a home visit",
+          },
+          {
+            src: `${PHOTO_BASE}/pureflow-home-visit-filter-maintenance-training-with-resident-01.jpg`,
+            objectPosition: "center 38%",
+            alt: "Resident receiving filter maintenance training",
+          },
         ]}
         accentSrc={`${ASSET_BASE}/pureflow-wash.png`}
       />
@@ -1817,9 +2083,21 @@ function PureFlowCompactPage() {
         photoTone="warm"
         collageVariant="B"
         photoSrcs={[
-          { src: "/assets/generated-performance/pureflow-happy-dancing-recipients-of-filter-after-event-web.jpg", objectPosition: "center 36%", alt: "Community members celebrating after a filter event" },
-          { src: `${PHOTO_BASE}/pureflow-g20-indaba-east-london-booth-team-01.jpg`, objectPosition: "center 42%", alt: "PureFlow Amanzi team at the G20 Indaba booth" },
-          { src: `${PHOTO_BASE}/pureflow-step-05-wider-community-gains.jpeg`, objectPosition: "center 42%", alt: "Wider community gains created through PureFlow Amanzi" },
+          {
+            src: "/assets/generated-performance/pureflow-happy-dancing-recipients-of-filter-after-event-web.jpg",
+            objectPosition: "center 36%",
+            alt: "Community members celebrating after a filter event",
+          },
+          {
+            src: `${PHOTO_BASE}/pureflow-g20-indaba-east-london-booth-team-01.jpg`,
+            objectPosition: "center 42%",
+            alt: "PureFlow Amanzi team at the G20 Indaba booth",
+          },
+          {
+            src: `${PHOTO_BASE}/pureflow-step-05-wider-community-gains.jpeg`,
+            objectPosition: "center 42%",
+            alt: "Wider community gains created through PureFlow Amanzi",
+          },
         ]}
         accentSrc={`${ASSET_BASE}/pureflow-jobs.png`}
       />
@@ -1839,15 +2117,30 @@ function PureFlowCompactPage() {
         photoTone="ocean"
         collageVariant="C"
         photoSrcs={[
-          { src: `${PHOTO_BASE}/pureflow-ecd-handout-child-drinking-filtered-water-01.jpg`, objectPosition: "center 35%", alt: "Child drinking filtered water at an ECD handout" },
-          { src: `${PHOTO_BASE}/pureflow-happy-recipients-after-event-child-smiling.jpg`, objectPosition: "center 35%", alt: "Child smiling after a community filter event" },
-          { src: `${PHOTO_BASE}/pureflow-handout-event-bholani-training-station.jpg`, objectPosition: "center 40%", alt: "PureFlow training station at Bholani" },
-          { src: `${PHOTO_BASE}/pureflow-step-06-long-term-transformation.jpg`, objectPosition: "center 42%", alt: "Long-term transformation through safe water" },
+          {
+            src: `${PHOTO_BASE}/pureflow-ecd-handout-child-drinking-filtered-water-01.jpg`,
+            objectPosition: "center 35%",
+            alt: "Child drinking filtered water at an ECD handout",
+          },
+          {
+            src: `${PHOTO_BASE}/pureflow-happy-recipients-after-event-child-smiling.jpg`,
+            objectPosition: "center 35%",
+            alt: "Child smiling after a community filter event",
+          },
+          {
+            src: `${PHOTO_BASE}/pureflow-handout-event-bholani-training-station.jpg`,
+            objectPosition: "center 40%",
+            alt: "PureFlow training station at Bholani",
+          },
+          {
+            src: `${PHOTO_BASE}/pureflow-step-06-long-term-transformation.jpg`,
+            objectPosition: "center 42%",
+            alt: "Long-term transformation through safe water",
+          },
         ]}
         accentSrc={`${ASSET_BASE}/pureflow-village.png`}
         accentSrcSecondary={`${ASSET_BASE}/pureflow-community.png`}
       />
-
 
       <WaveDivider from={BLUE} to={CREAM} />
       <ClimateSection t={t} />
@@ -1859,7 +2152,6 @@ function PureFlowCompactPage() {
 
       <WaveDivider from={BLUE} to={CREAM_WARM} />
       <PartnersStrip t={t} />
-
 
       <WaveDivider from={CREAM_WARM} to={BLUE} />
       <DonationBox t={t} anchorRef={donationRef} />

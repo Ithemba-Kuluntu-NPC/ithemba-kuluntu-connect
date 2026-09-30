@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { createSeoHead } from "@/lib/seo";
+import { PhotoLightboxGallery, contentPhoto } from "@/components/blocks/PhotoLightbox";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -36,7 +37,21 @@ import { assets } from "@/data/assets";
 import { focusAreaBadgeMeta } from "@/data/projects";
 import type { Lang } from "@/data/content";
 
-export const Route = createFileRoute("/projects/ecd")({ component: EcdPage, head: () => createSeoHead({ title: 'No.1 ECD Centre | iThemba Kuluntu', description: 'A free-to-attend early learning centre in Cwebeni supporting 120 children with education, daily meals, care and preparation for school.', path: '/projects/ecd', breadcrumbs: [{ name: 'Home', path: '/' }, { name: 'Projects', path: '/projects' }, { name: 'No.1 ECD Centre', path: '/projects/ecd' }] }) });
+export const Route = createFileRoute("/projects/ecd")({
+  component: EcdPage,
+  head: () =>
+    createSeoHead({
+      title: "No.1 ECD Centre | iThemba Kuluntu",
+      description:
+        "A free-to-attend early learning centre in Cwebeni supporting 120 children with education, daily meals, care and preparation for school.",
+      path: "/projects/ecd",
+      breadcrumbs: [
+        { name: "Home", path: "/" },
+        { name: "Projects", path: "/projects" },
+        { name: "No.1 ECD Centre", path: "/projects/ecd" },
+      ],
+    }),
+});
 
 /* ---------- assets (final ECD media) ---------- */
 const ECD_MEDIA = "/assets/photos/projects/ECD";
@@ -91,25 +106,37 @@ function PhotoStrip({
   aspect?: string;
 }) {
   return (
-    <div
-      className={`grid gap-2 overflow-hidden rounded-[1.75rem] ring-1 ring-white/15 ${className}`}
-      style={{ filter: "drop-shadow(0 18px 40px rgba(10,30,60,0.35))" }}
+    <PhotoLightboxGallery
+      photos={photos.map((photo) => contentPhoto(photo.src, photo.label))}
+      label="ECD centre photo gallery"
     >
-      {photos.map((p, i) => (
-        <div key={i} className={`${aspect} overflow-hidden rounded-xl`}>
-          <img
-            src={p.src}
-            alt={p.label}
-            loading="lazy"
-            className="h-full w-full object-cover"
-            style={p.position ? { objectPosition: p.position } : undefined}
-          />
+      {(openPhoto) => (
+        <div
+          className={`grid gap-2 overflow-hidden rounded-[1.75rem] ring-1 ring-white/15 ${className}`}
+          style={{ filter: "drop-shadow(0 18px 40px rgba(10,30,60,0.35))" }}
+        >
+          {photos.map((p, i) => (
+            <button
+              type="button"
+              aria-label={`Open photo: ${p.label}`}
+              onClick={() => openPhoto(i)}
+              key={i}
+              className={`${aspect} cursor-zoom-in overflow-hidden rounded-xl text-left`}
+            >
+              <img
+                src={p.src}
+                alt={p.label}
+                loading="lazy"
+                className="h-full w-full object-cover"
+                style={p.position ? { objectPosition: p.position } : undefined}
+              />
+            </button>
+          ))}
         </div>
-      ))}
-    </div>
+      )}
+    </PhotoLightboxGallery>
   );
 }
-
 
 /* ---------- reduced motion ---------- */
 function useReducedMotion() {
@@ -130,7 +157,10 @@ function useReducedMotion() {
 type Fact = { label: string; value: string };
 type TimelineItem = { when: string; what: string };
 type RhythmItem = { time: string; what: string };
-type FocusItem = { label: string; icon: "BookOpen" | "Utensils" | "Droplet" | "Wrench" | "HeartPulse" };
+type FocusItem = {
+  label: string;
+  icon: "BookOpen" | "Utensils" | "Droplet" | "Wrench" | "HeartPulse";
+};
 
 type Copy = {
   back: string;
@@ -158,7 +188,10 @@ type Copy = {
     eyebrow: string;
     title: string;
     body: string[];
-    pillars: { icon: "Brain" | "Music" | "ShieldCheck" | "School" | "Cookie" | "HandHeart"; label: string }[];
+    pillars: {
+      icon: "Brain" | "Music" | "ShieldCheck" | "School" | "Cookie" | "HandHeart";
+      label: string;
+    }[];
   };
   building: {
     eyebrow: string;
@@ -231,8 +264,7 @@ const COPY: Record<Lang, Copy> = {
     hero: {
       eyebrow: "Early Learning",
       title: "No.1 ECD Centre",
-      text:
-        "A safe, joyful and free-to-attend early learning centre for young children in Cwebeni — where children eat, play, learn and prepare for school while local women are trained and employed to care for their own community.",
+      text: "A safe, joyful and free-to-attend early learning centre for young children in Cwebeni — where children eat, play, learn and prepare for school while local women are trained and employed to care for their own community.",
       monthly: "Donate Monthly to Support This Project",
       once: "Give Once",
       location: "Cwebeni · Eastern Cape · South Africa",
@@ -293,9 +325,15 @@ const COPY: Record<Lang, Copy> = {
         "The centre now stands as a place of daily care and learning. It is not only a building. It is a safe environment where children are welcomed, fed, taught, comforted, encouraged and prepared for the next step in their education.",
       ],
       timeline: [
-        { when: "30 August 2024", what: "Local women begin ECD teacher training supported by FNB Care." },
+        {
+          when: "30 August 2024",
+          what: "Local women begin ECD teacher training supported by FNB Care.",
+        },
         { when: "October 2024", what: "Construction of the ECD infrastructure begins." },
-        { when: "March–April 2025", what: "ECD teachers take part in further workshops and practical preparation." },
+        {
+          when: "March–April 2025",
+          what: "ECD teachers take part in further workshops and practical preparation.",
+        },
         { when: "April 2025", what: "The ECD building is completed." },
         { when: "May 2025", what: "The No.1 ECD Centre officially opens its doors." },
       ],
@@ -406,8 +444,7 @@ const COPY: Record<Lang, Copy> = {
         "A monthly gift does not only support one day. It helps create consistency — and consistency is what children need most.",
       ],
       cardAmount: "€42 / month",
-      cardText:
-        "Helps support one child for a full month of care on ECD operating days.",
+      cardText: "Helps support one child for a full month of care on ECD operating days.",
       cta1: "Support a child monthly",
       cta2: "Give once to the ECD Centre",
     },
@@ -428,8 +465,7 @@ const COPY: Record<Lang, Copy> = {
     hero: {
       eyebrow: "Frühe Bildung",
       title: "No.1 ECD Centre",
-      text:
-        "Ein sicherer, liebevoller und kostenfrei zugänglicher Ort für frühkindliche Bildung in Cwebeni — an dem Kinder essen, spielen, lernen und auf die Schule vorbereitet werden, während Frauen aus der Gemeinschaft ausgebildet und beschäftigt werden, um Kinder in ihrer eigenen Gemeinde zu begleiten.",
+      text: "Ein sicherer, liebevoller und kostenfrei zugänglicher Ort für frühkindliche Bildung in Cwebeni — an dem Kinder essen, spielen, lernen und auf die Schule vorbereitet werden, während Frauen aus der Gemeinschaft ausgebildet und beschäftigt werden, um Kinder in ihrer eigenen Gemeinde zu begleiten.",
       monthly: "Monatlich für dieses Projekt spenden",
       once: "Einmalig spenden",
       location: "Cwebeni · Eastern Cape · Südafrika",
@@ -448,7 +484,10 @@ const COPY: Record<Lang, Copy> = {
         { label: "Altersgruppe", value: "0 bis 5 Jahre" },
         { label: "Zugang", value: "Kostenfrei für Kinder aus vulnerablen Haushalten" },
         { label: "Mahlzeiten", value: "Frühstück, Mittagessen und Snacks jeden Tag" },
-        { label: "Team", value: "Lokale Lehrkräfte, Köchinnen, Betreuung, Reinigung und Mitarbeitende" },
+        {
+          label: "Team",
+          value: "Lokale Lehrkräfte, Köchinnen, Betreuung, Reinigung und Mitarbeitende",
+        },
         { label: "Gebaut mit Unterstützung von", value: "FNB Care" },
         { label: "Status", value: "Registriertes ECD Centre" },
       ],
@@ -490,9 +529,15 @@ const COPY: Record<Lang, Copy> = {
         "Heute ist das Centre ein Ort täglicher Fürsorge und Bildung. Es ist nicht nur ein Gebäude. Es ist ein sicherer Raum, in dem Kinder willkommen geheißen, ernährt, unterrichtet, getröstet, ermutigt und auf den nächsten Schritt ihres Bildungswegs vorbereitet werden.",
       ],
       timeline: [
-        { when: "30. August 2024", what: "Frauen aus der Gemeinschaft beginnen die Ausbildung zu ECD-Lehrkräften, unterstützt von FNB Care." },
+        {
+          when: "30. August 2024",
+          what: "Frauen aus der Gemeinschaft beginnen die Ausbildung zu ECD-Lehrkräften, unterstützt von FNB Care.",
+        },
         { when: "Oktober 2024", what: "Der Bau der ECD-Infrastruktur beginnt." },
-        { when: "März–April 2025", what: "Die ECD-Lehrkräfte nehmen an weiteren Workshops und praktischer Vorbereitung teil." },
+        {
+          when: "März–April 2025",
+          what: "Die ECD-Lehrkräfte nehmen an weiteren Workshops und praktischer Vorbereitung teil.",
+        },
         { when: "April 2025", what: "Das ECD-Gebäude wird fertiggestellt." },
         { when: "Mai 2025", what: "Das No.1 ECD Centre öffnet offiziell seine Türen." },
       ],
@@ -506,7 +551,14 @@ const COPY: Record<Lang, Copy> = {
         "Das ist von großer Bedeutung. Das Centre unterstützt nicht nur Kinder — es schafft auch bezahlte Arbeit, Qualifizierung und Führungsmöglichkeiten für Frauen vor Ort.",
         "Die Kinder werden von Menschen betreut, die ihre Sprache, Familien, Kultur und alltäglichen Lebensrealitäten kennen. Dieses lokale Vertrauen macht das Centre stärker.",
       ],
-      roles: ["Ausgebildete Frauen vor Ort", "Lehrkräfte", "Köchinnen", "Betreuung", "Reinigung", "Unterstützendes Team"],
+      roles: [
+        "Ausgebildete Frauen vor Ort",
+        "Lehrkräfte",
+        "Köchinnen",
+        "Betreuung",
+        "Reinigung",
+        "Unterstützendes Team",
+      ],
     },
     provides: {
       eyebrow: "Was wir ermöglichen",
@@ -540,7 +592,10 @@ const COPY: Record<Lang, Copy> = {
         { time: "Morgenkreis", what: "Singen, Tanzen, Bewegung und gemeinsames Lernen" },
         { time: "Gegen 10:30", what: "Altersgerechte Lerngruppen" },
         { time: "Gegen 11:00", what: "Jüngere Kinder ruhen sich vor dem Mittagessen aus" },
-        { time: "10:30–12:00", what: "Ältere Kinder lernen spielerisch und angeleitet mit den Lehrkräften" },
+        {
+          time: "10:30–12:00",
+          what: "Ältere Kinder lernen spielerisch und angeleitet mit den Lehrkräften",
+        },
         { time: "12:00", what: "Mittagessen" },
         { time: "12:30", what: "Schlafenszeit für Kinder, die Ruhe brauchen" },
         { time: "Nachmittag", what: "Freies Spiel, Pflegeroutinen und ruhige Aktivitäten" },
@@ -625,8 +680,7 @@ const COPY: Record<Lang, Copy> = {
     hero: {
       eyebrow: "Vroege ontwikkeling",
       title: "No.1 ECD Centre",
-      text:
-        "Een veilige, liefdevolle en kosteloos toegankelijke plek voor jonge kinderen in Cwebeni — waar kinderen eten, spelen, leren en worden voorbereid op school, terwijl vrouwen uit de gemeenschap worden opgeleid en in dienst genomen om kinderen in hun eigen gemeenschap te begeleiden.",
+      text: "Een veilige, liefdevolle en kosteloos toegankelijke plek voor jonge kinderen in Cwebeni — waar kinderen eten, spelen, leren en worden voorbereid op school, terwijl vrouwen uit de gemeenschap worden opgeleid en in dienst genomen om kinderen in hun eigen gemeenschap te begeleiden.",
       monthly: "Maandelijks doneren voor dit project",
       once: "Eenmalig doneren",
       location: "Cwebeni · Eastern Cape · Zuid-Afrika",
@@ -645,7 +699,10 @@ const COPY: Record<Lang, Copy> = {
         { label: "Leeftijdsgroep", value: "0 tot 5 jaar" },
         { label: "Toegang", value: "Kosteloos voor kinderen uit kwetsbare huishoudens" },
         { label: "Maaltijden", value: "Elke dag ontbijt, lunch en snacks" },
-        { label: "Team", value: "Lokale leerkrachten, koks, verzorgers, schoonmakers en ondersteuning" },
+        {
+          label: "Team",
+          value: "Lokale leerkrachten, koks, verzorgers, schoonmakers en ondersteuning",
+        },
         { label: "Gebouwd met steun van", value: "FNB Care" },
         { label: "Status", value: "Geregistreerd ECD Centre" },
       ],
@@ -687,9 +744,15 @@ const COPY: Record<Lang, Copy> = {
         "Vandaag is het Centre een plek van dagelijkse zorg en ontwikkeling. Het is niet alleen een gebouw. Het is een veilige omgeving waar kinderen welkom zijn, eten krijgen, leren, getroost worden, aangemoedigd worden en voorbereid worden op de volgende stap in hun onderwijs.",
       ],
       timeline: [
-        { when: "30 augustus 2024", what: "Vrouwen uit de gemeenschap beginnen aan de ECD-leerkrachtenopleiding, ondersteund door FNB Care." },
+        {
+          when: "30 augustus 2024",
+          what: "Vrouwen uit de gemeenschap beginnen aan de ECD-leerkrachtenopleiding, ondersteund door FNB Care.",
+        },
         { when: "Oktober 2024", what: "De bouw van de ECD-infrastructuur begint." },
-        { when: "Maart–april 2025", what: "De ECD-leerkrachten nemen deel aan verdere workshops en praktische voorbereiding." },
+        {
+          when: "Maart–april 2025",
+          what: "De ECD-leerkrachten nemen deel aan verdere workshops en praktische voorbereiding.",
+        },
         { when: "April 2025", what: "Het ECD-gebouw wordt voltooid." },
         { when: "Mei 2025", what: "Het No.1 ECD Centre opent officieel zijn deuren." },
       ],
@@ -703,7 +766,14 @@ const COPY: Record<Lang, Copy> = {
         "Dat is van grote betekenis. Het Centre ondersteunt niet alleen kinderen — het creëert ook betaald werk, vaardigheidsontwikkeling en leiderschapskansen voor vrouwen ter plaatse.",
         "Kinderen worden begeleid door mensen die hun taal, families, cultuur en dagelijkse realiteit kennen. Dat lokale vertrouwen maakt het Centre sterker.",
       ],
-      roles: ["Opgeleide lokale vrouwen", "Leerkrachten", "Koks", "Verzorgers", "Schoonmakers", "Ondersteunend team"],
+      roles: [
+        "Opgeleide lokale vrouwen",
+        "Leerkrachten",
+        "Koks",
+        "Verzorgers",
+        "Schoonmakers",
+        "Ondersteunend team",
+      ],
     },
     provides: {
       eyebrow: "Wat we bieden",
@@ -870,14 +940,7 @@ function EcdIcon({
   alt: string;
   className?: string;
 }) {
-  return (
-    <img
-      src={src}
-      alt={alt}
-      className={`${className} object-contain`}
-      loading="lazy"
-    />
-  );
+  return <img src={src} alt={alt} className={`${className} object-contain`} loading="lazy" />;
 }
 
 /* ---------- Collage icon badge + photo collage (matches Pondo Dogs / PureFlow compact) ---------- */
@@ -948,38 +1011,55 @@ function PhotoCollage({
     bl: "-left-3 -bottom-3",
     br: "-right-3 -bottom-3",
   };
+  const galleryPhotos = usable.filter((photo): photo is EcdCollageSlot & { src: string } =>
+    Boolean(photo.src),
+  );
   return (
-    <div className={`relative ${className}`}>
-      <div
-        className="relative grid aspect-[4/5] grid-cols-12 grid-rows-6 gap-2.5 md:gap-3"
-        style={{ filter: "drop-shadow(0 22px 50px rgba(30,60,90,0.28))" }}
-      >
-        {usable.map((p, i) => (
-          <div key={i} className={`overflow-hidden ring-1 ring-black/10 ${cells[i]}`}>
-            <SmartImage
-              src={p.src ?? ""}
-              label={p.label}
-              tone={p.tone ?? "warm"}
-              rounded="rounded-none"
-              className="h-full w-full"
-              showMissingBadge={false}
-            />
+    <PhotoLightboxGallery
+      photos={galleryPhotos.map((photo) => contentPhoto(photo.src, photo.label))}
+      label="ECD centre photo gallery"
+    >
+      {(openPhoto) => (
+        <div className={`relative ${className}`}>
+          <div
+            className="relative grid aspect-[4/5] grid-cols-12 grid-rows-6 gap-2.5 md:gap-3"
+            style={{ filter: "drop-shadow(0 22px 50px rgba(30,60,90,0.28))" }}
+          >
+            {usable.map((p, i) => (
+              <button
+                type="button"
+                disabled={!p.src}
+                aria-label={`Open photo: ${p.label}`}
+                onClick={() =>
+                  p.src && openPhoto(galleryPhotos.findIndex((photo) => photo.src === p.src))
+                }
+                key={i}
+                className={`overflow-hidden text-left ring-1 ring-black/10 ${p.src ? "cursor-zoom-in" : ""} ${cells[i]}`}
+              >
+                <SmartImage
+                  src={p.src ?? ""}
+                  label={p.label}
+                  tone={p.tone ?? "warm"}
+                  rounded="rounded-none"
+                  className="h-full w-full"
+                  showMissingBadge={false}
+                />
+              </button>
+            ))}
           </div>
-        ))}
-      </div>
-      {icon && (
-        <CollageIconBadge
-          src={icon}
-          alt=""
-          className={`${iconPos[iconCorner]} rotate-[8deg]`}
-          size={64}
-        />
+          {icon && (
+            <CollageIconBadge
+              src={icon}
+              alt=""
+              className={`${iconPos[iconCorner]} rotate-[8deg]`}
+              size={64}
+            />
+          )}
+        </div>
       )}
-    </div>
+    </PhotoLightboxGallery>
   );
 }
-
-
 
 /* Per-section icon orderings — index-aligned with COPY arrays. */
 const SNAPSHOT_ICONS = [
@@ -1060,8 +1140,6 @@ function Hero({ c }: { c: Copy }) {
         <div className="absolute right-[-6rem] top-[-6rem] h-[28rem] w-[28rem] sun-glow" />
       </div>
 
-
-
       {/* Logo */}
       <div className="absolute right-4 top-14 z-10 md:right-8 md:top-16">
         <SmartLogo
@@ -1083,7 +1161,13 @@ function Hero({ c }: { c: Copy }) {
 
         <div className="mt-8 max-w-3xl text-white">
           <FocusAreaBadges
-            badges={["education", "food-security", "safe-water", "skills-livelihoods", "community-health"]}
+            badges={[
+              "education",
+              "food-security",
+              "safe-water",
+              "skills-livelihoods",
+              "community-health",
+            ]}
             size="md"
             className="mb-5"
           />
@@ -1137,7 +1221,6 @@ function Hero({ c }: { c: Copy }) {
           </div>
         </div>
       </div>
-
     </section>
   );
 }
@@ -1161,7 +1244,10 @@ function SectionHeading({
       <div className="hand-eyebrow-lg" style={{ color }}>
         {eyebrow}
       </div>
-      <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl" style={{ color: titleColor }}>
+      <h2
+        className="-mt-1 font-display text-4xl font-bold md:text-5xl"
+        style={{ color: titleColor }}
+      >
         {title}
       </h2>
     </div>
@@ -1221,9 +1307,17 @@ function Why({ c }: { c: Copy }) {
           iconCorner="br"
           icon={ECD_ICONS.brain}
           photos={[
-            { src: P.class23Animals, label: "A teacher teaching animals to 2 to 3 year olds", tone: "sun" },
+            {
+              src: P.class23Animals,
+              label: "A teacher teaching animals to 2 to 3 year olds",
+              tone: "sun",
+            },
             { src: P.freePlayOutdoor, label: "Children at free play outdoors", tone: "warm" },
-            { src: P.class23Activity2, label: "Classroom activity with 2 to 3 year olds", tone: "earth" },
+            {
+              src: P.class23Activity2,
+              label: "Classroom activity with 2 to 3 year olds",
+              tone: "earth",
+            },
           ]}
         />
       </div>
@@ -1277,13 +1371,24 @@ function Importance({ c }: { c: Copy }) {
           className="mt-8 grid-cols-2 md:grid-cols-4"
           aspect="aspect-[4/5]"
           photos={[
-            { src: P.main, label: "Children of the No.1 ECD Centre together", position: "center 40%" },
+            {
+              src: P.main,
+              label: "Children of the No.1 ECD Centre together",
+              position: "center 40%",
+            },
             { src: P.morningCircle, label: "Morning circle at the centre", position: "center 40%" },
-            { src: P.class23Activity, label: "Classroom life at the centre", position: "center 40%" },
-            { src: P.eatingCircle, label: "Children eating together in a circle", position: "center 40%" },
+            {
+              src: P.class23Activity,
+              label: "Classroom life at the centre",
+              position: "center 40%",
+            },
+            {
+              src: P.eatingCircle,
+              label: "Children eating together in a circle",
+              position: "center 40%",
+            },
           ]}
         />
-
 
         {/* Six development areas — below the text, large icons, no boxes */}
         <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 md:grid-cols-6">
@@ -1301,7 +1406,6 @@ function Importance({ c }: { c: Copy }) {
           ))}
         </div>
       </div>
-
     </section>
   );
 }
@@ -1328,14 +1432,25 @@ function Building({ c }: { c: Copy }) {
             iconCorner="tr"
             icon={ECD_ICONS.builtWith}
             photos={[
-              { src: P.building1, label: "Construction phase one of the ECD building", tone: "blue" },
-              { src: P.building2, label: "Construction phase two of the ECD building", tone: "sun" },
-              { src: P.building3, label: "Construction phase three of the ECD building", tone: "warm" },
+              {
+                src: P.building1,
+                label: "Construction phase one of the ECD building",
+                tone: "blue",
+              },
+              {
+                src: P.building2,
+                label: "Construction phase two of the ECD building",
+                tone: "sun",
+              },
+              {
+                src: P.building3,
+                label: "Construction phase three of the ECD building",
+                tone: "warm",
+              },
               { src: P.building4, label: "The completed No.1 ECD Centre building", tone: "earth" },
             ]}
           />
         </div>
-
       </div>
 
       {/* Timeline */}
@@ -1427,9 +1542,21 @@ function Women({ c }: { c: Copy }) {
           className="mt-8 max-w-3xl grid-cols-3"
           aspect="aspect-[4/5]"
           photos={[
-            { src: P.class45Teachers, label: "Teachers with their class at the ECD Centre", position: "center 35%" },
-            { src: P.breakfastFeeding, label: "A teacher feeding a child at breakfast", position: "center 35%" },
-            { src: P.class23Thabo, label: "Children playing the Finding Thabo learning game", position: "center 40%" },
+            {
+              src: P.class45Teachers,
+              label: "Teachers with their class at the ECD Centre",
+              position: "center 35%",
+            },
+            {
+              src: P.breakfastFeeding,
+              label: "A teacher feeding a child at breakfast",
+              position: "center 35%",
+            },
+            {
+              src: P.class23Thabo,
+              label: "Children playing the Finding Thabo learning game",
+              position: "center 40%",
+            },
           ]}
         />
         <div className="mt-8 flex flex-wrap gap-2">
@@ -1442,7 +1569,6 @@ function Women({ c }: { c: Copy }) {
             </span>
           ))}
         </div>
-
       </div>
     </section>
   );
@@ -1477,7 +1603,6 @@ function Provides({ c }: { c: Copy }) {
     </section>
   );
 }
-
 
 /* ---------- NUTRITION ---------- */
 function Nutrition({ c }: { c: Copy }) {
@@ -1544,10 +1669,12 @@ function Nutrition({ c }: { c: Copy }) {
 
 /* ---------- FOCUS AREAS — blue photo-backed ---------- */
 function Focus({ c }: { c: Copy }) {
-  const items: ReadonlyArray<readonly [
-    "education" | "food-security" | "safe-water" | "skills-livelihoods" | "community-health",
-    string,
-  ]> = [
+  const items: ReadonlyArray<
+    readonly [
+      "education" | "food-security" | "safe-water" | "skills-livelihoods" | "community-health",
+      string,
+    ]
+  > = [
     ["education", c.focus.items[0]?.label ?? "Education"],
     ["food-security", c.focus.items[1]?.label ?? "Food security"],
     ["safe-water", c.focus.items[2]?.label ?? "Safe water"],
@@ -1585,14 +1712,29 @@ function Focus({ c }: { c: Copy }) {
           className="mt-8 max-w-4xl grid-cols-2 md:grid-cols-4"
           aspect="aspect-[4/5]"
           photos={[
-            { src: P.plantingTeacher, label: "Children planting with their teacher", position: "center 40%" },
-            { src: P.playingRing, label: "Children playing together with a ring", position: "center 40%" },
-            { src: P.porridgeBoy, label: "A boy eating his morning porridge", position: "center 40%" },
-            { src: P.class45Math, label: "Early numeracy activity with 4 to 5 year olds", position: "center 40%" },
+            {
+              src: P.plantingTeacher,
+              label: "Children planting with their teacher",
+              position: "center 40%",
+            },
+            {
+              src: P.playingRing,
+              label: "Children playing together with a ring",
+              position: "center 40%",
+            },
+            {
+              src: P.porridgeBoy,
+              label: "A boy eating his morning porridge",
+              position: "center 40%",
+            },
+            {
+              src: P.class45Math,
+              label: "Early numeracy activity with 4 to 5 year olds",
+              position: "center 40%",
+            },
           ]}
         />
         <div className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-5">
-
           {items.map(([badge, label]) => {
             const meta = focusAreaBadgeMeta[badge];
             return (
@@ -1605,9 +1747,7 @@ function Focus({ c }: { c: Copy }) {
                     loading="lazy"
                   />
                 </div>
-                <div className="mt-3 text-sm font-semibold leading-snug text-white">
-                  {label}
-                </div>
+                <div className="mt-3 text-sm font-semibold leading-snug text-white">{label}</div>
               </div>
             );
           })}
@@ -1638,9 +1778,15 @@ function Impact({ c }: { c: Copy }) {
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-[var(--ithemba-blue-dark)] via-[var(--ithemba-blue)] to-[var(--ithemba-blue-dark)] py-20 text-white">
       <div className="pointer-events-none absolute right-[-6rem] top-[-6rem] h-[24rem] w-[24rem] sun-glow" />
-      <div className="pointer-events-none absolute left-10 top-16"><Star className="h-6 w-6 text-[var(--ithemba-yellow)]/50 fill-current" /></div>
-      <div className="pointer-events-none absolute right-16 bottom-16 font-display text-3xl text-[var(--ithemba-yellow)]/30 select-none">ABC</div>
-      <div className="pointer-events-none absolute left-1/3 bottom-10"><Heart className="h-5 w-5 text-[var(--ithemba-yellow)]/40 fill-current" /></div>
+      <div className="pointer-events-none absolute left-10 top-16">
+        <Star className="h-6 w-6 text-[var(--ithemba-yellow)]/50 fill-current" />
+      </div>
+      <div className="pointer-events-none absolute right-16 bottom-16 font-display text-3xl text-[var(--ithemba-yellow)]/30 select-none">
+        ABC
+      </div>
+      <div className="pointer-events-none absolute left-1/3 bottom-10">
+        <Heart className="h-5 w-5 text-[var(--ithemba-yellow)]/40 fill-current" />
+      </div>
 
       <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
@@ -1656,18 +1802,14 @@ function Impact({ c }: { c: Copy }) {
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/70 shadow-sm">
                 <Heart className="h-5 w-5 fill-current text-[var(--ithemba-brown)]" />
               </div>
-              <div className="mt-3 text-base font-semibold leading-snug">
-                {p}
-              </div>
+              <div className="mt-3 text-base font-semibold leading-snug">{p}</div>
               <SparkleDoodle className="absolute right-4 top-4 h-4 w-4 text-[var(--ithemba-brown)]/50" />
             </div>
           ))}
         </div>
         <div className="mt-10 rounded-3xl border-2 border-dashed border-[var(--ithemba-yellow)] bg-white/10 p-6 text-center backdrop-blur">
           <SparkleDoodle className="mx-auto h-6 w-6" />
-          <p className="mt-2 text-lg font-semibold text-white">
-            {c.impact.monthlyLine}
-          </p>
+          <p className="mt-2 text-lg font-semibold text-white">{c.impact.monthlyLine}</p>
         </div>
       </div>
     </section>
@@ -1758,7 +1900,10 @@ function Monthly({ c }: { c: Copy }) {
 /* ---------- CLOSING ---------- */
 function Closing({ c }: { c: Copy }) {
   return (
-    <section id="ecd-closing" className="relative isolate overflow-hidden py-20 text-white md:py-24">
+    <section
+      id="ecd-closing"
+      className="relative isolate overflow-hidden py-20 text-white md:py-24"
+    >
       <div className="absolute inset-0 -z-10">
         <img
           src={P.groupPhoto}
@@ -1807,7 +1952,11 @@ function Closing({ c }: { c: Copy }) {
             </Button>
           </Link>
           <Link to="/projects">
-            <Button size="lg" variant="ghost" className="rounded-full text-white hover:bg-white/10 hover:text-white">
+            <Button
+              size="lg"
+              variant="ghost"
+              className="rounded-full text-white hover:bg-white/10 hover:text-white"
+            >
               {c.closing.all}
             </Button>
           </Link>
