@@ -133,8 +133,8 @@ step1.image_path: /pureflow problem.png
 
 step2.num: 02
 step2.tag: PureFlow model
-step2.heading: Een volledig uitvoeringsplatform, niet alleen een productoverdracht
-step2.text_block: PureFlow Amanzi combineert huishoudsystemen voor veilig water met WASH-educatie, lokale montage, gemeenschapsgerichte uitrol, training in veilig gebruik, opvolging en veldgegevens. De zwaartekrachtgedreven filter werkt zonder stroom, chemicaliën of koken en gebruikt 0,1 micron membraanfiltratie om schadelijke bacteriën uit drinkwater te verwijderen. De kracht van het model ligt in het systeem rond de filter: getrainde lokale teams, introductie in het huishouden, praktische demonstraties, onderhoudsbegeleiding en langdurige opvolging ondersteunen correct gebruik, vertrouwen en blijvende gedragsverandering.
+step2.heading: Een volledig last-mile model, niet alleen de overdracht van een product
+step2.text_block: PureFlow Amanzi combineert veilige drinkwatersystemen voor huishoudens met WASH-educatie, lokale assemblage, uitrol via de gemeenschap, training in veilig gebruik, opvolging en gegevensverzameling in het veld. Het zwaartekrachtgevoede filter, waarvoor patent is aangevraagd, werkt zonder elektriciteit of chemicaliën en levert veilig drinkwater op huishoudniveau, waardoor water minder vaak hoeft te worden gekookt. De kracht van het model zit in het uitvoeringssysteem rond de technologie: getrainde lokale teams, onboarding van huishoudens, praktische demonstraties, doorlopende monitoring en langdurige nazorg die correct gebruik versterken, vertrouwen opbouwen en duurzame gedragsverandering ondersteunen.
 step2.cta_label: Bekijk het PureFlow model
 step2.image_path: /pureflow solution.png
 
