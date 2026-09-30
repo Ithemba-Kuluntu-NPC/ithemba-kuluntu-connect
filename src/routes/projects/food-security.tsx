@@ -1,6 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { createSeoHead } from "@/lib/seo";
-import { PhotoLightboxGallery, contentPhoto } from "@/components/blocks/PhotoLightbox";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -38,21 +37,7 @@ import { assets } from "@/data/assets";
 import { focusAreaBadgeMeta } from "@/data/projects";
 import type { Lang } from "@/data/content";
 
-export const Route = createFileRoute("/projects/food-security")({
-  component: FoodSecurityPage,
-  head: () =>
-    createSeoHead({
-      title: "Food Security | iThemba Kuluntu",
-      description:
-        "Practical food support for vulnerable families through monthly food hampers, a volunteer-run soup kitchen and daily meals for children at the No.1 ECD Centre.",
-      path: "/projects/food-security",
-      breadcrumbs: [
-        { name: "Home", path: "/" },
-        { name: "Projects", path: "/projects" },
-        { name: "Food Security", path: "/projects/food-security" },
-      ],
-    }),
-});
+export const Route = createFileRoute("/projects/food-security")({ component: FoodSecurityPage, head: () => createSeoHead({ title: 'Food Security | iThemba Kuluntu', description: 'Practical food support for vulnerable families through monthly food hampers, a volunteer-run soup kitchen and daily meals for children at the No.1 ECD Centre.', path: '/projects/food-security', breadcrumbs: [{ name: 'Home', path: '/' }, { name: 'Projects', path: '/projects' }, { name: 'Food Security', path: '/projects/food-security' }] }) });
 
 /* ---------- media (final Food Security library) ---------- */
 const FS = "/assets/photos/projects/foodsecurity";
@@ -68,475 +53,151 @@ const FALLBACK_POSTER = assets.photos.projects.foodSecurityHero;
 
 /* A. Community meals */
 const MEALS = {
-  serving: fsPhoto(
-    "food-security-community-meals-outdoor-meal-serving-from-large-pots-01.jpg",
-    "Outdoor meal serving from large pots",
-  ),
-  childrenEating: fsPhoto(
-    "food-security-community-meals-children-eating-together-02.jpg",
-    "Children eating together at a community meal",
-  ),
-  womenCooking: fsPhoto(
-    "food-security-community-meals-women-cooking-large-pot-03.jpg",
-    "Women cooking in a large pot for the community",
-  ),
-  openFire: fsPhoto(
-    "food-security-community-meals-large-pot-cooking-over-open-fire-04.jpg",
-    "Large pot cooking over an open fire",
-  ),
-  outdoorCooking: fsPhoto(
-    "food-security-community-meals-outdoor-community-cooking-with-large-pot-05.jpg",
-    "Outdoor community cooking with a large pot",
-  ),
-  workerServing: fsPhoto(
-    "food-security-community-meals-worker-serving-meal-to-community-member-06.jpg",
-    "Worker serving a meal to a community member",
-  ),
-  gathered: fsPhoto(
-    "food-security-community-meals-children-gathered-for-meal-07.jpg",
-    "Children gathered for a meal",
-  ),
-  seatedAfter: fsPhoto(
-    "food-security-community-meals-children-seated-after-meal-support-08.jpg",
-    "Children seated after receiving meal support",
-  ),
-  plates: fsPhoto(
-    "food-security-community-meals-plates-prepared-for-serving-09.jpg",
-    "Plates prepared for serving",
-  ),
-  linedUp: fsPhoto(
-    "food-security-community-meals-children-lined-up-for-meal-10.jpg",
-    "Children lined up for a meal",
-  ),
-  atService: fsPhoto(
-    "food-security-community-meals-children-gathered-at-meal-service-11.jpg",
-    "Children gathered at a meal service",
-  ),
-  rowsPlated: fsPhoto(
-    "food-security-community-meals-rows-of-plated-meals-12.jpg",
-    "Rows of plated meals ready to serve",
-  ),
-  servedOutdoors: fsPhoto(
-    "food-security-community-meals-children-being-served-outdoors-13.jpg",
-    "Children being served outdoors",
-  ),
-  childAndWorker: fsPhoto(
-    "food-security-community-meals-children-and-worker-at-meal-service-14.jpg",
-    "Children and a worker at a meal service",
-  ),
-  waterTank: fsPhoto(
-    "food-security-community-meals-children-gathered-around-water-tank-15.jpg",
-    "Children gathered around a water tank",
-  ),
-  seatedTogether: fsPhoto(
-    "food-security-community-meals-children-seated-together-16.jpg",
-    "Children seated together",
-  ),
-  handingMeal: fsPhoto(
-    "food-security-community-meals-worker-handing-meal-to-child-17.jpg",
-    "Worker handing a meal to a child",
-  ),
-  childEating: fsPhoto(
-    "food-security-community-meals-child-eating-from-plate-18.jpg",
-    "Child eating from a plate",
-  ),
-  eatingOutdoors: fsPhoto(
-    "food-security-community-meals-children-eating-outdoors-19.jpg",
-    "Children eating outdoors",
-  ),
-  youngChild: fsPhoto(
-    "food-security-community-meals-young-child-eating-meal-20.jpg",
-    "Young child eating a meal",
-  ),
-  rowsPrepared: fsPhoto(
-    "food-security-community-meals-rows-of-prepared-meals-21.jpg",
-    "Rows of prepared meals",
-  ),
-  indoorPrep: fsPhoto(
-    "food-security-community-meals-indoor-meal-preparation-team-22.jpg",
-    "Indoor meal preparation team",
-  ),
-  riceAndStew: fsPhoto(
-    "food-security-community-meals-many-plated-rice-and-stew-meals-23.jpg",
-    "Many plated rice and stew meals",
-  ),
-  servingRice: fsPhoto(
-    "food-security-community-meals-serving-rice-from-large-pot-24.jpg",
-    "Serving rice from a large pot",
-  ),
-  servingFromPots: fsPhoto(
-    "food-security-community-meals-worker-serving-meals-from-pots-25.jpg",
-    "Worker serving meals from pots",
-  ),
-  freshlyServed: fsPhoto(
-    "food-security-community-meals-worker-holding-freshly-served-meal-26.jpg",
-    "Worker holding a freshly served meal",
-  ),
-  cookingFire: fsPhoto(
-    "food-security-community-meals-outdoor-cooking-over-fire-28.jpg",
-    "Outdoor cooking over a fire",
-  ),
-  besideVehicle: fsPhoto(
-    "food-security-community-meals-children-eating-beside-project-vehicle-29.jpg",
-    "Children eating beside the project vehicle",
-  ),
-  motherAndChild: fsPhoto(
-    "/assets/generated-performance/food-security-community-meals-mother-and-child-eating-community-meal-30-web.jpg",
-    "Mother and child eating a community meal",
-  ),
-  teamCooking: fsPhoto(
-    "food-security-community-meals-team-cooking-large-pots-outdoors-31.jpg",
-    "Team cooking large pots outdoors",
-  ),
-  eatingOnGround: fsPhoto(
-    "food-security-community-meals-children-eating-together-on-ground-32.jpg",
-    "Children eating together on the ground",
-  ),
+  serving: fsPhoto("food-security-community-meals-outdoor-meal-serving-from-large-pots-01.jpg", "Outdoor meal serving from large pots"),
+  childrenEating: fsPhoto("food-security-community-meals-children-eating-together-02.jpg", "Children eating together at a community meal"),
+  womenCooking: fsPhoto("food-security-community-meals-women-cooking-large-pot-03.jpg", "Women cooking in a large pot for the community"),
+  openFire: fsPhoto("food-security-community-meals-large-pot-cooking-over-open-fire-04.jpg", "Large pot cooking over an open fire"),
+  outdoorCooking: fsPhoto("food-security-community-meals-outdoor-community-cooking-with-large-pot-05.jpg", "Outdoor community cooking with a large pot"),
+  workerServing: fsPhoto("food-security-community-meals-worker-serving-meal-to-community-member-06.jpg", "Worker serving a meal to a community member"),
+  gathered: fsPhoto("food-security-community-meals-children-gathered-for-meal-07.jpg", "Children gathered for a meal"),
+  seatedAfter: fsPhoto("food-security-community-meals-children-seated-after-meal-support-08.jpg", "Children seated after receiving meal support"),
+  plates: fsPhoto("food-security-community-meals-plates-prepared-for-serving-09.jpg", "Plates prepared for serving"),
+  linedUp: fsPhoto("food-security-community-meals-children-lined-up-for-meal-10.jpg", "Children lined up for a meal"),
+  atService: fsPhoto("food-security-community-meals-children-gathered-at-meal-service-11.jpg", "Children gathered at a meal service"),
+  rowsPlated: fsPhoto("food-security-community-meals-rows-of-plated-meals-12.jpg", "Rows of plated meals ready to serve"),
+  servedOutdoors: fsPhoto("food-security-community-meals-children-being-served-outdoors-13.jpg", "Children being served outdoors"),
+  childAndWorker: fsPhoto("food-security-community-meals-children-and-worker-at-meal-service-14.jpg", "Children and a worker at a meal service"),
+  waterTank: fsPhoto("food-security-community-meals-children-gathered-around-water-tank-15.jpg", "Children gathered around a water tank"),
+  seatedTogether: fsPhoto("food-security-community-meals-children-seated-together-16.jpg", "Children seated together"),
+  handingMeal: fsPhoto("food-security-community-meals-worker-handing-meal-to-child-17.jpg", "Worker handing a meal to a child"),
+  childEating: fsPhoto("food-security-community-meals-child-eating-from-plate-18.jpg", "Child eating from a plate"),
+  eatingOutdoors: fsPhoto("food-security-community-meals-children-eating-outdoors-19.jpg", "Children eating outdoors"),
+  youngChild: fsPhoto("food-security-community-meals-young-child-eating-meal-20.jpg", "Young child eating a meal"),
+  rowsPrepared: fsPhoto("food-security-community-meals-rows-of-prepared-meals-21.jpg", "Rows of prepared meals"),
+  indoorPrep: fsPhoto("food-security-community-meals-indoor-meal-preparation-team-22.jpg", "Indoor meal preparation team"),
+  riceAndStew: fsPhoto("food-security-community-meals-many-plated-rice-and-stew-meals-23.jpg", "Many plated rice and stew meals"),
+  servingRice: fsPhoto("food-security-community-meals-serving-rice-from-large-pot-24.jpg", "Serving rice from a large pot"),
+  servingFromPots: fsPhoto("food-security-community-meals-worker-serving-meals-from-pots-25.jpg", "Worker serving meals from pots"),
+  freshlyServed: fsPhoto("food-security-community-meals-worker-holding-freshly-served-meal-26.jpg", "Worker holding a freshly served meal"),
+  cookingFire: fsPhoto("food-security-community-meals-outdoor-cooking-over-fire-28.jpg", "Outdoor cooking over a fire"),
+  besideVehicle: fsPhoto("food-security-community-meals-children-eating-beside-project-vehicle-29.jpg", "Children eating beside the project vehicle"),
+  motherAndChild: fsPhoto("/assets/generated-performance/food-security-community-meals-mother-and-child-eating-community-meal-30-web.jpg", "Mother and child eating a community meal"),
+  teamCooking: fsPhoto("food-security-community-meals-team-cooking-large-pots-outdoors-31.jpg", "Team cooking large pots outdoors"),
+  eatingOnGround: fsPhoto("food-security-community-meals-children-eating-together-on-ground-32.jpg", "Children eating together on the ground"),
 };
 
 /* B. ECD nutrition */
 const ECD = {
-  eatingOutdoors: fsPhoto(
-    "food-security-ecd-nutrition-ecd-children-eating-outdoors-01.jpg",
-    "ECD children eating outdoors",
-  ),
-  seated: fsPhoto(
-    "food-security-ecd-nutrition-ecd-children-seated-for-meal-02.jpg",
-    "ECD children seated for a meal",
-  ),
-  inRow: fsPhoto(
-    "food-security-ecd-nutrition-ecd-children-eating-in-row-03.jpg",
-    "ECD children eating in a row",
-  ),
-  outsideCentre: fsPhoto(
-    "food-security-ecd-nutrition-ecd-mealtime-outside-centre-04.jpg",
-    "Mealtime outside the ECD centre",
-  ),
-  bowls: fsPhoto(
-    "food-security-ecd-nutrition-bowls-of-rice-stew-and-vegetables-05.jpg",
-    "Bowls of rice, stew and vegetables",
-  ),
-  blueTables: fsPhoto(
-    "food-security-ecd-nutrition-ecd-children-eating-at-blue-tables-06.jpg",
-    "ECD children eating at blue tables",
-  ),
+  eatingOutdoors: fsPhoto("food-security-ecd-nutrition-ecd-children-eating-outdoors-01.jpg", "ECD children eating outdoors"),
+  seated: fsPhoto("food-security-ecd-nutrition-ecd-children-seated-for-meal-02.jpg", "ECD children seated for a meal"),
+  inRow: fsPhoto("food-security-ecd-nutrition-ecd-children-eating-in-row-03.jpg", "ECD children eating in a row"),
+  outsideCentre: fsPhoto("food-security-ecd-nutrition-ecd-mealtime-outside-centre-04.jpg", "Mealtime outside the ECD centre"),
+  bowls: fsPhoto("food-security-ecd-nutrition-bowls-of-rice-stew-and-vegetables-05.jpg", "Bowls of rice, stew and vegetables"),
+  blueTables: fsPhoto("food-security-ecd-nutrition-ecd-children-eating-at-blue-tables-06.jpg", "ECD children eating at blue tables"),
   groupMeal: fsPhoto("food-security-ecd-nutrition-ecd-group-mealtime-07.jpg", "ECD group mealtime"),
 };
 
 /* C. Food distribution */
 const DIST = {
-  groupWithParcels: fsPhoto(
-    "food-security-food-distribution-community-group-with-food-parcels-01.jpg",
-    "Community group with food parcels",
-  ),
-  womenReceiving: fsPhoto(
-    "food-security-food-distribution-women-receiving-food-parcels-02.jpg",
-    "Women receiving food parcels",
-  ),
-  groupAtEvent: fsPhoto(
-    "food-security-food-distribution-community-group-at-distribution-event-03.jpg",
-    "Community group at a distribution event",
-  ),
-  stationTent: fsPhoto(
-    "food-security-food-distribution-distribution-station-under-tent-04.jpg",
-    "Distribution station under a tent",
-  ),
-  largeEvent: fsPhoto(
-    "food-security-food-distribution-large-community-distribution-event-05.jpg",
-    "Large community distribution event",
-  ),
-  packing: fsPhoto(
-    "food-security-food-distribution-team-packing-food-parcels-06.jpg",
-    "Team packing food parcels",
-  ),
-  hillside: fsPhoto(
-    "food-security-food-distribution-community-with-food-parcels-on-hillside-07.jpg",
-    "Community with food parcels on a hillside",
-  ),
-  banner: fsPhoto(
-    "food-security-food-distribution-distribution-event-with-ithembakuluntu-banner-08.jpg",
-    "Distribution event with the iThemba Kuluntu banner",
-  ),
-  outdoorParcels: fsPhoto(
-    "food-security-food-distribution-large-outdoor-food-parcel-distribution-09.jpg",
-    "Large outdoor food parcel distribution",
-  ),
-  teamSupplies: fsPhoto(
-    "food-security-food-distribution-ithembakuluntu-team-with-food-supplies-10.jpg",
-    "iThemba Kuluntu team with food supplies",
-  ),
-  tentSupplies: fsPhoto(
-    "food-security-food-distribution-distribution-event-with-tent-and-supplies-11.jpg",
-    "Distribution event with tent and supplies",
-  ),
-  cabbages: fsPhoto(
-    "food-security-food-distribution-fresh-cabbages-at-distribution-event-12.jpg",
-    "Fresh cabbages at a distribution event",
-  ),
-  carryingHome: fsPhoto(
-    "food-security-food-distribution-community-members-carrying-food-parcels-home-13.jpg",
-    "Community members carrying food parcels home",
-  ),
-  womanReceiving: fsPhoto(
-    "food-security-food-distribution-woman-receiving-food-parcel-14.jpg",
-    "Woman receiving a food parcel",
-  ),
-  chakalaka: fsPhoto(
-    "food-security-food-distribution-woman-holding-chakalaka-soup-packets-15.jpg",
-    "Woman holding chakalaka soup packets",
-  ),
-  balancing: fsPhoto(
-    "food-security-food-distribution-woman-balancing-food-parcel-on-head-16.jpg",
-    "Woman balancing a food parcel on her head",
-  ),
-  arranged: fsPhoto(
-    "food-security-food-distribution-food-parcels-arranged-for-distribution-17.jpg",
-    "Food parcels arranged for distribution",
-  ),
-  withSupplies: fsPhoto(
-    "food-security-food-distribution-community-distribution-with-food-supplies-18.jpg",
-    "Community distribution with food supplies",
-  ),
-  parcelDisplay: fsPhoto(
-    "food-security-food-distribution-ithembakuluntu-team-with-large-food-parcel-display-19.jpg",
-    "iThemba Kuluntu team with a large food parcel display",
-  ),
-  rowsHousehold: fsPhoto(
-    "food-security-food-distribution-large-rows-of-household-food-parcels-20.jpg",
-    "Large rows of household food parcels",
-  ),
-  movingRows: fsPhoto(
-    "food-security-food-distribution-team-moving-through-food-parcel-rows-21.jpg",
-    "Team moving through food parcel rows",
-  ),
-  closeRows: fsPhoto(
-    "food-security-food-distribution-close-view-of-food-parcel-rows-22.jpg",
-    "Close view of food parcel rows",
-  ),
-  membersReceiving: fsPhoto(
-    "food-security-food-distribution-community-members-receiving-food-parcels-23.jpg",
-    "Community members receiving food parcels",
-  ),
-  familyParcels: fsPhoto(
-    "food-security-food-distribution-family-with-food-parcels-24.jpg",
-    "Family with food parcels",
-  ),
-  householdParcels: fsPhoto(
-    "food-security-food-distribution-community-group-with-household-food-parcels-25.jpg",
-    "Community group with household food parcels",
-  ),
-  familySupport: fsPhoto(
-    "food-security-food-distribution-family-receiving-food-support-26.jpg",
-    "Family receiving food support",
-  ),
-  fromVehicle: fsPhoto(
-    "food-security-food-distribution-children-collecting-food-support-from-vehicle-27.jpg",
-    "Children collecting food support from a vehicle",
-  ),
-  preparingParcel: fsPhoto(
-    "food-security-food-distribution-woman-preparing-food-parcel-for-recipient-28.jpg",
-    "Woman preparing a food parcel for a recipient",
-  ),
-  supportEvent: fsPhoto(
-    "food-security-food-distribution-community-food-support-event-29.jpg",
-    "Community food support event",
-  ),
-  motherChildren: fsPhoto(
-    "food-security-food-distribution-mother-and-children-at-food-support-event-30.jpg",
-    "Mother and children at a food support event",
-  ),
-  workerPacking: fsPhoto(
-    "food-security-food-distribution-worker-packing-household-food-parcel-31.jpg",
-    "Worker packing a household food parcel",
-  ),
-  withProduce: fsPhoto(
-    "food-security-food-distribution-large-community-food-distribution-with-produce-32.jpg",
-    "Large community food distribution with fresh produce",
-  ),
-  produceStock: fsPhoto(
-    "food-security-food-distribution-large-stock-of-fresh-produce-for-distribution-33.jpg",
-    "Large stock of fresh produce for distribution",
-  ),
+  groupWithParcels: fsPhoto("food-security-food-distribution-community-group-with-food-parcels-01.jpg", "Community group with food parcels"),
+  womenReceiving: fsPhoto("food-security-food-distribution-women-receiving-food-parcels-02.jpg", "Women receiving food parcels"),
+  groupAtEvent: fsPhoto("food-security-food-distribution-community-group-at-distribution-event-03.jpg", "Community group at a distribution event"),
+  stationTent: fsPhoto("food-security-food-distribution-distribution-station-under-tent-04.jpg", "Distribution station under a tent"),
+  largeEvent: fsPhoto("food-security-food-distribution-large-community-distribution-event-05.jpg", "Large community distribution event"),
+  packing: fsPhoto("food-security-food-distribution-team-packing-food-parcels-06.jpg", "Team packing food parcels"),
+  hillside: fsPhoto("food-security-food-distribution-community-with-food-parcels-on-hillside-07.jpg", "Community with food parcels on a hillside"),
+  banner: fsPhoto("food-security-food-distribution-distribution-event-with-ithembakuluntu-banner-08.jpg", "Distribution event with the iThemba Kuluntu banner"),
+  outdoorParcels: fsPhoto("food-security-food-distribution-large-outdoor-food-parcel-distribution-09.jpg", "Large outdoor food parcel distribution"),
+  teamSupplies: fsPhoto("food-security-food-distribution-ithembakuluntu-team-with-food-supplies-10.jpg", "iThemba Kuluntu team with food supplies"),
+  tentSupplies: fsPhoto("food-security-food-distribution-distribution-event-with-tent-and-supplies-11.jpg", "Distribution event with tent and supplies"),
+  cabbages: fsPhoto("food-security-food-distribution-fresh-cabbages-at-distribution-event-12.jpg", "Fresh cabbages at a distribution event"),
+  carryingHome: fsPhoto("food-security-food-distribution-community-members-carrying-food-parcels-home-13.jpg", "Community members carrying food parcels home"),
+  womanReceiving: fsPhoto("food-security-food-distribution-woman-receiving-food-parcel-14.jpg", "Woman receiving a food parcel"),
+  chakalaka: fsPhoto("food-security-food-distribution-woman-holding-chakalaka-soup-packets-15.jpg", "Woman holding chakalaka soup packets"),
+  balancing: fsPhoto("food-security-food-distribution-woman-balancing-food-parcel-on-head-16.jpg", "Woman balancing a food parcel on her head"),
+  arranged: fsPhoto("food-security-food-distribution-food-parcels-arranged-for-distribution-17.jpg", "Food parcels arranged for distribution"),
+  withSupplies: fsPhoto("food-security-food-distribution-community-distribution-with-food-supplies-18.jpg", "Community distribution with food supplies"),
+  parcelDisplay: fsPhoto("food-security-food-distribution-ithembakuluntu-team-with-large-food-parcel-display-19.jpg", "iThemba Kuluntu team with a large food parcel display"),
+  rowsHousehold: fsPhoto("food-security-food-distribution-large-rows-of-household-food-parcels-20.jpg", "Large rows of household food parcels"),
+  movingRows: fsPhoto("food-security-food-distribution-team-moving-through-food-parcel-rows-21.jpg", "Team moving through food parcel rows"),
+  closeRows: fsPhoto("food-security-food-distribution-close-view-of-food-parcel-rows-22.jpg", "Close view of food parcel rows"),
+  membersReceiving: fsPhoto("food-security-food-distribution-community-members-receiving-food-parcels-23.jpg", "Community members receiving food parcels"),
+  familyParcels: fsPhoto("food-security-food-distribution-family-with-food-parcels-24.jpg", "Family with food parcels"),
+  householdParcels: fsPhoto("food-security-food-distribution-community-group-with-household-food-parcels-25.jpg", "Community group with household food parcels"),
+  familySupport: fsPhoto("food-security-food-distribution-family-receiving-food-support-26.jpg", "Family receiving food support"),
+  fromVehicle: fsPhoto("food-security-food-distribution-children-collecting-food-support-from-vehicle-27.jpg", "Children collecting food support from a vehicle"),
+  preparingParcel: fsPhoto("food-security-food-distribution-woman-preparing-food-parcel-for-recipient-28.jpg", "Woman preparing a food parcel for a recipient"),
+  supportEvent: fsPhoto("food-security-food-distribution-community-food-support-event-29.jpg", "Community food support event"),
+  motherChildren: fsPhoto("food-security-food-distribution-mother-and-children-at-food-support-event-30.jpg", "Mother and children at a food support event"),
+  workerPacking: fsPhoto("food-security-food-distribution-worker-packing-household-food-parcel-31.jpg", "Worker packing a household food parcel"),
+  withProduce: fsPhoto("food-security-food-distribution-large-community-food-distribution-with-produce-32.jpg", "Large community food distribution with fresh produce"),
+  produceStock: fsPhoto("food-security-food-distribution-large-stock-of-fresh-produce-for-distribution-33.jpg", "Large stock of fresh produce for distribution"),
 };
 
 /* D. Greenhouse growing */
 const GROW = {
-  verticalGarden: fsPhoto(
-    "food-security-greenhouse-growing-vertical-garden-with-leafy-vegetables-01.jpg",
-    "Vertical garden with leafy vegetables",
-  ),
-  workerTending: fsPhoto(
-    "food-security-greenhouse-growing-worker-tending-vertical-garden-02.jpg",
-    "Worker tending the vertical garden",
-  ),
-  childrenSmiling: fsPhoto(
-    "food-security-greenhouse-growing-children-smiling-in-greenhouse-03.jpg",
-    "Children smiling in the greenhouse",
-  ),
-  childrenVeg: fsPhoto(
-    "food-security-greenhouse-growing-children-in-greenhouse-with-vegetables-04.jpg",
-    "Children in the greenhouse with vegetables",
-  ),
-  childWorker: fsPhoto(
-    "food-security-greenhouse-growing-child-and-worker-tending-plants-05.jpg",
-    "Child and worker tending plants",
-  ),
-  guidingChild: fsPhoto(
-    "food-security-greenhouse-growing-worker-guiding-child-with-plants-06.jpg",
-    "Worker guiding a child with plants",
-  ),
-  beetrootContainer: fsPhoto(
-    "food-security-greenhouse-growing-beetroot-growing-in-container-07.jpg",
-    "Beetroot growing in a container",
-  ),
-  teamPlants: fsPhoto(
-    "food-security-greenhouse-growing-team-working-among-vertical-garden-plants-08.jpg",
-    "Team working among vertical garden plants",
-  ),
-  teamInside: fsPhoto(
-    "food-security-greenhouse-growing-team-inside-greenhouse-09.jpg",
-    "Team inside the greenhouse",
-  ),
-  hangingVeg: fsPhoto(
-    "food-security-greenhouse-growing-hanging-leafy-vegetables-10.jpg",
-    "Hanging leafy vegetables",
-  ),
-  wideView: fsPhoto(
-    "food-security-greenhouse-growing-wide-view-of-hanging-vegetable-garden-11.jpg",
-    "Wide view of the hanging vegetable garden",
-  ),
+  verticalGarden: fsPhoto("food-security-greenhouse-growing-vertical-garden-with-leafy-vegetables-01.jpg", "Vertical garden with leafy vegetables"),
+  workerTending: fsPhoto("food-security-greenhouse-growing-worker-tending-vertical-garden-02.jpg", "Worker tending the vertical garden"),
+  childrenSmiling: fsPhoto("food-security-greenhouse-growing-children-smiling-in-greenhouse-03.jpg", "Children smiling in the greenhouse"),
+  childrenVeg: fsPhoto("food-security-greenhouse-growing-children-in-greenhouse-with-vegetables-04.jpg", "Children in the greenhouse with vegetables"),
+  childWorker: fsPhoto("food-security-greenhouse-growing-child-and-worker-tending-plants-05.jpg", "Child and worker tending plants"),
+  guidingChild: fsPhoto("food-security-greenhouse-growing-worker-guiding-child-with-plants-06.jpg", "Worker guiding a child with plants"),
+  beetrootContainer: fsPhoto("food-security-greenhouse-growing-beetroot-growing-in-container-07.jpg", "Beetroot growing in a container"),
+  teamPlants: fsPhoto("food-security-greenhouse-growing-team-working-among-vertical-garden-plants-08.jpg", "Team working among vertical garden plants"),
+  teamInside: fsPhoto("food-security-greenhouse-growing-team-inside-greenhouse-09.jpg", "Team inside the greenhouse"),
+  hangingVeg: fsPhoto("food-security-greenhouse-growing-hanging-leafy-vegetables-10.jpg", "Hanging leafy vegetables"),
+  wideView: fsPhoto("food-security-greenhouse-growing-wide-view-of-hanging-vegetable-garden-11.jpg", "Wide view of the hanging vegetable garden"),
 };
 
 /* E. Greenhouse harvest */
 const HARVEST = [
-  fsPhoto(
-    "/assets/generated-performance/food-security-greenhouse-harvest-close-up-of-spinach-leaves-01-web.jpg",
-    "Close-up of spinach leaves",
-  ),
-  fsPhoto(
-    "food-security-greenhouse-harvest-freshly-harvested-beetroot-02.jpg",
-    "Freshly harvested beetroot",
-  ),
-  fsPhoto(
-    "food-security-greenhouse-harvest-healthy-spinach-close-up-03.jpg",
-    "Healthy spinach close-up",
-  ),
+  fsPhoto("/assets/generated-performance/food-security-greenhouse-harvest-close-up-of-spinach-leaves-01-web.jpg", "Close-up of spinach leaves"),
+  fsPhoto("food-security-greenhouse-harvest-freshly-harvested-beetroot-02.jpg", "Freshly harvested beetroot"),
+  fsPhoto("food-security-greenhouse-harvest-healthy-spinach-close-up-03.jpg", "Healthy spinach close-up"),
 ];
 
 /* F. Household support */
 const HOUSE = {
-  childrenStaple: fsPhoto(
-    "food-security-household-support-children-with-staple-food-parcel-01.jpg",
-    "Children with a staple food parcel",
-  ),
-  wheelbarrow: fsPhoto(
-    "food-security-household-support-family-carrying-food-home-by-wheelbarrow-and-head-02.jpg",
-    "Family carrying food home by wheelbarrow and on head",
-  ),
-  walkingHome: fsPhoto(
-    "food-security-household-support-family-walking-home-with-food-parcels-03.jpg",
-    "Family walking home with food parcels",
-  ),
-  atHome: fsPhoto(
-    "food-security-household-support-family-with-staple-food-parcel-at-home-04.jpg",
-    "Family with a staple food parcel at home",
-  ),
-  receivingOutdoors: fsPhoto(
-    "food-security-household-support-family-receiving-food-parcel-outdoors-05.jpg",
-    "Family receiving a food parcel outdoors",
-  ),
-  ruralHome: fsPhoto(
-    "food-security-household-support-family-with-food-parcel-at-rural-home-06.jpg",
-    "Family with a food parcel at their rural home",
-  ),
-  womanAndChild: fsPhoto(
-    "food-security-household-support-woman-and-child-with-food-support-at-home-07.jpg",
-    "Woman and child with food support at home",
-  ),
+  childrenStaple: fsPhoto("food-security-household-support-children-with-staple-food-parcel-01.jpg", "Children with a staple food parcel"),
+  wheelbarrow: fsPhoto("food-security-household-support-family-carrying-food-home-by-wheelbarrow-and-head-02.jpg", "Family carrying food home by wheelbarrow and on head"),
+  walkingHome: fsPhoto("food-security-household-support-family-walking-home-with-food-parcels-03.jpg", "Family walking home with food parcels"),
+  atHome: fsPhoto("food-security-household-support-family-with-staple-food-parcel-at-home-04.jpg", "Family with a staple food parcel at home"),
+  receivingOutdoors: fsPhoto("food-security-household-support-family-receiving-food-parcel-outdoors-05.jpg", "Family receiving a food parcel outdoors"),
+  ruralHome: fsPhoto("food-security-household-support-family-with-food-parcel-at-rural-home-06.jpg", "Family with a food parcel at their rural home"),
+  womanAndChild: fsPhoto("food-security-household-support-woman-and-child-with-food-support-at-home-07.jpg", "Woman and child with food support at home"),
 };
 
 /* G. Partner support */
 const PARTNER = {
-  womanBox: fsPhoto(
-    "food-security-partner-support-woman-holding-rise-against-hunger-box-01.jpg",
-    "Woman holding a Rise Against Hunger box",
-  ),
-  table: fsPhoto(
-    "food-security-partner-support-distribution-table-with-rise-against-hunger-boxes-02.jpg",
-    "Distribution table with Rise Against Hunger boxes",
-  ),
-  olderWoman: fsPhoto(
-    "food-security-partner-support-older-woman-receiving-rise-against-hunger-box-03.jpg",
-    "Older woman receiving a Rise Against Hunger box",
-  ),
-  youngRecipient: fsPhoto(
-    "food-security-partner-support-young-recipient-holding-rise-against-hunger-box-04.jpg",
-    "Young recipient holding a Rise Against Hunger box",
-  ),
-  seated: fsPhoto(
-    "/assets/generated-performance/food-security-partner-support-woman-seated-with-rise-against-hunger-box-05-web.jpg",
-    "Woman seated with a Rise Against Hunger box",
-  ),
-  carrying: fsPhoto(
-    "food-security-partner-support-team-carrying-stacked-food-relief-boxes-06.jpg",
-    "Team carrying stacked food relief boxes",
-  ),
-  childrenBoxes: fsPhoto(
-    "food-security-partner-support-children-in-front-of-rise-against-hunger-boxes-07.jpg",
-    "Children in front of Rise Against Hunger boxes",
-  ),
-  workerFamily: fsPhoto(
-    "food-security-partner-support-ithembakuluntu-worker-with-family-and-rise-box-08.jpg",
-    "iThemba Kuluntu worker with a family and a relief box",
-  ),
+  womanBox: fsPhoto("food-security-partner-support-woman-holding-rise-against-hunger-box-01.jpg", "Woman holding a Rise Against Hunger box"),
+  table: fsPhoto("food-security-partner-support-distribution-table-with-rise-against-hunger-boxes-02.jpg", "Distribution table with Rise Against Hunger boxes"),
+  olderWoman: fsPhoto("food-security-partner-support-older-woman-receiving-rise-against-hunger-box-03.jpg", "Older woman receiving a Rise Against Hunger box"),
+  youngRecipient: fsPhoto("food-security-partner-support-young-recipient-holding-rise-against-hunger-box-04.jpg", "Young recipient holding a Rise Against Hunger box"),
+  seated: fsPhoto("/assets/generated-performance/food-security-partner-support-woman-seated-with-rise-against-hunger-box-05-web.jpg", "Woman seated with a Rise Against Hunger box"),
+  carrying: fsPhoto("food-security-partner-support-team-carrying-stacked-food-relief-boxes-06.jpg", "Team carrying stacked food relief boxes"),
+  childrenBoxes: fsPhoto("food-security-partner-support-children-in-front-of-rise-against-hunger-boxes-07.jpg", "Children in front of Rise Against Hunger boxes"),
+  workerFamily: fsPhoto("food-security-partner-support-ithembakuluntu-worker-with-family-and-rise-box-08.jpg", "iThemba Kuluntu worker with a family and a relief box"),
 };
 
 /* H. School feeding */
 const SCHOOL = {
-  gathered: fsPhoto(
-    "food-security-school-feeding-school-children-gathered-for-meal-01.jpg",
-    "School children gathered for a meal",
-  ),
-  serving: fsPhoto(
-    "food-security-school-feeding-worker-serving-school-child-02.jpg",
-    "Worker serving a school child",
-  ),
-  cooking: fsPhoto(
-    "food-security-school-feeding-worker-cooking-for-school-children-03.jpg",
-    "Worker cooking for school children",
-  ),
-  linedOutside: fsPhoto(
-    "food-security-school-feeding-school-children-lined-up-outside-04.jpg",
-    "School children lined up outside",
-  ),
-  withTeam: fsPhoto(
-    "food-security-school-feeding-school-children-with-ithembakuluntu-team-05.jpg",
-    "School children with the iThemba Kuluntu team",
-  ),
-  linedForMeals: fsPhoto(
-    "food-security-school-feeding-school-children-lined-up-for-meals-06.jpg",
-    "School children lined up for meals",
-  ),
-  waiting: fsPhoto(
-    "food-security-school-feeding-school-children-waiting-outside-07.jpg",
-    "School children waiting outside",
-  ),
-  handingPlate: fsPhoto(
-    "food-security-school-feeding-worker-handing-plate-to-child-08.jpg",
-    "Worker handing a plate to a child",
-  ),
-  servingYoung: fsPhoto(
-    "food-security-school-feeding-worker-serving-young-child-09.jpg",
-    "Worker serving a young child",
-  ),
+  gathered: fsPhoto("food-security-school-feeding-school-children-gathered-for-meal-01.jpg", "School children gathered for a meal"),
+  serving: fsPhoto("food-security-school-feeding-worker-serving-school-child-02.jpg", "Worker serving a school child"),
+  cooking: fsPhoto("food-security-school-feeding-worker-cooking-for-school-children-03.jpg", "Worker cooking for school children"),
+  linedOutside: fsPhoto("food-security-school-feeding-school-children-lined-up-outside-04.jpg", "School children lined up outside"),
+  withTeam: fsPhoto("food-security-school-feeding-school-children-with-ithembakuluntu-team-05.jpg", "School children with the iThemba Kuluntu team"),
+  linedForMeals: fsPhoto("food-security-school-feeding-school-children-lined-up-for-meals-06.jpg", "School children lined up for meals"),
+  waiting: fsPhoto("food-security-school-feeding-school-children-waiting-outside-07.jpg", "School children waiting outside"),
+  handingPlate: fsPhoto("food-security-school-feeding-worker-handing-plate-to-child-08.jpg", "Worker handing a plate to a child"),
+  servingYoung: fsPhoto("food-security-school-feeding-worker-serving-young-child-09.jpg", "Worker serving a young child"),
 };
 
 /* ---------- per-section media assignment (every filename used ONCE) ---------- */
-const BG_WHY = DIST.rowsHousehold.src; // distribution-20
-const BG_FOCUS = DIST.groupAtEvent.src; // distribution-03
-const BG_IMPACT = DIST.withProduce.src; // distribution-32
-const BG_MONTHLY = DIST.hillside.src; // distribution-07
-const BG_CLOSING = MEALS.motherAndChild.src; // community-meals-30
+const BG_WHY = DIST.rowsHousehold.src;                       // distribution-20
+const BG_FOCUS = DIST.groupAtEvent.src;                      // distribution-03
+const BG_IMPACT = DIST.withProduce.src;                      // distribution-32
+const BG_MONTHLY = DIST.hillside.src;                        // distribution-07
+const BG_CLOSING = MEALS.motherAndChild.src;                 // community-meals-30
 
 const HAMPERS_COLLAGE = {
   main: { ...HOUSE.wheelbarrow, pos: "center 45%" },
@@ -570,17 +231,13 @@ const GROW_COLLAGE = {
   ] as [Shot, Shot],
 };
 
+
 /* I. Team / logistics */
 const LOGISTICS = [
-  fsPhoto(
-    "food-security-team-logistics-ithembakuluntu-vehicle-at-food-distribution-01.jpg",
-    "iThemba Kuluntu vehicle at a food distribution",
-  ),
-  fsPhoto(
-    "food-security-team-logistics-team-and-partners-beside-distribution-vehicle-02.jpg",
-    "Team and partners beside the distribution vehicle",
-  ),
+  fsPhoto("food-security-team-logistics-ithembakuluntu-vehicle-at-food-distribution-01.jpg", "iThemba Kuluntu vehicle at a food distribution"),
+  fsPhoto("food-security-team-logistics-team-and-partners-beside-distribution-vehicle-02.jpg", "Team and partners beside the distribution vehicle"),
 ];
+
 
 /* ---------- photo collage primitives (shared visual language with other project pages) ---------- */
 type Shot = { src: string; alt: string; pos?: string };
@@ -600,44 +257,13 @@ function ShotImg({ shot, className = "" }: { shot: Shot; className?: string }) {
 }
 
 /** One dominant image with two supporting images beside it. Stacks cleanly on mobile. */
-function CollageSide({
-  main,
-  side,
-  className = "",
-}: {
-  main: Shot;
-  side: [Shot, Shot];
-  className?: string;
-}) {
-  const photos = [main, ...side];
-  const classes = [
-    "col-span-3 row-span-1 rounded-tl-[2rem] sm:col-span-2 sm:row-span-2 sm:rounded-bl-[2rem]",
-    "col-span-1 rounded-tr-[2rem]",
-    "col-span-2 rounded-br-[2rem] sm:col-span-1",
-  ];
+function CollageSide({ main, side, className = "" }: { main: Shot; side: [Shot, Shot]; className?: string }) {
   return (
-    <PhotoLightboxGallery
-      photos={photos.map((photo) => contentPhoto(photo.src, photo.alt))}
-      label="Food security photo gallery"
-    >
-      {(openPhoto) => (
-        <div
-          className={`grid aspect-[16/12] grid-cols-3 grid-rows-2 gap-2.5 sm:aspect-[16/11] md:gap-3 ${className}`}
-        >
-          {photos.map((photo, index) => (
-            <button
-              type="button"
-              aria-label={`Open photo: ${photo.alt}`}
-              onClick={() => openPhoto(index)}
-              key={photo.src}
-              className={`min-w-0 cursor-zoom-in text-left ${classes[index]}`}
-            >
-              <ShotImg shot={photo} className="h-full w-full rounded-[inherit]" />
-            </button>
-          ))}
-        </div>
-      )}
-    </PhotoLightboxGallery>
+    <div className={`grid aspect-[16/12] grid-cols-3 grid-rows-2 gap-2.5 sm:aspect-[16/11] md:gap-3 ${className}`}>
+      <ShotImg shot={main} className="col-span-3 row-span-1 rounded-tl-[2rem] sm:col-span-2 sm:row-span-2 sm:rounded-bl-[2rem]" />
+      <ShotImg shot={side[0]} className="col-span-1 rounded-tr-[2rem]" />
+      <ShotImg shot={side[1]} className="col-span-2 rounded-br-[2rem] sm:col-span-1" />
+    </div>
   );
 }
 
@@ -659,8 +285,7 @@ function useReducedMotion() {
 type Fact = { label: string; value: string };
 type DonationItem = { icon: string; label: string };
 type FocusItem = {
-  badge:
-    "food-security" | "community-health" | "education" | "skills-livelihoods" | "disaster-relief";
+  badge: "food-security" | "community-health" | "education" | "skills-livelihoods" | "disaster-relief";
   label: string;
 };
 
@@ -693,23 +318,8 @@ type Copy = {
     cta1: string;
     cta2: string;
   };
-  impact: {
-    title: string;
-    items: {
-      value: number;
-      suffix: string;
-      iconSrc?: string;
-      label: { en: string; de: string; nl?: string };
-    }[];
-  };
-  closing: {
-    eyebrow: string;
-    title: string;
-    body: string[];
-    monthly: string;
-    once: string;
-    all: string;
-  };
+  impact: { title: string; items: { value: number; suffix: string; iconSrc?: string; label: { en: string; de: string; nl?: string } }[] };
+  closing: { eyebrow: string; title: string; body: string[]; monthly: string; once: string; all: string };
 };
 
 /* ---------- COPY (verbatim from /public/content/projects/food-security-*-v1-1.txt) ---------- */
@@ -719,7 +329,8 @@ const COPY: Record<Lang, Copy> = {
     hero: {
       eyebrow: "Food Support & Nutrition",
       title: "Food Security",
-      text: "Practical food support for vulnerable families in Cwebeni and surrounding communities, through monthly food hampers, a volunteer-run soup kitchen, and daily meals for children at the iThemba Kuluntu No.1 ECD Centre.",
+      text:
+        "Practical food support for vulnerable families in Cwebeni and surrounding communities, through monthly food hampers, a volunteer-run soup kitchen, and daily meals for children at the iThemba Kuluntu No.1 ECD Centre.",
       monthly: "Donate Monthly to Support This Project",
       once: "Give Once",
       location: "Cwebeni · Port St Johns · Eastern Cape · South Africa",
@@ -737,19 +348,10 @@ const COPY: Record<Lang, Copy> = {
         { label: "Project", value: "Food Security" },
         { label: "Focus", value: "Food support for vulnerable families and children" },
         { label: "Where", value: "Cwebeni, Port St Johns, Eastern Cape, South Africa" },
-        {
-          label: "Core support",
-          value: "Monthly food hampers, soup kitchen meals and ECD Centre meals",
-        },
-        {
-          label: "Community role",
-          value: "Local women volunteers help cook and serve meals through the soup kitchen",
-        },
+        { label: "Core support", value: "Monthly food hampers, soup kitchen meals and ECD Centre meals" },
+        { label: "Community role", value: "Local women volunteers help cook and serve meals through the soup kitchen" },
         { label: "Connected projects", value: "No.1 ECD Centre and Greenhouse with SA Harvest" },
-        {
-          label: "Donation focus",
-          value: "Helping keep food support consistent for families and children",
-        },
+        { label: "Donation focus", value: "Helping keep food support consistent for families and children" },
       ],
     },
     why: {
@@ -822,8 +424,7 @@ const COPY: Record<Lang, Copy> = {
     donation: {
       eyebrow: "Your support",
       title: "Help keep food support moving",
-      intro:
-        "Donations help iThemba Kuluntu keep food support practical, regular and community-rooted. Your support can help provide:",
+      intro: "Donations help iThemba Kuluntu keep food support practical, regular and community-rooted. Your support can help provide:",
       items: [
         { icon: "PackageOpen", label: "Monthly food hampers for vulnerable families" },
         { icon: "Soup", label: "Ingredients for soup kitchen meals" },
@@ -846,40 +447,16 @@ const COPY: Record<Lang, Copy> = {
       ],
       cardHeading: "Support food security",
       cardAmount: "€25 / month",
-      cardText:
-        "Helps support food hampers, soup kitchen meals and daily nutrition for vulnerable children and families.",
+      cardText: "Helps support food hampers, soup kitchen meals and daily nutrition for vulnerable children and families.",
       cta1: "Support food security monthly",
       cta2: "Give once to Food Security",
     },
     impact: {
       title: "What your support helps make possible",
       items: [
-        {
-          value: 300000,
-          suffix: "+",
-          iconSrc: "/assets/icons/impact/impact-meals-served.png",
-          label: { en: "Meals served", de: "Mahlzeiten ausgegeben", nl: "Maaltijden verstrekt" },
-        },
-        {
-          value: 2863,
-          suffix: "",
-          iconSrc: "/assets/icons/impact/impact-food-hampers.png",
-          label: {
-            en: "Food hampers distributed",
-            de: "Lebensmittelpakete verteilt",
-            nl: "Voedselpakketten verdeeld",
-          },
-        },
-        {
-          value: 120,
-          suffix: "",
-          iconSrc: "/assets/icons/impact/impact-ecd-children.png",
-          label: {
-            en: "Children receiving daily meals at the No.1 ECD Centre",
-            de: "Kinder erhalten tägliche Mahlzeiten im No.1 ECD Centre",
-            nl: "Kinderen ontvangen dagelijkse maaltijden in het No.1 ECD Centre",
-          },
-        },
+        { value: 300000, suffix: "+", iconSrc: "/assets/icons/impact/impact-meals-served.png", label: { en: "Meals served", de: "Mahlzeiten ausgegeben", nl: "Maaltijden verstrekt" } },
+        { value: 2863, suffix: "", iconSrc: "/assets/icons/impact/impact-food-hampers.png", label: { en: "Food hampers distributed", de: "Lebensmittelpakete verteilt", nl: "Voedselpakketten verdeeld" } },
+        { value: 120, suffix: "", iconSrc: "/assets/icons/impact/impact-ecd-children.png", label: { en: "Children receiving daily meals at the No.1 ECD Centre", de: "Kinder erhalten tägliche Mahlzeiten im No.1 ECD Centre", nl: "Kinderen ontvangen dagelijkse maaltijden in het No.1 ECD Centre" } },
       ],
     },
     closing: {
@@ -900,7 +477,8 @@ const COPY: Record<Lang, Copy> = {
     hero: {
       eyebrow: "Lebensmittelhilfe & Ernährung",
       title: "Food Security",
-      text: "Praktische Lebensmittelhilfe für vulnerable Familien in Cwebeni und den umliegenden Gemeinden, durch monatliche Lebensmittelpakete, eine von lokalen Frauen ehrenamtlich geführte Suppenküche und tägliche Mahlzeiten für Kinder im iThemba Kuluntu No.1 ECD Centre.",
+      text:
+        "Praktische Lebensmittelhilfe für vulnerable Familien in Cwebeni und den umliegenden Gemeinden, durch monatliche Lebensmittelpakete, eine von lokalen Frauen ehrenamtlich geführte Suppenküche und tägliche Mahlzeiten für Kinder im iThemba Kuluntu No.1 ECD Centre.",
       monthly: "Monatlich für dieses Projekt spenden",
       once: "Einmalig spenden",
       location: "Cwebeni · Port St Johns · Eastern Cape · Südafrika",
@@ -918,21 +496,10 @@ const COPY: Record<Lang, Copy> = {
         { label: "Projekt", value: "Food Security" },
         { label: "Schwerpunkt", value: "Lebensmittelhilfe für vulnerable Familien und Kinder" },
         { label: "Wo", value: "Cwebeni, Port St Johns, Eastern Cape, Südafrika" },
-        {
-          label: "Kernunterstützung",
-          value:
-            "Monatliche Lebensmittelpakete, Suppenküchen-Mahlzeiten und Mahlzeiten im ECD Centre",
-        },
-        {
-          label: "Rolle der Gemeinschaft",
-          value:
-            "Lokale Frauen helfen ehrenamtlich beim Kochen und Ausgeben der Mahlzeiten in der Suppenküche",
-        },
+        { label: "Kernunterstützung", value: "Monatliche Lebensmittelpakete, Suppenküchen-Mahlzeiten und Mahlzeiten im ECD Centre" },
+        { label: "Rolle der Gemeinschaft", value: "Lokale Frauen helfen ehrenamtlich beim Kochen und Ausgeben der Mahlzeiten in der Suppenküche" },
         { label: "Verbundene Projekte", value: "No.1 ECD Centre und Greenhouse with SA Harvest" },
-        {
-          label: "Spendenfokus",
-          value: "Lebensmittelhilfe für Familien und Kinder verlässlich weiterführen",
-        },
+        { label: "Spendenfokus", value: "Lebensmittelhilfe für Familien und Kinder verlässlich weiterführen" },
       ],
     },
     why: {
@@ -1005,8 +572,7 @@ const COPY: Record<Lang, Copy> = {
     donation: {
       eyebrow: "Ihre Unterstützung",
       title: "Helfen Sie, Lebensmittelhilfe verlässlich weiterzuführen",
-      intro:
-        "Spenden helfen iThemba Kuluntu, Lebensmittelhilfe praktisch, regelmäßig und gemeindenah umzusetzen. Ihre Unterstützung kann helfen, Folgendes bereitzustellen:",
+      intro: "Spenden helfen iThemba Kuluntu, Lebensmittelhilfe praktisch, regelmäßig und gemeindenah umzusetzen. Ihre Unterstützung kann helfen, Folgendes bereitzustellen:",
       items: [
         { icon: "PackageOpen", label: "Monatliche Lebensmittelpakete für vulnerable Familien" },
         { icon: "Soup", label: "Zutaten für Mahlzeiten in der Suppenküche" },
@@ -1015,10 +581,7 @@ const COPY: Record<Lang, Copy> = {
         { icon: "Flame", label: "Kochmaterialien und grundlegenden Küchenbedarf" },
         { icon: "Truck", label: "Transport- und Verteilungsunterstützung" },
         { icon: "Users", label: "Lokale Koordination" },
-        {
-          icon: "ShieldAlert",
-          label: "Notfall-Lebensmittelhilfe, wenn Familien plötzlich in eine Krise geraten",
-        },
+        { icon: "ShieldAlert", label: "Notfall-Lebensmittelhilfe, wenn Familien plötzlich in eine Krise geraten" },
       ],
       outro:
         "Eine Spende für Food Security hilft, praktische Fürsorge dort möglich zu machen, wo sie am dringendsten gebraucht wird. Sie hilft Familien durch schwierige Zeiten und unterstützt Kinder dabei, die Ernährung zu erhalten, die sie brauchen, um zu lernen, zu wachsen und sich sicher zu fühlen.",
@@ -1032,40 +595,16 @@ const COPY: Record<Lang, Copy> = {
       ],
       cardHeading: "Ernährungssicherheit unterstützen",
       cardAmount: "25 € / Monat",
-      cardText:
-        "Hilft, Lebensmittelpakete, Suppenküchen-Mahlzeiten und tägliche Ernährung für vulnerable Kinder und Familien zu unterstützen.",
+      cardText: "Hilft, Lebensmittelpakete, Suppenküchen-Mahlzeiten und tägliche Ernährung für vulnerable Kinder und Familien zu unterstützen.",
       cta1: "Ernährungssicherheit monatlich unterstützen",
       cta2: "Einmalig für Food Security spenden",
     },
     impact: {
       title: "Was Ihre Unterstützung möglich macht",
       items: [
-        {
-          value: 300000,
-          suffix: "+",
-          iconSrc: "/assets/icons/impact/impact-meals-served.png",
-          label: { en: "Meals served", de: "Mahlzeiten ausgegeben", nl: "Maaltijden verstrekt" },
-        },
-        {
-          value: 2863,
-          suffix: "",
-          iconSrc: "/assets/icons/impact/impact-food-hampers.png",
-          label: {
-            en: "Food hampers distributed",
-            de: "Lebensmittelpakete verteilt",
-            nl: "Voedselpakketten verdeeld",
-          },
-        },
-        {
-          value: 120,
-          suffix: "",
-          iconSrc: "/assets/icons/impact/impact-ecd-children.png",
-          label: {
-            en: "Children receiving daily meals at the No.1 ECD Centre",
-            de: "Kinder erhalten tägliche Mahlzeiten im No.1 ECD Centre",
-            nl: "Kinderen ontvangen dagelijkse maaltijden in het No.1 ECD Centre",
-          },
-        },
+        { value: 300000, suffix: "+", iconSrc: "/assets/icons/impact/impact-meals-served.png", label: { en: "Meals served", de: "Mahlzeiten ausgegeben", nl: "Maaltijden verstrekt" } },
+        { value: 2863, suffix: "", iconSrc: "/assets/icons/impact/impact-food-hampers.png", label: { en: "Food hampers distributed", de: "Lebensmittelpakete verteilt", nl: "Voedselpakketten verdeeld" } },
+        { value: 120, suffix: "", iconSrc: "/assets/icons/impact/impact-ecd-children.png", label: { en: "Children receiving daily meals at the No.1 ECD Centre", de: "Kinder erhalten tägliche Mahlzeiten im No.1 ECD Centre", nl: "Kinderen ontvangen dagelijkse maaltijden in het No.1 ECD Centre" } },
       ],
     },
     closing: {
@@ -1086,7 +625,8 @@ const COPY: Record<Lang, Copy> = {
     hero: {
       eyebrow: "Voedselhulp & Voeding",
       title: "Food Security",
-      text: "Praktische voedselondersteuning voor kwetsbare families in Cwebeni en omliggende gemeenschappen, via maandelijkse voedselpakketten, een soepkeuken gerund door lokale vrouwelijke vrijwilligers en dagelijkse maaltijden voor kinderen in het iThemba Kuluntu No.1 ECD Centre.",
+      text:
+        "Praktische voedselondersteuning voor kwetsbare families in Cwebeni en omliggende gemeenschappen, via maandelijkse voedselpakketten, een soepkeuken gerund door lokale vrouwelijke vrijwilligers en dagelijkse maaltijden voor kinderen in het iThemba Kuluntu No.1 ECD Centre.",
       monthly: "Maandelijks doneren voor dit project",
       once: "Eenmalig doneren",
       location: "Cwebeni · Port St Johns · Eastern Cape · Zuid-Afrika",
@@ -1104,21 +644,10 @@ const COPY: Record<Lang, Copy> = {
         { label: "Project", value: "Food Security" },
         { label: "Focus", value: "Voedselondersteuning voor kwetsbare families en kinderen" },
         { label: "Waar", value: "Cwebeni, Port St Johns, Eastern Cape, Zuid-Afrika" },
-        {
-          label: "Kernondersteuning",
-          value:
-            "Maandelijkse voedselpakketten, maaltijden uit de soepkeuken en maaltijden in het ECD Centre",
-        },
-        {
-          label: "Rol van de gemeenschap",
-          value:
-            "Lokale vrouwelijke vrijwilligers helpen koken en maaltijden uitdelen via de soepkeuken",
-        },
+        { label: "Kernondersteuning", value: "Maandelijkse voedselpakketten, maaltijden uit de soepkeuken en maaltijden in het ECD Centre" },
+        { label: "Rol van de gemeenschap", value: "Lokale vrouwelijke vrijwilligers helpen koken en maaltijden uitdelen via de soepkeuken" },
         { label: "Verbonden projecten", value: "No.1 ECD Centre en Greenhouse with SA Harvest" },
-        {
-          label: "Donatiefocus",
-          value: "Voedselondersteuning voor families en kinderen consistent mogelijk maken",
-        },
+        { label: "Donatiefocus", value: "Voedselondersteuning voor families en kinderen consistent mogelijk maken" },
       ],
     },
     why: {
@@ -1191,8 +720,7 @@ const COPY: Record<Lang, Copy> = {
     donation: {
       eyebrow: "Uw steun",
       title: "Help voedselondersteuning door te laten gaan",
-      intro:
-        "Donaties helpen iThemba Kuluntu om voedselondersteuning praktisch, regelmatig en gemeenschapsgericht te blijven bieden. Uw steun kan helpen om het volgende mogelijk te maken:",
+      intro: "Donaties helpen iThemba Kuluntu om voedselondersteuning praktisch, regelmatig en gemeenschapsgericht te blijven bieden. Uw steun kan helpen om het volgende mogelijk te maken:",
       items: [
         { icon: "PackageOpen", label: "Maandelijkse voedselpakketten voor kwetsbare families" },
         { icon: "Soup", label: "Ingrediënten voor maaltijden in de soepkeuken" },
@@ -1201,10 +729,7 @@ const COPY: Record<Lang, Copy> = {
         { icon: "Flame", label: "Kookbenodigdheden en basisuitrusting voor de keuken" },
         { icon: "Truck", label: "Transport- en distributieondersteuning" },
         { icon: "Users", label: "Lokale coördinatie" },
-        {
-          icon: "ShieldAlert",
-          label: "Noodvoedselhulp wanneer families plotseling in crisis raken",
-        },
+        { icon: "ShieldAlert", label: "Noodvoedselhulp wanneer families plotseling in crisis raken" },
       ],
       outro:
         "Een donatie aan Food Security helpt praktische zorg mogelijk te maken waar die het hardst nodig is. Ze helpt families door moeilijke periodes heen en ondersteunt kinderen met de voeding die zij nodig hebben om te leren, te groeien en zich veilig te voelen.",
@@ -1218,40 +743,16 @@ const COPY: Record<Lang, Copy> = {
       ],
       cardHeading: "Steun voedselzekerheid",
       cardAmount: "€25 / maand",
-      cardText:
-        "Helpt voedselpakketten, soepkeukenmaaltijden en dagelijkse voeding voor kwetsbare kinderen en families te ondersteunen.",
+      cardText: "Helpt voedselpakketten, soepkeukenmaaltijden en dagelijkse voeding voor kwetsbare kinderen en families te ondersteunen.",
       cta1: "Steun voedselzekerheid maandelijks",
       cta2: "Doneer eenmalig aan Food Security",
     },
     impact: {
       title: "Wat uw steun mogelijk maakt",
       items: [
-        {
-          value: 300000,
-          suffix: "+",
-          iconSrc: "/assets/icons/impact/impact-meals-served.png",
-          label: { en: "Meals served", de: "Mahlzeiten ausgegeben", nl: "Maaltijden verstrekt" },
-        },
-        {
-          value: 2863,
-          suffix: "",
-          iconSrc: "/assets/icons/impact/impact-food-hampers.png",
-          label: {
-            en: "Food hampers distributed",
-            de: "Lebensmittelpakete verteilt",
-            nl: "Voedselpakketten verdeeld",
-          },
-        },
-        {
-          value: 120,
-          suffix: "",
-          iconSrc: "/assets/icons/impact/impact-ecd-children.png",
-          label: {
-            en: "Children receiving daily meals at the No.1 ECD Centre",
-            de: "Kinder erhalten tägliche Mahlzeiten im No.1 ECD Centre",
-            nl: "Kinderen ontvangen dagelijkse maaltijden in het No.1 ECD Centre",
-          },
-        },
+        { value: 300000, suffix: "+", iconSrc: "/assets/icons/impact/impact-meals-served.png", label: { en: "Meals served", de: "Mahlzeiten ausgegeben", nl: "Maaltijden verstrekt" } },
+        { value: 2863, suffix: "", iconSrc: "/assets/icons/impact/impact-food-hampers.png", label: { en: "Food hampers distributed", de: "Lebensmittelpakete verteilt", nl: "Voedselpakketten verdeeld" } },
+        { value: 120, suffix: "", iconSrc: "/assets/icons/impact/impact-ecd-children.png", label: { en: "Children receiving daily meals at the No.1 ECD Centre", de: "Kinder erhalten tägliche Mahlzeiten im No.1 ECD Centre", nl: "Kinderen ontvangen dagelijkse maaltijden in het No.1 ECD Centre" } },
       ],
     },
     closing: {
@@ -1348,22 +849,13 @@ function Hero({ c }: { c: Copy }) {
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4 pb-24 pt-20 md:pb-32 md:pt-28 lg:px-8">
-        <Link
-          to="/projects"
-          className="inline-flex items-center gap-1 text-sm font-medium text-white/85 hover:text-white"
-        >
+        <Link to="/projects" className="inline-flex items-center gap-1 text-sm font-medium text-white/85 hover:text-white">
           <ArrowLeft className="h-4 w-4" /> {c.back}
         </Link>
 
         <div className="mt-8 max-w-3xl text-white">
           <FocusAreaBadges
-            badges={[
-              "food-security",
-              "community-health",
-              "education",
-              "skills-livelihoods",
-              "disaster-relief",
-            ]}
+            badges={["food-security", "community-health", "education", "skills-livelihoods", "disaster-relief"]}
             size="md"
             className="mb-5"
           />
@@ -1373,24 +865,10 @@ function Hero({ c }: { c: Copy }) {
           <h1 className="mt-2 font-display text-[clamp(2.25rem,5.5vw,4.25rem)] font-extrabold leading-[1.02] tracking-tight drop-shadow-[0_4px_24px_rgba(0,0,0,0.45)]">
             {c.hero.title}
           </h1>
-          <svg
-            className="mt-4 block w-48 md:w-72"
-            height="14"
-            viewBox="0 0 200 14"
-            preserveAspectRatio="none"
-            aria-hidden
-          >
-            <path
-              d="M2,8 C50,2 120,14 198,6"
-              stroke="var(--ithemba-yellow)"
-              strokeWidth="4"
-              strokeLinecap="round"
-              fill="none"
-            />
+          <svg className="mt-4 block w-48 md:w-72" height="14" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden>
+            <path d="M2,8 C50,2 120,14 198,6" stroke="var(--ithemba-yellow)" strokeWidth="4" strokeLinecap="round" fill="none" />
           </svg>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/95 md:text-xl">
-            {c.hero.text}
-          </p>
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/95 md:text-xl">{c.hero.text}</p>
           <div className="mt-3 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white/85 ring-1 ring-white/20 backdrop-blur">
             <Star className="h-3.5 w-3.5 text-[var(--ithemba-yellow)] fill-current" />
             {c.hero.location}
@@ -1398,19 +876,12 @@ function Hero({ c }: { c: Copy }) {
 
           <div className="mt-7 flex flex-wrap gap-2">
             <Link to="/donate">
-              <Button
-                size="lg"
-                className="rounded-full bg-[var(--ithemba-yellow)] font-semibold text-[var(--ithemba-brown)] shadow-lg hover:bg-[var(--ithemba-yellow)]/95"
-              >
+              <Button size="lg" className="rounded-full bg-[var(--ithemba-yellow)] font-semibold text-[var(--ithemba-brown)] shadow-lg hover:bg-[var(--ithemba-yellow)]/95">
                 <Heart className="mr-2 h-4 w-4 fill-current" /> {c.hero.monthly}
               </Button>
             </Link>
             <Link to="/donate">
-              <Button
-                size="lg"
-                variant="outline"
-                className="rounded-full border-white/40 bg-white/10 text-white hover:bg-white/20 hover:text-white"
-              >
+              <Button size="lg" variant="outline" className="rounded-full border-white/40 bg-white/10 text-white hover:bg-white/20 hover:text-white">
                 {c.hero.once}
               </Button>
             </Link>
@@ -1418,40 +889,20 @@ function Hero({ c }: { c: Copy }) {
         </div>
       </div>
 
-      <svg
-        className="block w-full -mb-px"
-        viewBox="0 0 1440 80"
-        preserveAspectRatio="none"
-        aria-hidden
-      >
-        <path
-          d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z"
-          fill="var(--ithemba-blue-deepest)"
-        />
+      <svg className="block w-full -mb-px" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden>
+        <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="var(--ithemba-blue-deepest)" />
       </svg>
     </section>
   );
 }
 
-function SectionHeading({
-  eyebrow,
-  title,
-  center = false,
-  color = "var(--ithemba-yellow)",
-}: {
-  eyebrow: string;
-  title: string;
-  center?: boolean;
-  color?: string;
+function SectionHeading({ eyebrow, title, center = false, color = "var(--ithemba-yellow)" }: {
+  eyebrow: string; title: string; center?: boolean; color?: string;
 }) {
   return (
     <div className={center ? "text-center" : ""}>
-      <div className="hand-eyebrow-lg" style={{ color }}>
-        {eyebrow}
-      </div>
-      <h2 className="-mt-1 font-display text-4xl font-bold text-[var(--ithemba-blue-dark)] md:text-5xl">
-        {title}
-      </h2>
+      <div className="hand-eyebrow-lg" style={{ color }}>{eyebrow}</div>
+      <h2 className="-mt-1 font-display text-4xl font-bold text-[var(--ithemba-blue-dark)] md:text-5xl">{title}</h2>
     </div>
   );
 }
@@ -1465,13 +916,9 @@ function Snapshot({ c }: { c: Copy }) {
       <div className="relative mx-auto grid max-w-7xl gap-9 px-4 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center lg:gap-12 lg:px-8">
         <div>
           <div className="hand-eyebrow-lg text-[var(--ithemba-yellow)]">{c.snapshot.eyebrow}</div>
-          <h2 className="-mt-1 font-display text-4xl font-bold text-white md:text-5xl">
-            {c.snapshot.title}
-          </h2>
+          <h2 className="-mt-1 font-display text-4xl font-bold text-white md:text-5xl">{c.snapshot.title}</h2>
           <div className="mt-5 space-y-3 text-base leading-relaxed text-white/85 md:text-lg">
-            {c.snapshot.body.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
+            {c.snapshot.body.map((p, i) => <p key={i}>{p}</p>)}
           </div>
         </div>
         <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-2">
@@ -1479,20 +926,10 @@ function Snapshot({ c }: { c: Copy }) {
             const iconSrc = SNAPSHOT_ICON_PATHS[i];
             return (
               <div key={f.label} className="grid grid-cols-[3rem_1fr] items-center gap-3">
-                <img
-                  src={iconSrc}
-                  alt=""
-                  aria-hidden
-                  loading="lazy"
-                  className="h-12 w-12 object-contain"
-                />
+                <img src={iconSrc} alt="" aria-hidden loading="lazy" className="h-12 w-12 object-contain" />
                 <div className="min-w-0">
-                  <div className="text-[11px] font-semibold uppercase tracking-wide text-white/65">
-                    {f.label}
-                  </div>
-                  <div className="mt-0.5 font-display text-sm font-extrabold leading-snug text-white md:text-base">
-                    {f.value}
-                  </div>
+                  <div className="text-[11px] font-semibold uppercase tracking-wide text-white/65">{f.label}</div>
+                  <div className="mt-0.5 font-display text-sm font-extrabold leading-snug text-white md:text-base">{f.value}</div>
                 </div>
               </div>
             );
@@ -1521,12 +958,8 @@ function Why({ c }: { c: Copy }) {
         <div className="absolute inset-0 bg-gradient-to-t from-[var(--ithemba-blue-deepest)]/70 via-transparent to-transparent" />
         <div className="absolute right-[-6rem] top-[-6rem] h-[28rem] w-[28rem] sun-glow" />
       </div>
-      <div className="pointer-events-none absolute left-10 top-16 text-[var(--ithemba-yellow)]/40">
-        <Heart className="h-7 w-7" />
-      </div>
-      <div className="pointer-events-none absolute right-16 bottom-16 text-[var(--ithemba-yellow)]/40">
-        <Sun className="h-8 w-8" />
-      </div>
+      <div className="pointer-events-none absolute left-10 top-16 text-[var(--ithemba-yellow)]/40"><Heart className="h-7 w-7" /></div>
+      <div className="pointer-events-none absolute right-16 bottom-16 text-[var(--ithemba-yellow)]/40"><Sun className="h-8 w-8" /></div>
 
       <div className="relative mx-auto max-w-5xl px-4 lg:px-8">
         <div className="max-w-3xl">
@@ -1536,9 +969,7 @@ function Why({ c }: { c: Copy }) {
           <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.why.title}</h2>
         </div>
         <div className="mt-6 max-w-3xl space-y-4 text-lg leading-relaxed text-white/90">
-          {c.why.body.map((p, i) => (
-            <p key={i}>{p}</p>
-          ))}
+          {c.why.body.map((p, i) => <p key={i}>{p}</p>)}
         </div>
       </div>
     </section>
@@ -1550,19 +981,17 @@ function Hampers({ c }: { c: Copy }) {
   return (
     <section className="relative bg-[var(--ithemba-cream)] py-14 md:py-16">
       <div className="mx-auto grid max-w-7xl gap-8 px-4 md:grid-cols-2 lg:gap-10 lg:px-8">
-        <div className="flex flex-col justify-center order-2 md:order-1">
-          <SectionHeading eyebrow={c.hampers.eyebrow} title={c.hampers.title} />
-          <div className="mt-5 space-y-4 text-lg leading-relaxed text-foreground/85">
-            {c.hampers.body.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
-          </div>
+      <div className="flex flex-col justify-center order-2 md:order-1">
+        <SectionHeading eyebrow={c.hampers.eyebrow} title={c.hampers.title} />
+        <div className="mt-5 space-y-4 text-lg leading-relaxed text-foreground/85">
+          {c.hampers.body.map((p, i) => <p key={i}>{p}</p>)}
         </div>
-        <div className="relative order-1 md:order-2 flex items-center">
-          <div className="absolute -right-8 -top-8 h-28 w-28 blob bg-[var(--ithemba-yellow)]/40 -z-10" />
-          <div className="absolute -bottom-6 -left-6 h-24 w-24 blob-2 bg-orange-300/30 -z-10" />
-          <CollageSide main={HAMPERS_COLLAGE.main} side={HAMPERS_COLLAGE.side} className="w-full" />
-        </div>
+      </div>
+      <div className="relative order-1 md:order-2 flex items-center">
+        <div className="absolute -right-8 -top-8 h-28 w-28 blob bg-[var(--ithemba-yellow)]/40 -z-10" />
+        <div className="absolute -bottom-6 -left-6 h-24 w-24 blob-2 bg-orange-300/30 -z-10" />
+        <CollageSide main={HAMPERS_COLLAGE.main} side={HAMPERS_COLLAGE.side} className="w-full" />
+      </div>
       </div>
     </section>
   );
@@ -1579,13 +1008,9 @@ function Kitchen({ c }: { c: Copy }) {
           <div className="hand-eyebrow-lg flex items-center gap-2 text-[var(--ithemba-yellow)]">
             <Soup className="h-5 w-5" /> {c.kitchen.eyebrow}
           </div>
-          <h2 className="-mt-1 font-display text-4xl font-bold text-white md:text-5xl">
-            {c.kitchen.title}
-          </h2>
+          <h2 className="-mt-1 font-display text-4xl font-bold text-white md:text-5xl">{c.kitchen.title}</h2>
           <div className="mt-5 space-y-4 text-lg leading-relaxed text-white/85">
-            {c.kitchen.body.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
+            {c.kitchen.body.map((p, i) => <p key={i}>{p}</p>)}
           </div>
           <div className="mt-6 inline-flex items-center gap-2 self-start rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-white ring-1 ring-white/20">
             <HandHeart className="h-4 w-4 text-[var(--ithemba-yellow)]" /> {c.kitchen.eyebrow}
@@ -1596,6 +1021,7 @@ function Kitchen({ c }: { c: Copy }) {
     </section>
   );
 }
+
 
 /* ---------- ECD MEALS — cream, collage + text ---------- */
 function EcdMeals({ c }: { c: Copy }) {
@@ -1611,9 +1037,7 @@ function EcdMeals({ c }: { c: Copy }) {
         <div className="flex flex-col justify-center">
           <SectionHeading eyebrow={c.ecd.eyebrow} title={c.ecd.title} />
           <div className="mt-5 space-y-4 text-lg leading-relaxed text-foreground/85">
-            {c.ecd.body.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
+            {c.ecd.body.map((p, i) => <p key={i}>{p}</p>)}
           </div>
           <div className="mt-6 flex flex-wrap gap-2">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-orange-100 px-3 py-1.5 text-sm font-semibold text-orange-700">
@@ -1637,34 +1061,27 @@ function GreenhouseConnection({ c }: { c: Copy }) {
   return (
     <section className="relative bg-[var(--ithemba-blue-deepest)] py-14 text-white md:py-16">
       <div className="mx-auto grid max-w-7xl gap-8 px-4 md:grid-cols-2 lg:gap-10 lg:px-8">
-        <div className="flex flex-col justify-center order-2 md:order-1">
-          <div className="hand-eyebrow-lg flex items-center gap-2 text-[var(--ithemba-yellow)]">
-            <Sprout className="h-5 w-5" /> {c.greenhouse.eyebrow}
-          </div>
-          <h2 className="-mt-1 font-display text-3xl font-bold text-white md:text-4xl">
-            {c.greenhouse.title}
-          </h2>
-          <div className="mt-5 space-y-4 text-lg leading-relaxed text-white/85">
-            {c.greenhouse.body.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
-          </div>
-          <div className="mt-6">
-            <Link to="/projects/greenhouse">
-              <Button
-                variant="outline"
-                className="rounded-full border-white/35 bg-white/10 text-white hover:bg-white/20 hover:text-white"
-              >
-                <Leaf className="mr-2 h-4 w-4" /> Greenhouse with SA Harvest
-              </Button>
-            </Link>
-          </div>
+      <div className="flex flex-col justify-center order-2 md:order-1">
+        <div className="hand-eyebrow-lg flex items-center gap-2 text-[var(--ithemba-yellow)]">
+          <Sprout className="h-5 w-5" /> {c.greenhouse.eyebrow}
         </div>
-        <div className="relative order-1 md:order-2 flex items-center">
-          <div className="absolute -left-8 -top-8 h-28 w-28 blob bg-emerald-300/40 -z-10" />
-          <div className="absolute -bottom-6 -right-6 h-24 w-24 blob-2 bg-[var(--ithemba-yellow)]/30 -z-10" />
-          <CollageSide main={GROW_COLLAGE.main} side={GROW_COLLAGE.side} className="w-full" />
+        <h2 className="-mt-1 font-display text-3xl font-bold text-white md:text-4xl">{c.greenhouse.title}</h2>
+        <div className="mt-5 space-y-4 text-lg leading-relaxed text-white/85">
+          {c.greenhouse.body.map((p, i) => <p key={i}>{p}</p>)}
         </div>
+        <div className="mt-6">
+          <Link to="/projects/greenhouse">
+            <Button variant="outline" className="rounded-full border-white/35 bg-white/10 text-white hover:bg-white/20 hover:text-white">
+              <Leaf className="mr-2 h-4 w-4" /> Greenhouse with SA Harvest
+            </Button>
+          </Link>
+        </div>
+      </div>
+      <div className="relative order-1 md:order-2 flex items-center">
+        <div className="absolute -left-8 -top-8 h-28 w-28 blob bg-emerald-300/40 -z-10" />
+        <div className="absolute -bottom-6 -right-6 h-24 w-24 blob-2 bg-[var(--ithemba-yellow)]/30 -z-10" />
+        <CollageSide main={GROW_COLLAGE.main} side={GROW_COLLAGE.side} className="w-full" />
+      </div>
       </div>
     </section>
   );
@@ -1695,9 +1112,7 @@ function Focus({ c }: { c: Copy }) {
           <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.focus.title}</h2>
         </div>
         <div className="mt-6 max-w-3xl space-y-4 text-lg leading-relaxed text-white/90">
-          {c.focus.body.map((p, i) => (
-            <p key={i}>{p}</p>
-          ))}
+          {c.focus.body.map((p, i) => <p key={i}>{p}</p>)}
         </div>
         <div className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-5">
           {c.focus.items.map((it) => {
@@ -1735,27 +1150,16 @@ function DonationSupport({ c }: { c: Copy }) {
         </div>
         <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 md:grid-cols-4">
           {c.donation.items.map((it) => {
-            const iconSrc =
-              DONATION_ICON_PATHS[it.icon] ?? `${FS_ICON_BASE}/food-security-project.png`;
+            const iconSrc = DONATION_ICON_PATHS[it.icon] ?? `${FS_ICON_BASE}/food-security-project.png`;
             return (
               <div key={it.label} className="flex flex-col items-center text-center">
-                <img
-                  src={iconSrc}
-                  alt=""
-                  aria-hidden
-                  loading="lazy"
-                  className="h-16 w-16 object-contain md:h-20 md:w-20"
-                />
-                <div className="mt-3 text-sm font-medium leading-snug text-[var(--ithemba-blue-dark)]">
-                  {it.label}
-                </div>
+                <img src={iconSrc} alt="" aria-hidden loading="lazy" className="h-16 w-16 object-contain md:h-20 md:w-20" />
+                <div className="mt-3 text-sm font-medium leading-snug text-[var(--ithemba-blue-dark)]">{it.label}</div>
               </div>
             );
           })}
         </div>
-        <p className="mx-auto mt-12 max-w-3xl text-center text-base leading-relaxed text-foreground/75">
-          {c.donation.outro}
-        </p>
+        <p className="mx-auto mt-12 max-w-3xl text-center text-base leading-relaxed text-foreground/75">{c.donation.outro}</p>
       </div>
     </section>
   );
@@ -1763,14 +1167,7 @@ function DonationSupport({ c }: { c: Copy }) {
 
 /* ---------- IMPACT ---------- */
 function Impact({ c }: { c: Copy }) {
-  return (
-    <ImpactCounters
-      items={c.impact.items}
-      title={c.impact.title}
-      backgroundImage={BG_IMPACT}
-      softOverlay
-    />
-  );
+  return <ImpactCounters items={c.impact.items} title={c.impact.title} backgroundImage={BG_IMPACT} softOverlay />;
 }
 
 /* ---------- MONTHLY (with widget) ---------- */
@@ -1810,19 +1207,13 @@ function Monthly({ c }: { c: Copy }) {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 md:grid-cols-2 lg:px-8">
         <div className="text-white">
           <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)]">{c.monthly.eyebrow}</div>
-          <h2 className="-mt-1 font-display text-4xl font-extrabold md:text-5xl">
-            {c.monthly.title}
-          </h2>
+          <h2 className="-mt-1 font-display text-4xl font-extrabold md:text-5xl">{c.monthly.title}</h2>
           <div className="mt-5 space-y-4 text-lg leading-relaxed text-white/90">
-            {c.monthly.body.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
+            {c.monthly.body.map((p, i) => <p key={i}>{p}</p>)}
           </div>
 
           <div className="mt-7 rounded-3xl bg-[var(--ithemba-yellow)] p-6 text-[var(--ithemba-brown)] shadow-xl">
-            <div className="text-xs font-semibold uppercase tracking-wide opacity-80">
-              {c.monthly.cardHeading}
-            </div>
+            <div className="text-xs font-semibold uppercase tracking-wide opacity-80">{c.monthly.cardHeading}</div>
             <div className="mt-1 flex items-baseline gap-2">
               <UtensilsCrossed className="h-6 w-6" />
               <div className="font-display text-3xl font-extrabold">{c.monthly.cardAmount}</div>
@@ -1835,10 +1226,7 @@ function Monthly({ c }: { c: Copy }) {
                 </Button>
               </Link>
               <Link to="/donate">
-                <Button
-                  variant="outline"
-                  className="rounded-full border-[var(--ithemba-brown)]/40 bg-white/40 text-[var(--ithemba-brown)] hover:bg-white/60"
-                >
+                <Button variant="outline" className="rounded-full border-[var(--ithemba-brown)]/40 bg-white/40 text-[var(--ithemba-brown)] hover:bg-white/60">
                   {c.monthly.cta2}
                 </Button>
               </Link>
@@ -1854,10 +1242,7 @@ function Monthly({ c }: { c: Copy }) {
 /* ---------- CLOSING ---------- */
 function Closing({ c }: { c: Copy }) {
   return (
-    <section
-      id="food-security-closing"
-      className="relative isolate overflow-hidden pt-28 pb-20 text-white md:pt-32"
-    >
+    <section id="food-security-closing" className="relative isolate overflow-hidden pt-28 pb-20 text-white md:pt-32">
       {/* soft wave transition from the donation section above */}
       <svg
         className="pointer-events-none absolute -top-px left-0 z-10 block w-full"
@@ -1900,38 +1285,23 @@ function Closing({ c }: { c: Copy }) {
       </div>
       <div className="relative mx-auto max-w-3xl px-4 text-center lg:px-8">
         <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)]">{c.closing.eyebrow}</div>
-        <h2 className="-mt-1 font-display text-4xl font-extrabold md:text-5xl">
-          {c.closing.title}
-        </h2>
+        <h2 className="-mt-1 font-display text-4xl font-extrabold md:text-5xl">{c.closing.title}</h2>
         <div className="mt-5 space-y-4 text-lg leading-relaxed text-white/90">
-          {c.closing.body.map((p, i) => (
-            <p key={i}>{p}</p>
-          ))}
+          {c.closing.body.map((p, i) => <p key={i}>{p}</p>)}
         </div>
         <div className="mt-7 flex flex-wrap justify-center gap-2">
           <Link to="/donate">
-            <Button
-              size="lg"
-              className="rounded-full bg-[var(--ithemba-yellow)] font-semibold text-[var(--ithemba-brown)] shadow-lg hover:bg-[var(--ithemba-yellow)]/95"
-            >
+            <Button size="lg" className="rounded-full bg-[var(--ithemba-yellow)] font-semibold text-[var(--ithemba-brown)] shadow-lg hover:bg-[var(--ithemba-yellow)]/95">
               <Heart className="mr-2 h-4 w-4 fill-current" /> {c.closing.monthly}
             </Button>
           </Link>
           <Link to="/donate">
-            <Button
-              size="lg"
-              variant="outline"
-              className="rounded-full border-white/40 bg-white/10 text-white hover:bg-white/20 hover:text-white"
-            >
+            <Button size="lg" variant="outline" className="rounded-full border-white/40 bg-white/10 text-white hover:bg-white/20 hover:text-white">
               {c.closing.once}
             </Button>
           </Link>
           <Link to="/projects">
-            <Button
-              size="lg"
-              variant="ghost"
-              className="rounded-full text-white hover:bg-white/10 hover:text-white"
-            >
+            <Button size="lg" variant="ghost" className="rounded-full text-white hover:bg-white/10 hover:text-white">
               {c.closing.all}
             </Button>
           </Link>
@@ -1942,13 +1312,7 @@ function Closing({ c }: { c: Copy }) {
 }
 
 /* ---------- wave divider ---------- */
-function Wave({
-  from = "var(--ithemba-cream)",
-  to = "var(--background)",
-}: {
-  from?: string;
-  to?: string;
-}) {
+function Wave({ from = "var(--ithemba-cream)", to = "var(--background)" }: { from?: string; to?: string }) {
   return (
     <div style={{ background: from }}>
       <svg className="block w-full" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden>

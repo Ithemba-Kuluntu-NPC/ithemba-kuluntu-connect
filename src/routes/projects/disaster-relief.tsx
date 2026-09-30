@@ -1,6 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { createSeoHead } from "@/lib/seo";
-import { PhotoLightboxGallery, contentPhoto } from "@/components/blocks/PhotoLightbox";
 import { Button } from "@/components/ui/button";
 import {
   ArrowLeft,
@@ -35,21 +34,7 @@ import { ImpactCounters } from "@/components/blocks/ImpactCounters";
 import { focusAreaBadgeMeta } from "@/data/projects";
 import type { Lang } from "@/data/content";
 
-export const Route = createFileRoute("/projects/disaster-relief")({
-  component: DisasterReliefPage,
-  head: () =>
-    createSeoHead({
-      title: "Disaster Relief | iThemba Kuluntu",
-      description:
-        "Practical emergency support for families in Cwebeni and surrounding communities facing floods, fires, sudden hardship and urgent household needs.",
-      path: "/projects/disaster-relief",
-      breadcrumbs: [
-        { name: "Home", path: "/" },
-        { name: "Projects", path: "/projects" },
-        { name: "Disaster Relief", path: "/projects/disaster-relief" },
-      ],
-    }),
-});
+export const Route = createFileRoute("/projects/disaster-relief")({ component: DisasterReliefPage, head: () => createSeoHead({ title: 'Disaster Relief | iThemba Kuluntu', description: 'Practical emergency support for families in Cwebeni and surrounding communities facing floods, fires, sudden hardship and urgent household needs.', path: '/projects/disaster-relief', breadcrumbs: [{ name: 'Home', path: '/' }, { name: 'Projects', path: '/projects' }, { name: 'Disaster Relief', path: '/projects/disaster-relief' }] }) });
 
 /* ---------- assets ---------- */
 const PHOTO_BASE = "/assets/photos/projects/disaster-relief";
@@ -80,57 +65,37 @@ const PHOTOS = {
 
 type Photo = { src: string; alt: string; position: string };
 
-function PhotoCollage({
-  photos,
-  className = "",
-}: {
-  photos: readonly Photo[];
-  className?: string;
-}) {
+function PhotoCollage({ photos, className = "" }: { photos: readonly Photo[]; className?: string }) {
   const count = photos.length;
-  const cells =
-    count === 4
-      ? [
-          "col-span-7 row-span-4 rounded-tl-[2.5rem] rounded-br-2xl rounded-tr-xl rounded-bl-xl",
-          "col-span-5 row-span-3 rounded-tr-[2.5rem] rounded-bl-xl rounded-tl-xl rounded-br-xl",
-          "col-span-5 row-span-3 rounded-xl",
-          "col-span-7 row-span-2 rounded-bl-[2.5rem] rounded-tr-xl rounded-tl-xl rounded-br-xl",
-        ]
-      : [
-          "col-span-7 row-span-6 rounded-tl-[2.5rem] rounded-bl-[2.5rem] rounded-tr-xl rounded-br-xl",
-          "col-span-5 row-span-3 rounded-tr-[2.5rem] rounded-bl-xl rounded-tl-xl rounded-br-xl",
-          "col-span-5 row-span-3 rounded-br-[2.5rem] rounded-tl-xl rounded-tr-xl rounded-bl-xl",
-        ];
-  const usable = photos.slice(0, cells.length);
+  const cells = count === 4
+    ? [
+        "col-span-7 row-span-4 rounded-tl-[2.5rem] rounded-br-2xl rounded-tr-xl rounded-bl-xl",
+        "col-span-5 row-span-3 rounded-tr-[2.5rem] rounded-bl-xl rounded-tl-xl rounded-br-xl",
+        "col-span-5 row-span-3 rounded-xl",
+        "col-span-7 row-span-2 rounded-bl-[2.5rem] rounded-tr-xl rounded-tl-xl rounded-br-xl",
+      ]
+    : [
+        "col-span-7 row-span-6 rounded-tl-[2.5rem] rounded-bl-[2.5rem] rounded-tr-xl rounded-br-xl",
+        "col-span-5 row-span-3 rounded-tr-[2.5rem] rounded-bl-xl rounded-tl-xl rounded-br-xl",
+        "col-span-5 row-span-3 rounded-br-[2.5rem] rounded-tl-xl rounded-tr-xl rounded-bl-xl",
+      ];
   return (
-    <PhotoLightboxGallery
-      photos={usable.map((photo) => contentPhoto(photo.src, photo.alt))}
-      label="Disaster relief photo gallery"
-    >
-      {(openPhoto) => (
+    <div className={`grid aspect-[4/5] w-full grid-cols-12 grid-rows-6 gap-2.5 md:gap-3 ${className}`}>
+      {photos.slice(0, cells.length).map((photo, index) => (
         <div
-          className={`grid aspect-[4/5] w-full grid-cols-12 grid-rows-6 gap-2.5 md:gap-3 ${className}`}
+          key={photo.src}
+          className={`relative min-w-0 overflow-hidden shadow-lg ring-1 ring-black/10 ${cells[index]}`}
         >
-          {usable.map((photo, index) => (
-            <button
-              type="button"
-              aria-label={`Open photo: ${photo.alt}`}
-              onClick={() => openPhoto(index)}
-              key={photo.src}
-              className={`relative min-w-0 cursor-zoom-in overflow-hidden text-left shadow-lg ring-1 ring-black/10 ${cells[index]}`}
-            >
-              <img
-                src={photo.src}
-                alt={photo.alt}
-                className="absolute inset-0 h-full w-full object-cover"
-                style={{ objectPosition: photo.position }}
-                loading="lazy"
-              />
-            </button>
-          ))}
+          <img
+            src={photo.src}
+            alt={photo.alt}
+            className="absolute inset-0 h-full w-full object-cover"
+            style={{ objectPosition: photo.position }}
+            loading="lazy"
+          />
         </div>
-      )}
-    </PhotoLightboxGallery>
+      ))}
+    </div>
   );
 }
 
@@ -184,14 +149,7 @@ type Copy = {
       label: { en: string; de: string; nl?: string };
     }[];
   };
-  closing: {
-    eyebrow: string;
-    title: string;
-    body: string[];
-    monthly: string;
-    once: string;
-    all: string;
-  };
+  closing: { eyebrow: string; title: string; body: string[]; monthly: string; once: string; all: string };
 };
 
 /* ---------- COPY (verbatim from /public/content/projects/disaster-relief-*-v1-1.txt) ---------- */
@@ -201,7 +159,8 @@ const COPY: Record<Lang, Copy> = {
     hero: {
       eyebrow: "When Crisis Hits",
       title: "Disaster Relief",
-      text: "Practical emergency support for families in Cwebeni and surrounding communities when crisis hits, from floods, fires and sudden hardship to urgent household needs, medical situations and recovery support.",
+      text:
+        "Practical emergency support for families in Cwebeni and surrounding communities when crisis hits, from floods, fires and sudden hardship to urgent household needs, medical situations and recovery support.",
       monthly: "Donate Monthly to Support This Project",
       once: "Give Once",
       location: "Cwebeni · Port St Johns · Eastern Cape · South Africa",
@@ -217,25 +176,11 @@ const COPY: Record<Lang, Copy> = {
       ],
       facts: [
         { label: "Project", value: "Disaster Relief" },
-        {
-          label: "Focus",
-          value: "Emergency support for families facing crisis or sudden hardship",
-        },
+        { label: "Focus", value: "Emergency support for families facing crisis or sudden hardship" },
         { label: "Where", value: "Cwebeni, Port St Johns, Eastern Cape, South Africa" },
-        {
-          label: "Core support",
-          value:
-            "Food, blankets, mattresses, school shoes, wheelchairs, emergency supplies and practical recovery support",
-        },
-        {
-          label: "How we respond",
-          value:
-            "Through local coordination, household-level support and direct practical assistance",
-        },
-        {
-          label: "Donation focus",
-          value: "Helping families recover from crisis with dignity and practical care",
-        },
+        { label: "Core support", value: "Food, blankets, mattresses, school shoes, wheelchairs, emergency supplies and practical recovery support" },
+        { label: "How we respond", value: "Through local coordination, household-level support and direct practical assistance" },
+        { label: "Donation focus", value: "Helping families recover from crisis with dignity and practical care" },
       ],
     },
     why: {
@@ -251,8 +196,7 @@ const COPY: Record<Lang, Copy> = {
     provide: {
       eyebrow: "Practical care",
       title: "Support that responds to real needs",
-      intro:
-        "Disaster Relief support depends on the situation and the needs of each household. Support may include:",
+      intro: "Disaster Relief support depends on the situation and the needs of each household. Support may include:",
       items: [
         { icon: "Utensils", label: "Emergency food support" },
         { icon: "Bed", label: "Blankets" },
@@ -262,10 +206,7 @@ const COPY: Record<Lang, Copy> = {
         { icon: "Shirt", label: "Clothing or basic household supplies" },
         { icon: "Truck", label: "Transport or coordination support" },
         { icon: "Flame", label: "Support after floods, fires or sudden hardship" },
-        {
-          icon: "Stethoscope",
-          label: "Help for families facing urgent medical or care-related needs",
-        },
+        { icon: "Stethoscope", label: "Help for families facing urgent medical or care-related needs" },
       ],
       outro:
         "The support is simple, direct and practical. It is shaped by what families actually need, not by a one-size-fits-all response.",
@@ -300,8 +241,7 @@ const COPY: Record<Lang, Copy> = {
     donation: {
       eyebrow: "Your support",
       title: "Help families recover with dignity",
-      intro:
-        "Donations help iThemba Kuluntu respond when families face urgent hardship. Your support can help provide:",
+      intro: "Donations help iThemba Kuluntu respond when families face urgent hardship. Your support can help provide:",
       items: [
         { icon: "Utensils", label: "Food for households in crisis" },
         { icon: "Bed", label: "Blankets and mattresses" },
@@ -332,42 +272,10 @@ const COPY: Record<Lang, Copy> = {
     impact: {
       title: "What your support helps make possible",
       items: [
-        {
-          value: 600,
-          suffix: "+",
-          iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-mattresses.png",
-          label: {
-            en: "Mattresses distributed",
-            de: "Matratzen verteilt",
-            nl: "Matrassen verdeeld",
-          },
-        },
-        {
-          value: 2100,
-          suffix: "+",
-          iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-blankets.png",
-          label: { en: "Blankets distributed", de: "Decken verteilt", nl: "Dekens verdeeld" },
-        },
-        {
-          value: 114,
-          suffix: "",
-          iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-wheelchairs.png",
-          label: {
-            en: "Wheelchairs distributed",
-            de: "Rollstühle verteilt",
-            nl: "Rolstoelen verdeeld",
-          },
-        },
-        {
-          value: 1300,
-          suffix: "+",
-          iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-school-shoes.png",
-          label: {
-            en: "School shoes distributed",
-            de: "Schulschuhe verteilt",
-            nl: "Schoolschoenen verdeeld",
-          },
-        },
+        { value: 600, suffix: "+", iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-mattresses.png", label: { en: "Mattresses distributed", de: "Matratzen verteilt", nl: "Matrassen verdeeld" } },
+        { value: 2100, suffix: "+", iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-blankets.png", label: { en: "Blankets distributed", de: "Decken verteilt", nl: "Dekens verdeeld" } },
+        { value: 114, suffix: "", iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-wheelchairs.png", label: { en: "Wheelchairs distributed", de: "Rollstühle verteilt", nl: "Rolstoelen verdeeld" } },
+        { value: 1300, suffix: "+", iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-school-shoes.png", label: { en: "School shoes distributed", de: "Schulschuhe verteilt", nl: "Schoolschoenen verdeeld" } },
       ],
     },
     closing: {
@@ -388,7 +296,8 @@ const COPY: Record<Lang, Copy> = {
     hero: {
       eyebrow: "Katastrophenhilfe",
       title: "Disaster Relief",
-      text: "Praktische Nothilfe für Familien in Cwebeni und den umliegenden Gemeinden, wenn Krisen eintreten, von Überschwemmungen, Bränden und plötzlicher Not bis hin zu dringenden Haushaltsbedarfen, medizinischen Situationen und Unterstützung beim Wiederaufbau.",
+      text:
+        "Praktische Nothilfe für Familien in Cwebeni und den umliegenden Gemeinden, wenn Krisen eintreten, von Überschwemmungen, Bränden und plötzlicher Not bis hin zu dringenden Haushaltsbedarfen, medizinischen Situationen und Unterstützung beim Wiederaufbau.",
       monthly: "Monatlich für dieses Projekt spenden",
       once: "Einmalig spenden",
       location: "Cwebeni · Port St Johns · Eastern Cape · Südafrika",
@@ -404,25 +313,11 @@ const COPY: Record<Lang, Copy> = {
       ],
       facts: [
         { label: "Projekt", value: "Disaster Relief" },
-        {
-          label: "Schwerpunkt",
-          value: "Nothilfe für Familien in Krisen oder plötzlichen Notlagen",
-        },
+        { label: "Schwerpunkt", value: "Nothilfe für Familien in Krisen oder plötzlichen Notlagen" },
         { label: "Wo", value: "Cwebeni, Port St Johns, Eastern Cape, Südafrika" },
-        {
-          label: "Kernunterstützung",
-          value:
-            "Lebensmittel, Decken, Matratzen, Schulschuhe, Rollstühle, Notfallversorgung und praktische Unterstützung beim Wiederaufbau",
-        },
-        {
-          label: "So reagieren wir",
-          value:
-            "Durch lokale Koordination, direkte Unterstützung auf Haushaltsebene und praktische Hilfe",
-        },
-        {
-          label: "Spendenfokus",
-          value: "Familien helfen, Krisen mit Würde und praktischer Unterstützung zu bewältigen",
-        },
+        { label: "Kernunterstützung", value: "Lebensmittel, Decken, Matratzen, Schulschuhe, Rollstühle, Notfallversorgung und praktische Unterstützung beim Wiederaufbau" },
+        { label: "So reagieren wir", value: "Durch lokale Koordination, direkte Unterstützung auf Haushaltsebene und praktische Hilfe" },
+        { label: "Spendenfokus", value: "Familien helfen, Krisen mit Würde und praktischer Unterstützung zu bewältigen" },
       ],
     },
     why: {
@@ -438,8 +333,7 @@ const COPY: Record<Lang, Copy> = {
     provide: {
       eyebrow: "Praktische Fürsorge",
       title: "Hilfe, die auf reale Bedarfe reagiert",
-      intro:
-        "Die Unterstützung durch Disaster Relief richtet sich nach der jeweiligen Situation und den konkreten Bedürfnissen eines Haushalts. Sie kann umfassen:",
+      intro: "Die Unterstützung durch Disaster Relief richtet sich nach der jeweiligen Situation und den konkreten Bedürfnissen eines Haushalts. Sie kann umfassen:",
       items: [
         { icon: "Utensils", label: "Lebensmittelhilfe in Notlagen" },
         { icon: "Bed", label: "Decken" },
@@ -449,11 +343,7 @@ const COPY: Record<Lang, Copy> = {
         { icon: "Shirt", label: "Kleidung oder grundlegende Haushaltsgegenstände" },
         { icon: "Truck", label: "Transport- oder Koordinationsunterstützung" },
         { icon: "Flame", label: "Hilfe nach Überschwemmungen, Bränden oder plötzlicher Not" },
-        {
-          icon: "Stethoscope",
-          label:
-            "Unterstützung für Familien mit dringenden medizinischen oder pflegebezogenen Bedarfen",
-        },
+        { icon: "Stethoscope", label: "Unterstützung für Familien mit dringenden medizinischen oder pflegebezogenen Bedarfen" },
       ],
       outro:
         "Die Hilfe ist einfach, direkt und praktisch. Sie richtet sich danach, was Familien tatsächlich brauchen, nicht nach einer pauschalen Einheitslösung.",
@@ -488,8 +378,7 @@ const COPY: Record<Lang, Copy> = {
     donation: {
       eyebrow: "Ihre Unterstützung",
       title: "Helfen Sie Familien, sich mit Würde zu erholen",
-      intro:
-        "Spenden helfen iThemba Kuluntu, Familien in akuten Notlagen zu unterstützen. Ihre Unterstützung kann helfen, Folgendes bereitzustellen:",
+      intro: "Spenden helfen iThemba Kuluntu, Familien in akuten Notlagen zu unterstützen. Ihre Unterstützung kann helfen, Folgendes bereitzustellen:",
       items: [
         { icon: "Utensils", label: "Lebensmittel für Haushalte in Krisen" },
         { icon: "Bed", label: "Decken und Matratzen" },
@@ -520,42 +409,10 @@ const COPY: Record<Lang, Copy> = {
     impact: {
       title: "Was Ihre Unterstützung möglich macht",
       items: [
-        {
-          value: 600,
-          suffix: "+",
-          iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-mattresses.png",
-          label: {
-            en: "Mattresses distributed",
-            de: "Matratzen verteilt",
-            nl: "Matrassen verdeeld",
-          },
-        },
-        {
-          value: 2100,
-          suffix: "+",
-          iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-blankets.png",
-          label: { en: "Blankets distributed", de: "Decken verteilt", nl: "Dekens verdeeld" },
-        },
-        {
-          value: 114,
-          suffix: "",
-          iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-wheelchairs.png",
-          label: {
-            en: "Wheelchairs distributed",
-            de: "Rollstühle verteilt",
-            nl: "Rolstoelen verdeeld",
-          },
-        },
-        {
-          value: 1300,
-          suffix: "+",
-          iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-school-shoes.png",
-          label: {
-            en: "School shoes distributed",
-            de: "Schulschuhe verteilt",
-            nl: "Schoolschoenen verdeeld",
-          },
-        },
+        { value: 600, suffix: "+", iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-mattresses.png", label: { en: "Mattresses distributed", de: "Matratzen verteilt", nl: "Matrassen verdeeld" } },
+        { value: 2100, suffix: "+", iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-blankets.png", label: { en: "Blankets distributed", de: "Decken verteilt", nl: "Dekens verdeeld" } },
+        { value: 114, suffix: "", iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-wheelchairs.png", label: { en: "Wheelchairs distributed", de: "Rollstühle verteilt", nl: "Rolstoelen verdeeld" } },
+        { value: 1300, suffix: "+", iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-school-shoes.png", label: { en: "School shoes distributed", de: "Schulschuhe verteilt", nl: "Schoolschoenen verdeeld" } },
       ],
     },
     closing: {
@@ -576,7 +433,8 @@ const COPY: Record<Lang, Copy> = {
     hero: {
       eyebrow: "Noodhulp",
       title: "Disaster Relief",
-      text: "Praktische noodhulp voor families in Cwebeni en omliggende gemeenschappen wanneer een crisis toeslaat, van overstromingen, branden en plotselinge nood tot dringende huishoudelijke behoeften, medische situaties en ondersteuning bij herstel.",
+      text:
+        "Praktische noodhulp voor families in Cwebeni en omliggende gemeenschappen wanneer een crisis toeslaat, van overstromingen, branden en plotselinge nood tot dringende huishoudelijke behoeften, medische situaties en ondersteuning bij herstel.",
       monthly: "Maandelijks doneren voor dit project",
       once: "Eenmalig doneren",
       location: "Cwebeni · Port St Johns · Eastern Cape · Zuid-Afrika",
@@ -594,20 +452,9 @@ const COPY: Record<Lang, Copy> = {
         { label: "Project", value: "Disaster Relief" },
         { label: "Focus", value: "Noodhulp voor families in crisis of plotselinge noodsituaties" },
         { label: "Waar", value: "Cwebeni, Port St Johns, Eastern Cape, Zuid-Afrika" },
-        {
-          label: "Kernondersteuning",
-          value:
-            "Voedsel, dekens, matrassen, schoolschoenen, rolstoelen, noodbenodigdheden en praktische herstelondersteuning",
-        },
-        {
-          label: "Hoe we reageren",
-          value:
-            "Via lokale coördinatie, directe ondersteuning op huishoudniveau en praktische hulp",
-        },
-        {
-          label: "Donatiefocus",
-          value: "Families helpen herstellen van crisis met waardigheid en praktische zorg",
-        },
+        { label: "Kernondersteuning", value: "Voedsel, dekens, matrassen, schoolschoenen, rolstoelen, noodbenodigdheden en praktische herstelondersteuning" },
+        { label: "Hoe we reageren", value: "Via lokale coördinatie, directe ondersteuning op huishoudniveau en praktische hulp" },
+        { label: "Donatiefocus", value: "Families helpen herstellen van crisis met waardigheid en praktische zorg" },
       ],
     },
     why: {
@@ -623,8 +470,7 @@ const COPY: Record<Lang, Copy> = {
     provide: {
       eyebrow: "Praktische zorg",
       title: "Hulp die aansluit bij echte behoeften",
-      intro:
-        "De ondersteuning vanuit Disaster Relief hangt af van de situatie en van wat een huishouden op dat moment nodig heeft. Ondersteuning kan omvatten:",
+      intro: "De ondersteuning vanuit Disaster Relief hangt af van de situatie en van wat een huishouden op dat moment nodig heeft. Ondersteuning kan omvatten:",
       items: [
         { icon: "Utensils", label: "Noodvoedselhulp" },
         { icon: "Bed", label: "Dekens" },
@@ -634,10 +480,7 @@ const COPY: Record<Lang, Copy> = {
         { icon: "Shirt", label: "Kleding of basisbenodigdheden voor het huishouden" },
         { icon: "Truck", label: "Ondersteuning bij vervoer of coördinatie" },
         { icon: "Flame", label: "Hulp na overstromingen, branden of plotselinge nood" },
-        {
-          icon: "Stethoscope",
-          label: "Ondersteuning voor families met urgente medische of zorggerelateerde behoeften",
-        },
+        { icon: "Stethoscope", label: "Ondersteuning voor families met urgente medische of zorggerelateerde behoeften" },
       ],
       outro:
         "De hulp is eenvoudig, direct en praktisch. Ze wordt gevormd door wat families werkelijk nodig hebben, niet door een standaardoplossing die voor iedereen hetzelfde is.",
@@ -672,8 +515,7 @@ const COPY: Record<Lang, Copy> = {
     donation: {
       eyebrow: "Uw steun",
       title: "Help families met waardigheid herstellen",
-      intro:
-        "Donaties helpen iThemba Kuluntu om families in acute noodsituaties te ondersteunen. Uw steun kan helpen om het volgende mogelijk te maken:",
+      intro: "Donaties helpen iThemba Kuluntu om families in acute noodsituaties te ondersteunen. Uw steun kan helpen om het volgende mogelijk te maken:",
       items: [
         { icon: "Utensils", label: "Voedsel voor huishoudens in crisis" },
         { icon: "Bed", label: "Dekens en matrassen" },
@@ -704,42 +546,10 @@ const COPY: Record<Lang, Copy> = {
     impact: {
       title: "Wat uw steun mogelijk maakt",
       items: [
-        {
-          value: 600,
-          suffix: "+",
-          iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-mattresses.png",
-          label: {
-            en: "Mattresses distributed",
-            de: "Matratzen verteilt",
-            nl: "Matrassen verdeeld",
-          },
-        },
-        {
-          value: 2100,
-          suffix: "+",
-          iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-blankets.png",
-          label: { en: "Blankets distributed", de: "Decken verteilt", nl: "Dekens verdeeld" },
-        },
-        {
-          value: 114,
-          suffix: "",
-          iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-wheelchairs.png",
-          label: {
-            en: "Wheelchairs distributed",
-            de: "Rollstühle verteilt",
-            nl: "Rolstoelen verdeeld",
-          },
-        },
-        {
-          value: 1300,
-          suffix: "+",
-          iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-school-shoes.png",
-          label: {
-            en: "School shoes distributed",
-            de: "Schulschuhe verteilt",
-            nl: "Schoolschoenen verdeeld",
-          },
-        },
+        { value: 600, suffix: "+", iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-mattresses.png", label: { en: "Mattresses distributed", de: "Matratzen verteilt", nl: "Matrassen verdeeld" } },
+        { value: 2100, suffix: "+", iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-blankets.png", label: { en: "Blankets distributed", de: "Decken verteilt", nl: "Dekens verdeeld" } },
+        { value: 114, suffix: "", iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-wheelchairs.png", label: { en: "Wheelchairs distributed", de: "Rollstühle verteilt", nl: "Rolstoelen verdeeld" } },
+        { value: 1300, suffix: "+", iconSrc: "/assets/icons/projects/disaster-relief/disaster-relief-school-shoes.png", label: { en: "School shoes distributed", de: "Schulschuhe verteilt", nl: "Schoolschoenen verdeeld" } },
       ],
     },
     closing: {
@@ -782,6 +592,7 @@ const DONATION_ICON_PATHS: Record<string, string> = {
   Compass: `${DR_ICON_BASE}/disaster-relief-how-we-respond.png`,
 };
 
+
 function SparkleDoodle({ className = "h-5 w-5 text-[var(--ithemba-yellow)]" }) {
   return <Sparkles className={className} aria-hidden />;
 }
@@ -816,23 +627,13 @@ function Hero({ c }: { c: Copy }) {
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4 pb-24 pt-20 md:pb-32 md:pt-28 lg:px-8">
-        <Link
-          to="/projects"
-          className="inline-flex items-center gap-1 text-sm font-medium text-white/85 hover:text-white"
-        >
+        <Link to="/projects" className="inline-flex items-center gap-1 text-sm font-medium text-white/85 hover:text-white">
           <ArrowLeft className="h-4 w-4" /> {c.back}
         </Link>
 
         <div className="mt-8 max-w-3xl text-white">
           <FocusAreaBadges
-            badges={[
-              "disaster-relief",
-              "food-security",
-              "safe-water",
-              "education",
-              "skills-livelihoods",
-              "community-health",
-            ]}
+            badges={["disaster-relief", "food-security", "safe-water", "education", "skills-livelihoods", "community-health"]}
             size="md"
             className="mb-5"
           />
@@ -842,24 +643,10 @@ function Hero({ c }: { c: Copy }) {
           <h1 className="mt-2 font-display text-[clamp(2.25rem,5.5vw,4.25rem)] font-extrabold leading-[1.02] tracking-tight drop-shadow-[0_4px_24px_rgba(0,0,0,0.45)]">
             {c.hero.title}
           </h1>
-          <svg
-            className="mt-4 block w-48 md:w-72"
-            height="14"
-            viewBox="0 0 200 14"
-            preserveAspectRatio="none"
-            aria-hidden
-          >
-            <path
-              d="M2,8 C50,2 120,14 198,6"
-              stroke="var(--ithemba-yellow)"
-              strokeWidth="4"
-              strokeLinecap="round"
-              fill="none"
-            />
+          <svg className="mt-4 block w-48 md:w-72" height="14" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden>
+            <path d="M2,8 C50,2 120,14 198,6" stroke="var(--ithemba-yellow)" strokeWidth="4" strokeLinecap="round" fill="none" />
           </svg>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/95 md:text-xl">
-            {c.hero.text}
-          </p>
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/95 md:text-xl">{c.hero.text}</p>
           <div className="mt-3 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white/85 ring-1 ring-white/20 backdrop-blur">
             <Star className="h-3.5 w-3.5 text-[var(--ithemba-yellow)] fill-current" />
             {c.hero.location}
@@ -867,19 +654,12 @@ function Hero({ c }: { c: Copy }) {
 
           <div className="mt-7 flex flex-wrap gap-2">
             <Link to="/donate">
-              <Button
-                size="lg"
-                className="rounded-full bg-[var(--ithemba-yellow)] font-semibold text-[var(--ithemba-brown)] shadow-lg hover:bg-[var(--ithemba-yellow)]/95"
-              >
+              <Button size="lg" className="rounded-full bg-[var(--ithemba-yellow)] font-semibold text-[var(--ithemba-brown)] shadow-lg hover:bg-[var(--ithemba-yellow)]/95">
                 <Heart className="mr-2 h-4 w-4 fill-current" /> {c.hero.monthly}
               </Button>
             </Link>
             <Link to="/donate">
-              <Button
-                size="lg"
-                variant="outline"
-                className="rounded-full border-white/40 bg-white/10 text-white hover:bg-white/20 hover:text-white"
-              >
+              <Button size="lg" variant="outline" className="rounded-full border-white/40 bg-white/10 text-white hover:bg-white/20 hover:text-white">
                 {c.hero.once}
               </Button>
             </Link>
@@ -888,34 +668,19 @@ function Hero({ c }: { c: Copy }) {
       </div>
 
       <svg className="block w-full" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden>
-        <path
-          d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z"
-          fill="var(--ithemba-cream)"
-        />
+        <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="var(--ithemba-cream)" />
       </svg>
     </section>
   );
 }
 
-function SectionHeading({
-  eyebrow,
-  title,
-  center = false,
-  color = "var(--ithemba-yellow)",
-}: {
-  eyebrow: string;
-  title: string;
-  center?: boolean;
-  color?: string;
+function SectionHeading({ eyebrow, title, center = false, color = "var(--ithemba-yellow)" }: {
+  eyebrow: string; title: string; center?: boolean; color?: string;
 }) {
   return (
     <div className={center ? "text-center" : ""}>
-      <div className="hand-eyebrow-lg" style={{ color }}>
-        {eyebrow}
-      </div>
-      <h2 className="-mt-1 font-display text-4xl font-bold text-[var(--ithemba-blue-dark)] md:text-5xl">
-        {title}
-      </h2>
+      <div className="hand-eyebrow-lg" style={{ color }}>{eyebrow}</div>
+      <h2 className="-mt-1 font-display text-4xl font-bold text-[var(--ithemba-blue-dark)] md:text-5xl">{title}</h2>
     </div>
   );
 }
@@ -931,18 +696,13 @@ function Snapshot({ c }: { c: Copy }) {
           <SectionHeading eyebrow={c.snapshot.eyebrow} title={c.snapshot.title} />
         </div>
         <div className="mt-5 max-w-4xl space-y-3 text-lg leading-relaxed text-foreground/85">
-          {c.snapshot.body.map((p, i) => (
-            <p key={i}>{p}</p>
-          ))}
+          {c.snapshot.body.map((p, i) => <p key={i}>{p}</p>)}
         </div>
         <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {c.snapshot.facts.map((f, i) => {
             const iconSrc = SNAPSHOT_ICON_PATHS[i];
             return (
-              <div
-                key={f.label}
-                className="grid min-w-0 grid-cols-[auto_minmax(0,1fr)] items-center gap-3"
-              >
+              <div key={f.label} className="grid min-w-0 grid-cols-[auto_minmax(0,1fr)] items-center gap-3">
                 <img
                   src={iconSrc}
                   alt=""
@@ -951,12 +711,8 @@ function Snapshot({ c }: { c: Copy }) {
                   loading="lazy"
                 />
                 <div className="min-w-0">
-                  <div className="text-[11px] font-semibold uppercase tracking-wide text-foreground/60">
-                    {f.label}
-                  </div>
-                  <div className="mt-0.5 font-display text-sm font-extrabold leading-snug text-[var(--ithemba-blue-dark)] md:text-base">
-                    {f.value}
-                  </div>
+                  <div className="text-[11px] font-semibold uppercase tracking-wide text-foreground/60">{f.label}</div>
+                  <div className="mt-0.5 font-display text-sm font-extrabold leading-snug text-[var(--ithemba-blue-dark)] md:text-base">{f.value}</div>
                 </div>
               </div>
             );
@@ -965,21 +721,9 @@ function Snapshot({ c }: { c: Copy }) {
         <PhotoCollage
           className="mx-auto mt-9 max-w-xl"
           photos={[
-            {
-              src: PHOTOS.snapshotMain,
-              alt: "Community members gathered with mattresses and emergency supplies",
-              position: "center 46%",
-            },
-            {
-              src: PHOTOS.snapshotFamilies,
-              alt: "Families receiving mattresses and relief items",
-              position: "center 42%",
-            },
-            {
-              src: PHOTOS.snapshotDelivery,
-              alt: "Relief team carrying mattresses across a rural field",
-              position: "center 45%",
-            },
+            { src: PHOTOS.snapshotMain, alt: "Community members gathered with mattresses and emergency supplies", position: "center 46%" },
+            { src: PHOTOS.snapshotFamilies, alt: "Families receiving mattresses and relief items", position: "center 42%" },
+            { src: PHOTOS.snapshotDelivery, alt: "Relief team carrying mattresses across a rural field", position: "center 45%" },
           ]}
         />
       </div>
@@ -995,35 +739,21 @@ function Why({ c }: { c: Copy }) {
         <PhotoCollage
           className="mx-auto max-w-md"
           photos={[
-            {
-              src: PHOTOS.vulnerabilityHome,
-              alt: "Children outside a weathered rural home",
-              position: "center 38%",
-            },
-            {
-              src: PHOTOS.fireDamage,
-              alt: "Round home with severe fire damage",
-              position: "center 48%",
-            },
-            {
-              src: PHOTOS.vulnerableRoom,
-              alt: "Bare room with bedding on the floor after hardship",
-              position: "center 55%",
-            },
+            { src: PHOTOS.vulnerabilityHome, alt: "Children outside a weathered rural home", position: "center 38%" },
+            { src: PHOTOS.fireDamage, alt: "Round home with severe fire damage", position: "center 48%" },
+            { src: PHOTOS.vulnerableRoom, alt: "Bare room with bedding on the floor after hardship", position: "center 55%" },
           ]}
         />
         <div>
-          <div className="max-w-3xl">
-            <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center gap-2">
-              <SparkleDoodle /> {c.why.eyebrow}
-            </div>
-            <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.why.title}</h2>
+        <div className="max-w-3xl">
+          <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center gap-2">
+            <SparkleDoodle /> {c.why.eyebrow}
           </div>
-          <div className="mt-6 max-w-3xl space-y-4 text-lg leading-relaxed text-white/90">
-            {c.why.body.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
-          </div>
+          <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.why.title}</h2>
+        </div>
+        <div className="mt-6 max-w-3xl space-y-4 text-lg leading-relaxed text-white/90">
+          {c.why.body.map((p, i) => <p key={i}>{p}</p>)}
+        </div>
         </div>
       </div>
     </section>
@@ -1043,13 +773,9 @@ function Provide({ c }: { c: Copy }) {
         </div>
         <div className="mt-8 grid gap-3 sm:grid-cols-2 md:grid-cols-3">
           {c.provide.items.map((it, i) => {
-            const iconSrc =
-              DONATION_ICON_PATHS[it.icon] ?? `${DR_ICON_BASE}/disaster-relief-core-support.png`;
+            const iconSrc = DONATION_ICON_PATHS[it.icon] ?? `${DR_ICON_BASE}/disaster-relief-core-support.png`;
             return (
-              <div
-                key={i}
-                className="grid min-w-0 grid-cols-[auto_minmax(0,1fr)] items-center gap-3"
-              >
+              <div key={i} className="grid min-w-0 grid-cols-[auto_minmax(0,1fr)] items-center gap-3">
                 <img
                   src={iconSrc}
                   alt=""
@@ -1057,9 +783,7 @@ function Provide({ c }: { c: Copy }) {
                   className="h-12 w-12 shrink-0 object-contain md:h-14 md:w-14"
                   loading="lazy"
                 />
-                <div className="min-w-0 text-sm font-medium leading-snug text-[var(--ithemba-blue-dark)]">
-                  {it.label}
-                </div>
+                <div className="min-w-0 text-sm font-medium leading-snug text-[var(--ithemba-blue-dark)]">{it.label}</div>
               </div>
             );
           })}
@@ -1067,31 +791,13 @@ function Provide({ c }: { c: Copy }) {
         <PhotoCollage
           className="mx-auto mt-9 max-w-xl"
           photos={[
-            {
-              src: PHOTOS.reliefBundle,
-              alt: "Family receiving a mattress, food and household supplies",
-              position: "center 42%",
-            },
-            {
-              src: PHOTOS.mattressDelivery,
-              alt: "Woman carrying a new mattress through the village",
-              position: "center 40%",
-            },
-            {
-              src: PHOTOS.schoolShoes,
-              alt: "Community worker fitting children with new school shoes",
-              position: "center 42%",
-            },
-            {
-              src: PHOTOS.wheelchair,
-              alt: "Happy girl seated in her wheelchair with a support worker",
-              position: "45% 78%",
-            },
+            { src: PHOTOS.reliefBundle, alt: "Family receiving a mattress, food and household supplies", position: "center 42%" },
+            { src: PHOTOS.mattressDelivery, alt: "Woman carrying a new mattress through the village", position: "center 40%" },
+            { src: PHOTOS.schoolShoes, alt: "Community worker fitting children with new school shoes", position: "center 42%" },
+            { src: PHOTOS.wheelchair, alt: "Happy girl seated in her wheelchair with a support worker", position: "45% 78%" },
           ]}
         />
-        <p className="mx-auto mt-8 max-w-3xl text-base leading-relaxed text-foreground/75">
-          {c.provide.outro}
-        </p>
+        <p className="mx-auto mt-8 max-w-3xl text-base leading-relaxed text-foreground/75">{c.provide.outro}</p>
       </div>
     </section>
   );
@@ -1103,36 +809,22 @@ function Respond({ c }: { c: Copy }) {
     <section className="relative overflow-hidden bg-[var(--ithemba-blue-deepest)] py-20 text-white md:py-24">
       <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 md:grid-cols-[1.05fr_0.95fr] lg:px-8">
         <div>
-          <div className="max-w-3xl">
-            <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center gap-2">
-              <MapPin className="h-5 w-5" /> {c.respond.eyebrow}
-            </div>
-            <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.respond.title}</h2>
+        <div className="max-w-3xl">
+          <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center gap-2">
+            <MapPin className="h-5 w-5" /> {c.respond.eyebrow}
           </div>
-          <div className="mt-6 max-w-3xl space-y-4 text-lg leading-relaxed text-white/90">
-            {c.respond.body.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
-          </div>
+          <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.respond.title}</h2>
+        </div>
+        <div className="mt-6 max-w-3xl space-y-4 text-lg leading-relaxed text-white/90">
+          {c.respond.body.map((p, i) => <p key={i}>{p}</p>)}
+        </div>
         </div>
         <PhotoCollage
           className="mx-auto max-w-md"
           photos={[
-            {
-              src: PHOTOS.localTrustMain,
-              alt: "Community worker supporting an older woman with relief supplies",
-              position: "center 38%",
-            },
-            {
-              src: PHOTOS.localTrustChild,
-              alt: "Community worker embracing a child during a home visit",
-              position: "center 35%",
-            },
-            {
-              src: PHOTOS.fireTeam,
-              alt: "Local response team unloading mattresses and emergency supplies",
-              position: "center 48%",
-            },
+            { src: PHOTOS.localTrustMain, alt: "Community worker supporting an older woman with relief supplies", position: "center 38%" },
+            { src: PHOTOS.localTrustChild, alt: "Community worker embracing a child during a home visit", position: "center 35%" },
+            { src: PHOTOS.fireTeam, alt: "Local response team unloading mattresses and emergency supplies", position: "center 48%" },
           ]}
         />
       </div>
@@ -1149,35 +841,21 @@ function Focus({ c }: { c: Copy }) {
           <PhotoCollage
             className="mx-auto max-w-md"
             photos={[
-              {
-                src: PHOTOS.connectedMain,
-                alt: "Children and caregivers together outside a community building",
-                position: "center 42%",
-              },
-              {
-                src: PHOTOS.connectedChild,
-                alt: "Smiling child at a community support event",
-                position: "center 32%",
-              },
-              {
-                src: PHOTOS.connectedFamily,
-                alt: "Mother and child supported through connected community care",
-                position: "center 30%",
-              },
+              { src: PHOTOS.connectedMain, alt: "Children and caregivers together outside a community building", position: "center 42%" },
+              { src: PHOTOS.connectedChild, alt: "Smiling child at a community support event", position: "center 32%" },
+              { src: PHOTOS.connectedFamily, alt: "Mother and child supported through connected community care", position: "center 30%" },
             ]}
           />
           <div>
-            <div className="max-w-3xl">
-              <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center gap-2">
-                <SparkleDoodle /> {c.focus.eyebrow}
-              </div>
-              <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.focus.title}</h2>
-            </div>
-            <div className="mt-6 max-w-3xl space-y-4 text-lg leading-relaxed text-white/90">
-              {c.focus.body.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
+        <div className="max-w-3xl">
+          <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center gap-2">
+            <SparkleDoodle /> {c.focus.eyebrow}
+          </div>
+          <h2 className="-mt-1 font-display text-4xl font-bold md:text-5xl">{c.focus.title}</h2>
+        </div>
+        <div className="mt-6 max-w-3xl space-y-4 text-lg leading-relaxed text-white/90">
+          {c.focus.body.map((p, i) => <p key={i}>{p}</p>)}
+        </div>
           </div>
         </div>
         <div className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-6">
@@ -1216,13 +894,9 @@ function DonationSupport({ c }: { c: Copy }) {
         </div>
         <div className="mt-8 grid gap-3 sm:grid-cols-2 md:grid-cols-4">
           {c.donation.items.map((it, i) => {
-            const iconSrc =
-              DONATION_ICON_PATHS[it.icon] ?? `${DR_ICON_BASE}/disaster-relief-donation-focus.png`;
+            const iconSrc = DONATION_ICON_PATHS[it.icon] ?? `${DR_ICON_BASE}/disaster-relief-donation-focus.png`;
             return (
-              <div
-                key={i}
-                className="grid min-w-0 grid-cols-[auto_minmax(0,1fr)] items-center gap-3"
-              >
+              <div key={i} className="grid min-w-0 grid-cols-[auto_minmax(0,1fr)] items-center gap-3">
                 <img
                   src={iconSrc}
                   alt=""
@@ -1230,9 +904,7 @@ function DonationSupport({ c }: { c: Copy }) {
                   className="h-12 w-12 shrink-0 object-contain md:h-14 md:w-14"
                   loading="lazy"
                 />
-                <div className="min-w-0 text-sm font-medium leading-snug text-[var(--ithemba-blue-dark)]">
-                  {it.label}
-                </div>
+                <div className="min-w-0 text-sm font-medium leading-snug text-[var(--ithemba-blue-dark)]">{it.label}</div>
               </div>
             );
           })}
@@ -1240,26 +912,12 @@ function DonationSupport({ c }: { c: Copy }) {
         <PhotoCollage
           className="mx-auto mt-9 max-w-xl"
           photos={[
-            {
-              src: PHOTOS.supportMain,
-              alt: "Family gathered outside their rural home after receiving support",
-              position: "center 38%",
-            },
-            {
-              src: PHOTOS.supportBundle,
-              alt: "Community members with a mattress and household relief supplies",
-              position: "center 42%",
-            },
-            {
-              src: PHOTOS.recovery,
-              alt: "Woman beside an excavator clearing a damaged property",
-              position: "center 48%",
-            },
+            { src: PHOTOS.supportMain, alt: "Family gathered outside their rural home after receiving support", position: "center 38%" },
+            { src: PHOTOS.supportBundle, alt: "Community members with a mattress and household relief supplies", position: "center 42%" },
+            { src: PHOTOS.recovery, alt: "Woman beside an excavator clearing a damaged property", position: "center 48%" },
           ]}
         />
-        <p className="mx-auto mt-8 max-w-3xl text-center text-base leading-relaxed text-foreground/75">
-          {c.donation.outro}
-        </p>
+        <p className="mx-auto mt-8 max-w-3xl text-center text-base leading-relaxed text-foreground/75">{c.donation.outro}</p>
       </div>
     </section>
   );
@@ -1267,14 +925,7 @@ function DonationSupport({ c }: { c: Copy }) {
 
 /* ---------- IMPACT ---------- */
 function Impact({ c }: { c: Copy }) {
-  return (
-    <ImpactCounters
-      items={c.impact.items}
-      title={c.impact.title}
-      backgroundImage={PHOTOS.connectedMain}
-      softOverlay
-    />
-  );
+  return <ImpactCounters items={c.impact.items} title={c.impact.title} backgroundImage={PHOTOS.connectedMain} softOverlay />;
 }
 
 /* ---------- MONTHLY (with widget) ---------- */
@@ -1294,38 +945,20 @@ function Monthly({ c }: { c: Copy }) {
         <div className="absolute inset-0 bg-gradient-to-r from-[var(--ithemba-blue-deepest)]/92 via-[var(--ithemba-blue-dark)]/80 to-[var(--ithemba-blue-dark)]/45" />
         <div className="absolute right-[-6rem] top-[-6rem] h-[28rem] w-[28rem] sun-glow" />
       </div>
-      <svg
-        className="pointer-events-none absolute inset-x-0 top-0 -mt-px block h-12 w-full md:h-16"
-        viewBox="0 0 1440 80"
-        preserveAspectRatio="none"
-        aria-hidden
-      >
-        <path
-          d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,0 L0,0 Z"
-          fill="var(--ithemba-blue-deepest)"
-          opacity="0.55"
-        />
-        <path
-          d="M0,55 C240,90 480,15 720,55 C960,90 1200,15 1440,55 L1440,0 L0,0 Z"
-          fill="var(--ithemba-blue-deepest)"
-        />
+      <svg className="pointer-events-none absolute inset-x-0 top-0 -mt-px block h-12 w-full md:h-16" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden>
+        <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,0 L0,0 Z" fill="var(--ithemba-blue-deepest)" opacity="0.55" />
+        <path d="M0,55 C240,90 480,15 720,55 C960,90 1200,15 1440,55 L1440,0 L0,0 Z" fill="var(--ithemba-blue-deepest)" />
       </svg>
       <div className="mx-auto grid max-w-7xl gap-10 px-4 md:grid-cols-2 lg:px-8">
         <div className="text-white">
           <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)]">{c.monthly.eyebrow}</div>
-          <h2 className="-mt-1 font-display text-4xl font-extrabold md:text-5xl">
-            {c.monthly.title}
-          </h2>
+          <h2 className="-mt-1 font-display text-4xl font-extrabold md:text-5xl">{c.monthly.title}</h2>
           <div className="mt-5 space-y-4 text-lg leading-relaxed text-white/90">
-            {c.monthly.body.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
+            {c.monthly.body.map((p, i) => <p key={i}>{p}</p>)}
           </div>
 
           <div className="mt-7 rounded-3xl bg-[var(--ithemba-yellow)] p-6 text-[var(--ithemba-brown)] shadow-xl">
-            <div className="text-xs font-semibold uppercase tracking-wide opacity-80">
-              {c.monthly.cardHeading}
-            </div>
+            <div className="text-xs font-semibold uppercase tracking-wide opacity-80">{c.monthly.cardHeading}</div>
             <div className="mt-1 flex items-baseline gap-2">
               <LifeBuoy className="h-6 w-6" />
               <div className="font-display text-3xl font-extrabold">{c.monthly.cardAmount}</div>
@@ -1338,10 +971,7 @@ function Monthly({ c }: { c: Copy }) {
                 </Button>
               </Link>
               <Link to="/donate">
-                <Button
-                  variant="outline"
-                  className="rounded-full border-[var(--ithemba-brown)]/40 bg-white/40 text-[var(--ithemba-brown)] hover:bg-white/60"
-                >
+                <Button variant="outline" className="rounded-full border-[var(--ithemba-brown)]/40 bg-white/40 text-[var(--ithemba-brown)] hover:bg-white/60">
                   {c.monthly.cta2}
                 </Button>
               </Link>
@@ -1357,70 +987,34 @@ function Monthly({ c }: { c: Copy }) {
 /* ---------- CLOSING ---------- */
 function Closing({ c }: { c: Copy }) {
   return (
-    <section
-      id="disaster-relief-closing"
-      className="relative isolate overflow-hidden bg-[var(--ithemba-blue-deepest)] py-16 text-white md:py-20"
-    >
-      <svg
-        className="pointer-events-none absolute inset-x-0 top-0 -mt-px block h-12 w-full md:h-16"
-        viewBox="0 0 1440 80"
-        preserveAspectRatio="none"
-        aria-hidden
-      >
-        <path
-          d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,0 L0,0 Z"
-          fill="var(--ithemba-blue-deepest)"
-          opacity="0.55"
-        />
-        <path
-          d="M0,55 C240,90 480,15 720,55 C960,90 1200,15 1440,55 L1440,0 L0,0 Z"
-          fill="var(--ithemba-blue-deepest)"
-        />
+    <section id="disaster-relief-closing" className="relative isolate overflow-hidden bg-[var(--ithemba-blue-deepest)] py-16 text-white md:py-20">
+      <svg className="pointer-events-none absolute inset-x-0 top-0 -mt-px block h-12 w-full md:h-16" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden>
+        <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,0 L0,0 Z" fill="var(--ithemba-blue-deepest)" opacity="0.55" />
+        <path d="M0,55 C240,90 480,15 720,55 C960,90 1200,15 1440,55 L1440,0 L0,0 Z" fill="var(--ithemba-blue-deepest)" />
       </svg>
       <div className="pointer-events-none absolute right-[-6rem] top-[-6rem] h-[24rem] w-[24rem] sun-glow" />
-      <div className="pointer-events-none absolute left-10 top-10">
-        <SunDoodle className="h-12 w-12 text-[var(--ithemba-yellow)]/60" />
-      </div>
-      <div className="pointer-events-none absolute right-10 bottom-10">
-        <Heart className="h-9 w-9 text-[var(--ithemba-yellow)]/70" />
-      </div>
-      <div className="pointer-events-none absolute left-16 bottom-16">
-        <Home className="h-7 w-7 text-[var(--ithemba-yellow)]/50" />
-      </div>
+      <div className="pointer-events-none absolute left-10 top-10"><SunDoodle className="h-12 w-12 text-[var(--ithemba-yellow)]/60" /></div>
+      <div className="pointer-events-none absolute right-10 bottom-10"><Heart className="h-9 w-9 text-[var(--ithemba-yellow)]/70" /></div>
+      <div className="pointer-events-none absolute left-16 bottom-16"><Home className="h-7 w-7 text-[var(--ithemba-yellow)]/50" /></div>
       <div className="relative mx-auto max-w-3xl px-4 text-center lg:px-8">
         <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)]">{c.closing.eyebrow}</div>
-        <h2 className="-mt-1 font-display text-4xl font-extrabold md:text-5xl">
-          {c.closing.title}
-        </h2>
+        <h2 className="-mt-1 font-display text-4xl font-extrabold md:text-5xl">{c.closing.title}</h2>
         <div className="mt-5 space-y-4 text-lg leading-relaxed text-white/90">
-          {c.closing.body.map((p, i) => (
-            <p key={i}>{p}</p>
-          ))}
+          {c.closing.body.map((p, i) => <p key={i}>{p}</p>)}
         </div>
         <div className="mt-7 flex flex-wrap justify-center gap-2">
           <Link to="/donate">
-            <Button
-              size="lg"
-              className="rounded-full bg-[var(--ithemba-yellow)] font-semibold text-[var(--ithemba-brown)] shadow-lg hover:bg-[var(--ithemba-yellow)]/95"
-            >
+            <Button size="lg" className="rounded-full bg-[var(--ithemba-yellow)] font-semibold text-[var(--ithemba-brown)] shadow-lg hover:bg-[var(--ithemba-yellow)]/95">
               <Heart className="mr-2 h-4 w-4 fill-current" /> {c.closing.monthly}
             </Button>
           </Link>
           <Link to="/donate">
-            <Button
-              size="lg"
-              variant="outline"
-              className="rounded-full border-white/40 bg-white/10 text-white hover:bg-white/20 hover:text-white"
-            >
+            <Button size="lg" variant="outline" className="rounded-full border-white/40 bg-white/10 text-white hover:bg-white/20 hover:text-white">
               {c.closing.once}
             </Button>
           </Link>
           <Link to="/projects">
-            <Button
-              size="lg"
-              variant="ghost"
-              className="rounded-full text-white hover:bg-white/10 hover:text-white"
-            >
+            <Button size="lg" variant="ghost" className="rounded-full text-white hover:bg-white/10 hover:text-white">
               {c.closing.all}
             </Button>
           </Link>
@@ -1431,13 +1025,7 @@ function Closing({ c }: { c: Copy }) {
 }
 
 /* ---------- wave divider ---------- */
-function Wave({
-  from = "var(--ithemba-cream)",
-  to = "var(--background)",
-}: {
-  from?: string;
-  to?: string;
-}) {
+function Wave({ from = "var(--ithemba-cream)", to = "var(--background)" }: { from?: string; to?: string }) {
   return (
     <div style={{ background: from }}>
       <svg className="block w-full" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden>
