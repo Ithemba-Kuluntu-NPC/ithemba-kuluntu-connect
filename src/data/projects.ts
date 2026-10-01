@@ -54,7 +54,7 @@ export const projects: Project[] = [
     path: "/projects/pureflow",
     title: { en: "PureFlow Amanzi", de: "PureFlow Amanzi", nl: "PureFlow Amanzi" },
     tagline: {
-      en: "One family. Safer water. Stronger daily life.",
+      en: "Safe water. Stronger communities. Rural resilience.",
       de: "Eine Familie. Sichereres Wasser. Ein stärkerer Alltag.",
       nl: "Eén gezin. Veiliger water. Een sterker dagelijks leven.",
     },
