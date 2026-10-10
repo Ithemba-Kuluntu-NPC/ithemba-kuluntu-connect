@@ -192,6 +192,8 @@ export const partners: Partner[] = [
   { name: "SA Harvest", logo: "/assets/logos/partners/sa-harvest-logo.png", url: "https://saharvest.org/", sizeClass: "max-h-[110px] max-w-[300px]" },
   { name: "Küstenhunde e.V.", logo: "/assets/logos/partners/kuestenhund-ev-partner-logo.png", url: "https://kuestenhund.com/", sizeClass: "max-h-[120px] max-w-[240px]" },
   { name: "Lingham Foundation", logo: "/assets/logos/partners/lingham-foundation-partner-logo.png", url: "#", sizeClass: "max-h-[120px] max-w-[240px]" },
+  { name: "GCX", logo: "/assets/logos/partners/GCX-partner-logo-full-colour.png", url: "https://gcx.earth/" },
+  { name: "Rossi South Africa", logo: "/assets/logos/partners/Rossi-partner-logo.png", url: "https://www.rossi.com/en-US/About-Us/Global-presence/South-Africa" },
 ];
 
 export const mediaItems = [

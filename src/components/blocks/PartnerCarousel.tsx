@@ -11,6 +11,7 @@ const logoSizes: Record<string, string> = {
   "Rise Against Hunger Africa": styles.padded,
   "Küstenhunde e.V.": styles.padded,
   "Lingham Foundation": styles.padded,
+  "Rossi South Africa": styles.insetArtwork,
 };
 
 function LogoItem({ p, duplicate }: { p: Partner; duplicate: boolean }) {
@@ -34,7 +35,7 @@ function LogoItem({ p, duplicate }: { p: Partner; duplicate: boolean }) {
   );
 }
 
-export function PartnerCarousel() {
+export function PartnerCarousel({ items = partners }: { items?: Partner[] }) {
   const viewportRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const sequenceRef = useRef<HTMLUListElement>(null);
@@ -99,7 +100,7 @@ export function PartnerCarousel() {
             className={styles.sequence}
             aria-hidden={duplicate ? true : undefined}
           >
-            {partners.map((p) => (
+            {items.map((p) => (
               <li key={p.name} className={styles.item}>
                 <LogoItem p={p} duplicate={duplicate} />
               </li>

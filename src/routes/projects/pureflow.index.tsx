@@ -38,6 +38,7 @@ import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { useLang } from "@/components/site/LanguageProvider";
 import { DonationWidget } from "@/components/blocks/DonationWidget";
 import { partners as allPartners } from "@/data/projects";
+import { PartnerCarousel } from "@/components/blocks/PartnerCarousel";
 import { cn } from "@/lib/utils";
 import type { Lang } from "@/data/content";
 
@@ -1281,31 +1282,9 @@ function SDGGrid({ t }: { t: (k: string, fb?: string) => string }) {
 
 // ----------------------- Partners (large, full colour) -----------------------
 
-function normalize(s: string) {
-  return s
-    .toLowerCase()
-    .replace(/['’`]/g, "")
-    .replace(/[^a-z0-9]+/g, " ")
-    .trim();
-}
+const pureFlowPartners = allPartners.filter((partner) => partner.name !== "Küstenhunde e.V.");
 
 function PartnersStrip({ t }: { t: (k: string, fb?: string) => string }) {
-  const list = t("partners.list")
-    .split(",")
-    .map((s) => s.trim())
-    .filter(Boolean);
-
-  const matched = list
-    .map((name) => {
-      const norm = normalize(name);
-      const found = allPartners.find((p) => {
-        const pn = normalize(p.name);
-        return pn === norm || pn.includes(norm) || norm.includes(pn);
-      });
-      return { name, partner: found };
-    })
-    .filter((x) => x.partner);
-
   return (
     <section style={{ background: CREAM_WARM }} className="relative">
       <div className="mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
@@ -1317,41 +1296,9 @@ function PartnersStrip({ t }: { t: (k: string, fb?: string) => string }) {
           <p className="mx-auto mt-2 max-w-2xl text-sm text-slate-700 md:text-base">{t("partners.text")}</p>
         </div>
 
-        {matched.length > 0 ? (
-          <div className="mx-auto mt-10 flex max-w-5xl flex-wrap items-center justify-center gap-x-12 gap-y-8">
-            {matched.map(({ partner }) => (
-              <a
-                key={partner!.name}
-                href={partner!.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex h-28 w-[200px] items-center justify-center sm:w-[220px] md:h-32 md:w-[240px]"
-                title={partner!.name}
-              >
-                <img
-                  src={partner!.logo}
-                  alt={`${partner!.name} logo`}
-                  loading="lazy"
-                  className="max-h-[110px] max-w-full object-contain transition group-hover:scale-105"
-                  onError={(e) => {
-                    (e.currentTarget.parentElement as HTMLElement).style.display = "none";
-                  }}
-                />
-              </a>
-            ))}
-          </div>
-        ) : (
-          <div className="mt-10 flex flex-wrap justify-center gap-3">
-            {list.map((n) => (
-              <span
-                key={n}
-                className="rounded-full bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm ring-1 ring-black/5"
-              >
-                {n}
-              </span>
-            ))}
-          </div>
-        )}
+        <div className="mt-10">
+          <PartnerCarousel items={pureFlowPartners} />
+        </div>
       </div>
     </section>
   );
