@@ -2,8 +2,11 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { createSeoHead } from "@/lib/seo";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import {
   ArrowLeft,
+  ChevronLeft,
+  ChevronRight,
   Heart,
   PawPrint,
   PlayCircle,
@@ -217,6 +220,101 @@ function PhotoStrip({
 }
 
 
+// Verified derivative → original pairs from scripts/generate-web-media.mjs.
+// Only the lightbox uses these; normal collage sources stay optimized.
+const PONDO_DOGS_ORIGINALS: Record<string, string> = {
+  [PH.puppiesRural]: `${PD}/20251009_155233(0).jpg`,
+  [PH.home2]: `${PD}/20260130_163511.jpg`,
+  [PH.shelterNew1]: `${PD}/20260401_113020.jpg`,
+  [PH.before1]: `${PD}/20251102_133018.jpg`,
+};
+
+function PondoDogsPhotoLightbox({
+  photos,
+  index,
+  onClose,
+  onReturnFocus,
+}: {
+  photos: CollageSlot[];
+  index: number;
+  onClose: () => void;
+  onReturnFocus: () => void;
+}) {
+  const [activeIndex, setActiveIndex] = useState(index);
+  const touchStart = useRef<{ x: number; y: number } | null>(null);
+  const count = photos.length;
+  const activePhoto = photos[activeIndex];
+  const change = (direction: -1 | 1) => {
+    setActiveIndex((current) => (current + direction + count) % count);
+  };
+
+  return (
+    <Dialog open onOpenChange={(open) => !open && onClose()}>
+      <DialogContent
+        aria-describedby={undefined}
+        onCloseAutoFocus={(event) => {
+          event.preventDefault();
+          onReturnFocus();
+        }}
+        onPointerDown={(event) => {
+          if (event.target === event.currentTarget) onClose();
+        }}
+        onKeyDown={(event) => {
+          if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+            event.preventDefault();
+            change(event.key === "ArrowLeft" ? -1 : 1);
+          }
+        }}
+        className="flex h-[100dvh] w-screen max-w-none items-center justify-center border-0 bg-transparent p-4 shadow-none sm:rounded-none sm:p-8 [&>button]:right-4 [&>button]:top-4 [&>button]:z-20 [&>button]:grid [&>button]:h-12 [&>button]:w-12 [&>button]:place-items-center [&>button]:rounded-full [&>button]:bg-black/55 [&>button]:text-white [&>button]:opacity-100 [&>button_svg]:h-7 [&>button_svg]:w-7"
+      >
+        <DialogTitle className="sr-only">Pondo Dogs photo gallery</DialogTitle>
+        <div
+          className="relative flex h-full w-full items-center justify-center"
+          onTouchStart={(event) => {
+            const touch = event.touches.length === 1 ? event.touches[0] : undefined;
+            touchStart.current = touch ? { x: touch.clientX, y: touch.clientY } : null;
+          }}
+          onTouchCancel={() => { touchStart.current = null; }}
+          onTouchEnd={(event) => {
+            const start = touchStart.current;
+            const end = event.changedTouches[0];
+            touchStart.current = null;
+            if (!start || !end) return;
+            const dx = end.clientX - start.x;
+            if (Math.abs(dx) < 45 || Math.abs(dx) <= Math.abs(end.clientY - start.y)) return;
+            change(dx < 0 ? 1 : -1);
+          }}
+          onPointerDown={(event) => {
+            if (event.target === event.currentTarget) onClose();
+          }}
+        >
+          {activePhoto?.src && (
+            <img
+              src={PONDO_DOGS_ORIGINALS[activePhoto.src] ?? activePhoto.src}
+              alt={activePhoto.label}
+              className="max-h-[calc(100dvh-8rem)] max-w-[calc(100vw-2rem)] rounded-xl object-contain shadow-2xl sm:max-w-[calc(100vw-8rem)]"
+              onPointerDown={(event) => event.stopPropagation()}
+            />
+          )}
+          {count > 1 && (
+            <>
+              <Button type="button" size="icon" variant="secondary" aria-label="Previous photo" onClick={() => change(-1)} className="absolute left-0 top-1/2 z-10 h-14 w-14 -translate-y-1/2 rounded-full bg-background/90 text-foreground shadow-xl hover:bg-background sm:left-2 sm:h-16 sm:w-16">
+                <ChevronLeft className="h-8 w-8" aria-hidden="true" />
+              </Button>
+              <Button type="button" size="icon" variant="secondary" aria-label="Next photo" onClick={() => change(1)} className="absolute right-0 top-1/2 z-10 h-14 w-14 -translate-y-1/2 rounded-full bg-background/90 text-foreground shadow-xl hover:bg-background sm:right-2 sm:h-16 sm:w-16">
+                <ChevronRight className="h-8 w-8" aria-hidden="true" />
+              </Button>
+            </>
+          )}
+          <p aria-live="polite" className="absolute bottom-1 left-1/2 -translate-x-1/2 rounded-full bg-black/65 px-4 py-2 text-sm font-semibold text-white">
+            {activeIndex + 1} / {count}
+          </p>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
 function PhotoCollage({
   photos,
   variant = "A",
@@ -230,6 +328,8 @@ function PhotoCollage({
   icon?: string;
   className?: string;
 }) {
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const opener = useRef<HTMLButtonElement | null>(null);
   const slots = photos.slice(0, 4);
   while (slots.length < 3) slots.push({ label: "Pondo Dogs", tone: "earth" });
 
@@ -257,6 +357,7 @@ function PhotoCollage({
   };
   const cells = layouts[variant];
   const usable = slots.slice(0, cells.length);
+  const gallery = usable.filter((photo) => photo.src);
   const iconPos: Record<string, string> = {
     tl: "left-0 -top-3 md:-left-3",
     tr: "right-0 -top-3 md:-right-3",
@@ -272,20 +373,39 @@ function PhotoCollage({
       >
         {usable.map((p, i) => (
           <div key={i} className={`overflow-hidden ring-1 ring-black/10 ${cells[i]}`}>
-            <SmartImage
-              src={p.src ?? ""}
-              label={p.label}
-              tone={p.tone ?? "earth"}
-              rounded="rounded-none"
-              className="h-full w-full"
-              objectPosition={p.pos}
-              showMissingBadge={false}
-            />
-
+            <button
+              type="button"
+              className="block h-full w-full cursor-zoom-in disabled:cursor-default"
+              aria-label={`Enlarge ${p.label}`}
+              aria-haspopup="dialog"
+              disabled={!p.src}
+              onClick={(event) => {
+                opener.current = event.currentTarget;
+                setLightboxIndex(gallery.indexOf(p));
+              }}
+            >
+              <SmartImage
+                src={p.src ?? ""}
+                label={p.label}
+                tone={p.tone ?? "earth"}
+                rounded="rounded-none"
+                className="h-full w-full"
+                objectPosition={p.pos}
+                showMissingBadge={false}
+              />
+            </button>
           </div>
         ))}
       </div>
       {icon && <CollageIconBadge src={icon} alt="" className={`${iconPos[iconCorner]} rotate-[8deg]`} size={64} />}
+      {lightboxIndex !== null && (
+        <PondoDogsPhotoLightbox
+          photos={gallery}
+          index={lightboxIndex}
+          onClose={() => setLightboxIndex(null)}
+          onReturnFocus={() => opener.current?.focus()}
+        />
+      )}
     </div>
   );
 }
