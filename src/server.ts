@@ -1,4 +1,5 @@
 import "./lib/error-capture";
+import { handleDonationRequest } from "./lib/donations.server";
 
 import { consumeLastCapturedError } from "./lib/error-capture";
 import { renderErrorPage } from "./lib/error-page";
@@ -12,7 +13,7 @@ let serverEntryPromise: Promise<ServerEntry> | undefined;
 async function getServerEntry(): Promise<ServerEntry> {
   if (!serverEntryPromise) {
     serverEntryPromise = import("@tanstack/react-start/server-entry").then(
-      (m) => ((m as { default?: ServerEntry }).default ?? (m as unknown as ServerEntry)),
+      (m) => (m as { default?: ServerEntry }).default ?? (m as unknown as ServerEntry),
     );
   }
   return serverEntryPromise;
@@ -68,6 +69,16 @@ async function normalizeCatastrophicSsrResponse(response: Response): Promise<Res
 
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
+    if (new URL(request.url).pathname.startsWith("/api/donations/")) {
+      // Nitro invokes the TanStack server with a single Request. Cloudflare bindings
+      // travel on request.runtime.cloudflare.env; direct Worker calls pass env.
+      const runtime = (
+        request as Request & {
+          runtime?: { cloudflare?: { env?: unknown } };
+        }
+      ).runtime;
+      return handleDonationRequest(request, env ?? runtime?.cloudflare?.env);
+    }
     try {
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
