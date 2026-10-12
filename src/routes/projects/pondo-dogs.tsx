@@ -258,10 +258,10 @@ function PhotoCollage({
   const cells = layouts[variant];
   const usable = slots.slice(0, cells.length);
   const iconPos: Record<string, string> = {
-    tl: "-left-3 -top-3",
-    tr: "-right-3 -top-3",
-    bl: "-left-3 -bottom-3",
-    br: "-right-3 -bottom-3",
+    tl: "left-0 -top-3 md:-left-3",
+    tr: "right-0 -top-3 md:-right-3",
+    bl: "left-0 -bottom-3 md:-left-3",
+    br: "right-0 -bottom-3 md:-right-3",
   };
 
   return (
@@ -1203,7 +1203,7 @@ function KustenhundLink({ className = "" }: { className?: string }) {
 }
 
 function PawDoodle({ className = "h-5 w-5" }: { className?: string }) {
-  return <PawPrint className={`${className} text-[var(--ithemba-yellow)]`} aria-hidden />;
+  return <PawPrint className={`${className} shrink-0 text-[var(--ithemba-yellow)]`} aria-hidden />;
 }
 
 function SectionHeading({
@@ -1332,19 +1332,19 @@ function Hero({ c }: { c: Copy }) {
           </div>
 
           <div className="mt-7 flex flex-wrap gap-2">
-            <Link to="/donate">
+            <Link to="/donate" className="min-w-0 max-w-full">
               <Button
                 size="lg"
-                className="rounded-full bg-[var(--ithemba-yellow)] font-semibold text-[var(--ithemba-brown)] shadow-lg hover:bg-[var(--ithemba-yellow)]/95"
+                className="max-md:h-auto max-md:min-h-11 max-md:max-w-full max-md:whitespace-normal max-md:px-4 max-md:py-2.5 rounded-full bg-[var(--ithemba-yellow)] font-semibold text-[var(--ithemba-brown)] shadow-lg hover:bg-[var(--ithemba-yellow)]/95"
               >
                 <Heart className="mr-2 h-4 w-4 fill-current" /> {c.hero.monthly}
               </Button>
             </Link>
-            <Link to="/donate">
+            <Link to="/donate" className="min-w-0 max-w-full">
               <Button
                 size="lg"
                 variant="outline"
-                className="rounded-full border-white/40 bg-white/10 text-white hover:bg-white/20 hover:text-white"
+                className="max-md:h-auto max-md:min-h-11 max-md:max-w-full max-md:whitespace-normal max-md:px-4 max-md:py-2.5 rounded-full border-white/40 bg-white/10 text-white hover:bg-white/20 hover:text-white"
               >
                 {c.hero.once}
               </Button>
@@ -1646,8 +1646,8 @@ function Sterilisation({ c }: { c: Copy }) {
               ]}
             />
             {/* clean icon badge */}
-            <div className="absolute -bottom-4 -right-2 z-20 flex items-center gap-2 rounded-full bg-white/95 px-3 py-2 text-[var(--ithemba-blue-dark)] shadow-lg ring-1 ring-[var(--ithemba-yellow)]/40 backdrop-blur">
-              <PdIcon src={ICON.sterilisation} className="h-7 w-7" />
+            <div className="absolute -bottom-4 right-0 z-20 flex max-w-full items-center gap-2 md:-right-2 rounded-full bg-white/95 px-3 py-2 text-[var(--ithemba-blue-dark)] shadow-lg ring-1 ring-[var(--ithemba-yellow)]/40 backdrop-blur">
+              <PdIcon src={ICON.sterilisation} className="h-7 w-7 shrink-0" />
               <span className="pr-1 text-xs font-semibold uppercase tracking-wide">
                 {c.sterilisation.eyebrow}
               </span>
@@ -1680,7 +1680,7 @@ function Sterilisation({ c }: { c: Copy }) {
                 loading="lazy"
                 className="h-16 w-auto max-w-[140px] object-contain"
               />
-              <div className="flex-1 min-w-[200px]">
+              <div className="min-w-0 flex-1 md:min-w-[200px]">
                 <div className="text-xs font-semibold uppercase tracking-wide text-white/70">
                   Partner
                 </div>
@@ -1919,18 +1919,18 @@ function Monthly({ c }: { c: Copy }) {
     <section className="relative overflow-hidden bg-[var(--ithemba-cream)] py-20">
       <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 blob bg-[var(--ithemba-yellow)]/20" />
       <div className="relative mx-auto grid max-w-6xl gap-10 px-4 md:grid-cols-2 md:items-center lg:px-8">
-        <div>
+        <div className="min-w-0">
           <SectionHeading eyebrow={c.monthly.eyebrow} title={c.monthly.title} />
           <div className="mt-5 space-y-4 text-lg leading-relaxed text-foreground/85">
             {c.monthly.body.map((p, i) => (
               <p key={i}>{p}</p>
             ))}
           </div>
-          <div className="mt-6 flex flex-wrap gap-2">
+          <div className="mt-6 flex min-w-0 max-w-full flex-wrap gap-2">
             {c.monthly.trust.map((t) => (
               <span
                 key={t}
-                className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-[var(--ithemba-blue-dark)] ring-1 ring-[var(--ithemba-blue)]/15"
+                className="min-w-0 max-w-full whitespace-normal rounded-full bg-white px-3 py-1 text-xs font-semibold text-[var(--ithemba-blue-dark)] ring-1 ring-[var(--ithemba-blue)]/15"
               >
                 <ShieldCheck className="mr-1 inline h-3.5 w-3.5 text-[var(--ithemba-yellow)]" />
                 {t}
@@ -1939,12 +1939,12 @@ function Monthly({ c }: { c: Copy }) {
           </div>
         </div>
 
-        <div className="rounded-[2.5rem] bg-white p-8 shadow-xl ring-1 ring-[var(--ithemba-blue)]/15">
+        <div className="min-w-0 max-w-full rounded-[2.5rem] bg-white p-5 md:p-8 shadow-xl ring-1 ring-[var(--ithemba-blue)]/15">
           <div className="flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--ithemba-yellow)] text-[var(--ithemba-brown)]">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[var(--ithemba-yellow)] text-[var(--ithemba-brown)]">
               <PawPrint className="h-6 w-6" />
             </div>
-            <div>
+            <div className="min-w-0">
               <div className="text-xs font-semibold uppercase tracking-wide text-foreground/60">
                 {c.monthly.cardHeading}
               </div>
@@ -1956,20 +1956,20 @@ function Monthly({ c }: { c: Copy }) {
           <p className="mt-4 text-sm leading-relaxed text-foreground/80">
             {c.monthly.cardText}
           </p>
-          <div className="mt-6 grid gap-2">
-            <Link to="/donate">
+          <div className="mt-6 grid min-w-0 gap-2">
+            <Link to="/donate" className="min-w-0 max-w-full">
               <Button
                 size="lg"
-                className="w-full rounded-full bg-[var(--ithemba-yellow)] font-semibold text-[var(--ithemba-brown)] hover:bg-[var(--ithemba-yellow)]/95"
+                className="max-md:h-auto max-md:min-h-11 max-md:max-w-full max-md:whitespace-normal max-md:px-4 max-md:py-2.5 w-full rounded-full bg-[var(--ithemba-yellow)] font-semibold text-[var(--ithemba-brown)] hover:bg-[var(--ithemba-yellow)]/95"
               >
                 <Heart className="mr-2 h-4 w-4 fill-current" /> {c.monthly.cta1}
               </Button>
             </Link>
-            <Link to="/donate">
+            <Link to="/donate" className="min-w-0 max-w-full">
               <Button
                 size="lg"
                 variant="outline"
-                className="w-full rounded-full border-[var(--ithemba-blue)]/25"
+                className="max-md:h-auto max-md:min-h-11 max-md:max-w-full max-md:whitespace-normal max-md:px-4 max-md:py-2.5 w-full rounded-full border-[var(--ithemba-blue)]/25"
               >
                 {c.monthly.cta2}
               </Button>
@@ -2085,7 +2085,7 @@ function Impact({ c }: { c: Copy }) {
 /* ---------- CLOSING ---------- */
 function Closing({ c }: { c: Copy }) {
   return (
-    <section id="pondo-dogs-closing" className="relative overflow-hidden bg-[var(--ithemba-blue-deepest)] py-16 text-white md:py-20">
+    <section id="pondo-dogs-closing" className="relative overflow-hidden bg-[var(--ithemba-blue-deepest)] pb-[calc(5rem+env(safe-area-inset-bottom,0px))] pt-16 text-white md:py-20">
       <div className="relative mx-auto max-w-4xl px-4 text-center lg:px-8">
         <div className="hand-eyebrow-lg !text-[var(--ithemba-yellow)] flex items-center justify-center gap-2">
           <PawDoodle /> {c.closing.eyebrow}
@@ -2097,28 +2097,28 @@ function Closing({ c }: { c: Copy }) {
           ))}
         </div>
         <div className="mt-8 flex flex-wrap justify-center gap-2">
-          <Link to="/donate">
+          <Link to="/donate" className="min-w-0 max-w-full">
             <Button
               size="lg"
-              className="rounded-full bg-[var(--ithemba-yellow)] font-semibold text-[var(--ithemba-brown)] hover:bg-[var(--ithemba-yellow)]/95"
+              className="max-md:h-auto max-md:min-h-11 max-md:max-w-full max-md:whitespace-normal max-md:px-4 max-md:py-2.5 rounded-full bg-[var(--ithemba-yellow)] font-semibold text-[var(--ithemba-brown)] hover:bg-[var(--ithemba-yellow)]/95"
             >
               <Heart className="mr-2 h-4 w-4 fill-current" /> {c.closing.monthly}
             </Button>
           </Link>
-          <Link to="/donate">
+          <Link to="/donate" className="min-w-0 max-w-full">
             <Button
               size="lg"
               variant="outline"
-              className="rounded-full border-white/40 bg-white/10 text-white hover:bg-white/20 hover:text-white"
+              className="max-md:h-auto max-md:min-h-11 max-md:max-w-full max-md:whitespace-normal max-md:px-4 max-md:py-2.5 rounded-full border-white/40 bg-white/10 text-white hover:bg-white/20 hover:text-white"
             >
               {c.closing.once}
             </Button>
           </Link>
-          <Link to="/projects">
+          <Link to="/projects" className="min-w-0 max-w-full">
             <Button
               size="lg"
               variant="ghost"
-              className="rounded-full text-white hover:bg-white/10 hover:text-white"
+              className="max-md:h-auto max-md:min-h-11 max-md:max-w-full max-md:whitespace-normal max-md:px-4 max-md:py-2.5 rounded-full text-white hover:bg-white/10 hover:text-white"
             >
               {c.closing.all}
             </Button>
@@ -2134,7 +2134,7 @@ function PondoDogsPage() {
   const { lang } = useLang();
   const c = COPY[lang];
   return (
-    <>
+    <div className="[overflow-wrap:anywhere]">
       <style>{`main:has(#pondo-dogs-closing) + footer { margin-top: 0; }`}</style>
       <Hero c={c} />
       <Snapshot c={c} />
@@ -2208,6 +2208,6 @@ function PondoDogsPage() {
       <Monthly c={c} />
       <Impact c={c} />
       <Closing c={c} />
-    </>
+    </div>
   );
 }
