@@ -128,7 +128,8 @@ step1.num: 01
 step1.tag: Structural Problem
 step1.heading: Women and children carry the heaviest burden
 step1.text_block: In rural communities, unsafe water is also a gendered crisis. Women, grandmothers and teenage girls often carry the daily responsibility of collecting water, walking into forests to cut and carry firewood, boiling water at home and caring for children when waterborne illness affects the household. When children become sick, they miss school. Caregivers may have to travel long distances to clinics, often without enough money for transport. This creates many hours of unpaid labour, missed learning, fewer chances to seek paid work and deeper pressure on already vulnerable households.
-step1.cta_label: Read the Full Picture
+step1.deep_dive_intro: See what this structural water crisis means in the daily life of a woman in Pondoland.
+step1.cta_label: Step into her daily reality
 step1.image_path: /pureflow problem.png
 
 # STEP 02: PureFlow Model
