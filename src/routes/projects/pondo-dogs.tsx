@@ -107,6 +107,7 @@ const PH = {
 
 
 const KUSTENHUND_URL = "https://www.kuestenhund.com/";
+const ILLUSTRATED_STORY_URL = "https://dogslife.ithembakuluntu.org/";
 
 /* ---------- custom Pondo Dogs icons ---------- */
 const PD_ICON = "/assets/icons/projects/pondo-dogs";
@@ -447,7 +448,7 @@ type Copy = {
     facts: Fact[];
     partnerLine: { pre: string; post: string }; // "... with Küstenhund e.V. for monthly sterilisation campaigns"
   };
-  who: { eyebrow: string; title: string; body: string[] };
+  who: { eyebrow: string; title: string; body: string[]; storyIntro: string; storyCta: string };
   believe: { eyebrow: string; title: string; body: string[] };
   why: { eyebrow: string; title: string; body: string[] };
   what: {
@@ -568,6 +569,8 @@ const COPY: Record<Lang, Copy> = {
         "We work with animals, owners and local community teams in Pondoland, South Africa. Our work is practical and community-based. We do not only respond when animals are already suffering. We support animals and families where they live, with care that is respectful, realistic and sustainable.",
         "Pondo Dogs is built on the understanding that many families care about their animals deeply, but do not always have access to veterinary support, transport, food, sterilisation, medication or reliable information. Our role is to help bridge that gap.",
       ],
+      storyIntro: "Explore everyday life for dogs and their owners in Pondoland through our illustrated story.",
+      storyCta: "Explore the illustrated story",
     },
     believe: {
       eyebrow: "What we",
@@ -827,6 +830,8 @@ const COPY: Record<Lang, Copy> = {
         "Wir arbeiten mit Tieren, Tierhalterinnen und Tierhaltern sowie lokalen Community-Teams in Pondoland, Südafrika. Unsere Arbeit ist praktisch und gemeindenah. Wir reagieren nicht erst dann, wenn Tiere bereits sichtbar leiden. Wir unterstützen Tiere und Familien dort, wo sie leben, mit Hilfe, die respektvoll, realistisch und langfristig tragfähig ist.",
         "Pondo Dogs basiert auf dem Verständnis, dass viele Familien ihre Tiere sehr lieben, aber nicht immer Zugang zu tierärztlicher Versorgung, Transport, Futter, Sterilisation, Medikamenten oder verlässlicher Information haben. Unsere Aufgabe ist es, diese Lücke zu überbrücken.",
       ],
+      storyIntro: "Entdecke den Alltag von Hunden und ihren Haltern in Pondoland in unserer illustrierten Geschichte.",
+      storyCta: "Illustrierte Geschichte entdecken",
     },
     believe: {
       eyebrow: "Woran",
@@ -1086,6 +1091,8 @@ const COPY: Record<Lang, Copy> = {
         "Wij werken met dieren, eigenaren en lokale communityteams in Pondoland, Zuid-Afrika. Ons werk is praktisch en gemeenschapsgericht. We komen niet pas in actie wanneer dieren al zichtbaar lijden. We ondersteunen dieren en families daar waar zij wonen, met zorg die respectvol, realistisch en duurzaam is.",
         "Pondo Dogs vertrekt vanuit het besef dat veel families veel om hun dieren geven, maar niet altijd toegang hebben tot diergeneeskundige zorg, vervoer, voeding, sterilisatie, medicatie of betrouwbare informatie. Onze rol is om die kloof te helpen overbruggen.",
       ],
+      storyIntro: "Ontdek het dagelijks leven van honden en hun eigenaren in Pondoland in ons geïllustreerde verhaal.",
+      storyCta: "Bekijk het geïllustreerde verhaal",
     },
     believe: {
       eyebrow: "Waarin",
@@ -1550,6 +1557,18 @@ function Who({ c }: { c: Copy }) {
             {c.who.body.map((p, i) => (
               <p key={i}>{p}</p>
             ))}
+          </div>
+          <div className="mt-6">
+            <p className="text-lg leading-relaxed text-foreground/85">{c.who.storyIntro}</p>
+            <Button
+              asChild
+              className="mt-4 h-auto min-h-11 max-w-full whitespace-normal rounded-full bg-[var(--ithemba-blue-dark)] px-5 py-2.5 text-white hover:bg-[var(--ithemba-blue-deepest)]"
+            >
+              <a href={ILLUSTRATED_STORY_URL}>
+                <span className="min-w-0">{c.who.storyCta}</span>
+                <ArrowRight className="h-4 w-4 shrink-0" aria-hidden="true" />
+              </a>
+            </Button>
           </div>
         </div>
       </div>
