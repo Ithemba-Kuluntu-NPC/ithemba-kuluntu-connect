@@ -126,7 +126,8 @@ step1.num: 01
 step1.tag: Structureel probleem
 step1.heading: Vrouwen en kinderen dragen de zwaarste last
 step1.text_block: In landelijke gemeenschappen is onveilig water ook een gendergebonden crisis. Vrouwen, grootmoeders en tienermeisjes dragen vaak de dagelijkse verantwoordelijkheid: water halen, het bos in gaan om brandhout te kappen en naar huis te dragen, water koken en kinderen verzorgen wanneer watergerelateerde ziekte het huishouden treft. Als kinderen ziek worden, missen zij school. Verzorgers moeten vaak lange afstanden afleggen naar klinieken, vaak zonder voldoende geld voor vervoer. Zo ontstaan vele uren onbetaald werk, gemiste leertijd, minder kansen op betaald werk en extra druk op huishoudens die al kwetsbaar zijn.
-step1.cta_label: Begrijp het volledige beeld
+step1.deep_dive_intro: Ontdek wat deze structurele watercrisis betekent in het dagelijks leven van een vrouw in Pondoland.
+step1.cta_label: Stap in haar dagelijks leven
 step1.image_path: /pureflow problem.png
 
 # STEP 02: PureFlow Model

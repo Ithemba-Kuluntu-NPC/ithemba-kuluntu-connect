@@ -1438,6 +1438,20 @@ function Step01Collage({ t }: { t: (k: string, fb?: string) => string }) {
             <p className="mt-3 text-base leading-relaxed md:text-lg" style={{ color: "#334155" }}>
               {t("step1.text_block")}
             </p>
+            <div className="mt-6">
+              <p className="text-base leading-relaxed" style={{ color: "#334155" }}>
+                {t("step1.deep_dive_intro")}
+              </p>
+              <Button
+                asChild
+                className="mt-4 h-auto min-h-11 max-w-full whitespace-normal rounded-full bg-[var(--ithemba-blue-dark)] px-5 py-2.5 text-white hover:bg-[var(--ithemba-blue-deepest)]"
+              >
+                <a href="https://women.ithembakuluntu.org/">
+                  <span className="min-w-0">{t("step1.cta_label")}</span>
+                  <ArrowRight className="h-4 w-4 shrink-0" aria-hidden="true" />
+                </a>
+              </Button>
+            </div>
           </div>
 
           {/* Editorial 4-photo collage */}
