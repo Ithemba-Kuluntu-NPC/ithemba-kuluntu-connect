@@ -68,7 +68,9 @@ function configuration(raw: unknown): DonationEnv {
   }
   const live = env.STRIPE_DONATIONS_MODE === "live";
   if (
-    !env.STRIPE_SECRET_KEY.startsWith(live ? "sk_live_" : "sk_test_") ||
+    ![live ? "sk_live_" : "sk_test_", live ? "rk_live_" : "rk_test_"].some((prefix) =>
+      env.STRIPE_SECRET_KEY.startsWith(prefix),
+    ) ||
     !env.STRIPE_PUBLISHABLE_KEY.startsWith(live ? "pk_live_" : "pk_test_")
   )
     throw new DonationError(503, "unavailable");

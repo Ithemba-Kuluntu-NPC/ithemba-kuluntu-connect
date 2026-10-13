@@ -65,7 +65,7 @@ function fixture() {
   };
   const env: DonationEnv = {
     DONATIONS_DB: db,
-    STRIPE_SECRET_KEY: "sk_test_fixture",
+    STRIPE_SECRET_KEY: "rk_test_fixture",
     STRIPE_PUBLISHABLE_KEY: "pk_test_fixture",
     STRIPE_WEBHOOK_SECRET: "whsec_fixture",
     DONATION_COOKIE_SECRET: "test-cookie-signing-secret-at-least-32-characters",
@@ -559,6 +559,137 @@ test("failed reconciliation is retryable and does not mark the webhook as handle
   assert.equal(res.status, 502);
   assert.equal(
     await f.db.prepare("SELECT id FROM donation_events WHERE id='evt_outage'").first(),
+    null,
+  );
+});
+
+test("standard and restricted keys preserve mode separation and the API version on every call", async () => {
+  for (const mode of ["test", "live"] as const) {
+    for (const kind of ["sk", "rk"]) {
+      const f = fixture();
+      f.env.STRIPE_DONATIONS_MODE = mode;
+      f.env.STRIPE_SECRET_KEY = `${kind}_${mode}_fixture`;
+      f.env.STRIPE_PUBLISHABLE_KEY = `pk_${mode}_fixture`;
+      const transport = globalThis.fetch;
+      const headers: Headers[] = [];
+      const queries: URLSearchParams[] = [];
+      globalThis.fetch = async (url, options) => {
+        headers.push(new Headers(options?.headers));
+        queries.push(new URL(String(url)).searchParams);
+        return transport(url, options);
+      };
+      const cookie = await f.bootstrap();
+      const config = await handleDonationRequest(f.request("config", cookie), f.env);
+      const publicConfig = await config.json();
+      assert.equal(publicConfig.publishableKey, `pk_${mode}_fixture`);
+      assert.equal(JSON.stringify(publicConfig).includes(f.env.STRIPE_SECRET_KEY), false);
+      assert.equal(
+        (
+          await handleDonationRequest(
+            f.request("create", cookie, { ...input, frequency: "monthly" }),
+            f.env,
+          )
+        ).status,
+        200,
+      );
+      f.setSession({
+        status: "complete",
+        subscription: {
+          status: "active",
+          current_period_end: 1800000000,
+          latest_invoice: { status: "paid", payment_intent: { status: "succeeded" } },
+        },
+      });
+      const status = await handleDonationRequest(
+        f.request(`status?id=${input.requestId}`, cookie),
+        f.env,
+      );
+      const value = await status.json();
+      assert.equal(value.status, "succeeded");
+      assert.equal(value.nextBillingAt, 1800000000);
+      assert.equal(
+        (await handleDonationRequest(f.request("portal", cookie, { id: input.requestId }), f.env))
+          .status,
+        200,
+      );
+      f.setSession({ status: "open", subscription: null });
+      assert.equal(
+        (await handleDonationRequest(f.request("cancel", cookie, { id: input.requestId }), f.env))
+          .status,
+        200,
+      );
+      assert.ok(headers.length >= 6);
+      for (const header of headers) {
+        assert.equal(header.get("Authorization"), `Bearer ${kind}_${mode}_fixture`);
+        assert.equal(header.get("Stripe-Version"), "2024-06-20");
+      }
+      assert.ok(
+        queries.some((query) => {
+          const expands = query.getAll("expand[]");
+          return (
+            expands.includes("payment_intent") &&
+            expands.includes("subscription.latest_invoice.payment_intent")
+          );
+        }),
+      );
+    }
+  }
+});
+
+test("mixed-mode, client, organization and unrecognized server keys are rejected before API calls", async () => {
+  const cases = [
+    { STRIPE_SECRET_KEY: "rk_live_fixture" },
+    { STRIPE_SECRET_KEY: "sk_live_fixture" },
+    { STRIPE_SECRET_KEY: "rk_test_fixture", STRIPE_PUBLISHABLE_KEY: "pk_live_fixture" },
+    {
+      STRIPE_DONATIONS_MODE: "live",
+      STRIPE_SECRET_KEY: "rk_test_fixture",
+      STRIPE_PUBLISHABLE_KEY: "pk_live_fixture",
+    },
+    {
+      STRIPE_DONATIONS_MODE: "live",
+      STRIPE_SECRET_KEY: "sk_test_fixture",
+      STRIPE_PUBLISHABLE_KEY: "pk_live_fixture",
+    },
+    {
+      STRIPE_DONATIONS_MODE: "live",
+      STRIPE_SECRET_KEY: "rk_live_fixture",
+      STRIPE_PUBLISHABLE_KEY: "pk_test_fixture",
+    },
+    { STRIPE_SECRET_KEY: "pk_test_fixture" },
+    { STRIPE_SECRET_KEY: "whsec_fixture" },
+    { STRIPE_SECRET_KEY: "sk_org_fixture" },
+    { STRIPE_SECRET_KEY: "rk_fixture" },
+    { STRIPE_SECRET_KEY: "prefix_rk_test_fixture" },
+  ];
+  for (const settings of cases) {
+    const f = fixture();
+    assert.equal(
+      (await handleDonationRequest(f.request("config"), { ...f.env, ...settings })).status,
+      503,
+    );
+    assert.equal(f.calls.length, 0);
+  }
+});
+
+test("insufficient restricted-key permissions fail closed without exposing Stripe errors or creating checkout", async () => {
+  const f = fixture();
+  const cookie = await f.bootstrap();
+  globalThis.fetch = async () =>
+    Response.json(
+      { error: { message: "Missing account read permission", type: "invalid_request_error" } },
+      { status: 403 },
+    );
+  const result = await handleDonationRequest(f.request("create", cookie, input), f.env);
+  assert.equal(result.status, 502);
+  assert.deepEqual(await result.json(), { error: "payment_service" });
+  assert.equal(
+    (
+      await f.db
+        .prepare("SELECT session_id FROM donations WHERE id=?")
+        .bind(input.requestId)
+        .first<{ session_id: string | null }>()
+    )?.session_id,
     null,
   );
 });

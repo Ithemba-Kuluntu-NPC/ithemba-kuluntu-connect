@@ -1,5 +1,7 @@
 # Copy to ignored .dev.vars for LOCAL TESTING ONLY. All values below are placeholders.
-STRIPE_SECRET_KEY="sk_test_REPLACE_FROM_ASSOCIATION_ACCOUNT"
+# Prefer a scoped restricted key; see docs/stripe-donations-setup.md for required permissions.
+# sk_test_ keys remain supported; server key and publishable key must use the same mode/account.
+STRIPE_SECRET_KEY="rk_test_REPLACE_FROM_ASSOCIATION_ACCOUNT"
 STRIPE_PUBLISHABLE_KEY="pk_test_REPLACE_FROM_SAME_ACCOUNT"
 STRIPE_WEBHOOK_SECRET="whsec_REPLACE_FROM_STRIPE_LISTEN"
 STRIPE_ACCOUNT_ID="acct_REPLACE_VERIFIED_ITHEMBA_KULUNTU_EV"
