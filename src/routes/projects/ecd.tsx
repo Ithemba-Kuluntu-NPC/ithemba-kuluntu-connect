@@ -3,8 +3,11 @@ import { createSeoHead } from "@/lib/seo";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import {
   ArrowLeft,
+  ChevronLeft,
+  ChevronRight,
   Heart,
   Sparkles,
   Sun,
@@ -80,6 +83,119 @@ const P = {
   building4: `${ECD_MEDIA}/ECD-building-phase-4.jpeg`,
 } as const;
 
+// Verified derivative → original pairs from scripts/generate-web-media.mjs.
+// Only the lightbox uses these; normal photo sources stay optimized.
+const ECD_ORIGINALS: Record<string, string> = {
+  [P.playingRing]: `${ECD_MEDIA}/ECD-children-playing-with-ring.jpg`,
+  [P.porridgeBoy]: `${ECD_MEDIA}/ECD-close-up-boy-eating-breakfast-porrdige.jpg`,
+};
+
+function EcdPhotoLightbox({
+  photos,
+  index,
+  onClose,
+  onReturnFocus,
+}: {
+  photos: EcdCollageSlot[];
+  index: number;
+  onClose: () => void;
+  onReturnFocus: () => void;
+}) {
+  const [activeIndex, setActiveIndex] = useState(index);
+  const touchStart = useRef<{ x: number; y: number } | null>(null);
+  const count = photos.length;
+  const activePhoto = photos[activeIndex];
+  const change = (direction: -1 | 1) => {
+    if (count < 2) return;
+    setActiveIndex((current) => (current + direction + count) % count);
+  };
+
+  return (
+    <Dialog open onOpenChange={(open) => !open && onClose()}>
+      <DialogContent
+        aria-describedby={undefined}
+        onCloseAutoFocus={(event) => {
+          event.preventDefault();
+          onReturnFocus();
+        }}
+        onPointerDown={(event) => {
+          if (event.target === event.currentTarget) onClose();
+        }}
+        onKeyDown={(event) => {
+          if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+            event.preventDefault();
+            change(event.key === "ArrowLeft" ? -1 : 1);
+          }
+        }}
+        className="flex h-[100dvh] w-screen max-w-none items-center justify-center border-0 bg-transparent p-4 shadow-none sm:rounded-none sm:p-8 [&>button]:right-4 [&>button]:top-4 [&>button]:z-20 [&>button]:grid [&>button]:h-12 [&>button]:w-12 [&>button]:place-items-center [&>button]:rounded-full [&>button]:bg-black/55 [&>button]:text-white [&>button]:opacity-100 [&>button_svg]:h-7 [&>button_svg]:w-7"
+      >
+        <DialogTitle className="sr-only">No.1 ECD Centre photo gallery</DialogTitle>
+        <div
+          className="relative flex h-full w-full items-center justify-center"
+          onTouchStart={(event) => {
+            const touch = event.touches.length === 1 ? event.touches[0] : undefined;
+            touchStart.current = touch ? { x: touch.clientX, y: touch.clientY } : null;
+          }}
+          onTouchCancel={() => {
+            touchStart.current = null;
+          }}
+          onTouchEnd={(event) => {
+            const start = touchStart.current;
+            const end = event.changedTouches[0];
+            touchStart.current = null;
+            if (!start || !end) return;
+            const dx = end.clientX - start.x;
+            if (Math.abs(dx) < 45 || Math.abs(dx) <= Math.abs(end.clientY - start.y)) return;
+            change(dx < 0 ? 1 : -1);
+          }}
+          onPointerDown={(event) => {
+            if (event.target === event.currentTarget) onClose();
+          }}
+        >
+          {activePhoto?.src && (
+            <img
+              src={ECD_ORIGINALS[activePhoto.src] ?? activePhoto.src}
+              alt={activePhoto.label}
+              className="max-h-[calc(100dvh-8rem)] max-w-[calc(100vw-2rem)] rounded-xl object-contain shadow-2xl sm:max-w-[calc(100vw-8rem)]"
+              onPointerDown={(event) => event.stopPropagation()}
+            />
+          )}
+          {count > 1 && (
+            <>
+              <Button
+                type="button"
+                size="icon"
+                variant="secondary"
+                aria-label="Previous photo"
+                onClick={() => change(-1)}
+                className="absolute left-0 top-1/2 z-10 h-14 w-14 -translate-y-1/2 rounded-full bg-background/90 text-foreground shadow-xl hover:bg-background sm:left-2 sm:h-16 sm:w-16"
+              >
+                <ChevronLeft className="h-8 w-8" aria-hidden="true" />
+              </Button>
+              <Button
+                type="button"
+                size="icon"
+                variant="secondary"
+                aria-label="Next photo"
+                onClick={() => change(1)}
+                className="absolute right-0 top-1/2 z-10 h-14 w-14 -translate-y-1/2 rounded-full bg-background/90 text-foreground shadow-xl hover:bg-background sm:right-2 sm:h-16 sm:w-16"
+              >
+                <ChevronRight className="h-8 w-8" aria-hidden="true" />
+              </Button>
+            </>
+          )}
+          <p
+            aria-live="polite"
+            className="absolute bottom-1 left-1/2 -translate-x-1/2 rounded-full bg-black/65 px-4 py-2 text-sm font-semibold text-white"
+          >
+            {activeIndex + 1} / {count}
+          </p>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
 /** Small connected photo strip used to keep sections compact. */
 function PhotoStrip({
   photos,
@@ -90,13 +206,26 @@ function PhotoStrip({
   className?: string;
   aspect?: string;
 }) {
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const opener = useRef<HTMLButtonElement | null>(null);
+
   return (
     <div
       className={`grid gap-2 overflow-hidden rounded-[1.75rem] ring-1 ring-white/15 ${className}`}
       style={{ filter: "drop-shadow(0 18px 40px rgba(10,30,60,0.35))" }}
     >
       {photos.map((p, i) => (
-        <div key={i} className={`${aspect} overflow-hidden rounded-xl`}>
+        <button
+          key={i}
+          type="button"
+          className={`${aspect} block overflow-hidden rounded-xl cursor-zoom-in transition-opacity hover:opacity-90 relative focus-visible:outline-none after:pointer-events-none after:absolute after:inset-0 after:z-10 after:rounded-[inherit] focus-visible:after:ring-2 focus-visible:after:ring-inset focus-visible:after:ring-[var(--ithemba-yellow)]`}
+          aria-label={`Enlarge ${p.label}`}
+          aria-haspopup="dialog"
+          onClick={(event) => {
+            opener.current = event.currentTarget;
+            setLightboxIndex(i);
+          }}
+        >
           <img
             src={p.src}
             alt={p.label}
@@ -104,8 +233,16 @@ function PhotoStrip({
             className="h-full w-full object-cover"
             style={p.position ? { objectPosition: p.position } : undefined}
           />
-        </div>
+        </button>
       ))}
+      {lightboxIndex !== null && (
+        <EcdPhotoLightbox
+          photos={photos}
+          index={lightboxIndex}
+          onClose={() => setLightboxIndex(null)}
+          onReturnFocus={() => opener.current?.focus()}
+        />
+      )}
     </div>
   );
 }
@@ -921,6 +1058,8 @@ function PhotoCollage({
   icon?: string;
   className?: string;
 }) {
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const opener = useRef<HTMLButtonElement | null>(null);
   const layouts: Record<"A" | "B" | "C", string[]> = {
     A: [
       "col-span-7 row-span-4 rounded-tl-[2.5rem] rounded-br-2xl rounded-tr-xl rounded-bl-xl",
@@ -942,6 +1081,7 @@ function PhotoCollage({
   };
   const cells = layouts[variant];
   const usable = photos.slice(0, cells.length);
+  const gallery = usable.filter((photo) => photo.src);
   const iconPos: Record<string, string> = {
     tl: "-left-3 -top-3",
     tr: "-right-3 -top-3",
@@ -956,14 +1096,26 @@ function PhotoCollage({
       >
         {usable.map((p, i) => (
           <div key={i} className={`overflow-hidden ring-1 ring-black/10 ${cells[i]}`}>
-            <SmartImage
-              src={p.src ?? ""}
-              label={p.label}
-              tone={p.tone ?? "warm"}
-              rounded="rounded-none"
-              className="h-full w-full"
-              showMissingBadge={false}
-            />
+            <button
+              type="button"
+              className="block h-full w-full cursor-zoom-in transition-opacity hover:opacity-90 relative focus-visible:outline-none after:pointer-events-none after:absolute after:inset-0 after:z-10 after:rounded-[inherit] focus-visible:after:ring-2 focus-visible:after:ring-inset focus-visible:after:ring-[var(--ithemba-yellow)] disabled:cursor-default"
+              aria-label={`Enlarge ${p.label}`}
+              aria-haspopup="dialog"
+              disabled={!p.src}
+              onClick={(event) => {
+                opener.current = event.currentTarget;
+                setLightboxIndex(gallery.indexOf(p));
+              }}
+            >
+              <SmartImage
+                src={p.src ?? ""}
+                label={p.label}
+                tone={p.tone ?? "warm"}
+                rounded="rounded-none"
+                className="h-full w-full"
+                showMissingBadge={false}
+              />
+            </button>
           </div>
         ))}
       </div>
@@ -973,6 +1125,14 @@ function PhotoCollage({
           alt=""
           className={`${iconPos[iconCorner]} rotate-[8deg]`}
           size={64}
+        />
+      )}
+      {lightboxIndex !== null && (
+        <EcdPhotoLightbox
+          photos={gallery}
+          index={lightboxIndex}
+          onClose={() => setLightboxIndex(null)}
+          onReturnFocus={() => opener.current?.focus()}
         />
       )}
     </div>
@@ -1481,6 +1641,14 @@ function Provides({ c }: { c: Copy }) {
 
 /* ---------- NUTRITION ---------- */
 function Nutrition({ c }: { c: Copy }) {
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const opener = useRef<HTMLButtonElement | null>(null);
+  const photos = [
+    { src: P.lunchMain, label: "A warm lunch served at the ECD Centre" },
+    { src: P.food, label: "Food prepared in the ECD kitchen" },
+    { src: P.foodBowls, label: "Bowls filled with food for the children" },
+  ];
+
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-[var(--ithemba-blue-dark)] via-[var(--ithemba-blue)] to-[var(--ithemba-blue-dark)] py-20 text-white">
       <div className="pointer-events-none absolute right-[-6rem] top-[-6rem] h-[24rem] w-[24rem] sun-glow" />
@@ -1490,7 +1658,16 @@ function Nutrition({ c }: { c: Copy }) {
             className="grid grid-cols-2 grid-rows-2 gap-2.5 md:gap-3"
             style={{ filter: "drop-shadow(0 22px 50px rgba(10,30,55,0.35))" }}
           >
-            <div className="col-span-2 overflow-hidden rounded-[2rem] ring-1 ring-white/15">
+            <button
+              type="button"
+              className="col-span-2 overflow-hidden rounded-[2rem] ring-1 ring-white/15 block cursor-zoom-in transition-opacity hover:opacity-90 relative focus-visible:outline-none after:pointer-events-none after:absolute after:inset-0 after:z-10 after:rounded-[inherit] focus-visible:after:ring-2 focus-visible:after:ring-inset focus-visible:after:ring-[var(--ithemba-yellow)]"
+              aria-label={`Enlarge ${photos[0].label}`}
+              aria-haspopup="dialog"
+              onClick={(event) => {
+                opener.current = event.currentTarget;
+                setLightboxIndex(0);
+              }}
+            >
               <img
                 src={P.lunchMain}
                 alt="A warm lunch served at the ECD Centre"
@@ -1498,24 +1675,50 @@ function Nutrition({ c }: { c: Copy }) {
                 className="aspect-[16/9] h-full w-full object-cover"
                 style={{ objectPosition: "center 45%" }}
               />
-            </div>
-            <div className="overflow-hidden rounded-3xl ring-1 ring-white/15">
+            </button>
+            <button
+              type="button"
+              className="overflow-hidden rounded-3xl ring-1 ring-white/15 block cursor-zoom-in transition-opacity hover:opacity-90 relative focus-visible:outline-none after:pointer-events-none after:absolute after:inset-0 after:z-10 after:rounded-[inherit] focus-visible:after:ring-2 focus-visible:after:ring-inset focus-visible:after:ring-[var(--ithemba-yellow)]"
+              aria-label={`Enlarge ${photos[1].label}`}
+              aria-haspopup="dialog"
+              onClick={(event) => {
+                opener.current = event.currentTarget;
+                setLightboxIndex(1);
+              }}
+            >
               <img
                 src={P.food}
                 alt="Food prepared in the ECD kitchen"
                 loading="lazy"
                 className="aspect-square h-full w-full object-cover"
               />
-            </div>
-            <div className="overflow-hidden rounded-3xl ring-1 ring-white/15">
+            </button>
+            <button
+              type="button"
+              className="overflow-hidden rounded-3xl ring-1 ring-white/15 block cursor-zoom-in transition-opacity hover:opacity-90 relative focus-visible:outline-none after:pointer-events-none after:absolute after:inset-0 after:z-10 after:rounded-[inherit] focus-visible:after:ring-2 focus-visible:after:ring-inset focus-visible:after:ring-[var(--ithemba-yellow)]"
+              aria-label={`Enlarge ${photos[2].label}`}
+              aria-haspopup="dialog"
+              onClick={(event) => {
+                opener.current = event.currentTarget;
+                setLightboxIndex(2);
+              }}
+            >
               <img
                 src={P.foodBowls}
                 alt="Bowls filled with food for the children"
                 loading="lazy"
                 className="aspect-square h-full w-full object-cover"
               />
-            </div>
+            </button>
           </div>
+          {lightboxIndex !== null && (
+            <EcdPhotoLightbox
+              photos={photos}
+              index={lightboxIndex}
+              onClose={() => setLightboxIndex(null)}
+              onReturnFocus={() => opener.current?.focus()}
+            />
+          )}
         </div>
 
         <div className="flex flex-col justify-center">
