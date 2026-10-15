@@ -89,7 +89,7 @@ impact.counters.wash_events.label: WASH education, community training and househ
 impact.counters.litres.value: 45M+
 impact.counters.litres.label: Litres of safe-water treatment capacity enabled
 
-impact.counters.co2.value: 8,000+
+impact.counters.co2.value: 4,500+
 impact.counters.co2.label: Tonnes CO₂e reduction potential, subject to verification
 
 # ------------------------------------------
