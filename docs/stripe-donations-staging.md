@@ -1,5 +1,7 @@
 # Isolated donations staging: operator runbook
 
+**Prefer a browser-only route?** Follow [Browser-only setup](stripe-donations-browser-setup.md). The GitHub migration job needs one encrypted staging connection and performs no Worker deployment; the terminal instructions below are optional for technical operators.
+
 Prepared on `codex/stripe-donations-integration` for Draft PR #26. **Preparation only: no remote migration, deployment, merge, production setting change or Stripe secret handling has been performed.** All commands below run from the repository root. Commands marked **remote** are future operator actions, not commands executed during this preparation.
 
 ## Fixed targets
