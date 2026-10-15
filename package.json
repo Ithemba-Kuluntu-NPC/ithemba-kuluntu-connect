@@ -12,7 +12,10 @@
     "format": "prettier --write .",
     "generate:web-media": "node scripts/generate-web-media.mjs",
     "typecheck": "tsc --noEmit",
-    "test:donations": "node --test --test-isolation=none tests/donations.test.ts"
+    "test:donations": "node --test --test-isolation=none tests/donations.test.ts",
+    "check:donations-staging": "node scripts/check-donations-staging.mjs",
+    "test:donations-staging": "node --test --test-isolation=none tests/donations-staging.test.mjs",
+    "build:donations-staging": "npm run check:donations-staging && npm run build && node scripts/check-donations-staging.mjs --built"
   },
   "dependencies": {
     "@cloudflare/vite-plugin": "^1.25.5",

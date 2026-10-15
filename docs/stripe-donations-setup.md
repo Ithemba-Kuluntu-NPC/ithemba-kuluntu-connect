@@ -88,18 +88,13 @@ The checked contract includes `ui_mode=embedded`, `redirect_on_completion`, `ret
 
 Monthly creation fails closed without a portal configuration and login URL. Configure the Portal's branding, verified association name/support details, allowed payment updates and subscription cancellation policy. Enable the portal email login link and test it for recurring donors. Each donation deliberately has its own Stripe Customer: repeated gifts from one email are not automatically merged into an account. Confirm the Portal's same-email behavior with repeat donors, and provide support for association-side reconciliation if Stripe selects one of multiple Customers. Never resolve a customer solely by an unauthenticated email submitted to our backend.
 
-For a **reviewed staging configuration only**, add the D1 binding to the Worker build configuration before building (the generated `.output/server/wrangler.json` must contain it). Example binding snippet:
+### Isolated Cloudflare staging Worker
 
-```json
-"d1_databases": [{
-  "binding": "DONATIONS_DB",
-  "database_name": "ithemba-donations-staging",
-  "database_id": "REPLACE_WITH_STAGING_D1_ID",
-  "migrations_dir": "migrations"
-}]
-```
+The staging D1 database now exists: **`ithemba-donations-staging`**, ID **`990e1489-72e6-4a2b-b2f6-dbb4863e4971`**. The standalone [`wrangler.donations-staging.jsonc`](../wrangler.donations-staging.jsonc) binds it as **`DONATIONS_DB`**, using the unchanged `migrations/0001_donations.sql`. Its Worker name is **`ithemba-donations-staging`**, not production **`tanstack-start-app`**. No production config, route, binding or secret is inherited. It exposes only a separate `workers.dev` address, disables preview URLs, has no custom routes and pins donation mode to `test` with optional methods disabled. No Stripe secrets or origin/account placeholders are included.
 
-Run `wrangler d1 migrations apply <staging database> --remote --config <staging config>` only against the approved staging database. Configure secrets in that Worker through Cloudflare's dashboard or `wrangler secret put <NAME> --config <staging config>`. Set the remaining settings as Worker variables. Do not copy keys into a PR. No Cloudflare production configuration was changed in this branch; the production D1 binding/migration and secrets are future manual launch steps, requiring separate approval.
+Follow the exact commands and approval boundaries in the [staging runbook](stripe-donations-staging.md). `npm run check:donations-staging` checks the installed Wrangler's actual explicit-config resolution and rejects production targets, alternate D1 bindings, routes, named environments and unreviewed variables. `npm run build:donations-staging` builds locally and rechecks the compiled entry/assets. These commands do not migrate, deploy or read Stripe secrets. The guard is deliberately strict: adding later staging-only origin/account/portal variables requires a reviewed guard/config update; use distinct staging secrets when separately authorized. Do not copy production newsletter/contact credentials.
+
+The normal build still emits a generated configuration named `tanstack-start-app`. Leave it and `wrangler.jsonc` unchanged; **never use either for staging deployment**. Every staging remote command must specify `--config ./wrangler.donations-staging.jsonc`; explicit config selection overrides `.wrangler/deploy/config.json`. Do not use bare deploy commands, `nitro deploy`, `--name`, `--env` or automatic publishing. The isolation check proves the supplied configuration targets staging; it cannot restrict what an account-wide Cloudflare token can do if someone deliberately selects/overrides another config. No remote migrations, deployments, live settings or Stripe secrets were handled while preparing this configuration.
 
 ## Local testing without deployment
 
@@ -149,7 +144,7 @@ Receipt-request metadata and Stripe's full billing address support a separate as
 ## Pre-launch acceptance checklist
 
 1. Confirm branch/PR review, beneficiary account, legal terms, privacy/retention, cause restrictions and certificate process.
-2. Create staging D1, apply migration, set only test keys and required variables, configure Stripe test webhook/Portal/receipt emails. Verify `/config` succeeds and no secret is present in public assets or responses.
+2. Verify the existing staging D1 target and follow the staged approval steps in the runbook before applying the migration or deploying. In the later Stripe setup phase, set only test keys and required variables and configure Stripe test webhook/Portal/receipt emails. Verify `/config` succeeds and no secret is present in public assets or responses.
 3. Exercise all three languages at mobile/desktop sizes; six causes; every preset and decimal custom amount; invalid/large amounts; donor email/country and receipt-address collection.
 4. Complete test card success, decline and 3DS flows; cancel and reload an open checkout; double-click/retry with the same UUID; verify no duplicate Customer/Session/Subscription.
 5. Test monthly first payment and renewal success, failure/SCA, pending SEPA, recovery, immediate/scheduled cancellation, Portal payment updates and email login on a different device.
