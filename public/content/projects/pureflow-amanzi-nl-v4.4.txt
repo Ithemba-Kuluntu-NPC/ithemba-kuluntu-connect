@@ -87,7 +87,7 @@ impact.counters.wash_events.label: WASH-educatie, gemeenschapstrainingen en opvo
 impact.counters.litres.value: 45M+
 impact.counters.litres.label: Liter capaciteit voor veilige waterbehandeling mogelijk gemaakt
 
-impact.counters.co2.value: 8,000+
+impact.counters.co2.value: 4,500+
 impact.counters.co2.label: Ton CO₂e-reductiepotentieel, onder voorbehoud van verificatie
 
 # ------------------------------------------
