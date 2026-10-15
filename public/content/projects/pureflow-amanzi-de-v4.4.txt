@@ -87,7 +87,7 @@ impact.counters.wash_events.label: WASH-Bildung, Gemeindeschulungen und Nachbetr
 impact.counters.litres.value: 45M+
 impact.counters.litres.label: Liter Aufbereitungskapazität für sicheres Wasser ermöglicht
 
-impact.counters.co2.value: 8,000+
+impact.counters.co2.value: 4,500+
 impact.counters.co2.label: Tonnen CO₂e-Minderungspotenzial, vorbehaltlich Verifizierung
 
 # ------------------------------------------
