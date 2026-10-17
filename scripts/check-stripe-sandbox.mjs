@@ -19,16 +19,27 @@ export function parseSandboxConnection(value) {
     !connection ||
     typeof connection !== "object" ||
     Array.isArray(connection) ||
-    Object.keys(connection).sort().join(",") !== "accountId,publishableKey,restrictedKey" ||
-    typeof connection.restrictedKey !== "string" ||
-    !/^rk_test_[A-Za-z0-9]{8,}$/.test(connection.restrictedKey) ||
-    typeof connection.publishableKey !== "string" ||
-    !/^pk_test_[A-Za-z0-9]{8,}$/.test(connection.publishableKey) ||
-    typeof connection.accountId !== "string" ||
-    !/^acct_[A-Za-z0-9]+$/.test(connection.accountId)
+    Object.keys(connection).sort().join(",") !== "accountId,publishableKey,restrictedKey"
   )
     throw new Error(
       "Sandbox connection must contain restrictedKey (rk_test_), publishableKey (pk_test_) and accountId (acct_) only. Live credentials are refused.",
+    );
+  const invalid = [];
+  if (
+    typeof connection.restrictedKey !== "string" ||
+    !/^rk_test_[A-Za-z0-9]{8,}$/.test(connection.restrictedKey)
+  )
+    invalid.push("restrictedKey: copy the complete restricted test key beginning rk_test_");
+  if (
+    typeof connection.publishableKey !== "string" ||
+    !/^pk_test_[A-Za-z0-9]{8,}$/.test(connection.publishableKey)
+  )
+    invalid.push("publishableKey: copy the complete publishable test key beginning pk_test_");
+  if (typeof connection.accountId !== "string" || !/^acct_[A-Za-z0-9]+$/.test(connection.accountId))
+    invalid.push("accountId: use the Stripe account ID beginning acct_, not a sandbox ID or name");
+  if (invalid.length)
+    throw new Error(
+      `Sandbox connection field check failed: ${invalid.join("; ")}. No saved values are shown and no Stripe request was made.`,
     );
   return connection;
 }

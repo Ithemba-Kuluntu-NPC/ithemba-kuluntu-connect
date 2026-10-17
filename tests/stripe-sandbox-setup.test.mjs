@@ -57,6 +57,26 @@ test("account validation makes exactly one version-pinned read-only request", as
   );
 });
 
+test("format errors identify only invalid field names without disclosing saved values or calling Stripe", async () => {
+  for (const field of ["restrictedKey", "publishableKey", "accountId"]) {
+    let calls = 0;
+    await assert.rejects(
+      checkSandbox({
+        connectionValue: JSON.stringify({ ...connection, [field]: "private-invalid-value" }),
+        fetchImpl: async () => {
+          calls++;
+          return Response.json({});
+        },
+      }),
+      (error) =>
+        error.message.includes(`${field}:`) &&
+        !error.message.includes("private-invalid-value") &&
+        !error.message.includes("fixture123"),
+    );
+    assert.equal(calls, 0);
+  }
+});
+
 test("wrong account and API failures stop without exposing Stripe error content", async () => {
   for (const [status, result] of [
     [200, { id: "acct_other" }],
