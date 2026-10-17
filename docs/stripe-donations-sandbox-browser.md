@@ -20,7 +20,7 @@ Save it, then tell Codex **“Stripe sandbox connection saved.”** Leave the tw
 
 The updated connection passed [the read-only account check, attempt 2](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39010937415/attempts/2) on 17 October 2026. All four setup tests passed, and the real restricted test key authenticated to the expected account using API `2024-06-20`. No Stripe or Cloudflare settings were changed. This verifies account authentication, not end-to-end payments or every runtime permission.
 
-## Current next action: create the sandbox webhook destination
+## Completed step: create the sandbox webhook destination
 
 In [Stripe Dashboard](https://dashboard.stripe.com), select the **same existing sandbox** used for the saved keys, then open **Workbench / Webhooks** (or Developers / Webhooks). Create one **webhook endpoint / event destination** with these settings. If a destination already exists with exactly this URL in that sandbox, inspect/reuse it rather than creating a duplicate.
 
@@ -50,6 +50,24 @@ customer.subscription.deleted
 ```
 
 Save the destination and tell Codex **“Sandbox webhook created.”** Do not paste its signing secret into chat. Secure transfer of the signing secret is the following step; no additional runtime key permissions are requested. The staging handler will continue returning 503 until its full sandbox configuration is installed, so initial deliveries can fail and later be retried. Creating the destination alone does not enable payments or change the live website.
+
+## Saved webhook secret and current next action: sandbox Customer Portal
+
+The operator reported the sandbox webhook created and saved its signing secret as the encrypted GitHub repository secret `STRIPE_SANDBOX_WEBHOOK_SECRET` (raw `whsec_…` value, not JSON). [The read-only readiness run](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39016467801) confirmed the secret is present and has the expected format, reauthenticated the restricted test key to the expected account, and successfully read sandbox Portal configurations. It found no unambiguous usable configuration with all required features. This does **not** yet verify that the signing secret belongs to the destination; an actual signed delivery is still required after authorized staging configuration/deployment.
+
+**Next operator action: configure and save the Customer Portal in the same existing sandbox.**
+
+Open [Stripe Customer Portal settings](https://dashboard.stripe.com/settings/billing/portal), ensuring the sandbox used for the saved keys is selected. Configure the sandbox Portal to:
+
+- Allow customers to **cancel subscriptions**, with cancellation **at the end of the billing period** for this sandbox test policy.
+- Allow customers to **update payment methods**.
+- **Activate the portal login link**, allowing secure email login on another device or after the donation cookie expires. Stripe calls this **Activate link** under **Ways to get started**; the link should begin `https://billing.stripe.com/p/login/test_`.
+
+Save the configuration and tell Codex **“Sandbox Portal saved.”** No keys, signing secrets, configuration IDs or login links need to be pasted into chat. The restricted key can already read configurations, so Codex can rerun discovery and obtain the existing configuration ID/login URL automatically. See [Stripe's browser activation instructions](https://docs.stripe.com/customer-management/activate-no-code-customer-portal).
+
+The readiness helper requires an active, non-live Portal with cancellation, payment-method updates and a test email-login URL. If multiple eligible configurations exist, it prefers the unique eligible default; otherwise it stops for operator selection. An API permission denial likewise falls back to Dashboard assistance without asking for broader key permissions. The optional readiness lookup uses only `GET /v1/billing_portal/configurations?active=true&limit=100`; it creates or modifies no Portal settings, subscriptions, Customers or payments and has no Cloudflare credentials. All 41 tests and typecheck passed. Four new readiness tests cover secret non-disclosure, test-only Portal selection, read-only version-pinned requests and permission/ambiguity handling.
+
+Once a usable Portal is found, Codex can finish the concrete staging deployment preparation and request deployment approval. No credentials have been installed on the Worker and no deployment, live setting, DNS change or merge occurred in this step.
 
 ### Why this webhook version is compatible
 
