@@ -424,6 +424,7 @@ test("webhooks deduplicate durably, re-read current state and reject tampering/l
   async function deliver(eventId: string, live = false, tamper = false) {
     const body = JSON.stringify({
       id: eventId,
+      api_version: "2024-06-20",
       type: "checkout.session.async_payment_failed",
       livemode: live,
       data: { object: { customer: "cus_fixture", metadata: { donation_id: input.requestId } } },
@@ -461,6 +462,183 @@ test("webhooks deduplicate durably, re-read current state and reject tampering/l
     null,
   );
 });
+async function snapshotRequest(env: DonationEnv, event: unknown) {
+  const body = JSON.stringify(event);
+  const timestamp = Math.floor(Date.now() / 1000);
+  const signature = await hmac(env.STRIPE_WEBHOOK_SECRET, `${timestamp}.${body}`);
+  return new Request(`${env.DONATION_SITE_ORIGIN}/api/donations/webhook`, {
+    method: "POST",
+    body,
+    headers: { "stripe-signature": `t=${timestamp},v1=${signature}` },
+  });
+}
+
+test("Dahlia snapshot events reconcile all 15 supported types through the pinned payment API", async () => {
+  const f = fixture();
+  const cookie = await f.bootstrap();
+  await handleDonationRequest(f.request("create", cookie, input), f.env);
+  f.setSession({
+    status: "complete",
+    payment_status: "unpaid",
+    payment_intent: { status: "processing" },
+  });
+  const stripeFetch = globalThis.fetch;
+  globalThis.fetch = async (url, options) => {
+    assert.equal(new Headers(options?.headers).get("Stripe-Version"), "2024-06-20");
+    return stripeFetch(url, options);
+  };
+  const types = [
+    "checkout.session.completed",
+    "checkout.session.async_payment_succeeded",
+    "checkout.session.async_payment_failed",
+    "checkout.session.expired",
+    "payment_intent.processing",
+    "payment_intent.succeeded",
+    "payment_intent.payment_failed",
+    "payment_intent.canceled",
+    "invoice.paid",
+    "invoice.payment_failed",
+    "invoice.payment_action_required",
+    "invoice.voided",
+    "customer.subscription.created",
+    "customer.subscription.updated",
+    "customer.subscription.deleted",
+  ];
+  for (const [index, type] of types.entries()) {
+    const event = {
+      id: `evt_dahlia_${index}`,
+      object: "event",
+      api_version: "2026-08-26.dahlia",
+      livemode: false,
+      type,
+      data: {
+        object: {
+          customer: index % 2 ? { id: "cus_fixture", object: "customer" } : "cus_fixture",
+          status: "paid",
+        },
+      },
+    };
+    const before = f.calls.length;
+    assert.equal(
+      (await handleDonationRequest(await snapshotRequest(f.env, event), f.env)).status,
+      200,
+      type,
+    );
+    assert.equal(f.calls.length, before + 1, type);
+    assert.match(f.calls.at(-1)!.path, /^\/v1\/checkout\/sessions\//);
+    assert.equal(
+      (
+        await f.db
+          .prepare("SELECT status FROM donations WHERE id=?")
+          .bind(input.requestId)
+          .first<{ status: string }>()
+      )?.status,
+      "pending",
+      type,
+    );
+    // A redelivery must not retrieve Stripe or commit the same event again.
+    assert.equal(
+      (await handleDonationRequest(await snapshotRequest(f.env, event), f.env)).status,
+      200,
+    );
+    assert.equal(f.calls.length, before + 1);
+  }
+});
+
+test("Dahlia renewal snapshots ignore changed invoice/payment fields and use current subscription state", async () => {
+  const f = fixture();
+  const cookie = await f.bootstrap();
+  await handleDonationRequest(
+    f.request("create", cookie, { ...input, frequency: "monthly" }),
+    f.env,
+  );
+  const states = [
+    {
+      status: "active",
+      latest_invoice: { status: "paid", payment_intent: { status: "succeeded" } },
+    },
+    {
+      status: "active",
+      latest_invoice: { status: "open", payment_intent: { status: "processing" } },
+    },
+    {
+      status: "past_due",
+      latest_invoice: { status: "open", payment_intent: { status: "requires_payment_method" } },
+    },
+    { status: "canceled", latest_invoice: { status: "paid" } },
+  ];
+  for (const [index, subscription] of states.entries()) {
+    f.setSession({ status: "complete", payment_status: "paid", subscription });
+    const event = {
+      id: `evt_dahlia_renewal_${index}`,
+      object: "event",
+      api_version: "2026-08-26.dahlia",
+      livemode: false,
+      type: "invoice.paid",
+      data: {
+        object: {
+          id: "in_snapshot",
+          object: "invoice",
+          customer: "cus_fixture",
+          status: "paid",
+          payments: { data: [] },
+          parent: {
+            type: "subscription_details",
+            subscription_details: { subscription: "sub_fixture" },
+          },
+        },
+      },
+    };
+    assert.equal(
+      (await handleDonationRequest(await snapshotRequest(f.env, event), f.env)).status,
+      200,
+    );
+    assert.equal(
+      (
+        await f.db
+          .prepare("SELECT status FROM donations WHERE id=?")
+          .bind(input.requestId)
+          .first<{ status: string }>()
+      )?.status,
+      ["succeeded", "pending", "failed", "cancelled"][index],
+    );
+  }
+});
+
+test("signed malformed or thin events fail validation; Dahlia live events still fail mode checks", async () => {
+  const f = fixture();
+  const base = {
+    id: "evt_dahlia_invalid",
+    object: "event",
+    api_version: "2026-08-26.dahlia",
+    livemode: false,
+    type: "invoice.paid",
+    data: { object: { customer: "cus_fixture" } },
+  };
+  for (const event of [
+    null,
+    [],
+    { ...base, id: 10 },
+    { ...base, type: null },
+    { ...base, data: null },
+    { ...base, data: { object: [] } },
+    { ...base, data: { object: { customer: { id: 10 } } } },
+    { ...base, data: undefined, related_object: { id: "in_thin" } },
+    { ...base, livemode: true },
+  ]) {
+    assert.equal(
+      (await handleDonationRequest(await snapshotRequest(f.env, event), f.env)).status,
+      400,
+    );
+  }
+  assert.equal(f.calls.length, 0);
+  assert.equal(
+    (await f.db.prepare("SELECT count(*) AS count FROM donation_events").first<{ count: number }>())
+      ?.count,
+    0,
+  );
+});
+
 test("rate limit applies to distinct attempts and input is bounded", async () => {
   const f = fixture();
   const cookie = await f.bootstrap();
@@ -541,6 +719,7 @@ test("failed reconciliation is retryable and does not mark the webhook as handle
   await handleDonationRequest(f.request("create", cookie, input), f.env);
   const body = JSON.stringify({
     id: "evt_outage",
+    api_version: "2026-08-26.dahlia",
     type: "payment_intent.succeeded",
     livemode: false,
     data: { object: { customer: "cus_fixture" } },

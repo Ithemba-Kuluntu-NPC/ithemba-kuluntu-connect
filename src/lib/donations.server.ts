@@ -36,6 +36,9 @@ interface DonationRow {
   status: string;
 }
 type StripeObject = Record<string, unknown>;
+function isStripeObject(value: unknown): value is StripeObject {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
 const API_VERSION = "2024-06-20";
 const COOKIE = "ik_donation_owner";
 class DonationError extends Error {
@@ -218,15 +221,19 @@ async function webhook(request: Request, env: DonationEnv): Promise<Response> {
     ))
   )
     throw new DonationError(400, "signature");
-  let event: { id: string; type: string; livemode: boolean; data: { object: StripeObject } };
+  let event: unknown;
   try {
     event = JSON.parse(body);
   } catch {
     throw new DonationError(400, "validation");
   }
   if (
-    !event.id?.startsWith("evt_") ||
-    !event.data?.object ||
+    !isStripeObject(event) ||
+    typeof event.id !== "string" ||
+    !event.id.startsWith("evt_") ||
+    typeof event.type !== "string" ||
+    !isStripeObject(event.data) ||
+    !isStripeObject(event.data.object) ||
     event.livemode !== (env.STRIPE_DONATIONS_MODE === "live")
   )
     throw new DonationError(400, "validation");
@@ -255,13 +262,22 @@ async function webhook(request: Request, env: DonationEnv): Promise<Response> {
   )
     return response({ received: true });
   const object = event.data.object;
-  const customer = typeof object.customer === "string" ? object.customer : null;
+  // Snapshot webhooks (including 2026-08-26.dahlia) use only this stable envelope.
+  // Expanded/deleted Customers retain their ID; no version-specific invoice/payment fields are read.
+  const customerValue = object.customer;
+  const customer =
+    typeof customerValue === "string"
+      ? customerValue
+      : isStripeObject(customerValue) && typeof customerValue.id === "string"
+        ? customerValue.id
+        : null;
+  if (customerValue != null && !customer) throw new DonationError(400, "validation");
   const row = await env.DONATIONS_DB.prepare("SELECT * FROM donations WHERE customer_id=?")
     .bind(customer)
     .first<DonationRow>();
   // A Customer webhook can arrive before the session is saved. Return a retryable response, never discard it.
   if (!row?.session_id) {
-    if (row || (object.metadata as StripeObject | undefined)?.donation_id)
+    if (row || (isStripeObject(object.metadata) && object.metadata.donation_id))
       throw new DonationError(503, "retry");
     return response({ received: true }); // unrelated account activity
   }

@@ -28,7 +28,7 @@ In [Stripe Dashboard](https://dashboard.stripe.com), select the **same existing 
 - Destination type: **Webhook endpoint**, with snapshot events rather than thin events.
 - Endpoint URL: `https://ithemba-donations-staging.super-tooth-55f1.workers.dev/api/donations/webhook`
 - Description/name: `iThemba donations staging — sandbox only`.
-- API version: **2024-06-20**, matching the documented integration contract. If the Dashboard does not offer it, report that before choosing a different version.
+- Webhook API version: **2026-08-26.dahlia** with **Snapshot** payloads. This is the supported generally available version offered by the sandbox Dashboard. Do not choose `2026-09-30.endive`, `2026-10-07.preview` or Thin payloads for this setup. Server-to-Stripe REST requests remain explicitly pinned to `2024-06-20`; webhook delivery has its own independent version.
 - Select only these 15 events:
 
 ```text
@@ -50,6 +50,14 @@ customer.subscription.deleted
 ```
 
 Save the destination and tell Codex **“Sandbox webhook created.”** Do not paste its signing secret into chat. Secure transfer of the signing secret is the following step; no additional runtime key permissions are requested. The staging handler will continue returning 503 until its full sandbox configuration is installed, so initial deliveries can fail and later be retried. Creating the destination alone does not enable payments or change the live website.
+
+### Why this webhook version is compatible
+
+The handler verifies the raw-body signature, timestamp and test/live mode before using the snapshot event ID/type and `data.object.customer` (a Customer ID or expanded Customer). It uses only those stable routing fields and optional metadata to locate the dedicated donation. It then retrieves the current Checkout Session with `Stripe-Version: 2024-06-20`, including the existing payment/subscription/invoice expansions. Dahlia's changed invoice-payment and subscription-period fields are never used to decide payment status from the event itself. A snapshot saying `paid` cannot make a pending fetched payment succeed.
+
+The implementation was checked against Stripe's [Dahlia GA changelog](https://docs.stripe.com/changelog/dahlia) and official [`stripe-node` v22.6.0 API version](https://github.com/stripe/stripe-node/blob/v22.6.0/src/apiVersion.ts), [Events](https://github.com/stripe/stripe-node/blob/v22.6.0/src/resources/Events.ts), [Invoices](https://github.com/stripe/stripe-node/blob/v22.6.0/src/resources/Invoices.ts), [Checkout Sessions](https://github.com/stripe/stripe-node/blob/v22.6.0/src/resources/Checkout/Sessions.ts), [PaymentIntents](https://github.com/stripe/stripe-node/blob/v22.6.0/src/resources/PaymentIntents.ts) and [Subscriptions](https://github.com/stripe/stripe-node/blob/v22.6.0/src/resources/Subscriptions.ts). Stripe documents the distinction between [snapshot delivery versions and API request versions](https://docs.stripe.com/webhooks#api-versioning). No SDK dependency was added.
+
+Signed synthetic Dahlia fixtures test all 15 events, string/expanded Customer references, duplicate suppression, monthly success/pending/failure/cancellation, malformed/Thin/live-event rejection and retry on failed reconciliation. These are contract regression tests, not real Dashboard deliveries. Actual signed sandbox deliveries remain required after the signing secret is installed and a separately approved staging deployment. The compatibility update is committed to PR #26 but has not been deployed; no Stripe account default or production configuration was changed.
 
 ## What Codex handles next
 
