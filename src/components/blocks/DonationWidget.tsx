@@ -37,6 +37,7 @@ export function DonationWidget({ defaultProject }: { defaultProject?: string } =
     portalLoginUrl?: string;
     mode: string;
   } | null>(null);
+  const [configurationUnavailable, setConfigurationUnavailable] = useState(false);
   const [checkout, setCheckout] = useState<{ id: string; clientSecret?: string } | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState(false);
@@ -55,7 +56,7 @@ export function DonationWidget({ defaultProject }: { defaultProject?: string } =
         if (id && /^[0-9a-f-]{36}$/i.test(id)) setCheckout({ id });
       })
       .catch(() => {
-        if (active) setError(true);
+        if (active) setConfigurationUnavailable(true);
       });
     return () => {
       active = false;
@@ -351,6 +352,15 @@ export function DonationWidget({ defaultProject }: { defaultProject?: string } =
             </p>
           )}
         </div>
+        {configurationUnavailable && (
+          <p role="alert" className="mt-3 text-sm text-red-700">
+            {lbl(
+              "Online donations are currently unavailable. Please try again later or contact iThemba Kuluntu.",
+              "Online-Spenden sind derzeit nicht verfügbar. Bitte versuche es später erneut oder kontaktiere iThemba Kuluntu.",
+              "Online doneren is momenteel niet beschikbaar. Probeer het later opnieuw of neem contact op met iThemba Kuluntu.",
+            )}
+          </p>
+        )}
         {error && (
           <p role="alert" className="mt-3 text-sm text-red-700">
             {lbl(

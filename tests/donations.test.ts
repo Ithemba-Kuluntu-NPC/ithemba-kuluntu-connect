@@ -672,6 +672,36 @@ test("mixed-mode, client, organization and unrecognized server keys are rejected
   }
 });
 
+test("missing donation configuration blocks configuration and creation without contacting Stripe or writing donations", async () => {
+  const required = [
+    "DONATIONS_DB",
+    "STRIPE_SECRET_KEY",
+    "STRIPE_PUBLISHABLE_KEY",
+    "STRIPE_WEBHOOK_SECRET",
+    "DONATION_COOKIE_SECRET",
+    "DONATION_SITE_ORIGIN",
+    "STRIPE_ACCOUNT_ID",
+  ] as const;
+  for (const key of required) {
+    const f = fixture();
+    const env = { ...f.env, [key]: undefined };
+    for (const request of [f.request("config"), f.request("create", "", input)]) {
+      const result = await handleDonationRequest(request, env);
+      assert.equal(result.status, 503, key);
+      assert.equal(result.headers.get("Cache-Control"), "no-store");
+      assert.equal(result.headers.get("Set-Cookie"), null);
+      assert.deepEqual(await result.json(), { error: "unavailable" });
+    }
+    assert.equal(f.calls.length, 0, key);
+    assert.equal(
+      (await f.db.prepare("SELECT count(*) AS count FROM donations").first<{ count: number }>())
+        ?.count,
+      0,
+      key,
+    );
+  }
+});
+
 test("insufficient restricted-key permissions fail closed without exposing Stripe errors or creating checkout", async () => {
   const f = fixture();
   const cookie = await f.bootstrap();

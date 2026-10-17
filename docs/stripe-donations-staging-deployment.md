@@ -32,3 +32,11 @@ After deployment the job checks:
 - `/api/donations/config` returns HTTP 503, confirming that payments remain unavailable before separate Stripe test configuration.
 
 The staging URL is printed in the job summary after these checks. A successful upload followed by a failed verification must be reported as **deployed but not verified**, not as a completed deployment or a permission failure. The job never submits a donation. Stripe test setup is a later step; live keys and real payments remain outside this authorization.
+
+## Checkout availability before Stripe sandbox setup
+
+The isolated Worker was deployed on 16 October 2026. A fresh read-only verification on 17 October returned `/donate` HTTP 200 and `/api/donations/config` HTTP 503. The Worker was deliberately deployed with no Stripe secrets. The donation handler rejects incomplete configuration before contacting Stripe or creating any donation records. Changing amounts or switching between one-time and monthly donations cannot bypass this check.
+
+The previous widget incorrectly displayed its generic “Unable to start checkout / check your details” message when this initial configuration request failed. The PR now distinguishes configuration unavailability from a checkout submission error, in EN/DE/NL, while keeping submission disabled. The public response remains generic: a 503 by itself can also mean invalid configuration and must not expose credentials or claim to identify which secret is missing. This UI fix has not been deployed.
+
+Before sandbox checkout can work, a separately authorized staging setup must supply `STRIPE_SECRET_KEY` (a correctly scoped `rk_test_` or `sk_test_` key), `STRIPE_PUBLISHABLE_KEY` (`pk_test_`), `STRIPE_WEBHOOK_SECRET`, `DONATION_COOKIE_SECRET` (at least 32 characters), `STRIPE_ACCOUNT_ID` for the verified association account, and `DONATION_SITE_ORIGIN` matching the staging HTTPS origin. Keep `STRIPE_DONATIONS_MODE=test` and the existing staging-only D1 binding. Complete the sandbox webhook and Customer Portal configuration and test plan in [the Stripe setup guide](stripe-donations-setup.md). GitHub's Cloudflare deployment token does not configure Stripe. No new credentials or configuration changes are part of this investigation.
