@@ -1,0 +1,155 @@
+# Stripe donations setup and launch review
+
+This branch implements EUR donations payable directly to **iThemba Kuluntu e.V.** using Stripe Embedded Checkout inside the existing donation widget. Presets (€10/25/50/100/250), custom amounts, six causes, layout and EN/DE/NL remain. The widget is shared with project pages; those pages and contact/newsletter integrations are unchanged. No deployment, production settings changes or live transactions are part of this work.
+
+## Architecture and safeguards
+
+`src/server.ts` intercepts `/api/donations/*` before TanStack SSR and reads the request's Cloudflare bindings (including Nitro's `request.runtime.cloudflare.env`). All Stripe calls run server-side using the REST API pinned to **2024-06-20**, with a 15-second timeout. Stripe JS is loaded directly from `https://js.stripe.com/v3/`; Stripe owns all payment fields, mandates, wallet buttons, authentication and bank instructions. No payment credentials reach our server.
+
+- `GET /api/donations/config`: public publishable key and portal login link; issues a signed, HttpOnly, SameSite=Lax donor cookie (Secure on HTTPS).
+- `POST /api/donations/create`: strict input validation, amount in integer EUR cents (€1–€10,000), cause allowlist, name/email/country, receipt request. Verifies the configured Stripe account ID before creating a dedicated Customer and a one-hour payment/subscription Checkout Session. Same payload/request UUID reuses Stripe operations and checkout; changed payload or another browser cannot reuse that UUID. No Connect/platform fees or third-party destination.
+- `GET /api/donations/status?id=<donation UUID>`: cookie ownership required, reads current Stripe state. A completed checkout with unpaid funds is **pending**, never success. For subscriptions, the latest invoice/payment and cancellation state determine status, rather than the original checkout payment. Polls for up to five minutes, then offers manual checks. Pending payments may take days.
+- `POST /api/donations/cancel`: expires an open Checkout only. It does not reverse a submitted SEPA debit or transfer. Submitted donations require normal refund/support handling.
+- `POST /api/donations/portal`: creates a short-lived Stripe Customer Portal session for the verified browser's recurring donation. Stripe handles cancellation and payment updates. The email-authenticated portal login link provides access on other devices or after the 30-day cookie expires.
+- `POST /api/donations/webhook`: verifies the **raw body**, HMAC-SHA256, timestamp within 300 seconds and test/live mode. Re-reads current Stripe state, then commits status and unique event ID atomically to D1. Invalid signatures return 400; transient processing/storage failures return 5xx for Stripe retry. Early events arriving before session persistence also retry. Unrelated account events are ignored. Duplicate events are acknowledged without repeated work. This endpoint must be accessible to Stripe without browser login, cache or Turnstile.
+
+The D1 ledger stores references, a keyed request fingerprint and keyed donor-cookie identity, not donor names/emails or raw webhook payloads. Customer, Checkout, PaymentIntent (one-time) and Subscription (monthly) contain purpose/reference/receipt metadata; donor email and address live on the Stripe Customer/Checkout. Restrict D1 access, back it up and agree retention. Signed-cookie secret rotation invalidates browser access; portal email login remains available. Stripe handles recurring billing and retry emails; this implementation does not send custom donor emails or official tax certificates.
+
+Rate limits: 10 new checkouts/IP/hour, 30 creation attempts/browser/10 minutes, 60 status checks/browser/minute and 20 management requests/browser/hour. IPs are HMAC hashed, and expired rate buckets are removed. Request bodies are bounded. Configure Stripe Radar and Cloudflare donation-specific WAF/bot/rate rules before launch. Never cache these endpoints. Webhook logs deliberately omit payment payloads and donor details. Monitor webhook retries/failures and reconcile Stripe with D1 after outages; Stripe remains the financial system of record.
+
+## Payment methods and decisions for review
+
+| Method                 | One-time         | Monthly                        | Required setup / limitation                                                                                                                                                                                        |
+| ---------------------- | ---------------- | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Cards                  | Yes              | Yes                            | Enabled on the association's Stripe account; Checkout handles SCA/3DS                                                                                                                                              |
+| Apple Pay / Google Pay | Eligible devices | Eligible devices               | Included through `card`, not separate API payment-method types. HTTPS, registered domains, eligible browser/device/wallet; Stripe controls visibility                                                              |
+| SEPA Direct Debit      | Yes              | Yes                            | Enable in Stripe; Stripe collects IBAN and mandates. Asynchronous confirmation; returns/disputes remain possible after initial success                                                                             |
+| PayPal through Stripe  | Optional         | Optional with approval         | `STRIPE_PAYPAL_ENABLED=true`; monthly also requires `STRIPE_PAYPAL_RECURRING_ENABLED=true` after Stripe/PayPal approval and test verification                                                                      |
+| EUR bank transfer      | Optional         | **No automatic monthly debit** | `STRIPE_BANK_TRANSFER_ENABLED=true`; Stripe `customer_balance`, EU bank transfer, German virtual-bank instructions. Enable/verify eligibility. Stripe reconciles transfers; no static association IBAN is invented |
+| iDEAL/Wero / TWINT     | Disabled         | Disabled                       | Explicit allowlist excludes them regardless of Dashboard defaults                                                                                                                                                  |
+
+Optional methods default off until the account operator verifies eligibility. Enabling an unavailable method must fail visibly, rather than silently substituting a method. Monthly bank transfer would require a separate `send_invoice` experience, not automatic recurring collection: approval and additional implementation would be needed. No such flow is enabled here. PayPal uses the German association's eligible Stripe account and requires activation; no external PayPal button/account is substituted.
+
+**Decisions needing review:** approve Embedded Checkout replacing the simulated method tabs; confirm the €1–€10,000 custom amount range; authorize purpose restrictions (or describe causes as preferences in the donation terms); confirm PayPal activation/recurring approval and EU bank transfer availability; choose immediate versus end-of-period portal cancellation; approve the German receipt workflow and beneficiary/legal wording. The existing legal pages have not been edited; verify their accuracy before launch.
+
+Official references: [Embedded Checkout](https://docs.stripe.com/checkout/embedded/quickstart), [Checkout Session creation](https://docs.stripe.com/api/checkout/sessions/create), [payment method compatibility](https://docs.stripe.com/payments/payment-methods/payment-method-support), [PayPal recurring approval](https://docs.stripe.com/payments/paypal), [webhook signatures](https://docs.stripe.com/webhooks/signature), [Customer Portal](https://docs.stripe.com/customer-management).
+
+## Account, keys and configuration
+
+Use only the verified **iThemba Kuluntu e.V.** Stripe account, with its German nonprofit details and payout bank account. Record its `acct_…` ID. Using another account's keys fails the account-ID check. Association staff must confirm the legal account ownership, nonprofit eligibility, payout settings and receipt issuer. This code cannot establish those facts.
+
+Use separate test/staging and live Workers, D1 databases, Stripe keys, webhook secrets, cookie secrets and portal configurations. Do not use `VITE_*` variables for secret keys. The publishable key is delivered by the public configuration endpoint so keys never need to be committed or baked into the client bundle.
+
+| Binding / variable                | Test                                         | Live, only after explicit launch approval                       |
+| --------------------------------- | -------------------------------------------- | --------------------------------------------------------------- |
+| `DONATIONS_DB`                    | Dedicated local/staging D1 binding           | Dedicated live D1 binding                                       |
+| `STRIPE_SECRET_KEY`               | `rk_test_…` (preferred) or `sk_test_…`       | `rk_live_…` (preferred) or `sk_live_…`                          |
+| `STRIPE_PUBLISHABLE_KEY`          | Same-account `pk_test_…`                     | Same-account `pk_live_…`                                        |
+| `STRIPE_WEBHOOK_SECRET`           | CLI `whsec_…` or test endpoint secret        | Live endpoint's distinct `whsec_…`                              |
+| `STRIPE_ACCOUNT_ID`               | Verified association `acct_…`                | Same verified association ID                                    |
+| `DONATION_COOKIE_SECRET`          | Random 32+ characters                        | Separate high-entropy secret, 32+ characters                    |
+| `DONATION_SITE_ORIGIN`            | Exact staging HTTPS origin or localhost HTTP | Exact canonical HTTPS origin; no trailing slash/path            |
+| `STRIPE_DONATIONS_MODE`           | `test` (default)                             | Must explicitly be `live`; otherwise live keys fail closed      |
+| `STRIPE_PAYPAL_ENABLED`           | `false` until enabled and tested             | `true` only after activation                                    |
+| `STRIPE_PAYPAL_RECURRING_ENABLED` | `false` until approved/tested                | `true` only after recurring approval                            |
+| `STRIPE_BANK_TRANSFER_ENABLED`    | `false` until eligible/tested                | `true` only after approval/testing                              |
+| `STRIPE_PORTAL_CONFIGURATION_ID`  | Test `bpc_…`                                 | Live configuration ID with cancellation/payment updates enabled |
+| `STRIPE_PORTAL_LOGIN_URL`         | Test Stripe portal email login URL           | Live `https://billing.stripe.com/p/login/…` URL                 |
+
+### Restricted key permissions (server-side)
+
+The existing `STRIPE_SECRET_KEY` secret accepts account-scoped restricted keys (`rk_test_…` / `rk_live_…`) as well as standard secret keys (`sk_test_…` / `sk_live_…`). Prefer a restricted key from the verified association account. The configured mode and publishable-key mode must match; live keys require explicit `STRIPE_DONATIONS_MODE=live`. Organization keys, publishable keys and webhook secrets are not accepted as server API credentials. Prefix acceptance does not prove authorization: Stripe checks permissions on each call, and `GET /v1/account` must still return `STRIPE_ACCOUNT_ID` before a new Customer or Checkout is created. Insufficient permissions fail closed with a generic service error; no fallback to an unrestricted key is attempted.
+
+Configure the following resource permissions in Stripe's **restricted key** editor for this implementation's direct requests and explicit response expansions. **Write includes Read**. The normal account permissions column is used; no connected-account access is needed. Stripe's resource names are listed below; the parent category/label can differ between Dashboard versions.
+
+| Resource          | Access    | Exact operation in this implementation                                                                                                                                                                                                                                                                                            |
+| ----------------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Accounts          | **Read**  | `GET /v1/account` verifies the association's account ID. Do not disable this check to accommodate an under-scoped key.                                                                                                                                                                                                            |
+| Customers         | **Write** | `POST /v1/customers` creates the donor Customer, including email, name, country, locale and donation reference. Checkout also updates its address/name via `customer_update`.                                                                                                                                                     |
+| Checkout Sessions | **Write** | `POST /v1/checkout/sessions` creates payment/subscription sessions; `GET /v1/checkout/sessions/:id` reads status and resumes an open session; `POST /v1/checkout/sessions/:id/expire` cancels an unfinished checkout.                                                                                                             |
+| Payment Intents   | **Read**  | Expanded `payment_intent` and `subscription.latest_invoice.payment_intent` on session retrieval expose payment status, last payment error and bank-transfer instructions. No direct PaymentIntent create/confirm/capture/cancel request is sent.                                                                                  |
+| Subscriptions     | **Read**  | The expanded `subscription` provides current status, scheduled cancellation and billing-period end. No direct subscription create/update/cancel request is sent by the Worker.                                                                                                                                                    |
+| Invoices          | **Read**  | Expanded `subscription.latest_invoice` provides the latest renewal outcome and its PaymentIntent. No direct invoice create/pay/void request is sent.                                                                                                                                                                              |
+| Customer Portal   | **Write** | `POST /v1/billing_portal/sessions` creates a management session using an existing `STRIPE_PORTAL_CONFIGURATION_ID`. The Worker does not create/update portal configurations. If the editor separates Sessions and Configuration permissions, grant **Sessions: Write**; no standalone Configuration write operation is performed. |
+
+Checkout, rather than standalone Products/Prices/PaymentIntent/Subscription API calls, creates the inline `line_items.price_data.product_data`, price, payment or subscription. Do not infer blanket Write access to those APIs from these Checkout-managed side effects. The Portal performs donor-authorized subscription cancellation and payment-method updates; the Worker does not directly call those APIs. For the explicit request/expansion set above, other resources remain **None**: Events/Webhook Endpoints (signature verification is local, followed by session retrieval), refunds/disputes, charges, payouts, transfers, balances, payment methods/mandates, SetupIntents, payment-method domains/configurations and standalone Products/Prices operations. Receipt emails, portal configuration, enabled payment methods and domains are manual Dashboard administration, not operations of this runtime key.
+
+**Sandbox verification still required:** this table is the code-audited endpoint/expansion permission set, not a claim that a real restricted key was tested here. No Stripe credential is configured in this workspace. Verify both one-time and monthly inline-price Checkout creation, eligible optional methods, both status expansions, expiration, signed webhook reconciliation and Portal session creation using the proposed `rk_test_…` key. If Stripe requires a dependent resource permission for inline creation or expanded nested objects, its restricted-key request logs identify it; record the exact dependency and grant only that permission, then repeat the sandbox test. Do not silently grant all Billing/Payments permissions, skip account verification or change production configuration. Include a deliberately under-scoped key test and confirm that it returns a service error rather than success. Keep key values and raw Stripe errors out of public responses/logs.
+
+References: [Stripe restricted-key configuration and HTTP-method permission mapping](https://docs.stripe.com/keys/restricted-api-keys), [resource and expansion permissions](https://docs.stripe.com/stripe-apps/reference/permissions#object). The latter is a Stripe Apps permission reference used to identify resources/expansion dependencies, not an instruction to create a Stripe App or copy a manifest into the restricted-key editor.
+
+The separate browser-only **setup readiness helper**, rather than the donation runtime, optionally makes `GET /v1/billing_portal/configurations?active=true&limit=100` to discover a reusable sandbox configuration. This requires Portal Configuration **Read** if Stripe separates that resource from Portal Sessions permissions. It never writes configurations. If access is denied, it stops automatic discovery and requests Dashboard assistance; do not broaden the runtime key preemptively. The saved webhook signing secret is checked locally and is never sent to Stripe. See [the browser setup guide](stripe-donations-sandbox-browser.md#saved-webhook-secret-and-current-next-action-sandbox-customer-portal).
+
+### API-version compatibility
+
+Every server request explicitly sends `Stripe-Version: 2024-06-20`; this adjustment does **not** upgrade it or change Stripe's account default. Stripe documents this [released API version](https://docs.stripe.com/changelog/2024-06-20). The implementation's parameter/response contract was checked against Stripe's official [`stripe-node` v16.1.0 version declaration](https://github.com/stripe/stripe-node/blob/v16.1.0/src/apiVersion.ts) and its version-matched [Checkout parameters](https://github.com/stripe/stripe-node/blob/v16.1.0/types/Checkout/SessionsResource.d.ts), [Invoice fields](https://github.com/stripe/stripe-node/blob/v16.1.0/types/Invoices.d.ts) and [Subscription fields](https://github.com/stripe/stripe-node/blob/v16.1.0/types/Subscriptions.d.ts). No SDK installation is needed for this REST implementation.
+
+The checked contract includes `ui_mode=embedded`, `redirect_on_completion`, `return_url`, `customer_update`, inline price/product data and monthly recurring data, SEPA/PayPal/`customer_balance` options, and the `Invoice.payment_intent` / `Subscription.current_period_end` fields used for status. `payment_intent` and `subscription.latest_invoice.payment_intent` are supported expansions, within Stripe's four-level expansion limit. Restricted keys change authorization, not the response version. Existing tests exercise this response shape; added tests assert the version header on account, Customer, Checkout create/retrieve/expire and Portal calls with both standard and restricted test/live key **fixtures**. Fixtures do not make real live API calls.
+
+**Compatibility issues to flag before any version upgrade:** `2025-03-31.basil` [removed `Invoice.payment_intent`](https://docs.stripe.com/changelog/basil/2025-03-31/add-support-for-multiple-partial-payments-on-invoices), replacing the single-payment relationship with Invoice Payments, and [removed subscription-level current-period fields](https://docs.stripe.com/changelog/basil/2025-03-31/deprecate-subscription-current-period-start-and-end) in favor of subscription-item periods. Merely changing the header would break the existing expansion and next-billing-date retrieval. A future upgrade needs a separate implementation/migration and renewal-status tests. For the isolated staging webhook, select **`2026-08-26.dahlia` Snapshot events**, independently of the unchanged `2024-06-20` REST request contract. The receiver validates the stable event envelope and Customer reference, then re-fetches current session state instead of relying on version-specific invoice-event payment fields. It does not upgrade the account default or REST header. See [the version compatibility explanation and regression coverage](stripe-donations-sandbox-browser.md#why-this-webhook-version-is-compatible). Endive, preview versions and Thin events are not selected for this staging setup. A documented historical contract check does not replace account-specific sandbox verification of the pinned version, restricted-key permissions and optional payment-method eligibility.
+
+Monthly creation fails closed without a portal configuration and login URL. Configure the Portal's branding, verified association name/support details, allowed payment updates and subscription cancellation policy. Enable the portal email login link and test it for recurring donors. Each donation deliberately has its own Stripe Customer: repeated gifts from one email are not automatically merged into an account. Confirm the Portal's same-email behavior with repeat donors, and provide support for association-side reconciliation if Stripe selects one of multiple Customers. Never resolve a customer solely by an unauthenticated email submitted to our backend.
+
+### Isolated Cloudflare staging Worker
+
+The staging D1 database now exists: **`ithemba-donations-staging`**, ID **`990e1489-72e6-4a2b-b2f6-dbb4863e4971`**. The standalone [`wrangler.donations-staging.jsonc`](../wrangler.donations-staging.jsonc) binds it as **`DONATIONS_DB`**, using the unchanged `migrations/0001_donations.sql`. Its Worker name is **`ithemba-donations-staging`**, not production **`tanstack-start-app`**. No production config, route, binding or secret is inherited. It exposes only a separate `workers.dev` address, disables preview URLs, has no custom routes and pins donation mode to `test` with optional methods disabled. No Stripe secrets or origin/account placeholders are included.
+
+Follow the exact commands and approval boundaries in the [staging runbook](stripe-donations-staging.md). `npm run check:donations-staging` checks the installed Wrangler's actual explicit-config resolution and rejects production targets, alternate D1 bindings, routes, named environments and unreviewed variables. `npm run build:donations-staging` builds locally and rechecks the compiled entry/assets. These commands do not migrate, deploy or read Stripe secrets. The guard is deliberately strict: adding later staging-only origin/account/portal variables requires a reviewed guard/config update; use distinct staging secrets when separately authorized. Do not copy production newsletter/contact credentials.
+
+The normal build still emits a generated configuration named `tanstack-start-app`. Leave it and `wrangler.jsonc` unchanged; **never use either for staging deployment**. Every staging remote command must specify `--config ./wrangler.donations-staging.jsonc`; explicit config selection overrides `.wrangler/deploy/config.json`. Do not use bare deploy commands, `nitro deploy`, `--name`, `--env` or automatic publishing. The isolation check proves the supplied configuration targets staging; it cannot restrict what an account-wide Cloudflare token can do if someone deliberately selects/overrides another config. No remote migrations, deployments, live settings or Stripe secrets were handled while preparing this configuration.
+
+## Local testing without deployment
+
+Node **24+** is required for the dependency-free TypeScript/SQLite regression tests. Existing dependencies suffice; no new package installation is required.
+
+```sh
+npm run typecheck
+npm run test:donations
+npm run build
+cp .dev.vars.example .dev.vars
+# Edit ignored .dev.vars with association TEST credentials, test Portal IDs,
+# a random cookie secret and DONATION_SITE_ORIGIN=http://localhost:8787.
+# Never commit .dev.vars.
+npx wrangler d1 migrations apply ithemba-donations-local-test --local --config wrangler.donations-test.jsonc
+npx wrangler dev --local --config wrangler.donations-test.jsonc --port 8787
+```
+
+`wrangler.donations-test.jsonc` is explicitly local-only, with a placeholder database ID. Never deploy it. The donation API needs real Worker D1 bindings: ordinary `vite dev` is useful for layout, but use the built local Worker for payment tests. Local test data and migrations do not touch Cloudflare production. If Wrangler reports a generated config redirect, verify the local test config and D1 binding actually appear in its output before proceeding.
+
+In another terminal with the Stripe CLI authenticated to the association's **test** account:
+
+```sh
+stripe listen --forward-to http://localhost:8787/api/donations/webhook
+```
+
+Copy the CLI's signing secret to ignored `.dev.vars` and restart the local Worker. Use `http://localhost:8787/donate`; do not switch between localhost and 127.0.0.1 because origin and cookies must match. Stripe CLI triggers test fixtures, but complete actual test Checkouts to exercise matching donation references and customer IDs. Generic unrelated fixtures are intentionally ignored. Local CLI forwarding is distinct from the staged HTTPS webhook endpoint.
+
+## Webhook registration
+
+For the isolated staging sandbox, register **`https://ithemba-donations-staging.super-tooth-55f1.workers.dev/api/donations/webhook`**, choose **Snapshot** payloads and webhook API version **`2026-08-26.dahlia`**, and use the matching sandbox signing secret. REST calls still send `Stripe-Version: 2024-06-20`. Production registration, signing secrets and activation require separate launch approval. Select:
+
+- `checkout.session.completed`, `checkout.session.async_payment_succeeded`, `checkout.session.async_payment_failed`, `checkout.session.expired`
+- `payment_intent.processing`, `payment_intent.succeeded`, `payment_intent.payment_failed`, `payment_intent.canceled`
+- `invoice.paid`, `invoice.payment_failed`, `invoice.payment_action_required`, `invoice.voided`
+- `customer.subscription.created`, `customer.subscription.updated`, `customer.subscription.deleted`
+
+Watch delivery failures in Stripe, retry them after fixing configuration, and inspect the donation ledger without exposing donors' data. Refunds/disputes are handled by association staff in Stripe; this initial interface reports payment/renewal/cancellation status, not a full refund or dispute history. Official receipt issuance must reconcile settled payments, refunds and reversals in Stripe, not rely on a browser message or the cached D1 status.
+
+## Domain, confirmation and German certificates
+
+Use HTTPS on the canonical payment origin; register that exact domain plus staging domains in Stripe payment-method domains in the correct mode for Embedded Checkout/wallets. Avoid redirecting the webhook or blocking it with Cloudflare Access. Configure CSP to allow Stripe JS, frames and required API connections according to [Stripe security guidance](https://docs.stripe.com/security/guide); keep existing newsletter/contact CSP allowances. Test Safari/Apple Pay and Chrome/Google Pay on eligible devices with funded wallets. Enabling card payments does not guarantee either wallet button will appear.
+
+Enable Stripe successful-payment receipts and Billing invoice/failed-payment/SCA emails in the account's settings, with verified sender/support/association branding. Test card and delayed-payment emails, recurring invoice receipts and cancellation messaging. They are **payment confirmations**, not German tax certificates. The website provides genuine Stripe status immediately when available and shows pending for SEPA/transfers until settlement.
+
+Receipt-request metadata and Stripe's full billing address support a separate association-controlled issuance process. Authorized iThemba Kuluntu e.V. staff should reconcile settled gifts and reversals, verify full donor name/address, review eligibility and purpose restrictions, and issue official **Zuwendungsbestätigungen** using the association's approved template/process. Agree timing, annual aggregation, secure delivery and handling of refunds. The website does not auto-generate or promise that a Stripe receipt is a tax certificate. Have the association's tax adviser approve this process before launch. No donor email was sent by this implementation task.
+
+## Pre-launch acceptance checklist
+
+1. Confirm branch/PR review, beneficiary account, legal terms, privacy/retention, cause restrictions and certificate process.
+2. Verify the existing staging D1 target and follow the staged approval steps in the runbook before applying the migration or deploying. In the later Stripe setup phase, set only test keys and required variables and configure Stripe test webhook/Portal/receipt emails. Verify `/config` succeeds and no secret is present in public assets or responses.
+3. Exercise all three languages at mobile/desktop sizes; six causes; every preset and decimal custom amount; invalid/large amounts; donor email/country and receipt-address collection.
+4. Complete test card success, decline and 3DS flows; cancel and reload an open checkout; double-click/retry with the same UUID; verify no duplicate Customer/Session/Subscription.
+5. Test monthly first payment and renewal success, failure/SCA, pending SEPA, recovery, immediate/scheduled cancellation, Portal payment updates and email login on a different device.
+6. Activate/test optional PayPal (one-time and approved recurring separately), wallet eligibility and one-time EU bank instructions/partial transfer/settlement. Confirm no iDEAL/Wero/TWINT appears.
+7. Verify pending → paid and pending → failed, signed webhook retries/duplicates/out-of-order delivery, tampered signatures, mode mismatch, wrong owner/cross-origin rejection and D1/Stripe outages. Confirm unavailable status never becomes a thank-you message.
+8. Get explicit launch approval before live secrets, live bindings/migrations, production settings, deployment or any live donation. These steps have not been performed.

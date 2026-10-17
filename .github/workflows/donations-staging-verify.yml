@@ -1,0 +1,44 @@
+name: Verify isolated donations staging URL
+
+on:
+  push:
+    branches: [codex/stripe-donations-integration]
+    paths: [.github/workflows/donations-staging-verify.yml]
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  verify:
+    if: github.repository == 'Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect' && github.ref == 'refs/heads/codex/stripe-donations-integration'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Read staging URLs without credentials or deployment
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';
+          import { appendFile } from 'node:fs/promises';
+          const origin = 'https://ithemba-donations-staging.super-tooth-55f1.workers.dev';
+          for (const [path, expected] of [['/donate', 200], ['/api/donations/config', 503]]) {
+            let status;
+            for (let attempt = 1; attempt <= 4; attempt++) {
+              const response = await fetch(origin + path, { redirect: 'error', signal: AbortSignal.timeout(30000) });
+              status = response.status;
+              console.log(JSON.stringify({ path, attempt, status, contentType: response.headers.get('content-type') }));
+              if (status === expected) {
+                if (path === '/api/donations/config') {
+                  const result = await response.json();
+                  assert.equal(typeof result.error, 'string', 'Expected unavailable-payment response');
+                }
+                break;
+              }
+              const body = await response.text();
+              console.log(JSON.stringify({ path, diagnostic: body.slice(0, 1000) }));
+              if (attempt < 4) await new Promise(resolve => setTimeout(resolve, 15000));
+            }
+            assert.equal(status, expected, `Unexpected staging response for ${path}`);
+          }
+          await appendFile(process.env.GITHUB_STEP_SUMMARY, `Staging URL verified: ${origin}/donate\n\nDonation page HTTP 200; payment configuration HTTP 503. Payments remain unavailable.\n`);
+          NODE

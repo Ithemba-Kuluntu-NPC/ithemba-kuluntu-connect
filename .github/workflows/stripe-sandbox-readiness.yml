@@ -1,0 +1,32 @@
+name: Check sandbox webhook and monthly donation readiness
+
+on:
+  push:
+    branches: [codex/stripe-donations-integration]
+    paths:
+      - .github/workflows/stripe-sandbox-readiness.yml
+      - scripts/check-stripe-sandbox-readiness.mjs
+      - tests/stripe-sandbox-readiness.test.mjs
+
+permissions:
+  contents: read
+
+jobs:
+  readiness:
+    if: github.repository == 'Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect' && github.ref == 'refs/heads/codex/stripe-donations-integration'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: "24"
+      - name: Test setup safeguards without credentials
+        run: node --test --test-isolation=none tests/stripe-sandbox-setup.test.mjs tests/stripe-sandbox-readiness.test.mjs
+      - name: Read sandbox readiness without changing Stripe or Cloudflare
+        env:
+          STRIPE_SANDBOX_CONNECTION: ${{ secrets.STRIPE_SANDBOX_CONNECTION }}
+          STRIPE_SANDBOX_WEBHOOK_SECRET: ${{ secrets.STRIPE_SANDBOX_WEBHOOK_SECRET }}
+        run: node scripts/check-stripe-sandbox-readiness.mjs
