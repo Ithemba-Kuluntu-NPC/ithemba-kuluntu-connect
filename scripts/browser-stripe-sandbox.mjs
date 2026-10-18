@@ -61,10 +61,19 @@ async function main() {
       async function status() {
         return api(`status?id=${currentReference}`);
       }
+      function stripeHosted(frame) {
+        try {
+          const url = new URL(frame.url());
+          return url.protocol === "https:" && url.hostname.endsWith(".stripe.com");
+        } catch {
+          return false;
+        }
+      }
       async function visible(selector, timeout = 30000) {
         const until = Date.now() + timeout;
         while (Date.now() < until) {
           for (const frame of page.frames()) {
+            if (!stripeHosted(frame)) continue;
             try {
               const locator = frame.locator(selector).first();
               if (await locator.isVisible()) return locator;
@@ -78,6 +87,7 @@ async function main() {
       }
       async function maybeFill(selector, value) {
         for (const frame of page.frames()) {
+          if (!stripeHosted(frame)) continue;
           try {
             const input = frame.locator(selector).first();
             if ((await input.isVisible()) && (await input.inputValue()) === "")
@@ -152,8 +162,9 @@ async function main() {
         stage = `${frequency}:submit_published_test_card`;
         let submitted = false;
         for (const frame of page.frames()) {
+          if (!stripeHosted(frame)) continue;
           const button = frame
-            .getByRole("button", { name: /^(Donate|Pay|Subscribe|Start subscription)/i })
+            .getByRole("button", { name: /^(Donate|Subscribe|Start subscription|Pay(?:$| [€$]))/i })
             .last();
           if (await button.isVisible()) {
             await button.click();
@@ -163,8 +174,15 @@ async function main() {
         }
         assert.ok(submitted, "Stripe payment submit button not found");
         stage = `${frequency}:verify_payment_status`;
+        let previousStatus;
         for (let attempt = 0; attempt < 25; attempt++) {
           const value = await status();
+          if (value.status !== previousStatus) {
+            console.log(
+              `SANDBOX_OBSERVED_STATUS: ${frequency}; ${["open", "pending", "failed", "succeeded", "cancelled"].includes(value.status) ? value.status : "unknown"}`,
+            );
+            previousStatus = value.status;
+          }
           if (value.status === "succeeded") {
             paid = true;
             break;
