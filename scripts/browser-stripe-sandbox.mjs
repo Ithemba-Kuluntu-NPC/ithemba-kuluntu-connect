@@ -90,15 +90,31 @@ async function main() {
       try {
         stage = `${frequency}:verify_test_config`;
         assertSmokeConfig(await api("config"));
-        await page.goto(SMOKE_ORIGIN + "/donate", { waitUntil: "domcontentloaded" });
+        stage = `${frequency}:load_donation_page`;
+        const loaded = await page.goto(SMOKE_ORIGIN + "/donate", { waitUntil: "domcontentloaded" });
+        console.log(`SANDBOX_PAGE_HTTP: ${loaded?.status() ?? 0}`);
+        stage = `${frequency}:site_consent`;
+        const rejectCookies = page.getByRole("button", {
+          name: "Reject non-essential",
+          exact: true,
+        });
+        try {
+          await rejectCookies.waitFor({ state: "visible", timeout: 5000 });
+          await rejectCookies.click();
+        } catch {
+          /* Consent may already have been saved in this isolated test context. */
+        }
+        stage = `${frequency}:donor_form`;
         const form = page.locator("#donate-form form");
         await form.locator("#d-name").fill("TEST - automated Stripe sandbox browser check");
         await form.locator("#d-email").fill(testEmail);
         await form.locator("#d-country").fill("DE");
+        stage = `${frequency}:select_amount_frequency`;
         await form.getByRole("button", { name: "€10", exact: true }).click();
         await form
           .getByRole("button", { name: frequency === "once" ? "One-time" : "Monthly", exact: true })
           .click();
+        stage = `${frequency}:create_checkout`;
         const creation = page.waitForResponse(
           (response) => response.url() === SMOKE_ORIGIN + "/api/donations/create",
           { timeout: 30000 },
@@ -214,6 +230,24 @@ async function main() {
             "SANDBOX_PORTAL_VERIFIED: owned recurring customer can manage the donation and schedule cancellation at period end. Test subscription will not renew after that period.",
           );
         }
+      } catch (error) {
+        const text = await page
+          .locator("body")
+          .innerText()
+          .catch(() => "");
+        console.log(
+          `SANDBOX_BROWSER_FLAGS: ${JSON.stringify({
+            donorFormPresent: await page.locator("#donate-form form").count(),
+            nameFieldPresent: await page.locator("#d-name").count(),
+            consentDialogVisible: await page
+              .getByRole("button", { name: "Reject non-essential", exact: true })
+              .isVisible()
+              .catch(() => false),
+            humanVerificationVisible: /verify you are human|just a moment|captcha/i.test(text),
+            timeout: error?.name === "TimeoutError",
+          })}`,
+        );
+        throw new Error("Controlled browser check failed");
       } finally {
         if (currentReference && !paid) {
           // Expire an unsubmitted Checkout; this cannot cancel/refund a completed bank/card payment.
