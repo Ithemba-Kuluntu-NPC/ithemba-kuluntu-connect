@@ -83,6 +83,12 @@ The implementation was checked against Stripe's [Dahlia GA changelog](https://do
 
 Signed synthetic Dahlia fixtures test all 15 events, string/expanded Customer references, duplicate suppression, monthly success/pending/failure/cancellation, malformed/Thin/live-event rejection and retry on failed reconciliation. These are contract regression tests, not real Dashboard deliveries. Actual signed sandbox deliveries remain required after the signing secret is installed and a separately approved staging deployment. The compatibility update is committed to PR #26 but has not been deployed; no Stripe account default or production configuration was changed.
 
+## Portal mismatch resolved; activation approval is next
+
+[The supplied-link inspection](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39106099986) found an exact match in the authenticated sandbox under both the existing REST version and Dahlia. Email login is now enabled, cancellation remains at period end and payment-method updates remain enabled. The public test login page returned HTTP 200. No Portal changes were needed from automation; the earlier false readiness flags are no longer current.
+
+The [concrete staging activation plan](stripe-donations-sandbox-activation.md) is prepared with explicit approval gates, encrypted binding installation, staging-only source/target checks and post-deployment test-mode/signature probes. Ordinary preparation is read-only; **no activation or deployment happens until the user approves**. The next user action, after successful preflight, is **“I approve staging sandbox activation.”**
+
 ## What Codex handles next
 
 The prepared **Check Stripe sandbox account without changing settings** workflow runs mocked security tests, then makes a single `GET /v1/account` using the restricted key and runtime API version `2024-06-20`. It refuses live/standard keys or an account mismatch, and reports missing Account Read permission without exposing Stripe's raw error response. No Cloudflare credentials are available to this job. It cannot deploy, migrate, configure a webhook, create a Customer or take a payment. Missing connection stops the job; Codex can retry it after the secret is saved.

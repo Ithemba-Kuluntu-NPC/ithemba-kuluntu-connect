@@ -21,24 +21,34 @@ jobs:
           import assert from 'node:assert/strict';
           import { appendFile } from 'node:fs/promises';
           const origin = 'https://ithemba-donations-staging.super-tooth-55f1.workers.dev';
-          for (const [path, expected] of [['/donate', 200], ['/api/donations/config', 503]]) {
+          let availability = 'unavailable';
+          for (const [path, expected] of [['/donate', [200]], ['/api/donations/config', [200, 503]]]) {
             let status;
             for (let attempt = 1; attempt <= 4; attempt++) {
               const response = await fetch(origin + path, { redirect: 'error', signal: AbortSignal.timeout(30000) });
               status = response.status;
               console.log(JSON.stringify({ path, attempt, status, contentType: response.headers.get('content-type') }));
-              if (status === expected) {
+              if (expected.includes(status)) {
                 if (path === '/api/donations/config') {
                   const result = await response.json();
-                  assert.equal(typeof result.error, 'string', 'Expected unavailable-payment response');
+                  if (status === 503) assert.equal(typeof result.error, 'string', 'Expected unavailable-payment response');
+                  else {
+                    assert.deepEqual(Object.keys(result).sort(), ['mode', 'portalLoginUrl', 'publishableKey']);
+                    assert.equal(result.mode, 'test');
+                    assert.match(result.publishableKey, /^pk_test_[A-Za-z0-9]+$/);
+                    const login = new URL(result.portalLoginUrl);
+                    assert.equal(login.origin, 'https://billing.stripe.com');
+                    assert.ok(login.pathname.startsWith('/p/login/test_'));
+                    availability = 'available in test mode; actual Checkout/webhook acceptance still required';
+                  }
                 }
                 break;
               }
-              const body = await response.text();
-              console.log(JSON.stringify({ path, diagnostic: body.slice(0, 1000) }));
+              await response.body?.cancel();
+              console.log(JSON.stringify({ path, diagnostic: 'Unexpected HTTP response; raw body omitted.' }));
               if (attempt < 4) await new Promise(resolve => setTimeout(resolve, 15000));
             }
-            assert.equal(status, expected, `Unexpected staging response for ${path}`);
+            assert.ok(expected.includes(status), `Unexpected staging response for ${path}`);
           }
-          await appendFile(process.env.GITHUB_STEP_SUMMARY, `Staging URL verified: ${origin}/donate\n\nDonation page HTTP 200; payment configuration HTTP 503. Payments remain unavailable.\n`);
+          await appendFile(process.env.GITHUB_STEP_SUMMARY, `Staging URL verified: ${origin}/donate\n\nDonation page HTTP 200; payment configuration ${availability}.\n`);
           NODE
