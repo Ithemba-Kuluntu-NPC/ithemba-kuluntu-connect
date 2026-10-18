@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import {
   checkReadiness,
+  portalReadinessFlags,
   usablePortal,
   validateWebhookSecret,
 } from "../scripts/check-stripe-sandbox-readiness.mjs";
@@ -62,6 +63,20 @@ test("only usable sandbox Portals with secure test email login are accepted", ()
   ])
     assert.equal(usablePortal({ ...portal, ...change }), false);
 });
+test("Portal diagnostics expose only fixed readiness flags and a policy enum", () => {
+  const flags = portalReadinessFlags({
+    ...portal,
+    id: "private-id",
+    business_profile: { headline: "private-name" },
+    login_page: { enabled: true, url: "https://private.example/token" },
+    features: { ...portal.features, subscription_cancel: { enabled: true, mode: "private-mode" } },
+  });
+  assert.equal(flags.cancellationMode, "unrecognized");
+  assert.equal(flags.testLoginUrl, false);
+  assert.ok(!JSON.stringify(flags).includes("private"));
+  assert.equal(portalReadinessFlags(portal).testLoginUrl, true);
+});
+
 test("readiness uses only version-pinned GET requests and never forwards the webhook secret", async () => {
   const calls = [];
   const result = await checkReadiness({

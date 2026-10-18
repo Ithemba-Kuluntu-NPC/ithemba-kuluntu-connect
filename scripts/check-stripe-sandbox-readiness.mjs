@@ -42,6 +42,34 @@ export function usablePortal(configuration) {
   }
 }
 
+export function portalReadinessFlags(configuration) {
+  let testLoginUrl = false;
+  try {
+    const url = new URL(configuration?.login_page?.url);
+    testLoginUrl =
+      url.origin === "https://billing.stripe.com" &&
+      url.pathname.startsWith("/p/login/test_") &&
+      !url.username &&
+      !url.password &&
+      !url.search &&
+      !url.hash;
+  } catch {
+    /* Report only a boolean, never the submitted URL. */
+  }
+  const mode = configuration?.features?.subscription_cancel?.mode;
+  return {
+    active: configuration?.active === true,
+    testMode: configuration?.livemode === false,
+    validId: typeof configuration?.id === "string" && /^bpc_[A-Za-z0-9]+$/.test(configuration.id),
+    cancellation: configuration?.features?.subscription_cancel?.enabled === true,
+    cancellationMode: ["at_period_end", "immediately"].includes(mode) ? mode : "unrecognized",
+    paymentMethodUpdates: configuration?.features?.payment_method_update?.enabled === true,
+    emailLogin: configuration?.login_page?.enabled === true,
+    testLoginUrl,
+    default: configuration?.is_default === true,
+  };
+}
+
 export async function checkReadiness({
   connectionValue = process.env.STRIPE_SANDBOX_CONNECTION,
   webhookSecret = process.env.STRIPE_SANDBOX_WEBHOOK_SECRET,
@@ -99,6 +127,9 @@ export async function checkReadiness({
           ? eligible[0]
           : null;
   if (!selected) {
+    console.log(
+      `PORTAL_READINESS_FLAGS: ${JSON.stringify({ configurations: result.data.map(portalReadinessFlags), morePages: result.has_more === true })}`,
+    );
     console.log(
       "PORTAL_DASHBOARD_REQUIRED: No unambiguous active test Portal with cancellation, payment-method updates and email login was found. Configure or select it in the existing sandbox.",
     );
