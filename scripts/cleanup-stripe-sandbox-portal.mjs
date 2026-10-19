@@ -153,8 +153,37 @@ async function main() {
         );
         return;
       }
+      const controls = [];
+      for (const control of await page.getByRole("button").all()) {
+        if (!(await control.isVisible())) continue;
+        const text = (await control.innerText()).trim().replace(/\s+/g, " ");
+        // Only short human-readable UI labels; never URLs, emails, IDs or input values.
+        if (text.length <= 80 && /^[A-Za-zÀ-ž €$'’—–().,\-:!?]+$/.test(text))
+          controls.push({ label: text, enabled: await control.isEnabled() });
+      }
+      console.log(
+        `SANDBOX_PORTAL_CONTROLS: ${JSON.stringify({ attempt, buttons: controls.slice(0, 15), comboboxes: await page.getByRole("combobox").count() })}`,
+      );
       const other = page.getByRole("radio", { name: /Other/i }).first();
       if (await other.isVisible()) await other.check();
+      const otherButton = page.getByRole("button", { name: /^(Other|Something else)$/i }).first();
+      if (await otherButton.isVisible()) await otherButton.click();
+      const reason = page.getByRole("combobox").first();
+      if (await reason.isVisible()) {
+        if ((await reason.evaluate((element) => element.tagName)) === "SELECT") {
+          const options = await reason.locator("option").all();
+          for (const option of options)
+            if (/other|something else/i.test(await option.innerText())) {
+              await reason.selectOption(await option.getAttribute("value"));
+              break;
+            }
+        } else {
+          await reason.click();
+          const option = page.getByRole("option", { name: /Other|Something else/i }).first();
+          if (await option.isVisible()) await option.click();
+          else await page.keyboard.press("Escape");
+        }
+      }
       const details = page.locator("textarea").first();
       if ((await details.isVisible()) && (await details.inputValue()) === "")
         await details.fill("Automated sandbox test cleanup");
