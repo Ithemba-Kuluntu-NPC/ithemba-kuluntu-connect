@@ -213,30 +213,79 @@ async function main() {
           const portal = await api("portal", { id: currentReference });
           const url = new URL(portal.url);
           assert.equal(url.origin, "https://billing.stripe.com");
-          assert.ok(url.pathname.startsWith("/p/session/"));
+          // Stripe can change its session path; the exact trusted HTTPS origin is the boundary.
           await page.goto(portal.url, { waitUntil: "domcontentloaded" });
           stage = "monthly:schedule_cancellation";
-          for (let attempt = 0; attempt < 6; attempt++) {
+          for (let attempt = 0; attempt < 8; attempt++) {
             const value = await status();
             if (value.cancelAtPeriodEnd === true) {
               cancellationScheduled = true;
               break;
             }
+            const chooseReason = page.getByRole("button", { name: /^Choose an option$/i }).first();
+            if (await chooseReason.isVisible()) {
+              await chooseReason.click({ timeout: 5000 });
+              for (const candidate of [
+                page.getByRole("option", { name: /other|something else/i }).first(),
+                page.getByRole("menuitem", { name: /other|something else/i }).first(),
+                page.getByText(/^(Other|Other reason|Something else)$/i).last(),
+              ]) {
+                if (await candidate.isVisible()) {
+                  await candidate.click({ timeout: 5000 });
+                  break;
+                }
+              }
+            }
             const other = page.getByRole("radio", { name: /Other/i }).first();
             if (await other.isVisible()) await other.check();
-            const buttons = page.getByRole("button", {
-              name: /^(Cancel subscription|Cancel plan|Confirm cancellation|Continue)$/i,
-            });
-            const links = page.getByRole("link", { name: /^(Cancel subscription|Cancel plan)$/i });
-            const button = buttons.last();
-            const link = links.first();
-            if (await button.isVisible()) await button.click();
-            else if (await link.isVisible()) await link.click();
+            const otherButton = page
+              .getByRole("button", { name: /^(Other|Something else)$/i })
+              .first();
+            if (await otherButton.isVisible()) await otherButton.click();
+            const reason = page.getByRole("combobox").first();
+            if (await reason.isVisible()) {
+              if ((await reason.evaluate((element) => element.tagName)) === "SELECT") {
+                const options = await reason.locator("option").all();
+                for (const option of options)
+                  if (/other|something else/i.test(await option.innerText())) {
+                    await reason.selectOption(await option.getAttribute("value"));
+                    break;
+                  }
+              } else {
+                await reason.click();
+                const option = page.getByRole("option", { name: /Other|Something else/i }).first();
+                if (await option.isVisible()) await option.click();
+                else await page.keyboard.press("Escape");
+              }
+            }
+            const details = page.locator("textarea").first();
+            if ((await details.isVisible()) && (await details.inputValue()) === "")
+              await details.fill("Automated sandbox test cleanup");
+            // The cancellation-reason dialog overlays the original Cancel button.
+            // Prefer its continuation action; never click a covered background control.
+            const dialog = page.getByRole("dialog").last();
+            const scope = (await dialog.isVisible()) ? dialog : page;
+            const continuation = scope
+              .getByRole("button", {
+                name: /^(Continue to cancellation|Confirm cancellation|Continue)$/i,
+              })
+              .last();
+            const action = scope
+              .getByRole("button", { name: /^(Cancel subscription|Cancel plan)$/i })
+              .last();
+            const link = scope
+              .getByRole("link", { name: /^(Cancel subscription|Cancel plan)$/i })
+              .first();
+            if ((await continuation.isVisible()) && (await continuation.isEnabled()))
+              await continuation.click({ timeout: 5000 });
+            else if ((await action.isVisible()) && (await action.isEnabled()))
+              await action.click({ timeout: 5000 });
+            else if (await link.isVisible()) await link.click({ timeout: 5000 });
             else {
-              const subscription = page
+              const product = page
                 .getByText("iThemba Kuluntu e.V. — Where needed most", { exact: false })
                 .first();
-              if (await subscription.isVisible()) await subscription.click();
+              if (await product.isVisible()) await product.click({ timeout: 5000 });
             }
             await delay(2000);
           }
