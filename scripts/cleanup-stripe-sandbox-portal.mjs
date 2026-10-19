@@ -164,6 +164,20 @@ async function main() {
       console.log(
         `SANDBOX_PORTAL_CONTROLS: ${JSON.stringify({ attempt, buttons: controls.slice(0, 15), comboboxes: await page.getByRole("combobox").count() })}`,
       );
+      const chooseReason = page.getByRole("button", { name: /^Choose an option$/i }).first();
+      if (await chooseReason.isVisible()) {
+        await chooseReason.click({ timeout: 5000 });
+        for (const candidate of [
+          page.getByRole("option", { name: /other|something else/i }).first(),
+          page.getByRole("menuitem", { name: /other|something else/i }).first(),
+          page.getByText(/^(Other|Other reason|Something else)$/i).last(),
+        ]) {
+          if (await candidate.isVisible()) {
+            await candidate.click({ timeout: 5000 });
+            break;
+          }
+        }
+      }
       const other = page.getByRole("radio", { name: /Other/i }).first();
       if (await other.isVisible()) await other.check();
       const otherButton = page.getByRole("button", { name: /^(Other|Something else)$/i }).first();
@@ -187,19 +201,31 @@ async function main() {
       const details = page.locator("textarea").first();
       if ((await details.isVisible()) && (await details.inputValue()) === "")
         await details.fill("Automated sandbox test cleanup");
-      const action = page
+      // The cancellation-reason dialog overlays the original Cancel button.
+      // Prefer its continuation action; never click a covered background control.
+      const dialog = page.getByRole("dialog").last();
+      const scope = (await dialog.isVisible()) ? dialog : page;
+      const continuation = scope
         .getByRole("button", {
-          name: /^(Cancel subscription|Cancel plan|Confirm cancellation|Continue)$/i,
+          name: /^(Continue to cancellation|Confirm cancellation|Continue)$/i,
         })
         .last();
-      const link = page.getByRole("link", { name: /^(Cancel subscription|Cancel plan)$/i }).first();
-      if (await action.isVisible()) await action.click();
-      else if (await link.isVisible()) await link.click();
+      const action = scope
+        .getByRole("button", { name: /^(Cancel subscription|Cancel plan)$/i })
+        .last();
+      const link = scope
+        .getByRole("link", { name: /^(Cancel subscription|Cancel plan)$/i })
+        .first();
+      if ((await continuation.isVisible()) && (await continuation.isEnabled()))
+        await continuation.click({ timeout: 5000 });
+      else if ((await action.isVisible()) && (await action.isEnabled()))
+        await action.click({ timeout: 5000 });
+      else if (await link.isVisible()) await link.click({ timeout: 5000 });
       else {
         const product = page
           .getByText("iThemba Kuluntu e.V. — Where needed most", { exact: false })
           .first();
-        if (await product.isVisible()) await product.click();
+        if (await product.isVisible()) await product.click({ timeout: 5000 });
       }
       await new Promise((resolve) => setTimeout(resolve, 2000));
     }
