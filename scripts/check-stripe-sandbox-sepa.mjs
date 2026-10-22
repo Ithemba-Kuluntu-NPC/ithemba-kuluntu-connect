@@ -141,10 +141,46 @@ async function main() {
           frame.getByText(/^(SEPA Direct Debit|SEPA|Bank account)$/i),
           frame.getByRole("button", { name: /^(Other|More) payment methods$/i }),
         ];
+        if (attempt === 5) {
+          for (const element of await frame.getByText(/^SEPA Direct Debit$/i).all()) {
+            const shape = await element.evaluate((el) => {
+              const safe = (n) => ({
+                tag: n.tagName,
+                role: n.getAttribute("role"),
+                type: n.getAttribute("type"),
+                hidden: n.getAttribute("aria-hidden"),
+                disabled: n.getAttribute("aria-disabled"),
+                children: Array.from(n.children)
+                  .slice(0, 8)
+                  .map((c) => ({
+                    tag: c.tagName,
+                    role: c.getAttribute("role"),
+                    type: c.getAttribute("type"),
+                  })),
+              });
+              return [el, el.parentElement, el.parentElement?.parentElement]
+                .filter(Boolean)
+                .map(safe);
+            });
+            console.log(`SANDBOX_SEPA_CONTROL_SHAPE: ${JSON.stringify(shape)}`);
+          }
+        }
         for (const matches of sepaControls) {
           const sepa = matches.first();
           if (await sepa.isVisible()) {
-            await sepa.click({ timeout: 2000 }).catch(() => {});
+            await sepa.click({ timeout: 1500 }).catch((error) => {
+              if (attempt === 5) {
+                const reasons = [
+                  "intercepts pointer events",
+                  "outside of the viewport",
+                  "not stable",
+                  "not enabled",
+                  "not visible",
+                  "detached",
+                ].filter((reason) => error.message?.includes(reason));
+                console.log(`SANDBOX_SEPA_CONTROL_BLOCKED: ${JSON.stringify(reasons)}`);
+              }
+            });
             break;
           }
         }
