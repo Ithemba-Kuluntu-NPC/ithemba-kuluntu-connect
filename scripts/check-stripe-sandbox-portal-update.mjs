@@ -232,7 +232,10 @@ async function main() {
         const u = new URL(frame.url());
         if (u.protocol !== "https:" || !u.hostname.endsWith(".stripe.com")) continue;
         for (const [selector, value] of [
-          ['input[autocomplete="cc-name"], input[name="billingName"]', "iThemba Sandbox Test"],
+          [
+            'input[autocomplete="cc-name"], input[autocomplete="name"], input[name="billingName"], input[name="name"], input[name="fullName"], input[name="billingDetails.name"]',
+            "iThemba Sandbox Test",
+          ],
           ['input[autocomplete="postal-code"], input[name="postalCode"]', "10115"],
         ]) {
           const input = frame.locator(selector).first();
@@ -245,6 +248,28 @@ async function main() {
     }
     stage = "save_test_payment_method";
     await controls();
+    const fields = [];
+    for (const frame of page.frames()) {
+      try {
+        const u = new URL(frame.url());
+        if (u.protocol !== "https:" || !u.hostname.endsWith(".stripe.com")) continue;
+        for (const input of await frame.locator("input,select").all()) {
+          if (!(await input.isVisible())) continue;
+          const name = await input.getAttribute("name");
+          const autocomplete = await input.getAttribute("autocomplete");
+          fields.push({
+            name: /^[A-Za-z_.\[\]-]{0,60}$/.test(name ?? "") ? name : "omitted",
+            autocomplete: /^[A-Za-z -]{0,60}$/.test(autocomplete ?? "") ? autocomplete : "omitted",
+            type: await input.getAttribute("type"),
+            empty: (await input.inputValue()) === "",
+            required: (await input.getAttribute("required")) !== null,
+          });
+        }
+      } catch {
+        /* Detached frame. */
+      }
+    }
+    console.log(`SANDBOX_PORTAL_UPDATE_FIELDS: ${JSON.stringify(fields)}`);
     const checkbox = page.getByRole("checkbox", { name: /default/i }).first();
     if (await checkbox.isVisible()) await checkbox.check();
     const save = page
