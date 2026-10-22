@@ -73,6 +73,12 @@ async function main() {
       }
       for (const session of await list("checkout/sessions", { customer: customer.id })) {
         assert.equal(session.customer, customer.id);
+        if (session.metadata?.donor_name === "TEST - iThemba sandbox SEPA") {
+          const methods = session.payment_method_types ?? [];
+          console.log(
+            `SANDBOX_SEPA_SESSION_CONFIGURATION: ${JSON.stringify({ includesSepa: methods.includes("sepa_debit"), includesCard: methods.includes("card"), methodCount: methods.length, eur: session.currency === "eur", english: session.locale === "en", billingCountryDE: customer.address?.country === "DE" })}`,
+          );
+        }
         if (
           session.mode === "subscription" &&
           session.status === "complete" &&

@@ -90,6 +90,29 @@ async function main() {
       const labels = [];
       for (const frame of page.frames()) {
         if (!stripeFrame(frame)) continue;
+        if (attempt === 5) {
+          const lines = (
+            await frame
+              .locator("body")
+              .innerText()
+              .catch(() => "")
+          )
+            .split("\n")
+            .map((line) => line.trim())
+            .filter((line) => line.length <= 70 && /^[A-Za-zÀ-ž €$'’—–().,\-:!?]+$/.test(line));
+          const fields = [];
+          for (const input of await frame.locator("input,select").all())
+            if (await input.isVisible()) {
+              const name = await input.getAttribute("name");
+              fields.push({
+                name: /^[A-Za-z_.\[\]-]{0,60}$/.test(name ?? "") ? name : "omitted",
+                type: await input.getAttribute("type"),
+              });
+            }
+          console.log(
+            `SANDBOX_SEPA_VISIBLE_FORM: ${JSON.stringify({ lines: lines.slice(0, 25), fields })}`,
+          );
+        }
         const field = frame.locator('input[name*="iban" i], input[autocomplete="iban"]').first();
         if (await field.isVisible()) {
           iban = field;
@@ -109,7 +132,9 @@ async function main() {
               if (label.length <= 80 && /^[A-Za-zÀ-ž €$'’—–().,\-:!?]+$/.test(label))
                 labels.push({ role, label });
             }
-        for (const sepa of await frame.getByText(/SEPA|Direct Debit|Bank account/i).all()) {
+        for (const sepa of await frame
+          .getByText(/SEPA|Direct Debit|Bank account|Other payment methods|More payment methods/i)
+          .all()) {
           if (await sepa.isVisible()) {
             await sepa.click();
             break;
