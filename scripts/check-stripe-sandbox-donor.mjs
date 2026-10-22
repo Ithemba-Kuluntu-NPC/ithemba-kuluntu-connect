@@ -5,8 +5,10 @@ import {
   SANDBOX_API_VERSION,
 } from "./check-stripe-sandbox.mjs";
 
+import { assertDatabaseTarget, parseStagingConnection } from "./migrate-donations-staging.mjs";
+
 // Read-only diagnostic for the operator's requested address and our known fixture.
-// No Cloudflare access, Portal session/email creation or Stripe writes.
+// Optional exact-staging D1 SELECTs only; no Portal sessions/emails or Stripe writes.
 async function main() {
   assert.equal(process.env.GITHUB_REPOSITORY, "Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect");
   assert.equal(process.env.GITHUB_REF, "refs/heads/codex/stripe-donations-integration");
@@ -14,6 +16,49 @@ async function main() {
   console.log(`::add-mask::${connection.restrictedKey}`);
   console.log(`::add-mask::${connection.publishableKey}`);
   await checkSandbox();
+  let readFixtureLedger;
+  if (process.env.CLOUDFLARE_D1_STAGING) {
+    const cf = parseStagingConnection(process.env.CLOUDFLARE_D1_STAGING);
+    console.log(`::add-mask::${cf.apiToken}`);
+    const db = `https://api.cloudflare.com/client/v4/accounts/${cf.accountId}/d1/database/990e1489-72e6-4a2b-b2f6-dbb4863e4971`;
+    async function d1(query) {
+      const r = await fetch(db + (query ? "/query" : ""), {
+        method: query ? "POST" : "GET",
+        redirect: "error",
+        signal: AbortSignal.timeout(30000),
+        headers: {
+          Authorization: `Bearer ${cf.apiToken}`,
+          ...(query ? { "Content-Type": "application/json" } : {}),
+        },
+        ...(query ? { body: JSON.stringify(query) } : {}),
+      });
+      assert.ok(r.ok);
+      const data = await r.json();
+      assert.equal(data.success, true);
+      return data.result;
+    }
+    assertDatabaseTarget(await d1());
+    readFixtureLedger = async (id) => {
+      assert.match(id, /^[a-f0-9-]{36}$/i);
+      const ledger = await d1({ sql: "SELECT status FROM donations WHERE id = ?", params: [id] });
+      const events = await d1({
+        sql: "SELECT type FROM donation_events WHERE donation_id = ? AND type IN ('checkout.session.async_payment_succeeded', 'checkout.session.async_payment_failed')",
+        params: [id],
+      });
+      const status = ledger[0]?.results?.[0]?.status;
+      return {
+        ledgerStatus: ["open", "pending", "succeeded", "failed", "cancelled"].includes(status)
+          ? status
+          : "missing",
+        signedAsyncSuccess:
+          events[0]?.results?.some((r) => r.type === "checkout.session.async_payment_succeeded") ===
+          true,
+        signedAsyncFailure:
+          events[0]?.results?.some((r) => r.type === "checkout.session.async_payment_failed") ===
+          true,
+      };
+    };
+  }
   const accountResponse = await fetch("https://api.stripe.com/v1/account", {
     method: "GET",
     redirect: "error",
@@ -135,6 +180,9 @@ async function main() {
             assert.equal(detail.livemode, false);
             assert.equal(detail.customer, customer.id);
             assert.equal(detail.metadata?.donor_name, "TEST - iThemba sandbox SEPA");
+            const ledger = readFixtureLedger
+              ? await readFixtureLedger(detail.metadata.donation_id)
+              : {};
             const intent = detail.payment_intent;
             assert.ok(intent && typeof intent === "object" && intent.livemode === false);
             const status = [
@@ -146,7 +194,7 @@ async function main() {
               ? intent.status
               : "other";
             console.log(
-              `SANDBOX_SEPA_AUTHORITATIVE_STATUS: ${JSON.stringify({ checkoutComplete: detail.status === "complete", paymentPaid: detail.payment_status === "paid", intentStatus: status, paymentErrorPresent: Boolean(intent.last_payment_error) })}`,
+              `SANDBOX_SEPA_AUTHORITATIVE_STATUS: ${JSON.stringify({ checkoutComplete: detail.status === "complete", paymentPaid: detail.payment_status === "paid", intentStatus: status, paymentErrorPresent: Boolean(intent.last_payment_error), ...ledger })}`,
             );
           }
           const methods = session.payment_method_types ?? [];

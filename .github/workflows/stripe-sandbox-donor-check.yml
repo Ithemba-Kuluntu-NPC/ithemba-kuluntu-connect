@@ -27,4 +27,5 @@ jobs:
       - name: Read only the two requested sandbox donor records
         env:
           STRIPE_SANDBOX_CONNECTION: ${{ secrets.STRIPE_SANDBOX_CONNECTION }}
+          CLOUDFLARE_D1_STAGING: ${{ secrets.CLOUDFLARE_D1_STAGING }}
         run: node scripts/check-stripe-sandbox-donor.mjs
