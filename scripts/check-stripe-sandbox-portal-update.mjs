@@ -14,7 +14,44 @@ const origin = "https://ithemba-donations-staging.super-tooth-55f1.workers.dev";
 const login = "https://billing.stripe.com/p/login/test_28EcN70MMeBD64G5MMfUQ00";
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 let stage = "startup";
+async function requestLogin(browser) {
+  stage = "request_public_test_login_email";
+  const context = await browser.newContext({ locale: "en-US" });
+  const page = await context.newPage();
+  page.setDefaultTimeout(10000);
+  await page.goto(login, { waitUntil: "domcontentloaded" });
+  assert.equal(new URL(page.url()).origin, "https://billing.stripe.com");
+  await delay(2000);
+  console.log(
+    `SANDBOX_PORTAL_LOGIN_FORM: ${JSON.stringify({ textboxes: await page.getByRole("textbox").count(), buttons: await page.getByRole("button").count(), inputTypes: await page.locator("input").evaluateAll((elements) => elements.map((e) => e.getAttribute("type"))) })}`,
+  );
+  const input = page.getByRole("textbox").first();
+  await input.fill(email);
+  const button = page
+    .getByRole("button", {
+      name: /^(Send|Send login link|Continue|Sign in|Log in|Send code|Send me.*)$/i,
+    })
+    .last();
+  if (await button.isVisible()) await button.click();
+  else await page.locator('button[type="submit"]').click();
+  await delay(2000);
+  assert.equal(new URL(page.url()).origin, "https://billing.stripe.com");
+  const body = await page.locator("body").innerText();
+  const acknowledged =
+    /check your email|sent.*email|email.*sent|check your inbox|email.*verification/i.test(body);
+  console.log(
+    `SANDBOX_PORTAL_LOGIN_RESPONSE: ${JSON.stringify({ acknowledged, emailInputVisible: await input.isVisible() })}`,
+  );
+  assert.ok(acknowledged);
+  console.log(
+    "SANDBOX_PORTAL_LOGIN_EMAIL_REQUESTED: public test Portal accepted a login request for the existing association inbox. Delivery and authenticated email-link use require separate confirmation.",
+  );
+  await context.close();
+}
 async function main() {
+  assert.ok(
+    process.argv.length === 2 || (process.argv.length === 3 && process.argv[2] === "--login-only"),
+  );
   assert.equal(process.env.GITHUB_REPOSITORY, "Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect");
   assert.equal(process.env.GITHUB_REF, "refs/heads/codex/stripe-donations-integration");
   const connection = parseSandboxConnection(process.env.STRIPE_SANDBOX_CONNECTION);
@@ -166,6 +203,10 @@ async function main() {
   );
   const browser = await chromium.launch({ headless: true, env });
   try {
+    if (process.argv[2] === "--login-only") {
+      await requestLogin(browser);
+      return;
+    }
     const page = await browser.newPage({ locale: "en-US" });
     page.setDefaultTimeout(8000);
     await page.goto(portal.url, { waitUntil: "domcontentloaded" });
@@ -345,19 +386,7 @@ async function main() {
     console.log(
       "SANDBOX_PORTAL_PAYMENT_UPDATE_VERIFIED: Stripe-hosted published test-card replacement persisted as a default; monthly subscription remains active with unchanged donation, price and schedule. No real card or live configuration used.",
     );
-    stage = "request_public_test_login_email";
-    const loginContext = await browser.newContext({ locale: "en-US" });
-    const loginPage = await loginContext.newPage();
-    await loginPage.goto(login, { waitUntil: "domcontentloaded" });
-    await loginPage.locator('input[type="email"]').fill(email);
-    await loginPage.locator('button[type="submit"]').click();
-    await delay(2000);
-    assert.equal(new URL(loginPage.url()).origin, "https://billing.stripe.com");
-    const body = await loginPage.locator("body").innerText();
-    assert.ok(/check your email|sent.*email|email.*sent|check your inbox/i.test(body));
-    console.log(
-      "SANDBOX_PORTAL_LOGIN_EMAIL_REQUESTED: public test Portal accepted a login request for the existing association inbox. Delivery and authenticated email-link use require separate confirmation.",
-    );
+    await requestLogin(browser);
   } finally {
     await browser.close();
   }
