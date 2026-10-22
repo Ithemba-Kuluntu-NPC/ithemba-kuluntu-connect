@@ -1,0 +1,55 @@
+{
+  "description": "INACTIVE REVIEW TEMPLATE ONLY. Not a Wrangler config, environment file, deployment input, or activation switch. No runtime or workflow installs these bindings.",
+  "launchApprovalRequired": true,
+  "existingProductionWorker": "tanstack-start-app",
+  "siteOrigin": "https://ithembakuluntu.org",
+  "database": {
+    "binding": "DONATIONS_DB",
+    "proposedName": "ithemba-donations-live",
+    "databaseId": null,
+    "migration": "migrations/0001_donations.sql"
+  },
+  "workerVariables": {
+    "STRIPE_DONATIONS_MODE": "live",
+    "STRIPE_PAYPAL_ENABLED": "false",
+    "STRIPE_PAYPAL_RECURRING_ENABLED": "false",
+    "STRIPE_BANK_TRANSFER_ENABLED": "false"
+  },
+  "workerSecrets": {
+    "STRIPE_SECRET_KEY": null,
+    "STRIPE_PUBLISHABLE_KEY": null,
+    "STRIPE_ACCOUNT_ID": null,
+    "STRIPE_WEBHOOK_SECRET": null,
+    "DONATION_COOKIE_SECRET": null,
+    "DONATION_SITE_ORIGIN": null,
+    "STRIPE_PORTAL_CONFIGURATION_ID": null,
+    "STRIPE_PORTAL_LOGIN_URL": null
+  },
+  "stripe": {
+    "apiVersion": "2024-06-20",
+    "webhookApiVersion": "2026-08-26.dahlia",
+    "webhookPayloadType": "snapshot",
+    "webhookUrl": "https://ithembakuluntu.org/api/donations/webhook",
+    "currency": "eur",
+    "adaptivePricing": false,
+    "initialMethods": ["card", "sepa_debit"],
+    "wallets": "Eligible Apple Pay / Google Pay through card; live domain/device verification required.",
+    "webhookEvents": [
+      "checkout.session.completed",
+      "checkout.session.async_payment_succeeded",
+      "checkout.session.async_payment_failed",
+      "checkout.session.expired",
+      "payment_intent.processing",
+      "payment_intent.succeeded",
+      "payment_intent.payment_failed",
+      "payment_intent.canceled",
+      "invoice.paid",
+      "invoice.payment_failed",
+      "invoice.payment_action_required",
+      "invoice.voided",
+      "customer.subscription.created",
+      "customer.subscription.updated",
+      "customer.subscription.deleted"
+    ]
+  }
+}

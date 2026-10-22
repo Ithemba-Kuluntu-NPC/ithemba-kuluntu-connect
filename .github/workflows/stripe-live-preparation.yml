@@ -1,0 +1,29 @@
+name: Prepare live Stripe account (read only, never deploy)
+on:
+  push:
+    branches: [codex/stripe-donations-integration]
+    paths:
+      - .github/workflows/stripe-live-preparation.yml
+      - scripts/check-stripe-live-account.mjs
+      - tests/stripe-live-preparation.test.mjs
+      - config/stripe-donations-live.example.json
+permissions:
+  contents: read
+jobs:
+  prepare:
+    if: github.repository == 'Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect' && github.ref == 'refs/heads/codex/stripe-donations-integration'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: "24"
+      - name: Verify read-only preparation safeguards without credentials
+        run: env GITHUB_ACTIONS=false node --test --test-isolation=none tests/stripe-live-preparation.test.mjs
+      - name: Report live account readiness without changing it
+        env:
+          STRIPE_LIVE_CONNECTION: ${{ secrets.STRIPE_LIVE_CONNECTION }}
+        run: node scripts/check-stripe-live-account.mjs

@@ -159,9 +159,13 @@ Enable Stripe successful-payment receipts and Billing invoice/failed-payment/SCA
 
 Receipt-request metadata and Stripe's full billing address support a separate association-controlled issuance process. Authorized iThemba Kuluntu e.V. staff should reconcile settled gifts and reversals, verify full donor name/address, review eligibility and purpose restrictions, and issue official **Zuwendungsbestätigungen** using the association's approved template/process. Agree timing, annual aggregation, secure delivery and handling of refunds. The website does not auto-generate or promise that a Stripe receipt is a tax certificate. Have the association's tax adviser approve this process before launch. The application sends no custom donor emails; Stripe Portal login-email delivery has been tested separately.
 
+## Current launch preparation
+
+The owner has deferred Test Clock permission changes and requested essential checks using existing tests. See the [live preparation guide](stripe-donations-live-preparation.md) and [current readiness decision](stripe-donations-readiness.md#essential-launch-review--test-clocks-deferred-by-the-owner). The read-only account checker and inactive template do not install live configuration, enable payments or authorize deployment.
+
 ## Pre-launch acceptance checklist
 
-Completed evidence and remaining checks are summarized in [the readiness report](stripe-donations-readiness.md). This is the full acceptance scope, not a claim that every item has passed.
+Completed evidence and remaining checks are summarized in [the readiness report](stripe-donations-readiness.md). This is the broader acceptance scope, not a claim that every item has passed or that every optional simulation is a current launch blocker. The current readiness report records the owner's Test Clock deferral and remaining live-specific gates.
 
 1. Confirm branch/PR review, beneficiary account, legal terms, privacy/retention, cause restrictions and certificate process.
 2. Verify the existing staging D1 target and follow the staged approval steps in the runbook before applying the migration or deploying. In the later Stripe setup phase, set only test keys and required variables and configure Stripe test webhook/Portal/receipt emails. Verify `/config` succeeds and no secret is present in public assets or responses.
