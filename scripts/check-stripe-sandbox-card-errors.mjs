@@ -98,6 +98,28 @@ async function main() {
         await (
           await field('input[name="cardCvc"], input[name="cvc"], input[autocomplete="cc-csc"]')
         ).fill("123");
+        for (const frame of page.frames()) {
+          if (!stripeFrame(frame)) continue;
+          try {
+            const country = frame.locator('select[name="country"]').first();
+            if (await country.isVisible()) await country.selectOption("DE");
+            const postal = frame
+              .locator(
+                'input[name="postalCode"], input[name="billingPostalCode"], input[autocomplete="postal-code"]',
+              )
+              .first();
+            if (await postal.isVisible()) await postal.fill("10115");
+            const name = frame
+              .locator('input[name="billingName"], input[autocomplete="cc-name"]')
+              .first();
+            if ((await name.isVisible()) && (await name.inputValue()) === "")
+              await name.fill("iThemba Sandbox Test");
+            const link = frame.locator('input[name="linkOptIn"]').first();
+            if ((await link.isVisible()) && (await link.isChecked())) await link.uncheck();
+          } catch {
+            /* Optional Stripe fields may detach. */
+          }
+        }
         stage = `${scenario.label}:submit_test_card`;
         for (const frame of page.frames()) {
           if (!stripeFrame(frame)) continue;
