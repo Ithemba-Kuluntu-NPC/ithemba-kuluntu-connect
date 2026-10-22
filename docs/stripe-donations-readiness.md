@@ -60,7 +60,7 @@ The essential software checks were repeated on this branch: **58 existing tests 
 
 ## ONE next operator action
 
-Open the **live iThemba Kuluntu e.V. Stripe account**, outside the sandbox, and confirm whether business verification is complete with **payments and payouts enabled** (or report any outstanding requirement). This is an inspection, not a request to activate payments or alter account settings. Do not send keys or bank/identity documents. The runtime cannot establish legal ownership or account eligibility from sandbox tests, and no live connection is saved for automated verification yet.
+The operator completed the live Dashboard review; automated beneficiary/key verification is still pending and no launch authorization is inferred. Create a dedicated restricted live API key named **iThemba donations - live**, using only the [runtime scope table in the live preparation guide](stripe-donations-live-preparation.md). Keep the resulting key private and available for the next secure GitHub-storage step; do not send it through chat. No Test Clock permission, new email account, installation, terminal command, production binding or payment is requested. Bank transfers remain disabled, and PayPal's account-level availability does not enable untested checkout flags.
 
 ## Still required before real donations
 

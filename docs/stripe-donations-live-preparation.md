@@ -1,8 +1,23 @@
-# Live Stripe preparation — inactive, awaiting account confirmation
+# Live Stripe preparation — inactive, awaiting secure live connection
 
 PR #26 stays draft on `codex/stripe-donations-integration`. Preparation is authorized; merging, production deployment, production binding/secret installation and real-payment activation are not. Test Clock permission changes are deferred at the owner's request. No live key, live webhook secret or live database ID is committed or installed.
 
-**The one next operator action:** open the existing **live iThemba Kuluntu e.V. Stripe account**, outside Sandbox, and report whether business verification is complete and payments/payouts are enabled, or whether Stripe shows outstanding requirements. Inspect only; do not activate, change account settings or share keys, bank details or identity documents. No software or terminal commands are needed.
+The operator completed the live-account Dashboard review. That is an operator report, not automated API verification or approval to install production settings. The live connection has not been saved or verified by the prepared workflow. Bank transfers remain off; account-level PayPal availability does not enable the checkout flag or establish recurring PayPal acceptance.
+
+**The one next operator action:** in the live association account's API keys page, create a **restricted key** named **iThemba donations - live**, using the ordinary account permissions below (no connected-account access). Keep the resulting key private and available for the following secure-storage step; do not paste it into chat. Creating a credential does not deploy or activate the website.
+
+| Resource            | Permission                                                              |
+| ------------------- | ----------------------------------------------------------------------- |
+| Accounts            | Read                                                                    |
+| Customers           | Write                                                                   |
+| Checkout Sessions   | Write                                                                   |
+| Payment Intents     | Read                                                                    |
+| Subscriptions       | Read                                                                    |
+| Invoices            | Read                                                                    |
+| Customer Portal     | Write; Sessions only if the editor separates Sessions and Configuration |
+| All other resources | None                                                                    |
+
+No Test Clock, direct Subscription/Invoice Write, payout, refund or configuration Write is requested. If a suitable dedicated live restricted key already exists, reuse it only after checking these scopes; do not rotate another integration's key. This step does not ask for the publishable key, webhook secret or a new payment. The next separate browser step will save the live connection in encrypted GitHub storage, with no Worker installation.
 
 ## What is ready
 
@@ -38,7 +53,7 @@ Runtime resource scopes are unchanged: **Accounts Read, Customers Write, Checkou
 
 A missing secret reports `live_connection_not_saved`. The helper rejects sandbox/mixed/standard keys, unexpected JSON fields, the wrong expected account/country, untrusted branch/events and provider errors without logging key values or account records. It reports only account-readiness booleans. Even a ready account reports **`readyForLaunch=false`**: legal ownership, publishable-key pairing, runtime write scopes, live Portal/webhook/domain/email configuration and launch approval remain separate checks.
 
-After live account confirmation, Codex can guide the operator through the **next single browser action** to save the connection as an encrypted GitHub Actions repository secret, without installing it on a Worker. Its schema is:
+After the restricted live key is ready, Codex can guide the operator through the **following single browser action** to save the connection as an encrypted GitHub Actions repository secret, without installing it on a Worker. Its schema is:
 
 ```json
 {
