@@ -118,6 +118,37 @@ async function main() {
       for (const session of await list("checkout/sessions", { customer: customer.id })) {
         assert.equal(session.customer, customer.id);
         if (session.metadata?.donor_name === "TEST - iThemba sandbox SEPA") {
+          if (session.status === "complete") {
+            const detailResponse = await fetch(
+              `https://api.stripe.com/v1/checkout/sessions/${session.id}?expand[]=payment_intent`,
+              {
+                redirect: "error",
+                signal: AbortSignal.timeout(15000),
+                headers: {
+                  Authorization: `Bearer ${connection.restrictedKey}`,
+                  "Stripe-Version": SANDBOX_API_VERSION,
+                },
+              },
+            );
+            assert.ok(detailResponse.ok);
+            const detail = await detailResponse.json();
+            assert.equal(detail.livemode, false);
+            assert.equal(detail.customer, customer.id);
+            assert.equal(detail.metadata?.donor_name, "TEST - iThemba sandbox SEPA");
+            const intent = detail.payment_intent;
+            assert.ok(intent && typeof intent === "object" && intent.livemode === false);
+            const status = [
+              "processing",
+              "succeeded",
+              "requires_payment_method",
+              "canceled",
+            ].includes(intent.status)
+              ? intent.status
+              : "other";
+            console.log(
+              `SANDBOX_SEPA_AUTHORITATIVE_STATUS: ${JSON.stringify({ checkoutComplete: detail.status === "complete", paymentPaid: detail.payment_status === "paid", intentStatus: status, paymentErrorPresent: Boolean(intent.last_payment_error) })}`,
+            );
+          }
           const methods = session.payment_method_types ?? [];
           console.log(
             `SANDBOX_SEPA_SESSION_CONFIGURATION: ${JSON.stringify({ includesSepa: methods.includes("sepa_debit"), includesCard: methods.includes("card"), methodCount: methods.length, eur: session.currency === "eur", english: session.locale === "en", billingCountryDE: customer.address?.country === "DE", adaptivePricingEnabled: session.adaptive_pricing?.enabled === true, presentmentCurrency: ["eur", "usd", "zar", "gbp"].includes(session.presentment_details?.presentment_currency) ? session.presentment_details.presentment_currency : "not_reported" })}`,
