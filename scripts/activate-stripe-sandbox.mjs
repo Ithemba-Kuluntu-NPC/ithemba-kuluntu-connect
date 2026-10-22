@@ -12,7 +12,9 @@ import { checkReadiness, validateWebhookSecret } from "./check-stripe-sandbox-re
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 export const STAGING_ORIGIN = "https://ithemba-donations-staging.super-tooth-55f1.workers.dev";
-export const APPLICATION_REF = "7a7509eb6fe486a3d0f8ed5887c7cd7d4f39108c";
+// Reviewed EUR-only Checkout fix, validated locally and against Stripe's pinned API.
+// Keep the existing repository/branch/approval marker and exact staging target gates.
+export const APPLICATION_REF = "b1d372bdeff42e085052ef2e8b14f370c3735261";
 export const ACTIVATION_MARKER = "Activate approved Stripe sandbox on isolated staging Worker";
 const excluded = [
   "docs",

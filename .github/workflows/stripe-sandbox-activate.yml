@@ -39,7 +39,7 @@ jobs:
           WRANGLER_LOG_PATH: ${{ runner.temp }}/sandbox-tests.log
           WRANGLER_SEND_METRICS: "false"
         run: |
-          env GITHUB_ACTIONS=false node --test --test-isolation=none tests/donations.test.ts tests/donations-staging.test.mjs tests/donations-staging-migration.test.mjs tests/donations-staging-deploy.test.mjs tests/stripe-sandbox-setup.test.mjs tests/stripe-sandbox-readiness.test.mjs tests/stripe-portal-link.test.mjs tests/stripe-sandbox-activation.test.mjs
+          env GITHUB_ACTIONS=false node --test --test-isolation=none tests/donations.test.ts tests/donations-staging.test.mjs tests/donations-staging-migration.test.mjs tests/donations-staging-deploy.test.mjs tests/stripe-sandbox-setup.test.mjs tests/stripe-sandbox-readiness.test.mjs tests/stripe-portal-link.test.mjs tests/stripe-sandbox-activation.test.mjs tests/stripe-sandbox-smoke.test.mjs
           npm run typecheck
       - name: Build and check the isolated staging artifact without credentials
         env:
