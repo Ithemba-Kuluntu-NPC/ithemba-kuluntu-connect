@@ -242,7 +242,7 @@ async function main() {
     let pending = false;
     let settled = false;
     let previous;
-    const deadline = Date.now() + 6 * 60 * 1000;
+    const deadline = Date.now() + 10 * 60 * 1000;
     for (let attempt = 0; Date.now() < deadline; attempt++) {
       const state = await api(`status?id=${reference}`);
       if (previous !== state.status) {
