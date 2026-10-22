@@ -14,6 +14,46 @@ async function main() {
   console.log(`::add-mask::${connection.restrictedKey}`);
   console.log(`::add-mask::${connection.publishableKey}`);
   await checkSandbox();
+  const accountResponse = await fetch("https://api.stripe.com/v1/account", {
+    method: "GET",
+    redirect: "error",
+    signal: AbortSignal.timeout(15000),
+    headers: {
+      Authorization: `Bearer ${connection.restrictedKey}`,
+      "Stripe-Version": SANDBOX_API_VERSION,
+    },
+  });
+  assert.ok(accountResponse.ok());
+  const account = await accountResponse.json();
+  assert.equal(account.id, connection.accountId);
+  const capability = account.capabilities?.sepa_debit_payments;
+  console.log(
+    `SANDBOX_SEPA_ACCOUNT_CAPABILITY: ${JSON.stringify({ germanAccount: account.country === "DE", capability: ["active", "inactive", "pending"].includes(capability) ? capability : "not_reported" })}`,
+  );
+  const configurationResponse = await fetch(
+    "https://api.stripe.com/v1/payment_method_configurations?limit=100",
+    {
+      method: "GET",
+      redirect: "error",
+      signal: AbortSignal.timeout(15000),
+      headers: {
+        Authorization: `Bearer ${connection.restrictedKey}`,
+        "Stripe-Version": SANDBOX_API_VERSION,
+      },
+    },
+  );
+  console.log(`SANDBOX_SEPA_CONFIGURATION_READ_HTTP: ${configurationResponse.status}`);
+  if (configurationResponse.ok()) {
+    const configurations = await configurationResponse.json();
+    assert.ok(Array.isArray(configurations.data));
+    for (const configuration of configurations.data.filter((c) => c.active && c.is_default)) {
+      assert.equal(configuration.livemode, false);
+      const sepa = configuration.sepa_debit;
+      console.log(
+        `SANDBOX_SEPA_DEFAULT_CONFIGURATION: ${JSON.stringify({ available: sepa?.available === true, preference: ["on", "off", "none"].includes(sepa?.display_preference?.preference) ? sepa.display_preference.preference : "not_reported", value: ["on", "off"].includes(sepa?.display_preference?.value) ? sepa.display_preference.value : "not_reported" })}`,
+      );
+    }
+  }
   async function list(resource, filters) {
     const records = [];
     let cursor;
