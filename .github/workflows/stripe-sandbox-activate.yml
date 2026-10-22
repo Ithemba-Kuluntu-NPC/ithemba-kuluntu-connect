@@ -1,4 +1,5 @@
 # User approved isolated staging sandbox activation on 18 October 2026.
+# Apply the verified EUR presentment fix to this isolated test Worker only.
 name: Prepare or explicitly activate isolated Stripe sandbox
 
 on:
