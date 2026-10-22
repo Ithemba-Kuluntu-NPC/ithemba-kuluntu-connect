@@ -23,7 +23,7 @@ async function main() {
       "Stripe-Version": SANDBOX_API_VERSION,
     },
   });
-  assert.ok(accountResponse.ok());
+  assert.ok(accountResponse.ok);
   const account = await accountResponse.json();
   assert.equal(account.id, connection.accountId);
   const capability = account.capabilities?.sepa_debit_payments;
@@ -43,7 +43,7 @@ async function main() {
     },
   );
   console.log(`SANDBOX_SEPA_CONFIGURATION_READ_HTTP: ${configurationResponse.status}`);
-  if (configurationResponse.ok()) {
+  if (configurationResponse.ok) {
     const configurations = await configurationResponse.json();
     assert.ok(Array.isArray(configurations.data));
     for (const configuration of configurations.data.filter((c) => c.active && c.is_default)) {

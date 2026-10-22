@@ -24,6 +24,10 @@ jobs:
           bun-version: "1.3.3"
       - name: Install locked dependencies without credentials
         run: bun install --frozen-lockfile
+      - name: Compare branch method parameters with an uncharged test session and expire it
+        env:
+          STRIPE_SANDBOX_CONNECTION: ${{ secrets.STRIPE_SANDBOX_CONNECTION }}
+        run: node scripts/check-stripe-sandbox-renewals.mjs --check-methods
       - name: Check clock write access before installing a browser
         id: clock_access
         env:

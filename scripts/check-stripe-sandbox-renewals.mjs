@@ -15,11 +15,13 @@ const origin = "https://ithemba-donations-staging.super-tooth-55f1.workers.dev";
 const fixture = randomUUID();
 let stage = "startup";
 let clockId;
+let methodProbeSession;
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 async function main() {
   assert.ok(
     process.argv.length === 2 ||
-      (process.argv.length === 3 && process.argv[2] === "--check-clock-access"),
+      (process.argv.length === 3 &&
+        ["--check-clock-access", "--check-methods"].includes(process.argv[2])),
   );
   assert.equal(process.env.GITHUB_REPOSITORY, "Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect");
   assert.equal(process.env.GITHUB_REF, "refs/heads/codex/stripe-donations-integration");
@@ -36,7 +38,8 @@ async function main() {
           "checkout/sessions",
           "billing_portal/sessions",
         ].includes(path) ||
-          (clockId && path === `test_helpers/test_clocks/${clockId}/advance`),
+          (clockId && path === `test_helpers/test_clocks/${clockId}/advance`) ||
+          (methodProbeSession && path === `checkout/sessions/${methodProbeSession}/expire`),
       );
     if (method === "DELETE") assert.equal(path, `test_helpers/test_clocks/${clockId}`);
     const response = await fetch(`https://api.stripe.com/v1/${path}`, {
@@ -62,11 +65,52 @@ async function main() {
       console.log(`SANDBOX_RENEWAL_PERMISSION_HINT: ${JSON.stringify(hints)}`);
       return null;
     }
-    assert.ok(response.ok());
+    assert.ok(response.ok);
     return response.json();
   }
   let browser;
   try {
+    if (process.argv[2] === "--check-methods") {
+      stage = "compare_branch_checkout_method_parameters_directly_with_stripe";
+      const customer = await stripe(
+        "customers",
+        new URLSearchParams({
+          email: "info@ithembakuluntu.org",
+          name: "TEST - sandbox payment-method compatibility probe",
+          "address[country]": "DE",
+          "metadata[test_fixture_id]": fixture,
+        }),
+      );
+      assert.equal(customer.livemode, false);
+      const params = checkoutParameters(
+        {
+          requestId: fixture,
+          amount: 100,
+          frequency: "once",
+          cause: "Where needed most",
+          lang: "en",
+          name: "TEST - sandbox payment-method compatibility probe",
+          email: "info@ithembakuluntu.org",
+          country: "DE",
+          receiptRequested: false,
+        },
+        customer.id,
+        origin,
+        { paypal: false, paypalRecurring: false, bankTransfer: false },
+      );
+      params.delete("metadata[donation_id]");
+      params.delete("payment_intent_data[metadata][donation_id]");
+      params.set("metadata[test_fixture_id]", fixture);
+      assert.equal(params.get("payment_method_types[1]"), "sepa_debit");
+      const session = await stripe("checkout/sessions", params);
+      assert.equal(session.livemode, false);
+      assert.ok(/^cs_test_[A-Za-z0-9]+$/.test(session.id));
+      methodProbeSession = session.id;
+      console.log(
+        `SANDBOX_METHOD_PARAMETER_COMPARISON: ${JSON.stringify({ branchRequestsSepa: true, stripeReturnedSepa: session.payment_method_types?.includes("sepa_debit") === true, stripeReturnedCard: session.payment_method_types?.includes("card") === true, methodCount: session.payment_method_types?.length, open: session.status === "open" })}`,
+      );
+      return;
+    }
     stage = "create_disposable_test_clock";
     const clock = await stripe(
       "test_helpers/test_clocks",
@@ -296,6 +340,16 @@ async function main() {
     );
   } finally {
     if (browser) await browser.close();
+    if (methodProbeSession) {
+      const expired = await stripe(
+        `checkout/sessions/${methodProbeSession}/expire`,
+        new URLSearchParams(),
+      );
+      assert.equal(expired.status, "expired");
+      console.log(
+        "SANDBOX_METHOD_PROBE_EXPIRED: only the new uncharged compatibility session expired; no card, bank details or subscription submitted.",
+      );
+    }
     if (clockId) {
       const clock = await stripe(`test_helpers/test_clocks/${clockId}`);
       assert.equal(clock.livemode, false);
