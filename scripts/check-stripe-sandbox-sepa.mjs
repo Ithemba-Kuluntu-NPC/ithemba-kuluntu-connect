@@ -87,6 +87,7 @@ async function main() {
     stage = "select_stripe_sepa_method";
     let iban;
     for (let attempt = 0; attempt < 80 && !iban; attempt++) {
+      const labels = [];
       for (const frame of page.frames()) {
         if (!stripeFrame(frame)) continue;
         const field = frame.locator('input[name*="iban" i], input[autocomplete="iban"]').first();
@@ -94,9 +95,29 @@ async function main() {
           iban = field;
           break;
         }
-        const sepa = frame.getByText(/^(SEPA Direct Debit|SEPA Debit)$/i).first();
-        if (await sepa.isVisible()) await sepa.click();
+        if (attempt === 5)
+          for (const role of ["button", "tab", "radio"])
+            for (const control of await frame.getByRole(role).all()) {
+              if (!(await control.isVisible())) continue;
+              const label = (
+                (await control.innerText()) ||
+                (await control.getAttribute("aria-label")) ||
+                ""
+              )
+                .trim()
+                .replace(/\s+/g, " ");
+              if (label.length <= 80 && /^[A-Za-zÀ-ž €$'’—–().,\-:!?]+$/.test(label))
+                labels.push({ role, label });
+            }
+        for (const sepa of await frame.getByText(/SEPA|Direct Debit|Bank account/i).all()) {
+          if (await sepa.isVisible()) {
+            await sepa.click();
+            break;
+          }
+        }
       }
+      if (attempt === 5)
+        console.log(`SANDBOX_SEPA_METHOD_CONTROLS: ${JSON.stringify(labels.slice(0, 25))}`);
       if (!iban) await delay(500);
     }
     assert.ok(iban);
