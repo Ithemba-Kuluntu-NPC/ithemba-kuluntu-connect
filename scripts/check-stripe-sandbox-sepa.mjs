@@ -132,11 +132,19 @@ async function main() {
               if (label.length <= 80 && /^[A-Za-zÀ-ž €$'’—–().,\-:!?]+$/.test(label))
                 labels.push({ role, label });
             }
-        for (const sepa of await frame
-          .getByText(/SEPA|Direct Debit|Bank account|Other payment methods|More payment methods/i)
-          .all()) {
+        // Match a method control itself; a broad text regex also matches Stripe's
+        // surrounding mandate copy and can block before the form diagnostic.
+        const sepaControls = [
+          frame.getByRole("button", { name: /^(SEPA Direct Debit|SEPA|Bank account)$/i }),
+          frame.getByRole("radio", { name: /SEPA|Direct Debit/i }),
+          frame.getByRole("tab", { name: /SEPA|Direct Debit/i }),
+          frame.getByText(/^(SEPA Direct Debit|SEPA|Bank account)$/i),
+          frame.getByRole("button", { name: /^(Other|More) payment methods$/i }),
+        ];
+        for (const matches of sepaControls) {
+          const sepa = matches.first();
           if (await sepa.isVisible()) {
-            await sepa.click();
+            await sepa.click({ timeout: 2000 }).catch(() => {});
             break;
           }
         }
@@ -221,7 +229,11 @@ async function main() {
     await browser.close();
   }
 }
-main().catch(() => {
+main().catch((error) => {
+  const kind = ["AssertionError", "TimeoutError", "Error"].includes(error?.name)
+    ? error.name
+    : "omitted";
+  console.error(`SANDBOX_SEPA_ERROR_KIND: ${kind}`);
   console.error(
     `Sandbox SEPA check stopped at ${stage}. Raw errors, client secrets and donor records omitted.`,
   );
