@@ -242,6 +242,15 @@ async function main() {
           if ((await input.isVisible()) && (await input.inputValue()) === "")
             await input.fill(value);
         }
+        // Link enrollment is optional and can require a phone number. This test
+        // exercises an ordinary card replacement, without enrolling the donor.
+        const linkOptIn = frame.locator('input[name="linkOptIn"]').first();
+        if ((await linkOptIn.isVisible()) && (await linkOptIn.isChecked()))
+          await linkOptIn.uncheck();
+        const country = frame.locator('select[name="country"]').first();
+        if (await country.isVisible()) await country.selectOption("DE");
+        const postal = frame.locator('input[name="postalCode"]').first();
+        if (await postal.isVisible()) await postal.fill("10115");
       } catch {
         /* Optional Stripe inputs may disappear. */
       }
@@ -263,6 +272,11 @@ async function main() {
             type: await input.getAttribute("type"),
             empty: (await input.inputValue()) === "",
             required: (await input.getAttribute("required")) !== null,
+            checked:
+              (await input.getAttribute("type")) === "checkbox"
+                ? await input.isChecked()
+                : undefined,
+            invalid: await input.getAttribute("aria-invalid"),
           });
         }
       } catch {
@@ -276,6 +290,8 @@ async function main() {
       .getByRole("button", { name: /^(Add|Update|Save)( payment method| card)?$/i })
       .last();
     assert.ok(await save.isVisible());
+    for (let attempt = 0; attempt < 20 && !(await save.isEnabled()); attempt++) await delay(500);
+    assert.ok(await save.isEnabled(), "Stripe form not complete");
     await save.click();
     stage = "verify_persisted_default_payment_method";
     let changed = false;
