@@ -16,9 +16,18 @@ PR #26 remains a draft on `codex/stripe-donations-integration`. The live website
 
 Two browser-harness assumptions were corrected: requiring the obsolete `/p/session/` path despite a valid Stripe origin, and clicking a background cancellation button while Stripe's reason dialog was open. The runtime already validates the exact `https://billing.stripe.com` origin and required no change. The updated test handles the reason dialog and confirmation action. [The fresh complete browser run passed](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39258899738): one-time and monthly test-card payments, actual signed completion events, cookie-owned website Portal-session creation, Stripe-hosted cancellation and the website status API reporting scheduled cancellation. Both monthly fixtures created by our browser checks are scheduled to stop at period end. No synthetic subscription from these successful payment checks is awaiting cancellation.
 
+## Sandbox donor lookup — 22 October 2026
+
+[The read-only lookup](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39735559633) authenticated the saved restricted test key to the expected account and queried both exact email addresses, including all pages and all subscription statuses. It changed no Stripe records, requested no email and had no Cloudflare credentials.
+
+- `info@ithembakuluntu.org`: **zero sandbox Customers and zero subscriptions**; no completed paid monthly Checkout was associated with that address.
+- `stripe-browser-check@example.org`: the historical automated test address, not an operator inbox. Two completed paid monthly Checkouts and two active test subscriptions were found; **both subscriptions have cancellation scheduled at period end**.
+
+The earlier instruction to try Portal login with an unspecified test-donor email was incomplete: the automated test did not create a Customer for the association's real inbox. Stripe's [login troubleshooting](https://docs.stripe.com/customer-management/activate-no-code-customer-portal) requires the login email to match an existing Customer. This finding explains the missing login email for the requested address; it does not establish a mail-delivery defect.
+
 ## Next operator action
 
-Open the [sandbox Portal login link](https://billing.stripe.com/p/login/test_28EcN70MMeBD64G5MMfUQ00) using the email address from your own monthly test donation, and confirm that Stripe's email lets you sign in. This requires access to your inbox; automation used a synthetic example.org address and cannot verify your email delivery. No software or terminal command is needed.
+Complete one monthly **sandbox** donation at <https://ithemba-donations-staging.super-tooth-55f1.workers.dev/donate> using the existing address **info@ithembakuluntu.org**, with Stripe's test card `4242 4242 4242 4242`, expiry `12/34`, CVC `123`. Do not use a real card. No new email account is needed. After that succeeds, email login can be checked for this actual inbox. No new donation was created by the diagnostic itself.
 
 ## Still required before real donations
 
