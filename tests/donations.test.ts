@@ -186,6 +186,21 @@ test("method matrix excludes disabled methods and automatic monthly bank transfe
   for (const params of [once, monthly, approved])
     assert.doesNotMatch(params.toString(), /ideal|wero|twint/);
 });
+test("one-time and monthly Checkout keep EUR presentment for international donors", () => {
+  for (const frequency of ["once", "monthly"] as const) {
+    for (const country of ["DE", "ZA", "US"]) {
+      const params = checkoutParameters(
+        { ...input, frequency, country },
+        "cus_test",
+        "https://donate.example.org",
+        { paypal: false, paypalRecurring: false, bankTransfer: false },
+      );
+      assert.equal(params.get("line_items[0][price_data][currency]"), "eur");
+      assert.equal(params.get("adaptive_pricing[enabled]"), "false");
+      assert.equal(params.get("payment_method_types[1]"), "sepa_debit");
+    }
+  }
+});
 test("completion never reports pending bank/SEPA payments as succeeded", () => {
   assert.equal(
     paymentStatus({

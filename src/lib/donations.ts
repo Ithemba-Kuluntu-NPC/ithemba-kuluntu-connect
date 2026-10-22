@@ -75,6 +75,9 @@ export function checkoutParameters(
   const data = new URLSearchParams({
     ui_mode: "embedded",
     mode: monthly ? "subscription" : "payment",
+    // Keep donor presentment in EUR as well as the price's integration currency.
+    // Local-currency conversion can otherwise hide EUR-only methods such as SEPA.
+    "adaptive_pricing[enabled]": "false",
     customer,
     locale: input.lang,
     client_reference_id: input.requestId,

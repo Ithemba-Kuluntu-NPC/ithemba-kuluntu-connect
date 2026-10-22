@@ -82,33 +82,51 @@ async function main() {
         }),
       );
       assert.equal(customer.livemode, false);
-      const params = checkoutParameters(
-        {
-          requestId: fixture,
-          amount: 100,
-          frequency: "once",
-          cause: "Where needed most",
-          lang: "en",
-          name: "TEST - sandbox payment-method compatibility probe",
-          email: "info@ithembakuluntu.org",
-          country: "DE",
-          receiptRequested: false,
-        },
-        customer.id,
-        origin,
-        { paypal: false, paypalRecurring: false, bankTransfer: false },
-      );
-      params.delete("metadata[donation_id]");
-      params.delete("payment_intent_data[metadata][donation_id]");
-      params.set("metadata[test_fixture_id]", fixture);
-      assert.equal(params.get("payment_method_types[1]"), "sepa_debit");
-      const session = await stripe("checkout/sessions", params);
-      assert.equal(session.livemode, false);
-      assert.ok(/^cs_test_[A-Za-z0-9]+$/.test(session.id));
-      methodProbeSession = session.id;
-      console.log(
-        `SANDBOX_METHOD_PARAMETER_COMPARISON: ${JSON.stringify({ branchRequestsSepa: true, stripeReturnedSepa: session.payment_method_types?.includes("sepa_debit") === true, stripeReturnedCard: session.payment_method_types?.includes("card") === true, methodCount: session.payment_method_types?.length, open: session.status === "open" })}`,
-      );
+      for (const frequency of ["once", "monthly"]) {
+        const params = checkoutParameters(
+          {
+            requestId: fixture,
+            amount: 100,
+            frequency,
+            cause: "Where needed most",
+            lang: "en",
+            name: "TEST - sandbox payment-method compatibility probe",
+            email: "info@ithembakuluntu.org",
+            country: "DE",
+            receiptRequested: false,
+          },
+          customer.id,
+          origin,
+          { paypal: false, paypalRecurring: false, bankTransfer: false },
+        );
+        params.delete("metadata[donation_id]");
+        params.delete("payment_intent_data[metadata][donation_id]");
+        params.delete("subscription_data[metadata][donation_id]");
+        params.set("metadata[test_fixture_id]", fixture);
+        assert.equal(params.get("payment_method_types[1]"), "sepa_debit");
+        assert.equal(params.get("adaptive_pricing[enabled]"), "false");
+        const session = await stripe("checkout/sessions", params);
+        assert.equal(session.livemode, false);
+        assert.ok(/^cs_test_[A-Za-z0-9]+$/.test(session.id));
+        methodProbeSession = session.id;
+        assert.equal(session.currency, "eur");
+        assert.notEqual(session.adaptive_pricing?.enabled, true);
+        console.log(
+          `SANDBOX_EUR_PRESENTMENT_VERIFIED: ${frequency}; pinned API 2024-06-20 accepted explicit adaptive_pricing=false and returned a EUR session without enabled currency conversion.`,
+        );
+        console.log(
+          `SANDBOX_METHOD_PARAMETER_COMPARISON: ${JSON.stringify({ branchRequestsSepa: true, stripeReturnedSepa: session.payment_method_types?.includes("sepa_debit") === true, stripeReturnedCard: session.payment_method_types?.includes("card") === true, methodCount: session.payment_method_types?.length, open: session.status === "open" })}`,
+        );
+        const expired = await stripe(
+          `checkout/sessions/${methodProbeSession}/expire`,
+          new URLSearchParams(),
+        );
+        assert.equal(expired.status, "expired");
+        methodProbeSession = undefined;
+        console.log(
+          "SANDBOX_METHOD_PROBE_EXPIRED: new uncharged test session expired; no card, bank details or subscription submitted.",
+        );
+      }
       return;
     }
     stage = "create_disposable_test_clock";
