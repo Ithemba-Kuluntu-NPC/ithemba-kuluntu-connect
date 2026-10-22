@@ -163,6 +163,23 @@ async function main() {
             );
           }
           if (scenario.label === "3ds" && state.status === "succeeded") break;
+          if (scenario.label === "3ds" && attempt % 5 === 0) {
+            const controls = [];
+            for (const frame of page.frames()) {
+              if (!stripeFrame(frame)) continue;
+              for (const button of await frame.getByRole("button").all()) {
+                if (!(await button.isVisible())) continue;
+                const label = (await button.innerText()).trim().replace(/\s+/g, " ");
+                if (label.length <= 70 && /^[A-Za-z €$'’—–().,\-:!?]+$/.test(label))
+                  controls.push({ label, enabled: await button.isEnabled() });
+              }
+              const complete = frame
+                .getByRole("button", { name: /^Complete( authentication)?$/i })
+                .first();
+              if (await complete.isVisible()) await complete.click();
+            }
+            console.log(`SANDBOX_3DS_CONTROLS: ${JSON.stringify(controls.slice(0, 20))}`);
+          }
           if (scenario.label === "decline") {
             assert.notEqual(state.status, "succeeded");
             for (const frame of page.frames()) {
