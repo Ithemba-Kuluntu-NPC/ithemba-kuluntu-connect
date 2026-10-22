@@ -24,11 +24,18 @@ jobs:
           bun-version: "1.3.3"
       - name: Install locked dependencies without credentials
         run: bun install --frozen-lockfile
+      - name: Check clock write access before installing a browser
+        id: clock_access
+        env:
+          STRIPE_SANDBOX_CONNECTION: ${{ secrets.STRIPE_SANDBOX_CONNECTION }}
+        run: node scripts/check-stripe-sandbox-renewals.mjs --check-clock-access
       - name: Install temporary pinned browser without credentials
+        if: steps.clock_access.outputs.allowed == 'true'
         run: |
           npm install --prefix "$RUNNER_TEMP/stripe-browser" --no-save --package-lock=false --ignore-scripts playwright@1.64.1
           node "$RUNNER_TEMP/stripe-browser/node_modules/playwright/cli.js" install --with-deps chromium
       - name: Test only a disposable clock fixture; always remove it afterwards
+        if: steps.clock_access.outputs.allowed == 'true'
         env:
           STRIPE_BROWSER_MODULE_DIR: ${{ runner.temp }}/stripe-browser/node_modules/playwright
           STRIPE_SANDBOX_CONNECTION: ${{ secrets.STRIPE_SANDBOX_CONNECTION }}

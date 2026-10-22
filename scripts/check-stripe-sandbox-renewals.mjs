@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
+import { appendFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import {
@@ -16,6 +17,10 @@ let stage = "startup";
 let clockId;
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 async function main() {
+  assert.ok(
+    process.argv.length === 2 ||
+      (process.argv.length === 3 && process.argv[2] === "--check-clock-access"),
+  );
   assert.equal(process.env.GITHUB_REPOSITORY, "Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect");
   assert.equal(process.env.GITHUB_REF, "refs/heads/codex/stripe-donations-integration");
   const connection = parseSandboxConnection(process.env.STRIPE_SANDBOX_CONNECTION);
@@ -51,8 +56,12 @@ async function main() {
       ...(params ? { body: params } : {}),
     });
     console.log(`SANDBOX_RENEWAL_HTTP: ${path.split("/")[0]}; ${method}; ${response.status}`);
-    if (response.status === 403 && path === "test_helpers/test_clocks" && method === "POST")
+    if (response.status === 403 && path === "test_helpers/test_clocks" && method === "POST") {
+      const body = await response.json();
+      const hints = [...new Set((body.error?.message ?? "").match(/\brak_[a-z_]+\b/g) ?? [])];
+      console.log(`SANDBOX_RENEWAL_PERMISSION_HINT: ${JSON.stringify(hints)}`);
       return null;
+    }
     assert.ok(response.ok());
     return response.json();
   }
@@ -67,6 +76,7 @@ async function main() {
       }),
     );
     if (!clock) {
+      if (process.env.GITHUB_OUTPUT) appendFileSync(process.env.GITHUB_OUTPUT, "allowed=false\n");
       console.log(
         "SANDBOX_RENEWAL_BLOCKED: restricted test key cannot create Test Clocks. No customer or subscription created; no permission expanded. Accelerated renewal remains unverified.",
       );
@@ -75,6 +85,13 @@ async function main() {
     assert.equal(clock.livemode, false);
     assert.ok(/^clock_[A-Za-z0-9]+$/.test(clock.id));
     clockId = clock.id;
+    if (process.argv[2] === "--check-clock-access") {
+      if (process.env.GITHUB_OUTPUT) appendFileSync(process.env.GITHUB_OUTPUT, "allowed=true\n");
+      console.log(
+        "SANDBOX_RENEWAL_CLOCK_WRITE_AVAILABLE: probe clock will be removed before any customer is created.",
+      );
+      return;
+    }
     const customer = await stripe(
       "customers",
       new URLSearchParams({
