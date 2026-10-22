@@ -208,7 +208,10 @@ async function main() {
         .first();
       if (await country.isVisible()) await country.selectOption("DE");
       for (const [selector, value] of [
-        ['input[name="billingName"], input[autocomplete="name"]', "iThemba Sandbox Test"],
+        [
+          'input[name*="name" i], input[autocomplete="name"], input[autocomplete="cc-name"]',
+          "iThemba Sandbox Test",
+        ],
         ['input[type="email"]', "info@ithembakuluntu.org"],
         ['input[name="billingAddressLine1"], input[autocomplete="address-line1"]', "Teststrasse 1"],
         ['input[name="billingLocality"], input[autocomplete="address-level2"]', "Berlin"],
@@ -217,8 +220,9 @@ async function main() {
           "10115",
         ],
       ]) {
-        const input = frame.locator(selector).first();
-        if ((await input.isVisible()) && (await input.inputValue()) === "") await input.fill(value);
+        for (const input of await frame.locator(selector).all())
+          if ((await input.isVisible()) && (await input.inputValue()) === "")
+            await input.fill(value);
       }
       const mandate = frame.getByRole("checkbox", { name: /mandate|authori[sz]/i }).first();
       if (await mandate.isVisible()) await mandate.check();
@@ -238,13 +242,35 @@ async function main() {
     let pending = false;
     let settled = false;
     let previous;
-    for (let attempt = 0; attempt < 180; attempt++) {
+    const deadline = Date.now() + 6 * 60 * 1000;
+    for (let attempt = 0; Date.now() < deadline; attempt++) {
       const state = await api(`status?id=${reference}`);
       if (previous !== state.status) {
         previous = state.status;
         console.log(
           `SANDBOX_SEPA_STATUS: ${["open", "pending", "failed", "succeeded", "cancelled"].includes(previous) ? previous : "unknown"}`,
         );
+      }
+      if (attempt === 5 && state.status === "open") {
+        stage = "validate_stripe_test_form";
+        for (const frame of page.frames()) {
+          if (!stripeFrame(frame)) continue;
+          const fields = [];
+          for (const input of await frame.locator("input,select").all()) {
+            if (!(await input.isVisible())) continue;
+            const name = await input.getAttribute("name");
+            fields.push({
+              name: /^[A-Za-z_.\[\]-]{0,60}$/.test(name ?? "") ? name : "omitted",
+              type: await input.getAttribute("type"),
+              autocomplete: await input.getAttribute("autocomplete"),
+              required: await input.getAttribute("aria-required"),
+              invalid: await input.getAttribute("aria-invalid"),
+              empty: (await input.inputValue()).length === 0,
+            });
+          }
+          if (fields.length) console.log(`SANDBOX_SEPA_SUBMIT_FIELDS: ${JSON.stringify(fields)}`);
+        }
+        assert.fail("Stripe test form was not submitted; no pending payment observed");
       }
       assert.ok(["open", "pending", expectFailure ? "failed" : "succeeded"].includes(state.status));
       if (state.status === "pending") {
@@ -287,7 +313,8 @@ async function main() {
         : "SANDBOX_SEPA_SETTLEMENT_VERIFIED: pending became genuinely succeeded and registered Stripe-signed async completion event was recorded in staging. Published test IBAN and existing association inbox only; no monthly subscription created.",
     );
   } finally {
-    if (reference && !submitted) await api("cancel", { id: reference }).catch(() => {});
+    // This endpoint expires only open Checkout; it cannot reverse a submitted debit.
+    if (reference) await api("cancel", { id: reference }).catch(() => {});
     await browser.close();
   }
 }
