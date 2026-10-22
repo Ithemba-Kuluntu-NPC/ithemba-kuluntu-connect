@@ -181,118 +181,147 @@ async function main() {
         }
       console.log(`SANDBOX_PORTAL_UPDATE_CONTROLS: ${JSON.stringify(result.slice(0, 25))}`);
     }
-    stage = "open_payment_method_editor";
-    await controls();
-    let opened = false;
-    for (const role of ["link", "button"]) {
-      const control = page
-        .getByRole(role, {
-          name: /^(Update payment method|Add payment method|Change payment method|Update)$/i,
-        })
-        .first();
-      if (await control.isVisible()) {
-        await control.click();
-        opened = true;
-        break;
+    const existingTestCard = page.getByText(/4444/).last();
+    if (!(await existingTestCard.isVisible())) {
+      stage = "open_payment_method_editor";
+      await controls();
+      let opened = false;
+      for (const role of ["link", "button"]) {
+        const control = page
+          .getByRole(role, {
+            name: /^(Update payment method|Add payment method|Change payment method|Update)$/i,
+          })
+          .first();
+        if (await control.isVisible()) {
+          await control.click();
+          opened = true;
+          break;
+        }
       }
-    }
-    assert.ok(opened);
-    async function secureField(selector) {
-      for (let attempt = 0; attempt < 60; attempt++) {
-        for (const frame of page.frames()) {
-          try {
-            const u = new URL(frame.url());
-            if (u.protocol !== "https:" || !u.hostname.endsWith(".stripe.com")) continue;
-            const input = frame.locator(selector).first();
-            if (await input.isVisible()) return input;
-          } catch {
-            /* Stripe frames may detach while loading. */
+      assert.ok(opened);
+      async function secureField(selector) {
+        for (let attempt = 0; attempt < 60; attempt++) {
+          for (const frame of page.frames()) {
+            try {
+              const u = new URL(frame.url());
+              if (u.protocol !== "https:" || !u.hostname.endsWith(".stripe.com")) continue;
+              const input = frame.locator(selector).first();
+              if (await input.isVisible()) return input;
+            } catch {
+              /* Stripe frames may detach while loading. */
+            }
           }
+          await delay(500);
         }
-        await delay(500);
+        throw new Error("Secure Stripe field unavailable");
       }
-      throw new Error("Secure Stripe field unavailable");
-    }
-    stage = "fill_published_test_card_in_stripe_fields";
-    await (
-      await secureField(
-        'input[name="cardNumber"], input[name="cardnumber"], input[autocomplete="cc-number"], input[name="number"]',
-      )
-    ).fill("5555555555554444");
-    await (
-      await secureField(
-        'input[name="cardExpiry"], input[name="exp-date"], input[autocomplete="cc-exp"], input[name="expiry"]',
-      )
-    ).fill("1234");
-    await (
-      await secureField('input[name="cardCvc"], input[name="cvc"], input[autocomplete="cc-csc"]')
-    ).fill("123");
-    for (const frame of page.frames()) {
-      try {
-        const u = new URL(frame.url());
-        if (u.protocol !== "https:" || !u.hostname.endsWith(".stripe.com")) continue;
-        for (const [selector, value] of [
-          [
-            'input[autocomplete="cc-name"], input[autocomplete="name"], input[name="billingName"], input[name="name"], input[name="fullName"], input[name="billingDetails.name"]',
-            "iThemba Sandbox Test",
-          ],
-          ['input[autocomplete="postal-code"], input[name="postalCode"]', "10115"],
-        ]) {
-          const input = frame.locator(selector).first();
-          if ((await input.isVisible()) && (await input.inputValue()) === "")
-            await input.fill(value);
+      stage = "fill_published_test_card_in_stripe_fields";
+      await (
+        await secureField(
+          'input[name="cardNumber"], input[name="cardnumber"], input[autocomplete="cc-number"], input[name="number"]',
+        )
+      ).fill("5555555555554444");
+      await (
+        await secureField(
+          'input[name="cardExpiry"], input[name="exp-date"], input[autocomplete="cc-exp"], input[name="expiry"]',
+        )
+      ).fill("1234");
+      await (
+        await secureField('input[name="cardCvc"], input[name="cvc"], input[autocomplete="cc-csc"]')
+      ).fill("123");
+      for (const frame of page.frames()) {
+        try {
+          const u = new URL(frame.url());
+          if (u.protocol !== "https:" || !u.hostname.endsWith(".stripe.com")) continue;
+          for (const [selector, value] of [
+            [
+              'input[autocomplete="cc-name"], input[autocomplete="name"], input[name="billingName"], input[name="name"], input[name="fullName"], input[name="billingDetails.name"]',
+              "iThemba Sandbox Test",
+            ],
+            ['input[autocomplete="postal-code"], input[name="postalCode"]', "10115"],
+          ]) {
+            const input = frame.locator(selector).first();
+            if ((await input.isVisible()) && (await input.inputValue()) === "")
+              await input.fill(value);
+          }
+          // Link enrollment is optional and can require a phone number. This test
+          // exercises an ordinary card replacement, without enrolling the donor.
+          const linkOptIn = frame.locator('input[name="linkOptIn"]').first();
+          if ((await linkOptIn.isVisible()) && (await linkOptIn.isChecked()))
+            await linkOptIn.uncheck();
+          const country = frame.locator('select[name="country"]').first();
+          if (await country.isVisible()) await country.selectOption("DE");
+          const postal = frame.locator('input[name="postalCode"]').first();
+          if (await postal.isVisible()) await postal.fill("10115");
+        } catch {
+          /* Optional Stripe inputs may disappear. */
         }
-        // Link enrollment is optional and can require a phone number. This test
-        // exercises an ordinary card replacement, without enrolling the donor.
-        const linkOptIn = frame.locator('input[name="linkOptIn"]').first();
-        if ((await linkOptIn.isVisible()) && (await linkOptIn.isChecked()))
-          await linkOptIn.uncheck();
-        const country = frame.locator('select[name="country"]').first();
-        if (await country.isVisible()) await country.selectOption("DE");
-        const postal = frame.locator('input[name="postalCode"]').first();
-        if (await postal.isVisible()) await postal.fill("10115");
-      } catch {
-        /* Optional Stripe inputs may disappear. */
       }
+      stage = "save_test_payment_method";
+      await controls();
+      const fields = [];
+      for (const frame of page.frames()) {
+        try {
+          const u = new URL(frame.url());
+          if (u.protocol !== "https:" || !u.hostname.endsWith(".stripe.com")) continue;
+          for (const input of await frame.locator("input,select").all()) {
+            if (!(await input.isVisible())) continue;
+            const name = await input.getAttribute("name");
+            const autocomplete = await input.getAttribute("autocomplete");
+            fields.push({
+              name: /^[A-Za-z_.\[\]-]{0,60}$/.test(name ?? "") ? name : "omitted",
+              autocomplete: /^[A-Za-z -]{0,60}$/.test(autocomplete ?? "")
+                ? autocomplete
+                : "omitted",
+              type: await input.getAttribute("type"),
+              empty: (await input.inputValue()) === "",
+              required: (await input.getAttribute("required")) !== null,
+              checked:
+                (await input.getAttribute("type")) === "checkbox"
+                  ? await input.isChecked()
+                  : undefined,
+              invalid: await input.getAttribute("aria-invalid"),
+            });
+          }
+        } catch {
+          /* Detached frame. */
+        }
+      }
+      console.log(`SANDBOX_PORTAL_UPDATE_FIELDS: ${JSON.stringify(fields)}`);
+      const checkbox = page.getByRole("checkbox", { name: /default/i }).first();
+      if (await checkbox.isVisible()) await checkbox.check();
+      const save = page
+        .getByRole("button", { name: /^(Add|Update|Save)( payment method| card)?$/i })
+        .last();
+      assert.ok(await save.isVisible());
+      for (let attempt = 0; attempt < 20 && !(await save.isEnabled()); attempt++) await delay(500);
+      assert.ok(await save.isEnabled(), "Stripe form not complete");
+      await save.click();
     }
-    stage = "save_test_payment_method";
+    stage = "set_replacement_test_card_as_default";
+    await delay(2000);
     await controls();
-    const fields = [];
-    for (const frame of page.frames()) {
-      try {
-        const u = new URL(frame.url());
-        if (u.protocol !== "https:" || !u.hostname.endsWith(".stripe.com")) continue;
-        for (const input of await frame.locator("input,select").all()) {
-          if (!(await input.isVisible())) continue;
-          const name = await input.getAttribute("name");
-          const autocomplete = await input.getAttribute("autocomplete");
-          fields.push({
-            name: /^[A-Za-z_.\[\]-]{0,60}$/.test(name ?? "") ? name : "omitted",
-            autocomplete: /^[A-Za-z -]{0,60}$/.test(autocomplete ?? "") ? autocomplete : "omitted",
-            type: await input.getAttribute("type"),
-            empty: (await input.inputValue()) === "",
-            required: (await input.getAttribute("required")) !== null,
-            checked:
-              (await input.getAttribute("type")) === "checkbox"
-                ? await input.isChecked()
-                : undefined,
-            invalid: await input.getAttribute("aria-invalid"),
-          });
+    const replacementCard = page.getByText(/4444/).last();
+    await replacementCard.waitFor({ state: "visible", timeout: 15000 });
+    const cardRow = replacementCard.locator(
+      'xpath=ancestor::*[.//button[@aria-label="More options"]][1]',
+    );
+    const more = cardRow.getByRole("button", { name: "More options", exact: true }).first();
+    if (await more.isVisible()) {
+      await more.click();
+      await controls();
+      for (const role of ["menuitem", "button", "link"]) {
+        const makeDefault = page
+          .getByRole(role, {
+            name: /^(Set as default|Make default|Make this the default payment method)$/i,
+          })
+          .first();
+        if (await makeDefault.isVisible()) {
+          await makeDefault.click();
+          break;
         }
-      } catch {
-        /* Detached frame. */
       }
     }
-    console.log(`SANDBOX_PORTAL_UPDATE_FIELDS: ${JSON.stringify(fields)}`);
-    const checkbox = page.getByRole("checkbox", { name: /default/i }).first();
-    if (await checkbox.isVisible()) await checkbox.check();
-    const save = page
-      .getByRole("button", { name: /^(Add|Update|Save)( payment method| card)?$/i })
-      .last();
-    assert.ok(await save.isVisible());
-    for (let attempt = 0; attempt < 20 && !(await save.isEnabled()); attempt++) await delay(500);
-    assert.ok(await save.isEnabled(), "Stripe form not complete");
-    await save.click();
     stage = "verify_persisted_default_payment_method";
     let changed = false;
     for (let attempt = 0; attempt < 20; attempt++) {
@@ -306,11 +335,9 @@ async function main() {
       assert.equal(sub.cancel_at_period_end, false);
       assert.equal(sub.metadata?.donation_id, reference);
       assert.deepEqual(sub.items, subscription.items);
+      const effective = sub.default_payment_method ?? c.invoice_settings?.default_payment_method;
       changed =
-        (typeof c.invoice_settings?.default_payment_method === "string" &&
-          c.invoice_settings.default_payment_method !== before.customer) ||
-        (typeof sub.default_payment_method === "string" &&
-          sub.default_payment_method !== before.subscription);
+        typeof effective === "string" && effective !== (before.subscription ?? before.customer);
       if (changed) break;
       await delay(2000);
     }
