@@ -86,7 +86,7 @@ async function main() {
     assert.ok(/^[a-f0-9-]{36}$/i.test(reference));
     stage = "select_stripe_sepa_method";
     let iban;
-    for (let attempt = 0; attempt < 80 && !iban; attempt++) {
+    for (let attempt = 0; attempt < 40 && !iban; attempt++) {
       const labels = [];
       for (const frame of page.frames()) {
         if (!stripeFrame(frame)) continue;
@@ -168,7 +168,7 @@ async function main() {
         for (const matches of sepaControls) {
           const sepa = matches.first();
           if (await sepa.isVisible()) {
-            await sepa.click({ timeout: 1500 }).catch((error) => {
+            await sepa.click({ timeout: 1000 }).catch(async (error) => {
               if (attempt === 5) {
                 const reasons = [
                   "intercepts pointer events",
@@ -180,6 +180,10 @@ async function main() {
                 ].filter((reason) => error.message?.includes(reason));
                 console.log(`SANDBOX_SEPA_CONTROL_BLOCKED: ${JSON.stringify(reasons)}`);
               }
+              // Stripe places a transparent method input above the visible label.
+              // A pointer at the label's coordinates selects that hosted control.
+              if (error.message?.includes("intercepts pointer events"))
+                await sepa.click({ force: true, timeout: 1000 });
             });
             break;
           }
@@ -193,9 +197,19 @@ async function main() {
     await iban.fill("DE89370400440532013000"); // Published Stripe test IBAN only.
     for (const frame of page.frames()) {
       if (!stripeFrame(frame)) continue;
+      const country = frame
+        .locator('select[name="billingCountry"], select[name="country"]')
+        .first();
+      if (await country.isVisible()) await country.selectOption("DE");
       for (const [selector, value] of [
         ['input[name="billingName"], input[autocomplete="name"]', "iThemba Sandbox Test"],
         ['input[type="email"]', "info@ithembakuluntu.org"],
+        ['input[name="billingAddressLine1"], input[autocomplete="address-line1"]', "Teststrasse 1"],
+        ['input[name="billingLocality"], input[autocomplete="address-level2"]', "Berlin"],
+        [
+          'input[name="billingPostalCode"], input[name="postalCode"], input[autocomplete="postal-code"]',
+          "10115",
+        ],
       ]) {
         const input = frame.locator(selector).first();
         if ((await input.isVisible()) && (await input.inputValue()) === "") await input.fill(value);
