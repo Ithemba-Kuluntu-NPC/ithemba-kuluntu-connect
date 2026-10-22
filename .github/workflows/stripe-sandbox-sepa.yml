@@ -10,6 +10,10 @@ permissions:
 jobs:
   sepa:
     if: github.repository == 'Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect' && github.ref == 'refs/heads/codex/stripe-donations-integration'
+    strategy:
+      fail-fast: false
+      matrix:
+        scenario: [success, failure]
     runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:
@@ -32,6 +36,11 @@ jobs:
         env:
           STRIPE_BROWSER_MODULE_DIR: ${{ runner.temp }}/stripe-browser/node_modules/playwright
           CLOUDFLARE_D1_STAGING: ${{ secrets.CLOUDFLARE_D1_STAGING }}
+          SEPA_TEST_SCENARIO: ${{ matrix.scenario }}
         run: |
           node --check scripts/check-stripe-sandbox-sepa.mjs
-          node scripts/check-stripe-sandbox-sepa.mjs
+          if [ "$SEPA_TEST_SCENARIO" = "failure" ]; then
+            node scripts/check-stripe-sandbox-sepa.mjs --expect-failure
+          else
+            node scripts/check-stripe-sandbox-sepa.mjs
+          fi

@@ -7,6 +7,11 @@ import { assertDatabaseTarget, parseStagingConnection } from "./migrate-donation
 let stage = "startup";
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 async function main() {
+  assert.ok(
+    process.argv.length === 2 ||
+      (process.argv.length === 3 && process.argv[2] === "--expect-failure"),
+  );
+  const expectFailure = process.argv[2] === "--expect-failure";
   assert.equal(process.env.GITHUB_REPOSITORY, "Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect");
   assert.equal(process.env.GITHUB_REF, "refs/heads/codex/stripe-donations-integration");
   const cloudflare = parseStagingConnection(process.env.CLOUDFLARE_D1_STAGING);
@@ -194,7 +199,8 @@ async function main() {
       if (!iban) await delay(500);
     }
     assert.ok(iban);
-    await iban.fill("DE89370400440532013000"); // Published Stripe test IBAN only.
+    // Published Stripe test IBANs: https://docs.stripe.com/testing#sepa-direct-debit-payments
+    await iban.fill(expectFailure ? "DE78370400440532013004" : "DE89370400440532013000");
     for (const frame of page.frames()) {
       if (!stripeFrame(frame)) continue;
       const country = frame
@@ -230,7 +236,7 @@ async function main() {
     assert.ok(submitted);
     stage = "verify_pending_before_settlement";
     let pending = false;
-    let succeeded = false;
+    let settled = false;
     let previous;
     for (let attempt = 0; attempt < 180; attempt++) {
       const state = await api(`status?id=${reference}`);
@@ -240,31 +246,35 @@ async function main() {
           `SANDBOX_SEPA_STATUS: ${["open", "pending", "failed", "succeeded", "cancelled"].includes(previous) ? previous : "unknown"}`,
         );
       }
-      assert.ok(["open", "pending", "succeeded"].includes(state.status));
+      assert.ok(["open", "pending", expectFailure ? "failed" : "succeeded"].includes(state.status));
       if (state.status === "pending") {
         pending = true;
         stage = "await_actual_test_settlement";
       }
-      if (state.status === "succeeded") {
-        assert.ok(pending, "SEPA must be observed pending before settlement");
-        succeeded = true;
+      if (state.status === (expectFailure ? "failed" : "succeeded")) {
+        assert.ok(pending, "SEPA must be observed pending before its final outcome");
+        settled = true;
         break;
       }
       await delay(2000);
     }
     assert.ok(pending, "No submitted pending SEPA payment observed");
-    if (!succeeded) {
+    if (!settled) {
+      assert.equal(expectFailure, false, "Delayed test failure not yet observed");
       console.log(
         "SANDBOX_SEPA_PENDING_VERIFIED: real test debit submitted and remains pending without premature success. Settlement not yet verified; inspect Stripe later. No real bank account used.",
       );
       return;
     }
-    stage = "verify_registered_async_success_webhook";
+    stage = "verify_registered_async_result_webhook";
+    const eventType = expectFailure
+      ? "checkout.session.async_payment_failed"
+      : "checkout.session.async_payment_succeeded";
     let delivered = false;
     for (let attempt = 0; attempt < 15; attempt++) {
       const rows = await database({
-        sql: "SELECT id FROM donation_events WHERE donation_id = ? AND type = 'checkout.session.async_payment_succeeded' LIMIT 1",
-        params: [reference],
+        sql: "SELECT id FROM donation_events WHERE donation_id = ? AND type = ? LIMIT 1",
+        params: [reference, eventType],
       });
       delivered = rows?.[0]?.results?.length === 1;
       if (delivered) break;
@@ -272,7 +282,9 @@ async function main() {
     }
     assert.ok(delivered);
     console.log(
-      "SANDBOX_SEPA_SETTLEMENT_VERIFIED: pending became genuinely succeeded and registered Stripe-signed async completion event was recorded in staging. Published test IBAN and existing association inbox only; no monthly subscription created.",
+      expectFailure
+        ? "SANDBOX_SEPA_FAILURE_VERIFIED: pending became failed without success, and registered Stripe-signed async failure event was recorded in staging. Published delayed-failure test IBAN; no real bank account or monthly subscription."
+        : "SANDBOX_SEPA_SETTLEMENT_VERIFIED: pending became genuinely succeeded and registered Stripe-signed async completion event was recorded in staging. Published test IBAN and existing association inbox only; no monthly subscription created.",
     );
   } finally {
     if (reference && !submitted) await api("cancel", { id: reference }).catch(() => {});
