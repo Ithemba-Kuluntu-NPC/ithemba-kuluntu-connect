@@ -56,6 +56,8 @@ The essential software checks were repeated on this branch: **58 existing tests 
 
 [Live configuration preparation](stripe-donations-live-preparation.md) now provides the exact inactive binding template, live webhook version/events/URL, restricted-key scope references, domain/Portal/email requirements and approval boundaries. The live-account helper performs only `GET /v1/account`, never imports deployment or payment-creation code, and always reports `readyForLaunch=false`. Missing credentials report `live_connection_not_saved`; this is not an account verification or a launch pass. Live credentials, beneficiary eligibility, live webhook/Portal and the new live D1 identity remain unresolved until the corresponding account steps and approval.
 
+[The GitHub live-preparation check passed](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39761955158): all five preparation safeguards passed, and the account step reported **`live_connection_not_saved`, `readyForLaunch=false`**. No live Stripe request or production change occurred. This confirms the missing live connection; it does not verify live account eligibility.
+
 ## ONE next operator action
 
 Open the **live iThemba Kuluntu e.V. Stripe account**, outside the sandbox, and confirm whether business verification is complete with **payments and payouts enabled** (or report any outstanding requirement). This is an inspection, not a request to activate payments or alter account settings. Do not send keys or bank/identity documents. The runtime cannot establish legal ownership or account eligibility from sandbox tests, and no live connection is saved for automated verification yet.

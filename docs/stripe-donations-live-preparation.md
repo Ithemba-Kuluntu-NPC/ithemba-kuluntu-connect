@@ -34,6 +34,8 @@ Runtime resource scopes are unchanged: **Accounts Read, Customers Write, Checkou
 
 `.github/workflows/stripe-live-preparation.yml` runs only on the donations branch and selected preparation paths. It tests its safeguards without credentials first. Its account step receives only `STRIPE_LIVE_CONNECTION`; it has no Cloudflare/deployment credentials. The script makes exactly **GET `https://api.stripe.com/v1/account`**, with API `2024-06-20`, redirects refused and a timeout. It creates no Customers, Checkout Sessions, payments, subscriptions, Portal sessions or Stripe configuration. No live endpoint is installed or enabled.
 
+[The initial GitHub preparation run](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39761955158) passed all five safeguards and reported `live_connection_not_saved` / `readyForLaunch=false`; no live API request was made.
+
 A missing secret reports `live_connection_not_saved`. The helper rejects sandbox/mixed/standard keys, unexpected JSON fields, the wrong expected account/country, untrusted branch/events and provider errors without logging key values or account records. It reports only account-readiness booleans. Even a ready account reports **`readyForLaunch=false`**: legal ownership, publishable-key pairing, runtime write scopes, live Portal/webhook/domain/email configuration and launch approval remain separate checks.
 
 After live account confirmation, Codex can guide the operator through the **next single browser action** to save the connection as an encrypted GitHub Actions repository secret, without installing it on a Worker. Its schema is:
