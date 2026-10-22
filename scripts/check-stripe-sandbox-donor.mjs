@@ -46,11 +46,15 @@ async function main() {
   if (configurationResponse.ok) {
     const configurations = await configurationResponse.json();
     assert.ok(Array.isArray(configurations.data));
-    for (const configuration of configurations.data.filter((c) => c.active && c.is_default)) {
+    assert.equal(configurations.has_more, false);
+    console.log(
+      `SANDBOX_SEPA_CONFIGURATION_COUNTS: ${JSON.stringify({ active: configurations.data.filter((c) => c.active).length, defaults: configurations.data.filter((c) => c.active && c.is_default).length })}`,
+    );
+    for (const configuration of configurations.data.filter((c) => c.active)) {
       assert.equal(configuration.livemode, false);
       const sepa = configuration.sepa_debit;
       console.log(
-        `SANDBOX_SEPA_DEFAULT_CONFIGURATION: ${JSON.stringify({ available: sepa?.available === true, preference: ["on", "off", "none"].includes(sepa?.display_preference?.preference) ? sepa.display_preference.preference : "not_reported", value: ["on", "off"].includes(sepa?.display_preference?.value) ? sepa.display_preference.value : "not_reported" })}`,
+        `SANDBOX_SEPA_CONFIGURATION: ${JSON.stringify({ default: configuration.is_default === true, available: sepa?.available === true, preference: ["on", "off", "none"].includes(sepa?.display_preference?.preference) ? sepa.display_preference.preference : "not_reported", value: ["on", "off"].includes(sepa?.display_preference?.value) ? sepa.display_preference.value : "not_reported" })}`,
       );
     }
   }
@@ -116,7 +120,7 @@ async function main() {
         if (session.metadata?.donor_name === "TEST - iThemba sandbox SEPA") {
           const methods = session.payment_method_types ?? [];
           console.log(
-            `SANDBOX_SEPA_SESSION_CONFIGURATION: ${JSON.stringify({ includesSepa: methods.includes("sepa_debit"), includesCard: methods.includes("card"), methodCount: methods.length, eur: session.currency === "eur", english: session.locale === "en", billingCountryDE: customer.address?.country === "DE" })}`,
+            `SANDBOX_SEPA_SESSION_CONFIGURATION: ${JSON.stringify({ includesSepa: methods.includes("sepa_debit"), includesCard: methods.includes("card"), methodCount: methods.length, eur: session.currency === "eur", english: session.locale === "en", billingCountryDE: customer.address?.country === "DE", adaptivePricingEnabled: session.adaptive_pricing?.enabled === true, presentmentCurrency: ["eur", "usd", "zar", "gbp"].includes(session.presentment_details?.presentment_currency) ? session.presentment_details.presentment_currency : "not_reported" })}`,
           );
         }
         if (
