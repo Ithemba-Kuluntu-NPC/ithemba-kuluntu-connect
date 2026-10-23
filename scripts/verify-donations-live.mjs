@@ -189,7 +189,7 @@ export async function verifyLive() {
                 break;
               }
               if (attempt === 5 || attempt === 20) {
-                const card = frame.getByText(/^Card$/i).first();
+                const card = frame.getByText(/^(Card|Cards|Credit card|Debit or credit card|Karte|Kartenzahlung|Kaart)$/i).first();
                 if (await card.isVisible()) await card.click({ force: true, timeout: 3000 });
               }
             } catch {
@@ -203,7 +203,10 @@ export async function verifyLive() {
           for (const frame of page.frames()) {
             try {
               const url = new URL(frame.url());
-              if (!url.hostname.endsWith(".stripe.com")) continue;
+              if (!url.hostname.endsWith(".stripe.com")) {
+                frames.push({ host: url.hostname, stripeHosted: false });
+                continue;
+              }
               const body = await frame
                 .locator("body")
                 .innerText({ timeout: 1000 })
@@ -211,6 +214,14 @@ export async function verifyLive() {
               frames.push({
                 host: url.hostname,
                 inputs: await frame.locator("input").count(),
+                inputSchema: await frame.locator("input").evaluateAll((inputs) =>
+                  inputs.map((input) => ({
+                    type: input.type,
+                    name: /^[a-zA-Z_-]{1,50}$/.test(input.name) ? input.name : "omitted",
+                    autocomplete: /^[a-zA-Z_-]{1,50}$/.test(input.autocomplete) ? input.autocomplete : "omitted",
+                    visible: Boolean(input.getClientRects().length),
+                  })),
+                ),
                 cardInputs: await frame
                   .locator('input[autocomplete="cc-number"],input[name*="card" i]')
                   .count(),
@@ -244,7 +255,6 @@ export async function verifyLive() {
             }),
           );
         }
-        assert.ok(secureCardField, "Live Embedded Checkout did not initialize");
         // Never fill a payment field, accept a mandate, or submit Stripe's payment form.
         stage = `${frequency}:idempotency_and_ownership`;
         const retry = await api("create", payload);
@@ -277,9 +287,9 @@ export async function verifyLive() {
         assert.ok(delivered, "Genuine signed live expiration event not recorded");
         console.log(
           JSON.stringify({
-            state: "live_unfunded_checkout_verified",
+            state: secureCardField ? "live_unfunded_checkout_verified" : "live_signed_expiration_verified_render_incomplete",
             frequency,
-            embeddedKeyPairingVerified: true,
+            embeddedKeyPairingVerified: secureCardField,
             idempotencyVerified: true,
             ownershipVerified: true,
             expired: true,
@@ -288,6 +298,7 @@ export async function verifyLive() {
             subscriptionConfirmed: false,
           }),
         );
+        assert.ok(secureCardField, "Live Embedded Checkout did not initialize");
       } finally {
         if (reference && !expired) await api("cancel", { id: reference }).catch(() => {});
         await context.close();
