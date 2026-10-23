@@ -7,6 +7,8 @@ on:
       - .github/workflows/stripe-live-preparation.yml
       - scripts/check-stripe-live-account.mjs
       - tests/stripe-live-preparation.test.mjs
+      - scripts/check-stripe-live-portal.mjs
+      - tests/stripe-live-portal.test.mjs
       - config/stripe-donations-live.example.json
 permissions:
   contents: read
@@ -23,8 +25,12 @@ jobs:
         with:
           node-version: "24"
       - name: Verify read-only preparation safeguards without credentials
-        run: env GITHUB_ACTIONS=false node --test --test-isolation=none tests/stripe-live-preparation.test.mjs
+        run: env GITHUB_ACTIONS=false node --test --test-isolation=none tests/stripe-live-preparation.test.mjs tests/stripe-live-portal.test.mjs
       - name: Report live account readiness without changing it
         env:
           STRIPE_LIVE_CONNECTION: ${{ secrets.STRIPE_LIVE_CONNECTION }}
         run: node scripts/check-stripe-live-account.mjs
+      - name: Read live Portal configuration without creating sessions or changing settings
+        env:
+          STRIPE_LIVE_CONNECTION: ${{ secrets.STRIPE_LIVE_CONNECTION }}
+        run: node scripts/check-stripe-live-portal.mjs
