@@ -1,0 +1,36 @@
+name: Apply approved isolated live donations migration only
+on:
+  push:
+    branches: [codex/stripe-donations-integration]
+    paths:
+      - .github/workflows/donations-live-database-migrate.yml
+      - scripts/migrate-donations-live.mjs
+      - tests/donations-live-migration.test.mjs
+permissions:
+  contents: read
+concurrency:
+  group: donations-live-database-migration
+  cancel-in-progress: false
+jobs:
+  migrate:
+    if: github.repository == 'Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect' && github.ref == 'refs/heads/codex/stripe-donations-integration' && github.event.head_commit.message == 'Apply approved live donations database migration only'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            scripts
+            tests
+            migrations
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: "24"
+      - name: Test actual SQLite migration and isolation safeguards without credentials
+        run: env GITHUB_ACTIONS=false node --test --test-isolation=none tests/donations-live-database.test.mjs tests/donations-live-migration.test.mjs
+      - name: Apply the owner-approved first migration to the exact isolated live database
+        env:
+          CLOUDFLARE_D1_STAGING: ${{ secrets.CLOUDFLARE_D1_STAGING }}
+          DONATIONS_LIVE_MIGRATION_APPROVED: 67acffe7-2412-44ce-817d-1d7f316d9392
+        run: node scripts/migrate-donations-live.mjs

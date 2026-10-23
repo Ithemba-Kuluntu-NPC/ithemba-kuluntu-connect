@@ -1,0 +1,26 @@
+name: Verify owner-confirmed live Checkout readiness
+on:
+  push:
+    branches: [codex/stripe-donations-integration]
+    paths:
+      - .github/workflows/donations-live-health.yml
+      - scripts/check-donations-live-health.mjs
+permissions:
+  contents: read
+jobs:
+  health:
+    if: github.repository == 'Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect' && github.ref == 'refs/heads/codex/stripe-donations-integration' && github.event.head_commit.message == 'Verify owner-confirmed live Checkout readiness without creating payments'
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+          sparse-checkout: scripts
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: "24"
+      - name: Check syntax and public live readiness without credentials or payment creation
+        run: |
+          node --check scripts/check-donations-live-health.mjs
+          node scripts/check-donations-live-health.mjs

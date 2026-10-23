@@ -1,0 +1,54 @@
+name: Review production donation preparation (read only, never deploy)
+on:
+  push:
+    branches: [codex/stripe-donations-integration]
+    paths:
+      - .github/workflows/donations-production-preparation.yml
+      - scripts/check-donations-production-preparation.mjs
+      - tests/donations-production-preparation.test.mjs
+      - scripts/check-stripe-live-signing-secret.mjs
+      - tests/stripe-live-signing-secret.test.mjs
+permissions:
+  contents: read
+jobs:
+  review:
+    if: github.repository == 'Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect' && github.ref == 'refs/heads/codex/stripe-donations-integration'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            scripts
+            tests
+            config
+            src/lib
+            migrations
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: "24"
+      - name: Test read-only and credential privacy controls
+        run: env GITHUB_ACTIONS=false node --test --test-isolation=none tests/donations-production-preparation.test.mjs tests/stripe-live-preparation.test.mjs tests/stripe-live-portal.test.mjs tests/stripe-live-domain.test.mjs tests/stripe-live-signing-secret.test.mjs
+      - name: Read production settings and rollback metadata without changing anything
+        env:
+          CLOUDFLARE_D1_STAGING: ${{ secrets.CLOUDFLARE_D1_STAGING }}
+          CLOUDFLARE_WORKER_STAGING_TOKEN: ${{ secrets.CLOUDFLARE_WORKER_STAGING_TOKEN }}
+        run: node scripts/check-donations-production-preparation.mjs
+      - name: Recheck live beneficiary without creating any Stripe object
+        env:
+          STRIPE_LIVE_CONNECTION: ${{ secrets.STRIPE_LIVE_CONNECTION }}
+        run: node scripts/check-stripe-live-account.mjs
+      - name: Recheck exact live Portal settings without creating a session
+        env:
+          STRIPE_LIVE_CONNECTION: ${{ secrets.STRIPE_LIVE_CONNECTION }}
+        run: node scripts/check-stripe-live-portal.mjs
+      - name: Verify live signing secret is saved, valid and distinct from sandbox
+        env:
+          STRIPE_LIVE_WEBHOOK_SECRET: ${{ secrets.STRIPE_LIVE_WEBHOOK_SECRET }}
+          STRIPE_SANDBOX_WEBHOOK_SECRET: ${{ secrets.STRIPE_SANDBOX_WEBHOOK_SECRET }}
+        run: node scripts/check-stripe-live-signing-secret.mjs
+      - name: Verify initialized live database and migration record without writes
+        env:
+          CLOUDFLARE_D1_STAGING: ${{ secrets.CLOUDFLARE_D1_STAGING }}
+        run: node scripts/check-donations-live-database.mjs

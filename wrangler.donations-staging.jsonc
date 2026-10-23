@@ -1,0 +1,27 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "ithemba-donations-staging",
+  "main": ".output/server/index.mjs",
+  "compatibility_date": "2025-09-24",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "preview_urls": false,
+  "routes": [],
+  "assets": { "binding": "ASSETS", "directory": ".output/public" },
+  "no_bundle": true,
+  "rules": [{ "type": "ESModule", "globs": ["**/*.mjs", "**/*.js"] }],
+  "d1_databases": [
+    {
+      "binding": "DONATIONS_DB",
+      "database_name": "ithemba-donations-staging",
+      "database_id": "990e1489-72e6-4a2b-b2f6-dbb4863e4971",
+      "migrations_dir": "migrations",
+    },
+  ],
+  "vars": {
+    "STRIPE_DONATIONS_MODE": "test",
+    "STRIPE_PAYPAL_ENABLED": "false",
+    "STRIPE_PAYPAL_RECURRING_ENABLED": "false",
+    "STRIPE_BANK_TRANSFER_ENABLED": "false",
+  },
+}

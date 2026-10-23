@@ -1,0 +1,35 @@
+name: Verify approved live unfunded Checkouts after webhook enablement
+on:
+  push:
+    branches: [codex/stripe-donations-integration]
+    paths:
+      - .github/workflows/donations-live-verify.yml
+      - scripts/verify-donations-live.mjs
+permissions:
+  contents: read
+jobs:
+  verify:
+    if: github.repository == 'Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect' && github.ref == 'refs/heads/codex/stripe-donations-integration' && github.event.head_commit.message == 'Verify approved live unfunded Checkouts after webhook enablement'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            scripts
+            migrations
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: "24"
+      - name: Check syntax and install pinned temporary browser without account credentials
+        run: |
+          node --check scripts/verify-donations-live.mjs
+          npm install --prefix "$RUNNER_TEMP/stripe-browser" --no-save --package-lock=false --ignore-scripts playwright@1.64.1
+          node "$RUNNER_TEMP/stripe-browser/node_modules/playwright/cli.js" install chromium
+      - name: Verify real Embedded Checkout and signed expiration events without any payment details
+        env:
+          LIVE_WEBHOOK_ENABLE_CONFIRMED: "true"
+          STRIPE_BROWSER_MODULE_DIR: ${{ runner.temp }}/stripe-browser/node_modules/playwright
+          CLOUDFLARE_D1_STAGING: ${{ secrets.CLOUDFLARE_D1_STAGING }}
+        run: node scripts/verify-donations-live.mjs
