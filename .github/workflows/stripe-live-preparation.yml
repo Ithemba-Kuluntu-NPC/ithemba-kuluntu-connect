@@ -1,3 +1,4 @@
+# Recheck the beneficiary account after the operator saved the live connection.
 name: Prepare live Stripe account (read only, never deploy)
 on:
   push:
