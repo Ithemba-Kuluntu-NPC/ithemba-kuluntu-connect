@@ -1,0 +1,32 @@
+name: Verify isolated live donations database (read only)
+on:
+  push:
+    branches: [codex/stripe-donations-integration]
+    paths:
+      - .github/workflows/donations-live-database.yml
+      - scripts/check-donations-live-database.mjs
+      - tests/donations-live-database.test.mjs
+permissions:
+  contents: read
+jobs:
+  inspect:
+    if: github.repository == 'Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect' && github.ref == 'refs/heads/codex/stripe-donations-integration'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            scripts
+            tests
+            migrations
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: "24"
+      - name: Test fixed-target read-only safeguards without credentials or dependency downloads
+        run: env GITHUB_ACTIONS=false node --test tests/donations-live-database.test.mjs
+      - name: Verify target and report pending migration without writes
+        env:
+          CLOUDFLARE_D1_STAGING: ${{ secrets.CLOUDFLARE_D1_STAGING }}
+        run: node scripts/check-donations-live-database.mjs
