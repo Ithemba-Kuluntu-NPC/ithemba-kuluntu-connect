@@ -1,12 +1,12 @@
-# Live Stripe preparation — inactive, awaiting secure live connection
+# Live Stripe preparation — inactive, awaiting live Portal setup
 
 PR #26 stays draft on `codex/stripe-donations-integration`. Preparation is authorized; merging, production deployment, production binding/secret installation and real-payment activation are not. Test Clock permission changes are deferred at the owner's request. No live key, live webhook secret or live database ID is committed or installed.
 
-The operator completed the live-account Dashboard review. That is an operator report, not automated API verification or approval to install production settings. The live connection has not been saved or verified by the prepared workflow. Bank transfers remain off; account-level PayPal availability does not enable the checkout flag or establish recurring PayPal acceptance.
+The encrypted live connection is now saved and the restricted key authenticates to the expected German beneficiary account under the pinned REST API. [Read-only verification passed](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39912044845): account details are submitted and payments/payouts are enabled. The requirements fields are **unavailable** in this response; that is not an assertion of outstanding tasks. The operator already confirmed in the live Dashboard that no verification tasks remain. This operator confirmation is recorded separately from API verification. No account ID, credentials, donor records or raw responses are published here.
 
-**The one next operator action:** update the existing encrypted GitHub Actions repository secret **`STRIPE_LIVE_CONNECTION`**. Re-save the same three-field JSON, correcting **`restrictedKey`** with the complete restricted live key copied from Stripe (one unbroken `rk_live_…` value, not a masked display or placeholder). Retain the same publishable key and expected live account ID. Do not paste any key into chat, an issue, a PR or repository content; no new key or permission change is requested.
+**The one next operator action:** in the association's **live** Stripe Customer Portal settings, save a configuration with **payment-method updates**, **subscription cancellation at the end of the billing period**, and **email login/login link** enabled. Keep plan/amount changes disabled. Reply that the live Portal is saved; no Portal URL or key needs to be pasted into chat because the read-only helper can discover the configured live login link. Portal setup prepares donor management; it does not install website secrets, deploy the application or enable donation Checkout.
 
-The operator reported saving the connection. [The safe diagnostic](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39909744742) found only `restrictedKey` invalid in format; the other two fields were not format-flagged, but are **not yet authenticated or paired**. All nine live-preparation/Portal safeguards passed. Validation stopped before any Stripe request, so live account/Portal eligibility is still unverified. The workflow never installs credentials on a Worker or activates payments.
+The API returned no active live Portal configurations. This is a setup gap, not a payment failure. The existing Customer Portal key permission successfully allowed the configuration GET; no broader permission is requested. Bank transfers remain off and PayPal's account-level availability does not enable untested checkout flags.
 
 ## What is ready
 
@@ -40,9 +40,9 @@ Runtime resource scopes are unchanged: **Accounts Read, Customers Write, Checkou
 
 [The initial GitHub preparation run](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39761955158) passed all five safeguards and reported `live_connection_not_saved` / `readyForLaunch=false`; no live API request was made.
 
-A missing secret reports `live_connection_not_saved`. The helper rejects sandbox/mixed/standard keys, unexpected JSON fields, the wrong expected account/country, untrusted branch/events and provider errors without logging key values or account records. It reports only account-readiness booleans. Even a ready account reports **`readyForLaunch=false`**: legal ownership, publishable-key pairing, runtime write scopes, live Portal/webhook/domain/email configuration and launch approval remain separate checks.
+A missing secret reports `live_connection_not_saved`. The helper rejects sandbox/mixed/standard keys, unexpected JSON fields, the wrong expected account/country, untrusted branch/events and provider errors without logging key values or account records. Missing requirement fields are classified as `unavailable` and require Dashboard confirmation; they are not misreported as actual outstanding Stripe tasks. Known due/disabled requirements still report action required, and all paths keep `readyForLaunch=false`. It reports only account-readiness booleans. Even a ready account reports **`readyForLaunch=false`**: legal ownership, publishable-key pairing, runtime write scopes, live Portal/webhook/domain/email configuration and launch approval remain separate checks.
 
-After the restricted live key is ready, Codex can guide the operator through the **following single browser action** to save the connection as an encrypted GitHub Actions repository secret, without installing it on a Worker. Its schema is:
+The live connection has been saved as an encrypted GitHub Actions repository secret without installing it on a Worker. For reference, its schema is:
 
 ```json
 {
@@ -52,7 +52,7 @@ After the restricted live key is ready, Codex can guide the operator through the
 }
 ```
 
-Secret name: **`STRIPE_LIVE_CONNECTION`**, stored only in GitHub's **Settings → Secrets and variables → Actions**, never an issue, comment, PR, repository file or chat. This is a later account step, **not the current requested action**. It does not replace `STRIPE_SANDBOX_CONNECTION`. Saving a secret does not trigger a workflow by itself; Codex can trigger a preparation-path review push afterward. Do not reuse or broaden the sandbox key or run the sandbox activation helper with live credentials.
+Secret name: **`STRIPE_LIVE_CONNECTION`**, stored only in GitHub's **Settings → Secrets and variables → Actions**, never an issue, comment, PR, repository file or chat. This storage step is complete; do not re-enter or rotate the key for the current Portal task. It does not replace `STRIPE_SANDBOX_CONNECTION`. Saving a secret does not trigger a workflow by itself; Codex can trigger a preparation-path review push afterward. Do not reuse or broaden the sandbox key or run the sandbox activation helper with live credentials.
 
 ## Read-only Portal discovery
 
