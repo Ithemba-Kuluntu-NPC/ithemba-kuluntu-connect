@@ -175,7 +175,8 @@ export async function verifyLive() {
             } catch {
               continue;
             }
-            if (url.protocol !== "https:" || !url.hostname.endsWith(".stripe.com")) continue;
+            // Read-only inspection also covers Stripe's official Checkout CDN renderer.
+            if (url.protocol !== "https:" || !(url.hostname.endsWith(".stripe.com") || url.hostname === "b.stripecdn.com")) continue;
             try {
               if (
                 await frame
@@ -203,7 +204,7 @@ export async function verifyLive() {
           for (const frame of page.frames()) {
             try {
               const url = new URL(frame.url());
-              if (!url.hostname.endsWith(".stripe.com")) {
+              if (!(url.hostname.endsWith(".stripe.com") || url.hostname === "b.stripecdn.com")) {
                 frames.push({ host: url.hostname, stripeHosted: false });
                 continue;
               }
