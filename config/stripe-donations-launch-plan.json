@@ -112,7 +112,7 @@
     "Test Clock permission changes deferred"
   ],
   "preparationReview": {
-    "recommendation": "PRODUCTION_DEPLOYED_BACKEND_VERIFIED_BROWSER_ACCEPTANCE_INCOMPLETE",
+    "recommendation": "GO_FOR_OWNER_EUR1_ONE_TIME_CARD_TEST",
     "ownerApprovalGranted": true,
     "reviewedSourceRef": "74b7a8eb8caf3fe5366d2b0cfbdc4764b4deae53",
     "preflightRun": "https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39969891026",
@@ -143,7 +143,9 @@
     "existingIntegrationsPreserved": true,
     "domainsAndRoutesPreserved": true,
     "dnsChanged": false,
-    "liveEmbeddedCheckoutPairingVerified": [],
+    "liveEmbeddedCheckoutPairingVerified": [
+      "once"
+    ],
     "idempotencyAndOwnershipVerified": true,
     "genuineSignedExpirationEventsRecorded": [
       "once",
@@ -158,7 +160,18 @@
     "automatedBrowserRenderVerified": false,
     "backendVerificationPassed": true,
     "overallEndToEndWorkflowPassed": false,
-    "browserDiagnostics": "No secure card fields detected; aborted hCaptcha requests observed; cause unconfirmed; normal-browser check required, without payment.",
-    "ownerSmallFundedTestReady": false
+    "browserDiagnostics": "Earlier automated run remains red with aborted hCaptcha requests; cause unconfirmed. Owner normal-browser screenshot verified live EUR1 one-time card rendering. No runtime fix, CAPTCHA bypass or redeployment.",
+    "ownerSmallFundedTestReady": true,
+    "ownerOneTimeCardRenderVerified": true,
+    "ownerScreenshotReviewed": true,
+    "ownerReportedMethodsVisible": [
+      "card",
+      "apple_pay",
+      "link",
+      "sepa_debit"
+    ],
+    "monthlyLiveRenderOwnerVerified": false,
+    "finalNoPaymentHealthRun": "https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39980255268",
+    "finalNoPaymentHealthPassed": true
   }
 }

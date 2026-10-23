@@ -1,6 +1,6 @@
 # Stripe production launch review — 23 October 2026
 
-**Production deployment and genuine live webhook reconciliation passed. Final browser acceptance remains incomplete: do not describe the launch as fully verified or request a funded donation yet.** The owner explicitly approved the controlled production launch and subsequently confirmed webhook enablement. PR #26 remains **draft and unmerged**, exclusively on `codex/stripe-donations-integration`; `main` is unchanged.
+**GO for the owner's €1 real one-time card test.** Production deployment, genuine signed live webhook reconciliation, owner-confirmed live card rendering and the final no-payment health check passed. A funded live payment has not yet been tested. The owner explicitly approved the controlled production launch and subsequently confirmed webhook enablement. PR #26 remains **draft and unmerged**, exclusively on `codex/stripe-donations-integration`; `main` is unchanged.
 
 ## Completed production change
 
@@ -23,13 +23,17 @@ No payment fields were filled, mandates accepted, payments submitted or subscrip
 
 The owner prepared **`2026-08-26.dahlia` Snapshot** account-event delivery for the exact 15 events in the setup guide and confirmed enablement. Genuine expiration delivery proves that signed delivery/reconciliation path; it does not claim real settlement or delivery of every event type.
 
-## Essential remaining browser check
+## Browser acceptance resolved by owner evidence
 
-**The verification workflow is red, not a passing end-to-end acceptance run.** It deliberately fails because neither frequency displayed a detectable secure card field within the automated browser's wait. Diagnostics recorded no page JavaScript errors, failed Stripe HTTP responses or visible website error alert, but did record aborted hCaptcha network requests while Stripe initialization remained incomplete. This is not conclusive proof of an application defect or of a particular anti-bot cause. CAPTCHA controls were not bypassed.
+The owner confirmed in a normal browser, with a screenshot, that the **€1 one-time live Checkout** displays the correct amount, secure card fields, Apple Pay, Link and SEPA Direct Debit. No payment was submitted. This resolves the specific card-rendering gate for the controlled one-time card test and provides actual live key-pairing evidence. Do not publish the screenshot's donor email in repository records. Monthly live rendering was not separately owner-confirmed; its live backend and earlier sandbox acceptance remain the recorded evidence.
 
-**Next owner action:** open https://ithembakuluntu.org/donate in a normal browser, start a custom **€1 one-time donation** using the existing association email, and **stop before entering card details or paying**. Confirm whether Stripe's secure card form appears, or report the displayed error/challenge. This is the essential human browser acceptance check; no installation, commands, new email or additional credentials are required.
+The earlier automated end-to-end workflow remains historically **red**: it did not detect card fields and observed aborted hCaptcha requests. No JavaScript error, failed Stripe HTTP response or visible website alert was captured. The precise automation failure cause remains unconfirmed; it is not relabeled as a passing browser run or a repaired application defect. CAPTCHA controls were not bypassed. No runtime change or redeployment was needed to resolve the owner's browser check.
 
-Do not claim live publishable/restricted-key pairing is fully browser-verified from prefixes, session creation or signed expiration alone. Do not declare readiness for a real payment until the form-rendering result is resolved. Actual live receipt delivery and a paid live donor's Portal session also remain unverified until appropriate live use.
+[Final no-payment health check](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39980255268) passed after the owner's confirmation: current home/donation/contact HTTP 200, live public configuration/no-store, exact approved Portal fingerprint and invalid-signature HTTP 400. It uses no account credentials and creates no Checkout, customer, payment or subscription.
+
+**Next owner action:** complete **one €1 one-time donation using Card** at https://ithembakuluntu.org/donate. This charges real money. Complete any bank authentication, then wait for the website's Stripe-confirmed payment status and check the payment-confirmation email. If the result is pending or unclear, use **Check payment status** and do not submit a second donation.
+
+Actual funded live success, receipt email delivery and paid live donor Portal access remain unverified until appropriate live use. The €1 test is the first funded live acceptance step; it is not a payment already performed by Codex.
 
 ## Launch scope and retained limitations
 

@@ -1,6 +1,6 @@
 # Live Stripe connection and launch record — 23 October 2026
 
-The owner-approved controlled production deployment is complete and the owner has enabled the live webhook. **Final secure-form rendering acceptance remains incomplete.** PR #26 stays draft and unmerged; `main` and DNS are unchanged. The [final launch review](stripe-donations-final-launch-review.md) is the current source of status, evidence, next action and rollback.
+The owner-approved controlled production deployment is complete and the owner has enabled the live webhook. **The owner's normal-browser check resolves secure card rendering for a €1 one-time test; GO for that owner-performed real card donation.** PR #26 stays draft and unmerged; `main` and DNS are unchanged. The [final launch review](stripe-donations-final-launch-review.md) is the current source of status, evidence, next action and rollback.
 
 ## Finished
 
@@ -18,9 +18,13 @@ Endpoint: **`https://ithembakuluntu.org/api/donations/webhook`**. Contract: **`2
 
 Do not recreate the destination, replace saved credentials, change the account API version or broaden permissions. The runtime key intentionally has no webhook administration.
 
-## Remaining essential action
+## Final acceptance gate resolved
 
-The automated browser could not detect secure card fields and recorded aborted hCaptcha requests; it did not establish the cause. **Its end-to-end workflow is not passing.** No CAPTCHA controls were bypassed. Follow the normal-browser, **stop-before-payment** check in the final launch review. No new account, installation, command or secret entry is requested.
+The owner confirmed the live **€1 one-time** amount, card fields, Apple Pay, Link and SEPA Direct Debit in a normal browser, without paying. The earlier automated browser run remains historically incomplete; hCaptcha request errors do not establish the cause. No CAPTCHA bypass, runtime change or additional deployment was needed.
+
+[Final no-payment health check](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39980255268) passed current public pages, live mode/no-store, approved Portal fingerprint and invalid-signature rejection without credentials or creating payment objects.
+
+**Next action:** the owner can complete one **€1 one-time Card donation** and check the Stripe-confirmed status and receipt email. This is real money; if pending/unclear, check status before attempting another payment. Funded live success, actual receipt delivery and a paid live donor Portal session are not yet claimed. No further account setup or approval is required for the owner to perform this controlled test.
 
 Live method scope remains cards, eligible Apple Pay/Google Pay and SEPA, one-time/monthly EUR. PayPal/recurring PayPal remain disabled pending separate approval/testing; bank transfers, iDEAL/Wero and TWINT remain off. Real accelerated renewal and Test Clock scope changes remain deferred. Existing sandbox card/Portal/SEPA acceptance is documented in the readiness report.
 

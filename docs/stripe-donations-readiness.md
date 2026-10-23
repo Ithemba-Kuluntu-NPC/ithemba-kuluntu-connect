@@ -1,6 +1,6 @@
 # Stripe donations readiness — 23 October 2026
 
-**Production deployment and signed live webhook delivery passed; final browser acceptance remains incomplete.** The owner approved the controlled launch and then confirmed webhook enablement. PR #26 stays **draft and unmerged** on `codex/stripe-donations-integration`; `main` and DNS are unchanged.
+**GO for the owner's €1 real one-time Card donation.** Production deployment, signed live delivery, owner-confirmed one-time card rendering and the final no-payment health check passed. The owner approved the controlled launch and then confirmed webhook enablement. PR #26 stays **draft and unmerged** on `codex/stripe-donations-integration`; `main` and DNS are unchanged.
 
 ## Current production evidence
 
@@ -12,12 +12,15 @@
 | Preservation | Existing **`ASSETS`**, **`BREVO_API_KEY`**, **`TURNSTILE_SECRET_KEY`**, compatibility/unrelated settings and domains/routes retained. Home/donation/contact healthy; no unrelated source edits. |
 | Live credentials/Portal | Expected live account and approved Portal policy/fingerprint validated. Distinct live secrets and fresh cookie secret installed. Owner-confirmed domain/email settings. |
 | Backend defenses | [Live unfunded check](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39977640521): actual form creation, retry idempotency, ownership denial, open status/no management, cancellation and genuine signed expiration recorded in live D1 for **one-time and monthly**. Invalid signature rejection also passed. |
-| Secure card rendering | **Incomplete**. Automated browser did not detect card fields; hCaptcha requests aborted. No definitive application/anti-bot cause established. Overall workflow intentionally fails. |
+| Secure card rendering | **Owner-confirmed** in a normal browser with screenshot: €1 one-time Checkout, secure card fields, Apple Pay, Link and SEPA. No payment submitted. Earlier automated workflow remains red; its precise failure cause is unconfirmed. Monthly live rendering is not separately owner-confirmed. |
+| Final no-payment health | [Passed](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39980255268): current public pages, live/no-store config, approved Portal fingerprint and invalid-signature rejection; no credentials or payment objects created. |
 | Funded live acceptance | **Not performed**. No payment fields filled, payment submitted or subscription confirmed. Live receipts and paid live donor Portal access remain unverified. |
 
 ## Essential next action
 
-Open https://ithembakuluntu.org/donate in a normal browser, start a custom **€1 one-time donation** using the existing association email, and **stop before entering card details or paying**. Confirm whether Stripe's secure card form appears or report the visible error/challenge. Do not call the launch fully verified or request a real payment until this rendering check is resolved. No CAPTCHA bypass, new email, installations, commands or extra credentials.
+Complete **one €1 one-time donation using Card** at https://ithembakuluntu.org/donate. This is real money. Complete bank authentication if requested, wait for the site's Stripe-confirmed status and check the receipt email. If the outcome is pending or unclear, use **Check payment status** before trying again.
+
+The owner-confirmed browser evidence resolves the earlier rendering gate for this controlled test. Actual paid live success, receipt delivery and a paid live donor Portal session still await appropriate live use. No funded payment has been submitted by Codex, and no additional deployment or merge was performed for this confirmation.
 
 ## Existing actual sandbox acceptance reused
 
