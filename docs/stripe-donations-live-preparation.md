@@ -1,101 +1,67 @@
-# Live Stripe preparation — inactive, live Portal and domain reviewed
+# Live Stripe launch preparation — 23 October 2026
 
-PR #26 stays draft on `codex/stripe-donations-integration`. Preparation is authorized; merging, production deployment, production binding/secret installation and real-payment activation are not. Test Clock permission changes are deferred at the owner's request. No live key or webhook secret is committed or installed. The live database ID below is a public resource identifier, not a credential.
+PR #26 remains **draft and unmerged**, exclusively on `codex/stripe-donations-integration`. The existing live website, Worker configuration, routes/DNS and live-payment activation have not changed. The owner approved **only the isolated live database migration** plus remaining preparation and verification.
 
-The encrypted live connection is now saved and the restricted key authenticates to the expected German beneficiary account under the pinned REST API. [Read-only verification passed](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39912044845): account details are submitted and payments/payouts are enabled. The requirements fields are **unavailable** in this response; that is not an assertion of outstanding tasks. The operator already confirmed in the live Dashboard that no verification tasks remain. This operator confirmation is recorded separately from API verification. No account ID, credentials, donor records or raw responses are published here.
+## Finished
 
-**The one next operator action:** Approve applying **only `migrations/0001_donations.sql`** to **`ithemba-donations-live`**, ID **`67acffe7-2412-44ce-817d-1d7f316d9392`**, using the existing saved Cloudflare D1 management connection. This approval covers database initialization and verification only: no Worker binding, deployment, merge, DNS change, Stripe setting change or payment activation. Reply **“Approve live database migration only.”**
+- The saved live restricted connection authenticates to the expected German association account; payments and payouts are enabled. Requirement fields remain unavailable in the pinned API response; the owner's previous live-Dashboard confirmation of no outstanding tasks remains the recorded evidence.
+- The live Portal is active and matches the exact operator-approved login-link fingerprint. Payment-method updates, cancellation at period end and email login are enabled; plan changes are disabled. Configuration reads do not prove a live donor login or email delivery.
+- The owner confirmed `ithembakuluntu.org` verified/enabled in live payment-method domains, and successful-payment, failed-payment and payment-confirmation emails enabled. The key's denied domain read was resolved through Dashboard confirmation; no additional scopes are requested.
+- [The approved live D1 migration passed](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39961846469). Exact target: **`ithemba-donations-live`**, ID **`67acffe7-2412-44ce-817d-1d7f316d9392`**. The unchanged `migrations/0001_donations.sql` created `donations`, `donation_events`, `donation_rate_limits`, `donations_customer` and the standard `d1_migrations` record. Schema/history and empty ledger were verified. [Read-only follow-up](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39964086470) confirms the migration recorded and no pending migrations. The database remains **unbound**.
+- [Monthly sandbox SEPA passed](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39963114597): **open → pending → succeeded**, with a genuine registered Stripe-signed `invoice.paid` event. Only the new cookie-owned test subscription was scheduled to cancel through the Portal; the existing association test subscription was untouched.
+- All **86 local regression tests**, TypeScript checking, modified-helper lint/format checks, the application/staging build, compiled public-asset secret scan and a **production-configuration dry run** passed. Dry run uploaded nothing. [The latest GitHub regression/type-check/build run also passed](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39964086665): 78 tests in its full suite and 20 preparation safeguards, with no deployment. Earlier package-mirror HTTP 429 failures are resolved; no dependency changes were needed. Separate GitHub migration/production-review safeguards passed as well.
 
-[The latest read-only verification passed](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39915719509). The live Portal is active, matches the operator-approved login link, permits payment-method updates and cancellation at period end, enables email login, and disables plan changes. The exact link is compared using a SHA-256 fingerprint; no raw link, configuration ID or donor details are logged. Live donor login/email delivery is not claimed from a configuration read.
+## Reviewed production target and rollback
 
-The public canonical origin returned HTTPS 200 without a redirect. Payment-method domain retrieval returned HTTP 403 with the intentionally limited restricted key. The operator subsequently confirmed in the **live Dashboard** that `ithembakuluntu.org` is **verified and enabled**. This completes the Dashboard fallback; it is operator evidence, not an API-read pass or an eligible-device wallet test. No broader key permission is needed. Bank transfers remain off and PayPal's account-level availability does not enable untested checkout flags.
+[Read-only production review passed](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39963622156). Worker **`tanstack-start-app`** serves the existing canonical custom domain. Existing bindings are **`ASSETS`**, **`BREVO_API_KEY`** and **`TURNSTILE_SECRET_KEY`**. No donation bindings/secrets are installed. No secret values are read into reports.
 
-The operator confirmed that **Successful payments** emails are enabled in the live account. This records the setting, not actual live delivery: no real payment was submitted. Stripe payment receipts remain separate from official German donation certificates. Recurring failure/authentication settings were subsequently operator-confirmed enabled below; no runtime key permissions were broadened.
+Compatibility date stays **`2025-09-24`**, flags **`nodejs_compat`**. The recorded settings fingerprint is **`e827b67d829a732907c83d400e950e0ef21eee699d86d37b1f24c44f3e3e682a`**. Current rollback version **`61de2e47-2398-4c9a-9f87-1a691d2fb460`** serves 100% of traffic. A fresh read must match before an approved change; stop on drift.
 
-The operator confirmed that live **failed-payment emails** and **payment-confirmation/authentication emails** are enabled. Together with successful-payment receipt emails, the requested email-setting checks are now recorded. These are Dashboard confirmations, not proof of live delivery. No live payment, retry-policy change or cancellation-policy change was performed by this work.
+The [inactive launch plan](../config/stripe-donations-launch-plan.json) contains the exact database, binding/secret sources, local Worker draft, preservation checks and rollout/rollback sequence. It is **not a Wrangler config or deployment input**, and no workflow consumes it to deploy. The draft passed local Wrangler `--dry-run` after rendering into a temporary file. It is not permission to install or activate anything.
 
-## What is ready
+During a later approved launch, preserve existing secret bindings, asset settings, compatibility settings and all unrelated settings; merge only donation bindings/variables. Preserve existing custom domains/routes and DNS. Do not deploy the staging config or replace production with its binding allowlist. Root `wrangler.jsonc`, the staging config, application runtime, newsletter/contact code and unrelated pages were not changed by this preparation.
 
-The [inactive configuration template](../config/stripe-donations-live.example.json) contains the exact planned origin, binding names, API/webhook versions and event list. All secret values remain null. The owner-created live database ID is now recorded for target review only. It is **not a Wrangler config** and is never consumed by the website or a deployment helper. Its `live` mode is a review value, not an active Worker setting. Production `wrangler.jsonc` and the staging config remain unchanged.
+Rollback must restore the recorded prior Worker version/traffic while retaining the live database and reconciling any accepted/pending payments and events. Code rollback does not reverse a payment. Never drop the ledger or discard pending SEPA events.
 
-Existing essential checks cover validation, EUR presentment, one-time/monthly creation, restricted-key mode/account checks, idempotency, ownership/origin/rate limits, genuine pending/failure/success/cancellation, signed webhook validation/retry/deduplication, renewal reconciliation, Portal access and tax-certificate wording. Existing real sandbox evidence covers card success/decline/3DS, recurring first payment, Portal updates/cancellation/email login and SEPA success/delayed failure with signed asynchronous events. See [the readiness evidence](stripe-donations-readiness.md).
+## Essential account step still needed: prepare the live webhook secret
 
-Test Clock simulation is deferred, not passed. A separate monthly SEPA first-payment browser case and eligible-device wallets have not been verified. These limitations must remain visible in the eventual launch review; no method is silently removed or substituted to make a checklist pass. The account and Portal configuration reads passed; webhook/email and remaining launch checks still require completion before activation.
+[The final preparation check](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39963622156) reports **`live_webhook_secret_not_ready`**: `STRIPE_LIVE_WEBHOOK_SECRET` is not saved. The restricted runtime key intentionally has no webhook-administration permission. Do **not** broaden it, use the sandbox secret, invent a signing secret or paste one into chat.
 
-## Prepared runtime mapping — install only after approval
+This is the remaining account action requiring the owner:
 
-| Worker binding                                                                             | Source / intended value                                                                                                |
-| ------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- |
-| `STRIPE_SECRET_KEY`                                                                        | Appropriately scoped **live restricted** `rk_live_…` key from the approved association account                         |
-| `STRIPE_PUBLISHABLE_KEY`                                                                   | Same live account's `pk_live_…`; prefix alone does not verify pairing                                                  |
-| `STRIPE_ACCOUNT_ID`                                                                        | Explicitly confirmed live `acct_…`; never infer it from the sandbox ID                                                 |
-| `STRIPE_WEBHOOK_SECRET`                                                                    | Distinct live destination `whsec_…`, never the sandbox secret                                                          |
-| `DONATION_COOKIE_SECRET`                                                                   | New high-entropy value generated during the approved installation, separate from staging                               |
-| `DONATION_SITE_ORIGIN`                                                                     | `https://ithembakuluntu.org`, the repository's canonical origin; verify redirects/domain ownership before installation |
-| `STRIPE_PORTAL_CONFIGURATION_ID`                                                           | Live `bpc_…` with payment updates and period-end cancellation                                                          |
-| `STRIPE_PORTAL_LOGIN_URL`                                                                  | Live `https://billing.stripe.com/p/login/…` with email login; never the sandbox `test_…` link                          |
-| `DONATIONS_DB`                                                                             | Dedicated `ithemba-donations-live`, ID `67acffe7-2412-44ce-817d-1d7f316d9392`; unbound, migration pending                |
-| `STRIPE_DONATIONS_MODE`                                                                    | `live`, installed only in the later approved production change                                                         |
-| `STRIPE_PAYPAL_ENABLED`, `STRIPE_PAYPAL_RECURRING_ENABLED`, `STRIPE_BANK_TRANSFER_ENABLED` | `false`; preserve existing eligibility/approval gates                                                                  |
+1. In the association's **live** [Stripe Workbench → Webhooks](https://dashboard.stripe.com/workbench/webhooks), create an event destination for **your account**, using **Snapshot** events and API version **`2026-08-26.dahlia`**. Do not choose connected accounts, Thin, Endive or preview events, and do not change the account default/API version.
+2. Use endpoint **`https://ithembakuluntu.org/api/donations/webhook`** and the **15 exact events below**. Keep delivery **disabled until the approved launch**. If creation defaults to enabled, disable the new destination immediately afterward; do not test delivery against the current unprepared live handler. Do not alter the sandbox destination.
+3. Reveal that destination's signing secret and save it directly as **`STRIPE_LIVE_WEBHOOK_SECRET`** in [GitHub → repository Actions secrets](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/settings/secrets/actions). Use **New repository secret** (or update only this exact live secret if already present). Never replace `STRIPE_SANDBOX_WEBHOOK_SECRET` or `STRIPE_LIVE_CONNECTION`. No installation or commands are needed.
+4. Reply **“Live webhook prepared and secret saved.”** Codex will verify saved-secret format and finish the release review without installing it on the Worker or making a real payment. A format check is not genuine delivery verification.
 
-Runtime resource scopes are unchanged: **Accounts Read, Customers Write, Checkout Sessions Write, Payment Intents Read, Subscriptions Read, Invoices Read, Customer Portal Sessions Write**. Checkout manages payment/subscription creation and the hosted Portal manages donor-authorized updates/cancellation. No Test Clock, direct Subscription/Invoice Write, refund, payout or configuration Write permission is added. See the [exact endpoint/expansion permissions](stripe-donations-setup.md#restricted-key-permissions-server-side). The separate preparation helpers use Account Read and existing Customer Portal configuration reads; a denied payment-method domain read falls back to Dashboard review without broader permissions. They cannot prove the key's write permissions without performing writes, which they refuse to do.
-
-## Read-only live-account verification, ready for later use
-
-`.github/workflows/stripe-live-preparation.yml` runs only on the donations branch and selected preparation paths. It runs the full regression suite, type-check, local staging build and helper safeguards without credentials first. Its account step receives only `STRIPE_LIVE_CONNECTION`; Stripe steps have no Cloudflare credentials. A separate final read-only D1 step receives only the previously saved D1 management connection; no step has a Worker deployment token. The script makes exactly **GET `https://api.stripe.com/v1/account`**, with API `2024-06-20`, redirects refused and a timeout. It creates no Customers, Checkout Sessions, payments, subscriptions, Portal sessions or Stripe configuration. No live endpoint is installed or enabled.
-
-[The initial GitHub preparation run](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39761955158) passed all five safeguards and reported `live_connection_not_saved` / `readyForLaunch=false`; no live API request was made.
-
-A missing secret reports `live_connection_not_saved`. The helper rejects sandbox/mixed/standard keys, unexpected JSON fields, the wrong expected account/country, untrusted branch/events and provider errors without logging key values or account records. Missing requirement fields are classified as `unavailable` and require Dashboard confirmation; they are not misreported as actual outstanding Stripe tasks. Known due/disabled requirements still report action required, and all paths keep `readyForLaunch=false`. It reports only account-readiness booleans. Even a ready account reports **`readyForLaunch=false`**: legal ownership, publishable-key pairing, runtime write scopes, live Portal/webhook/domain/email configuration and launch approval remain separate checks.
-
-The live connection has been saved as an encrypted GitHub Actions repository secret without installing it on a Worker. For reference, its schema is:
-
-```json
-{
-  "restrictedKey": "rk_live_REPLACE_WITH_COMPLETE_LIVE_KEY",
-  "publishableKey": "pk_live_REPLACE_FROM_SAME_LIVE_ACCOUNT",
-  "accountId": "acct_REPLACE_WITH_CONFIRMED_LIVE_ACCOUNT"
-}
+```text
+checkout.session.completed
+checkout.session.async_payment_succeeded
+checkout.session.async_payment_failed
+checkout.session.expired
+payment_intent.processing
+payment_intent.succeeded
+payment_intent.payment_failed
+payment_intent.canceled
+invoice.paid
+invoice.payment_failed
+invoice.payment_action_required
+invoice.voided
+customer.subscription.created
+customer.subscription.updated
+customer.subscription.deleted
 ```
 
-Secret name: **`STRIPE_LIVE_CONNECTION`**, stored only in GitHub's **Settings → Secrets and variables → Actions**, never an issue, comment, PR, repository file or chat. This storage step is complete; do not re-enter or rotate the key for database preparation. It does not replace `STRIPE_SANDBOX_CONNECTION`. Saving a secret does not trigger a workflow by itself; Codex can trigger a preparation-path review push afterward. Do not reuse or broaden the sandbox key or run the sandbox activation helper with live credentials.
+Stripe documentation: [event destinations](https://docs.stripe.com/event-destinations), [webhooks](https://docs.stripe.com/webhooks), [endpoint status controls](https://docs.stripe.com/api/webhook_endpoints/update). The disabled destination prepares event delivery; it does not activate donation Checkout.
 
-## Read-only Portal discovery
+## Final launch approval remains separate
 
-After account validation succeeds, the workflow also runs `check-stripe-live-portal.mjs`. It verifies the expected beneficiary through Account GET, then performs **GET `/v1/billing_portal/configurations?active=true&limit=100`** under the pinned API. It never creates a Portal session or changes configuration. It requires an active live configuration with payment updates, the current period-end cancellation policy and a live email-login link matching the operator-approved SHA-256 fingerprint, with plan changes disabled; sandbox URLs, wrong origins and ambiguous/paginated selection cannot pass. Only compatibility flags are logged, never configuration IDs, URLs, donor records or credentials. Configuration compatibility is not proof of email delivery or a live donor login. If the current Customer Portal permission cannot read configurations, the helper reports Dashboard review required without requesting broader key permissions.
+We are **not yet ready to activate real donations**: the live webhook/signing-secret preparation above remains incomplete. After that account step, present the final source/configuration diff, fresh baseline/credential checks and launch-method scope for explicit approval. Do not merge, deploy, bind the live database, install live Worker secrets, enable delivery, activate real Checkout or process a controlled live donation without the relevant approval.
 
-## Read-only domain verification
+Planned initial methods are **cards, eligible Apple Pay/Google Pay and SEPA**, one-time and monthly EUR. Eligible-device wallet appearance and actual live key pairing/delivery require verification in the approved live context; they are not proved by prefix checks or a local dry run. **PayPal and recurring PayPal remain disabled pending separate approval/eligibility/testing** despite account-level activation. Bank transfers are off and unnecessary for this checkout; iDEAL/Wero and TWINT remain excluded. Disclose this scope at approval rather than silently changing the requested experience.
 
-After beneficiary validation, `check-stripe-live-domain.mjs` requests **GET `/v1/payment_method_domains?domain_name=ithembakuluntu.org&limit=100`**. It also makes a public HTTPS GET to the canonical origin without Stripe credentials or cookies, refusing redirects. It never registers, enables or validates a domain and never changes DNS. A complete unique live domain must be enabled with active Apple Pay and Google Pay statuses to pass the API check. HTTP 403 requires Dashboard review, not broader key permissions; even a compatible result keeps `readyForLaunch=false` and does not prove eligible-device wallet acceptance.
+Test Clock permission changes remain deferred by the owner. Real accelerated renewal has not been claimed; existing regression coverage exercises renewal success, pending, failure/SCA and cancellation under the pinned REST contract. Actual monthly card and monthly SEPA first payments and Portal cancellation have passed.
 
-The earlier full preparation run passed **72 regression tests**, including **14 preparation-helper safeguards**, TypeScript checking and `build:donations-staging`. The build is local to the runner and performs no Worker deployment or remote migration.
+REST remains **`2024-06-20`**, independently of Dahlia webhook delivery. Newer REST versions remove invoice-payment and subscription-period fields used by this implementation; changing the REST header alone is incompatible. Exact runtime scopes remain the original **4 Read / 3 Write** permissions in the [setup guide](stripe-donations-setup.md#restricted-key-permissions-server-side); Stripe labels the Portal permission **Customer Portal**.
 
-## Live webhook, Portal and donor confirmations — later reviewed setup
-
-- REST stays **`2024-06-20`**. The planned live webhook URL is **`https://ithembakuluntu.org/api/donations/webhook`**, **`2026-08-26.dahlia` Snapshot** delivery, using the **15 exact events** in the template. No Endive, preview or Thin events. Do not register/enable delivery to the currently unprepared live handler during this read-only phase. Create/configure the separate live destination and secret in the coordinated approved launch change; verify signature rejection and actual delivery afterward. A secret format check is not delivery proof.
-- Live Portal: same approved cancellation policy, payment-method updates and email login, with the association's branding/support details. Reuse sandbox acceptance for behavior; verify the actual **live** configuration independently. Reading/discovering Portal configurations needs configuration Read if separately scoped, never configuration Write on the runtime key.
-- HTTPS/domain: verify the canonical origin and register the relevant live payment-method domain for Embedded Checkout/wallets in the correct account/mode. Preserve the current site's CSP allowances and newsletter/contact integrations. Check eligible-device wallet appearance; `card` compatibility does not prove wallet availability.
-- Successful-payment email enablement is operator-confirmed. Failed-payment and payment-confirmation emails are also operator-confirmed enabled; automatic subscription billing remains unchanged. Review a receipt/Billing email preview or explicit sandbox test delivery; sandbox payments do not prove automatic live receipt delivery. The verified Portal login email is a separate function.
-- German donation certificates remain staff-issued after eligibility and settled-payment/reversal reconciliation. Stripe receipts are **not official Zuwendungsbestätigungen**. Confirm the existing association's legal details, donor terms, privacy/retention and support contact. Do not publish donor-specific account/payment details in readiness reports.
-
-## Live database preparation — isolated and unbound
-
-The owner created **`ithemba-donations-live`**, ID **`67acffe7-2412-44ce-817d-1d7f316d9392`**, and reported it empty and unbound. The inactive template now records this exact identifier without becoming a Wrangler or deployment input. Creation does not authorize migration, binding or deployment.
-
-`check-donations-live-database.mjs` uses the existing encrypted **`CLOUDFLARE_D1_STAGING`** D1 management connection solely for read-only inspection. The legacy secret name does not select the target: the live name/ID are fixed in code, compared with authenticated metadata **before any SQL**, with no target overrides. No token is copied, rotated or broadened, and no staging deployment token is used.
-
-The checker sends GET to that exact database under the saved account, then only a fixed **SELECT from `sqlite_master`** through the D1 query API. It creates no migration tracker. An empty result reports pending **`0001_donations.sql`**; a nonempty database requires review and does not invent a pending list. The migration's SHA-256 must match **`e16b5ceebd1ee192b8df3a28f38babc80d8f8de343d3a68cf0d274e21f0e69e8`**. Safeguards test wrong/staging target rejection, untrusted branch/event rejection, GET-before-SELECT, no schema writes and credential-safe failures.
-
-The reviewed migration remains **`migrations/0001_donations.sql`**, with tables **`donations`**, **`donation_events`** and **`donation_rate_limits`**, plus index **`donations_customer`**. After the specific approval above, initialize only this exact target, list pending migrations, apply only that unchanged file, and verify the tables, index and migration record. Do not install `DONATIONS_DB` on `tanstack-start-app` yet.
-
-[Authenticated inspection passed](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39960284890): target name/ID matched under the saved Cloudflare account, the database is empty, and **`0001_donations.sql` is pending**. All **five new D1 safeguards passed** without package installation. No migration, tracking table, Worker binding or deployment was applied. The current checker always reports `readyForLaunch=false`.
-
-The full regression/type-check/build rerun was attempted twice in [the preparation run](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39959508027), but locked dependency downloads returned **HTTP 429** before tests or build could run. This is not a passing rerun. The previously passing **72 tests, type-check and staging build** remain the last full application evidence; the new D1 checks passed independently. No lockfile, application runtime, migration SQL or production/staging Wrangler config changed.
-
-## Cloudflare launch change — not executed or executable from this template
-
-The current live Worker is **`tanstack-start-app`**. Before preparing any executable production deployment, inspect its current bindings/routes/settings and preserve all existing newsletter/contact integrations and unrelated settings. Do not overwrite it with the staging Wrangler file or assume the sparse repository config represents every production binding.
-
-The dedicated live D1 is now owner-created. Its initialization requires the narrow approval above. Binding it as `DONATIONS_DB`, installing secrets and deploying remain a separate later approved production change. Do not use staging ID `990e1489-72e6-4a2b-b2f6-dbb4863e4971`, run migrations on unrelated databases, change DNS, or rotate existing non-donation secrets. Production creation, migration, secret installation, deployment and any controlled live donation need the owner's approval first. None is performed by the prepared workflow.
-
-Prepare the final executable config, binding-preservation evidence, backups/rollback plan, webhook/Portal/domain/email verification and final diff for approval at that stage. The current plan intentionally has no invented live database ID, no live secrets, no production deployment command and no automatic fallback to production. Read-only readiness success must never be used as deployment authorization.
+Before approval, the association should review its existing legal/privacy/donor wording and staff-controlled German donation-certificate process. Enabled Stripe emails are payment confirmations, **not official Zuwendungsbestätigungen**. Actual live receipts, delayed payments and reversals must be reconciled in Stripe; this software does not issue official tax certificates.
