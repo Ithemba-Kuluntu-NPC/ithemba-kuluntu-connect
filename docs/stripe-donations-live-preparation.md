@@ -1,14 +1,14 @@
-# Live Stripe preparation — inactive, live Portal verified
+# Live Stripe preparation — inactive, live Portal and domain reviewed
 
 PR #26 stays draft on `codex/stripe-donations-integration`. Preparation is authorized; merging, production deployment, production binding/secret installation and real-payment activation are not. Test Clock permission changes are deferred at the owner's request. No live key, live webhook secret or live database ID is committed or installed.
 
 The encrypted live connection is now saved and the restricted key authenticates to the expected German beneficiary account under the pinned REST API. [Read-only verification passed](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39912044845): account details are submitted and payments/payouts are enabled. The requirements fields are **unavailable** in this response; that is not an assertion of outstanding tasks. The operator already confirmed in the live Dashboard that no verification tasks remain. This operator confirmation is recorded separately from API verification. No account ID, credentials, donor records or raw responses are published here.
 
-**The one next operator action:** open [live Payment method domains](https://dashboard.stripe.com/settings/payment_method_domains) and ensure **`ithembakuluntu.org`** is registered and enabled. If absent, choose **Add a new domain**, enter the hostname, then **Save and continue**; if already enabled, leave it unchanged. This prepares wallet eligibility without deploying or activating website donations. No additional API permissions are requested.
+**The one next operator action:** Open [live Stripe Customer emails](https://dashboard.stripe.com/settings/emails) and ensure **Successful payments** is enabled under payment receipts; save if changed, or leave it enabled if already on. Reply **“Live receipts ready.”** This prepares Stripe payment confirmations; they are not official German donation certificates and it does not activate donation Checkout.
 
 [The latest read-only verification passed](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39915719509). The live Portal is active, matches the operator-approved login link, permits payment-method updates and cancellation at period end, enables email login, and disables plan changes. The exact link is compared using a SHA-256 fingerprint; no raw link, configuration ID or donor details are logged. Live donor login/email delivery is not claimed from a configuration read.
 
-The public canonical origin returned HTTPS 200 without a redirect. Payment-method domain retrieval returned HTTP 403 with the intentionally limited restricted key, so registration remains **unknown**, not missing. Verify it in the Dashboard rather than broadening the key. Bank transfers remain off and PayPal's account-level availability does not enable untested checkout flags.
+The public canonical origin returned HTTPS 200 without a redirect. Payment-method domain retrieval returned HTTP 403 with the intentionally limited restricted key. The operator subsequently confirmed in the **live Dashboard** that `ithembakuluntu.org` is **verified and enabled**. This completes the Dashboard fallback; it is operator evidence, not an API-read pass or an eligible-device wallet test. No broader key permission is needed. Bank transfers remain off and PayPal's account-level availability does not enable untested checkout flags.
 
 ## What is ready
 
@@ -16,7 +16,7 @@ The [inactive configuration template](../config/stripe-donations-live.example.js
 
 Existing essential checks cover validation, EUR presentment, one-time/monthly creation, restricted-key mode/account checks, idempotency, ownership/origin/rate limits, genuine pending/failure/success/cancellation, signed webhook validation/retry/deduplication, renewal reconciliation, Portal access and tax-certificate wording. Existing real sandbox evidence covers card success/decline/3DS, recurring first payment, Portal updates/cancellation/email login and SEPA success/delayed failure with signed asynchronous events. See [the readiness evidence](stripe-donations-readiness.md).
 
-Test Clock simulation is deferred, not passed. A separate monthly SEPA first-payment browser case and eligible-device wallets have not been verified. These limitations must remain visible in the eventual launch review; no method is silently removed or substituted to make a checklist pass. The account and Portal configuration reads passed; webhook/domain/email and remaining launch checks still require completion before activation.
+Test Clock simulation is deferred, not passed. A separate monthly SEPA first-payment browser case and eligible-device wallets have not been verified. These limitations must remain visible in the eventual launch review; no method is silently removed or substituted to make a checklist pass. The account and Portal configuration reads passed; webhook/email and remaining launch checks still require completion before activation.
 
 ## Prepared runtime mapping — install only after approval
 
@@ -54,7 +54,7 @@ The live connection has been saved as an encrypted GitHub Actions repository sec
 }
 ```
 
-Secret name: **`STRIPE_LIVE_CONNECTION`**, stored only in GitHub's **Settings → Secrets and variables → Actions**, never an issue, comment, PR, repository file or chat. This storage step is complete; do not re-enter or rotate the key for the current domain task. It does not replace `STRIPE_SANDBOX_CONNECTION`. Saving a secret does not trigger a workflow by itself; Codex can trigger a preparation-path review push afterward. Do not reuse or broaden the sandbox key or run the sandbox activation helper with live credentials.
+Secret name: **`STRIPE_LIVE_CONNECTION`**, stored only in GitHub's **Settings → Secrets and variables → Actions**, never an issue, comment, PR, repository file or chat. This storage step is complete; do not re-enter or rotate the key for the current receipt-review task. It does not replace `STRIPE_SANDBOX_CONNECTION`. Saving a secret does not trigger a workflow by itself; Codex can trigger a preparation-path review push afterward. Do not reuse or broaden the sandbox key or run the sandbox activation helper with live credentials.
 
 ## Read-only Portal discovery
 
