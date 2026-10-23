@@ -75,7 +75,7 @@ export async function checkLiveDatabase({
   if (database?.uuid !== LIVE_DATABASE_ID || database?.name !== LIVE_DATABASE_NAME) {
     throw new Error("Live database name/ID mismatch; no query performed");
   }
-  // This is the only SQL issued. No migration tracker is created by inspection.
+  // Inspection never creates or updates a migration tracker.
   const result = await request(
     "SELECT name, type FROM sqlite_master WHERE type IN ('table','index') AND name NOT GLOB 'sqlite_*' AND name NOT GLOB '_cf_*' ORDER BY name;",
   );
@@ -87,15 +87,41 @@ export async function checkLiveDatabase({
   )
     throw new Error("Incomplete database inspection");
   const empty = result[0].results.length === 0;
+  const expected = [
+    "d1_migrations:table",
+    "donation_events:table",
+    "donation_rate_limits:table",
+    "donations:table",
+    "donations_customer:index",
+  ];
+  let migrationRecorded = false;
+  if (
+    JSON.stringify(result[0].results.map((row) => `${row.name}:${row.type}`).sort()) ===
+    JSON.stringify(expected)
+  ) {
+    const history = await request("SELECT name FROM d1_migrations ORDER BY id;");
+    if (
+      !Array.isArray(history) ||
+      history.length !== 1 ||
+      history[0]?.success !== true ||
+      !Array.isArray(history[0].results)
+    )
+      throw new Error("Incomplete migration history inspection");
+    migrationRecorded =
+      history[0].results.length === 1 && history[0].results[0].name === "0001_donations.sql";
+  }
   return {
     state: empty
       ? "live_database_empty_migration_pending"
-      : "live_database_nonempty_review_required",
+      : migrationRecorded
+        ? "live_database_initialized_migration_recorded"
+        : "live_database_nonempty_review_required",
     databaseName: LIVE_DATABASE_NAME,
     databaseId: LIVE_DATABASE_ID,
     targetVerified: true,
     empty,
-    pendingMigrations: empty ? ["0001_donations.sql"] : null,
+    pendingMigrations: empty ? ["0001_donations.sql"] : migrationRecorded ? [] : null,
+    migrationRecorded,
     migrationHashVerified: true,
     migrationApplied: false,
     workerBindingChanged: false,
