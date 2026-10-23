@@ -64,6 +64,7 @@ export async function verifyLive() {
   );
   const browser = await chromium.launch({ headless: true, env });
   const pause = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+  let allRendered = true;
   try {
     for (const frequency of ["once", "monthly"]) {
       const context = await browser.newContext({
@@ -71,7 +72,7 @@ export async function verifyLive() {
         locale: "en-US",
       });
       const page = await context.newPage();
-      const browserDiagnostics = { errors: [], failedStripeRequests: [] };
+      const browserDiagnostics = { errors: [], failedStripeRequests: [], networkFailures: [] };
       const classifyError = (message) =>
         [
           "publishable",
@@ -102,6 +103,16 @@ export async function verifyLive() {
       page.on("pageerror", (error) => browserDiagnostics.errors.push(classifyError(error.message)));
       page.on("console", (entry) => {
         if (entry.type() === "error") browserDiagnostics.errors.push(classifyError(entry.text()));
+      });
+      page.on("requestfailed", (request) => {
+        try {
+          const url = new URL(request.url());
+          const error = request.failure()?.errorText ?? "";
+          browserDiagnostics.networkFailures.push({
+            host: url.hostname,
+            error: /^net::ERR_[A-Z_]+$/.test(error) ? error : "omitted",
+          });
+        } catch { /* Never retain request URLs, headers or values. */ }
       });
       page.on("response", (response) => {
         try {
@@ -248,6 +259,16 @@ export async function verifyLive() {
               frequency,
               frames,
               ...browserDiagnostics,
+              iframeGeometry: await page.locator("iframe").evaluateAll((elements) => elements.map((element) => {
+                let host = "invalid";
+                try { host = new URL(element.src).hostname; } catch {}
+                const rect = element.getBoundingClientRect();
+                return { host, width: Math.round(rect.width), height: Math.round(rect.height), visibility: getComputedStyle(element).visibility };
+              })),
+              pageStatus: await page.getByRole("status").allTextContents().then((texts) => ({
+                open: texts.some((text) => text.includes("Complete your donation securely")),
+                pending: texts.some((text) => text.includes("pending")),
+              })),
               siteAlertVisible: await page
                 .getByRole("alert")
                 .first()
@@ -299,7 +320,7 @@ export async function verifyLive() {
             subscriptionConfirmed: false,
           }),
         );
-        assert.ok(secureCardField, "Live Embedded Checkout did not initialize");
+        allRendered = allRendered && secureCardField;
       } finally {
         if (reference && !expired) await api("cancel", { id: reference }).catch(() => {});
         await context.close();
@@ -308,6 +329,7 @@ export async function verifyLive() {
   } finally {
     await browser.close();
   }
+  assert.ok(allRendered, "Live Embedded Checkout rendering requires further verification");
   console.log(
     JSON.stringify({
       state: "live_donation_launch_checks_passed",
