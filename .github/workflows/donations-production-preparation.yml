@@ -20,13 +20,28 @@ jobs:
           sparse-checkout: |
             scripts
             tests
+            config
+            src/lib
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: "24"
       - name: Test read-only and credential privacy controls
-        run: env GITHUB_ACTIONS=false node --test --test-isolation=none tests/donations-production-preparation.test.mjs
+        run: env GITHUB_ACTIONS=false node --test --test-isolation=none tests/donations-production-preparation.test.mjs tests/stripe-live-preparation.test.mjs tests/stripe-live-portal.test.mjs tests/stripe-live-domain.test.mjs
       - name: Read production settings and rollback metadata without changing anything
         env:
           CLOUDFLARE_D1_STAGING: ${{ secrets.CLOUDFLARE_D1_STAGING }}
           CLOUDFLARE_WORKER_STAGING_TOKEN: ${{ secrets.CLOUDFLARE_WORKER_STAGING_TOKEN }}
         run: node scripts/check-donations-production-preparation.mjs
+      - name: Recheck live beneficiary without creating any Stripe object
+        env:
+          STRIPE_LIVE_CONNECTION: ${{ secrets.STRIPE_LIVE_CONNECTION }}
+        run: node scripts/check-stripe-live-account.mjs
+      - name: Recheck exact live Portal settings without creating a session
+        env:
+          STRIPE_LIVE_CONNECTION: ${{ secrets.STRIPE_LIVE_CONNECTION }}
+        run: node scripts/check-stripe-live-portal.mjs
+      - name: Report live signing-secret preparation without printing or installing it
+        env:
+          STRIPE_LIVE_WEBHOOK_SECRET: ${{ secrets.STRIPE_LIVE_WEBHOOK_SECRET }}
+        run: |
+          node --input-type=module -e 'const value=process.env.STRIPE_LIVE_WEBHOOK_SECRET; const valid=/^whsec_[A-Za-z0-9]{16,}$/.test(value ?? ""); console.log(JSON.stringify({state: valid ? "live_webhook_secret_saved_delivery_unverified" : "live_webhook_secret_not_ready", secretSaved: Boolean(value), formatValid: valid, deliveryVerified: false, readyForLaunch: false})); if(value && !valid) process.exitCode=1;'

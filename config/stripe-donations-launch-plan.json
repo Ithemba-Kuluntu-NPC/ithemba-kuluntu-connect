@@ -1,0 +1,109 @@
+{
+  "description": "INACTIVE LAUNCH REVIEW ONLY. Not a Wrangler configuration or deployment input. No workflow installs these settings.",
+  "approvalRequired": {
+    "merge": true,
+    "productionDeployment": true,
+    "paymentActivation": true
+  },
+  "target": {
+    "worker": "tanstack-start-app",
+    "origin": "https://ithembakuluntu.org",
+    "database": {
+      "name": "ithemba-donations-live",
+      "id": "67acffe7-2412-44ce-817d-1d7f316d9392",
+      "binding": "DONATIONS_DB",
+      "migration": "0001_donations.sql",
+      "migrationApplied": true
+    }
+  },
+  "productionBaseline": {
+    "settingsFingerprint": "e827b67d829a732907c83d400e950e0ef21eee699d86d37b1f24c44f3e3e682a",
+    "existingBindings": [
+      {
+        "name": "ASSETS",
+        "type": "assets"
+      },
+      {
+        "name": "BREVO_API_KEY",
+        "type": "secret_text"
+      },
+      {
+        "name": "TURNSTILE_SECRET_KEY",
+        "type": "secret_text"
+      }
+    ],
+    "rollback": {
+      "id": "8078001d-0d43-4a8a-a1fc-e39db6f87314",
+      "versions": [
+        {
+          "version_id": "61de2e47-2398-4c9a-9f87-1a691d2fb460",
+          "percentage": 100
+        }
+      ]
+    },
+    "canonicalCustomDomainMatches": true
+  },
+  "workerConfigDraft": {
+    "name": "tanstack-start-app",
+    "main": ".output/server/index.mjs",
+    "compatibility_date": "2025-09-24",
+    "compatibility_flags": ["nodejs_compat"],
+    "assets": {
+      "binding": "ASSETS",
+      "directory": ".output/public"
+    },
+    "no_bundle": true,
+    "rules": [
+      {
+        "type": "ESModule",
+        "globs": ["**/*.mjs", "**/*.js"]
+      }
+    ],
+    "keep_vars": true,
+    "d1_databases": [
+      {
+        "binding": "DONATIONS_DB",
+        "database_name": "ithemba-donations-live",
+        "database_id": "67acffe7-2412-44ce-817d-1d7f316d9392",
+        "migrations_dir": "migrations"
+      }
+    ],
+    "vars": {
+      "STRIPE_DONATIONS_MODE": "live",
+      "STRIPE_PAYPAL_ENABLED": "false",
+      "STRIPE_PAYPAL_RECURRING_ENABLED": "false",
+      "STRIPE_BANK_TRANSFER_ENABLED": "false"
+    }
+  },
+  "secretSources": {
+    "STRIPE_SECRET_KEY": "STRIPE_LIVE_CONNECTION.restrictedKey",
+    "STRIPE_PUBLISHABLE_KEY": "STRIPE_LIVE_CONNECTION.publishableKey",
+    "STRIPE_ACCOUNT_ID": "STRIPE_LIVE_CONNECTION.accountId",
+    "STRIPE_WEBHOOK_SECRET": "STRIPE_LIVE_WEBHOOK_SECRET (not yet verified)",
+    "DONATION_COOKIE_SECRET": "Generate new high-entropy value only during approved installation",
+    "DONATION_SITE_ORIGIN": "https://ithembakuluntu.org",
+    "STRIPE_PORTAL_CONFIGURATION_ID": "Resolve from exact approved live Portal configuration during approved installation",
+    "STRIPE_PORTAL_LOGIN_URL": "Resolve and validate against APPROVED_LIVE_LOGIN_SHA256"
+  },
+  "launchSequence": [
+    "Fresh read-only baseline, source diff and credential/mode/account/Portal/D1 checks; stop on drift or missing live signing secret.",
+    "Obtain explicit production deployment/payment activation approval and approved method scope. Merge remains separately gated.",
+    "Create a private ephemeral config from the reviewed draft and current settings, preserving BREVO_API_KEY, TURNSTILE_SECRET_KEY, assets configuration, all unrelated settings and existing domain/routes. Never use staging config.",
+    "During the approved change only: install distinct live donation secrets/binding, preserve existing secret bindings and vars, and deploy the reviewed source. Do not change DNS.",
+    "Enable the reviewed live webhook destination only once the correct signed handler is reachable. Verify real delivery, signature rejection, mode checks, current state and ledger reconciliation.",
+    "Verify publishable-key/Checkout pairing and eligible-device wallets in the approved live context. A controlled real donation requires approval; configuration reads alone are not payment proof."
+  ],
+  "rollbackSequence": [
+    "After approval if launch fails: stop donation creation, restore the recorded prior production version(s)/traffic allocation and preserve original integrations/domain routes.",
+    "Do not drop or reset the live donation database or lose accepted events. Retain the live webhook and reconciliation path for any submitted or pending donations.",
+    "Reconcile all Stripe payments/subscriptions and delayed events, replay genuine failed deliveries as appropriate, and communicate pending status accurately. Code rollback does not undo a payment."
+  ],
+  "exclusions": [
+    "No automatic production workflow",
+    "No main-branch changes",
+    "No DNS changes",
+    "No bank transfers/iDEAL/Wero/TWINT",
+    "PayPal flags remain disabled until separately approved and tested",
+    "Test Clock permission changes deferred"
+  ]
+}
