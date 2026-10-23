@@ -16,23 +16,30 @@ try {
     assert.equal(data.success, true);
     return data.result;
   }
-  stage = "production_bindings";
-  const settings = await get("/scripts/tanstack-start-app/settings");
-  const bindings = settings.bindings;
-  assert.ok(Array.isArray(bindings));
-  for (const name of ["STRIPE_SECRET_KEY","STRIPE_PUBLISHABLE_KEY","STRIPE_ACCOUNT_ID","STRIPE_WEBHOOK_SECRET","DONATION_COOKIE_SECRET","DONATION_SITE_ORIGIN","STRIPE_PORTAL_CONFIGURATION_ID","STRIPE_PORTAL_LOGIN_URL","BREVO_API_KEY","TURNSTILE_SECRET_KEY"])
-    assert.ok(bindings.some(b => b.name === name && b.type === "secret_text"));
-  assert.ok(bindings.some(b => b.name === "ASSETS" && b.type === "assets"));
-  assert.ok(bindings.some(b => b.name === "DONATIONS_DB" && b.type === "d1" && b.id === "67acffe7-2412-44ce-817d-1d7f316d9392"));
-  for (const [name,text] of Object.entries({ STRIPE_DONATIONS_MODE: "live", STRIPE_PAYPAL_ENABLED: "false", STRIPE_PAYPAL_RECURRING_ENABLED: "false", STRIPE_BANK_TRANSFER_ENABLED: "false" }))
-    assert.ok(bindings.some(b => b.name === name && b.type === "plain_text" && b.text === text));
-  assert.equal(settings.compatibility_date, "2025-09-24");
-  assert.deepEqual(settings.compatibility_flags, ["nodejs_compat"]);
   stage = "active_deployment";
   const data = await get("/scripts/tanstack-start-app/deployments");
   const deployments = Array.isArray(data) ? data : data.deployments;
   const active = [...deployments].sort((a,b) => Date.parse(b.created_on)-Date.parse(a.created_on))[0];
   assert.equal(active.versions.reduce((sum,v) => sum+v.percentage,0),100);
+  stage = "production_bindings";
+  for (const traffic of active.versions.filter(v => v.percentage > 0)) {
+    const version = await get("/scripts/tanstack-start-app/versions/" + traffic.version_id);
+    const bindings = version.resources?.bindings;
+    assert.ok(Array.isArray(bindings));
+    const requiredSecrets = ["STRIPE_SECRET_KEY","STRIPE_PUBLISHABLE_KEY","STRIPE_ACCOUNT_ID","STRIPE_WEBHOOK_SECRET","DONATION_COOKIE_SECRET","DONATION_SITE_ORIGIN","STRIPE_PORTAL_CONFIGURATION_ID","STRIPE_PORTAL_LOGIN_URL","BREVO_API_KEY","TURNSTILE_SECRET_KEY"];
+    const missingSecrets = requiredSecrets.filter(name => !bindings.some(b => b.name === name && b.type === "secret_text"));
+    const databaseVerified = bindings.some(b => b.name === "DONATIONS_DB" && b.type === "d1" && b.id === "67acffe7-2412-44ce-817d-1d7f316d9392");
+    const vars = {STRIPE_DONATIONS_MODE:"live",STRIPE_PAYPAL_ENABLED:"false",STRIPE_PAYPAL_RECURRING_ENABLED:"false",STRIPE_BANK_TRANSFER_ENABLED:"false"};
+    const missingVariables = Object.entries(vars).filter(([name,text]) => !bindings.some(b => b.name === name && b.type === "plain_text" && b.text === text)).map(([name]) => name);
+    console.log(JSON.stringify({state:"active_worker_binding_review",versionId:traffic.version_id,missingSecrets,missingVariables,databaseVerified,bindingNames:bindings.map(b=>({name:b.name,type:b.type}))}));
+    assert.equal(missingSecrets.length,0);
+    assert.equal(missingVariables.length,0);
+    assert.equal(databaseVerified,true);
+    assert.ok(bindings.some(b => b.name === "ASSETS" && b.type === "assets"));
+  }
+  const settings = await get("/scripts/tanstack-start-app/settings");
+  assert.equal(settings.compatibility_date, "2025-09-24");
+  assert.deepEqual(settings.compatibility_flags, ["nodejs_compat"]);
   stage = "canonical_domain";
   const domains = await get("/domains");
   assert.ok(domains.some(d => d.hostname === "ithembakuluntu.org" && d.service === "tanstack-start-app" && d.environment === "production"));
