@@ -23,40 +23,19 @@ During a later approved launch, preserve existing secret bindings, asset setting
 
 Rollback must restore the recorded prior Worker version/traffic while retaining the live database and reconciling any accepted/pending payments and events. Code rollback does not reverse a payment. Never drop the ledger or discard pending SEPA events.
 
-## Essential account step still needed: prepare the live webhook secret
+## Live webhook signing secret — preparation complete
 
-[The final preparation check](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39963622156) reports **`live_webhook_secret_not_ready`**: `STRIPE_LIVE_WEBHOOK_SECRET` is not saved. The restricted runtime key intentionally has no webhook-administration permission. Do **not** broaden it, use the sandbox secret, invent a signing secret or paste one into chat.
+The owner confirmed that the separate live destination is prepared and disabled, and saved its real secret in encrypted GitHub **`STRIPE_LIVE_WEBHOOK_SECRET`**. [Final read-only preflight](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39969891026) passed **21 safeguards** and confirmed saved-secret presence, valid format and difference from the sandbox secret. It also rechecked the account, Portal, initialized live D1 and unchanged production baseline. No secret values were logged or installed.
 
-This is the remaining account action requiring the owner:
+This resolves the last account-preparation blocker. Do not create another destination, re-enter credentials, broaden the runtime key or enable delivery now. Format/difference checks are not proof of destination ownership, event configuration or genuine signed delivery; those remain explicit rollout checks after approval.
 
-1. In the association's **live** [Stripe Workbench → Webhooks](https://dashboard.stripe.com/workbench/webhooks), create an event destination for **your account**, using **Snapshot** events and API version **`2026-08-26.dahlia`**. Do not choose connected accounts, Thin, Endive or preview events, and do not change the account default/API version.
-2. Use endpoint **`https://ithembakuluntu.org/api/donations/webhook`** and the **15 exact events below**. Keep delivery **disabled until the approved launch**. If creation defaults to enabled, disable the new destination immediately afterward; do not test delivery against the current unprepared live handler. Do not alter the sandbox destination.
-3. Reveal that destination's signing secret and save it directly as **`STRIPE_LIVE_WEBHOOK_SECRET`** in [GitHub → repository Actions secrets](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/settings/secrets/actions). Use **New repository secret** (or update only this exact live secret if already present). Never replace `STRIPE_SANDBOX_WEBHOOK_SECRET` or `STRIPE_LIVE_CONNECTION`. No installation or commands are needed.
-4. Reply **“Live webhook prepared and secret saved.”** Codex will verify saved-secret format and finish the release review without installing it on the Worker or making a real payment. A format check is not genuine delivery verification.
+## Final approval recommendation
 
-```text
-checkout.session.completed
-checkout.session.async_payment_succeeded
-checkout.session.async_payment_failed
-checkout.session.expired
-payment_intent.processing
-payment_intent.succeeded
-payment_intent.payment_failed
-payment_intent.canceled
-invoice.paid
-invoice.payment_failed
-invoice.payment_action_required
-invoice.voided
-customer.subscription.created
-customer.subscription.updated
-customer.subscription.deleted
-```
-
-Stripe documentation: [event destinations](https://docs.stripe.com/event-destinations), [webhooks](https://docs.stripe.com/webhooks), [endpoint status controls](https://docs.stripe.com/api/webhook_endpoints/update). The disabled destination prepares event delivery; it does not activate donation Checkout.
+**GO for the controlled initial card/eligible-wallet/SEPA launch described in the [final readiness review](stripe-donations-final-launch-review.md).** Exact deployment, binding/secret installation, activation, webhook enablement and verification scope is documented there. **PR #26 remains draft/unmerged; merging is excluded from the requested launch approval.** The owner will need one Stripe **Enable** click when the deployed handler is ready; no broader webhook API permission is requested.
 
 ## Final launch approval remains separate
 
-We are **not yet ready to activate real donations**: the live webhook/signing-secret preparation above remains incomplete. After that account step, present the final source/configuration diff, fresh baseline/credential checks and launch-method scope for explicit approval. Do not merge, deploy, bind the live database, install live Worker secrets, enable delivery, activate real Checkout or process a controlled live donation without the relevant approval.
+Essential preparation is complete and the final review recommends GO **for explicit owner approval**, not automatic activation. See the exact scope and stop conditions in the final review. Do not merge, deploy, bind the live database, install live Worker secrets, enable delivery, activate real Checkout or process a controlled live donation without the relevant approval.
 
 Planned initial methods are **cards, eligible Apple Pay/Google Pay and SEPA**, one-time and monthly EUR. Eligible-device wallet appearance and actual live key pairing/delivery require verification in the approved live context; they are not proved by prefix checks or a local dry run. **PayPal and recurring PayPal remain disabled pending separate approval/eligibility/testing** despite account-level activation. Bank transfers are off and unnecessary for this checkout; iDEAL/Wero and TWINT remain excluded. Disclose this scope at approval rather than silently changing the requested experience.
 

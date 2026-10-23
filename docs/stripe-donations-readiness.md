@@ -24,17 +24,17 @@ PR #26 stays **draft and unmerged** on **`codex/stripe-donations-integration`**.
 - [One-time SEPA success](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39755408888) and [repeat success](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39757489987): pending before actual success and signed asynchronous event. A delayed-failure browser wait elapsed before the provider result; it was not a passing browser assertion. [Authenticated follow-up](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39759270511) verified the same fixture's Stripe failure, failed ledger and genuine async-failure event without another debit or synthetic replay.
 - EUR presentment is explicit: Adaptive Pricing is disabled for both frequencies. [Actual pinned-API Checkout checks](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39745735130) verified both frequencies with EUR; no REST upgrade needed. [The approved staging-only update](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39746773054) deployed that fix. Subsequent preparation/browser helpers did not deploy again.
 
-## Essential remaining owner action
+## Final preflight — last preparation blocker resolved
 
-**Prepare the separate live webhook destination and save its signing secret securely.** The [final secret check](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39963622156) confirms **`STRIPE_LIVE_WEBHOOK_SECRET` is absent**.
+The owner prepared the live webhook, kept it disabled and saved **`STRIPE_LIVE_WEBHOOK_SECRET`** securely in GitHub. [Final preflight](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39969891026) passed **21 safeguards**: saved-secret format, distinction from sandbox, live account/Portal, initialized database/no pending migrations and unchanged production baseline. Nothing was installed or enabled.
 
-Follow the [browser-only instructions and exact 15 events](stripe-donations-live-preparation.md#essential-account-step-still-needed-prepare-the-live-webhook-secret). Use **`https://ithembakuluntu.org/api/donations/webhook`**, **`2026-08-26.dahlia` Snapshot**, the **live account**, and store only the real destination secret in GitHub's encrypted **`STRIPE_LIVE_WEBHOOK_SECRET`**. Keep the destination disabled until the approved launch. No keys/secrets in chat and no additional API permissions or software installation.
+**Recommendation: GO for explicit approval of the controlled initial launch.** The [final launch review](stripe-donations-final-launch-review.md) records the exact production changes, exclusions, owner Enable click and validation/rollback gates. There is no further optional check or account setup required before approval.
 
-Everything else currently possible without production activation has been prepared or verified. Saved-secret format can be checked after this action; actual signing/delivery and key pairing must be verified in the later approved live context.
+Secret format is not evidence of provider ownership or actual delivery. The destination's disabled state/settings remain owner-confirmed; genuine delivery, key pairing and live-context checks occur only during the approved rollout.
 
 ## Final approval status and limits
 
-**Not yet ready for final activation approval:** live webhook/signing-secret preparation is incomplete. After it is saved, complete the final review and request explicit approval for the reviewed production change. Merging is separately gated; approval to initialize D1 is not deployment or activation approval.
+**GO for the reviewed production/activation approval request; awaiting that explicit approval.** The approved D1 initialization and saved signing secret are preparation only. Merging is excluded from the requested rollout and stays separately gated.
 
 The eventual approved change must preserve existing production bindings, assets configuration, compatibility settings, domain/routes, newsletter/contact behavior and all unrelated settings. It adds only the exact live D1 and distinct donation secrets/variables. Generate a fresh cookie secret during that approved installation. Do not reuse staging cookie/webhook secrets or staging config. A fresh settings-fingerprint check must stop on drift.
 

@@ -47,7 +47,9 @@
     "name": "tanstack-start-app",
     "main": ".output/server/index.mjs",
     "compatibility_date": "2025-09-24",
-    "compatibility_flags": ["nodejs_compat"],
+    "compatibility_flags": [
+      "nodejs_compat"
+    ],
     "assets": {
       "binding": "ASSETS",
       "directory": ".output/public"
@@ -56,7 +58,10 @@
     "rules": [
       {
         "type": "ESModule",
-        "globs": ["**/*.mjs", "**/*.js"]
+        "globs": [
+          "**/*.mjs",
+          "**/*.js"
+        ]
       }
     ],
     "keep_vars": true,
@@ -79,7 +84,7 @@
     "STRIPE_SECRET_KEY": "STRIPE_LIVE_CONNECTION.restrictedKey",
     "STRIPE_PUBLISHABLE_KEY": "STRIPE_LIVE_CONNECTION.publishableKey",
     "STRIPE_ACCOUNT_ID": "STRIPE_LIVE_CONNECTION.accountId",
-    "STRIPE_WEBHOOK_SECRET": "STRIPE_LIVE_WEBHOOK_SECRET (not yet verified)",
+    "STRIPE_WEBHOOK_SECRET": "STRIPE_LIVE_WEBHOOK_SECRET (format verified; distinct from sandbox; provider ownership/delivery requires approved rollout)",
     "DONATION_COOKIE_SECRET": "Generate new high-entropy value only during approved installation",
     "DONATION_SITE_ORIGIN": "https://ithembakuluntu.org",
     "STRIPE_PORTAL_CONFIGURATION_ID": "Resolve from exact approved live Portal configuration during approved installation",
@@ -91,7 +96,7 @@
     "Create a private ephemeral config from the reviewed draft and current settings, preserving BREVO_API_KEY, TURNSTILE_SECRET_KEY, assets configuration, all unrelated settings and existing domain/routes. Never use staging config.",
     "During the approved change only: install distinct live donation secrets/binding, preserve existing secret bindings and vars, and deploy the reviewed source. Do not change DNS.",
     "Enable the reviewed live webhook destination only once the correct signed handler is reachable. Verify real delivery, signature rejection, mode checks, current state and ledger reconciliation.",
-    "Verify publishable-key/Checkout pairing and eligible-device wallets in the approved live context. A controlled real donation requires approval; configuration reads alone are not payment proof."
+    "After approval, render unfunded live one-time/monthly Embedded Checkouts to verify key pairing, then expire them and verify genuine signed checkout.session.expired delivery and D1 reconciliation. No funded test donation or confirmed subscription. Check eligible-device wallets as available; no optional test delays."
   ],
   "rollbackSequence": [
     "After approval if launch fails: stop donation creation, restore the recorded prior production version(s)/traffic allocation and preserve original integrations/domain routes.",
@@ -99,11 +104,25 @@
     "Reconcile all Stripe payments/subscriptions and delayed events, replay genuine failed deliveries as appropriate, and communicate pending status accurately. Code rollback does not undo a payment."
   ],
   "exclusions": [
-    "No automatic production workflow",
+    "No automatic production deployment workflow",
     "No main-branch changes",
     "No DNS changes",
     "No bank transfers/iDEAL/Wero/TWINT",
     "PayPal flags remain disabled until separately approved and tested",
     "Test Clock permission changes deferred"
-  ]
+  ],
+  "preparationReview": {
+    "recommendation": "GO_FOR_EXPLICITLY_APPROVED_CONTROLLED_LAUNCH",
+    "ownerApprovalGranted": false,
+    "reviewedSourceRef": "74b7a8eb8caf3fe5366d2b0cfbdc4764b4deae53",
+    "preflightRun": "https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39969891026",
+    "liveSigningSecretFormatVerified": true,
+    "distinctFromSandbox": true,
+    "providerOwnershipVerified": false,
+    "deliveryVerified": false,
+    "liveWebhookPreparedAndDisabled": "owner-confirmed",
+    "mergeIncluded": false,
+    "ownerWebhookEnableClickRequired": true,
+    "fundedTestPaymentAuthorized": false
+  }
 }
