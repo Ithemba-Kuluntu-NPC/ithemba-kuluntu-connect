@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import {
@@ -6,8 +7,12 @@ import {
   LIVE_PREPARATION_API_VERSION,
 } from "./check-stripe-live-account.mjs";
 
-export function livePortalFlags(configuration) {
+// Verify the operator-supplied public login link without publishing it in code/logs.
+export const APPROVED_LIVE_LOGIN_SHA256 =
+  "4d8317f027c0c87a59f67d9a21bd810cc4bca1f34b6cca181b8d5ef32ef444ad";
+export function livePortalFlags(configuration, expectedLoginSha256 = APPROVED_LIVE_LOGIN_SHA256) {
   let liveLoginUrl = false;
+  let approvedLoginMatches = false;
   try {
     const url = new URL(configuration?.login_page?.url);
     liveLoginUrl =
@@ -17,6 +22,8 @@ export function livePortalFlags(configuration) {
       !url.password &&
       !url.search &&
       !url.hash;
+    approvedLoginMatches =
+      liveLoginUrl && createHash("sha256").update(url.href).digest("hex") === expectedLoginSha256;
   } catch {
     /* Report a boolean, never the submitted URL. */
   }
@@ -30,6 +37,8 @@ export function livePortalFlags(configuration) {
       configuration.features.subscription_cancel.mode === "at_period_end",
     emailLogin: configuration?.login_page?.enabled === true,
     liveLoginUrl,
+    approvedLoginMatches,
+    planChangesDisabled: configuration?.features?.subscription_update?.enabled === false,
   };
 }
 
@@ -37,6 +46,7 @@ export async function checkLivePortal({
   connectionValue = process.env.STRIPE_LIVE_CONNECTION,
   fetchImpl = fetch,
   context = process.env,
+  expectedLoginSha256 = APPROVED_LIVE_LOGIN_SHA256,
 } = {}) {
   // Verify key mode, branch/event and expected beneficiary before reading Portal settings.
   const account = await checkLiveAccount({ connectionValue, fetchImpl, context });
@@ -68,7 +78,9 @@ export async function checkLivePortal({
       "Live Portal configuration could not be read. No settings changed; raw responses and URLs omitted.",
     );
   }
-  const eligible = result.data.filter((c) => Object.values(livePortalFlags(c)).every(Boolean));
+  const eligible = result.data.filter((c) =>
+    Object.values(livePortalFlags(c, expectedLoginSha256)).every(Boolean),
+  );
   const defaults = eligible.filter((c) => c.is_default === true);
   const selected = result.has_more
     ? null
@@ -83,7 +95,7 @@ export async function checkLivePortal({
     // A GET cannot test email delivery or log in a live donor. No sessions are created.
     liveDonorLoginTested: false,
     readyForLaunch: false,
-    configurationFlags: result.data.map(livePortalFlags),
+    configurationFlags: result.data.map((c) => livePortalFlags(c, expectedLoginSha256)),
   };
 }
 

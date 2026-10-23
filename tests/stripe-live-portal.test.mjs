@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { checkLivePortal, livePortalFlags } from "../scripts/check-stripe-live-portal.mjs";
@@ -15,9 +16,11 @@ const portal = {
   features: {
     subscription_cancel: { enabled: true, mode: "at_period_end" },
     payment_method_update: { enabled: true },
+    subscription_update: { enabled: false },
   },
   login_page: { enabled: true, url: "https://billing.stripe.com/p/login/fixtureLive" },
 };
+const expectedLoginSha256 = createHash("sha256").update(portal.login_page.url).digest("hex");
 function read(result, status = 200, calls = []) {
   return async (url, options) => {
     calls.push(url);
@@ -37,6 +40,7 @@ test("live Portal verification performs only beneficiary and configuration GETs,
   const calls = [];
   const result = await checkLivePortal({
     connectionValue,
+    expectedLoginSha256,
     context: {},
     fetchImpl: read({ data: [portal], has_more: false }, 200, calls),
   });
@@ -77,7 +81,9 @@ test("test-mode URLs, wrong origins, missing controls and ambiguous/paginated Po
     },
     { ...portal, login_page: { enabled: false, url: portal.login_page.url } },
   ])
-    assert.ok(Object.values(livePortalFlags(changed)).some((v) => v === false));
+    assert.ok(
+      Object.values(livePortalFlags(changed, expectedLoginSha256)).some((v) => v === false),
+    );
   for (const response of [
     { data: [], has_more: false },
     { data: [portal], has_more: true },
@@ -89,7 +95,12 @@ test("test-mode URLs, wrong origins, missing controls and ambiguous/paginated Po
       has_more: false,
     },
   ]) {
-    const r = await checkLivePortal({ connectionValue, context: {}, fetchImpl: read(response) });
+    const r = await checkLivePortal({
+      connectionValue,
+      expectedLoginSha256,
+      context: {},
+      fetchImpl: read(response),
+    });
     assert.equal(r.state, "live_portal_setup_required");
   }
 });
@@ -123,13 +134,43 @@ test("missing/mixed credentials, wrong beneficiary, denied permissions and provi
   );
   const denied = await checkLivePortal({
     connectionValue,
+    expectedLoginSha256,
     context: {},
     fetchImpl: read({ private: "doNotPrint" }, 403),
   });
   assert.equal(denied.state, "portal_dashboard_review_required");
   for (const fixture of [{ data: "doNotPrint" }, { data: [], has_more: "doNotPrint" }])
     await assert.rejects(
-      checkLivePortal({ connectionValue, context: {}, fetchImpl: read(fixture) }),
+      checkLivePortal({
+        connectionValue,
+        expectedLoginSha256,
+        context: {},
+        fetchImpl: read(fixture),
+      }),
       (e) => !e.message.includes("doNotPrint"),
     );
+});
+
+test("only the approved live login fingerprint with plan changes disabled can pass", async () => {
+  assert.ok(Object.values(livePortalFlags(portal, expectedLoginSha256)).every(Boolean));
+  const different = {
+    ...portal,
+    login_page: {
+      ...portal.login_page,
+      url: "https://billing.stripe.com/p/login/differentLiveLink",
+    },
+  };
+  assert.equal(livePortalFlags(different, expectedLoginSha256).approvedLoginMatches, false);
+  for (const subscription_update of [{ enabled: true }, undefined]) {
+    const changed = { ...portal, features: { ...portal.features, subscription_update } };
+    assert.equal(livePortalFlags(changed, expectedLoginSha256).planChangesDisabled, false);
+  }
+  const result = await checkLivePortal({
+    connectionValue,
+    context: {},
+    expectedLoginSha256,
+    fetchImpl: read({ data: [different], has_more: false }),
+  });
+  assert.equal(result.state, "live_portal_setup_required");
+  assert.equal(result.readyForLaunch, false);
 });
