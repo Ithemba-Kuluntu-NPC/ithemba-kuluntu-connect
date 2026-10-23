@@ -1,43 +1,48 @@
-# Final Stripe launch readiness — 23 October 2026
+# Stripe production launch review — 23 October 2026
 
-**Recommendation: GO for an owner-approved, controlled initial production launch of cards, eligible Apple Pay/Google Pay and SEPA, one-time/monthly EUR.** This is readiness for approval, not a claim that live payments or delivery have been tested. No approval has yet been granted for production deployment, webhook enablement, payment activation or merging.
+**Production deployment and genuine live webhook reconciliation passed. Final browser acceptance remains incomplete: do not describe the launch as fully verified or request a funded donation yet.** The owner explicitly approved the controlled production launch and subsequently confirmed webhook enablement. PR #26 remains **draft and unmerged**, exclusively on `codex/stripe-donations-integration`; `main` is unchanged.
 
-## Essential preflight passed
+## Completed production change
 
-[Final read-only preflight](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39969891026) passed **21 safeguards**, including four new signing-secret checks. The saved `STRIPE_LIVE_WEBHOOK_SECRET` exists, has valid format and is **different from the sandbox secret**. The comparison and reports disclose no secret values and install nothing on a Worker.
+[The production launch](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39973404974) passed **95 tests**, TypeScript checking and the application/staging build before credentials entered the deployment step. Application source matches reviewed reference **`74b7a8eb8caf3fe5366d2b0cfbdc4764b4deae53`**; operations commit **`69d0eac91d01db26d2e0a20386fdc96a524ae62e`** installed and activated Worker version **`da9a5be3-ca7c-4379-9108-88db3ccf0e9e`** on **`tanstack-start-app`**, serving **https://ithembakuluntu.org**.
 
-The restricted live key still authenticates to the expected German account; charges/payouts and submitted details remain confirmed. The live Portal still matches the approved login fingerprint and management policy. The owner previously confirmed clear account requirements, live domain registration and receipt/failed-payment/authentication emails. Missing API requirement fields remain unknown rather than overriding that Dashboard evidence.
+Only the initialized live database **`ithemba-donations-live`**, ID **`67acffe7-2412-44ce-817d-1d7f316d9392`**, was bound as **`DONATIONS_DB`**. Distinct live credentials, saved signing secret, canonical origin, validated Portal settings and a fresh random donation-cookie secret were installed privately. No secret values are in reports or source.
 
-Exact live database **`ithemba-donations-live`**, ID **`67acffe7-2412-44ce-817d-1d7f316d9392`**, is initialized with the expected migration record and **no pending migrations**. It remains unbound. Current production settings still match fingerprint **`e827b67d829a732907c83d400e950e0ef21eee699d86d37b1f24c44f3e3e682a`**; existing `ASSETS`, `BREVO_API_KEY` and `TURNSTILE_SECRET_KEY` bindings and canonical custom domain are unchanged. No donation binding or live Worker secret is installed.
+The inactive version was validated before traffic changed. Existing **`ASSETS`**, **`BREVO_API_KEY`**, **`TURNSTILE_SECRET_KEY`**, compatibility settings, unrelated settings and domains/routes were preserved. No DNS changes, staging deployment, newsletter/contact source changes or unrelated page edits occurred. Home, donation and contact pages returned HTTP 200. Public config confirmed live mode/no-store and the approved Portal fingerprint; invalid webhook signatures returned HTTP 400.
 
-[The last full regression/build run](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39964994738) passed **86 tests**, TypeScript and build. The subsequent changes add only the signing-secret checker/tests, read-only preflight wiring and readiness documentation; application runtime/build inputs are unchanged. The four new tests passed in the final preflight. Production-config local dry run and public-asset secret scan passed previously.
+## Genuine live backend verification passed
 
-Actual sandbox acceptance covers one-time/monthly cards, decline/SCA, idempotency/ownership, Portal payment-method updates/email login/cancellation, one-time SEPA success/delayed failure and [monthly SEPA pending → succeeded with signed invoice and fixture cancellation](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39963114597). The existing donor's test subscription was not changed.
+After owner enablement, [unfunded browser verification](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39977640521), source **`ff1052f1125b9cceeb9b752263feb206ca100262`**, verified **both one-time and monthly**:
 
-## Exact approval requested
+- The actual website form created live Checkout sessions; identical retries returned the same session/client secret.
+- Cookie-owned status remained open, with no subscription management access. Unrelated browser contexts were denied status.
+- Every unfunded session was explicitly expired and its status became cancelled.
+- Genuine provider **`checkout.session.expired`** events with Stripe `evt_` IDs were recorded against each corresponding donation in the exact live D1 database. No synthetic signatures were used.
 
-Approval is requested for **this coordinated production change only**:
+No payment fields were filled, mandates accepted, payments submitted or subscriptions confirmed. Earlier diagnostic attempts also expired their unfunded sessions. The runtime restricted key was not broadened.
 
-1. Use the reviewed donation branch application source, reference **`74b7a8eb8caf3fe5366d2b0cfbdc4764b4deae53`**, to build and deploy the donation integration to the existing **`tanstack-start-app`** Worker serving **`https://ithembakuluntu.org`**. Keep PR #26 **draft and unmerged**; do not write to `main`.
-2. Bind only the existing initialized live database above as **`DONATIONS_DB`**. No new migration or database creation is needed. Install the saved live restricted key/publishable key/account ID, saved live signing secret, validated live Portal configuration/login URL, canonical origin and a **new random donation-cookie secret**. Preserve the existing Brevo/Turnstile secrets, asset configuration, compatibility settings, domains/routes and all unrelated settings. Stop on baseline drift; **no DNS changes**.
-3. Set donation mode to **`live`** and activate **one-time and monthly EUR donations using cards, eligible Apple Pay/Google Pay and SEPA**. Keep PayPal, recurring PayPal and bank-transfer flags **false**; keep iDEAL/Wero and TWINT excluded. This initial scope is an explicit approval decision, not fulfillment/testing of PayPal.
-4. Enable the already-prepared live **`2026-08-26.dahlia` Snapshot** destination for the existing exact 15 events at **`https://ithembakuluntu.org/api/donations/webhook`** in coordination with the deployed handler. **The owner must click Enable in Stripe at the instructed launch point**: the intentionally restricted runtime key has no webhook-administration permission. Do not broaden it or enable delivery early.
-5. Verify public configuration/mode and actual live key/Embedded Checkout pairing using **unfunded sessions that are expired afterward**. Their genuine **`checkout.session.expired`** events provide a signed live-webhook/D1 reconciliation check without a charge or confirmed subscription. Also check request/ownership/signature defenses, Portal configuration availability and existing website integrations. Monitor errors and stop/roll back if the rollout fails. No funded test donation, payment details, new subscription confirmation or real charge will be submitted by Codex under this approval.
+The owner prepared **`2026-08-26.dahlia` Snapshot** account-event delivery for the exact 15 events in the setup guide and confirmed enablement. Genuine expiration delivery proves that signed delivery/reconciliation path; it does not claim real settlement or delivery of every event type.
 
-Enabling Checkout means the site can accept real donor payments; that is why payment activation is explicitly included. There is no separate funded-test authorization. Do not characterize unfunded Checkout creation or local signature tests as actual settlement/delivery proof.
+## Essential remaining browser check
 
-## Rollout limits and stop conditions
+**The verification workflow is red, not a passing end-to-end acceptance run.** It deliberately fails because neither frequency displayed a detectable secure card field within the automated browser's wait. Diagnostics recorded no page JavaScript errors, failed Stripe HTTP responses or visible website error alert, but did record aborted hCaptcha network requests while Stripe initialization remained incomplete. This is not conclusive proof of an application defect or of a particular anti-bot cause. CAPTCHA controls were not bypassed.
 
-A secret's format and difference from sandbox **do not prove its Stripe destination ownership, enabled events/API version, or actual signed delivery**. The owner reported the live destination prepared and disabled following the exact guide. Recheck those Dashboard settings at enablement and verify genuine delivery during the approved rollout; never substitute a locally manufactured signature for that evidence.
+**Next owner action:** open https://ithembakuluntu.org/donate in a normal browser, start a custom **€1 one-time donation** using the existing association email, and **stop before entering card details or paying**. Confirm whether Stripe's secure card form appears, or report the displayed error/challenge. This is the essential human browser acceptance check; no installation, commands, new email or additional credentials are required.
 
-Live donor Portal email delivery, payment-method/device eligibility, actual live receipts and key pairing are verified in the approved live context as available. No new real customer/payment has been created to bypass the approval boundary. Eligible-device wallet appearance is not guaranteed from account/domain flags alone.
+Do not claim live publishable/restricted-key pairing is fully browser-verified from prefixes, session creation or signed expiration alone. Do not declare readiness for a real payment until the form-rendering result is resolved. Actual live receipt delivery and a paid live donor's Portal session also remain unverified until appropriate live use.
 
-PayPal remains a separate untested/approval-gated release; bank transfers are unnecessary for this checkout. Real accelerated renewal remains deferred at the owner's request, with regression coverage retained and no Test Clock permission changes. REST stays **`2024-06-20`**, independently of Dahlia Snapshot delivery; upgrading the REST header alone is incompatible with fields used here.
+## Launch scope and retained limitations
 
-Rollback target remains version **`61de2e47-2398-4c9a-9f87-1a691d2fb460`** at 100% traffic. Preserve the live ledger and reconcile any accepted payments/subscriptions/pending events; code rollback is not a refund. Restore the prior version and original integrations if deployment validation fails. Do not drop/reset the database, discard delayed events or disable reconciliation for accepted donations.
+Activated scope is one-time/monthly EUR **cards, eligible Apple Pay/Google Pay and SEPA**. **PayPal and recurring PayPal remain disabled pending separate approval/testing**; bank transfers are off and unnecessary, and iDEAL/Wero/TWINT remain excluded. Wallet display depends on the donor's eligible device/browser.
 
-Stripe emails are payment confirmations, not official German donation certificates. The association retains responsibility for its existing legal/privacy/donor wording, staff-issued certificates and settled-payment/reversal reconciliation.
+Sandbox acceptance already covered paid cards, decline/SCA, Portal login/payment-method updates/cancellation and delayed SEPA success/failure, including monthly SEPA. Existing evidence is retained in the [readiness report](stripe-donations-readiness.md). Test Clock permission changes and actual accelerated renewal remain deferred at the owner's request; regression tests cover renewal outcomes.
 
-## Current state
+REST remains **`2024-06-20`**, independently of Dahlia Snapshot delivery. Upgrading only the REST header is incompatible with invoice-payment and subscription-period fields used here. Current-mode/account checks, input validation, idempotency, ownership and signature defenses remain enforced.
 
-**Awaiting explicit owner approval for the changes above.** No merge, production deployment, Worker secret/binding installation, webhook enablement, DNS change or real-payment activation has occurred. No further key, software installation, optional test or account setup is requested before that approval. The one Stripe Enable click is part of the coordinated approved launch, not a request to perform it now.
+## Rollback and records
+
+Pre-launch rollback target: **`61de2e47-2398-4c9a-9f87-1a691d2fb460`**, 100% traffic. The pre-launch settings fingerprint in the [launch record](../config/stripe-donations-launch-plan.json) is historical; approved live bindings intentionally changed it. Do not blindly rerun the initial deployment against the historical baseline.
+
+Retain the live ledger and signed-event reconciliation for accepted payments/subscriptions and pending SEPA. A code rollback does not refund a payment. Never drop/reset the database or discard delayed events.
+
+Stripe receipts are payment confirmations, **not official German Zuwendungsbestätigungen**. The association remains responsible for staff-issued certificates, legal/privacy wording and settlement/refund/reversal reconciliation.

@@ -1,9 +1,8 @@
 {
-  "description": "INACTIVE LAUNCH REVIEW ONLY. Not a Wrangler configuration or deployment input. No workflow installs these settings.",
+  "description": "PRODUCTION LAUNCH RECORD. Documentation only; not a Wrangler configuration or deployment input.",
   "approvalRequired": {
     "merge": true,
-    "productionDeployment": true,
-    "paymentActivation": true
+    "futureProductionChanges": true
   },
   "target": {
     "worker": "tanstack-start-app",
@@ -41,7 +40,8 @@
         }
       ]
     },
-    "canonicalCustomDomainMatches": true
+    "canonicalCustomDomainMatches": true,
+    "historicalPreLaunch": true
   },
   "workerConfigDraft": {
     "name": "tanstack-start-app",
@@ -84,10 +84,10 @@
     "STRIPE_SECRET_KEY": "STRIPE_LIVE_CONNECTION.restrictedKey",
     "STRIPE_PUBLISHABLE_KEY": "STRIPE_LIVE_CONNECTION.publishableKey",
     "STRIPE_ACCOUNT_ID": "STRIPE_LIVE_CONNECTION.accountId",
-    "STRIPE_WEBHOOK_SECRET": "STRIPE_LIVE_WEBHOOK_SECRET (format verified; distinct from sandbox; provider ownership/delivery requires approved rollout)",
-    "DONATION_COOKIE_SECRET": "Generate new high-entropy value only during approved installation",
+    "STRIPE_WEBHOOK_SECRET": "STRIPE_LIVE_WEBHOOK_SECRET (installed; genuine signed live expiration delivery verified)",
+    "DONATION_COOKIE_SECRET": "Fresh high-entropy value generated privately during approved installation",
     "DONATION_SITE_ORIGIN": "https://ithembakuluntu.org",
-    "STRIPE_PORTAL_CONFIGURATION_ID": "Resolve from exact approved live Portal configuration during approved installation",
+    "STRIPE_PORTAL_CONFIGURATION_ID": "Validated exact live Portal configuration installed during approved launch",
     "STRIPE_PORTAL_LOGIN_URL": "Resolve and validate against APPROVED_LIVE_LOGIN_SHA256"
   },
   "launchSequence": [
@@ -104,7 +104,7 @@
     "Reconcile all Stripe payments/subscriptions and delayed events, replay genuine failed deliveries as appropriate, and communicate pending status accurately. Code rollback does not undo a payment."
   ],
   "exclusions": [
-    "No automatic production deployment workflow",
+    "Production workflow restricted to owner-approved exact branch/commit marker; no automatic main deployment added",
     "No main-branch changes",
     "No DNS changes",
     "No bank transfers/iDEAL/Wero/TWINT",
@@ -112,17 +112,53 @@
     "Test Clock permission changes deferred"
   ],
   "preparationReview": {
-    "recommendation": "GO_FOR_EXPLICITLY_APPROVED_CONTROLLED_LAUNCH",
-    "ownerApprovalGranted": false,
+    "recommendation": "PRODUCTION_DEPLOYED_BACKEND_VERIFIED_BROWSER_ACCEPTANCE_INCOMPLETE",
+    "ownerApprovalGranted": true,
     "reviewedSourceRef": "74b7a8eb8caf3fe5366d2b0cfbdc4764b4deae53",
     "preflightRun": "https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39969891026",
     "liveSigningSecretFormatVerified": true,
     "distinctFromSandbox": true,
-    "providerOwnershipVerified": false,
-    "deliveryVerified": false,
-    "liveWebhookPreparedAndDisabled": "owner-confirmed",
+    "providerOwnershipVerified": true,
+    "deliveryVerified": true,
     "mergeIncluded": false,
-    "ownerWebhookEnableClickRequired": true,
-    "fundedTestPaymentAuthorized": false
+    "ownerWebhookEnableClickRequired": false,
+    "fundedTestPaymentAuthorized": false,
+    "liveWebhookEnabled": "owner-confirmed after handler deployment"
+  },
+  "approvalGranted": {
+    "controlledProductionDeployment": true,
+    "initialPaymentActivation": true,
+    "merge": false
+  },
+  "productionLaunch": {
+    "date": "2026-10-23",
+    "workerVersionId": "da9a5be3-ca7c-4379-9108-88db3ccf0e9e",
+    "operationsSourceRef": "69d0eac91d01db26d2e0a20386fdc96a524ae62e",
+    "workflowRun": "https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39973404974",
+    "unfundedVerificationSourceRef": "ff1052f1125b9cceeb9b752263feb206ca100262",
+    "unfundedVerificationRun": "https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39977640521",
+    "testsPassed": 95,
+    "typecheckPassed": true,
+    "buildPassed": true,
+    "existingIntegrationsPreserved": true,
+    "domainsAndRoutesPreserved": true,
+    "dnsChanged": false,
+    "liveEmbeddedCheckoutPairingVerified": [],
+    "idempotencyAndOwnershipVerified": true,
+    "genuineSignedExpirationEventsRecorded": [
+      "once",
+      "monthly"
+    ],
+    "unfundedSessionsExpired": true,
+    "fundedPaymentSubmitted": false,
+    "subscriptionConfirmed": false,
+    "liveReceiptDeliveryVerified": false,
+    "paidLiveDonorPortalVerified": false,
+    "prMerged": false,
+    "automatedBrowserRenderVerified": false,
+    "backendVerificationPassed": true,
+    "overallEndToEndWorkflowPassed": false,
+    "browserDiagnostics": "No secure card fields detected; aborted hCaptcha requests observed; cause unconfirmed; normal-browser check required, without payment.",
+    "ownerSmallFundedTestReady": false
   }
 }

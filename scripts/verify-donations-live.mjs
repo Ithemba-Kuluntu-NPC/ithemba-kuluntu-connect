@@ -329,6 +329,7 @@ export async function verifyLive() {
   } finally {
     await browser.close();
   }
+  stage = "live_embedded_rendering_acceptance";
   assert.ok(allRendered, "Live Embedded Checkout rendering requires further verification");
   console.log(
     JSON.stringify({
