@@ -12,22 +12,31 @@ export async function checkLiveDatabase({
   context = process.env,
   fetchImpl = fetch,
 } = {}) {
-  if (context.GITHUB_ACTIONS === "true" &&
-      (context.GITHUB_REPOSITORY !== "Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect" ||
-       context.GITHUB_REF !== "refs/heads/codex/stripe-donations-integration" ||
-       context.GITHUB_EVENT_NAME !== "push")) {
+  if (
+    context.GITHUB_ACTIONS === "true" &&
+    (context.GITHUB_REPOSITORY !== "Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect" ||
+      context.GITHUB_REF !== "refs/heads/codex/stripe-donations-integration" ||
+      context.GITHUB_EVENT_NAME !== "push")
+  ) {
     throw new Error("Untrusted live database preparation context");
   }
-  if (!connectionValue) return { state: "cloudflare_connection_unavailable", migrationApplied: false };
+  if (!connectionValue)
+    return { state: "cloudflare_connection_unavailable", migrationApplied: false };
   let connection;
-  try { connection = JSON.parse(connectionValue); } catch {
+  try {
+    connection = JSON.parse(connectionValue);
+  } catch {
     throw new Error("Invalid Cloudflare connection JSON");
   }
-  if (!connection || typeof connection !== "object" || Array.isArray(connection) ||
-      Object.keys(connection).sort().join(",") !== "accountId,apiToken" ||
-      !/^[a-f0-9]{32}$/i.test(connection.accountId ?? "") ||
-      typeof connection.apiToken !== "string" ||
-      !/^[A-Za-z0-9_.-]{20,}$/.test(connection.apiToken)) {
+  if (
+    !connection ||
+    typeof connection !== "object" ||
+    Array.isArray(connection) ||
+    Object.keys(connection).sort().join(",") !== "accountId,apiToken" ||
+    !/^[a-f0-9]{32}$/i.test(connection.accountId ?? "") ||
+    typeof connection.apiToken !== "string" ||
+    !/^[A-Za-z0-9_.-]{20,}$/.test(connection.apiToken)
+  ) {
     throw new Error("Invalid Cloudflare connection fields");
   }
   const sql = await readFile(new URL("../migrations/0001_donations.sql", import.meta.url));
@@ -42,13 +51,23 @@ export async function checkLiveDatabase({
         method: query ? "POST" : "GET",
         redirect: "error",
         signal: AbortSignal.timeout(15000),
-        headers: { Authorization: `Bearer ${connection.apiToken}`, "Content-Type": "application/json" },
+        headers: {
+          Authorization: `Bearer ${connection.apiToken}`,
+          "Content-Type": "application/json",
+        },
         ...(query ? { body: JSON.stringify({ sql: query }) } : {}),
       });
-    } catch { throw new Error("Cloudflare database check failed"); }
-    if (!response.ok) throw new Error(`Cloudflare database access failed (HTTP ${response.status})`);
+    } catch {
+      throw new Error("Cloudflare database check failed");
+    }
+    if (!response.ok)
+      throw new Error(`Cloudflare database access failed (HTTP ${response.status})`);
     let data;
-    try { data = await response.json(); } catch { throw new Error("Invalid Cloudflare response"); }
+    try {
+      data = await response.json();
+    } catch {
+      throw new Error("Invalid Cloudflare response");
+    }
     if (data.success !== true) throw new Error("Cloudflare rejected database check");
     return data.result;
   }
@@ -57,12 +76,21 @@ export async function checkLiveDatabase({
     throw new Error("Live database name/ID mismatch; no query performed");
   }
   // This is the only SQL issued. No migration tracker is created by inspection.
-  const result = await request("SELECT name, type FROM sqlite_master WHERE type IN ('table','index') AND name NOT LIKE 'sqlite_%' AND name NOT LIKE '_cf_%' ORDER BY name;");
-  if (!Array.isArray(result) || result.length !== 1 || result[0]?.success !== true ||
-      !Array.isArray(result[0].results)) throw new Error("Incomplete database inspection");
+  const result = await request(
+    "SELECT name, type FROM sqlite_master WHERE type IN ('table','index') AND name NOT GLOB 'sqlite_*' AND name NOT GLOB '_cf_*' ORDER BY name;",
+  );
+  if (
+    !Array.isArray(result) ||
+    result.length !== 1 ||
+    result[0]?.success !== true ||
+    !Array.isArray(result[0].results)
+  )
+    throw new Error("Incomplete database inspection");
   const empty = result[0].results.length === 0;
   return {
-    state: empty ? "live_database_empty_migration_pending" : "live_database_nonempty_review_required",
+    state: empty
+      ? "live_database_empty_migration_pending"
+      : "live_database_nonempty_review_required",
     databaseName: LIVE_DATABASE_NAME,
     databaseId: LIVE_DATABASE_ID,
     targetVerified: true,
@@ -77,7 +105,8 @@ export async function checkLiveDatabase({
 
 if (process.argv[1] && pathToFileURL(resolve(process.argv[1])).href === import.meta.url) {
   try {
-    if (process.argv.length !== 2) throw new Error("Read-only database checker accepts no arguments");
+    if (process.argv.length !== 2)
+      throw new Error("Read-only database checker accepts no arguments");
     console.log(JSON.stringify(await checkLiveDatabase()));
   } catch (error) {
     console.error(error.message);
