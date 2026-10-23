@@ -87,7 +87,7 @@ impact.counters.wash_events.label: WASH-Bildung, Gemeindeschulungen und Nachbetr
 impact.counters.litres.value: 45M+
 impact.counters.litres.label: Liter Aufbereitungskapazität für sicheres Wasser ermöglicht
 
-impact.counters.co2.value: 8,000+
+impact.counters.co2.value: 4,500+
 impact.counters.co2.label: Tonnen CO₂e-Minderungspotenzial, vorbehaltlich Verifizierung
 
 # ------------------------------------------
@@ -126,7 +126,8 @@ step1.num: 01
 step1.tag: Strukturelles Problem
 step1.heading: Frauen und Kinder tragen die größte Last
 step1.text_block: In ländlichen Gemeinschaften ist unsicheres Wasser auch eine geschlechtsspezifische Krise. Frauen, Großmütter und jugendliche Mädchen übernehmen häufig die tägliche Verantwortung: Wasser holen, in den Wald gehen, Feuerholz schlagen und nach Hause tragen, Wasser abkochen und Kinder versorgen, wenn wasserbedingte Krankheiten den Haushalt belasten. Wenn Kinder krank werden, verpassen sie Schule. Betreuungspersonen müssen oft weite Wege zu Kliniken zurücklegen, häufig ohne ausreichend Geld für Transport. So entstehen viele Stunden unbezahlter Arbeit, verpasste Lernzeit, weniger Chancen auf bezahlte Arbeit und zusätzlicher Druck auf ohnehin verletzliche Haushalte.
-step1.cta_label: Das ganze Bild verstehen
+step1.deep_dive_intro: Erlebe, was diese strukturelle Wasserkrise im Alltag einer Frau in Pondoland bedeutet.
+step1.cta_label: Erlebe ihren Alltag
 step1.image_path: /pureflow problem.png
 
 # STEP 02: PureFlow Model
