@@ -4,20 +4,9 @@ PR #26 stays draft on `codex/stripe-donations-integration`. Preparation is autho
 
 The operator completed the live-account Dashboard review. That is an operator report, not automated API verification or approval to install production settings. The live connection has not been saved or verified by the prepared workflow. Bank transfers remain off; account-level PayPal availability does not enable the checkout flag or establish recurring PayPal acceptance.
 
-**The one next operator action:** in the live association account's API keys page, create a **restricted key** named **iThemba donations - live**, using the ordinary account permissions below (no connected-account access). Keep the resulting key private and available for the following secure-storage step; do not paste it into chat. Creating a credential does not deploy or activate the website.
+**The one next operator action:** update the existing encrypted GitHub Actions repository secret **`STRIPE_LIVE_CONNECTION`**. Re-save the same three-field JSON, correcting **`restrictedKey`** with the complete restricted live key copied from Stripe (one unbroken `rk_live_…` value, not a masked display or placeholder). Retain the same publishable key and expected live account ID. Do not paste any key into chat, an issue, a PR or repository content; no new key or permission change is requested.
 
-| Resource            | Permission                                                              |
-| ------------------- | ----------------------------------------------------------------------- |
-| Accounts            | Read                                                                    |
-| Customers           | Write                                                                   |
-| Checkout Sessions   | Write                                                                   |
-| Payment Intents     | Read                                                                    |
-| Subscriptions       | Read                                                                    |
-| Invoices            | Read                                                                    |
-| Customer Portal     | Write; Sessions only if the editor separates Sessions and Configuration |
-| All other resources | None                                                                    |
-
-No Test Clock, direct Subscription/Invoice Write, payout, refund or configuration Write is requested. If a suitable dedicated live restricted key already exists, reuse it only after checking these scopes; do not rotate another integration's key. This step does not ask for the publishable key, webhook secret or a new payment. The next separate browser step will save the live connection in encrypted GitHub storage, with no Worker installation.
+The operator reported saving the connection. [The safe diagnostic](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39909744742) found only `restrictedKey` invalid in format; the other two fields were not format-flagged, but are **not yet authenticated or paired**. All nine live-preparation/Portal safeguards passed. Validation stopped before any Stripe request, so live account/Portal eligibility is still unverified. The workflow never installs credentials on a Worker or activates payments.
 
 ## What is ready
 
@@ -64,6 +53,10 @@ After the restricted live key is ready, Codex can guide the operator through the
 ```
 
 Secret name: **`STRIPE_LIVE_CONNECTION`**, stored only in GitHub's **Settings → Secrets and variables → Actions**, never an issue, comment, PR, repository file or chat. This is a later account step, **not the current requested action**. It does not replace `STRIPE_SANDBOX_CONNECTION`. Saving a secret does not trigger a workflow by itself; Codex can trigger a preparation-path review push afterward. Do not reuse or broaden the sandbox key or run the sandbox activation helper with live credentials.
+
+## Read-only Portal discovery
+
+After account validation succeeds, the workflow also runs `check-stripe-live-portal.mjs`. It verifies the expected beneficiary through Account GET, then performs **GET `/v1/billing_portal/configurations?active=true&limit=100`** under the pinned API. It never creates a Portal session or changes configuration. It requires an active live configuration with payment updates, the current period-end cancellation policy and a live email-login link; sandbox URLs, wrong origins and ambiguous/paginated selection cannot pass. Only compatibility flags are logged, never configuration IDs, URLs, donor records or credentials. Configuration compatibility is not proof of email delivery or a live donor login. If the current Customer Portal permission cannot read configurations, the helper reports Dashboard review required without requesting broader key permissions.
 
 ## Live webhook, Portal and donor confirmations — later reviewed setup
 

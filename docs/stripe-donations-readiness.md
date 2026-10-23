@@ -58,9 +58,15 @@ The essential software checks were repeated on this branch: **58 existing tests 
 
 [The GitHub live-preparation check passed](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39761955158): all five preparation safeguards passed, and the account step reported **`live_connection_not_saved`, `readyForLaunch=false`**. No live Stripe request or production change occurred. This confirms the missing live connection; it does not verify live account eligibility.
 
+## Live connection check — 23 October 2026
+
+The operator saved the encrypted connection. The initial account check stopped before Stripe because a field failed format validation. Diagnostics now identify fixed field names without exposing saved values. [The subsequent workflow](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39909744742) passed nine safeguard tests and then reported **only `restrictedKey` invalid**. No account/Portal request, credential installation, payment, settings change or deployment occurred. Other fields passed format checks only; live authentication, account readiness and publishable-key pairing have not passed.
+
+Read-only live Portal discovery is also prepared to reduce manual setup: it checks the beneficiary, reads existing configurations and reports compatibility flags, without creating sessions or changing settings. Sandbox links, wrong origins, unsafe cancellation settings and ambiguous selection are rejected. All **67 tests**, type-check and modified-helper lint/format checks passed locally. Application runtime and production/staging configurations are unchanged; the existing application build evidence remains applicable. The connection validation must pass before Portal discovery can run.
+
 ## ONE next operator action
 
-The operator completed the live Dashboard review; automated beneficiary/key verification is still pending and no launch authorization is inferred. Create a dedicated restricted live API key named **iThemba donations - live**, using only the [runtime scope table in the live preparation guide](stripe-donations-live-preparation.md). Keep the resulting key private and available for the next secure GitHub-storage step; do not send it through chat. No Test Clock permission, new email account, installation, terminal command, production binding or payment is requested. Bank transfers remain disabled, and PayPal's account-level availability does not enable untested checkout flags.
+Update **`STRIPE_LIVE_CONNECTION`** in GitHub Actions secrets. Re-save its three-field JSON with the complete actual restricted live key in **`restrictedKey`**; retain the existing `publishableKey` and `accountId`. Copy the complete unmasked `rk_live_…` value from Stripe, not a placeholder, and keep all values out of chat and repository content. No new key, permission change, Test Clock access or payment is requested. Bank transfers and untested PayPal checkout flags remain off.
 
 ## Still required before real donations
 
