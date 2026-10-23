@@ -116,3 +116,26 @@ test("deployment primitive uploads inactive versions and never changes routes or
   assert.doesNotMatch(source, /"triggers"|\/dns_records|"secret",\s*"put"|git.*merge/);
   assert.match(source, /assertLiveBindings\(version\.resources\?\.bindings\)/);
 });
+
+test("default production builds retain the exact live D1 binding and existing dashboard variables", () => {
+  const config = JSON.parse(readFileSync(new URL("../wrangler.jsonc", import.meta.url), "utf8"));
+  assert.equal(config.name, WORKER);
+  assert.equal(config.main, "src/server.ts");
+  assert.equal(config.keep_vars, true);
+  assert.equal(config.compatibility_date, "2025-09-24");
+  assert.deepEqual(config.compatibility_flags, ["nodejs_compat"]);
+  assert.deepEqual(config.d1_databases, [{
+    binding: "DONATIONS_DB",
+    database_name: "ithemba-donations-live",
+    database_id: LIVE_DATABASE_ID,
+    migrations_dir: "migrations",
+  }]);
+  assert.deepEqual(config.vars, {
+    STRIPE_DONATIONS_MODE: "live",
+    STRIPE_PAYPAL_ENABLED: "false",
+    STRIPE_PAYPAL_RECURRING_ENABLED: "false",
+    STRIPE_BANK_TRANSFER_ENABLED: "false",
+  });
+  for (const name of secretNames) assert.equal(Object.hasOwn(config.vars, name), false);
+  assert.equal(Object.hasOwn(config, "routes"), false);
+});
