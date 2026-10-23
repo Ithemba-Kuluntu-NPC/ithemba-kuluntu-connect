@@ -41,3 +41,4 @@ jobs:
         run: |
           node --check scripts/check-stripe-merge-closeout.mjs
           node scripts/check-stripe-merge-closeout.mjs
+# Verify the combined current-main project pages and donation configuration before merging.

@@ -1,6 +1,6 @@
 # Live Stripe connection and launch record — 23 October 2026
 
-The owner-approved controlled production deployment is complete and the owner has enabled the live webhook. **The owner completed the €1 real one-time card donation and provided successful website status and delivered Stripe receipt evidence.** PR #26 stays draft and unmerged; `main` and DNS are unchanged. The [final launch review](stripe-donations-final-launch-review.md) is the current source of status, evidence, next action and rollback.
+The owner-approved controlled production deployment is complete and the owner has enabled the live webhook. **The owner completed the €1 real one-time card donation and provided successful website status and delivered Stripe receipt evidence.** The owner has now authorized PR #26 to merge and waived the real monthly test. See the [closeout](stripe-donations-closeout.md) and PR record for final merge/verification status. No DNS change is part of closeout. The [final launch review](stripe-donations-final-launch-review.md) is the current source of status, evidence, next action and rollback.
 
 ## Finished
 

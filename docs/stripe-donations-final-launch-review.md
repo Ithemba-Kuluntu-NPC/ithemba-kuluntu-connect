@@ -1,6 +1,6 @@
 # Stripe production launch review — 23 October 2026
 
-**Live one-time card acceptance passed.** After the approved launch and final checks, the owner completed the €1 real one-time card donation and supplied screenshots of the website's Stripe-confirmed successful status and the delivered Stripe receipt. The owner explicitly approved the controlled production launch and subsequently confirmed webhook enablement. PR #26 remains **draft and unmerged**, exclusively on `codex/stripe-donations-integration`; `main` is unchanged.
+**Live one-time card acceptance passed.** After the approved launch and final checks, the owner completed the €1 real one-time card donation and supplied screenshots of the website's Stripe-confirmed successful status and the delivered Stripe receipt. The owner explicitly approved the controlled production launch and subsequently confirmed webhook enablement. The owner has now authorized merging [PR #26](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/pull/26), with no further real monthly test. Its GitHub record is authoritative for the final merge and verification result; see the [closeout](stripe-donations-closeout.md).
 
 ## Completed production change
 

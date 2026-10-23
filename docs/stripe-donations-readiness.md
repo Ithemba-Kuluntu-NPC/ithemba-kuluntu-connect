@@ -1,6 +1,6 @@
 # Stripe donations readiness — 23 October 2026
 
-**Live one-time Card acceptance passed:** the owner completed the €1 real donation and supplied successful website status and delivered Stripe receipt screenshots. Production deployment, signed expiration delivery, card rendering and final health checks already passed. The owner approved the controlled launch and then confirmed webhook enablement. PR #26 stays **draft and unmerged** on `codex/stripe-donations-integration`; `main` and DNS are unchanged.
+**Live one-time Card acceptance passed:** the owner completed the €1 real donation and supplied successful website status and delivered Stripe receipt screenshots. Production deployment, signed expiration delivery, card rendering and final health checks already passed. The owner approved the controlled launch and then confirmed webhook enablement. The owner has authorized PR #26 to merge and waived a real monthly test. See the [closeout](stripe-donations-closeout.md) and GitHub PR for final merge/verification status. No DNS change is included.
 
 ## Current production evidence
 

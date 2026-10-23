@@ -128,7 +128,7 @@
   "approvalGranted": {
     "controlledProductionDeployment": true,
     "initialPaymentActivation": true,
-    "merge": false
+    "merge": true
   },
   "productionLaunch": {
     "date": "2026-10-23",
@@ -156,7 +156,6 @@
     "subscriptionConfirmed": false,
     "liveReceiptDeliveryVerified": true,
     "paidLiveDonorPortalVerified": false,
-    "prMerged": false,
     "automatedBrowserRenderVerified": false,
     "backendVerificationPassed": true,
     "overallEndToEndWorkflowPassed": false,
@@ -179,6 +178,18 @@
     "fundedPaymentEvidence": "Owner screenshots of Stripe-confirmed website success and delivered Stripe receipt; not an independent API or completion-webhook audit",
     "specificFundedCompletionWebhookIndependentlyVerified": false,
     "liveMonthlyFundedAcceptanceVerified": false,
-    "fundedPaymentSubmittedFieldScope": "Codex only; owner separately submitted the successful real test"
+    "fundedPaymentSubmittedFieldScope": "Codex only; owner separately submitted the successful real test",
+    "prWasUnmergedAtLaunch": false
+  },
+  "integrationCloseout": {
+    "mergeAuthorized": true,
+    "pr": "https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/pull/26",
+    "finalMergeAndVerificationStatus": "Authoritative GitHub PR record",
+    "mainPreservedFrom": "f06afef0f72032730a2b0b670510ad2595f928e6",
+    "realMonthlyTestWaivedByOwner": true,
+    "existingSandboxMonthlyAcceptanceRetained": true,
+    "defaultProductionConfigDeclaresExactLiveDatabase": true,
+    "keepExistingDashboardVariables": true,
+    "additionalFundedTestsRequested": false
   }
 }
