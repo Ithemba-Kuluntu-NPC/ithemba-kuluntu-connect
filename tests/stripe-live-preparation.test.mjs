@@ -125,7 +125,6 @@ test("payout, verification, disabled and incomplete accounts require action, nev
     { charges_enabled: false },
     { payouts_enabled: false },
     { details_submitted: false },
-    { requirements: undefined },
     { requirements: { ...ready.requirements, currently_due: ["privateField"] } },
     { requirements: { ...ready.requirements, past_due: ["privateField"] } },
     { requirements: { ...ready.requirements, pending_verification: ["privateField"] } },
@@ -141,6 +140,33 @@ test("payout, verification, disabled and incomplete accounts require action, nev
     assert.equal(JSON.stringify(result).includes("privateField"), false);
     assert.equal(JSON.stringify(result).includes("privateReason"), false);
   }
+});
+
+test("omitted verification fields remain unknown rather than inventing outstanding Stripe tasks", async () => {
+  for (const requirements of [
+    undefined,
+    {},
+    { ...ready.requirements, pending_verification: undefined },
+  ]) {
+    const result = await checkLiveAccount({
+      connectionValue: value,
+      context: {},
+      fetchImpl: async () => Response.json({ ...ready, requirements }),
+    });
+    assert.equal(result.state, "account_verification_needs_dashboard_confirmation");
+    assert.equal(result.requirementsStatus, "unavailable");
+    assert.equal(result.requirementsClear, false);
+    assert.equal(result.readyForLaunch, false);
+  }
+  const result = await checkLiveAccount({
+    connectionValue: value,
+    context: {},
+    fetchImpl: async () =>
+      Response.json({ ...ready, requirements: { currently_due: ["privateField"] } }),
+  });
+  assert.equal(result.state, "account_action_required");
+  assert.equal(result.requirementsStatus, "action_required");
+  assert.equal(JSON.stringify(result).includes("privateField"), false);
 });
 
 test("wrong beneficiary, untrusted branches/events and provider failures disclose no credentials or response body", async () => {

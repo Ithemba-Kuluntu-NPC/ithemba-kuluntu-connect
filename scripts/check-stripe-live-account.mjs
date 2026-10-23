@@ -84,16 +84,25 @@ export async function checkLiveAccount({
       "Live beneficiary account verification failed. Review the expected German association account; no settings changed.",
     );
   const requirements = account.requirements;
-  const requirementsClear = Boolean(
-    requirements &&
-    Array.isArray(requirements.currently_due) &&
-    requirements.currently_due.length === 0 &&
-    Array.isArray(requirements.past_due) &&
-    requirements.past_due.length === 0 &&
-    Array.isArray(requirements.pending_verification) &&
-    requirements.pending_verification.length === 0 &&
-    requirements.disabled_reason === null,
-  );
+  const lists = [
+    requirements?.currently_due,
+    requirements?.past_due,
+    requirements?.pending_verification,
+  ];
+  const knownAction =
+    lists.some((value) => Array.isArray(value) && value.length > 0) ||
+    (typeof requirements?.disabled_reason === "string" && requirements.disabled_reason.length > 0);
+  const completeRequirements = lists.every(Array.isArray) && requirements?.disabled_reason === null;
+  const requirementsStatus = knownAction
+    ? "action_required"
+    : completeRequirements
+      ? "clear"
+      : "unavailable";
+  const requirementsClear = requirementsStatus === "clear";
+  const operational =
+    account.details_submitted === true &&
+    account.charges_enabled === true &&
+    account.payouts_enabled === true;
   const flags = {
     accountMatches: true,
     germanAccount: true,
@@ -103,10 +112,14 @@ export async function checkLiveAccount({
     requirementsClear,
   };
   return {
-    state: Object.values(flags).every(Boolean)
-      ? "account_ready_for_configuration_review"
-      : "account_action_required",
+    state:
+      !operational || requirementsStatus === "action_required"
+        ? "account_action_required"
+        : requirementsStatus === "unavailable"
+          ? "account_verification_needs_dashboard_confirmation"
+          : "account_ready_for_configuration_review",
     ...flags,
+    requirementsStatus,
     readyForLaunch: false,
     // An account read cannot prove these. They remain explicit approval gates.
     legalOwnershipVerified: false,
