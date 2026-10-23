@@ -4,13 +4,15 @@ PR #26 stays draft on `codex/stripe-donations-integration`. Preparation is autho
 
 The encrypted live connection is now saved and the restricted key authenticates to the expected German beneficiary account under the pinned REST API. [Read-only verification passed](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39912044845): account details are submitted and payments/payouts are enabled. The requirements fields are **unavailable** in this response; that is not an assertion of outstanding tasks. The operator already confirmed in the live Dashboard that no verification tasks remain. This operator confirmation is recorded separately from API verification. No account ID, credentials, donor records or raw responses are published here.
 
-**The one next operator action:** Open [live Stripe Billing → Subscriptions and emails](https://dashboard.stripe.com/settings/billing/automatic) and ensure customer emails for **failed card payments** and **payments requiring confirmation** are enabled. Leave retry schedules and cancellation rules unchanged. Reply **“Monthly payment emails ready.”** This prepares notifications for recurring donations without activating Checkout.
+**The one next operator action:** In the existing Cloudflare account, open **Storage & databases → D1 SQL Database → Create database**, create a new empty database named **`ithemba-donations-live`**, then share its **Database ID**. If that exact name already exists, share its ID without deleting, recreating or modifying it. Do not bind it to a Worker or run SQL yet. This is an isolated resource preparation step, not permission to migrate, deploy or activate payments.
 
 [The latest read-only verification passed](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39915719509). The live Portal is active, matches the operator-approved login link, permits payment-method updates and cancellation at period end, enables email login, and disables plan changes. The exact link is compared using a SHA-256 fingerprint; no raw link, configuration ID or donor details are logged. Live donor login/email delivery is not claimed from a configuration read.
 
 The public canonical origin returned HTTPS 200 without a redirect. Payment-method domain retrieval returned HTTP 403 with the intentionally limited restricted key. The operator subsequently confirmed in the **live Dashboard** that `ithembakuluntu.org` is **verified and enabled**. This completes the Dashboard fallback; it is operator evidence, not an API-read pass or an eligible-device wallet test. No broader key permission is needed. Bank transfers remain off and PayPal's account-level availability does not enable untested checkout flags.
 
-The operator confirmed that **Successful payments** emails are enabled in the live account. This records the setting, not actual live delivery: no real payment was submitted. Stripe payment receipts remain separate from official German donation certificates. Recurring failure/authentication notifications still need Dashboard review; the restricted runtime key is not broadened to change account settings.
+The operator confirmed that **Successful payments** emails are enabled in the live account. This records the setting, not actual live delivery: no real payment was submitted. Stripe payment receipts remain separate from official German donation certificates. Recurring failure/authentication settings were subsequently operator-confirmed enabled below; no runtime key permissions were broadened.
+
+The operator confirmed that live **failed-payment emails** and **payment-confirmation/authentication emails** are enabled. Together with successful-payment receipt emails, the requested email-setting checks are now recorded. These are Dashboard confirmations, not proof of live delivery. No live payment, retry-policy change or cancellation-policy change was performed by this work.
 
 ## What is ready
 
@@ -56,7 +58,7 @@ The live connection has been saved as an encrypted GitHub Actions repository sec
 }
 ```
 
-Secret name: **`STRIPE_LIVE_CONNECTION`**, stored only in GitHub's **Settings → Secrets and variables → Actions**, never an issue, comment, PR, repository file or chat. This storage step is complete; do not re-enter or rotate the key for the current recurring-email review. It does not replace `STRIPE_SANDBOX_CONNECTION`. Saving a secret does not trigger a workflow by itself; Codex can trigger a preparation-path review push afterward. Do not reuse or broaden the sandbox key or run the sandbox activation helper with live credentials.
+Secret name: **`STRIPE_LIVE_CONNECTION`**, stored only in GitHub's **Settings → Secrets and variables → Actions**, never an issue, comment, PR, repository file or chat. This storage step is complete; do not re-enter or rotate the key for database preparation. It does not replace `STRIPE_SANDBOX_CONNECTION`. Saving a secret does not trigger a workflow by itself; Codex can trigger a preparation-path review push afterward. Do not reuse or broaden the sandbox key or run the sandbox activation helper with live credentials.
 
 ## Read-only Portal discovery
 
@@ -73,8 +75,16 @@ The latest GitHub run passed **72 regression tests**, including **14 preparation
 - REST stays **`2024-06-20`**. The planned live webhook URL is **`https://ithembakuluntu.org/api/donations/webhook`**, **`2026-08-26.dahlia` Snapshot** delivery, using the **15 exact events** in the template. No Endive, preview or Thin events. Do not register/enable delivery to the currently unprepared live handler during this read-only phase. Create/configure the separate live destination and secret in the coordinated approved launch change; verify signature rejection and actual delivery afterward. A secret format check is not delivery proof.
 - Live Portal: same approved cancellation policy, payment-method updates and email login, with the association's branding/support details. Reuse sandbox acceptance for behavior; verify the actual **live** configuration independently. Reading/discovering Portal configurations needs configuration Read if separately scoped, never configuration Write on the runtime key.
 - HTTPS/domain: verify the canonical origin and register the relevant live payment-method domain for Embedded Checkout/wallets in the correct account/mode. Preserve the current site's CSP allowances and newsletter/contact integrations. Check eligible-device wallet appearance; `card` compatibility does not prove wallet availability.
-- Successful-payment email enablement is operator-confirmed. Review the remaining recurring invoice/failed-payment/SCA email settings in the live account. Review a receipt/Billing email preview or explicit sandbox test delivery; sandbox payments do not prove automatic live receipt delivery. The verified Portal login email is a separate function.
+- Successful-payment email enablement is operator-confirmed. Failed-payment and payment-confirmation emails are also operator-confirmed enabled; automatic subscription billing remains unchanged. Review a receipt/Billing email preview or explicit sandbox test delivery; sandbox payments do not prove automatic live receipt delivery. The verified Portal login email is a separate function.
 - German donation certificates remain staff-issued after eligibility and settled-payment/reversal reconciliation. Stripe receipts are **not official Zuwendungsbestätigungen**. Confirm the existing association's legal details, donor terms, privacy/retention and support contact. Do not publish donor-specific account/payment details in readiness reports.
+
+## Browser-only live database preparation — awaiting owner action
+
+No direct Cloudflare management tool is available in this session; the existing GitHub preparation workflow has no Cloudflare credentials. Do not extend the staging deployment token or use a staging activation workflow to create production resources.
+
+The next owner action above creates only an **empty, unbound** dedicated D1 database. Record and verify the returned name/ID before preparing any migration. The ID is an identifier, not a secret. If the name already exists, inspect its ownership and existing tables before proposing changes. Leave the staging database untouched.
+
+The reviewed migration remains **`migrations/0001_donations.sql`**, with tables **`donations`**, **`donation_events`** and **`donation_rate_limits`**, plus index **`donations_customer`**. Preserve the exact file rather than copying schema from another environment. A later approved initializer must validate the actual live database name/ID, target it explicitly, list pending migrations, apply only `0001_donations.sql`, and verify these tables/index. Creation is not migration or binding approval. Do not install `DONATIONS_DB` on `tanstack-start-app` yet.
 
 ## Cloudflare launch change — not executed or executable from this template
 
