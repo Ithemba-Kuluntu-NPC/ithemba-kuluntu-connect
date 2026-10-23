@@ -71,6 +71,50 @@ export async function verifyLive() {
         locale: "en-US",
       });
       const page = await context.newPage();
+      const browserDiagnostics = { errors: [], failedStripeRequests: [] };
+      const classifyError = (message) =>
+        [
+          "publishable",
+          "secret",
+          "key",
+          "mismatch",
+          "account",
+          "permission",
+          "invalid",
+          "expired",
+          "domain",
+          "blocked",
+          "network",
+          "integration",
+          "disabled",
+          "not enabled",
+          "content security",
+          "unsupported",
+          "initializ",
+          "failed",
+          "load",
+          "api",
+          "400",
+          "401",
+          "403",
+          "429",
+        ].filter((term) => message.toLowerCase().includes(term));
+      page.on("pageerror", (error) => browserDiagnostics.errors.push(classifyError(error.message)));
+      page.on("console", (entry) => {
+        if (entry.type() === "error") browserDiagnostics.errors.push(classifyError(entry.text()));
+      });
+      page.on("response", (response) => {
+        try {
+          const url = new URL(response.url());
+          if (url.hostname.endsWith(".stripe.com") && response.status() >= 400)
+            browserDiagnostics.failedStripeRequests.push({
+              host: url.hostname,
+              status: response.status(),
+            });
+        } catch {
+          /* Only fixed diagnostic categories and hostnames are retained. */
+        }
+      });
       let reference;
       let expired = false;
       async function api(path, payload) {
@@ -153,6 +197,52 @@ export async function verifyLive() {
             }
           }
           if (!secureCardField) await pause(1000);
+        }
+        if (!secureCardField) {
+          const frames = [];
+          for (const frame of page.frames()) {
+            try {
+              const url = new URL(frame.url());
+              if (!url.hostname.endsWith(".stripe.com")) continue;
+              const body = await frame
+                .locator("body")
+                .innerText({ timeout: 1000 })
+                .catch(() => "");
+              frames.push({
+                host: url.hostname,
+                inputs: await frame.locator("input").count(),
+                cardInputs: await frame
+                  .locator('input[autocomplete="cc-number"],input[name*="card" i]')
+                  .count(),
+                labels: [
+                  "Card",
+                  "Pay with card",
+                  "Add a payment method",
+                  "SEPA",
+                  "Something went wrong",
+                  "Unable",
+                  "Error",
+                  "Loading",
+                ].filter((label) => body.includes(label)),
+                errors: classifyError(body),
+              });
+            } catch {
+              /* A detached frame contains no diagnostic evidence. */
+            }
+          }
+          console.log(
+            JSON.stringify({
+              state: "live_checkout_render_diagnostics",
+              frequency,
+              frames,
+              ...browserDiagnostics,
+              siteAlertVisible: await page
+                .getByRole("alert")
+                .first()
+                .isVisible()
+                .catch(() => false),
+            }),
+          );
         }
         assert.ok(secureCardField, "Live Embedded Checkout did not initialize");
         // Never fill a payment field, accept a mandate, or submit Stripe's payment form.

@@ -26,7 +26,7 @@ jobs:
         run: |
           node --check scripts/verify-donations-live.mjs
           npm install --prefix "$RUNNER_TEMP/stripe-browser" --no-save --package-lock=false --ignore-scripts playwright@1.64.1
-          node "$RUNNER_TEMP/stripe-browser/node_modules/playwright/cli.js" install --with-deps chromium
+          node "$RUNNER_TEMP/stripe-browser/node_modules/playwright/cli.js" install chromium
       - name: Verify real Embedded Checkout and signed expiration events without any payment details
         env:
           LIVE_WEBHOOK_ENABLE_CONFIRMED: "true"
