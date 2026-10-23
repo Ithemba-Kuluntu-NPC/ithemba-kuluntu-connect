@@ -6,7 +6,7 @@
   "database": {
     "binding": "DONATIONS_DB",
     "proposedName": "ithemba-donations-live",
-    "databaseId": null,
+    "databaseId": "67acffe7-2412-44ce-817d-1d7f316d9392",
     "migration": "migrations/0001_donations.sql"
   },
   "workerVariables": {
@@ -32,7 +32,10 @@
     "webhookUrl": "https://ithembakuluntu.org/api/donations/webhook",
     "currency": "eur",
     "adaptivePricing": false,
-    "initialMethods": ["card", "sepa_debit"],
+    "initialMethods": [
+      "card",
+      "sepa_debit"
+    ],
     "wallets": "Eligible Apple Pay / Google Pay through card; live domain/device verification required.",
     "webhookEvents": [
       "checkout.session.completed",

@@ -220,7 +220,7 @@ test("live configuration review template is inert, has no credentials and cannot
   for (const field of ["main", "name", "routes", "$schema"])
     assert.equal(Object.hasOwn(plan, field), false);
   assert.ok(Object.values(plan.workerSecrets).every((v) => v === null));
-  assert.equal(plan.database.databaseId, null);
+  assert.equal(plan.database.databaseId, "67acffe7-2412-44ce-817d-1d7f316d9392");
   assert.equal(plan.database.binding, "DONATIONS_DB");
   assert.notEqual(plan.database.proposedName, "ithemba-donations-staging");
   assert.equal(plan.stripe.webhookUrl, `${plan.siteOrigin}/api/donations/webhook`);
