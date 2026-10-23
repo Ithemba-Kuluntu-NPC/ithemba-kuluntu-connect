@@ -1,6 +1,6 @@
 # Stripe production launch review — 23 October 2026
 
-**GO for the owner's €1 real one-time card test.** Production deployment, genuine signed live webhook reconciliation, owner-confirmed live card rendering and the final no-payment health check passed. A funded live payment has not yet been tested. The owner explicitly approved the controlled production launch and subsequently confirmed webhook enablement. PR #26 remains **draft and unmerged**, exclusively on `codex/stripe-donations-integration`; `main` is unchanged.
+**Live one-time card acceptance passed.** After the approved launch and final checks, the owner completed the €1 real one-time card donation and supplied screenshots of the website's Stripe-confirmed successful status and the delivered Stripe receipt. The owner explicitly approved the controlled production launch and subsequently confirmed webhook enablement. PR #26 remains **draft and unmerged**, exclusively on `codex/stripe-donations-integration`; `main` is unchanged.
 
 ## Completed production change
 
@@ -31,9 +31,13 @@ The earlier automated end-to-end workflow remains historically **red**: it did n
 
 [Final no-payment health check](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39980255268) passed after the owner's confirmation: current home/donation/contact HTTP 200, live public configuration/no-store, exact approved Portal fingerprint and invalid-signature HTTP 400. It uses no account credentials and creates no Checkout, customer, payment or subscription.
 
-**Next owner action:** complete **one €1 one-time donation using Card** at https://ithembakuluntu.org/donate. This charges real money. Complete any bank authentication, then wait for the website's Stripe-confirmed payment status and check the payment-confirmation email. If the result is pending or unclear, use **Check payment status** and do not submit a second donation.
+## First real payment and receipt confirmed
 
-Actual funded live success, receipt email delivery and paid live donor Portal access remain unverified until appropriate live use. The €1 test is the first funded live acceptance step; it is not a payment already performed by Codex.
+The owner supplied screenshots showing the website's **“Stripe has confirmed your payment”** state and a delivered Stripe receipt from iThemba Kuluntu e.V. for the **€1 one-time donation**. This is owner-provided evidence of live card payment success and receipt email delivery, not an independent Stripe API or payment-event audit. The receipt identifies the expected association, EUR amount and donation purpose. No donor email, receipt identifier, card digits or screenshot is published in repository records.
+
+The funded donation was submitted by the owner, not Codex. No further donation, refund, recurring subscription, configuration change, deployment or merge was performed during this confirmation. No repeat test payment is required to confirm this one-time card flow.
+
+The earlier genuine signed-expiration delivery checks still cover both frequencies. Actual signed completion of this particular funded donation was not independently inspected; do not relabel expiration evidence as a paid-completion event audit. A paid live recurring donor's Portal session, monthly live funding and wallet/SEPA live settlement remain outside this one-time card evidence; the existing sandbox coverage and configuration checks remain unchanged.
 
 ## Launch scope and retained limitations
 

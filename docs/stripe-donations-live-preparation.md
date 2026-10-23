@@ -1,12 +1,12 @@
 # Live Stripe connection and launch record — 23 October 2026
 
-The owner-approved controlled production deployment is complete and the owner has enabled the live webhook. **The owner's normal-browser check resolves secure card rendering for a €1 one-time test; GO for that owner-performed real card donation.** PR #26 stays draft and unmerged; `main` and DNS are unchanged. The [final launch review](stripe-donations-final-launch-review.md) is the current source of status, evidence, next action and rollback.
+The owner-approved controlled production deployment is complete and the owner has enabled the live webhook. **The owner completed the €1 real one-time card donation and provided successful website status and delivered Stripe receipt evidence.** PR #26 stays draft and unmerged; `main` and DNS are unchanged. The [final launch review](stripe-donations-final-launch-review.md) is the current source of status, evidence, next action and rollback.
 
 ## Finished
 
 - Restricted live connection authenticates to the expected German association account with payments and payouts enabled. The owner confirmed no outstanding verification tasks. Unavailable API requirement fields were not interpreted as new tasks.
 - The active live Portal matches the supplied login fingerprint: payment-method updates, period-end cancellation and email login enabled; plan changes disabled. Configuration reads do not prove a paid live donor's Portal login.
-- The owner confirmed the live domain verified/enabled and successful-payment receipts, failed-payment and payment-confirmation emails enabled. Actual live email delivery awaits appropriate live use.
+- The owner confirmed the live domain verified/enabled and successful-payment receipts, failed-payment and payment-confirmation emails enabled. Live receipt email delivery is now confirmed by the owner's first-payment screenshot; no claim is made for other email types.
 - [Live migration](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39961846469) and [follow-up](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39964086470) verified unchanged `0001_donations.sql`, expected tables/index/history and no pending migrations. Exact **`ithemba-donations-live`**, ID **`67acffe7-2412-44ce-817d-1d7f316d9392`**, is now bound as **`DONATIONS_DB`**.
 - [Approved deployment](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39973404974) passed **95 tests**, TypeScript and application/staging build. Worker **`tanstack-start-app`** version **`da9a5be3-ca7c-4379-9108-88db3ccf0e9e`** serves https://ithembakuluntu.org with distinct live donation secrets and a fresh cookie secret.
 - Existing Brevo/Turnstile secrets, assets, compatibility/unrelated settings and domains/routes were preserved. Public pages/configuration and invalid-signature rejection passed.
@@ -24,7 +24,7 @@ The owner confirmed the live **€1 one-time** amount, card fields, Apple Pay, L
 
 [Final no-payment health check](https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39980255268) passed current public pages, live mode/no-store, approved Portal fingerprint and invalid-signature rejection without credentials or creating payment objects.
 
-**Next action:** the owner can complete one **€1 one-time Card donation** and check the Stripe-confirmed status and receipt email. This is real money; if pending/unclear, check status before attempting another payment. Funded live success, actual receipt delivery and a paid live donor Portal session are not yet claimed. No further account setup or approval is required for the owner to perform this controlled test.
+**Live card acceptance completed:** the owner supplied screenshots of the successful website payment status and delivered Stripe receipt for the €1 one-time donation. This is owner-confirmed payment/receipt evidence; no independent API audit of this payment or its completion webhook is claimed. No repeat donation or account action is needed for this acceptance step. Paid live recurring Portal access, monthly live funding and other methods' live settlement remain unverified. No configuration change, deployment, merge or further payment was performed.
 
 Live method scope remains cards, eligible Apple Pay/Google Pay and SEPA, one-time/monthly EUR. PayPal/recurring PayPal remain disabled pending separate approval/testing; bank transfers, iDEAL/Wero and TWINT remain off. Real accelerated renewal and Test Clock scope changes remain deferred. Existing sandbox card/Portal/SEPA acceptance is documented in the readiness report.
 

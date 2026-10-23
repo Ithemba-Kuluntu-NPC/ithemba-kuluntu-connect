@@ -112,7 +112,7 @@
     "Test Clock permission changes deferred"
   ],
   "preparationReview": {
-    "recommendation": "GO_FOR_OWNER_EUR1_ONE_TIME_CARD_TEST",
+    "recommendation": "LIVE_ONE_TIME_CARD_ACCEPTANCE_PASSED_OWNER_CONFIRMED",
     "ownerApprovalGranted": true,
     "reviewedSourceRef": "74b7a8eb8caf3fe5366d2b0cfbdc4764b4deae53",
     "preflightRun": "https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39969891026",
@@ -154,7 +154,7 @@
     "unfundedSessionsExpired": true,
     "fundedPaymentSubmitted": false,
     "subscriptionConfirmed": false,
-    "liveReceiptDeliveryVerified": false,
+    "liveReceiptDeliveryVerified": true,
     "paidLiveDonorPortalVerified": false,
     "prMerged": false,
     "automatedBrowserRenderVerified": false,
@@ -172,6 +172,13 @@
     ],
     "monthlyLiveRenderOwnerVerified": false,
     "finalNoPaymentHealthRun": "https://github.com/Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect/actions/runs/39980255268",
-    "finalNoPaymentHealthPassed": true
+    "finalNoPaymentHealthPassed": true,
+    "ownerFundedPaymentSubmitted": true,
+    "ownerConfirmedLiveOneTimeCardSuccess": true,
+    "liveReceiptDeliveryEvidence": "Owner-provided delivered Stripe receipt screenshot after EUR1 one-time card donation",
+    "fundedPaymentEvidence": "Owner screenshots of Stripe-confirmed website success and delivered Stripe receipt; not an independent API or completion-webhook audit",
+    "specificFundedCompletionWebhookIndependentlyVerified": false,
+    "liveMonthlyFundedAcceptanceVerified": false,
+    "fundedPaymentSubmittedFieldScope": "Codex only; owner separately submitted the successful real test"
   }
 }
