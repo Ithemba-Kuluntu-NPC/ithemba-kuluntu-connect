@@ -63,6 +63,26 @@ test("live preparation refuses sandbox/mixed/standard/extra credentials before a
   assert.equal(calls, 0);
 });
 
+test("invalid live connection diagnostics identify only the offending field and never send credentials", async () => {
+  for (const field of ["restrictedKey", "publishableKey", "accountId"]) {
+    let calls = 0;
+    await assert.rejects(
+      checkLiveAccount({
+        connectionValue: JSON.stringify({ ...connection, [field]: "private-invalid-value" }),
+        context: {},
+        fetchImpl: () => {
+          calls++;
+        },
+      }),
+      (error) =>
+        error.message.includes(field) &&
+        !error.message.includes("private-invalid-value") &&
+        !error.message.includes("fixture123"),
+    );
+    assert.equal(calls, 0);
+  }
+});
+
 test("live preparation has one version-pinned GET and never claims account readiness activates donations", async () => {
   const calls = [];
   const result = await checkLiveAccount({

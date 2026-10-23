@@ -15,13 +15,27 @@ export function parseLiveConnection(value) {
     !connection ||
     typeof connection !== "object" ||
     Array.isArray(connection) ||
-    Object.keys(connection).sort().join(",") !== "accountId,publishableKey,restrictedKey" ||
-    !/^rk_live_[A-Za-z0-9]{8,}$/.test(connection.restrictedKey ?? "") ||
-    !/^pk_live_[A-Za-z0-9]{8,}$/.test(connection.publishableKey ?? "") ||
-    !/^acct_[A-Za-z0-9]+$/.test(connection.accountId ?? "")
+    Object.keys(connection).sort().join(",") !== "accountId,publishableKey,restrictedKey"
   )
     throw new Error(
-      "Live preparation requires restrictedKey (rk_live_), publishableKey (pk_live_) and the expected live accountId (acct_) only. Test and standard keys are refused.",
+      "Live connection must contain exactly restrictedKey, publishableKey and accountId. No saved values are shown.",
+    );
+  const invalid = [];
+  if (
+    typeof connection.restrictedKey !== "string" ||
+    !/^rk_live_[A-Za-z0-9]{8,}$/.test(connection.restrictedKey)
+  )
+    invalid.push("restrictedKey (expected complete rk_live_ key)");
+  if (
+    typeof connection.publishableKey !== "string" ||
+    !/^pk_live_[A-Za-z0-9]{8,}$/.test(connection.publishableKey)
+  )
+    invalid.push("publishableKey (expected complete pk_live_ key)");
+  if (typeof connection.accountId !== "string" || !/^acct_[A-Za-z0-9]+$/.test(connection.accountId))
+    invalid.push("accountId (expected live acct_ ID)");
+  if (invalid.length)
+    throw new Error(
+      `Live connection field check failed: ${invalid.join("; ")}. No saved values are shown and no Stripe request was made.`,
     );
   return connection;
 }
