@@ -1,0 +1,33 @@
+name: Verify monthly sandbox SEPA and cancel only its test fixture
+on:
+  push:
+    branches: [codex/stripe-donations-integration]
+    paths:
+      - .github/workflows/stripe-sandbox-monthly-sepa.yml
+      - scripts/check-stripe-sandbox-monthly-sepa.mjs
+permissions:
+  contents: read
+jobs:
+  verify:
+    if: github.repository == 'Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect' && github.ref == 'refs/heads/codex/stripe-donations-integration' && github.event.head_commit.message == 'Verify isolated sandbox monthly SEPA and fixture cancellation'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            scripts
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: "24"
+      - name: Check syntax and install temporary pinned browser without account credentials
+        run: |
+          node --check scripts/check-stripe-sandbox-monthly-sepa.mjs
+          npm install --prefix "$RUNNER_TEMP/stripe-browser" --no-save --package-lock=false --ignore-scripts playwright@1.64.1
+          node "$RUNNER_TEMP/stripe-browser/node_modules/playwright/cli.js" install --with-deps chromium
+      - name: Verify monthly SEPA pending, settlement, signed invoice event and fixture cancellation
+        env:
+          STRIPE_BROWSER_MODULE_DIR: ${{ runner.temp }}/stripe-browser/node_modules/playwright
+          CLOUDFLARE_D1_STAGING: ${{ secrets.CLOUDFLARE_D1_STAGING }}
+        run: node scripts/check-stripe-sandbox-monthly-sepa.mjs
