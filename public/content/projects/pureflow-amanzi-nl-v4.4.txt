@@ -66,7 +66,7 @@ pathway.step6.short_desc: Fundamenten voor sterkere dorpsveerkracht en meer zelf
 showcase.script_heading: Bekijk en begrijp
 showcase.main_heading: PureFlow Amanzi in actie
 showcase.text: Deze korte video en onze veldgegevens laten zien hoe een gestructureerd uitvoeringsmodel meerdere noden op het platteland tegelijk aanpakt.
-showcase.video.url: https://www.youtube.com/watch?v=IoRHLU5Cm7o
+showcase.video.url: https://www.youtube.com/watch?v=H5U-7i49vQE
 showcase.video.title: PureFlow Amanzi overzicht
 showcase.video.description: Praktische last-mile uitvoering en impacttracking uit het veld.
 
