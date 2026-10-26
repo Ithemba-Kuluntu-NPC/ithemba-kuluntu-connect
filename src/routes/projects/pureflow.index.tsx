@@ -1808,27 +1808,55 @@ function PureFlowCompactPage() {
         className="text-white"
         style={{ background: BLUE_DEEP }}
       >
-        <div className="mx-auto max-w-4xl px-4 py-10 md:px-8 md:py-12">
-          <p className="text-xs font-semibold tracking-widest" style={{ color: YELLOW }}>
-            {t("evidence_cta.eyebrow")}
-          </p>
-          <h2
-            id="monitoring-evidence-heading"
-            className="mt-3 text-2xl font-bold leading-tight md:text-3xl"
-            style={{ fontFamily: SERIF }}
+        <div className="mx-auto grid max-w-6xl items-center gap-8 px-4 py-10 md:px-8 md:py-12 lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-12">
+          <div className="min-w-0">
+            <p className="text-xs font-semibold tracking-widest" style={{ color: YELLOW }}>
+              {t("evidence_cta.eyebrow")}
+            </p>
+            <h2
+              id="monitoring-evidence-heading"
+              className="mt-3 text-2xl font-bold leading-tight md:text-3xl"
+              style={{ fontFamily: SERIF }}
+            >
+              {t("evidence_cta.heading")}
+            </h2>
+            <p className="mt-4 max-w-3xl text-sm leading-relaxed text-white/90 md:text-base">
+              {t("evidence_cta.body")}
+            </p>
+            <a
+              href="https://evidence.ithembakuluntu.org/"
+              className="mt-6 inline-block max-w-full rounded-2xl border border-white/30 bg-white/5 px-5 py-3 text-sm font-semibold leading-relaxed transition-colors hover:border-white/60 hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current md:text-base"
+              style={{ color: YELLOW }}
+            >
+              {t("evidence_cta.cta").replace(/\s*↗$/, "")} <ArrowUpRight className="inline h-4 w-4" aria-hidden="true" />
+            </a>
+          </div>
+          <svg
+            viewBox="0 0 280 220"
+            fill="none"
+            aria-hidden="true"
+            focusable="false"
+            className="mx-auto w-full max-w-[240px] lg:max-w-[280px]"
           >
-            {t("evidence_cta.heading")}
-          </h2>
-          <p className="mt-4 max-w-3xl text-sm leading-relaxed text-white/90 md:text-base">
-            {t("evidence_cta.body")}
-          </p>
-          <a
-            href="https://evidence.ithembakuluntu.org/"
-            className="mt-6 inline-block max-w-full rounded-2xl border border-white/30 bg-white/5 px-5 py-3 text-sm font-semibold leading-relaxed transition-colors hover:border-white/60 hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current md:text-base"
-            style={{ color: YELLOW }}
-          >
-            {t("evidence_cta.cta").replace(/\s*↗$/, "")} <ArrowUpRight className="inline h-4 w-4" aria-hidden="true" />
-          </a>
+            <rect x="1" y="1" width="278" height="218" rx="24" fill="white" fillOpacity="0.04" stroke="white" strokeOpacity="0.2" />
+            <path d="M28 30H92M28 40H66" stroke="white" strokeOpacity="0.5" strokeWidth="3" strokeLinecap="round" />
+            <path d="M28 94H154M28 130H154M28 166H154" stroke="white" strokeOpacity="0.1" strokeDasharray="3 5" />
+            <path d="M28 74V174H160" stroke="white" strokeOpacity="0.35" strokeLinecap="round" />
+            <rect x="43" y="126" width="22" height="40" rx="5" fill="white" fillOpacity="0.4" />
+            <rect x="83" y="102" width="22" height="64" rx="5" fill="white" fillOpacity="0.7" />
+            <rect x="123" y="78" width="22" height="88" rx="5" fill={YELLOW} />
+            <circle cx="216" cy="86" r="28" stroke="white" strokeOpacity="0.15" strokeWidth="8" />
+            <circle cx="216" cy="86" r="28" stroke={YELLOW} strokeWidth="8" strokeDasharray="124 176" strokeLinecap="round" transform="rotate(-90 216 86)" />
+            <circle cx="216" cy="86" r="4" fill="white" fillOpacity="0.8" />
+            <path d="M185 163L204 148L224 153L248 131" stroke="white" strokeOpacity="0.8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            <g fill={YELLOW}>
+              <circle cx="185" cy="163" r="3" />
+              <circle cx="204" cy="148" r="3" />
+              <circle cx="224" cy="153" r="3" />
+              <circle cx="248" cy="131" r="3" />
+            </g>
+            <path d="M28 196H91M185 196H248" stroke="white" strokeOpacity="0.2" strokeWidth="3" strokeLinecap="round" />
+          </svg>
         </div>
       </section>
 
