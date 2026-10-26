@@ -13,6 +13,7 @@ import { Fragment, Suspense, lazy, useEffect, useMemo, useRef, useState } from "
 import {
   ArrowLeft,
   ArrowRight,
+  ArrowUpRight,
   PlayCircle,
   ShieldCheck,
   Sparkles,
@@ -1799,7 +1800,39 @@ function PureFlowCompactPage() {
         </div>
       </section>
 
-      <WaveDivider from={MAP_BLUE} to={CREAM} />
+      <WaveDivider from={MAP_BLUE} to={BLUE_DEEP} />
+
+      <section
+        id="monitoring-evidence"
+        aria-labelledby="monitoring-evidence-heading"
+        className="text-white"
+        style={{ background: BLUE_DEEP }}
+      >
+        <div className="mx-auto max-w-4xl px-4 py-10 md:px-8 md:py-12">
+          <p className="text-xs font-semibold tracking-widest" style={{ color: YELLOW }}>
+            {t("evidence_cta.eyebrow")}
+          </p>
+          <h2
+            id="monitoring-evidence-heading"
+            className="mt-3 text-2xl font-bold leading-tight md:text-3xl"
+            style={{ fontFamily: SERIF }}
+          >
+            {t("evidence_cta.heading")}
+          </h2>
+          <p className="mt-4 max-w-3xl text-sm leading-relaxed text-white/90 md:text-base">
+            {t("evidence_cta.body")}
+          </p>
+          <a
+            href="https://evidence.ithembakuluntu.org/"
+            className="mt-6 inline-block max-w-full rounded-2xl border border-white/30 bg-white/5 px-5 py-3 text-sm font-semibold leading-relaxed transition-colors hover:border-white/60 hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current md:text-base"
+            style={{ color: YELLOW }}
+          >
+            {t("evidence_cta.cta").replace(/\s*↗$/, "")} <ArrowUpRight className="inline h-4 w-4" aria-hidden="true" />
+          </a>
+        </div>
+      </section>
+
+      <WaveDivider from={BLUE_DEEP} to={CREAM} />
 
       {/* Step 01 — cream w/ 4-photo collage */}
       <Step01Collage t={t} />
