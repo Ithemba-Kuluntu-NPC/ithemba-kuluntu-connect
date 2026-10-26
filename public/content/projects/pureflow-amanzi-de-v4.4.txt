@@ -339,3 +339,11 @@ closing.main_heading: Together We Grow Stronger
 closing.text: PureFlow Amanzi ist mehr als ein Wasserfilter. Es ist eine kooperative Plattform, die Gesundheit, Würde und lokale Chancen für Frauen, Kinder und Familien im ländlichen Südafrika stärkt. Ihre Unterstützung hilft, strukturelle Probleme in dauerhafte Gemeindetransformation zu verwandeln.
 closing.btn.monthly: Sicheres Wasser und Frauen monatlich unterstützen
 closing.btn.projects: Alle Projekte entdecken
+
+
+# Programme Results & Monitoring Evidence
+
+evidence_cta.eyebrow: ÜBER DIE ÜBERGABE HINAUS
+evidence_cta.heading: Was passiert nach der Verteilung?
+evidence_cta.body: Unser Haushaltsmonitoring erfasst die fortgesetzte Nutzung der Filter, die Funktionsfähigkeit der Systeme, die korrekte Anwendung und die Nachbetreuung, mit Folgekontrollen lange nach der Verteilung.
+evidence_cta.cta: Programmergebnisse & Monitoring-Evidenz ansehen ↗
