@@ -68,7 +68,7 @@ pathway.step6.short_desc: Foundations for stronger village resilience and commun
 showcase.script_heading: Watch & Verify
 showcase.main_heading: PureFlow Amanzi in Action
 showcase.text: This short video and our field metrics show how a structural ecosystem addresses multi-layered rural needs in real time.
-showcase.video.url: https://www.youtube.com/watch?v=IoRHLU5Cm7o
+showcase.video.url: https://www.youtube.com/watch?v=H5U-7i49vQE
 showcase.video.title: PureFlow Amanzi Overview
 showcase.video.description: Real-world last-mile delivery and field tracking.
 
