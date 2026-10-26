@@ -1825,8 +1825,8 @@ function PureFlowCompactPage() {
             </p>
             <a
               href="https://evidence.ithembakuluntu.org/"
-              className="mt-6 inline-block max-w-full rounded-2xl border border-white/30 bg-white/5 px-5 py-3 text-sm font-semibold leading-relaxed transition-colors hover:border-white/60 hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current md:text-base"
-              style={{ color: YELLOW }}
+              className="mt-6 inline-block max-w-full rounded-2xl border border-transparent px-5 py-3 text-sm font-semibold leading-relaxed transition-[filter] hover:brightness-105 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:text-base"
+              style={{ background: YELLOW, color: BLUE_DEEP }}
             >
               {t("evidence_cta.cta").replace(/\s*↗$/, "")} <ArrowUpRight className="inline h-4 w-4" aria-hidden="true" />
             </a>
