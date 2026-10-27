@@ -13,3 +13,11 @@ STRIPE_PAYPAL_RECURRING_ENABLED="false"
 STRIPE_BANK_TRANSFER_ENABLED="false"
 STRIPE_PORTAL_CONFIGURATION_ID="bpc_REPLACE_TEST_CONFIGURATION"
 STRIPE_PORTAL_LOGIN_URL="https://billing.stripe.com/p/login/REPLACE_TEST_LOGIN"
+
+# Direct PayPal Donate; entirely separate from Stripe. Disabled until sandbox configuration.
+PAYPAL_DONATIONS_ENABLED="false"
+PAYPAL_MODE="sandbox"
+PAYPAL_HOSTED_BUTTON_ID="REPLACE_SANDBOX_BUTTON_ID"
+PAYPAL_MERCHANT_ID="REPLACE_SANDBOX_BUSINESS_MERCHANT_ID"
+# Never enable live before sandbox acceptance and explicit launch approval.
+PAYPAL_LIVE_APPROVED="false"
