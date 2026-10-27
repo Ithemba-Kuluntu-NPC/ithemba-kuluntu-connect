@@ -7,6 +7,7 @@ import { Heart, ShieldCheck, Repeat, FileText, Sprout } from "lucide-react";
 import { Placeholder } from "@/components/site/MissingInfo";
 import { useLang } from "@/components/site/LanguageProvider";
 import { StripeDonationCheckout } from "./StripeDonationCheckout";
+import { PayPalDonation } from "./PayPalDonation";
 
 const AMOUNTS = [10, 25, 50, 100, 250];
 const PROJECTS = [
@@ -395,6 +396,21 @@ export function DonationWidget({ defaultProject }: { defaultProject?: string } =
                   `Doneer €${amount === "custom" ? customAmount || "—" : amount}`,
                 )}
         </Button>
+
+        <PayPalDonation
+          input={{
+            amount: Math.round(
+              Number(amount === "custom" ? customAmount.replace(",", ".") : amount) * 100,
+            ),
+            frequency,
+            cause: project as import("@/lib/donations").DonationInput["cause"],
+            lang,
+            name,
+            email,
+            country: country.toUpperCase(),
+            receiptRequested,
+          }}
+        />
 
         <div className="mt-5 grid grid-cols-2 gap-3 border-t border-border pt-5 text-xs text-muted-foreground md:grid-cols-4">
           <div className="flex items-center gap-1.5">

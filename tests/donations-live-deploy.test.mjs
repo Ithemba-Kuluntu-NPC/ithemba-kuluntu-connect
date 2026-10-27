@@ -124,17 +124,24 @@ test("default production builds retain the exact live D1 binding and existing da
   assert.equal(config.keep_vars, true);
   assert.equal(config.compatibility_date, "2025-09-24");
   assert.deepEqual(config.compatibility_flags, ["nodejs_compat"]);
-  assert.deepEqual(config.d1_databases, [{
-    binding: "DONATIONS_DB",
-    database_name: "ithemba-donations-live",
-    database_id: LIVE_DATABASE_ID,
-    migrations_dir: "migrations",
-  }]);
+  assert.deepEqual(config.d1_databases, [
+    {
+      binding: "DONATIONS_DB",
+      database_name: "ithemba-donations-live",
+      database_id: LIVE_DATABASE_ID,
+      migrations_dir: "migrations",
+    },
+  ]);
   assert.deepEqual(config.vars, {
     STRIPE_DONATIONS_MODE: "live",
     STRIPE_PAYPAL_ENABLED: "false",
     STRIPE_PAYPAL_RECURRING_ENABLED: "false",
     STRIPE_BANK_TRANSFER_ENABLED: "false",
+    PAYPAL_DONATIONS_ENABLED: "true",
+    PAYPAL_MODE: "production",
+    PAYPAL_HOSTED_BUTTON_ID: "2QSG3U3XQNJNQ",
+    PAYPAL_MERCHANT_ID: "A3HPHWGZ35D9J",
+    PAYPAL_LIVE_APPROVED: "true",
   });
   for (const name of secretNames) assert.equal(Object.hasOwn(config.vars, name), false);
   assert.equal(Object.hasOwn(config, "routes"), false);

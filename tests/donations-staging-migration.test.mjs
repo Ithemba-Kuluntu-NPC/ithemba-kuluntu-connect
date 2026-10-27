@@ -51,43 +51,22 @@ test("account authorization or database mismatch prevents all migration commands
     assert.equal(calls.length, 0);
   }
 });
-test("migration runner lists then applies only staging and verifies tables and tracking", async () => {
-  const commands = [];
-  const requests = [];
-  const fetchImpl = async (url, options) => {
-    requests.push({ url, options });
-    const result = !options.body
-      ? metadata
-      : JSON.parse(options.body).params
-        ? [{ results: [{ name: "0001_donations.sql" }] }]
-        : [
-            {
-              results: [
-                "donations",
-                "donation_events",
-                "donation_rate_limits",
-                "d1_migrations",
-              ].map((name) => ({ name })),
-            },
-          ];
-    return Response.json({ success: true, result });
-  };
-  await migrateStaging({ connectionValue, fetchImpl, run: (...args) => commands.push(args) });
-  assert.equal(commands.length, 2);
-  assert.equal(commands[0][1][3], "list");
-  assert.equal(commands[1][1][3], "apply");
-  for (const [, args, options] of commands) {
-    assert.ok(args.includes("--remote"));
-    assert.ok(args.includes("ithemba-donations-staging"));
-    assert.ok(args.at(-1).endsWith("wrangler.donations-staging.jsonc"));
-    assert.equal(options.env.CLOUDFLARE_ACCOUNT_ID, accountId);
-    assert.equal(args.includes("deploy"), false);
-  }
-  assert.ok(
-    requests.every(({ url }) =>
-      url.startsWith(
-        `https://api.cloudflare.com/client/v4/accounts/${accountId}/d1/database/${uuid}`,
-      ),
-    ),
+test("historical staging migration runner refuses the new PayPal migration before remote access", async () => {
+  let requests = 0;
+  let commands = 0;
+  await assert.rejects(
+    migrateStaging({
+      connectionValue,
+      fetchImpl: async () => {
+        requests++;
+        throw new Error("Must not reach Cloudflare");
+      },
+      run: () => {
+        commands++;
+      },
+    }),
+    /Only the already-approved first migration may run/,
   );
+  assert.equal(requests, 0);
+  assert.equal(commands, 0);
 });

@@ -1,0 +1,32 @@
+name: Prepare owner-authorized live PayPal database
+on:
+  push:
+    branches: [codex/direct-paypal-donations]
+    paths:
+      - .github/workflows/paypal-live-prepare.yml
+      - scripts/prepare-paypal-live.mjs
+      - migrations/0002_paypal.sql
+permissions:
+  contents: read
+concurrency:
+  group: donations-production-database
+  cancel-in-progress: false
+jobs:
+  prepare:
+    if: github.repository == 'Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect' && github.event.head_commit.message == 'Prepare owner-authorized direct PayPal live database'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            scripts
+            migrations
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: "24"
+      - name: Apply only the reviewed additive PayPal migration to the verified live database
+        env:
+          CLOUDFLARE_D1_STAGING: ${{ secrets.CLOUDFLARE_D1_STAGING }}
+        run: node scripts/prepare-paypal-live.mjs

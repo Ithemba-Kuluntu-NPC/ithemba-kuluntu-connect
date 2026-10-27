@@ -1,4 +1,5 @@
 import "./lib/error-capture";
+import { handlePayPalRequest } from "./lib/paypal.server";
 import { handleDonationRequest } from "./lib/donations.server";
 
 import { consumeLastCapturedError } from "./lib/error-capture";
@@ -69,6 +70,11 @@ async function normalizeCatastrophicSsrResponse(response: Response): Promise<Res
 
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
+    if (new URL(request.url).pathname.startsWith("/api/paypal/")) {
+      const runtime = (request as Request & { runtime?: { cloudflare?: { env?: unknown } } })
+        .runtime;
+      return handlePayPalRequest(request, env ?? runtime?.cloudflare?.env);
+    }
     if (new URL(request.url).pathname.startsWith("/api/donations/")) {
       // Nitro invokes the TanStack server with a single Request. Cloudflare bindings
       // travel on request.runtime.cloudflare.env; direct Worker calls pass env.
