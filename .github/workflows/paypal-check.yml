@@ -8,6 +8,7 @@ on:
       - src/server.ts
       - migrations/0002_paypal.sql
       - tests/paypal.test.ts
+      - tests/paypal-runtime.test.mjs
       - tests/donations-live-deploy.test.mjs
       - tests/donations-staging-migration.test.mjs
       - wrangler.jsonc
