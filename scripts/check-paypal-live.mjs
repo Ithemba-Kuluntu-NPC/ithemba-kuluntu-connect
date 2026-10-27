@@ -24,7 +24,23 @@ try {
         });
         if (res.ok) {
           const data = await res.json();
-          ready = data.enabled === true && data.mode === "production";
+          if (data.enabled === true && data.mode === "production") {
+            const invalid = await fetch("https://ithembakuluntu.org/api/paypal/ipn", {
+              method: "POST",
+              headers: { "Content-Type": "application/x-www-form-urlencoded" },
+              body: "txn_id=invalid&payment_status=Completed&mc_currency=EUR&mc_gross=1.00",
+              redirect: "error",
+              signal: AbortSignal.timeout(15000),
+            });
+            ready = invalid.status === 400;
+            console.log(
+              JSON.stringify({
+                livePayPalConfigured: true,
+                unverifiedNotificationHttpStatus: invalid.status,
+              }),
+            );
+            await invalid.body?.cancel();
+          }
         } else await res.body?.cancel();
       } catch {}
       if (ready) break;

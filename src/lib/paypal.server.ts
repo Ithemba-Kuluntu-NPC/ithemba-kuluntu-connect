@@ -106,7 +106,8 @@ export async function verifyPayPalIPN(
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: `cmd=_notify-validate&${raw}`,
-      redirect: "error",
+      // Workers supports manual/follow; rejecting non-2xx below refuses redirects.
+      redirect: "manual",
       signal: AbortSignal.timeout(15000),
     },
   );

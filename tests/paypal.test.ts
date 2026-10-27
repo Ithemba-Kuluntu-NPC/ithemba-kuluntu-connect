@@ -109,7 +109,7 @@ test("verification posts the exact original body to the fixed sandbox endpoint",
   const verify: typeof fetch = async (url, init) => {
     assert.equal(String(url), "https://ipnpb.sandbox.paypal.com/cgi-bin/webscr");
     assert.equal(init?.body, `cmd=_notify-validate&${raw}`);
-    assert.equal(init?.redirect, "error");
+    assert.equal(init?.redirect, "manual");
     return new Response("VERIFIED");
   };
   assert.equal(await verifyPayPalIPN(raw, "sandbox", verify), true);
@@ -221,7 +221,7 @@ test("authorized live configuration needs no sandbox setup and uses only the liv
   assert.equal((await config.json()).mode, "production");
   globalThis.fetch = async (url, options) => {
     assert.equal(String(url), "https://ipnpb.paypal.com/cgi-bin/webscr");
-    assert.equal(options?.redirect, "error");
+    assert.equal(options?.redirect, "manual");
     return new Response("VERIFIED");
   };
   const fields = new URLSearchParams({
