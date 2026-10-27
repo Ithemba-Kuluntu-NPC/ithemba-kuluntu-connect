@@ -216,3 +216,45 @@ test("signup without payment is not credited and oversized/ambiguous notificatio
     assert.equal(result.status, expected);
   }
 });
+
+test("authorized live configuration needs no sandbox setup and uses only the live verification host", async () => {
+  const f = fixture();
+  f.env.PAYPAL_MODE = "production";
+  const live = { ...f.env, PAYPAL_LIVE_APPROVED: "true" };
+  const config = await handlePayPalRequest(new Request(`${origin}/api/paypal/config`), live);
+  assert.equal(config.status, 200);
+  assert.equal((await config.json()).mode, "production");
+  globalThis.fetch = async (url, options) => {
+    assert.equal(String(url), "https://ipnpb.paypal.com/cgi-bin/webscr");
+    assert.equal(options?.redirect, "error");
+    return new Response("VERIFIED");
+  };
+  const fields = new URLSearchParams({
+    receiver_id: live.PAYPAL_MERCHANT_ID,
+    test_ipn: "1",
+    payment_status: "Completed",
+    mc_currency: "EUR",
+    mc_gross: "1.00",
+    txn_id: "LIVEFIXTURE",
+  });
+  const rejected = await handlePayPalRequest(
+    new Request(`${origin}/api/paypal/ipn`, {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: fields.toString(),
+    }),
+    live,
+  );
+  assert.equal(rejected.status, 400);
+  assert.equal(await verifyPayPalIPN("txn_id=LIVEFIXTURE", "production"), true);
+});
+
+test("disabling new checkout preserves verified payment reconciliation", async () => {
+  const f = fixture();
+  const attempt = await f.start();
+  f.env.PAYPAL_DONATIONS_ENABLED = "false";
+  assert.equal((await f.call("config")).status, 503);
+  globalThis.fetch = async () => new Response("VERIFIED");
+  assert.equal((await f.notify(attempt.id)).status, 200);
+  assert.equal(f.sqlite.prepare("SELECT status FROM paypal_payments").get()?.status, "Completed");
+});

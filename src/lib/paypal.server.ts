@@ -30,11 +30,11 @@ class Failure extends Error {
     this.status = status;
   }
 }
-function config(raw: unknown): PayPalEnv {
+function config(raw: unknown, reconciliation = false): PayPalEnv {
   const e = raw as PayPalEnv;
   if (
     !e ||
-    e.PAYPAL_DONATIONS_ENABLED !== "true" ||
+    (!reconciliation && e.PAYPAL_DONATIONS_ENABLED !== "true") ||
     !e.DONATIONS_DB ||
     !/^[A-Z0-9]{8,32}$/.test(e.PAYPAL_HOSTED_BUTTON_ID ?? "") ||
     !/^[A-Z0-9]{8,32}$/.test(e.PAYPAL_MERCHANT_ID ?? "") ||
@@ -206,9 +206,10 @@ async function ipn(request: Request, env: PayPalEnv) {
 }
 export async function handlePayPalRequest(request: Request, rawEnv: unknown): Promise<Response> {
   try {
-    const env = config(rawEnv);
     const url = new URL(request.url);
     const route = url.pathname.slice("/api/paypal".length);
+    // Hiding checkout must not interrupt already-authorized monthly payment notifications.
+    const env = config(rawEnv, route === "/ipn" && request.method === "POST");
     if (route === "/ipn" && request.method === "POST") return await ipn(request, env);
     if (
       url.origin !== env.DONATION_SITE_ORIGIN ||
