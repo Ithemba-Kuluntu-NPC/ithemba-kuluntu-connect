@@ -1,17 +1,18 @@
-name: Inspect direct PayPal live readiness
+name: Inspect and verify direct PayPal live integration
 on:
   push:
-    branches: [codex/direct-paypal-donations]
+    branches: [main, codex/direct-paypal-donations]
     paths:
       - .github/workflows/paypal-live-preflight.yml
       - scripts/check-paypal-live.mjs
+      - wrangler.jsonc
 permissions:
   contents: read
 jobs:
   inspect:
-    if: github.repository == 'Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect' && github.event.head_commit.message == 'Inspect direct PayPal live readiness without changing production'
+    if: github.repository == 'Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect' && (github.ref == 'refs/heads/main' || github.event.head_commit.message == 'Inspect direct PayPal live readiness without changing production')
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:

@@ -158,9 +158,9 @@ export function PayPalDonation({ input }: { input: Omit<DonationInput, "requestI
       )}
       <p className="text-xs text-muted-foreground">
         {t(
-          "PayPal pays iThemba Kuluntu e.V. directly. Confirm your amount and choose one-time or monthly giving in PayPal (where available). Your amount and frequency above are not automatically applied. Your selected purpose is included.",
-          "PayPal zahlt direkt an iThemba Kuluntu e.V. Bestätige den Betrag und wähle einmalig oder monatlich bei PayPal (sofern verfügbar). Betrag und Rhythmus von oben werden nicht automatisch übernommen. Dein Spendenzweck wird mitgegeben.",
-          "PayPal betaalt rechtstreeks aan iThemba Kuluntu e.V. Bevestig je bedrag en kies eenmalig of maandelijks in PayPal (waar beschikbaar). Het bedrag en de frequentie hierboven worden niet automatisch overgenomen. Je gekozen doel wordt meegestuurd.",
+          "PayPal pays iThemba Kuluntu e.V. directly. Confirm your amount and choose one-time, monthly or annual giving in PayPal. Your amount and frequency above are not automatically applied. Your selected purpose is sent; confirm the final cause in PayPal.",
+          "PayPal zahlt direkt an iThemba Kuluntu e.V. Bestätige den Betrag und wähle einmalig, monatlich oder jährlich bei PayPal. Betrag und Rhythmus von oben werden nicht automatisch übernommen. Dein Spendenzweck wird mitgegeben; bestätige ihn abschließend bei PayPal.",
+          "PayPal betaalt rechtstreeks aan iThemba Kuluntu e.V. Bevestig je bedrag en kies eenmalig, maandelijks of jaarlijks in PayPal. Het bedrag en de frequentie hierboven worden niet automatisch overgenomen. Je gekozen doel wordt meegestuurd; bevestig het definitieve doel in PayPal.",
         )}
       </p>
       <p className="text-xs text-muted-foreground">

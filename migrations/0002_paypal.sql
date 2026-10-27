@@ -1,4 +1,4 @@
--- Additive and independent of the Stripe ledger. Apply in sandbox first.
+-- Additive and independent of the Stripe ledger. Live-first rollout authorized by the account owner.
 CREATE TABLE IF NOT EXISTS paypal_attempts (
   id TEXT PRIMARY KEY,
   owner TEXT NOT NULL,
@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS paypal_payments (
   status TEXT NOT NULL,
   amount INTEGER NOT NULL,
   rank INTEGER NOT NULL,
+  purpose TEXT,
   parent_txn_id TEXT,
   subscription_id TEXT,
   received_at INTEGER NOT NULL

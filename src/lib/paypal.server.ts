@@ -176,7 +176,8 @@ async function ipn(request: Request, env: PayPalEnv) {
       .bind(payment.parent, env.PAYPAL_MODE)
       .first<Attempt>();
   if (!attempt) return reply({ received: true }); // Other activity in the association account.
-  if (p.get("item_number") && p.get("item_number") !== attempt.cause) throw new Failure(400);
+  // Hosted Donate lets donors change their cause. Preserve the verified final choice.
+  const purpose = (p.get("item_name") || p.get("item_number") || attempt.cause).slice(0, 256);
   const existing = await env.DONATIONS_DB.prepare(
     "SELECT attempt_id FROM paypal_payments WHERE txn_id=?",
   )
@@ -186,8 +187,8 @@ async function ipn(request: Request, env: PayPalEnv) {
   // Monotonic rank: delayed Pending cannot overwrite Completed; reversals require reconciliation.
   // PayPal's actual amount is authoritative: hosted Donate lets the donor change it.
   await env.DONATIONS_DB.prepare(
-    `INSERT INTO paypal_payments (txn_id,attempt_id,status,amount,rank,parent_txn_id,subscription_id,received_at)
-    VALUES (?,?,?,?,?,?,?,?) ON CONFLICT(txn_id) DO UPDATE SET status=excluded.status,amount=excluded.amount,rank=excluded.rank,
+    `INSERT INTO paypal_payments (txn_id,attempt_id,status,amount,rank,purpose,parent_txn_id,subscription_id,received_at)
+    VALUES (?,?,?,?,?,?,?,?,?) ON CONFLICT(txn_id) DO UPDATE SET status=excluded.status,amount=excluded.amount,rank=excluded.rank,purpose=excluded.purpose,
     subscription_id=COALESCE(excluded.subscription_id,paypal_payments.subscription_id),received_at=excluded.received_at
     WHERE excluded.rank > paypal_payments.rank`,
   )
@@ -197,6 +198,7 @@ async function ipn(request: Request, env: PayPalEnv) {
       payment.status,
       payment.amount,
       payment.rank,
+      purpose,
       payment.parent,
       payment.subscription,
       Math.floor(Date.now() / 1000),

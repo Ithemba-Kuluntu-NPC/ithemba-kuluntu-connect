@@ -1,17 +1,38 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 
-// Read-only preflight using the existing GitHub Cloudflare connections.
+// Read-only preflight / post-deployment verification using existing Cloudflare connections.
 const marker = "Inspect direct PayPal live readiness without changing production";
 const worker = "tanstack-start-app";
 const database = "67acffe7-2412-44ce-817d-1d7f316d9392";
 let stage = "authorization";
 try {
   assert.equal(process.env.GITHUB_REPOSITORY, "Ithemba-Kuluntu-NPC/ithemba-kuluntu-connect");
-  assert.equal(process.env.GITHUB_REF, "refs/heads/codex/direct-paypal-donations");
+  const launched = process.env.GITHUB_REF === "refs/heads/main";
+  assert.ok(launched || process.env.GITHUB_REF === "refs/heads/codex/direct-paypal-donations");
   assert.equal(process.env.GITHUB_EVENT_NAME, "push");
   const event = JSON.parse(await readFile(process.env.GITHUB_EVENT_PATH, "utf8"));
-  assert.equal(event.head_commit?.message, marker);
+  if (!launched) assert.equal(event.head_commit?.message, marker);
+  if (launched) {
+    stage = "await_live_publication";
+    let ready = false;
+    for (let attempt = 0; attempt < 30; attempt++) {
+      try {
+        const res = await fetch("https://ithembakuluntu.org/api/paypal/config", {
+          cache: "no-store",
+          signal: AbortSignal.timeout(15000),
+        });
+        if (res.ok) {
+          const data = await res.json();
+          ready = data.enabled === true && data.mode === "production";
+        } else await res.body?.cancel();
+      } catch {}
+      if (ready) break;
+      console.log("Waiting for Cloudflare to publish the merged PayPal integration");
+      await new Promise((resolve) => setTimeout(resolve, 30000));
+    }
+    assert.ok(ready, "PayPal did not become available on the canonical live domain");
+  }
   const connection = JSON.parse(process.env.CLOUDFLARE_D1_STAGING ?? "null");
   assert.equal(connection?.accountId, "794969a4f7a2e41ac24852f2c006a8ef");
   const token = process.env.CLOUDFLARE_WORKER_STAGING_TOKEN;
@@ -85,6 +106,18 @@ try {
       bindings.some((b) => b.name === "DONATIONS_DB" && b.type === "d1" && b.id === database),
     );
     assert.ok(bindings.some((b) => b.name === "ASSETS" && b.type === "assets"));
+    if (launched)
+      for (const [name, text] of Object.entries({
+        PAYPAL_DONATIONS_ENABLED: "true",
+        PAYPAL_MODE: "production",
+        PAYPAL_HOSTED_BUTTON_ID: "2QSG3U3XQNJNQ",
+        PAYPAL_MERCHANT_ID: "A3HPHWGZ35D9J",
+        PAYPAL_LIVE_APPROVED: "true",
+      }))
+        assert.ok(
+          bindings.some((b) => b.name === name && b.type === "plain_text" && b.text === text),
+          `Live PayPal binding differs: ${name}`,
+        );
   }
   stage = "domain";
   const domains = await cf("/workers/domains");
@@ -111,6 +144,7 @@ try {
   );
   const migrationNeeded =
     !tables.includes("paypal_attempts") || !tables.includes("paypal_payments");
+  if (launched) assert.equal(migrationNeeded, false);
   stage = "public_health";
   for (const path of ["/", "/donate", "/contact", "/projects/greenhouse"]) {
     const response = await fetch(`https://ithembakuluntu.org${path}`, {
@@ -129,8 +163,29 @@ try {
   const stripe = await response.json();
   assert.equal(stripe.mode, "live");
   assert.match(stripe.publishableKey ?? "", /^pk_live_/);
+  if (launched) {
+    stage = "unverified_notification_rejection";
+    const invalid = await fetch("https://ithembakuluntu.org/api/paypal/ipn", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: "txn_id=invalid&payment_status=Completed&mc_currency=EUR&mc_gross=1.00",
+      redirect: "error",
+      signal: AbortSignal.timeout(30000),
+    });
+    assert.equal(invalid.status, 400);
+    await invalid.body?.cancel();
+    stage = "browser_callback_rejection";
+    const forged = await fetch(
+      "https://ithembakuluntu.org/api/paypal/status?id=11111111-1111-4111-8111-111111111111&st=Completed",
+      { cache: "no-store", signal: AbortSignal.timeout(30000) },
+    );
+    assert.equal(forged.status, 403);
+    await forged.body?.cancel();
+  }
   const report = {
-    state: "paypal_live_preflight_passed",
+    state: launched ? "paypal_live_deployment_verified" : "paypal_live_preflight_passed",
+    livePayPalBindingsVerified: launched,
+    unverifiedNotificationsRejected: launched,
     activeVersions: active.versions,
     stripeBindingsPreserved: true,
     stripePayPalDisabled: true,

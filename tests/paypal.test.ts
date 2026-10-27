@@ -134,18 +134,13 @@ test("browser values cannot mark a donation paid; attempts are browser-owned", a
   );
   assert.equal(withoutCookie.status, 404);
 });
-test("unverified, wrong merchant, wrong mode/currency and purpose cannot credit a payment", async () => {
+test("unverified, wrong merchant and wrong mode/currency cannot credit a payment", async () => {
   const f = fixture();
   const a = await f.start();
   globalThis.fetch = async () => new Response("INVALID");
   assert.equal((await f.notify(a.id)).status, 400);
   globalThis.fetch = async () => new Response("VERIFIED");
-  for (const change of [
-    { receiver_id: "OTHERACCOUNT" },
-    { test_ipn: "0" },
-    { mc_currency: "USD" },
-    { item_number: "Education" },
-  ])
+  for (const change of [{ receiver_id: "OTHERACCOUNT" }, { test_ipn: "0" }, { mc_currency: "USD" }])
     assert.equal((await f.notify(a.id, change)).status, 400);
   assert.equal((await (await f.call(`status?id=${a.id}`)).json()).status, "pending");
 });
@@ -257,4 +252,16 @@ test("disabling new checkout preserves verified payment reconciliation", async (
   globalThis.fetch = async () => new Response("VERIFIED");
   assert.equal((await f.notify(attempt.id)).status, 200);
   assert.equal(f.sqlite.prepare("SELECT status FROM paypal_payments").get()?.status, "Completed");
+});
+
+test("hosted PayPal cause changes are recorded from verified notifications", async () => {
+  const f = fixture();
+  const a = await f.start();
+  globalThis.fetch = async () => new Response("VERIFIED");
+  assert.equal(
+    (await f.notify(a.id, { item_number: "Education", item_name: "Education" })).status,
+    200,
+  );
+  assert.equal(f.sqlite.prepare("SELECT purpose FROM paypal_payments").get()?.purpose, "Education");
+  assert.equal((await (await f.call(`status?id=${a.id}`)).json()).status, "succeeded");
 });
