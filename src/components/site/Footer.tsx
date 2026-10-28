@@ -38,7 +38,7 @@ export function Footer() {
           : "";
 
   return (
-    <footer className="mt-24 border-t border-border bg-[var(--ithemba-blue-dark)] text-white">
+    <footer className="relative z-10 mt-24 border-t border-border bg-[var(--ithemba-blue-dark)] text-white">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
         {/* Org */}
         <div>
