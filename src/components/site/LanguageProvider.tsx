@@ -16,12 +16,20 @@ function translate(k: TString, lang: Lang): string {
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>("en");
   useEffect(() => {
-    const saved = typeof window !== "undefined" ? (localStorage.getItem("lang") as Lang | null) : null;
-    if (saved === "en" || saved === "de" || saved === "nl") setLangState(saved);
+    try {
+      const saved = localStorage.getItem("lang");
+      if (saved === "en" || saved === "de" || saved === "nl") setLangState(saved);
+    } catch {
+      // Keep localization and privacy controls usable when browser storage is blocked.
+    }
   }, []);
   const setLang = (l: Lang) => {
     setLangState(l);
-    if (typeof window !== "undefined") localStorage.setItem("lang", l);
+    try {
+      localStorage.setItem("lang", l);
+    } catch {
+      // The selected language still applies for this visit.
+    }
   };
   return (
     <LanguageContext.Provider value={{ lang, setLang, t: (k) => translate(k, lang) }}>

@@ -1,0 +1,77 @@
+{
+  "eyebrow": "Juridisch",
+  "title": "Cookiebeleid",
+  "intro": "Hoe iThemba Kuluntu cookies en vergelijkbare technologieën gebruikt en hoe u optionele externe media beheert.",
+  "updated": "Laatst bijgewerkt: 28 oktober 2026",
+  "sections": [
+    {
+      "heading": "Wat zijn cookies en vergelijkbare technologieën?",
+      "paragraphs": [
+        "Cookies zijn kleine bestanden die uw browser opslaat. Vergelijkbare technologieën zijn lokale opslag (local storage) op uw apparaat en ingesloten diensten die gegevens uitwisselen met een andere aanbieder. Ze kunnen een keuze onthouden, een aangevraagde dienst mogelijk maken en beschermen tegen misbruik."
+      ]
+    },
+    {
+      "heading": "Noodzakelijke functies en opslag",
+      "paragraphs": [
+        "Noodzakelijke functies zijn altijd ingeschakeld. Ze ondersteunen deze website en diensten die u uitdrukkelijk aanvraagt, waaronder het onthouden van uw taal- en privacykeuzes, veilige donatiebetalingen en bescherming van het contactformulier. Als u optionele diensten weigert, kunt u nog steeds doneren, contact opnemen en zich aanmelden voor de nieuwsbrief.",
+        "De lokale opslagvermelding lang onthoudt uw taal (Engels, Duits of Nederlands). Video’s die op deze website zelf worden gehost, vereisen geen toestemming voor externe media."
+      ]
+    },
+    {
+      "heading": "Hoe uw voorkeur wordt opgeslagen",
+      "paragraphs": [
+        "Uw beslissing wordt in de lokale opslag van uw browser bewaard onder cookie-consent. Versie 1 bevat dat Noodzakelijk is ingeschakeld, of Externe media is toegestaan en het tijdstip van uw keuze. Deze voorkeur wordt niet naar een toestemmingsaanbieder gestuurd. Ze blijft bewaard totdat u haar wijzigt of de browseropslag wist; lokale opslag heeft geen automatische vervaldatum. De keuze geldt voor deze browser en dit websiteadres, niet voor al uw apparaten.",
+        "Een oudere waarde rejected blijft een weigering en wordt omgezet naar het nieuwe formaat. Een oudere waarde accepted, een ongeldige waarde of een niet-ondersteunde versie geeft geen toestemming voor externe media: we vragen het opnieuw. Als uw browser opslag blokkeert, geldt uw keuze voor het huidige bezoek maar blijft deze mogelijk niet bewaard."
+      ]
+    },
+    {
+      "heading": "Optionele externe media: YouTube",
+      "paragraphs": [
+        "YouTube-spelers zijn optioneel. We maken geen YouTube-iframe aan voordat u Externe media toestaat en om afspelen vraagt. Spelers gebruiken het privacyvriendelijkere insluitadres youtube-nocookie.com. Het laden maakt nog steeds verbinding met Google/YouTube en deelt verbindingsgegevens zoals uw IP-adres en browserinformatie. Tijdens het gebruik kunnen cookies of vergelijkbare opslag worden gebruikt. De privacymodus betekent niet dat er geen gegevens worden verwerkt.",
+        "Bestaande videovoorbeelden blijven behouden. Sommige afbeeldingen worden vóór het afspelen geladen van i.ytimg.com (YouTube/Google) en sturen dus verbindingsgegevens naar die afbeeldingsserver, ook wanneer de speler geblokkeerd is. Het bekijken van het voorbeeld laadt geen speler. Andere video’s worden op deze website gehost.",
+        "Met Externe media toestaan & afspelen bewaart u toestemming voor deze categorie en laadt u meteen de gekozen video. Als u toestemming intrekt, worden actieve YouTube-spelers verwijderd zonder de pagina opnieuw te laden. Dit stopt verder ingesloten afspelen op deze website, maar kan reeds verstuurde gegevens niet terughalen of opslag van een andere aanbieder wissen. Gebruik daarvoor de instellingen voor websitegegevens in uw browser."
+      ]
+    },
+    {
+      "heading": "Donatiebetalingen met Stripe",
+      "paragraphs": [
+        "Stripe wordt geactiveerd als onderdeel van een donatiebetaling die u start. Stripe kan cookies of vergelijkbare opslag gebruiken die nodig zijn voor betalingen, beveiliging en fraudepreventie. Deze aangevraagde betaaldienst is niet afhankelijk van de optionele instelling Externe media. Betalingen en terugkerende donaties blijven via het bestaande donatieproces verlopen."
+      ]
+    },
+    {
+      "heading": "Donaties met PayPal",
+      "paragraphs": [
+        "De donatiedienst van PayPal wordt geladen wanneer u het PayPal-proces start. PayPal kan cookies of vergelijkbare opslag gebruiken voor de aangevraagde betaling, accountfuncties, beveiliging en fraudepreventie. Het weigeren van Externe media blokkeert PayPal niet. Als u de dienst gebruikt, is ook de eigen privacyinformatie van PayPal van toepassing."
+      ]
+    },
+    {
+      "heading": "Cloudflare en beveiliging van het contactformulier",
+      "paragraphs": [
+        "De website gebruikt Cloudflare-infrastructuur. Het contactformulier laadt Cloudflare Turnstile om legitieme aanvragen te onderscheiden van geautomatiseerd misbruik. Veiligheidscontroles verwerken technische verbindings- en controlegegevens en kunnen waar nodig beveiligingscookies of vergelijkbare technologieën gebruiken. Turnstile hoort bij de aangevraagde contactdienst en wordt niet uitgeschakeld door de instelling Externe media."
+      ]
+    },
+    {
+      "heading": "Nieuwsbrief en contactberichten",
+      "paragraphs": [
+        "Nieuwsbriefaanmeldingen en contactberichten worden naar de eigen API van deze website gestuurd en op de server via Brevo verwerkt. De nieuwsbrief heeft een afzonderlijke toestemming. Deze formulieren installeren geen Brevo-trackingscript in de browser; de keuze voor externe media meldt u niet aan of af voor de nieuwsbrief."
+      ]
+    },
+    {
+      "heading": "Analyses, advertenties en andere verbindingen",
+      "paragraphs": [
+        "iThemba Kuluntu gebruikt momenteel geen analyse- of advertentiecookies of browsertrackingdiensten op deze website. Er zijn daarom geen categorieën Analyse of Marketing. Nieuwsbriefbezorging is geen categorie voor websitetracking.",
+        "De website laadt ook lettertypen van Google Fonts. Die aanbieder ontvangt verbindingsgegevens wanneer deze worden opgevraagd. Externe links, waaronder sociale media en medialinks, leiden naar diensten met eigen privacy- en opslagpraktijken. De instelling Externe media beheert ingesloten YouTube-spelers op deze website, niet een externe website die u zelf bezoekt.",
+        "De PureFlow-impactkaart laadt kaarttegels van OpenStreetMap, dat technische verbindingsgegevens ontvangt voor deze verzoeken. Deze kaartafbeeldingen vallen, net als lettertypen en voorbeeldafbeeldingen, niet onder de voorkeur voor YouTube-spelers."
+      ]
+    },
+    {
+      "heading": "Uw keuze wijzigen of intrekken",
+      "paragraphs": [
+        "Open op elk moment hetzelfde voorkeurenpaneel via Cookie-instellingen op deze pagina of de permanent beschikbare knop Cookie-instellingen in de footer. Noodzakelijk blijft ingeschakeld; u kunt Externe media in- of uitschakelen, uw keuze opslaan of optionele diensten weigeren of accepteren. Wijzigingen gelden direct zonder herladen. Als u browseropslag wist, verdwijnt de opgeslagen keuze en vragen we bij uw volgende bezoek opnieuw om uw voorkeur."
+      ]
+    }
+  ],
+  "contactHeading": "Privacy en contact",
+  "contact": "Meer informatie over persoonsgegevens vindt u in ons privacybeleid. Neem voor vragen over cookies of privacyvoorkeuren contact op met",
+  "privacy": "Privacybeleid"
+}
