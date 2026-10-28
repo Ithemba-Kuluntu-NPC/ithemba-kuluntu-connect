@@ -1,0 +1,77 @@
+{
+  "eyebrow": "Rechtliches",
+  "title": "Cookie-Richtlinie",
+  "intro": "Wie iThemba Kuluntu Cookies und ähnliche Technologien nutzt und wie Sie optionale externe Medien steuern.",
+  "updated": "Zuletzt aktualisiert: 28. Oktober 2026",
+  "sections": [
+    {
+      "heading": "Was sind Cookies und ähnliche Technologien?",
+      "paragraphs": [
+        "Cookies sind kleine Dateien, die Ihr Browser speichert. Ähnliche Technologien sind etwa der lokale Speicher (Local Storage) auf Ihrem Gerät und eingebettete Dienste, die Daten mit einem anderen Anbieter austauschen. Sie können eine Auswahl speichern, angeforderte Dienste ermöglichen und vor Missbrauch schützen."
+      ]
+    },
+    {
+      "heading": "Erforderliche Funktionen und Speicherung",
+      "paragraphs": [
+        "Erforderliche Funktionen sind immer aktiviert. Sie unterstützen diese Website und ausdrücklich angeforderte Dienste, darunter das Speichern Ihrer Sprach- und Datenschutzauswahl, sichere Spendenzahlungen und den Schutz des Kontaktformulars. Wenn Sie optionale Dienste ablehnen, können Sie weiterhin spenden, uns kontaktieren und den Newsletter abonnieren.",
+        "Der Local-Storage-Eintrag lang speichert Ihre Sprache (Englisch, Deutsch oder Niederländisch). Auf dieser Website selbst gehostete Videos benötigen keine Einwilligung für externe Medien."
+      ]
+    },
+    {
+      "heading": "Speicherung Ihrer Auswahl",
+      "paragraphs": [
+        "Ihre Entscheidung wird im lokalen Speicher Ihres Browsers unter cookie-consent gespeichert. Version 1 enthält die Aktivierung erforderlicher Funktionen, Ihre Auswahl für externe Medien und den Zeitpunkt der Entscheidung. Die Auswahl wird nicht an einen Einwilligungsanbieter gesendet. Sie bleibt gespeichert, bis Sie sie ändern oder den Browserspeicher löschen; Local Storage hat kein automatisches Ablaufdatum. Die Auswahl gilt für diesen Browser und diese Website-Adresse, nicht für alle Ihre Geräte.",
+        "Ein früherer Wert rejected bleibt als Ablehnung erhalten und wird in das neue Format umgewandelt. Ein früherer Wert accepted, ein ungültiger Wert oder eine nicht unterstützte Version erlaubt keine externen Medien: Wir fragen erneut. Blockiert Ihr Browser die Speicherung, gilt Ihre Auswahl für den aktuellen Besuch, bleibt aber möglicherweise nicht erhalten."
+      ]
+    },
+    {
+      "heading": "Optionale externe Medien: YouTube",
+      "paragraphs": [
+        "YouTube-Player sind optional. Wir erzeugen keinen YouTube-Iframe, bevor Sie externe Medien erlauben und die Wiedergabe anfordern. Die Player verwenden die datenschutzfreundlichere Einbettungsadresse youtube-nocookie.com. Beim Laden werden dennoch Verbindungen zu Google/YouTube hergestellt und Verbindungsdaten wie IP-Adresse und Browserinformationen übertragen. Bei der Nutzung können Cookies oder ähnliche Speichertechniken eingesetzt werden. Der erweiterte Datenschutzmodus bedeutet nicht, dass keine Daten verarbeitet werden.",
+        "Vorhandene Videovorschaubilder bleiben erhalten. Einige werden vor der Wiedergabe von i.ytimg.com (YouTube/Google) geladen und übertragen daher Verbindungsdaten an diesen Bildserver, auch wenn der Player gesperrt ist. Das Ansehen des Vorschaubilds lädt keinen Player. Andere Videos werden auf dieser Website gehostet.",
+        "Mit Externe Medien erlauben & abspielen speichern Sie die Einwilligung für diese Kategorie und laden sofort das gewählte Video. Bei einem Widerruf werden aktive YouTube-Player ohne Neuladen entfernt. Dies stoppt weitere eingebettete Wiedergaben auf dieser Website, macht aber bereits übermittelte Daten nicht rückgängig und löscht keinen Speicher anderer Anbieter. Dafür können Sie die Website-Daten in Ihrem Browser verwalten."
+      ]
+    },
+    {
+      "heading": "Spendenzahlungen mit Stripe",
+      "paragraphs": [
+        "Stripe wird im Rahmen eines von Ihnen gestarteten Spendenvorgangs aktiviert. Stripe kann Cookies oder ähnliche Speichertechniken nutzen, die für Zahlungsabwicklung, Sicherheit und Betrugsprävention erforderlich sind. Dieser angeforderte Zahlungsdienst hängt nicht von der optionalen Einstellung für externe Medien ab. Zahlungen und Dauerspenden werden weiterhin im bestehenden Spendenablauf verarbeitet."
+      ]
+    },
+    {
+      "heading": "Spenden mit PayPal",
+      "paragraphs": [
+        "Der PayPal-Spendendienst wird geladen, wenn Sie den PayPal-Ablauf starten. PayPal kann Cookies oder ähnliche Speichertechniken für die angeforderte Zahlung, Kontofunktionen, Sicherheit und Betrugsprävention nutzen. Die Ablehnung externer Medien blockiert PayPal nicht. Bei der Nutzung gelten die eigenen Datenschutzhinweise von PayPal."
+      ]
+    },
+    {
+      "heading": "Cloudflare und Sicherheit des Kontaktformulars",
+      "paragraphs": [
+        "Die Website nutzt Cloudflare-Infrastruktur. Das Kontaktformular lädt Cloudflare Turnstile, um berechtigte Anfragen von automatisiertem Missbrauch zu unterscheiden. Sicherheitsprüfungen verarbeiten technische Verbindungs- und Prüfinformationen und können bei Bedarf sicherheitsbezogene Cookies oder ähnliche Technologien verwenden. Turnstile gehört zum angeforderten Kontaktdienst und wird durch die Einstellung für externe Medien nicht deaktiviert."
+      ]
+    },
+    {
+      "heading": "Newsletter und Kontaktanfragen",
+      "paragraphs": [
+        "Newsletter-Anmeldungen und Kontaktanfragen werden an die eigene API dieser Website gesendet und serverseitig über Brevo verarbeitet. Für den Newsletter gibt es eine separate Einwilligung. Diese Formulare installieren kein Brevo-Tracking-Skript im Browser; Ihre Auswahl für externe Medien meldet Sie weder zum Newsletter an noch davon ab."
+      ]
+    },
+    {
+      "heading": "Analyse, Werbung und weitere Verbindungen",
+      "paragraphs": [
+        "iThemba Kuluntu setzt auf dieser Website derzeit keine Analyse- oder Werbe-Cookies und keine Browser-Tracking-Dienste ein. Es gibt daher keine Kategorien für Analyse oder Marketing. Der Newsletter-Versand ist keine Website-Tracking-Kategorie.",
+        "Die Website lädt auch Schriftarten von Google Fonts. Beim Abruf erhält dieser Anbieter Verbindungsdaten. Externe Links, darunter Social-Media- und Medienlinks, führen zu Diensten mit eigenen Datenschutz- und Speicherpraktiken. Die Einstellung für externe Medien steuert eingebettete YouTube-Player auf dieser Website, nicht eine externe Website, die Sie selbst aufrufen.",
+        "Die PureFlow-Wirkungskarte lädt Kartenkacheln von OpenStreetMap. Dabei erhält der Anbieter technische Verbindungsdaten. Diese Kartenbilder werden wie Schriftarten und Vorschaubilder nicht durch die Einstellung für YouTube-Player gesteuert."
+      ]
+    },
+    {
+      "heading": "Auswahl ändern oder widerrufen",
+      "paragraphs": [
+        "Öffnen Sie jederzeit über Cookie-Einstellungen auf dieser Seite oder die dauerhaft verfügbare Schaltfläche Cookie-Einstellungen im Footer dasselbe Einstellungsfenster. Erforderliche Funktionen bleiben aktiviert. Sie können externe Medien ein- oder ausschalten, Ihre Auswahl speichern und optionale Dienste ablehnen oder akzeptieren. Änderungen gelten sofort ohne Neuladen. Wenn Sie den Browserspeicher löschen, wird die gespeicherte Auswahl entfernt und beim nächsten Besuch erneut abgefragt."
+      ]
+    }
+  ],
+  "contactHeading": "Datenschutz und Kontakt",
+  "contact": "Weitere Informationen zu personenbezogenen Daten finden Sie in unserer Datenschutzerklärung. Bei Fragen zu Cookies oder Datenschutzeinstellungen kontaktieren Sie",
+  "privacy": "Datenschutzerklärung"
+}

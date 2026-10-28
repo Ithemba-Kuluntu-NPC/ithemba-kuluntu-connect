@@ -2,6 +2,8 @@ import { Link } from "@tanstack/react-router";
 import { Instagram, Facebook, Youtube, Mail, Phone, MapPin } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useCookiePreferences } from "./CookiePreferencesProvider";
+import { cookieCopy } from "./cookie-copy";
 import { useLang } from "./LanguageProvider";
 import { useNewsletterForm } from "@/components/forms/useNewsletterForm";
 
@@ -10,6 +12,7 @@ const socialBase =
 
 export function Footer() {
   const { lang } = useLang();
+  const { openSettings, ready } = useCookiePreferences();
   const lbl = (en: string, de: string, nl: string) =>
     lang === "en" ? en : lang === "de" ? de : nl;
   const form = useNewsletterForm();
@@ -35,7 +38,7 @@ export function Footer() {
           : "";
 
   return (
-    <footer className="mt-24 border-t border-border bg-[var(--ithemba-blue-dark)] text-white">
+    <footer className="relative z-10 mt-24 border-t border-border bg-[var(--ithemba-blue-dark)] text-white">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
         {/* Org */}
         <div>
@@ -223,8 +226,17 @@ export function Footer() {
               Datenschutz
             </Link>
             <Link to="/cookie-policy" className="hover:text-white">
-              Cookie Policy
+              {cookieCopy[lang].policy}
             </Link>
+            <button
+              type="button"
+              data-cookie-settings
+              disabled={!ready}
+              onClick={openSettings}
+              className="hover:text-white underline underline-offset-2"
+            >
+              {cookieCopy[lang].settings}
+            </button>
             <Link to="/terms" className="hover:text-white">
               Terms of Use
             </Link>

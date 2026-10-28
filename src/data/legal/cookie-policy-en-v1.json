@@ -1,0 +1,77 @@
+{
+  "eyebrow": "Legal",
+  "title": "Cookie Policy",
+  "intro": "How iThemba Kuluntu uses cookies and similar technologies, and how you control optional external media.",
+  "updated": "Last updated: 28 October 2026",
+  "sections": [
+    {
+      "heading": "What are cookies and similar technologies?",
+      "paragraphs": [
+        "Cookies are small files stored by your browser. Similar technologies include local storage, which keeps information on your device, and embedded services that exchange data with another provider. Their purposes can include remembering a choice, operating a requested service and protecting against abuse."
+      ]
+    },
+    {
+      "heading": "Essential functions and storage",
+      "paragraphs": [
+        "Essential functions are always enabled. They support this website and services you explicitly request, including remembering your language and privacy choices, secure donation payments and contact-form protection. Rejecting optional services does not prevent you from donating, contacting us or subscribing to the newsletter.",
+        "The local storage entry lang remembers your selected language (English, German or Dutch). Locally hosted videos do not require External media permission."
+      ]
+    },
+    {
+      "heading": "How your preference is stored",
+      "paragraphs": [
+        "We store your decision in your browser’s local storage under cookie-consent. Version 1 records that Essential is enabled, whether External media is allowed, and the time of your choice. This preference is not sent to a consent vendor. It remains until you change it or clear browser storage; local storage has no automatic expiry. It applies to this browser and website origin, not all your devices.",
+        "An older rejected value is retained as an opt-out and converted to the new format. An older accepted value, an invalid value or an unsupported version does not grant external-media permission: we ask you again. If your browser blocks storage, your choice works for the current visit but may not persist."
+      ]
+    },
+    {
+      "heading": "Optional external media: YouTube",
+      "paragraphs": [
+        "YouTube players are optional. We create no YouTube iframe until you allow External media and request playback. Players use YouTube’s privacy-enhanced youtube-nocookie.com embed address. Loading a player still connects to Google/YouTube, discloses connection data such as your IP address and browser information, and may involve cookies or similar storage during use. Privacy-enhanced mode does not mean that no data is processed.",
+        "Existing video preview images are preserved. Some previews load from i.ytimg.com (YouTube/Google) before playback and therefore send connection data to that image host even while the player is blocked. No player is loaded by viewing the preview. Other videos are hosted on this website.",
+        "Selecting Allow external media & play saves permission for this category and immediately loads the requested video. Withdrawing permission removes active YouTube players without a page reload. It stops further embedded playback on this site, but cannot undo data already sent or erase storage set by another provider; use your browser’s site-data controls for that."
+      ]
+    },
+    {
+      "heading": "Stripe donation payments",
+      "paragraphs": [
+        "Stripe is activated as part of a donation checkout you initiate. Stripe may use cookies or similar storage required for payment processing, security and fraud prevention. This requested payment service does not depend on the optional External media setting. Payment and recurring-donation handling continue under the existing donation flow."
+      ]
+    },
+    {
+      "heading": "PayPal donations",
+      "paragraphs": [
+        "PayPal’s donation service is loaded when you initiate the PayPal flow. PayPal may use cookies or similar storage for the requested payment, account functions, security and fraud prevention. Rejecting External media does not block PayPal. PayPal’s own privacy information applies when you use its service."
+      ]
+    },
+    {
+      "heading": "Cloudflare and contact-form security",
+      "paragraphs": [
+        "The website uses Cloudflare infrastructure. The contact form loads Cloudflare Turnstile to distinguish legitimate requests from automated abuse. Security checks process technical connection and challenge information and may use security-related cookies or similar technologies where needed. Turnstile is part of the requested contact service and is not disabled by the External media setting."
+      ]
+    },
+    {
+      "heading": "Newsletter and contact messages",
+      "paragraphs": [
+        "Newsletter subscriptions and contact messages are submitted to this website’s own API and processed through Brevo on the server. Newsletter subscription has its own separate consent process. These forms do not install a Brevo browser tracking script; the external-media choice does not subscribe or unsubscribe you."
+      ]
+    },
+    {
+      "heading": "Analytics, advertising and other connections",
+      "paragraphs": [
+        "iThemba Kuluntu currently deploys no analytics or advertising cookies or browser tracking services on this website. There are therefore no Analytics or Marketing preference categories. Newsletter delivery is not a website tracking category.",
+        "The website also loads fonts from Google Fonts, which receives connection data when those resources are requested. External links, including social-media and media links, take you to services with their own privacy and storage practices. The External media setting controls embedded YouTube players on this website; it does not control an external website you choose to visit.",
+        "The PureFlow impact map loads map tiles from OpenStreetMap, which receives technical connection data for those requests. These map images, like fonts and preview images, are not controlled by the YouTube player preference."
+      ]
+    },
+    {
+      "heading": "Change or withdraw your choice",
+      "paragraphs": [
+        "Use Cookie settings on this page or the persistent Cookie settings button in the footer to open the same preference panel at any time. Essential remains enabled; you can switch External media on or off, save your choice, reject optional services or accept optional services. Changes apply immediately without reloading. Clearing browser storage removes the saved choice and prompts you again on your next visit."
+      ]
+    }
+  ],
+  "contactHeading": "Privacy and contact",
+  "contact": "For more information about personal data, see our Privacy Policy. For questions about cookies or privacy preferences, contact",
+  "privacy": "Privacy Policy"
+}

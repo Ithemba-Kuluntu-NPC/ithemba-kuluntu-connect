@@ -1,3 +1,4 @@
+import { YouTubeEmbed } from "@/components/site/YouTubeEmbed";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -2600,15 +2601,7 @@ function VideoCard({ v, large = false }: { v: Video; large?: boolean }) {
   return (
     <figure className="overflow-hidden rounded-3xl bg-white shadow-md ring-1 ring-sky-100">
       <div className={`relative ${large ? "aspect-video" : "aspect-video"}`}>
-        <iframe
-          className="absolute inset-0 h-full w-full"
-          src={`https://www.youtube-nocookie.com/embed/${v.id}?rel=0&modestbranding=1`}
-          title={v.title}
-          loading="lazy"
-          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-          referrerPolicy="strict-origin-when-cross-origin"
-        />
+        <YouTubeEmbed videoId={v.id} title={v.title} />
       </div>
       <figcaption className="p-4">
         <div className="font-display text-base font-bold text-[var(--ithemba-blue-dark)]">

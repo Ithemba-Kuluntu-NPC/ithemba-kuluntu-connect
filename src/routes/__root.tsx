@@ -15,6 +15,7 @@ import { Footer } from "@/components/site/Footer";
 import { FloatingDonate } from "@/components/site/FloatingDonate";
 import { BackToTop } from "@/components/site/BackToTop";
 
+import { CookiePreferencesProvider } from "@/components/site/CookiePreferencesProvider";
 import { CookieConsent } from "@/components/site/CookieConsent";
 
 function NotFoundComponent() {
@@ -80,17 +81,19 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <LanguageProvider>
-        <div className="flex min-h-[calc(100vh-var(--header-height))] flex-col pt-[var(--header-height)]">
-          <Header />
-          <main className="flex-1">
-            <Outlet />
-          </main>
-          <Footer />
-          <FloatingDonate />
-          <BackToTop />
+        <CookiePreferencesProvider>
+          <div className="flex min-h-[calc(100vh-var(--header-height))] flex-col pt-[var(--header-height)]">
+            <Header />
+            <main className="flex-1">
+              <Outlet />
+            </main>
+            <Footer />
+            <FloatingDonate />
+            <BackToTop />
 
-          <CookieConsent />
-        </div>
+            <CookieConsent />
+          </div>
+        </CookiePreferencesProvider>
       </LanguageProvider>
     </QueryClientProvider>
   );

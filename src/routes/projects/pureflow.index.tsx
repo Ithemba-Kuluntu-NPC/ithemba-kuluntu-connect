@@ -1,3 +1,4 @@
+import { YouTubeEmbed } from "@/components/site/YouTubeEmbed";
 // This is a compact comparison concept for PureFlow Amanzi built around the Transformation Pathway, focusing on women's livelihoods.
 //
 // Route: /projects/pureflow-amanzi-compact
@@ -638,7 +639,6 @@ function AnimatedNumber({ value, suffix, locale }: { value: number; suffix: stri
 }
 
 function Showcase({ t, lang }: { t: (k: string, fb?: string) => string; lang: Lang }) {
-  const [playing, setPlaying] = useState(false);
   const videoUrl = t("showcase.video.url");
   const vid = youtubeId(videoUrl);
   const locale = lang === "de" ? "de-DE" : lang === "nl" ? "nl-NL" : "en-US";
@@ -696,16 +696,13 @@ function Showcase({ t, lang }: { t: (k: string, fb?: string) => string; lang: La
 
         <div className="mx-auto mt-8 max-w-4xl overflow-hidden rounded-3xl bg-black/90 shadow-2xl ring-1 ring-white/10 md:max-w-[900px]">
           <div className="relative aspect-video w-full">
-            {vid && !playing && (
-              <button type="button" onClick={() => setPlaying(true)} className="group absolute inset-0 z-10" aria-label={t("showcase.video.title")}>
-                <img src={`https://i.ytimg.com/vi/${vid}/hqdefault.jpg`} alt={t("showcase.video.title")} className="h-full w-full object-cover" />
-                <span className="absolute inset-0 flex items-center justify-center bg-black/30 transition group-hover:bg-black/40">
-                  <PlayCircle className="h-20 w-20" style={{ color: YELLOW }} />
-                </span>
-              </button>
-            )}
-            {vid && playing && (
-              <iframe className="absolute inset-0 h-full w-full" src={`https://www.youtube.com/embed/${vid}?autoplay=1&rel=0`} title={t("showcase.video.title")} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+            {vid && (
+              <YouTubeEmbed
+                videoId={vid}
+                title={t("showcase.video.title")}
+                thumbnail={`https://i.ytimg.com/vi/${vid}/hqdefault.jpg`}
+                playIconClassName="h-20 w-20"
+              />
             )}
             {!vid && <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#081A60] to-[#1E40C8] text-white/70"><PlayCircle className="h-16 w-16" style={{ color: YELLOW }} /></div>}
           </div>
@@ -1128,37 +1125,17 @@ function DeliveryLoop({ t }: { t: (k: string, fb?: string) => string }) {
 // ----------------------- ECD YouTube Embed (for Step 03) -----------------------
 
 function EcdVideoEmbed() {
-  const [playing, setPlaying] = useState(false);
   const vid = "0Y4YB7WniTw";
   return (
     <div className="mt-12 lg:mx-auto lg:max-w-[860px]">
       <div className="overflow-hidden rounded-3xl bg-black/90 shadow-xl ring-1 ring-black/10">
         <div className="relative aspect-video w-full">
-          {!playing ? (
-            <button
-              type="button"
-              onClick={() => setPlaying(true)}
-              className="group absolute inset-0"
-              aria-label="Play PureFlow Amanzi at the ECD Centre"
-            >
-              <img
-                src={`https://i.ytimg.com/vi/${vid}/hqdefault.jpg`}
-                alt="PureFlow Amanzi at the ECD Centre"
-                className="h-full w-full object-cover"
-              />
-              <span className="absolute inset-0 flex items-center justify-center bg-black/30 transition group-hover:bg-black/40">
-                <PlayCircle className="h-20 w-20" style={{ color: YELLOW }} />
-              </span>
-            </button>
-          ) : (
-            <iframe
-              className="absolute inset-0 h-full w-full"
-              src={`https://www.youtube.com/embed/${vid}?autoplay=1&rel=0`}
-              title="PureFlow Amanzi at the ECD Centre"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          )}
+          <YouTubeEmbed
+            videoId={vid}
+            title="PureFlow Amanzi at the ECD Centre"
+            thumbnail={`https://i.ytimg.com/vi/${vid}/hqdefault.jpg`}
+            playIconClassName="h-20 w-20"
+          />
         </div>
         <div className="bg-white/95 px-5 py-3 text-center">
           <p className="text-sm font-semibold" style={{ color: BLUE_DEEP, fontFamily: SERIF }}>
@@ -1603,36 +1580,16 @@ function ClimateSection({ t }: { t: (k: string, fb?: string) => string }) {
 // ----------------------- Video Library -----------------------
 
 function VideoCard({ url, title, size = "md" }: { url: string; title: string; size?: "md" | "sm" }) {
-  const [playing, setPlaying] = useState(false);
   const vid = youtubeId(url);
   return (
     <div className="overflow-hidden rounded-2xl bg-black/90 shadow-xl ring-1 ring-white/10">
       <div className="relative aspect-video w-full">
-        {vid && !playing && (
-          <button
-            type="button"
-            onClick={() => setPlaying(true)}
-            className="group absolute inset-0"
-            aria-label={title}
-          >
-            <img
-              src={`https://i.ytimg.com/vi/${vid}/hqdefault.jpg`}
-              alt={title}
-              loading="lazy"
-              className="h-full w-full object-cover"
-            />
-            <span className="absolute inset-0 flex items-center justify-center bg-black/30 transition group-hover:bg-black/40">
-              <PlayCircle className={size === "sm" ? "h-12 w-12" : "h-16 w-16"} style={{ color: YELLOW }} />
-            </span>
-          </button>
-        )}
-        {vid && playing && (
-          <iframe
-            className="absolute inset-0 h-full w-full"
-            src={`https://www.youtube.com/embed/${vid}?autoplay=1&rel=0`}
+        {vid && (
+          <YouTubeEmbed
+            videoId={vid}
             title={title}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
+            thumbnail={`https://i.ytimg.com/vi/${vid}/hqdefault.jpg`}
+            playIconClassName={size === "sm" ? "h-12 w-12" : "h-16 w-16"}
           />
         )}
         {!vid && (
